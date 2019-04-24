@@ -1,0 +1,70 @@
+// This module is included in the following assemblies:
+//
+// assembly_knative-OCP-311.adoc
+
+
+[id='allowing-external-access-knative-services_{context}]
+= Allowing external access to Knative services
+
+Use a configured hostname to access Knative services.
+
+NOTE: By default, Knative services are not accessible outside the OpenShift cluster. You can enable access by configuring a hostname. This method uses wildcard routing to automatically assign a hostname.
+
+
+.Procedure
+. Find the default routing subdomain of your OpenShift cluster. 
+
+. Open the ConfigMap for your cluster to edit the Knative serving configuration.
+
+   `oc edit configmap config-domain -n knative-serving`   
+
+. Replace the default "example.com" with your default routing subdomain.
+
+. Configure the router to allow wildcard domains.
+
+   `oc set env dc/router ROUTER_ALLOW_WILDCARD_ROUTES=true -n default`   
+
+. Create a route that forwards wildcard traffic to the `knative-ingressgateway`.
+   
+NOTE: This route requires one host per namespace, which runs Knative services. The format for the host of the route is `wildcard.<namespace>.<default-routing-subdomain>`.
+
+[start=6]
+. Create a wildcard yaml file (in our example this is named `wildcard-routes.yml`) with the following contents:
+
+    apiVersion: route.openshift.io/v1
+    kind: Route
+      metadata:
+      name: knative-ingressgateway-wildcard
+      namespace: <namespace-running-knative-services>
+    spec:
+      host: wildcard.<namespace>.<default-routing-subdomain>
+      port:
+        targetPort: http2
+      to:
+        kind: Service
+        name: knative-ingressgateway
+        weight: 100
+        wildcardPolicy: Subdomain   
+        
+
+. Apply the yaml file.
+
+   `oc apply -f wildcard-routes.yml`   
+
+. Clone the demo repository.
+
+   `git clone https://github.com/openshift-cloud-functions/demos.git`
+
+. Deploy the demo application.
+
+   `oc apply -f ~/demos/knative-kubecon/serving/010-service.yaml`   
+
+. View the domain that was assigned to the application. You can now access the demo application using this domain.
+
+   `oc get service.serving.knative.dev/dumpy`   
+
+
+
+.Additional resources
+
+* For more information about default routing subdomains, see link:https://docs.openshift.com/enterprise/3.0/install_config/install/deploy_router.html#customizing-the-default-routing-subdomain[OpenShift documentation].

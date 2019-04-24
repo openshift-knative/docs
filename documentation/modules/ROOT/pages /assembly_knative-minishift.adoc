@@ -1,0 +1,13 @@
+// This assembly is included in the following assemblies:
+//
+// master.adoc
+
+
+[id='knative-minishift_{context}']
+= Knative on a Minishift cluster
+
+// Knative on Minishift cluster overview
+include::common/con_knative-minishift.adoc[leveloffset=+1]
+
+// Installing Knative on a Minishift cluster using `install-on-minishift.sh`
+include::common/proc_installing-knative-minishift.adoc[leveloffset=+1] 
