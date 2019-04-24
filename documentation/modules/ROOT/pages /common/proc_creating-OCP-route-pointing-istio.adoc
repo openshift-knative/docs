@@ -1,0 +1,32 @@
+// This module is included in the following assemblies:
+//
+// assembly_knative-OCP-4x.adoc
+
+
+[id='creating-OCP-route-pointing-istio_{context}']
+= Creating an OpenShift Route pointing to the istio-ingressgateway for each of your Knative Services 
+
+
+.Procedure
+
+. Create a route by using the `oc expose` command.
+
+```
+
+oc expose svc istio-ingressgateway --hostname=<servicename>.<projectname>.<openshiftdomain> --name=<servicename> -n istio-system`
+
+```
+
+
+For example, if the following inputs are used:
+* knative service name: _helloworld_
+* project: _my project_
+* cluster wildcard domain: _apps.demo1.d103.sandbox718.opentlc.com_
+      
+the `oc command` would be:
+
+```
+
+  oc expose svc istio-ingressgateway --hostname=helloworld.myproject.apps.demo1.d103.sandbox718.opentlc.com --name=helloworld -n istio-system
+ 
+```
