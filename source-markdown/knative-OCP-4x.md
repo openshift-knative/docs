@@ -67,7 +67,7 @@
 1. Create a route by using the `oc expose` command.
 
 ```
-oc expose svc istio-ingressgateway --hostname=<servicename>.<projectname>.<openshiftdomain> --name=<servicename> -n istio-system`
+oc expose svc istio-ingressgateway --hostname=<servicename>.<projectname>.<openshiftdomain> --name=<servicename> -n istio-system
 ```
 
 For example, if the following inputs are used:
@@ -77,7 +77,7 @@ For example, if the following inputs are used:
     
 the `oc command` would be:
 
- ```
- oc expose svc istio-ingressgateway --hostname=helloworld.myproject.apps.demo1.d103.sandbox718.opentlc.com --name=helloworld -n istio-system
+```
+oc expose svc istio-ingressgateway --hostname=helloworld.myproject.apps.demo1.d103.sandbox718.opentlc.com --name=helloworld -n istio-system
 ```
 
