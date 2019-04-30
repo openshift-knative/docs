@@ -4,8 +4,8 @@ runtime:
 site:
   title: Knative on OpenShift
   url: https://openshift-knative.github.io/docs/
-  start_page: https://github.com/openshift-knative/docs/blob/master/documentation/modules/ROOT/pages/index.adoc
-
+  start_page: master@openshift-knative::index.adoc
+  
 content:
   sources:
     - url: https://github.com/openshift-knative/docs.git
