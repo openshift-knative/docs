@@ -8,7 +8,7 @@ This document describes the latest changes, enhancements, known issues, and fixe
 
 >**NOTE:** The functionality introduced by Knative on an OpenShift cluster is in preview only. Red Hat support is not provided, and this release should not be used in a production environment. Features are still under development and are not fully supported under Red Hat Subscription Level Agreements.
 
->**NOTE:** The features outlined in this document, reflect the contributions of the Red Hat team, specififcally. For complete release information relating to Knative, refer to the Resources and Links section of this document. 
+>**NOTE:** The features outlined in this document, reflect the selected contributions of the Red Hat team. For complete release information relating to Knative, refer to the **Resources and Links** section of this document. 
 -------------
 
 ## General Information
