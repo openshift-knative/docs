@@ -1,0 +1,3 @@
+:moduledir: ..
+:branch: master
+:github-repo: https://github.com/openshift-knative/docs.git
