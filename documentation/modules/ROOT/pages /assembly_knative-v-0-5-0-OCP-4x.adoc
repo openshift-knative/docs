@@ -1,16 +1,16 @@
 // This assembly is included in the following assemblies:
 //
-// master.adoc
+// nav.adoc
 
-[id='knative-ocp-4x_{context}']
-= Knative on an OpenShift cluster 4.0
+[id='assembly-knative-v-0-5-0-ocp-4x_{context}']
+= Knative v0.5.0 on an OpenShift cluster 4.0
 
 // Knative on OpenShift cluster overview
-include::common/con_knative-OCP-4x.adoc[leveloffset=+1]
+include::common/con_knative-v-0-5-0-OCP-4x.adoc[leveloffset=+1]
 
 // Installing Knative on an OpenShift cluster 4.0 using the script provided
-include::common/proc_installing-knative-OCP-4x.adoc[leveloffset=+1] 
+include::common/proc_knative-v-0-5-0-install-OCP-4x.adoc[leveloffset=+1] 
 
 // Allowing external access to Knative services for OCP 4.0 (Creating an OpenShift Route pointing to the istio-ingressgateway for each of your Knative Service)
-include::common/proc_creating-OCP-route-pointing-istio.adoc[leveloffset=+1]
+include::common/proc_knative-v-0-5-0-creating-OCP-route-pointing-istio.adoc[leveloffset=+1]
 

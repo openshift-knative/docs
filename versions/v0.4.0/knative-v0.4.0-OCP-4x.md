@@ -1,9 +1,9 @@
-# Knative on an OpenShift 4.0 cluster
+# Knative v0.4.0 on an OpenShift 4.0 cluster
 ------
 
 > **IMPORTANT:** The functionality introduced by Knative on an OpenShift cluster is preview only. Red Hat support is not provided, and this release should not be used in a production environment.
 
-> **NOTE:** This release includes upstream Knative Eventing `v0.4.1` and Knative Serving `v0.4.1`.
+> **NOTE:** This release includes upstream Knative Serving `v0.4.1`, Knative Eventing `v0.4.1` and Knative Build `v0.4.0`.
 
 ## Prerequisites
 
@@ -13,7 +13,7 @@
 
 > **NOTE:** This Knative on OpenShift preview is only available by using the OpenShift 4.0 developer preview. You will require a Red Hat Developers login to try this. Visit [try.openshift.com](https://try.openshift.com/) for getting started information.
 
-> **IMPORTANT:** Installation requires the OpenShift version `0.16.1` installer or later. Using the [latest version installer](https://github.com/openshift/installer/releases) is recommended.  
+> **IMPORTANT:** Installation requires the OpenShift version `0.16.1` installer or later. Using the [latest version installer](https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest/) is recommended.  
 
 | Platform        | Supported versions           |
 | ------------- |:-------------:|
@@ -21,7 +21,7 @@
 
 > **NOTE:**  Long-running clusters are not supported in this release.
 
-## Installing Knative on an OpenShift cluster using the script provided
+## Installing Knative v0.4.0 on an OpenShift cluster using the script provided
 
 1. Login to the cluster using your admin credentials.
 
@@ -33,7 +33,7 @@
    git clone https://github.com/openshift-cloud-functions/knative-operators
    cd knative-operators/
    git fetch --tags  
-   git checkout openshift-v0.4.0      
+   git checkout openshift-v0.5.0
 ```
 
 3. Navigate to the newly cloned repository and run the `install.sh` script.
@@ -67,7 +67,7 @@
 1. Create a route by using the `oc expose` command.
 
 ```
-oc expose svc istio-ingressgateway --hostname=<servicename>.<projectname>.<openshiftdomain> --name=<servicename> -n istio-system`
+oc expose svc istio-ingressgateway --hostname=<servicename>.<projectname>.<openshiftdomain> --name=<servicename> -n istio-system
 ```
 
 For example, if the following inputs are used:
@@ -77,7 +77,7 @@ For example, if the following inputs are used:
     
 the `oc command` would be:
 
- ```
- oc expose svc istio-ingressgateway --hostname=helloworld.myproject.apps.demo1.d103.sandbox718.opentlc.com --name=helloworld -n istio-system
+```
+oc expose svc istio-ingressgateway --hostname=helloworld.myproject.apps.demo1.d103.sandbox718.opentlc.com --name=helloworld -n istio-system
 ```
 

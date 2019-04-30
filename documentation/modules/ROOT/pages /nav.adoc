@@ -1,4 +1,4 @@
-* xref:knative-ocp-4x_{context}[Knative on OCP 4x]
-
-* xref:knative-ocp-311_{context}[Knative on OCP 3.11]
-* xref:knative-minishift_{context}[Knative on Minishift]
+* xref:assembly-knative-v-0-5-0-ocp-4x_{context}[Knative v0.5.0]
+** xref:knative-v-0-5-0-ocp-4x_{context}[Overview]
+** xref:knative-v-0-5-0-installing-knative-ocp-using-script-4x_{context}[Installing Knative]
+**xref:knative-v-0-5-0-creating-OCP-route-pointing-istio[Post-installation]

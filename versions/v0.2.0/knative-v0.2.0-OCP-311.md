@@ -1,4 +1,4 @@
-# Knative on an OpenShift 3.11 cluster
+# Knative v0.2.0 on an OpenShift 3.11 cluster
 Developer Preview
 ------
 
@@ -14,7 +14,7 @@ Developer Preview
 | ------------- |:-------------:|
 | OpenShift      | 3.11		|
 
-## Installing Knative on an OpenShift cluster using the script provided
+## Installing Knative v0.2.0 on an OpenShift cluster using the script provided
 
 1. Login to the cluster using your admin credentials.
 

@@ -1,4 +1,4 @@
-# Knative on a Minishift cluster
+# Knative v0.2.0 on a Minishift cluster
 Preview
 ------
 
@@ -21,7 +21,7 @@ The Minishift cluster must have at least 10GB of memory allocated to run Knative
 If you are running Minishift on your local machine, ensure that virtualization is enabled, as this installation requires the use of virtual machines (KVM).
 
 
-## Installing Knative on a Minishift cluster using install-on-minishift.sh
+## Installing Knative v0.2.0 on a Minishift cluster using install-on-minishift.sh
 
 > **IMPORTANT:** `install-on-minishift.sh` is destructive. It will destroy the existing `knative` profile and recreate it with known-to-work configuration.
 
