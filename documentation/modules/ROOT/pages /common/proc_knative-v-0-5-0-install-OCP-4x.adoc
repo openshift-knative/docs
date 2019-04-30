@@ -17,27 +17,31 @@ IMPORTANT: Installation requires the OpenShift version `0.16.1` installer or lat
 
 
 .Procedure
-1. Login to the cluster using your admin credentials.
+. Login to the cluster using your admin credentials.
+```
+oc login <admin-credentials>
+```   
 
-   `oc login <admin-credentials>`
-   
-2. Clone the `knative-operators` repository.
+[start=2]
+. Clone the `knative-operators` repository.
 
 ```
    git clone https://github.com/openshift-cloud-functions/knative-operators
    cd knative-operators/
    git fetch --tags  
-   git checkout openshift-v0.4.0      
+   git checkout openshift-v0.5.0      
 ```
 
-3. Navigate to the newly cloned repository and run the `install.sh` script.
-
-   `./etc/scripts/install.sh`  
+[start=3]
+. Navigate to the newly cloned repository and run the `install.sh` script.
+```
+./etc/scripts/install.sh
+```
 
 NOTE: The `install.sh` script can time-out waiting for the Istio operator to complete, and you may receive an `ERROR: Timed out` message. If the `install.sh` script fails to install Istio, run the script again after it times out.
 
-4. Once the script starts, you will see the following warning and prompt.
-
+[start=4]
+. Once the script starts, you will see the following warning and prompt.
 ```
    WARNING: This script will attempt to install Istio, Knative, and OLM in your Kubernetes/OpenShift cluster.
     
@@ -46,7 +50,6 @@ NOTE: The `install.sh` script can time-out waiting for the Istio operator to com
    Pass -q to disable this prompt
  
    Enter to continue or Ctrl-C to exit:
-
 ```
-
-5. Press Enter to continue.
+[start=5]
+. Press Enter to continue.
