@@ -8,7 +8,7 @@ This document describes the latest changes, enhancements, known issues, and fixe
 
 >**NOTE:** The functionality introduced by Knative on an OpenShift cluster is in preview only. Red Hat support is not provided, and this release should not be used in a production environment. Features are still under development and are not fully supported under Red Hat Subscription Level Agreements.
 
->**NOTE:** The features outlined have been selected for documenting in the ‘Knative on OpenShift - v0.5.0’ Release Notes. For complete release information relating to Knative, refer to the Resources and Links section of this document. 
+>**NOTE:** The features outlined in this document, reflect the contributions of the Red Hat team, specififcally. For complete release information relating to Knative, refer to the Resources and Links section of this document. 
 -------------
 
 ## General Information
@@ -24,14 +24,14 @@ The following components tested on the OpenShift 4.0 cluster in this release:
 
 ## What's New
 ### Serving
-- **Bucketize autoscaling metrics by timeframe:** Instead of calculating the average concurrency per pod over time (bucketizing by pod name), it is now bucketized by time. Statistics are averaged by each specific timeframe vs. averaged over the whole window. [#3289](https://github.com/knative/serving/pull/3289)
-- **Default Operator values:** Operator is now able to set sensible default values for the default domain suffix and outbound IP ranges on OpenShift.
+- **Bucketize autoscaling metrics by timeframe:** Instead of calculating the average concurrency per pod over time (bucketizing by pod name), it is now bucketized by time. Statistics are averaged by each specific timeframe vs. averaged over the whole window. [(#3289)](https://github.com/knative/serving/pull/3289)
+- **Setting default operator values:** The operator is now able to set sensible default values for the default domain suffix and outbound IP ranges on OpenShift.
 
 
 ### Eventing
 - **Implementation of Broker, Trigger, and Namespace Controllers:** Initial implementations of the Broker and Trigger controllers, as well as the Eventing Namespace watcher are presented. Broker and Trigger are implemented as event delivery mechanisms. For more information on Event Brokers and Triggers, see [here](https://github.com/knative/docs/tree/master/docs/eventing#event-brokers-and-triggers). Information on Broker and Trigger CRDs is available [here](https://github.com/knative/eventing/tree/master/docs/broker). [(#788)](https://github.com/knative/eventing/pull/788)
 - **Added ReplicationFactor configuration:** Kafka Channels can configure their replication factor with the ReplicationFactor argument. [(#869)](https://github.com/knative/eventing/pull/869)
-- **Addition of Eventing Sources:** Apache Camel-K and Apache Kafka sources added and dumper removed. [(#13)](https://github.com/openshift/knative-eventing-sources/pull/13)
+- **Addition of Eventing sources:** Apache Camel-K and Apache Kafka sources added and dumper removed. [(#13)](https://github.com/openshift/knative-eventing-sources/pull/13)
 
 ### Build
 - **Commit id in Git source:** Allows specifying a commit hash to pinpoint the exact state of the repository that should be used for the build.
