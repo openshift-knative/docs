@@ -1,4 +1,4 @@
-# Knative v0.5.0 on an OpenShift 4.0 cluster
+# Knative on an OpenShift 4.0 cluster - v0.5.0
 ------
 
 > **IMPORTANT:** The functionality introduced by Knative on an OpenShift cluster is preview only. Red Hat support is not provided, and this release should not be used in a production environment.
