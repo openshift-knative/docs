@@ -25,39 +25,38 @@ The following components tested on the OpenShift 4.0 cluster in this release:
 ## What's New
 ### Serving
 - **Bucketize autoscaling metrics by timeframe:** Instead of calculating the average concurrency per pod over time (bucketizing by pod name), it is now bucketized by time. Statistics are averaged by each specific timeframe vs. averaged over the whole window. [#3289](https://github.com/knative/serving/pull/3289)
-- **Operator is now able to set sensible default values for the default domain suffix and outbound ip ranges on OpenShift.
+- **Default Operator values:** Operator is now able to set sensible default values for the default domain suffix and outbound IP ranges on OpenShift.
 
 
 ### Eventing
-- **Implementation of Broker, Trigger, and Namespace Controllers:** Initial implementations of the Broker and Trigger controllers, as well as the Eventing Namespace watcher are presented. Broker and Trigger are implemented as event delivery mechanisms. For more information on Event Brokers and Triggers, see [here](https://github.com/knative/docs/tree/master/docs/eventing#event-brokers-and-triggers). Information on Broker and Trigger CRDs is available [here](https://github.com/knative/eventing/tree/master/docs/broker).
-  [#788](https://github.com/knative/eventing/pull/788)
-- **Added ReplicationFactor configuration:** Kafka Channels can configure their replication factor with the ReplicationFactor argument. [#869](https://github.com/knative/eventing/pull/869)
-- **Addition of Eventing Sources:** Apache Camel-K and Apache Kafka sources added and dumper removed. [#13](https://github.com/openshift/knative-eventing-sources/pull/13)
+- **Implementation of Broker, Trigger, and Namespace Controllers:** Initial implementations of the Broker and Trigger controllers, as well as the Eventing Namespace watcher are presented. Broker and Trigger are implemented as event delivery mechanisms. For more information on Event Brokers and Triggers, see [here](https://github.com/knative/docs/tree/master/docs/eventing#event-brokers-and-triggers). Information on Broker and Trigger CRDs is available [here](https://github.com/knative/eventing/tree/master/docs/broker). [(#788)](https://github.com/knative/eventing/pull/788)
+- **Added ReplicationFactor configuration:** Kafka Channels can configure their replication factor with the ReplicationFactor argument. [(#869)](https://github.com/knative/eventing/pull/869)
+- **Addition of Eventing Sources:** Apache Camel-K and Apache Kafka sources added and dumper removed. [(#13)](https://github.com/openshift/knative-eventing-sources/pull/13)
 
-### Build (Tekton)
+### Build
 - **Commit id in Git source:** Allows specifying a commit hash to pinpoint the exact state of the repository that should be used for the build.
-- **Build pod labels:** users can specify the pod labels to be set on the builder pods
+- **Build pod labels:** Users can specify pod labels to be set on builder pods.
 
 -------------
 
 ## Fixed Issues
 
 ### Eventing
-- Previously, existing Kafka consumers were stopped and resubscribed when fanout configs updated. Now, Kafka consumers are reused until the corresponding subscriptions are deleted. [#880](https://github.com/knative/eventing/pull/880)
-- An Event can flow through a Broker by using Trigger replies 255 times before getting dropped. [#951](https://github.com/knative/eventing/pull/951)  [#1016](https://github.com/knative/eventing/pull/1016)
+- Previously, existing Kafka consumers were stopped and resubscribed when fanout configs updated. Now, Kafka consumers are reused until the corresponding subscriptions are deleted. [(#880)](https://github.com/knative/eventing/pull/880)
+- An Event can flow through a Broker by using Trigger replies 255 times before getting dropped. [(#951)](https://github.com/knative/eventing/pull/951)  [(#1016)](https://github.com/knative/eventing/pull/1016)
 
-### Build (Tekton)
-- Memory limit set for controllers to restrict memory usage
+### Build
+- Memory limit set for controllers to restrict memory usage.
 -------------
 
 ## Known Issues
-- **Istio installation stalls:** `install.sh` sometimes timeouts on OCP4/AWS waiting for the Istio-operator. The install script frequently fails with a timeout error. Rerunning the script usually, bypasses this error. 
+- **Istio installation stalls:** Sometimes `install.sh` timeouts on OpenShift 4/AWS waiting for the Istio-operator. The install script fails with a timeout error. Rerunning the script usually bypasses this error. 
 
-- **Maistra sidecar injection broken for long-running clusters:** Following installation of Istio, Maistra’s MutatingWebhookConfiguration gets garbage-collected after several hours. This causes eventing sources to fail when connecting to channels. Maistra's MutatingWebhookConfiguration disappears after being up for a period of time. It is using an invalid OwnerReference - setting a cluster-scoped resource to be owned by a namespace-scoped resource.
+- **Maistra sidecar injection broken for long-running clusters:** Following installation of Istio, Maistra’s MutatingWebhookConfiguration gets garbage-collected after several hours. Maistra's MutatingWebhookConfiguration disappears after being up for a period of time. It uses an invalid OwnerReference to set a cluster-scoped resource for ownership by a namespace-scoped resource. This causes eventing sources to fail when connecting to channels. 
 
-- **Image resolution failures with manifest images:** Images that support multiple architectures are usually served behind a manifest. CRI-O has a bug that causes it to resolve the SHA-256 digests of these images wrongly. That collides with Knative Serving’s digest resolution and causes the service to fail with an image pull error. A workaround is to disable digest resolution of the respective registry via the config-controller config map in the knative-serving namespace.
+- **Image resolution failures with manifest images:** Images that support multiple architectures are usually served behind a manifest. CRI-O has a bug that causes it to improperly resolve the SHA-256 digests of these images. This interferes with Knative Serving’s digest resolution and causes the service to fail with an image pull error. A workaround is to disable digest resolution of the respective registry by using the config-controller config map in the knative-serving namespace.
 
-- **Crash loop of Camel K eventing controller:** The Camel K eventing controller will crash unless there are Apache Camel K cluster resources installed in the cluster. Camel K cluster resources should be installed first, for the CamelSource controller to work properly. If Camel K cluster resources are not installed in the cluster, the `camel-controller` pod in the `knative-sources` namespace will crash after startup, signalling that Camel K resources were not found in the cluster. The `camel-controller` pod will not crash if Camel K is properly installed. 
+- **Crash loop of Camel K eventing controller:** The Camel K eventing controller crashes if Apache Camel K cluster resources are not installed in the cluster. Camel K cluster resources should be installed first, for the CamelSource controller to work properly. If Camel K cluster resources are not installed in the cluster, the `camel-controller` pod in the `knative-sources` namespace will crash after startup, signalling that Camel K resources were not found in the cluster. The `camel-controller` pod will not crash if Camel K is properly installed. 
 -------------
 
 ## Resources and Links
