@@ -1,6 +1,6 @@
 name: knative-openshift
 title: Knative on OpenShift
-version: master
+version: 'latest'
 nav:
   - modules/ROOT/nav.adoc
 
