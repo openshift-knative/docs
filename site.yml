@@ -16,11 +16,6 @@ content:
 asciidoc:
   extensions:
   - ./tab-block.js
-  attributes:
-    experimental: ''v
-    idprefix: ''
-    idseparator: '-'
-    linkattrs: ''
     
 ui:
   bundle:
