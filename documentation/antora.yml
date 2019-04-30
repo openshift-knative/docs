@@ -4,4 +4,4 @@ version: master
 nav:
   - modules/ROOT/nav.adoc
 
-start_page: https://github.com/openshift-knative/docs/blob/master/documentation/modules/ROOT/pages%20/index.adoc
+start_page: https://github.com/openshift-knative/docs/blob/master/documentation/modules/ROOT/pages/index.adoc
