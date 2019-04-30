@@ -1,5 +1,4 @@
-![Release Notes](https://github.com/openshift-knative/docs/blob/master/images/release-note-label.png)
-![Knative OpenShift logo](images/knative-openshift-logo.png) 
+![Release Notes](https://github.com/openshift-knative/docs/blob/master/images/release-notes-banner.png)
 
 # Knative on OpenShift - v0.5.0 
 
