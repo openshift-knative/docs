@@ -1,6 +1,6 @@
 ![Release Notes](https://github.com/openshift-knative/docs/blob/master/images/release-notes-banner.png)
 
-# Knative on OpenShift - v0.5.0 
+# Knative v0.5.0 on OpenShift  
 
 **Release Date:** 30 April 2019
 
