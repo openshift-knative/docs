@@ -5,7 +5,7 @@ Build and deploy serverless applications using an event-driven infrastructure on
 
 
 ## Knative v0.5.0 on OpenShift
-* [Knative v0.5.0 on an OpenShift 4 cluster](versions/v050/knative-v050-OCP-4x.md)
+* [Knative v0.5.0 on an OpenShift 4.x cluster](versions/v050/knative-v050-OCP-4x.md)
 * [Release Notes](versions/v050/rn-knative-v050-OCP-4x.md)
 
 --------------
