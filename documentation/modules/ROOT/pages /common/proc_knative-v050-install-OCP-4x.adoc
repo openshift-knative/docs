@@ -1,9 +1,9 @@
 // This module is included in the following assemblies:
 //
-// assembly_knative-v-0-5-0-OCP-4x.adoc
+// assembly_knative-v050-OCP-4x.adoc
 
 
-[id='knative-v-0-5-0-installing-knative-ocp-using-script-4x_{context}']
+[id='knative-v050-installing-knative-ocp-using-script-4x_{context}']
 = Installing Knative v0.5.0 on an OpenShift cluster 4.0 using the script provided
 
 NOTE: This Knative v0.5.0 on OpenShift preview is only available by using the OpenShift 4.0 developer preview. 

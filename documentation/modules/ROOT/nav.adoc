@@ -1,5 +1,5 @@
-* xref:assembly-knative-v-0-5-0-ocp-4x_{context}[Knative v0.5.0]
-** xref:knative-v-0-5-0-ocp-4x_{context}[Overview]
-** xref:knative-v-0-5-0-installing-knative-ocp-using-script-4x_{context}[Installing Knative]
-** xref:knative-v-0-5-0-creating-OCP-route-pointing-istio[Post-installation]
+* xref:assembly-knative-v050-ocp-4x_{context}[Knative v0.5.0]
+** xref:knative-v050-ocp-4x_{context}[Overview]
+** xref:knative-v050-installing-knative-ocp-using-script-4x_{context}[Installing Knative]
+** xref:knative-v050-creating-OCP-route-pointing-istio[Post-installation]
 
