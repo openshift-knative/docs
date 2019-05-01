@@ -50,7 +50,7 @@ The following components tested on the OpenShift 4.0 cluster in this release:
 -------------
 
 ## Known Issues
-- **Istio installation stalls:** Sometimes `install.sh` timeouts on OpenShift 4/AWS waiting for the Istio-operator. The install script fails with a timeout error. Rerunning the script usually bypasses this error. 
+- **Istio installation stalls:** Sometimes `install.sh` timeouts on OpenShift 4/AWS waiting for the Istio-operator. The install script fails with a timeout error. Rerunning the script usually bypasses this error. The script does not work on OpenShift 3.11.
 
 - **Maistra sidecar injection broken for long-running clusters:** Following installation of Istio, Maistra’s MutatingWebhookConfiguration gets garbage-collected after several hours. Maistra's MutatingWebhookConfiguration disappears after being up for a period of time. It uses an invalid OwnerReference to set a cluster-scoped resource for ownership by a namespace-scoped resource. This causes eventing sources to fail when connecting to channels. 
 
