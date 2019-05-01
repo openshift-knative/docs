@@ -1,4 +1,4 @@
-name: knative-openshift
+name: docs
 title: Knative on OpenShift
 version: 'latest'
 nav:
