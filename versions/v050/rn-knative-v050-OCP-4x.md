@@ -12,7 +12,7 @@ This document describes the latest changes, enhancements, known issues, and fixe
 -------------
 
 ## General Information
-The following components tested on the OpenShift 4.0 cluster in this release:
+The following components tested on the OpenShift 4.x cluster in this release:
 
 |Component|Version
 |---------|-------|
