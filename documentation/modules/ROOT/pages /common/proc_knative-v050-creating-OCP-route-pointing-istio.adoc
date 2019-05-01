@@ -19,7 +19,7 @@ For example, if the following inputs are used:
 
 - knative service name: _helloworld_
 - project: _my project_
-- cluster wildcard domain: _apps.demo1.d103.sandbox718.opentlc.com
+- cluster wildcard domain: _apps.demo1.d103.sandbox718.opentlc.com_
     
 the `oc command` would be:
 
