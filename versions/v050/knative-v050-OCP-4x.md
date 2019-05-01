@@ -1,4 +1,4 @@
-# Knative v0.5.0 on an OpenShift 4.0 cluster
+# Knative v0.5.0 on an OpenShift 4 cluster
 ------
 
 > **IMPORTANT:** The functionality introduced by Knative on an OpenShift cluster is preview only. Red Hat support is not provided, and this release should not be used in a production environment.
@@ -60,7 +60,7 @@
 
 ## Post-installation tasks
 
-### Allowing external access to Knative services for OCP 4.0
+### Allowing external access to Knative services for OCP 4.x
    
 #### Creating an OpenShift Route pointing to the istio-ingressgateway for each of your Knative Service. 
 
