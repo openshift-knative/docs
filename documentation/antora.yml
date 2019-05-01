@@ -1,6 +1,6 @@
 name: docs
 title: Knative on OpenShift
-version: 'latest'
+version: master
 nav:
   - modules/ROOT/nav.adoc
 
