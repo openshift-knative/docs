@@ -3,7 +3,7 @@
 // nav.adoc
 
 [id='assembly-knative-v050-ocp-4x_{context}']
-= Knative v0.5.0 on an OpenShift cluster 4.x
+= Knative v0.5.0 on an OpenShift 4.x cluster
 
 // Knative on OpenShift 4.x cluster overview
 include::common/con_knative-v050-OCP-4x.adoc[leveloffset=+1]
