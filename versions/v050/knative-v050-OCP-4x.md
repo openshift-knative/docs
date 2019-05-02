@@ -1,7 +1,7 @@
 # Knative v0.5.0 on an OpenShift cluster
 ------
 
-> **IMPORTANT:** The functionality introduced by Knative on an OpenShift cluster is preview only. Red Hat support is not provided, and this release should not be used in a production environment.
+> **IMPORTANT:** The functionality introduced by Knative on an OpenShift cluster (OCP) is preview only. Red Hat support is not provided, and this release should not be used in a production environment.
 
 > **NOTE:** This release includes upstream Knative Serving `v0.5.1`, Knative Eventing `v0.5.0` and Knative Build `v0.5.0`.
 
