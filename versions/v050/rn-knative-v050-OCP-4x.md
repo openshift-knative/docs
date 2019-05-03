@@ -54,8 +54,6 @@ The following components tested on the OpenShift 4.x cluster in this release:
 
 - **Maistra sidecar injection broken for long-running clusters:** Following installation of Istio, Maistra’s MutatingWebhookConfiguration gets garbage-collected after several hours. Maistra's MutatingWebhookConfiguration disappears after being up for a period of time. It uses an invalid OwnerReference to set a cluster-scoped resource for ownership by a namespace-scoped resource. This causes eventing sources to fail when connecting to channels. 
 
-- **Image resolution failures with manifest images:** Images that support multiple architectures are usually served behind a manifest. CRI-O has a bug that causes it to improperly resolve the SHA-256 digests of these images. This interferes with Knative Serving’s digest resolution and causes the service to fail with an image pull error. A workaround is to disable digest resolution of the respective registry by using the config-controller config map in the knative-serving namespace.
-
 - **Crash loop of Camel K eventing controller:** The Camel K eventing controller crashes if Apache Camel K cluster resources are not installed in the cluster. Camel K cluster resources should be installed first, for the CamelSource controller to work properly. If Camel K cluster resources are not installed in the cluster, the `camel-controller` pod in the `knative-sources` namespace will crash after startup, signalling that Camel K resources were not found in the cluster. The `camel-controller` pod will not crash if Camel K is properly installed. 
 -------------
 
