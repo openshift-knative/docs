@@ -3,7 +3,7 @@ runtime:
 
 site:
   title: Knative on OpenShift
-  url: https://openshift-knative.github.io/docs/
+  url: https://openshift-knative.github.io/docs
   start_page: docs::index.adoc
   
 content:
