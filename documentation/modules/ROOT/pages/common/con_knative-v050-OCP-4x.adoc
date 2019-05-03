@@ -12,7 +12,7 @@ IMPORTANT: This Knative on OpenShift preview is only available by using the Open
 You will need cluster administrator privileges to install and use Knative on an OpenShift cluster.
 
 
-=== Supported platform version
+== Supported platform version
 
 [cols="50,50"]
 |===
