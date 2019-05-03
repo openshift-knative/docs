@@ -3,7 +3,7 @@
 // assembly_knative-v-0-5-0-OCP-4x.adoc
 
 
-[id='knative-v050-creating-OCP-route-pointing-istio_{context}']
+[id='knative-v050-creating-OCP-route-pointing-istio']
 = Creating an OpenShift Route pointing to the istio-ingressgateway for each of your Knative Services 
 
 NOTE: The install script sets privileges for a specific namespace. Results are different when using a namespace other than "myproject". If the user wants to use the install script in another namespace, it needs to be called out.
