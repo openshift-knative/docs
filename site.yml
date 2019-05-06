@@ -13,8 +13,10 @@ content:
       start_path: documentation
       
 asciidoc:
+  attributes:
+    tutorial-namespace: openshiftknative
   extensions:
-  - ./tab-block.js
+    - ./lib/copy-to-clipboard.js
     
 ui:
   bundle:

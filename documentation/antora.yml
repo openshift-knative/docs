@@ -1,4 +1,4 @@
-name: docs
+name: openshiftknative-docs
 title: Knative on OpenShift
 version: master
 nav:
