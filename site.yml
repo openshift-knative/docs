@@ -12,12 +12,6 @@ content:
       branches: master
       start_path: documentation
       
-asciidoc:
-  attributes:
-    tutorial-namespace: openshiftknative
-  extensions:
-    - ./lib/copy-to-clipboard.js
-    
 ui:
   bundle:
     url: https://gitlab.com/antora/antora-ui-default/-/jobs/artifacts/master/raw/build/ui-bundle.zip?job=bundle-stable
