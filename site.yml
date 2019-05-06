@@ -10,8 +10,7 @@ content:
   sources:
     - url: https://github.com/openshift-knative/docs.git
       branches: master
-      start_path: documentation
-      
+      start_path: documentation     
 ui:
   bundle:
     url: https://gitlab.com/antora/antora-ui-default/-/jobs/artifacts/master/raw/build/ui-bundle.zip?job=bundle-stable
