@@ -1,0 +1,6 @@
+:toc:
+include::pages/index.adoc[leveloffset=0,tags=!excludeDownstream]
+include::pages/assembly_knative-v050-OCP-4x.adoc.adoc[leveloffset=1]
+include::pages/con_knative-v050-OCP-4x.adoc.adoc[leveloffset=2]
+include::pages/proc_knative-v050-install-OCP-4x.adoc[leveloffset=2]
+include::pages/proc_knative-v050-creating-OCP-route-pointing-istio.adoc[leveloffset=2]
