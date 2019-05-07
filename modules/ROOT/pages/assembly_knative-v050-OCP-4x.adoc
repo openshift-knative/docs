@@ -8,11 +8,11 @@ include::_attributes.adoc[]
 
 
 // Knative on OpenShift 4.x cluster overview
-include::con_knative-v050-OCP-4x.adoc[leveloffset=+1]
+//include::con_knative-v050-OCP-4x.adoc[leveloffset=+1]
 
 // Installing Knative on an OpenShift cluster 4.x using the script provided
-include::proc_knative-v050-install-OCP-4x.adoc[leveloffset=+1] 
+//include::proc_knative-v050-install-OCP-4x.adoc[leveloffset=+1] 
 
 // Allowing external access to Knative services for OCP 4.x (Creating an OpenShift Route pointing to the istio-ingressgateway for each of your Knative Service)
-include::proc_knative-v050-creating-OCP-route-pointing-istio.adoc[leveloffset=+1]
+//include::proc_knative-v050-creating-OCP-route-pointing-istio.adoc[leveloffset=+1]
 
