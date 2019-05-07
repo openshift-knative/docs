@@ -11,5 +11,5 @@ content:
       branches: master      
 ui:
   bundle:
-    url:  https://github.com/finp/arotna.org/raw/master/ui-bundle.zip
+    url: https://github.com/openshift-knative/docs/blob/master/ui-bundle.zip
  
