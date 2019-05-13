@@ -6,7 +6,7 @@ The components of Knative are:
 
 * Serving: Deploy and scale functions and serverless applications.
 
-* Build: Create container images from source code. The source code is provided from different soruces (git, gce, custom).
+* Build: Create container images from source code. 
 
 * Eventing: Consume and produce events to bind event sources to services.
 
