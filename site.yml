@@ -8,7 +8,7 @@ site:
 content:
   sources:
     - url: https://github.com/openshift-knative/docs.git
-      branches: master      
+      branches: gh-pages      
 ui:
   bundle:
     url: https://github.com/openshift-knative/docs/blob/master/ui-bundle.zip
