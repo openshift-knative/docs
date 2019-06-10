@@ -53,7 +53,7 @@ The following components have been tested on the OpenShift 4.1 cluster in this r
 
 - **Camel and Kafka optional eventing sources have been removed.** The Camel and Kafka sources that were previously available by installing the Knative Eventing Operator have been removed. These will become standalone Knative Kafka and Knative Camel Operators in a future release of Knative on OpenShift. See *Resources and Links* below for more information. ([#34](https://github.com/openshift-knative/knative-eventing-operator/pull/34), [#1](https://github.com/openshift-knative/knative-kafka-operator/pull/1))
 
-- **Activator and autoscaler pods fail to start when there is an existing Maistra installation before installing the Knative Serving Operator.** If Maistra version 0.10 or 0.11 is already installed before installing the Knative Serving Operator, the activator and autoscaler pods can fail to start, and the user will encounter an error. This issue can temporarily be fixed by setting the Security Context Constraints for service accounts controller and default to `privileged`;
+- **Activator and autoscaler pods fail to start when there is an existing Maistra installation before installing the Knative Serving Operator.** If Maistra version 0.10 is already installed before installing the Knative Serving Operator, the activator and autoscaler pods can fail to start, and the user will encounter an error. This issue can temporarily be fixed by setting the Security Context Constraints for service accounts controller and default to `privileged`;
 ```
 oc adm policy add-scc-to-user privileged -z controller -n knative-serving
 oc adm policy add-scc-to-user privileged -z default -n knative-serving
