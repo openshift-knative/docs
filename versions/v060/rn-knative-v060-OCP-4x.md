@@ -4,7 +4,7 @@
 
 # Knative v0.6.0 on OpenShift  
 
-**Release Date:**
+**Release Date:** 11th June 2019
 
 This document describes the latest changes, enhancements, bug fixes and known issues for Knative on OpenShift. It incorporates changes to Knative’s Serving and Eventing components, and may be adopted for consistency and compatibility on OpenShift.
 
