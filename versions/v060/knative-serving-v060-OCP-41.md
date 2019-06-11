@@ -16,8 +16,6 @@ Knative Serving can be installed by using the operator available in the OpenShif
 
 ### Supported platform versions
 
-> **IMPORTANT:** Installation requires the OpenShift version `4.1.0-rc.0` installer located [here](https://mirror.openshift.com/pub/openshift-v4/clients/ocp/4.1.0-rc.0/). Later versions of the installer are not compatible with the Istio version included with this release.
-
 | Platform        | Supported versions           |
 | ------------- |:-------------:|
 | OpenShift      | [4.1](https://try.openshift.com/)          |
