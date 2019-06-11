@@ -27,7 +27,7 @@ The Knative Serving operator can be installed by using the operator available in
 ------
 ## Installing the Knative Serving Operator 
 
-1. Go to **Catalog > OperatorHub** in the Web Console. A list of operators for OpenShift, provided by Red Hat as well as a community of partners and open-source projects is provided. Click on the **Knative Serving Operator** tile. 
+1. Go to **Catalog > OperatorHub** in the OpenShift Web Console. A list of operators for OpenShift, provided by Red Hat as well as a community of partners and open-source projects is provided. Click on the **Knative Serving Operator** tile. 
 
 > **NOTE:** Use the **Filter by Keyword** box to facilitate the search of the Knative Serving operator in the catalog. 
 
@@ -59,7 +59,7 @@ The Knative Serving operator can be installed by using the operator available in
 ------
 ## Uninstalling the Knative Serving Operator 
 
-1. Go to **Catalog > OperatorHub** in the Web Console. 
+1. Go to **Catalog > OperatorHub** in the OpenShift Web Console. 
 
 2. Click on the **Knative Serving Operator** tile. 
 
