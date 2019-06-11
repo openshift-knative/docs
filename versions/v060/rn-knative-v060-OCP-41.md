@@ -16,7 +16,7 @@ This document describes the latest changes, enhancements, bug fixes and known is
 ## General Information
 
 ### Release components
-The following components have been tested on the OpenShift 4.1 cluster in this release;
+The following components have been tested on the OpenShift 4.1 cluster in this release:
 
 
 |Component|Version|
