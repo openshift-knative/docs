@@ -48,7 +48,7 @@ Knative Serving can be installed by using the Knative Serving operator available
 
 > **NOTE:** The screen will update after a few minutes. Wait for the `knative-serving` namespace to appear in the project drop-down menu. Refresh the page if needed.
 
-9. Knative Serving is now installed. Navigate to **Catalog > Installed Operators** to confirm the operator is installed. Click on `knative-serving` to view the install status.
+6. Knative Serving is now installed. Navigate to **Catalog > Installed Operators** to confirm the operator is installed. Click on `knative-serving` to view the install status.
 
 ![KSO installed](/images/knative_serving_installed_operator.png)
 
