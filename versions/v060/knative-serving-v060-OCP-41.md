@@ -31,29 +31,29 @@ The Knative Serving operator can be installed by using the operator available in
 
 > **NOTE:** Use the **Filter by Keyword** box to facilitate the search of the Knative Serving operator in the catalog. 
 
-![KSO Tile](images/knative_serving_tile_highlighted.png)
+![KSO Tile](/images/knative_serving_tile_highlighted.png)
 
 2. A `Show Community Operator` dialog box will appear. Click **Continue** to proceed.
 
 3. The **Knative Serving Operator** descriptor screen will appear. Click **Install**.
 
-![KSO Install Screen](images/knative_serving_operator_screen.png)
+![KSO Install Screen](/images/knative_serving_operator_screen.png)
 
 4. On the **Create the Operator Subscription** screen, ensure  **All namespaces on the cluster (default)** is selected under the **Installation Mode** section.
 
-![KSO Namespaces Default](images/knative_serving_namespaces_default.png)
+![KSO Namespaces Default](/images/knative_serving_namespaces_default.png)
 
 > **NOTE:** The OLM will install the operator in all namespaces. This is will create `knative-serving`, `istio-operator`,and `istio-system` namespaces.
 
 5. Confirm the subscription for the installation operator, by viewing the **Subscription Overview**. The **UPGRADE STATUS** will update from `1 installing` to `1 Installed`.
 
-![KSO Upgrade Status](images/knative_serving_installed_sub.png)
+![KSO Upgrade Status](/images/knative_serving_installed_sub.png)
 
 > **NOTE:** The screen will update after a few minutes. Wait for the `knative-serving` namespace to appear in the project drop-down menu. Refresh the page if needed.
 
 9. Knative Serving is now installed. Navigate to **Catalog > Installed Operators** to confirm the operator is installed. Click on `knative-serving` to view the install status.
 
-![KSO installed](images/knative_serving_installed_operator.png)
+![KSO installed](/images/knative_serving_installed_operator.png)
 
 
 ------
@@ -63,7 +63,7 @@ The Knative Serving operator can be installed by using the operator available in
 
 2. Click on the **Knative Serving Operator** tile. 
 
-![KSO Uninstall Tile](images/knative_serving_uninstall_operator.png)
+![KSO Uninstall Tile](/images/knative_serving_uninstall_operator.png)
 
 > **NOTE:** The operator tile will indicate it is installed.
  
@@ -71,7 +71,7 @@ The Knative Serving operator can be installed by using the operator available in
 
 4. Once, the **Knative Serving Operator** descriptor screen appears, click **Uninstall**.
 
-![KSO Uninstall](images/knative_serving_uninstall_operator.png)
+![KSO Uninstall](/images/knative_serving_uninstall_operator.png)
 
 5. Select **Also completely remove the Operator from the selected namespace**, in the **Remove Operator Subscription** dialog box.
 
