@@ -1,12 +1,11 @@
 # Knative Eventing v0.6.0 on Openshift 4.1
 --------
 
-Knative Eventing can be installed by using the eponymous operator available on the OpenShift OperatorHub.
+Knative Eventing can be installed by using the Knative Eventing operator available on the OpenShift OperatorHub.
 
 
-> **IMPORTANT:** This release introduces Knative on an OpenShift 4.1 cluster (OCP) and should not be used in a production environment.
+> **IMPORTANT:** This release introduces Knative Knative Eventing `v0.6.0` on an OpenShift 4.1 cluster (OCP) and should not be used in a production environment.
 
-> **NOTE:** This guide documents the installation of Knative Eventing `v0.6.0`.
 
 ## Prerequisites
 
