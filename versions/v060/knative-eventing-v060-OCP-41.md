@@ -41,7 +41,7 @@ Knative Eventing can be installed by using the Knative Eventing operator availab
 
 ![ESO Namespaces Default](/images/knative_eventing_namespaces_default.png)
 
-> **NOTE:** The Operator Lifecycle Manager will install the operator in all namespaces. The installation will create the `knative-eventing` namespace.
+> **NOTE:** The Operator Lifecycle Manager (OLM) will install the operator in all namespaces. The installation will create the `knative-eventing` namespace.
 
 5. Confirm the subscription for the installation operator, by viewing the **Subscription Overview**. The **UPGRADE STATUS** will update from `1 installing` to `1 installed`.
 
