@@ -1,4 +1,4 @@
-# Installing the Knative Serving Operator
+# Knative Serving v0.6.0 on Openshift 4.1
 --------
 
 The Knative Serving operator can be installed by using the operator available in the OpenShift OperatorHub.
@@ -24,9 +24,8 @@ The Knative Serving operator can be installed by using the operator available in
 
 > **NOTE:**  Long-running clusters are not supported in this release.
 
-
-
-## Creating a Knative Serving Operator Subscription
+------
+## Installing the Knative Serving Operator 
 
 1. Go to **Catalog > OperatorHub** in the Web Console. A list of operators for OpenShift, provided by Red Hat as well as a community of partners and open-source projects is provided. Click on the **Knative Serving Operator** tile. 
 
@@ -57,10 +56,8 @@ The Knative Serving operator can be installed by using the operator available in
 ![KSO installed](images/knative_serving_installed_operator.png)
 
 
-
+------
 ## Uninstalling the Knative Serving Operator 
-
-### Uninstalling the Knative Serving Operator
 
 1. Go to **Catalog > OperatorHub** in the Web Console. 
 
