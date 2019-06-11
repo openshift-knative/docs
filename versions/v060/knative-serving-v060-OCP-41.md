@@ -1,12 +1,11 @@
 # Knative Serving v0.6.0 on OpenShift 4.1
 --------
 
-Knative Serving can be installed by using the operator available in the OpenShift OperatorHub.
+Knative Serving can be installed by using the Knative Serving operator available on the OpenShift OperatorHub.
 
 
-> **IMPORTANT:** This release introduces Knative on an OpenShift 4.1 cluster (OCP). This release should not be used in a production environment.
+> **IMPORTANT:** This release introduces Knative Serving `v0.6.0`on an OpenShift 4.1 cluster (OCP). This release should not be used in a production environment.
 
-> **NOTE:** This release documents the installation of Knative Serving `v0.6.0`.
 
 ## Prerequisites
 
@@ -41,7 +40,7 @@ Knative Serving can be installed by using the operator available in the OpenShif
 
 ![KSO Namespaces Default](/images/knative_serving_namespaces_default.png)
 
-> **NOTE:** The OLM will install the operator in all namespaces. This is will create `knative-serving`, `istio-operator`,and `istio-system` namespaces.
+> **NOTE:** The Operator Lifecycle Manager (OLM) will install the operator in all namespaces. This is will create `knative-serving`, `istio-operator`,and `istio-system` namespaces.
 
 5. Confirm the subscription for the installation operator, by viewing the **Subscription Overview**. The **UPGRADE STATUS** will update from `1 installing` to `1 Installed`.
 
@@ -67,7 +66,7 @@ Knative Serving can be installed by using the operator available in the OpenShif
  
 3. The **Show Community Operator**` dialog box will appear. Click **Continue** to proceed.
 
-4. Once, the **Knative Serving Operator** descriptor screen appears, click **Uninstall**.
+4. Once the **Knative Serving Operator** descriptor screen appears, click **Uninstall**.
 
 ![KSO Uninstall](/images/knative_serving_uninstall_operator.png)
 
