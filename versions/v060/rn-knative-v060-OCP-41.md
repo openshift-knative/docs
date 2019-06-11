@@ -19,7 +19,7 @@ This document describes the latest changes, enhancements, bug fixes and known is
 The following components have been tested on the OpenShift 4.1 cluster in this release;
 
 
-|**Component|Version**
+|Component|Version|
 |---------|-------|
 | Knative Serving | 0.6.0 |
 | Knative Eventing | 0.6.0 |
