@@ -1,4 +1,4 @@
-# Knative Serving v0.6.0 on Openshift 4.1
+# Knative Serving v0.6.0 on OpenShift 4.1
 --------
 
 The Knative Serving operator can be installed by using the operator available in the OpenShift OperatorHub.
