@@ -34,6 +34,8 @@ The following components have been tested on the OpenShift 4.1 cluster in this r
 
 - **Operator automatically installs the Knative OpenShift Ingress Operator.** After installing Knative Serving, the operator now ensures that the Knative OpenShift Ingress Operator is deployed so that OpenShift Routes get created automatically for every Knative Route. ([#14](https://github.com/openshift-knative/knative-serving-operator/pull/14))
 
+- **Knative Build component has been removed.** The Knative Build component is likely to be discontinued in the Knative upstream project, so it will no longer be present in Knative on OpenShift releases from v0.6.0 onwards.
+
 ### Eventing
 
 - **Knative Eventing Operator now available.** An Operator that installs the Knative Eventing component on OpenShift 4.1 is now available through the embedded OperatorHub in the  OpenShift console. This replaces the previous installation script available in Knative on OpenShift v0.5.0. ([#407](https://github.com/operator-framework/community-operators/pull/407))
