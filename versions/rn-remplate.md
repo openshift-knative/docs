@@ -31,18 +31,18 @@ The following components tested on the OpenShift 4.x cluster in this release:
 ### Eventing
 - **Brief:** Description. [(#PR)](link to PR)
 
-### Build
-- **Brief:** Description. [(#PR)](link to PR)
-
 -------------
 
 ## Fixed Issues
+### Serving
+- See the [Knative core Serving release notes](https://github.com/knative/serving/releases).
+- Description of fix. [(#PR)](link to PR)
+
 
 ### Eventing
+- See the [Knative core Eventing release notes](https://github.com/knative/eventing/releases).
 - Description of fix. [(#PR)](link to PR)
 
-### Build
-- Description of fix. [(#PR)](link to PR)
 -------------
 
 ## Known Issues
