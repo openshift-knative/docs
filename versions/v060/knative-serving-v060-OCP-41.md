@@ -36,13 +36,15 @@ Knative Serving can be installed by using the Knative Serving Operator available
 
 ![KSO Install Screen](/images/knative_serving_operator_screen.png)
 
-4. On the **Create the Operator Subscription** screen, create a new subscription by cliking on the **Subscribe** button. This will install the Knative serving operator in the project `openshift-operators` and Knative serving itself in the `knative-serving` project.
+4. On the **Create the Operator Subscription** screen, create a new subscription by cliking on the **Subscribe** button. This will install the Knative Serving Operator in the project `openshift-operators` and Knative Serving in the `knative-serving` project.
 
 ![KSO Namespaces Default](/images/knative_serving_namespaces_default.png)
 
-> **NOTE:** The Operator Lifecycle Manager (OLM) will install the operator which in turn will install Knative itself automatically. This installation will create the `knative-serving`, `istio-operator`, and `istio-system` namespaces.
+> **NOTE:** The Operator Lifecycle Manager (OLM) installs the operator, which will automatically install Knative. This installation will create the `knative-serving`, `istio-operator`, and `istio-system` namespaces.
 
-5. Verify the subscription status for the installation operator, by viewing the **Subscription Overview**. The **UPGRADE STATUS** will update from `0 installing`  over `1 installing` to `1 Installed`. This process may take some minutes.
+5. Verify the subscription status for the installation operator, by viewing the **Subscription Overview**. The **UPGRADE STATUS** will update from `0 installing` to `1 Installed`. 
+
+> **NOTE:** The screen will update after a few minutes. Wait for the `knative-serving` namespace to appear in the project drop-down menu. Refresh the page if needed.
 
 ![KSO Upgrade Status](/images/knative_serving_installed_sub.png)
 
