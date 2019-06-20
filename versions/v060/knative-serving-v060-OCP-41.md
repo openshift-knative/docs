@@ -30,7 +30,7 @@ Knative Serving can be installed by using the Knative Serving Operator available
 
 ![KSO Tile](/images/knative_serving_tile_highlighted.png)
 
-2. A `Show Community Operator` dialog box will appear. Click **Continue** to proceed.
+2. A **Show Community Operator** dialog box will open. Click **Continue** to proceed.
 
 3. The **Knative Serving Operator** descriptor screen will appear. Click **Install**.
 
