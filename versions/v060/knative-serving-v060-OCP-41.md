@@ -42,13 +42,13 @@ Knative Serving can be installed by using the Knative Serving Operator available
 
 > **NOTE:** The Operator Lifecycle Manager (OLM) installs the operator, which will automatically install Knative. This installation will create the `knative-serving`, `istio-operator`, and `istio-system` namespaces.
 
-5. Verify the subscription status for the installation operator, by viewing the **Subscription Overview**. The **UPGRADE STATUS** will update from `0 installing` to `1 Installed`. 
+5. Verify the subscription status for the installation operator, by viewing the **Subscription Overview**. The **UPGRADE STATUS** will update from **0 Installing** to **1 Installed**. 
 
 > **NOTE:** The screen will update after a few minutes. Wait for the `knative-serving` namespace to appear in the project drop-down menu. Refresh the page if needed.
 
 ![KSO Upgrade Status](/images/knative_serving_installed_sub.png)
 
-6. Knative Serving is now installed. Navigate to **Catalog > Installed Operators** to confirm the operator is installed. Click on `knative-serving` to view the install status.
+6. Knative Serving is now installed. Navigate to **Catalog > Installed Operators** to confirm the operator is installed. Click on **knative-serving** to view the install status.
 
 ![KSO installed](/images/knative_serving_installed_operator.png)
 
