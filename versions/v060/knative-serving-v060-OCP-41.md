@@ -36,7 +36,7 @@ Knative Serving can be installed by using the Knative Serving Operator available
 
 ![KSO Install Screen](/images/knative_serving_operator_screen.png)
 
-4. On the **Create the Operator Subscription** screen, create a new subscription by cliking on the **Subscribe** button. This will install the Knative Serving Operator in the project `openshift-operators` and Knative Serving in the `knative-serving` project.
+4. On the **Create the Operator Subscription** screen, create a new subscription by clicking on the **Subscribe** button. This will install the Knative Serving Operator in the project `openshift-operators` and Knative Serving in the `knative-serving` project.
 
 ![KSO Namespaces Default](/images/knative_serving_namespaces_default.png)
 
