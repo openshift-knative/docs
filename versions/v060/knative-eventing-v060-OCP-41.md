@@ -61,6 +61,8 @@ Knative Eventing can be installed by using the Knative Eventing Operator availab
 
 2. Click on the **Knative Eventing Operator** tile.
 
+![ESO Uninstall Tile](/images/knative_eventing_uninstall_tile.png)
+
 > **NOTE:** The tile will indicate whether the operator is installed.
 
 3. The **Show Community Operator**` dialog box will appear. Click **Continue** to proceed.
