@@ -59,8 +59,6 @@ Knative Serving can be installed by using the Knative Serving Operator available
 
 2. Click on the **Knative Serving Operator** tile.
 
-![KSO Uninstall Tile](/images/knative_serving_uninstall_operator.png)
-
 > **NOTE:** The operator tile will indicate it is installed.
 
 3. The **Show Community Operator**` dialog box will appear. Click **Continue** to proceed.
