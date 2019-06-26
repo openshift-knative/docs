@@ -1,6 +1,12 @@
-# Knative on OpenShift documentation
 
-Build and deploy serverless applications using an event-driven infrastructure on Red Hat® OpenShift®
+# Knative on OpenShift Documentation <img src="https://github.com/openshift-knative/docs/blob/master/images/knative-openshift-logo.png" width="100" height="50" />
+
+Build and deploy Serverless applications using an event-driven infrastructure on Red Hat® OpenShift®.
+
+For further information on Knative, please checkout [User documentation for Knative components](https://knative.dev/docs/).
+
+
+--------------
 
 ## Knative v0.6.0 on OpenShift 4.1
 * [Knative Serving v0.6.0 on OpenShift 4.1](versions/v060/knative-serving-v060-OCP-41.md)
@@ -11,3 +17,4 @@ Build and deploy serverless applications using an event-driven infrastructure on
 ## Links
 * [Knative Tutorial](https://redhat-developer-demos.github.io/knative-tutorial)
 * [Knative on OpenShift Overview](https://www.openshift.com/learn/topics/knative)
+* [Knative Documentation](https://github.com/knative/docs)
