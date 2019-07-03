@@ -40,7 +40,7 @@ This guide walks cluster administrators through installing the Knative Apache Ka
 
 ![KAKO Subscription](/images/kafka-subscription-overview.png)
 
-8. Click the `1 installed` link.
+8. Click the `1 Installed` link.
 
 9. Click  **Create New** to install the `Knative Apache Kafka` API.
 
