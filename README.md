@@ -11,6 +11,8 @@ For further information on Knative, please checkout [User documentation for Knat
 ## Knative v0.6.0 on OpenShift 4.1
 * [Knative Serving v0.6.0 on OpenShift 4.1](versions/v060/knative-serving-v060-OCP-41.md)
 * [Knative Eventing v0.6.0 on OpenShift 4.1](versions/v060/knative-eventing-v060-OCP-41.md)
+  - [Knative Apache Kafka Operator v0.6.0](versions/v061/knative-eventing-v061-kafka-operator.md)
+  - [Knative Apache Camel Operator v.0.6.0](versions/v061/knative-eventing-v061-camel-operator.md)
 * [Release Notes](versions/v060/rn-knative-v060-OCP-41.md)
 
 --------------
@@ -18,3 +20,4 @@ For further information on Knative, please checkout [User documentation for Knat
 * [Knative Tutorial](https://redhat-developer-demos.github.io/knative-tutorial)
 * [Knative on OpenShift Overview](https://www.openshift.com/learn/topics/knative)
 * [Knative Documentation](https://github.com/knative/docs)
+
