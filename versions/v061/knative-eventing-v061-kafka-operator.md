@@ -75,7 +75,7 @@ This guide walks cluster administrators through installing the Knative Apache Ka
 
 >**NOTE:** The operator tile will indicate it is installed.
 
-![KAKO Uninstall Tile](/images/kafka-installed-remove.pngg)
+![KAKO Uninstall Tile](/images/kafka-installed-remove.png)
  
 3. Click **Uninstall** on the **Knative Apache Kafka Operator** descriptor screen.
 
