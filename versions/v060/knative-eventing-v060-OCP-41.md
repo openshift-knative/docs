@@ -25,33 +25,33 @@ Knative Eventing can be installed by using the Knative Eventing Operator availab
 --------
 ## Installing the Knative Eventing Operator
 
-1. Go to **Catalog > OperatorHub** in the OpenShift Web Console. A list of operators for OpenShift, provided by Red Hat as well as a community of partners and open-source projects is provided. Click on the **Knative Eventing Operator** tile. 
+1. Go to **Catalog > OperatorHub** in the OpenShift web console. A list of operators for OpenShift, provided by Red Hat as well as a community of partners and open-source projects is provided. Click on the **Knative Eventing Operator** tile. 
 
 > **NOTE:** Use the **Filter by Keyword** box to facilitate the search of the Knative Eventing operator in the catalog.
 
-![ESO Tile](/images/knative_eventing_tile_highlighted.png)
+![ESO Tile](/images/knative-eventing-tile-highlighted.png)
 
 2. A `Show Community Operator` dialog box will appear. Click **Continue** to proceed.
 
 3. The **Knative Eventing Operator** descriptor screen will appear. Click **Install**.
 
-![ESO Install Screen](/images/knative_eventing_operator_screen.png)
+![ESO Install Screen](/images/knative-eventing-operator-screen.png)
 
 4. On the **Create the Operator Subscription** screen, ensure  **All namespaces on the cluster (default)** is selected under the **Installation Mode** section.
 
-![ESO Namespaces Default](/images/knative_eventing_namespaces_default.png)
+![ESO Namespaces Default](/images/knative-eventing-namespaces-default.png)
 
 > **NOTE:** The Operator Lifecycle Manager (OLM) will install the operator in all namespaces. The installation will create the `knative-eventing` namespace.
 
-5. Confirm the subscription for the installation operator, by viewing the **Subscription Overview**. The **UPGRADE STATUS** will update from `1 installing` to `1 installed`.
+5. Confirm the subscription for the installation operator, by viewing the **Subscription Overview**. The **UPGRADE STATUS** will update from `O Installing` to `1 Installed`.
 
-![ESO Upgrade Status](/images/knative_eventing_installed_sub.png)
+![ESO Upgrade Status](/images/knative-eventing-installed-sub.png)
 
 > **NOTE:** The screen will update after a few minutes. Wait for the `knative-eventing` namespace to appear in the project drop-down menu. Refresh the page if needed.
 
 6. Knative Eventing is now installed. Navigate to **Catalog > Installed Operators** to confirm the operator is installed. Click on `knative-eventing` to view the install status.
 
-![ESO installed](/images/knative_eventing_installed_operator.png)
+![ESO installed](/images/knative-eventing-installed-operator.png)
 
 
 ---------
@@ -61,7 +61,7 @@ Knative Eventing can be installed by using the Knative Eventing Operator availab
 
 2. Click on the **Knative Eventing Operator** tile.
 
-![ESO Uninstall Tile](/images/knative_eventing_uninstall_tile.png)
+![ESO Uninstall Tile](/images/knative-eventing-uninstall-tile.png)
 
 > **NOTE:** The tile will indicate whether the operator is installed.
 
@@ -69,7 +69,7 @@ Knative Eventing can be installed by using the Knative Eventing Operator availab
 
 4. Once the **Knative Eventing Operator** descriptor screen appears, click **Uninstall**.
 
-![ESO Uninstall](/images/knative_eventing_uninstall_operator.png)
+![ESO Uninstall](/images/knative-eventing-uninstall-operator.png)
 
 5. Select **Also completely remove the Operator from the selected namespace**, in the **Remove Operator Subscription** dialog box.
 
