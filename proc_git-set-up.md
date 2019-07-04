@@ -2,16 +2,17 @@
 
 Knative on OpenShift uses Git to manage repositories.  This guide explains how to set up your system to connect to the proper git repositories.
 
-`openshift-knative/docs`:: A public GitHub repo that hosts the Knative on OpenShift documentation.
+`openshift-knative/docs`is a public GitHub repository that hosts the Knative on OpenShift documentation.
 
-* [Installing Git](###Installing Git)
-* [Configuring Git](### Configuring Git)
-* [Fork the upstream repository](### Fork the upstream (GitHub) repository)
-* [Add your SSH keys](### Add your SSH keys to GitHub)
-* [Updating repository URLs](### Updating repository URLs)
-* [Accessing unmerged commits](### Accessing another writer’s unmerged commits)
-* [Additional resources](### Additional resources)
+* [Installing Git](#Installing-Git)
+* [Configuring Git](#Configuring-Git)
+* [Fork the upstream repository](#Fork-the-upstream-(GitHub)-repository)
+* [Add your SSH keys](#Add-your-SSH-keys-to-GitHub)
+* [Updating repository URLs](#Updating-repository-URLs)
+* [Accessing unmerged commits](#Accessing-another-writer’s-unmerged-commits)
+* [Additional resources](#Additional-resources)
 
+----------------------------
 ### Installing Git
 
 If using Fedora, open your terminal and enter the proper installation command.
@@ -23,13 +24,12 @@ $ yum install git (up to Fedora 21)
 $ dnf install git (Fedora 22 and later)
 ```
 
-
 #### Other operating systems
 
 * [Download Git](https://git-scm.com/downloads)
 
 
-
+-----------------------------------------
 ### Configuring Git
 
 Once you have git installed, set up your git account.
@@ -52,7 +52,7 @@ $ git config --global pull.rebase true
 $ git config --global push.default simple
 ```
 
-
+-----------------------------------------
 ### Fork the upstream (GitHub) repository
 
 Fork the `openshift-knative/docs` upstream repository to create a copy under your own GitHub ID. Clone your forked repository to bring your GitHub repository files to your local machine. Your forked repository is now the `origin` repository for your local files.
@@ -65,7 +65,7 @@ Fork the `openshift-knative/docs` upstream repository to create a copy under you
 > **NOTE:** For more information about [forking](https://help.github.com/articles/fork-a-repo/) and [cloning](https://help.github.com/articles/cloning-a-repository/), consult the official [documentation](https://help.github.com/).
 
 
-
+-----------------------------------------
 ### Add your SSH keys to GitHub
 If you choose to use the SSH address for your clones, you will need to add an SSH Key to GitHub first.
 
@@ -94,7 +94,7 @@ $ vi id_rsa.pub
 9. Click **Add SSH Key**.
 
 
-
+-----------------------------------------
 ### Updating repository URLs
 
 If the upstream repository is moved, you can change the downstream URL by using the following command:
@@ -110,7 +110,7 @@ $ git fetch upstream
 ```
 
 
-
+------------------------------------------
 ### Accessing another writer’s unmerged commits
 
 This is the process you can use if you need commits another writer has submitted in a merge request that is not yet merged.
@@ -135,7 +135,7 @@ $ git remote add -f <user> git@github.com:<user>/strimzi-kafka-operator.git
 $ git rebase <user>/<merge-request-branch>
 ```
 
-
+---------------------------------------
 ### Additional resources
 
 * [Official Git Site](https://git-scm.com)
