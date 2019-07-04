@@ -17,6 +17,10 @@ For further information on Knative, please checkout [user documentation for Knat
 * [Release Notes](versions/v060/rn-knative-v060-OCP-41.md)
 
 --------------
+## How can you contribute
+* Please see our contribution guide for information on how you can help
+
+--------------
 ## Links
 * [Knative Tutorial](https://redhat-developer-demos.github.io/knative-tutorial)
 * [Knative on OpenShift Overview](https://www.openshift.com/learn/topics/knative)
