@@ -8,7 +8,10 @@
 All bugs, tasks or enhancements are tracked as [GitHub issues](https://github.com/openshift-knative/docs/issues). Use labels to indicate requirements and information related to the reported issue.
 
 ## Before You Begin
-[Get started](/proc_git-set-up.md) by installing and getting familiar with [Git](https://git-scm.com/doc).
+
+* [Get started](/proc_git-set-up.md) by installing and getting familiar with [Git](https://git-scm.com/doc).
+* Use [markdown](https://www.markdownguide.org/) to contribute documentation to the repository and add a link to the README.md, if applicable. 
+* Refer to our [style guide](ref_documentation-styling.md) for guidance on formatting your documentation contributions.
 
 
 ## Raising an Issue
