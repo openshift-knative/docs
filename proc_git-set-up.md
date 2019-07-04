@@ -19,9 +19,14 @@ If using Fedora, open your terminal and enter the proper installation command.
 
 #### Fedora
 For installation use:
+
+Up to Fedora 21
 ```
-$ yum install git (up to Fedora 21)
-$ dnf install git (Fedora 22 and later)
+$ yum install git
+```
+Fedora 22 and later
+```
+$ dnf install git 
 ```
 
 #### Other operating systems
@@ -32,7 +37,7 @@ $ dnf install git (Fedora 22 and later)
 -----------------------------------------
 ### Configuring Git
 
-Once you have git installed, set up your git account.
+Once you have Git installed, set up your Git account.
 
 #### Procedure
 1. Open **Terminal**
@@ -45,7 +50,7 @@ $ git config --global user.email "<your-email>"
 
 > **TIP:** The email you specify should be the same one found in your [email settings](https://help.github.com/articles/adding-an-email-address-to-your-github-account/). To keep your email address hidden, see [Keeping your email address private](https://help.github.com/articles/keeping-your-email-address-private).
 
-3. Set your git defaults
+3. Set your Git defaults
 
 ```
 $ git config --global pull.rebase true
@@ -62,7 +67,7 @@ Fork the `openshift-knative/docs` upstream repository to create a copy under you
 2. Click **Fork** located in the upper right under your profile icon.
 3. Select your user account for the location of the forked repository. This creates your own copy of the repository under your own GitHub ID.
 
-> **NOTE:** For more information about [forking](https://help.github.com/articles/fork-a-repo/) and [cloning](https://help.github.com/articles/cloning-a-repository/), consult the official [documentation](https://help.github.com/).
+> **NOTE:** For more information on [forking](https://help.github.com/articles/fork-a-repo/) and [cloning](https://help.github.com/articles/cloning-a-repository/), consult the official [documentation](https://help.github.com/).
 
 
 -----------------------------------------
@@ -76,7 +81,7 @@ If you choose to use the SSH address for your clones, you will need to add an SS
 ````
 $ ls ~/.ssh/
 ````
-3. If you don't have a key, generate one:
+3. If you do not have a key, generate one:
 
 ```
 $ ssh-keygen -t rsa -C "<your-email>"
@@ -90,7 +95,7 @@ $ vi id_rsa.pub
 5. Copy the contents of the file to your clipboard.
 6. Visit [https://github.com/settings/keys](https://github.com/settings/keys)
 7. Click **New SSH Key**.
-8. Give your key a name and paste the contents of your key file.
+8. Name your key and paste the contents of your key file.
 9. Click **Add SSH Key**.
 
 
@@ -113,7 +118,7 @@ $ git fetch upstream
 ------------------------------------------
 ### Accessing another writer’s unmerged commits
 
-This is the process you can use if you need commits another writer has submitted in a merge request that is not yet merged.
+This is the process you can use if you need commits another writer has submitted that is not yet merged.
 
 1. Check out a new topic branch from upstream/master as you normally do.
 
