@@ -1,7 +1,7 @@
 # Contributing to Knative on OpenShift Documentation
 
 **You can contribute by:**
-- Raising an issue you find in documentation 
+- Raising an issue you find in the documentation 
 - Fixing issues by opening a pull request
 - Improving documentation or code samples
 
@@ -18,8 +18,7 @@ All bugs, tasks or enhancements are tracked as [GitHub issues](https://github.co
 
 GitHub issues can be used to report bugs or submit feature requests.
 
-When reporting an issue you can use the Issue reporting template. Please include the
-following key pieces of information:
+When reporting an issue, you can use the [applicable issue reporting template](https://github.com/openshift-knative/docs/issues/new/choose). Please include the following information:
 
 * The version of the project you are using (version number, git commit, etc.)
 * Operating system you are using
