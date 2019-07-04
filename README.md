@@ -3,7 +3,7 @@
 
 Build and deploy Serverless applications using an event-driven infrastructure on Red Hat® OpenShift®.
 
-For further information on Knative, please checkout [User documentation for Knative components](https://knative.dev/docs/).
+For further information on Knative, please checkout [user documentation for Knative components](https://knative.dev/docs/).
 
 
 --------------
