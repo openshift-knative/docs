@@ -4,6 +4,13 @@ Knative on OpenShift uses Git to manage repositories.  This guide explains how t
 
 `openshift-knative/docs`:: A public GitHub repo that hosts the Knative on OpenShift documentation.
 
+* [Installing Git](###Installing Git)
+* [Configuring Git](### Configuring Git)
+* [Fork the upstream repository](### Fork the upstream (GitHub) repository)
+* [Add your SSH keys](### Add your SSH keys to GitHub)
+* [Updating repository URLs](### Updating repository URLs)
+* [Accessing unmerged commits](### Accessing another writer’s unmerged commits)
+* [Additional resources](### Additional resources)
 
 ### Installing Git
 
@@ -81,7 +88,7 @@ $ cd ~/.ssh/
 $ vi id_rsa.pub
 ```
 5. Copy the contents of the file to your clipboard.
-6. Visit link:https://github.com/settings/keys[https://github.com/settings/keys]
+6. Visit [https://github.com/settings/keys](https://github.com/settings/keys)
 7. Click **New SSH Key**.
 8. Give your key a name and paste the contents of your key file.
 9. Click **Add SSH Key**.
