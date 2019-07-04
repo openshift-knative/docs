@@ -35,7 +35,7 @@ $ dnf install git (Fedora 22 and later)
 Once you have git installed, set up your git account.
 
 #### Procedure
-1. Open *Terminal*
+1. Open **Terminal**
 2. Set your name and email
 
 ```
@@ -58,7 +58,7 @@ $ git config --global push.default simple
 Fork the `openshift-knative/docs` upstream repository to create a copy under your own GitHub ID. Clone your forked repository to bring your GitHub repository files to your local machine. Your forked repository is now the `origin` repository for your local files.
 
 #### Procedure
-1. Open a browser and navigate to the upstream repository located at 
+1. Open a browser and navigate to the upstream repository located at https://github.com/openshift-knative/docs.git
 2. Click **Fork** located in the upper right under your profile icon.
 3. Select your user account for the location of the forked repository. This creates your own copy of the repository under your own GitHub ID.
 
