@@ -7,9 +7,9 @@ The Knative Camel add-on allows you to to install Camel Sources from the Develop
 ## Prerequisites
 
 The following must be installed and running on your cluster:
-* Knative Eventing
-* Knative Serving
-* Camel K
+* [Knative Eventing](versions/v060/knative-serving-v060-OCP-41.md)
+* [Knative Serving](versions/v060/knative-serving-v060-OCP-41.md)
+* [Camel K](https://camel.apache.org/staging/camel-k/latest/index.html)
 
 
 ------
