@@ -5,8 +5,8 @@ This guide walks cluster administrators through installing the Knative Apache Ka
 
 ## Prerequisites
 
-* Knative Eventing is installed
-* A running instance of Apache Kafka 
+* [Knative Eventing](versions/v060/knative-eventing-v060-OCP-41.md) is installed
+* A running instance of [Apache Kafka](https://github.com/strimzi) 
 
 
 ------
