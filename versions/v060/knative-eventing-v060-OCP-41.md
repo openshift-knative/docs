@@ -11,8 +11,6 @@ Knative Eventing can be installed by using the Knative Eventing Operator availab
 | ------------- |:-------------:|
 | `in-memory`   | InMemoryChannel
 | `kafka` 	    | KafkaChannel
-| `natss` 	    | NatssChannel
-| `gcp-pubsub` 	| Channel.pubsub.cloud.run
 
 ## Prerequisites
 
