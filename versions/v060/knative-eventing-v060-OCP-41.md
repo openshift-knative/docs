@@ -3,9 +3,16 @@
 
 Knative Eventing can be installed by using the Knative Eventing Operator available on the OpenShift OperatorHub.
 
-
 > **IMPORTANT:** This release introduces Knative Knative Eventing `v0.6.0` on an OpenShift 4.1 cluster (OCP) and should not be used in a production environment.
 
+> **IMPORTANT:**  ClusterChannelProvisioners have been deprecated and will be removed in future releases. Please use [CRD-based channel implementations](https://github.com/knative/eventing/releases) instead.
+
+| Existing CCP  | Replacement CRDs|
+| ------------- |:-------------:|
+| `in-memory`   | InMemoryChannel
+| `kafka` 	    | KafkaChannel
+| `natss` 	    | NatssChannel
+| `gcp-pubsub` 	| Channel.pubsub.cloud.run
 
 ## Prerequisites
 
