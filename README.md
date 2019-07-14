@@ -7,6 +7,8 @@ For further information on Knative, please checkout [user documentation for Knat
 
 
 --------------
+## Knative v0.7.0 on OpenShift 4.1
+TODO
 
 ## Knative v0.6.0 on OpenShift 4.1
 * [Introducing Operators on the OpenShift Container Platform](versions/v060/introducing-operators.md)
