@@ -8,15 +8,13 @@ For further information on Knative, please checkout [user documentation for Knat
 
 --------------
 ## Knative v0.7.0 on OpenShift 4.1
-TODO
 
-## Knative v0.6.0 on OpenShift 4.1
-* [Introducing Operators on the OpenShift Container Platform](versions/v060/introducing-operators.md)
-* [Knative Serving v0.6.0 on OpenShift 4.1](versions/v060/knative-serving-v060-OCP-41.md)
-* [Knative Eventing v0.6.0 on OpenShift 4.1](versions/v060/knative-eventing-v060-OCP-41.md)
-  - [Knative Apache Kafka Operator v0.6.0](versions/v061/knative-eventing-v061-kafka-operator.md)
-  - [Knative Apache Camel Operator v0.6.0](versions/v061/knative-eventing-v061-camel-operator.md)
-* [Release Notes](versions/v060/rn-knative-v060-OCP-41.md)
+* [Introducing Operators on the OpenShift Container Platform](versions/v071/introducing-operators.md)
+* [Knative Serving v0.7.1 on OpenShift 4.1](versions/v071/knative-serving-v071-OCP-41.md)
+* [Knative Eventing v0.7.1 on OpenShift 4.1](versions/v071/knative-eventing-v071-OCP-41.md)
+  - [Knative Apache Kafka Operator v0.7.1](versions/v071/knative-eventing-v071-kafka-operator.md)
+  - [Knative Apache Camel Operator v0.7.1](versions/v071/knative-eventing-v071-camel-operator.md)
+* [Release Notes](versions/v060/rn-knative-v071-OCP-41.md)
 
 --------------
 ## How can you contribute
