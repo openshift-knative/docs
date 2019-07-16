@@ -1,10 +1,8 @@
-<!--please copy and paste this template into your vXXX folder for the current release and modify there. Do NOT edit this template)-->
-
 ![Release Notes](https://github.com/openshift-knative/docs/blob/master/images/release-notes-banner.png)
 
-# Knative v0.7.0 on OpenShift  
+# Knative v0.7.1 on OpenShift  
 
-**Release Date:** 23 July 2019
+**Release Date:** 17 July 2019
 
 This document describes the latest changes, enhancements, bug fixes and known issues for Knative on OpenShift. It incorporates changes to Knative’s Serving and Eventing components, and may be adopted for consistency and compatibility on OpenShift.
 
@@ -55,4 +53,3 @@ The following components tested on the OpenShift 4.x cluster in this release:
 - https://github.com/knative/docs/releases
 - https://github.com/knative/serving/releases
 - https://github.com/knative/eventing/releases
-- https://github.com/tektoncd/pipeline/releases
