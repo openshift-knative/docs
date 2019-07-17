@@ -1,4 +1,6 @@
-= Knative Camel Operator version 0.7.1
+= Knative Camel Operator 
+
+*version*: 0.7.1
 
 This guide walks cluster administrators through installing the Knative Camel Operator in an OpenShift Container Platform cluster. As a cluster administrator, you can install the Knative Camel add-on from the OperatorHub using the OpenShift Container Platform web console. 
 
