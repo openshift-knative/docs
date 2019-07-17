@@ -1,5 +1,5 @@
 
-# Knative on OpenShift Documentation <img src="https://github.com/openshift-knative/docs/blob/master/images/knative-openshift-logo.png" width="100" height="50" />
+# Knative on OpenShift Serverless <img src="https://github.com/openshift-knative/docs/blob/master/images/knative-openshift-logo.png" width="100" height="50" />
 
 Build and deploy Serverless applications using an event-driven infrastructure on Red Hat® OpenShift®.
 
