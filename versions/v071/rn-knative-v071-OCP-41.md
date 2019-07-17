@@ -1,6 +1,6 @@
 ![Release Notes](https://github.com/openshift-knative/docs/blob/master/images/release-notes-banner.png)
 
-# Knative v0.7.1 on OpenShift  
+# Knative v0.7.1 on OpenShift Serverless
 
 **Release Date:** 17 July 2019
 
@@ -14,38 +14,45 @@ This document describes the latest changes, enhancements, bug fixes and known is
 ## General Information
 
 ### Release components
-The following components tested on the OpenShift 4.x cluster in this release:
+The following components tested on the **OpenShift 4.1** cluster in this release:
 
 |Component|Version
 |---------|-------|
 | Knative Serving | 0.7.1 |
 | Knative Eventing | 0.7.1 |
+
 ----------------
 
 ## What's New
 ### Serving
-- **Brief:** Description. [(#PR)](link to PR)
+- **Cluster-local services in default installation:** Serving Operator supports the usage of cluster-local services in the default installation [(#38)](https://github.com/openshift-knative/knative-serving-operator/pull/36)
+
+- **Support concurrency-based scaling on the HPA:** Metric-scraping and decision-making have been separated out of the Knative internal autoscaler (KPA). The metrics are now also available to the HPA. [(#4386)](https://github.com/knative/serving/pull/4386)
 
 
 ### Eventing
-- **Brief:** Description. [(#PR)](link to PR)
+- **ClusterChannelProvisioners (CCP) have been deprecated:** ClusterChannelProvisioners (CCP) have been deprecated. You must use CRD-based channel implementations instead [(#1486)](https://github.com/knative/eventing/pull/1486), [(#1488)](https://github.com/knative/eventing/pull/1488)
 
 -------------
 
 ## Fixed Issues
 ### Serving
-- See the [Knative core Serving release notes](https://github.com/knative/serving/releases).
-- Description of fix. [(#PR)](link to PR)
+- See the [core Knative Serving release notes](https://github.com/knative/serving/releases).
 
 
 ### Eventing
-- See the [Knative core Eventing release notes](https://github.com/knative/eventing/releases).
-- Description of fix. [(#PR)](link to PR)
+- See the [core Knative Eventing release notes](https://github.com/knative/eventing/releases).
 
 -------------
 
 ## Known Issues
-- **Brief:** Description. [(#PR)](link to PR)
+- **The v1beta1 API is not provided:**  For this release, Knative on OpenShift only serves the v1alpha1 API.
+
+- **Patch autoscaler deployment to register custom-metrics API:**  When running Knative Serving in a mesh environment (for example, you installed Maistra and you have sidecar-injection enabled) run the following command to patch the autoscaler’s deployment to successfully register the custom-metrics API:
+
+  `oc -n knative-serving patch deployment autoscaler -p '{"spec":{"template":{"metadata":{"annotations":                                  {"traffic.sidecar.istio.io/includeInboundPorts": "8080,9090"}}}}}'`
+
+
 -------------
 
 ## Resources and Links
