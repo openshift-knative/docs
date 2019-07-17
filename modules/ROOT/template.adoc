@@ -1,8 +1,0 @@
-include::_partials/attributes.adoc[]
-
-:context: {slug}
-
-[{slug}]
-= {heading}
-
-

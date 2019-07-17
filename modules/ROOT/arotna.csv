@@ -1,5 +1,0 @@
-level,prefix,heading,slug,navtext
-1,*, Knative v0.5.0, assembly-knative-v050-ocp-4x, Knative v0.5.0
-2,**, Overview, knative-v050-ocp-4x, Overview
-2,**, Installing Knative, knative-v050-installing-knative-ocp-using-script-4x, Installing Knative
-2,**, Post-Installation, knative-v050-creating-OCP-route-pointing-istio, Post-installation

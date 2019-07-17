@@ -1,5 +1,5 @@
 name: docs
-title: Knative on OpenShift
+title: Knative on OpenShift Serverless
 version: master
 nav:
   - modules/ROOT/nav.adoc

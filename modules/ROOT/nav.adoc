@@ -1,5 +1,0 @@
-* xref:assembly_knative-v050-OCP-4x.adoc[Knative v0.5.0]
-** xref:con_knative-v050-OCP-4x.adoc[Overview]
-** xref:proc_knative-v050-install-OCP-4x.adoc[Installing Knative]
-** xref:proc_knative-v050-creating-OCP-route-pointing-istio.adoc[Post-installation]
-

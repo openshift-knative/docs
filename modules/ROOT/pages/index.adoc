@@ -1,14 +1,20 @@
-= Knative on OpenShift
+//
+//
+
+= Knative on OpenShift Serverless
+
+Red Hat OpenShift Serverless is based on the open source Knative project. When Knative is integrated with Red Hat OpenShift, it provides solutions for common challenges faced by developers.
+
+Red Hat OpenShift Serverless simplifies the process of getting code from development into production, by reducing the requirement for developer input in infrastructure set up or back-end development, allowing developers to spend more time writing code.
+
 
 Knative is an open source framework that extends Kubernetes compabilities for Serverless computing. 
 
-The components of Knative are:
+*The components of Knative are:*
 
-* Serving: Deploy and scale functions and serverless applications.
+* *Serving*: Deploy and scale functions and serverless applications.
 
-* Build: Create container images from source code. 
-
-* Eventing: Consume and produce events to bind event sources to services.
+* *Eventing*: Consume and produce events to bind event sources to services.
 
 
 

@@ -1,5 +1,5 @@
 site:
-  title: Knative on OpenShift
+  title: Knative on OpenShift Serverless
   url: https://openshift-knative.github.io/docs
   start_page: docs::index
 content:
