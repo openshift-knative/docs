@@ -1,4 +1,6 @@
-= Knative Serving v0.7.1 on OpenShift Serverless
+= Knative Serving on OpenShift Serverless
+
+*version:* 0.7.1
 
 Knative Serving can be installed by using the Knative Serving Operator available on the OpenShift OperatorHub.
 
