@@ -64,7 +64,7 @@ The following components tested on the **OpenShift 4.1** cluster in this release
 
   `service.alpha.openshift.io/serving-cert-secret-name: prometheus-adapter-tls  `
 
-  This creates a secret named "prometheus-adapter-tls", which can then be mounted to the autoscaler. 
+  This creates a secret named `prometheus-adapter-tls`, which can then be mounted to the autoscaler. 
 
 -------------
 
