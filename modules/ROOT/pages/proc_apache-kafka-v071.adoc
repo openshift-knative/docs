@@ -25,7 +25,7 @@ image::kafka-tile-highlighted.png[]
 +
 . A `Show Community Operator` dialog box will appear. Click **Continue** to proceed.
 
-5. The **Knative Apache Kafka Operator** descriptor screen will appear. Click **Install**.
+. The **Knative Apache Kafka Operator** descriptor screen will appear. Click **Install**.
 +
 image::kafka-install-operator.png[]
 +
