@@ -9,7 +9,7 @@ For further information on Knative, please checkout [user documentation for Knat
 --------------
 ## Knative v0.7.1 on OpenShift Serverless
 
-* [Introducing Operators on the OpenShift Container Platform](versions/v071/introducing-operators.md)
+* [Knative Operators on the OpenShift Container Platform](versions/v071/introducing-operators.md)
 
 * [Knative Serving v0.7.1 on OpenShift Serverless](versions/v071/knative-serving-v071-OCP-41.md)
 
