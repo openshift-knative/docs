@@ -2,7 +2,7 @@
 
 *version:* 0.7.1
 
-Serverless integration is possible with Knative and Apache Camel on OpenShift. This guide walks cluster administrators through installing the Knative Apache Kafka Operator in an OpenShift Container Platform cluster. As a cluster administrator, you can install the operator from the OperatorHub using the OpenShift Container Platform web console. 
+Serverless integration is possible with Knative and Apache Kafka on OpenShift. This guide walks cluster administrators through installing the Knative Apache Kafka Operator in an OpenShift Container Platform cluster. As a cluster administrator, you can install the operator from the OperatorHub using the OpenShift Container Platform web console. 
 
 
 == Prerequisites
