@@ -62,7 +62,7 @@ The following components tested on the **OpenShift 4.1** cluster in this release
 
   This creates a secret named `prometheus-adapter-tls`, which can then be mounted to the autoscaler. 
 
-  You can also restart the autoscaler pod by executing the foliowing command:
+  You can also restart the autoscaler pod by executing the following command:
   
   `oc delete pod -n knative-serving -l 'app=autoscaler'`
 
