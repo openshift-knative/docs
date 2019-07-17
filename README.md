@@ -10,9 +10,7 @@ For further information on Knative, please checkout [user documentation for Knat
 ## Knative v0.7.1 on OpenShift Serverless
 
 * [Knative Operators on the OpenShift Container Platform](versions/v071/introducing-operators.md)
-
 * [Knative Serving v0.7.1 on OpenShift Serverless](versions/v071/knative-serving-v071-OCP-41.md)
-
 * [Knative Eventing v0.7.1 on OpenShift Serverless](versions/v071/knative-eventing-v071-OCP-41.md)
   - [Knative Apache Kafka Operator v0.7.1](versions/v071/knative-eventing-v071-kafka-operator.md)
   - [Knative Apache Camel Operator v0.7.1](versions/v071/knative-eventing-v071-camel-operator.md)
