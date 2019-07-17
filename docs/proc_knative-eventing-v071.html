@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knative Eventing on OpenShift Serverless :: Knative on OpenShift Serverless</title>
+    <link rel="canonical" href="https://openshift-knative.github.io/docs/docs/proc_knative-eventing-v071.html">
+    <meta name="generator" content="Antora 2.0.0">
+    <link rel="stylesheet" href="../_/css/site.css">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://openshift-knative.github.io/docs">Knative on OpenShift Serverless</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+<!--
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="#">Home</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Products</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Product A</a>
+            <a class="navbar-item" href="#">Product B</a>
+            <a class="navbar-item" href="#">Product C</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Services</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Service A</a>
+            <a class="navbar-item" href="#">Service B</a>
+            <a class="navbar-item" href="#">Service C</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Resources</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Resource A</a>
+            <a class="navbar-item" href="#">Resource B</a>
+            <a class="navbar-item" href="#">Resource C</a>
+          </div>
+        </div>
+        <div class="navbar-item">
+          <span class="control">
+            <a class="button is-primary" href="#">Download</a>
+          </span>
+        </div>
+      </div>
+-->
+    </div>
+  </nav>
+</header>
+<div class="main-wrapper">
+  <div class="navigation-container" data-component="docs" data-version="master">
+  <aside class="navigation">
+    <div class="panels">
+<div class="navigation-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html">Knative on OpenShift Serverless</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="con_knative-v071.html">1. Knative on OpenShift Serverless</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="con_knative-operators.html">Operator Overview</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="proc_knative-serving-v071.html">2. Knative Serving Operator</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="proc_knative-eventing-v071.html">3. Knative Eventing Operator</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="proc_apache-camel-v071.html">Apache Camel Operator</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="proc_apache-kafka-v071.html">Apache Kafka Operator</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="navigation-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Knative on OpenShift Serverless</span>
+    <span class="version">master</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">Knative on OpenShift Serverless</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="index.html">master</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+  <div class="main-view-and-toolbar">
+    <div class="toolbar" role="navigation">
+  <button class="navigation-toggle"></button>
+  <a href="index.html" class="home-link"></a>
+<nav class="crumbs" aria-label="breadcrumbs">
+  <ul>
+    <li class="crumb"><a href="index.html">Knative on OpenShift Serverless</a></li>
+    <li class="crumb"><a href="proc_knative-eventing-v071.html">3. Knative Eventing Operator</a></li>
+  </ul>
+</nav>
+  <!--
+  <div class="edit-this-page"><a href="file:///home/joaedwar/docs/modules/ROOT/pages/proc_knative-eventing-v071.adoc">Edit this Page</a></div>
+  -->
+</div>
+    <div class="main-view-and-toc">
+        <main class="main">
+          <article class="doc">
+<h1>Knative Eventing on OpenShift Serverless</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p><strong>version:</strong> 0.7.1</p>
+</div>
+<div class="paragraph">
+<p>Knative Eventing can be installed by using the Knative Eventing Operator available on the OpenShift OperatorHub.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+This release introduces Knative Knative Eventing <code>v0.7.1</code> on an OpenShift 4.1 cluster (OCP) and should not be used in a production environment.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+ClusterChannelProvisioners have been deprecated and will be removed in future releases. Please use <a href="https://github.com/knative/eventing/releases">CRD-based channel</a> implementations instead.
+</td>
+</tr>
+</table>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Existing CCP</th>
+<th class="tableblock halign-left valign-top">Replacement CRDs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>in-memory</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">InMemoryChannel</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>kafka</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">KafkaChannel</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_prerequisites"><a class="anchor" href="#_prerequisites"></a>Prerequisites</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>An OpenShift 4 cluster is required for installation. Visit <a href="https://try.openshift.com">try.openshift.com</a> for information on setting up an OpenShift 4 cluster.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+You will need cluster administrator privileges to install and use Knative on an OpenShift cluster.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Long-running clusters are not supported in this release.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_installing_the_knative_eventing_operator"><a class="anchor" href="#_installing_the_knative_eventing_operator"></a>Installing the Knative Eventing Operator</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Go to <strong>Catalog &gt; OperatorHub</strong> in the OpenShift web console. A list of operators for OpenShift, provided by Red Hat as well as a community of partners and open-source projects is provided. Click on the <strong>Knative Eventing Operator</strong> tile.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Use the <strong>Filter by Keyword</strong> box to facilitate the search of the Knative Eventing operator in the catalog.
+</td>
+</tr>
+</table>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/knative-eventing-tile-highlighted.png" alt="knative eventing tile highlighted">
+</div>
+</div>
+</li>
+<li>
+<p>A <code>Show Community Operator</code> dialog box will appear. Click <strong>Continue</strong> to proceed.</p>
+</li>
+<li>
+<p>The <strong>Knative Eventing Operator</strong> descriptor screen will appear. Click <strong>Install</strong>.</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/knative-eventing-operator-screen.png" alt="knative eventing operator screen">
+</div>
+</div>
+</li>
+<li>
+<p>On the <strong>Create the Operator Subscription</strong> screen, ensure  <strong>All namespaces on the cluster (default)</strong> is selected under the <strong>Installation Mode</strong> section.</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/knative-eventing-namespaces-default.png" alt="knative eventing namespaces default">
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The Operator Lifecycle Manager (OLM) will install the operator in all namespaces. The installation will create the <code>knative-eventing</code> namespace.
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Confirm the subscription for the installation operator, by viewing the <strong>Subscription Overview</strong>. The <strong>UPGRADE STATUS</strong> will update from <code>O Installing</code> to <code>1 Installed</code>.</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/knative-eventing-installed-sub.png" alt="knative eventing installed sub">
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The screen will update after a few minutes. Wait for the <code>knative-eventing</code> namespace to appear in the project drop-down menu. Refresh the page if needed.
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Knative Eventing is now installed. Navigate to <strong>Catalog &gt; Installed Operators</strong> to confirm the operator is installed. Click on <code>knative-eventing</code> to view the install status.</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/knative-eventing-installed-operator.png" alt="knative eventing installed operator">
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_uninstalling_the_knative_eventing_operator"><a class="anchor" href="#_uninstalling_the_knative_eventing_operator"></a>Uninstalling the Knative Eventing Operator</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Go to <strong>Catalog &gt; OperatorHub</strong> in the OpenShift Web Console.</p>
+</li>
+<li>
+<p>Click on the <strong>Knative Eventing Operator</strong> tile.</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/knative-eventing-uninstall-tile.png" alt="knative eventing uninstall tile">
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The tile will indicate whether the operator is installed.
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>The <strong>Show Community Operator</strong>` dialog box will appear. Click <strong>Continue</strong> to proceed.</p>
+</li>
+<li>
+<p>Once the <strong>Knative Eventing Operator</strong> descriptor screen appears, click <strong>Uninstall</strong>.</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/knative-eventing-uninstall-operator.png" alt="knative eventing uninstall operator">
+</div>
+</div>
+</li>
+<li>
+<p>Select <strong>Also completely remove the Operator from the selected namespace</strong>, in the <strong>Remove Operator Subscription</strong> dialog box.</p>
+</li>
+<li>
+<p>Click <strong>Remove</strong>.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</article>
+        </main>
+            </div>
+  </div>
+</div><footer class="footer">
+  <p>Adapted from Antora default UI, (c) 2019</p>
+</footer>
+<script src="../_/js/site.js"></script>
+<script src="../_/js/vendor/highlight.js"></script>
+<script>hljs.initHighlighting()</script>
+  </body>
+</html>
