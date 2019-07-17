@@ -2,7 +2,7 @@
 
 *version*: 0.7.1
 
-This guide walks cluster administrators through installing the Knative Camel Operator in an OpenShift Container Platform cluster. As a cluster administrator, you can install the Knative Camel add-on from the OperatorHub using the OpenShift Container Platform web console. 
+Serverless integration is possible with Knative and Apache Camel on OpenShift.This guide walks cluster administrators through installing the Knative Camel Operator in an OpenShift Container Platform cluster. As a cluster administrator, you can install the Knative Camel add-on from the OperatorHub using the OpenShift Container Platform web console. 
 
 The Knative Camel add-on allows you to to install Camel Sources from the Developer Catalog.
 
