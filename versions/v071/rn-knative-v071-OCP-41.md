@@ -52,6 +52,19 @@ The following components tested on the **OpenShift 4.1** cluster in this release
 
   `oc -n knative-serving patch deployment autoscaler -p '{"spec":{"template":{"metadata":{"annotations":                                  {"traffic.sidecar.istio.io/includeInboundPorts": "8080,9090"}}}}}'`
 
+- **The autoscaler starts logging an error after several hours of runtime:** After approximately 16 hours of runtime the following message is logged:
+
+  `authentication.go:62] Unable to authenticate the request due to an error: x509: certificate signed by unknown authority`
+
+  You can circumvent the issue by restarting the autoscaler pod and executing the foliowing command:
+
+  `oc delete pod -n knative-serving -l 'app=autoscaler'`
+
+  You can also [setup the prometheus-adapter](https://docs.openshift.com/container-platform/4.1/monitoring/exposing-custom-application-metrics-for-autoscaling.html) and label the autoscale service using:
+
+  `service.alpha.openshift.io/serving-cert-secret-name: prometheus-adapter-tls  `
+
+  This creates a secret named "prometheus-adapter-tls", which can then be mounted to the autoscaler. 
 
 -------------
 
