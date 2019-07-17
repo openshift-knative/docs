@@ -4,7 +4,7 @@
 Knative Serving can be installed by using the Knative Serving Operator available on the OpenShift OperatorHub.
 
 
-> **IMPORTANT:** This release introduces Knative Serving `v0.7.1` on an OpenShift 4.1 cluster (OCP). This release should not be used in a production environment.
+> **IMPORTANT:** This release introduces Knative Serving `v0.7.1` on an OpenShift 4.1 cluster (OCP). This release should not be used in a production environment. This release has been certified with `Maistra 0.10` and `Maistra 0.11`.
 
 
 ## Prerequisites
