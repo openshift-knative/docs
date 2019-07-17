@@ -1,0 +1,6 @@
+* xref:con_knative-v071.adoc[1. Knative on OpenShift Serverless]
+** xref:con_knative-operators.adoc[Operator Overview]
+* xref:proc_knative-serving-v071.adoc[2. Knative Serving Operator]
+* xref:proc_knative-eventing-v071.adoc[3. Knative Eventing Operator]
+** xref:proc_apache-camel-v071.adoc[Apache Camel Operator]
+** xref:proc_apache-camel-v071.adoc[Apache Kafka Operator]
