@@ -9,9 +9,9 @@ All bugs, tasks or enhancements are tracked as [GitHub issues](https://github.co
 
 ## Before You Begin
 
-* [Get started](/proc_git-set-up.md) by installing and getting familiar with [Git](https://git-scm.com/doc).
+* [Get started](/contributing/proc_git-set-up.md) by installing and getting familiar with [Git](https://git-scm.com/doc).
 * Use [markdown](https://www.markdownguide.org/) to contribute documentation to the repository and add a link to the README.md, if applicable. 
-* Refer to our [style guide](ref_documentation-styling.md) for guidance on formatting your documentation contributions.
+* Refer to our [style guide](/contributing/ref_documentation-styling.md) for guidance on formatting your documentation contributions.
 
 
 ## Raising an Issue
@@ -34,7 +34,7 @@ Make a pull request (PR) to add content to the repository. When making a PR, ens
 * The version of the project you are using (version number, git commit, etc.)
 * Operating system you are using
 
-See [here](/proc_git-set-up.md) for more information on using Git and making pull requests.
+See [here](/contributing/proc_git-set-up.md) for more information on using Git and making pull requests.
 
 
 ## Code of Conduct

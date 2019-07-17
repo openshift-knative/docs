@@ -19,7 +19,7 @@ For further information on Knative, please checkout [user documentation for Knat
 
 --------------
 ## How can you contribute
-* Please see our [contributor guidelines](con_contributing-documentation.md) for information on how you can help.
+* Please see our [contributor guidelines](contributing/con_contributing-documentation.md) for information on how you can help.
 
 --------------
 ## Links
