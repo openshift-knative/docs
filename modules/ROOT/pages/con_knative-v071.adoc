@@ -1,7 +1,7 @@
 // 
 //
 
-= Knative v0.7.1 on OpenShift Serverless
+= Knative on OpenShift Serverless
 
 Knative allows for greater consistency and more granular scalability across applications and teams.
 
