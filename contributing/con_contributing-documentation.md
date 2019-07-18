@@ -1,10 +1,10 @@
 # Contributing to Knative on OpenShift Documentation
 
-* [Before You Begin](Before-You-Begin)
-* [General Information](General-Information)
-* [Raising an Issue](Raising-an-Issue)
-* [Put in a Pull Request](Put-in-a-Pull-Request)
-* [Code of Conduct](Code-of-Conduct)
+* [Before You Begin](#Before-You-Begin)
+* [General Information](#General-Information)
+* [Raising an Issue](#Raising-an-Issue)
+* [Put in a Pull Request](#Put-in-a-Pull-Request)
+* [Code of Conduct](#Code-of-Conduct)
 
 -----------------------------
 
