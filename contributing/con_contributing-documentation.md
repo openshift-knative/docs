@@ -31,7 +31,8 @@ Thank you for your contributions! Please follow this process to submit a patch:
 
 1. Fork the repository and create a topic branch.
 
-1. Submit a pull request with the proposed changes. The required format for the Git commit message is "Issue #<issue_no -- message>".
+1. Submit a pull request with the proposed changes. 
+- The required format for the Git commit message is "Issue #<issue_no -- message>".
 
 
 ## Raising an Issue
