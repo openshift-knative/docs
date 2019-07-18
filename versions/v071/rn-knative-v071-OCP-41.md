@@ -46,8 +46,6 @@ The following components tested on the **OpenShift 4.1** cluster in this release
 -------------
 
 ## Known Issues
-- **Camel K currently not available in OperatorHub:** A pull request has been put in and is pending to add the Camel-K operator to the OperatorHub.
-
 - **The v1beta1 API is not provided:**  For this release, Knative on OpenShift only serves the v1alpha1 API.
 
 - **Patch autoscaler deployment to register custom-metrics API:**  When running Knative Serving in a mesh environment (for example, you installed Maistra and you have sidecar-injection enabled) run the following command to patch the autoscaler’s deployment to successfully register the custom-metrics API:
