@@ -56,13 +56,7 @@ The following components tested on the **OpenShift 4.1** cluster in this release
 
   `authentication.go:62] Unable to authenticate the request due to an error: x509: certificate signed by unknown authority`
   
-  You can circumvent the issue by [setting up the prometheus-adapter](https://docs.openshift.com/container-platform/4.1/monitoring/exposing-custom-application-metrics-for-autoscaling.html) and labeling the autoscale service using:
-
-  `service.alpha.openshift.io/serving-cert-secret-name: prometheus-adapter-tls  `
-
-  This creates a secret named `prometheus-adapter-tls`, which can then be mounted to the autoscaler. 
-
-  You can also restart the autoscaler pod by executing the following command:
+  You can circumvent the issue by restarting the autoscaler pod with the following command:
   
   `oc delete pod -n knative-serving -l 'app=autoscaler'`
 
