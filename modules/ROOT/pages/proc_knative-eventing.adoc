@@ -1,20 +1,18 @@
-= Knative Eventing on OpenShift Serverless
+= Installing the Knative Eventing Operator on OpenShift Container Platform
 
-*version:* 0.7.1
+Knative Eventing can be installed by using the Knative Eventing Operator available on the OpenShift Container Platform web console.
 
-Knative Eventing can be installed by using the Knative Eventing Operator available on the OpenShift OperatorHub.
-
-IMPORTANT: This release introduces Knative Knative Eventing `v0.7.1` on an OpenShift 4.1 cluster (OCP) and should not be used in a production environment.
+IMPORTANT: This release is a developer preview and should not be used in a production environment.
 
 IMPORTANT: ClusterChannelProvisioners have been deprecated and will be removed in future releases. Please use link:https://github.com/knative/eventing/releases[CRD-based channel] implementations instead.
 
-[%header,cols=2*] 
+[%header,cols=2*]
 |===
-|Existing CCP  
+|Existing CCP
 |Replacement CRDs
-| `in-memory` 
+| `in-memory`
 | InMemoryChannel
-| `kafka` 
+| `kafka`
 | KafkaChannel
 |===
 
@@ -27,11 +25,9 @@ IMPORTANT: You will need cluster administrator privileges to install and use Kna
 
 NOTE: Long-running clusters are not supported in this release.
 
-
-
 == Installing the Knative Eventing Operator
 
-. Go to **Catalog > OperatorHub** in the OpenShift web console. A list of operators for OpenShift, provided by Red Hat as well as a community of partners and open-source projects is provided. Click on the **Knative Eventing Operator** tile. 
+. Go to **Catalog > OperatorHub** in the OpenShift Container Platform web console. A list of operators for OpenShift, provided by Red Hat as well as a community of partners and open-source projects is provided. Click on the **Knative Eventing Operator** tile.
 +
 NOTE: Use the **Filter by Keyword** box to facilitate the search of the Knative Eventing operator in the catalog.
 +
@@ -58,8 +54,6 @@ NOTE: The screen will update after a few minutes. Wait for the `knative-eventing
 . Knative Eventing is now installed. Navigate to **Catalog > Installed Operators** to confirm the operator is installed. Click on `knative-eventing` to view the install status.
 +
 image::knative-eventing-installed-operator.png[]
-
-
 
 == Uninstalling the Knative Eventing Operator
 

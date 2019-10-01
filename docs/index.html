@@ -3,16 +3,16 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Knative on OpenShift Serverless :: OpenShift Serverless</title>
+    <title>Knative on OpenShift Container Platform :: Knative Eventing on OpenShift Container Platform</title>
     <link rel="canonical" href="https://openshift-knative.github.io/docs/docs/index.html">
-    <meta name="generator" content="Antora 1.0.3">
+    <meta name="generator" content="Antora 2.1.1">
     <link rel="stylesheet" href="../_/css/site.css">
   </head>
   <body class="article">
 <header class="header">
   <nav class="navbar">
     <div class="navbar-brand">
-      <a class="navbar-item" href="https://openshift-knative.github.io/docs">OpenShift Serverless</a>
+      <a class="navbar-item" href="https://openshift-knative.github.io/docs">Knative Eventing on OpenShift Container Platform</a>
       <button class="navbar-burger" data-target="topbar-nav">
         <span></span>
         <span></span>
@@ -69,7 +69,7 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="con_knative-v071.html">1. Knative on OpenShift Serverless</a>
+    <a class="nav-link" href="#con_knative.adoc">Knative Eventing on OpenShift Container Platform</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="con_knative-operators.html">Operator Overview</a>
@@ -77,19 +77,13 @@
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="proc_knative-serving-v071.html">2. Knative Serving Operator</a>
+    <a class="nav-link" href="proc_knative-eventing.html">Knative Eventing Operator</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <button class="nav-toggle"></button>
-    <a class="nav-link" href="proc_knative-eventing-v071.html">3. Knative Eventing Operator</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="proc_apache-camel-v071.html">Apache Camel Operator</a>
+    <a class="nav-link" href="proc_apache-camel.html">Apache Camel Operator</a>
   </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="proc_apache-kafka-v071.html">Apache Kafka Operator</a>
-  </li>
-</ul>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="proc_apache-kafka.html">Apache Kafka Operator</a>
   </li>
 </ul>
   </li>
@@ -99,14 +93,14 @@
 <div class="navigation-explore" data-panel="explore">
   <div class="context">
     <span class="title">OpenShift Serverless</span>
-    <span class="version"></span>
+    <span class="version">master</span>
   </div>
   <ul class="components">
     <li class="component is-current">
       <span class="title">OpenShift Serverless</span>
       <ul class="versions">
         <li class="version is-current is-latest">
-          <a href="index.html"></a>
+          <a href="index.html">master</a>
         </li>
       </ul>
     </li>
@@ -122,17 +116,17 @@
 <nav class="crumbs" aria-label="breadcrumbs">
   <ul>
     <li class="crumb"><a href="index.html">OpenShift Serverless</a></li>
-    <li class="crumb"><a href="index.html">Knative on OpenShift Serverless</a></li>
+    <li class="crumb"><a href="index.html">Knative on OpenShift Container Platform</a></li>
   </ul>
 </nav>
   <!--
-  <div class="edit-this-page"><a href="file:///home/joaedwar/docs/modules/ROOT/pages/index.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="file:///home/abrennan/git-repos/docs-1/modules/ROOT/pages/index.adoc">Edit this Page</a></div>
   -->
 </div>
     <div class="main-view-and-toc">
         <main class="main">
           <article class="doc">
-<h1>Knative on OpenShift Serverless</h1>
+<h1>Knative on OpenShift Container Platform</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
@@ -142,18 +136,15 @@
 <p>Red Hat OpenShift Serverless simplifies the process of getting code from development into production, by reducing the requirement for developer input in infrastructure set up or back-end development, allowing developers to spend more time writing code.</p>
 </div>
 <div class="paragraph">
-<p>Knative is an open source framework that extends Kubernetes compabilities for Serverless computing.</p>
-</div>
-<div class="paragraph">
 <p><strong>The components of Knative are:</strong></p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Serving</strong>: Deploy and scale functions and serverless applications.</p>
+<p><strong>Serving</strong>: Deploy and scale functions and serverless applications. Knative Serving can be installed on OpenShift Container Platform using the OpenShift Serverless Operator.</p>
 </li>
 <li>
-<p><strong>Eventing</strong>: Consume and produce events to bind event sources to services.</p>
+<p><strong>Eventing</strong>: Consume and produce events to bind event sources to services. Knative Eventing can be installed on OpenShift Container Platform using the Knative Eventing Operator.</p>
 </li>
 </ul>
 </div>
@@ -166,6 +157,9 @@
 <ul>
 <li>
 <p><a href="https://redhat-developer-demos.github.io/knative-tutorial">Knative Tutorial</a></p>
+</li>
+<li>
+<p><a href="https://docs.openshift.com/container-platform/4.1/serverless/installing-openshift-serverless.html#installing-serverless-operator_installing-openshift-serverless">OpenShift Serverless Operator documentation</a></p>
 </li>
 </ul>
 </div>

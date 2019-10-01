@@ -1,23 +1,19 @@
-= Knative Apache Kafka Operator 
+= Knative Apache Kafka Operator
 
-*version:* 0.7.1
-
-Serverless integration is possible with Knative and Apache Kafka on OpenShift. This guide walks cluster administrators through installing the Knative Apache Kafka Operator in an OpenShift Container Platform cluster. As a cluster administrator, you can install the operator from the OperatorHub using the OpenShift Container Platform web console. 
-
+Serverless integration is possible with Knative and Apache Kafka on OpenShift Container Platform. This guide walks cluster administrators through installing the Knative Apache Kafka Operator in an OpenShift Container Platform cluster. As a cluster administrator, you can install the operator from the OperatorHub using the OpenShift Container Platform web console.
 
 == Prerequisites
 
 * link:proc_knative-eventing-v071.html[Knative Eventing] is installed
-* A running instance of link:https://github.com/strimzi[Apache Kafka] 
-
+* A running instance of link:https://github.com/strimzi[Apache Kafka]
 
 == Installing the Knative Apache Kafka Operator
 
-. Select the `knative-eventing` project by clicking on **Projects > Create Project** in the web console. 
+. Select the `knative-eventing` project by clicking on **Projects > Create Project** in the web console.
 +
 image::kafka-eventing-project.png[]
 +
-. Go to **Catalog > OperatorHub**. A list of operators for OpenShift, provided by Red Hat as well as a community of partners and open-source projects is available. Use the **Filter by Keyword** box to facilitate the search of the Knative Apache Kafka Operator in the catalog.  
+. Go to **Catalog > OperatorHub**. A list of operators for OpenShift, provided by Red Hat as well as a community of partners and open-source projects is available. Use the **Filter by Keyword** box to facilitate the search of the Knative Apache Kafka Operator in the catalog.
 
 . Click on the **Knative Apache Kafka** tile.
 +
@@ -30,7 +26,7 @@ image::kafka-tile-highlighted.png[]
 image::kafka-install-operator.png[]
 +
 . On the **Create the Operator Subscription** screen
-    - Go to the **Installation Mode** section and choose the default selection. 
+    - Go to the **Installation Mode** section and choose the default selection.
     - Click  **Subscribe**.
 +
 image::kafka-default.png[]
@@ -49,12 +45,12 @@ image::kafka-create-new.png[]
 +
 . In the Custom Resource (CR) dialog
     - Configure the Kafka channel as the default
-    - Provide the URL to your Kafka instance. 
+    - Provide the URL to your Kafka instance.
     - Click **Create** to set the value.
 +
 image::kafka-CR-editor.png[]
 +
-NOTE: The editor is pre-populated with definitions. Configure the file by manually entering YAML or JSON definitions, or by dragging and dropping a file into the editor. 
+NOTE: The editor is pre-populated with definitions. Configure the file by manually entering YAML or JSON definitions, or by dragging and dropping a file into the editor.
 +
 NOTE: During installation, you can set the Kafka Channel as the default channel by using Custom Resources.
 +
@@ -66,21 +62,18 @@ NOTE: When the channel is configured as the default, each new channel that is cr
 +
 image::kafka-configmap.png[]
 
+== Uninstalling the Knative Apache Kafka Operator
 
-
-== Uninstalling the Knative Apache Kafka Operator 
-
-. Go to **Catalog > OperatorHub** 
+. Go to **Catalog > OperatorHub**
 
 . Click on the **Knative Apache Kafka Operator** tile.
 +
 NOTE: The operator tile will indicate it is installed.
 +
 image::kafka-installed-remove.png[]
-+ 
++
 . Click **Uninstall** on the **Knative Apache Kafka Operator** descriptor screen.
 
 . In the **Remove Operator Subscription** dialog box
     - Select **Also completely remove the Operator from the selected namespace**
     - Click **Remove**. The Apache Kafka Operator subscription is now removed.
-
