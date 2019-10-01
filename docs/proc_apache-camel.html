@@ -3,16 +3,16 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Knative Camel Operator :: OpenShift Serverless</title>
-    <link rel="canonical" href="https://openshift-knative.github.io/docs/docs/proc_apache-camel-v071.html">
-    <meta name="generator" content="Antora 1.0.3">
+    <title>Knative Camel Operator :: Knative Eventing on OpenShift Container Platform</title>
+    <link rel="canonical" href="https://openshift-knative.github.io/docs/docs/proc_apache-camel.html">
+    <meta name="generator" content="Antora 2.1.1">
     <link rel="stylesheet" href="../_/css/site.css">
   </head>
   <body class="article">
 <header class="header">
   <nav class="navbar">
     <div class="navbar-brand">
-      <a class="navbar-item" href="https://openshift-knative.github.io/docs">OpenShift Serverless</a>
+      <a class="navbar-item" href="https://openshift-knative.github.io/docs">Knative Eventing on OpenShift Container Platform</a>
       <button class="navbar-burger" data-target="topbar-nav">
         <span></span>
         <span></span>
@@ -69,7 +69,7 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="con_knative-v071.html">1. Knative on OpenShift Serverless</a>
+    <a class="nav-link" href="#con_knative.adoc">Knative Eventing on OpenShift Container Platform</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="con_knative-operators.html">Operator Overview</a>
@@ -77,19 +77,13 @@
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="proc_knative-serving-v071.html">2. Knative Serving Operator</a>
+    <a class="nav-link" href="proc_knative-eventing.html">Knative Eventing Operator</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="proc_apache-camel.html">Apache Camel Operator</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <button class="nav-toggle"></button>
-    <a class="nav-link" href="proc_knative-eventing-v071.html">3. Knative Eventing Operator</a>
-<ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="proc_apache-camel-v071.html">Apache Camel Operator</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="proc_apache-kafka-v071.html">Apache Kafka Operator</a>
-  </li>
-</ul>
+    <a class="nav-link" href="proc_apache-kafka.html">Apache Kafka Operator</a>
   </li>
 </ul>
   </li>
@@ -99,14 +93,14 @@
 <div class="navigation-explore" data-panel="explore">
   <div class="context">
     <span class="title">OpenShift Serverless</span>
-    <span class="version"></span>
+    <span class="version">master</span>
   </div>
   <ul class="components">
     <li class="component is-current">
       <span class="title">OpenShift Serverless</span>
       <ul class="versions">
         <li class="version is-current is-latest">
-          <a href="index.html"></a>
+          <a href="index.html">master</a>
         </li>
       </ul>
     </li>
@@ -122,12 +116,11 @@
 <nav class="crumbs" aria-label="breadcrumbs">
   <ul>
     <li class="crumb"><a href="index.html">OpenShift Serverless</a></li>
-    <li class="crumb"><a href="proc_knative-eventing-v071.html">3. Knative Eventing Operator</a></li>
-    <li class="crumb"><a href="proc_apache-camel-v071.html">Apache Camel Operator</a></li>
+    <li class="crumb"><a href="proc_apache-camel.html">Apache Camel Operator</a></li>
   </ul>
 </nav>
   <!--
-  <div class="edit-this-page"><a href="file:///home/joaedwar/docs/modules/ROOT/pages/proc_apache-camel-v071.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="file:///home/abrennan/git-repos/docs-1/modules/ROOT/pages/proc_apache-camel.adoc">Edit this Page</a></div>
   -->
 </div>
     <div class="main-view-and-toc">
@@ -137,10 +130,7 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p><strong>version</strong>: 0.7.1</p>
-</div>
-<div class="paragraph">
-<p>Serverless integration is possible with Knative and Apache Camel on OpenShift. This guide walks cluster administrators through installing the Knative Camel Operator in an OpenShift Container Platform cluster. As a cluster administrator, you can install the Knative Camel add-on from the OperatorHub using the OpenShift Container Platform web console.</p>
+<p>Serverless integration is possible with Knative and Apache Camel on OpenShift Container Platform. This guide walks cluster administrators through installing the Knative Camel Operator in an OpenShift Container Platform cluster. As a cluster administrator, you can install the Knative Camel add-on from the OperatorHub using the OpenShift Container Platform web console.</p>
 </div>
 <div class="paragraph">
 <p>The Knative Camel add-on allows you to to install Camel Sources from the Developer Catalog.</p>
@@ -156,10 +146,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p><a href="proc_knative-eventing-v071.html">Knative Eventing</a></p>
-</li>
-<li>
-<p><a href="proc_knative-serving-v071.html">Knative Serving</a></p>
+<p><a href="proc_knative-eventing.html">Knative Eventing</a></p>
 </li>
 <li>
 <p><a href="https://camel.apache.org/staging/camel-k/latest/index.html">Camel K</a></p>
@@ -174,7 +161,7 @@
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Go to <strong>Catalog &gt; OperatorHub</strong>. A list of operators for OpenShift, provided by Red Hat as well as a community of partners and open-source projects is available. Use the <strong>Filter by Keyword</strong> box to facilitate the search of the Knative Camel Operator in the catalog.</p>
+<p>Go to <strong>Catalog &gt; OperatorHub</strong>. A list of operators for OpenShift Container Platform, provided by Red Hat as well as a community of partners and open-source projects is available. Use the <strong>Filter by Keyword</strong> box to facilitate the search of the Knative Camel Operator in the catalog.</p>
 </li>
 <li>
 <p>Click on the <strong>Knative Camel</strong> tile.</p>

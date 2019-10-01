@@ -1,11 +1,11 @@
 site:
-  title: OpenShift Serverless
+  title: Knative Eventing on OpenShift Container Platform
   url: https://openshift-knative.github.io/docs
   start_page: docs::index
 content:
   sources:
     - url: .
-      branches: HEAD     
+      branches: HEAD
 ui:
   bundle:
     url: ./ui-bundle.zip
