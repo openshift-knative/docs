@@ -9,7 +9,7 @@
 -----------------------------
 
 **You can contribute by:**
-- Raising an issue you find in the documentation 
+- Raising an issue you find in the documentation
 - Fixing issues by opening a pull request
 - Improving documentation or code samples
 
@@ -18,7 +18,7 @@ All bugs, tasks or enhancements are tracked as [GitHub issues](https://github.co
 ## Before You Begin
 
 * [Get started](/contributing/proc_git-set-up.md) by installing and getting familiar with [Git](https://git-scm.com/doc).
-* Use [markdown](https://www.markdownguide.org/) to contribute documentation to the repository and add a link to the README.md, if applicable. 
+* Use [markdown](https://www.markdownguide.org/) to contribute documentation to the repository and add a link to the README.md, if applicable.
 * Refer to our [style guide](/contributing/ref_documentation-styling.md) for guidance on formatting your documentation contributions.
 
 ## General Information
@@ -31,7 +31,7 @@ Thank you for your contributions! Please follow this process to submit a patch:
 
 1. Fork the repository and create a topic branch.
 
-1. Submit a pull request with the proposed changes. 
+1. Submit a pull request with the proposed changes.
 - The required format for the Git commit message is "Issue #<issue_no -- message>".
 
 
@@ -43,7 +43,7 @@ When reporting an issue, you can use the [applicable issue reporting template](h
 
 * The version of the project you are using (version number, git commit, etc.)
 * Operating system you are using
-* The exact, minimal, steps needed to reproduce the issue. 
+* The exact, minimal, steps needed to reproduce the issue.
 
 
 ## Put in a Pull Request
@@ -60,7 +60,7 @@ See [here](/contributing/proc_git-set-up.md) for more information on using Git a
 
 ## Code of Conduct
 
-Examples of behavior that contributes to creating a positive environmentinclude:
+Examples of behavior that contributes to creating a positive environment include:
 
 * Using welcoming and inclusive language
 * Focusing on what is best for the community
