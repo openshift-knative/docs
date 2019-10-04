@@ -43,8 +43,7 @@ The following components tested on the OpenShift 4.x cluster in this release:
 -------------
 
 ## Resources and Links
-- https://docs.openshift.com/container-platform/4.1/serverless/understanding-serverless.html[OpenShift Serverless]
+- [OpenShift Serverless](https://docs.openshift.com/container-platform/4.1/serverless/understanding-serverless.html)
 - https://github.com/knative/docs/releases
 - https://github.com/knative/serving/releases
 - https://github.com/knative/eventing/releases
-- https://github.com/tektoncd/pipeline/releases
