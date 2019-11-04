@@ -4,7 +4,7 @@ Knative Eventing can be installed by using the Knative Eventing Operator availab
 
 IMPORTANT: This release is a developer preview and should not be used in a production environment.
 
-IMPORTANT: ClusterChannelProvisioners have been deprecated and will be removed in future releases. Please use link:https://github.com/knative/eventing/releases[CRD-based channel] implementations instead.
+IMPORTANT: ClusterChannelProvisioners have been removed from the release. Please use link:https://github.com/knative/eventing/releases[CRD-based channel] implementations instead.
 
 [%header,cols=2*]
 |===
@@ -12,8 +12,6 @@ IMPORTANT: ClusterChannelProvisioners have been deprecated and will be removed i
 |Replacement CRDs
 | `in-memory`
 | InMemoryChannel
-| `kafka`
-| KafkaChannel
 |===
 
 
