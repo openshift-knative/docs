@@ -2,22 +2,22 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>https://openshift-knative.github.io/docs/docs/con_knative-operators.html</loc>
-<lastmod>2019-10-01T12:00:05.267Z</lastmod>
+<lastmod>2019-11-04T15:30:34.986Z</lastmod>
 </url>
 <url>
 <loc>https://openshift-knative.github.io/docs/docs/index.html</loc>
-<lastmod>2019-10-01T12:00:05.267Z</lastmod>
+<lastmod>2019-11-04T15:30:34.986Z</lastmod>
 </url>
 <url>
 <loc>https://openshift-knative.github.io/docs/docs/proc_apache-camel.html</loc>
-<lastmod>2019-10-01T12:00:05.267Z</lastmod>
+<lastmod>2019-11-04T15:30:34.986Z</lastmod>
 </url>
 <url>
 <loc>https://openshift-knative.github.io/docs/docs/proc_apache-kafka.html</loc>
-<lastmod>2019-10-01T12:00:05.267Z</lastmod>
+<lastmod>2019-11-04T15:30:34.986Z</lastmod>
 </url>
 <url>
 <loc>https://openshift-knative.github.io/docs/docs/proc_knative-eventing.html</loc>
-<lastmod>2019-10-01T12:00:05.267Z</lastmod>
+<lastmod>2019-11-04T15:30:34.986Z</lastmod>
 </url>
 </urlset>
