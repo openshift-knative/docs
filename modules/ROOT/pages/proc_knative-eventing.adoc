@@ -53,6 +53,8 @@ NOTE: The screen will update after a few minutes. Wait for the `knative-eventing
 +
 image::knative-eventing-installed-operator.png[]
 
+IMPORTANT: In order to experience the full functionality of Knative Eventing on Openshift you must add the `knative-eventing` namespace to the `ServiceMeshMemberRole` object, located in the `knative-serving-ingress` namespace.
+
 == Uninstalling the Knative Eventing Operator
 
 . Go to **Catalog > OperatorHub** in the OpenShift Web Console.
