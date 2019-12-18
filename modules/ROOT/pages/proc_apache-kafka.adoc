@@ -2,20 +2,9 @@
 
 Serverless integration is possible with Knative and Apache Kafka on OpenShift Container Platform. This guide walks cluster administrators through installing the Knative Apache Kafka Operator in an OpenShift Container Platform cluster. As a cluster administrator, you can install the operator from the OperatorHub using the OpenShift Container Platform web console.
 
-IMPORTANT: ClusterChannelProvisioners have been removed from the release. Please use link:https://github.com/knative/eventing/releases[CRD-based channel] implementations instead.
-
-[%header,cols=2*]
-|===
-|Existing CCP
-|Replacement CRDs
-| `kafka`
-| KafkaChannel
-|===
-
-
 == Prerequisites
 
-* link:proc_knative-eventing-v071.html[Knative Eventing] is installed
+* link:proc_knative-eventing.html[Knative Eventing] is installed
 * A running instance of link:https://github.com/strimzi[Apache Kafka]
 
 == Installing the Knative Apache Kafka Operator
