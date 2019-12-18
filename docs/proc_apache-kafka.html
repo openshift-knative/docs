@@ -132,36 +132,6 @@
 <div class="paragraph">
 <p>Serverless integration is possible with Knative and Apache Kafka on OpenShift Container Platform. This guide walks cluster administrators through installing the Knative Apache Kafka Operator in an OpenShift Container Platform cluster. As a cluster administrator, you can install the operator from the OperatorHub using the OpenShift Container Platform web console.</p>
 </div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-ClusterChannelProvisioners have been removed from the release. Please use <a href="https://github.com/knative/eventing/releases">CRD-based channel</a> implementations instead.
-</td>
-</tr>
-</table>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Existing CCP</th>
-<th class="tableblock halign-left valign-top">Replacement CRDs</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>kafka</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">KafkaChannel</p></td>
-</tr>
-</tbody>
-</table>
 </div>
 </div>
 <div class="sect1">
@@ -170,7 +140,7 @@ ClusterChannelProvisioners have been removed from the release. Please use <a hre
 <div class="ulist">
 <ul>
 <li>
-<p><a href="proc_knative-eventing-v071.html">Knative Eventing</a> is installed</p>
+<p><a href="proc_knative-eventing.html">Knative Eventing</a> is installed</p>
 </li>
 <li>
 <p>A running instance of <a href="https://github.com/strimzi">Apache Kafka</a></p>

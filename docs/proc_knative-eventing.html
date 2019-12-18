@@ -151,29 +151,21 @@ This release is a developer preview and should not be used in a production envir
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-ClusterChannelProvisioners have been removed from the release. Please use <a href="https://github.com/knative/eventing/releases">CRD-based channel</a> implementations instead.
+With Knative 0.10.0 the Sources are now using the Destination API, and references to a <code>Sink</code> should be written as below. The old API still works, but was deprecated and will be removed in future releases.
 </td>
 </tr>
 </table>
 </div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Existing CCP</th>
-<th class="tableblock halign-left valign-top">Replacement CRDs</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>in-memory</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">InMemoryChannel</p></td>
-</tr>
-</tbody>
-</table>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">...
+  sink:
+    ref:
+      apiVersion: serving.knative.dev/v1
+      kind: Service
+      name: service-one</code></pre>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
