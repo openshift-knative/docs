@@ -1,5 +1,4 @@
-* xref:con_knative.adoc[Knative Eventing on OpenShift Container Platform]
-** xref:con_knative-operators.adoc[Operator Overview]
+* xref:con_knative-operators.adoc[Operator Overview]
 * xref:proc_knative-eventing.adoc[Knative Eventing Operator]
 * xref:proc_apache-camel.adoc[Apache Camel Operator]
 * xref:proc_apache-kafka.adoc[Apache Kafka Operator]
