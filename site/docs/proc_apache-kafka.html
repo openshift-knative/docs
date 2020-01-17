@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knative Apache Kafka Operator :: Knative Eventing on OpenShift Container Platform</title>
+    <link rel="canonical" href="https://openshift-knative.github.io/docs/docs/proc_apache-kafka.html">
+    <meta name="generator" content="Antora 2.1.1">
+    <link rel="stylesheet" href="../_/css/site.css">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://openshift-knative.github.io/docs">Knative Eventing on OpenShift Container Platform</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+<!--
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="#">Home</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Products</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Product A</a>
+            <a class="navbar-item" href="#">Product B</a>
+            <a class="navbar-item" href="#">Product C</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Services</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Service A</a>
+            <a class="navbar-item" href="#">Service B</a>
+            <a class="navbar-item" href="#">Service C</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Resources</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Resource A</a>
+            <a class="navbar-item" href="#">Resource B</a>
+            <a class="navbar-item" href="#">Resource C</a>
+          </div>
+        </div>
+        <div class="navbar-item">
+          <span class="control">
+            <a class="button is-primary" href="#">Download</a>
+          </span>
+        </div>
+      </div>
+-->
+    </div>
+  </nav>
+</header>
+<div class="main-wrapper">
+  <div class="navigation-container" data-component="docs" data-version="master">
+  <aside class="navigation">
+    <div class="panels">
+<div class="navigation-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html">OpenShift Serverless</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="proc_knative-eventing.html">Knative Eventing on Red Hat OpenShift Container Platform</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="con_knative-cli.html">Knative Client</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="#">Event Source Operators on Red Hat OpenShift Container Platform</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="proc_apache-camel.html">Apache Camel Operator</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="proc_apache-kafka.html">Apache Kafka Operator</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="navigation-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">OpenShift Serverless</span>
+    <span class="version">master</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">OpenShift Serverless</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="index.html">master</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+  <div class="main-view-and-toolbar">
+    <div class="toolbar" role="navigation">
+  <button class="navigation-toggle"></button>
+  <a href="index.html" class="home-link"></a>
+<nav class="crumbs" aria-label="breadcrumbs">
+  <ul>
+    <li class="crumb"><a href="index.html">OpenShift Serverless</a></li>
+    <li class="crumb"><a href="#">Event Source Operators on Red Hat OpenShift Container Platform</a></li>
+    <li class="crumb"><a href="proc_apache-kafka.html">Apache Kafka Operator</a></li>
+  </ul>
+</nav>
+  <!--
+  <div class="edit-this-page"><a href="file:///home/abrennan/git-repos/docs-1/modules/ROOT/pages/proc_apache-kafka.adoc">Edit this Page</a></div>
+  -->
+</div>
+    <div class="main-view-and-toc">
+        <main class="main">
+          <article class="doc">
+<h1>Knative Apache Kafka Operator</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Serverless integration is possible with Knative and Apache Kafka on OpenShift Container Platform. This guide walks cluster administrators through installing the Knative Apache Kafka Operator in an OpenShift Container Platform cluster. As a cluster administrator, you can install the operator from the OperatorHub using the OpenShift Container Platform web console.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_prerequisites"><a class="anchor" href="#_prerequisites"></a>Prerequisites</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><a href="proc_knative-eventing.html">Knative Eventing</a> is installed</p>
+</li>
+<li>
+<p>A running instance of <a href="https://github.com/strimzi">Apache Kafka</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_installing_the_knative_apache_kafka_operator"><a class="anchor" href="#_installing_the_knative_apache_kafka_operator"></a>Installing the Knative Apache Kafka Operator</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Select the <code>knative-eventing</code> project by clicking on <strong>Projects &gt; Create Project</strong> in the web console.</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/kafka-eventing-project.png" alt="kafka eventing project">
+</div>
+</div>
+</li>
+<li>
+<p>Go to <strong>Catalog &gt; OperatorHub</strong>. A list of operators for OpenShift, provided by Red Hat as well as a community of partners and open-source projects is available. Use the <strong>Filter by Keyword</strong> box to facilitate the search of the Knative Apache Kafka Operator in the catalog.</p>
+</li>
+<li>
+<p>Click on the <strong>Knative Apache Kafka</strong> tile.</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/kafka-tile-highlighted.png" alt="kafka tile highlighted">
+</div>
+</div>
+</li>
+<li>
+<p>A <code>Show Community Operator</code> dialog box will appear. Click <strong>Continue</strong> to proceed.</p>
+</li>
+<li>
+<p>The <strong>Knative Apache Kafka Operator</strong> descriptor screen will appear. Click <strong>Install</strong>.</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/kafka-install-operator.png" alt="kafka install operator">
+</div>
+</div>
+</li>
+<li>
+<p>On the <strong>Create the Operator Subscription</strong> screen</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Go to the <strong>Installation Mode</strong> section and choose the default selection.</p>
+</li>
+<li>
+<p>Click  <strong>Subscribe</strong>.</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/kafka-default.png" alt="kafka default">
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The Knative Apache Kafka Operator does not auto-install all components. Clicking <strong>Subscribe</strong> only installs the Knative Apache Kafka Operator. Manual installation is required to configure the editor, so that all components are installed.
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Confirm the subscription for the installation operator, by viewing the <strong>Subscription Overview</strong>. Observe as the <strong>UPGRADE STATUS</strong> goes for <code>0 Installing</code> to <code>1 Installed</code>.</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/kafka-subscription-overview.png" alt="kafka subscription overview">
+</div>
+</div>
+</li>
+<li>
+<p>Click the <code>1 Installed</code> link.</p>
+</li>
+<li>
+<p>Click  <strong>Create New</strong> to install the <code>Knative Apache Kafka</code> API.</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/kafka-create-new.png" alt="kafka create new">
+</div>
+</div>
+</li>
+<li>
+<p>In the Custom Resource (CR) dialog</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Configure the Kafka channel as the default</p>
+</li>
+<li>
+<p>Provide the URL to your Kafka instance.</p>
+</li>
+<li>
+<p>Click <strong>Create</strong> to set the value.</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/kafka-CR-editor.png" alt="kafka CR editor">
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The editor is pre-populated with definitions. Configure the file by manually entering YAML or JSON definitions, or by dragging and dropping a file into the editor.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+During installation, you can set the Kafka Channel as the default channel by using Custom Resources.
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>After some time, three Kafka pods in the Knative Apache Kafka namespace will be listed - two for the channel, one for the source.</p>
+</li>
+<li>
+<p>See the updated <strong>Config Maps</strong>, which reflect the Kafka channel configured as the default.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+When the channel is configured as the default, each new channel that is created will be a Kafka Channel, which is then backed by a Kafka Topic.
+</td>
+</tr>
+</table>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/kafka-configmap.png" alt="kafka configmap">
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_uninstalling_the_knative_apache_kafka_operator"><a class="anchor" href="#_uninstalling_the_knative_apache_kafka_operator"></a>Uninstalling the Knative Apache Kafka Operator</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Go to <strong>Catalog &gt; OperatorHub</strong></p>
+</li>
+<li>
+<p>Click on the <strong>Knative Apache Kafka Operator</strong> tile.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The operator tile will indicate it is installed.
+</td>
+</tr>
+</table>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/kafka-installed-remove.png" alt="kafka installed remove">
+</div>
+</div>
+</li>
+<li>
+<p>Click <strong>Uninstall</strong> on the <strong>Knative Apache Kafka Operator</strong> descriptor screen.</p>
+</li>
+<li>
+<p>In the <strong>Remove Operator Subscription</strong> dialog box</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Select <strong>Also completely remove the Operator from the selected namespace</strong></p>
+</li>
+<li>
+<p>Click <strong>Remove</strong>. The Apache Kafka Operator subscription is now removed.</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</article>
+        </main>
+            </div>
+  </div>
+</div><footer class="footer">
+  <p>Adapted from Antora default UI, (c) 2019</p>
+</footer>
+<script src="../_/js/site.js"></script>
+<script src="../_/js/vendor/highlight.js"></script>
+<script>hljs.initHighlighting()</script>
+  </body>
+</html>
