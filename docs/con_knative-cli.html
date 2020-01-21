@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Knative on Red Hat OpenShift Container Platform :: Knative Eventing on OpenShift Container Platform</title>
-    <link rel="canonical" href="https://openshift-knative.github.io/docs/docs/index.html">
+    <title>Knative Client (kn) :: Knative Eventing on OpenShift Container Platform</title>
+    <link rel="canonical" href="https://openshift-knative.github.io/docs/docs/con_knative-cli.html">
     <meta name="generator" content="Antora 2.1.1">
     <link rel="stylesheet" href="../_/css/site.css">
   </head>
@@ -70,7 +70,7 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="proc_knative-eventing.html">Knative Eventing on Red Hat OpenShift Container Platform</a>
   </li>
-  <li class="nav-item" data-depth="1">
+  <li class="nav-item is-current-page" data-depth="1">
     <a class="nav-link" href="con_knative-cli.html">Knative Client</a>
   </li>
   <li class="nav-item" data-depth="1">
@@ -112,66 +112,26 @@
   <div class="main-view-and-toolbar">
     <div class="toolbar" role="navigation">
   <button class="navigation-toggle"></button>
-  <a href="index.html" class="home-link is-current"></a>
+  <a href="index.html" class="home-link"></a>
 <nav class="crumbs" aria-label="breadcrumbs">
   <ul>
     <li class="crumb"><a href="index.html">OpenShift Serverless</a></li>
-    <li class="crumb"><a href="index.html">Knative on Red Hat OpenShift Container Platform</a></li>
+    <li class="crumb"><a href="con_knative-cli.html">Knative Client</a></li>
   </ul>
 </nav>
   <!--
-  <div class="edit-this-page"><a href="file:///home/abrennan/git-repos/docs-1/modules/ROOT/pages/index.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="file:///home/abrennan/git-repos/docs-1/modules/ROOT/pages/con_knative-cli.adoc">Edit this Page</a></div>
   -->
 </div>
     <div class="main-view-and-toc">
         <main class="main">
           <article class="doc">
-<h1>Knative on Red Hat OpenShift Container Platform</h1>
-<div id="preamble">
-<div class="sectionbody">
+<h1>Knative Client (<code>kn</code>)</h1>
 <div class="paragraph">
-<p>When Knative is integrated with Red Hat OpenShift Container Platform, it provides solutions for common challenges faced by developers by simplifying the process of getting code from development into production.</p>
+<p>Knative Client (<code>kn</code>) is the Knative command-line interface (CLI). The CLI exposes commands for managing your applications, as well as lower level tools to interact with components of Red Hat OpenShift Container Platform. With <code>kn</code>, you can create applications and manage Red Hat OpenShift Container Platform projects from the terminal.</p>
 </div>
 <div class="paragraph">
-<p><strong>Knative Components:</strong></p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Knative Serving</strong>: Deploy and scale functions and serverless applications. Knative Serving can be installed on OpenShift Container Platform using the OpenShift Serverless Operator.</p>
-</li>
-<li>
-<p><strong>Knative Eventing</strong>: Consume and produce events to bind event sources to services. Knative Eventing can be installed on OpenShift Container Platform using the Knative Eventing Operator.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_operators_on_red_hat_openshift_container_platform"><a class="anchor" href="#_operators_on_red_hat_openshift_container_platform"></a>Operators on Red Hat OpenShift Container Platform</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Operators offer a method of packaging, deploying, and managing a Red Hat OpenShift Container Platform application.</p>
-</div>
-<div class="paragraph">
-<p>As a cluster administrator, you can <a href="https://openshift-knative.github.io/docs/docs/proc_knative-eventing.html">install the Knative Eventing Operator</a> from the OperatorHub using the Red Hat OpenShift Container Platform web console. You can then subscribe the Operator to one or more namespaces to make it available on your cluster.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_resources"><a class="anchor" href="#_resources"></a>Resources</h2>
-<div class="sectionbody">
-<div class="ulist">
-<ul>
-<li>
-<p><a href="https://redhat-developer-demos.github.io/knative-tutorial">Knative Tutorial</a></p>
-</li>
-<li>
-<p>For more information about using Operators on Red Hat OpenShift Container Platform, see the <a href="https://docs.openshift.com/container-platform/4.2/operators/olm-what-operators-are.html">Red Hat OpenShift Container Platform Operators documentation</a>.</p>
-</li>
-</ul>
-</div>
-</div>
+<p>For more information about installing and using the <code>kn</code> CLI on Red Hat OpenShift Container Platform, see the <a href="https://docs.openshift.com/container-platform/4.2/serverless/knative-client.html">Red Hat OpenShift Container Platform documentation</a>.</p>
 </div>
 </article>
         </main>
