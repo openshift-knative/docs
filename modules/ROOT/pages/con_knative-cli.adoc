@@ -1,0 +1,5 @@
+= Knative Client (`kn`)
+
+Knative Client (`kn`) is the Knative command-line interface (CLI). The CLI exposes commands for managing your applications, as well as lower level tools to interact with components of Red Hat OpenShift Container Platform. With `kn`, you can create applications and manage Red Hat OpenShift Container Platform projects from the terminal.
+
+For more information about installing and using the `kn` CLI on Red Hat OpenShift Container Platform, see the link:https://docs.openshift.com/container-platform/4.2/serverless/knative-client.html[Red Hat OpenShift Container Platform documentation].

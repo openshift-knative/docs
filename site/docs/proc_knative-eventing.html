@@ -147,6 +147,83 @@ This release is a developer preview and should not be used in a production envir
 </tr>
 </table>
 </div>
+<div class="paragraph">
+<p>During installation, the user must determine the following initial settings for the Operator:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Installation Mode</p>
+</li>
+<li>
+<p>Update Channel</p>
+</li>
+<li>
+<p>Approval strategy</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_installation_mode"><a class="anchor" href="#_installation_mode"></a>Installation Mode</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Choose <strong>All namespaces on the cluster (default)</strong> to have the Operator installed on all namespaces. You can also choose <strong>A specific namespace on the cluster</strong>, if available, to install the operator in a selected namespace.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_update_channel"><a class="anchor" href="#_update_channel"></a>Update Channel</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>If an Operator is available through multiple channels, you can choose the channel to where it is subscribed. For example, to deploy from the <code>example</code> channel, select it from the list drop-down list.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_approval_strategy"><a class="anchor" href="#_approval_strategy"></a>Approval Strategy</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>You can choose <strong>Automatic</strong> or <strong>Manual</strong> updates. If you choose <strong>Automatic</strong> updates for an installed Operator, when a new version of that Operator is available, the OLM automatically upgrades the running instance of your Operator.</p>
+</li>
+<li>
+<p>If you select <strong>Manual</strong> updates, when a newer version of an Operator is available, the OLM creates an update request. As a cluster administrator, you must then manually approve that update request to have the Operator updated to the new version.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+With Knative 0.10.0 the Sources are now using the Destination API, and references to a <code>Sink</code> should be written as below. The old API still works, but was deprecated and will be removed in future releases.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">...
+  sink:
+    ref:
+      apiVersion: serving.knative.dev/v1
+      kind: Service
+      name: service-one</code></pre>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -182,77 +259,6 @@ Long-running clusters are not supported in this release.
 </td>
 </tr>
 </table>
-</div>
-<div class="paragraph">
-<p>During installation, the user must determine the following initial settings for the Operator:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Installation Mode</p>
-</li>
-<li>
-<p>Update Channel</p>
-</li>
-<li>
-<p>Approval strategy</p>
-</li>
-</ul>
-</div>
-<div class="sect2">
-<h3 id="_installation_mode"><a class="anchor" href="#_installation_mode"></a>Installation Mode</h3>
-<div class="ulist">
-<ul>
-<li>
-<p>Choose <strong>All namespaces on the cluster (default)</strong> to have the Operator installed on all namespaces. You can also choose <strong>A specific namespace on the cluster</strong>, if available, to install the operator in a selected namespace.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_update_channel"><a class="anchor" href="#_update_channel"></a>Update Channel</h3>
-<div class="ulist">
-<ul>
-<li>
-<p>If an Operator is available through multiple channels, you can choose the channel to where it is subscribed. For example, to deploy from the <code>example</code> channel, select it from the list drop-down list.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_approval_strategy"><a class="anchor" href="#_approval_strategy"></a>Approval Strategy</h3>
-<div class="ulist">
-<ul>
-<li>
-<p>You can choose <strong>Automatic</strong> or <strong>Manual</strong> updates. If you choose <strong>Automatic</strong> updates for an installed Operator, when a new version of that Operator is available, the OLM automatically upgrades the running instance of your Operator.</p>
-</li>
-<li>
-<p>If you select <strong>Manual</strong> updates, when a newer version of an Operator is available, the OLM creates an update request. As a cluster administrator, you must then manually approve that update request to have the Operator updated to the new version.</p>
-</li>
-</ul>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-With Knative 0.10.0, sources are now using the Destination API, and references to a <code>sink</code> should be written as described below. The previous API has been deprecated and will be removed in future releases.
-</td>
-</tr>
-</table>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">...
-  sink:
-    ref:
-      apiVersion: serving.knative.dev/v1
-      kind: Service
-      name: service-one</code></pre>
-</div>
-</div>
 </div>
 </div>
 </div>
