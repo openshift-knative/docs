@@ -1,21 +1,17 @@
 //
 //
 
-= Knative on Red Hat OpenShift Container Platform
+= Knative on OpenShift Container Platform
 
-When Knative is integrated with Red Hat OpenShift Container Platform, it provides solutions for common challenges faced by developers by simplifying the process of getting code from development into production.
+Red Hat OpenShift Serverless is based on the open source Knative project. When Knative is integrated with Red Hat OpenShift, it provides solutions for common challenges faced by developers.
 
-*Knative Components:*
+Red Hat OpenShift Serverless simplifies the process of getting code from development into production, by reducing the requirement for developer input in infrastructure set up or back-end development, allowing developers to spend more time writing code.
 
-* *Knative Serving*: Deploy and scale functions and serverless applications. Knative Serving can be installed on OpenShift Container Platform using the OpenShift Serverless Operator.
-* *Knative Eventing*: Consume and produce events to bind event sources to services. Knative Eventing can be installed on OpenShift Container Platform using the Knative Eventing Operator.
+*The components of Knative are:*
 
-== Operators on Red Hat OpenShift Container Platform
-
-Operators offer a method of packaging, deploying, and managing a Red Hat OpenShift Container Platform application.
-
-As a cluster administrator, you can link:https://openshift-knative.github.io/docs/docs/proc_knative-eventing.html[install the Knative Eventing Operator] from the OperatorHub using the Red Hat OpenShift Container Platform web console. You can then subscribe the Operator to one or more namespaces to make it available on your cluster.
+* *Serving*: Deploy and scale functions and serverless applications. Knative Serving can be installed on OpenShift Container Platform using the OpenShift Serverless Operator.
+* *Eventing*: Consume and produce events to bind event sources to services. Knative Eventing can be installed on OpenShift Container Platform using the Knative Eventing Operator.
 
 == Resources
 * link:https://redhat-developer-demos.github.io/knative-tutorial[Knative Tutorial]
-* For more information about using Operators on Red Hat OpenShift Container Platform, see the link:https://docs.openshift.com/container-platform/4.2/operators/olm-what-operators-are.html[Red Hat OpenShift Container Platform Operators documentation].
+* link:https://docs.openshift.com/container-platform/4.1/serverless/installing-openshift-serverless.html#installing-serverless-operator_installing-openshift-serverless[OpenShift Serverless Operator documentation]

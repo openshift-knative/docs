@@ -1,42 +1,10 @@
-//
-//
-= Installing the Knative Eventing Operator on Red Hat OpenShift Container Platform
+= Installing the Knative Eventing Operator on OpenShift Container Platform
 
-Knative Eventing can be installed by using the Knative Eventing Operator available on the Red Hat OpenShift Container Platform web console.
-
-For more information about using the Red Hat OpenShift Container Platform web console, see the link:https://docs.openshift.com/container-platform/4.2/web-console/web-console.html[Red Hat OpenShift Container Platform web console documentation].
+Knative Eventing can be installed by using the Knative Eventing Operator available on the OpenShift Container Platform web console.
 
 IMPORTANT: This release is a developer preview and should not be used in a production environment.
 
-== Prerequisites
-
-* An OpenShift 4 cluster is required for installation. Visit link:https://try.openshift.com[try.openshift.com] for information on setting up an OpenShift 4 cluster.
-
-IMPORTANT: You will need cluster administrator privileges to install and use Knative on an OpenShift cluster.
-
-NOTE: Long-running clusters are not supported in this release.
-
-During installation, the user must determine the following initial settings for the Operator:
-
-* Installation Mode
-* Update Channel
-* Approval strategy
-
-=== Installation Mode
-
-* Choose **All namespaces on the cluster (default)** to have the Operator installed on all namespaces. You can also choose **A specific namespace on the cluster**, if available, to install the operator in a selected namespace.
-
-=== Update Channel
-
-* If an Operator is available through multiple channels, you can choose the channel to where it is subscribed. For example, to deploy from the `example` channel, select it from the list drop-down list.
-
-=== Approval Strategy
-
-* You can choose **Automatic** or **Manual** updates. If you choose **Automatic** updates for an installed Operator, when a new version of that Operator is available, the OLM automatically upgrades the running instance of your Operator.
-
-* If you select **Manual** updates, when a newer version of an Operator is available, the OLM creates an update request. As a cluster administrator, you must then manually approve that update request to have the Operator updated to the new version.
-
-IMPORTANT: With Knative 0.10.0, sources are now using the Destination API, and references to a `sink` should be written as described below. The previous API has been deprecated and will be removed in future releases.
+IMPORTANT: With Knative 0.10.0 the Sources are now using the Destination API, and references to a `Sink` should be written as below. The old API still works, but was deprecated and will be removed in future releases.
 
 [source,yaml]
 ----
@@ -47,6 +15,14 @@ IMPORTANT: With Knative 0.10.0, sources are now using the Destination API, and r
       kind: Service
       name: service-one
 ----
+
+== Prerequisites
+
+* An OpenShift 4 cluster is required for installation. Visit link:https://try.openshift.com[try.openshift.com] for information on setting up an OpenShift 4 cluster.
+
+IMPORTANT: You will need cluster administrator privileges to install and use Knative on an OpenShift cluster.
+
+NOTE: Long-running clusters are not supported in this release.
 
 == Installing the Knative Eventing Operator
 

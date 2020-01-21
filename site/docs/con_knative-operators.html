@@ -3,16 +3,16 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Installing the Knative Eventing Operator from OperatorHub :: Knative Eventing on OpenShift Container Platform</title>
+    <title>Installing Knative Operators from OperatorHub :: OpenShift Serverless</title>
     <link rel="canonical" href="https://openshift-knative.github.io/docs/docs/con_knative-operators.html">
-    <meta name="generator" content="Antora 2.1.1">
+    <meta name="generator" content="Antora 1.0.3">
     <link rel="stylesheet" href="../_/css/site.css">
   </head>
   <body class="article">
 <header class="header">
   <nav class="navbar">
     <div class="navbar-brand">
-      <a class="navbar-item" href="https://openshift-knative.github.io/docs">Knative Eventing on OpenShift Container Platform</a>
+      <a class="navbar-item" href="https://openshift-knative.github.io/docs">OpenShift Serverless</a>
       <button class="navbar-burger" data-target="topbar-nav">
         <span></span>
         <span></span>
@@ -69,7 +69,7 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="#con_knative.adoc">Knative Eventing on OpenShift Container Platform</a>
+    <a class="nav-link" href="con_knative-v071.html">1. Knative on OpenShift Serverless</a>
 <ul class="nav-list">
   <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="con_knative-operators.html">Operator Overview</a>
@@ -77,13 +77,19 @@
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="proc_knative-eventing.html">Knative Eventing Operator</a>
+    <a class="nav-link" href="proc_knative-serving-v071.html">2. Knative Serving Operator</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="proc_apache-camel.html">Apache Camel Operator</a>
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="proc_knative-eventing-v071.html">3. Knative Eventing Operator</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="proc_apache-camel-v071.html">Apache Camel Operator</a>
   </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="proc_apache-kafka.html">Apache Kafka Operator</a>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="proc_apache-kafka-v071.html">Apache Kafka Operator</a>
+  </li>
+</ul>
   </li>
 </ul>
   </li>
@@ -93,14 +99,14 @@
 <div class="navigation-explore" data-panel="explore">
   <div class="context">
     <span class="title">OpenShift Serverless</span>
-    <span class="version">master</span>
+    <span class="version"></span>
   </div>
   <ul class="components">
     <li class="component is-current">
       <span class="title">OpenShift Serverless</span>
       <ul class="versions">
         <li class="version is-current is-latest">
-          <a href="index.html">master</a>
+          <a href="index.html"></a>
         </li>
       </ul>
     </li>
@@ -116,25 +122,25 @@
 <nav class="crumbs" aria-label="breadcrumbs">
   <ul>
     <li class="crumb"><a href="index.html">OpenShift Serverless</a></li>
-    <li class="crumb"><a href="#con_knative.adoc">Knative Eventing on OpenShift Container Platform</a></li>
+    <li class="crumb"><a href="con_knative-v071.html">1. Knative on OpenShift Serverless</a></li>
     <li class="crumb"><a href="con_knative-operators.html">Operator Overview</a></li>
   </ul>
 </nav>
   <!--
-  <div class="edit-this-page"><a href="file:///home/abrennan/git-repos/docs-1/modules/ROOT/pages/con_knative-operators.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="file:///home/joaedwar/docs/modules/ROOT/pages/con_knative-operators.adoc">Edit this Page</a></div>
   -->
 </div>
     <div class="main-view-and-toc">
         <main class="main">
           <article class="doc">
-<h1>Installing the Knative Eventing Operator from OperatorHub</h1>
+<h1>Installing Knative Operators from OperatorHub</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Operators offer a method of packaging, deploying, and managing an OpenShift Container Platform application.</p>
+<p>The Knative Operators offer a method of packaging, deploying, and managing an OpenShift application. An OpenShift application is an application that is both deployed on OpenShift and managed using the OpenShift APIs and tooling.</p>
 </div>
 <div class="paragraph">
-<p>As a cluster administrator, you can install the Knative Eventing Operator from the OperatorHub using the OpenShift Container Platform web console. You can then subscribe the Operator to one or more namespaces to make it available on your cluster.</p>
+<p>As a cluster administrator, you can install Knative Operators from the OperatorHub using the OpenShift Container Platform web console. You can then subscribe the Operator to one or more namespaces to make it available on your cluster.</p>
 </div>
 <div class="paragraph">
 <p>During installation, the user must determine the following initial settings for the Operator:</p>
@@ -151,6 +157,11 @@
 <p>Approval strategy</p>
 </li>
 </ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/knative-serving-namespaces-default.png" alt="knative serving namespaces default">
+</div>
 </div>
 </div>
 </div>
