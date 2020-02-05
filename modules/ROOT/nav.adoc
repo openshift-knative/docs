@@ -1,5 +1,5 @@
 * xref:proc_knative-eventing.adoc[Knative Eventing on Red Hat OpenShift Container Platform]
 * xref:con_knative-cli.adoc[Knative Client]
-* xref:con_event-source-operators.adoc[Event Source Operators on Red Hat OpenShift Container Platform]
+* xref:assembly_event-source-operators.adoc[Event Source Operators on Red Hat OpenShift Container Platform]
 ** xref:proc_apache-camel.adoc[Apache Camel Operator]
 ** xref:proc_apache-kafka.adoc[Apache Kafka Operator]
