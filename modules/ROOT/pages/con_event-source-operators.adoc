@@ -1,0 +1,6 @@
+= Event Source Operators on Red Hat OpenShift Container Platform
+
+Events trigger functions to run. You can use an event source to directly link a event consumer to a producer and define an event message flow. Apache Camel and Apache Kafka can push data into Knative channels, acting as an event source.
+
+include::proc_apache-camel.adoc[leveloffset=+1]
+include::proc_apache-kafka.adoc[leveloffset=+1]
