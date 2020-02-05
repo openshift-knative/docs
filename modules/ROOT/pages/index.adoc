@@ -19,3 +19,4 @@ As a cluster administrator, you can link:https://openshift-knative.github.io/doc
 == Resources
 * link:https://redhat-developer-demos.github.io/knative-tutorial[Knative Tutorial]
 * For more information about using Operators on Red Hat OpenShift Container Platform, see the link:https://docs.openshift.com/container-platform/4.2/operators/olm-what-operators-are.html[Red Hat OpenShift Container Platform Operators documentation].
+* link:https://github.com/openshift-knative/docs[GitHub repository]
