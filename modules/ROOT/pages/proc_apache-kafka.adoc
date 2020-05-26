@@ -7,6 +7,27 @@ Serverless integration is possible with Knative and Apache Kafka on OpenShift Co
 * link:https://docs.openshift.com/container-platform/4.4/serverless/installing_serverless/installing-knative-eventing.html[Knative Eventing] is installed
 * A running instance of link:https://github.com/strimzi[Apache Kafka]
 
+== Release Notes
+
+With the release of the version 0.15.0 the API of the `KafkaSource` changed. The `bootstrapServers` and `topics` fields are now an array and the `consumerGroup` is optional. Here is an example:
+
+```
+apiVersion: sources.knative.dev/v1alpha1
+kind: KafkaSource
+metadata:
+  name: kafka-source
+spec:
+  bootstrapServers:
+   - my-cluster-kafka-bootstrap.my-kafka-namespace:9092
+  topics:
+   - my-topic
+  sink:
+    ref:
+      apiVersion: serving.knative.dev/v1
+      kind: Service
+      name: event-display
+```
+
 == Installing the Knative Apache Kafka Operator
 
 . Select the `knative-eventing` project by clicking on **Projects > Create Project** in the web console.
