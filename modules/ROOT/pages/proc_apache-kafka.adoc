@@ -4,7 +4,7 @@ Serverless integration is possible with Knative and Apache Kafka on OpenShift Co
 
 == Prerequisites
 
-* link:proc_knative-eventing.html[Knative Eventing] is installed
+* link:https://docs.openshift.com/container-platform/4.4/serverless/installing_serverless/installing-knative-eventing.html[Knative Eventing] is installed
 * A running instance of link:https://github.com/strimzi[Apache Kafka]
 
 == Installing the Knative Apache Kafka Operator
