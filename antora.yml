@@ -1,8 +1,7 @@
 name: docs
-title: OpenShift Serverless
+title: OpenShift Serverless Previews
 version: master
 nav:
   - modules/ROOT/nav.adoc
 
 start_ROOT: ROOT:index.adoc
-

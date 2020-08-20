@@ -1,5 +1,5 @@
 site:
-  title: Knative Eventing on OpenShift Container Platform
+  title: Red Hat OpenShift Serverless previews
   url: https://openshift-knative.github.io/docs
   start_page: docs::index
 content:

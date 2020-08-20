@@ -1,0 +1,8 @@
+//
+//
+= OpenShift Serverless Functions
+
+// TODO: What is it? Use cases, benefits?
+// Links to OCP docs as required
+// Configuration to use with Serverless
+// Configuration to use with upstream knative -> knative.dev?
