@@ -3,16 +3,16 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Knative Apache Kafka Operator :: Red Hat OpenShift Serverless previews</title>
-    <link rel="canonical" href="https://openshift-knative.github.io/docs/docs/proc_apache-kafka.html">
-    <meta name="generator" content="Antora 2.1.1">
+    <title>Knative Apache Kafka Operator :: OpenShift Serverless</title>
+    <link rel="canonical" href="https://openshift-knative.github.io/docs/docs/proc_apache-kafka-v071.html">
+    <meta name="generator" content="Antora 1.0.3">
     <link rel="stylesheet" href="../_/css/site.css">
   </head>
   <body class="article">
 <header class="header">
   <nav class="navbar">
     <div class="navbar-brand">
-      <a class="navbar-item" href="https://openshift-knative.github.io/docs">Red Hat OpenShift Serverless previews</a>
+      <a class="navbar-item" href="https://openshift-knative.github.io/docs">OpenShift Serverless</a>
       <button class="navbar-burger" data-target="topbar-nav">
         <span></span>
         <span></span>
@@ -63,22 +63,31 @@
     <div class="panels">
 <div class="navigation-menu is-active" data-panel="menu">
   <nav class="nav-menu">
-    <h3 class="title"><a href="index.html">OpenShift Serverless Previews</a></h3>
+    <h3 class="title"><a href="index.html">OpenShift Serverless</a></h3>
 <ul class="nav-list">
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="con_functions.html">Functions</a>
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="con_knative-v071.html">1. Knative on OpenShift Serverless</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="con_knative-operators.html">Operator Overview</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="proc_knative-serving-v071.html">2. Knative Serving Operator</a>
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="assembly_event-source-operators.html">Event Source Operators on Red Hat OpenShift Container Platform</a>
+    <a class="nav-link" href="proc_knative-eventing-v071.html">3. Knative Eventing Operator</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="proc_apache-camel.html">Apache Camel Operator</a>
+    <a class="nav-link" href="proc_apache-camel-v071.html">Apache Camel Operator</a>
   </li>
   <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="proc_apache-kafka.html">Apache Kafka Operator</a>
+    <a class="nav-link" href="proc_apache-kafka-v071.html">Apache Kafka Operator</a>
   </li>
 </ul>
   </li>
@@ -89,15 +98,15 @@
 </div>
 <div class="navigation-explore" data-panel="explore">
   <div class="context">
-    <span class="title">OpenShift Serverless Previews</span>
-    <span class="version">master</span>
+    <span class="title">OpenShift Serverless</span>
+    <span class="version"></span>
   </div>
   <ul class="components">
     <li class="component is-current">
-      <span class="title">OpenShift Serverless Previews</span>
+      <span class="title">OpenShift Serverless</span>
       <ul class="versions">
         <li class="version is-current is-latest">
-          <a href="index.html">master</a>
+          <a href="index.html"></a>
         </li>
       </ul>
     </li>
@@ -112,13 +121,13 @@
   <a href="index.html" class="home-link"></a>
 <nav class="crumbs" aria-label="breadcrumbs">
   <ul>
-    <li class="crumb"><a href="index.html">OpenShift Serverless Previews</a></li>
-    <li class="crumb"><a href="assembly_event-source-operators.html">Event Source Operators on Red Hat OpenShift Container Platform</a></li>
-    <li class="crumb"><a href="proc_apache-kafka.html">Apache Kafka Operator</a></li>
+    <li class="crumb"><a href="index.html">OpenShift Serverless</a></li>
+    <li class="crumb"><a href="proc_knative-eventing-v071.html">3. Knative Eventing Operator</a></li>
+    <li class="crumb"><a href="proc_apache-kafka-v071.html">Apache Kafka Operator</a></li>
   </ul>
 </nav>
   <!--
-  <div class="edit-this-page"><a href="file:///home/abrennan/git-repos/docs-1/modules/ROOT/pages/proc_apache-kafka.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="file:///home/joaedwar/docs/modules/ROOT/pages/proc_apache-kafka-v071.adoc">Edit this Page</a></div>
   -->
 </div>
     <div class="main-view-and-toc">
@@ -128,7 +137,10 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Serverless integration is possible with Knative and Apache Kafka on OpenShift Container Platform. This guide walks cluster administrators through installing the Knative Apache Kafka Operator in an OpenShift Container Platform cluster. As a cluster administrator, you can install the operator from the OperatorHub using the OpenShift Container Platform web console.</p>
+<p><strong>version:</strong> 0.7.1</p>
+</div>
+<div class="paragraph">
+<p>Serverless integration is possible with Knative and Apache Kafka on OpenShift. This guide walks cluster administrators through installing the Knative Apache Kafka Operator in an OpenShift Container Platform cluster. As a cluster administrator, you can install the operator from the OperatorHub using the OpenShift Container Platform web console.</p>
 </div>
 </div>
 </div>
@@ -138,38 +150,12 @@
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://docs.openshift.com/container-platform/4.4/serverless/installing_serverless/installing-knative-eventing.html">Knative Eventing</a> is installed</p>
+<p><a href="proc_knative-eventing-v071.html">Knative Eventing</a> is installed</p>
 </li>
 <li>
 <p>A running instance of <a href="https://github.com/strimzi">Apache Kafka</a></p>
 </li>
 </ul>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_release_notes"><a class="anchor" href="#_release_notes"></a>Release Notes</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>With the release of the version 0.15.0 the API of the <code>KafkaSource</code> changed. The <code>bootstrapServers</code> and <code>topics</code> fields are now an array and the <code>consumerGroup</code> is optional. Here is an example:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>apiVersion: sources.knative.dev/v1alpha1
-kind: KafkaSource
-metadata:
-  name: kafka-source
-spec:
-  bootstrapServers:
-   - my-cluster-kafka-bootstrap.my-kafka-namespace:9092
-  topics:
-   - my-topic
-  sink:
-    ref:
-      apiVersion: serving.knative.dev/v1
-      kind: Service
-      name: event-display</code></pre>
-</div>
 </div>
 </div>
 </div>

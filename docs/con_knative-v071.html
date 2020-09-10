@@ -3,16 +3,16 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About OpenShift Serverless previews :: Red Hat OpenShift Serverless previews</title>
-    <link rel="canonical" href="https://openshift-knative.github.io/docs/docs/index.html">
-    <meta name="generator" content="Antora 2.1.1">
+    <title>Knative on OpenShift Serverless :: OpenShift Serverless</title>
+    <link rel="canonical" href="https://openshift-knative.github.io/docs/docs/con_knative-v071.html">
+    <meta name="generator" content="Antora 1.0.3">
     <link rel="stylesheet" href="../_/css/site.css">
   </head>
   <body class="article">
 <header class="header">
   <nav class="navbar">
     <div class="navbar-brand">
-      <a class="navbar-item" href="https://openshift-knative.github.io/docs">Red Hat OpenShift Serverless previews</a>
+      <a class="navbar-item" href="https://openshift-knative.github.io/docs">OpenShift Serverless</a>
       <button class="navbar-burger" data-target="topbar-nav">
         <span></span>
         <span></span>
@@ -63,22 +63,31 @@
     <div class="panels">
 <div class="navigation-menu is-active" data-panel="menu">
   <nav class="nav-menu">
-    <h3 class="title"><a href="index.html">OpenShift Serverless Previews</a></h3>
+    <h3 class="title"><a href="index.html">OpenShift Serverless</a></h3>
 <ul class="nav-list">
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="con_knative-v071.html">1. Knative on OpenShift Serverless</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="con_knative-operators.html">Operator Overview</a>
+  </li>
+</ul>
+  </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="con_functions.html">Functions</a>
+    <a class="nav-link" href="proc_knative-serving-v071.html">2. Knative Serving Operator</a>
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="assembly_event-source-operators.html">Event Source Operators on Red Hat OpenShift Container Platform</a>
+    <a class="nav-link" href="proc_knative-eventing-v071.html">3. Knative Eventing Operator</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="proc_apache-camel.html">Apache Camel Operator</a>
+    <a class="nav-link" href="proc_apache-camel-v071.html">Apache Camel Operator</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="proc_apache-kafka.html">Apache Kafka Operator</a>
+    <a class="nav-link" href="proc_apache-kafka-v071.html">Apache Kafka Operator</a>
   </li>
 </ul>
   </li>
@@ -89,15 +98,15 @@
 </div>
 <div class="navigation-explore" data-panel="explore">
   <div class="context">
-    <span class="title">OpenShift Serverless Previews</span>
-    <span class="version">master</span>
+    <span class="title">OpenShift Serverless</span>
+    <span class="version"></span>
   </div>
   <ul class="components">
     <li class="component is-current">
-      <span class="title">OpenShift Serverless Previews</span>
+      <span class="title">OpenShift Serverless</span>
       <ul class="versions">
         <li class="version is-current is-latest">
-          <a href="index.html">master</a>
+          <a href="index.html"></a>
         </li>
       </ul>
     </li>
@@ -109,49 +118,39 @@
   <div class="main-view-and-toolbar">
     <div class="toolbar" role="navigation">
   <button class="navigation-toggle"></button>
-  <a href="index.html" class="home-link is-current"></a>
+  <a href="index.html" class="home-link"></a>
 <nav class="crumbs" aria-label="breadcrumbs">
   <ul>
-    <li class="crumb"><a href="index.html">OpenShift Serverless Previews</a></li>
-    <li class="crumb"><a href="index.html">About OpenShift Serverless previews</a></li>
+    <li class="crumb"><a href="index.html">OpenShift Serverless</a></li>
+    <li class="crumb"><a href="con_knative-v071.html">1. Knative on OpenShift Serverless</a></li>
   </ul>
 </nav>
   <!--
-  <div class="edit-this-page"><a href="file:///home/abrennan/git-repos/docs-1/modules/ROOT/pages/index.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="file:///home/joaedwar/docs/modules/ROOT/pages/con_knative-v071.adoc">Edit this Page</a></div>
   -->
 </div>
     <div class="main-view-and-toc">
         <main class="main">
           <article class="doc">
-<h1>About OpenShift Serverless previews</h1>
-<div id="preamble">
-<div class="sectionbody">
+<h1>Knative on OpenShift Serverless</h1>
 <div class="paragraph">
-<p>OpenShift Serverless is Generally Available and supported by Red Hat on OpenShift Container Platform 4.3 and newer versions.</p>
+<p>Knative allows for greater consistency and more granular scalability across applications and teams.</p>
 </div>
 <div class="paragraph">
-<p><em>OpenShift Serverless previews</em> provides tutorials and information about additional, advanced use cases and integrations that are possible using OpenShift Container Platform and OpenShift Serverless, but are for development purposes only and are not officially supported by Red Hat.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_getting_started_with_openshift_serverless"><a class="anchor" href="#_getting_started_with_openshift_serverless"></a>Getting started with OpenShift Serverless</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Before you can complete the tasks documented on this site, you will need a working installation of OpenShift Serverless.
-This can be installed by cluster administrators on Red Hat OpenShift Container Platform 4.3 and newer versions.</p>
+<p>The benefits of Knative on OpenShift include:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>See the <a href="https://docs.openshift.com/container-platform/4.5/serverless/serverless-getting-started.html#serverless-getting-started-supported-configs">OpenShift Serverless supported configurations</a> documentation.</p>
+<p>Use Kubernetes and OpenShift to build, scale, and manage serverless applications in any cloud, on-premise, or in a hybrid environment.</p>
 </li>
 <li>
-<p>See the <a href="https://docs.openshift.com/container-platform/4.5/serverless/installing_serverless/installing-openshift-serverless.html">Installing OpenShift Serverless</a> documentation.</p>
+<p>Build modern, serverless functions, and support legacy apps through event sources. You can manage them alongside your other applications on Red Hat OpenShift.</p>
+</li>
+<li>
+<p>Knative allows app teams to focus on building products. Knative installs on OpenShift using operators, simplifying installation and automating updates and management.</p>
 </li>
 </ul>
-</div>
-</div>
 </div>
 </article>
         </main>

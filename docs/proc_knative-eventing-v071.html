@@ -3,16 +3,16 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Installing the Knative Eventing Operator on Red Hat OpenShift Container Platform :: Knative Eventing on OpenShift Container Platform</title>
-    <link rel="canonical" href="https://openshift-knative.github.io/docs/docs/proc_knative-eventing.html">
-    <meta name="generator" content="Antora 2.1.1">
+    <title>Knative Eventing on OpenShift Serverless :: OpenShift Serverless</title>
+    <link rel="canonical" href="https://openshift-knative.github.io/docs/docs/proc_knative-eventing-v071.html">
+    <meta name="generator" content="Antora 1.0.3">
     <link rel="stylesheet" href="../_/css/site.css">
   </head>
   <body class="article">
 <header class="header">
   <nav class="navbar">
     <div class="navbar-brand">
-      <a class="navbar-item" href="https://openshift-knative.github.io/docs">Knative Eventing on OpenShift Container Platform</a>
+      <a class="navbar-item" href="https://openshift-knative.github.io/docs">OpenShift Serverless</a>
       <button class="navbar-burger" data-target="topbar-nav">
         <span></span>
         <span></span>
@@ -63,25 +63,31 @@
     <div class="panels">
 <div class="navigation-menu is-active" data-panel="menu">
   <nav class="nav-menu">
-    <h3 class="title"><a href="index.html">OpenShift Serverless Previews</a></h3>
+    <h3 class="title"><a href="index.html">OpenShift Serverless</a></h3>
 <ul class="nav-list">
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="1">
-    <a class="nav-link" href="proc_knative-eventing.html">Knative Eventing on Red Hat OpenShift Container Platform</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="con_knative-cli.html">Knative Client</a>
-  </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="assembly_event-source-operators.html">Event Source Operators on Red Hat OpenShift Container Platform</a>
+    <a class="nav-link" href="con_knative-v071.html">1. Knative on OpenShift Serverless</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="proc_apache-camel.html">Apache Camel Operator</a>
+    <a class="nav-link" href="con_knative-operators.html">Operator Overview</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="proc_knative-serving-v071.html">2. Knative Serving Operator</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="proc_knative-eventing-v071.html">3. Knative Eventing Operator</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="proc_apache-camel-v071.html">Apache Camel Operator</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="proc_apache-kafka.html">Apache Kafka Operator</a>
+    <a class="nav-link" href="proc_apache-kafka-v071.html">Apache Kafka Operator</a>
   </li>
 </ul>
   </li>
@@ -92,15 +98,15 @@
 </div>
 <div class="navigation-explore" data-panel="explore">
   <div class="context">
-    <span class="title">OpenShift Serverless Previews</span>
-    <span class="version">master</span>
+    <span class="title">OpenShift Serverless</span>
+    <span class="version"></span>
   </div>
   <ul class="components">
     <li class="component is-current">
-      <span class="title">OpenShift Serverless Previews</span>
+      <span class="title">OpenShift Serverless</span>
       <ul class="versions">
         <li class="version is-current is-latest">
-          <a href="index.html">master</a>
+          <a href="index.html"></a>
         </li>
       </ul>
     </li>
@@ -115,25 +121,25 @@
   <a href="index.html" class="home-link"></a>
 <nav class="crumbs" aria-label="breadcrumbs">
   <ul>
-    <li class="crumb"><a href="index.html">OpenShift Serverless Previews</a></li>
-    <li class="crumb"><a href="proc_knative-eventing.html">Knative Eventing on Red Hat OpenShift Container Platform</a></li>
+    <li class="crumb"><a href="index.html">OpenShift Serverless</a></li>
+    <li class="crumb"><a href="proc_knative-eventing-v071.html">3. Knative Eventing Operator</a></li>
   </ul>
 </nav>
   <!--
-  <div class="edit-this-page"><a href="file:///home/abrennan/git-repos/docs-1/modules/ROOT/pages/proc_knative-eventing.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="file:///home/joaedwar/docs/modules/ROOT/pages/proc_knative-eventing-v071.adoc">Edit this Page</a></div>
   -->
 </div>
     <div class="main-view-and-toc">
         <main class="main">
           <article class="doc">
-<h1>Installing the Knative Eventing Operator on Red Hat OpenShift Container Platform</h1>
+<h1>Knative Eventing on OpenShift Serverless</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Knative Eventing can be installed by using the Knative Eventing Operator available on the Red Hat OpenShift Container Platform web console.</p>
+<p><strong>version:</strong> 0.7.1</p>
 </div>
 <div class="paragraph">
-<p>For more information about using the Red Hat OpenShift Container Platform web console, see the <a href="https://docs.openshift.com/container-platform/4.2/web-console/web-console.html">Red Hat OpenShift Container Platform web console documentation</a>.</p>
+<p>Knative Eventing can be installed by using the Knative Eventing Operator available on the OpenShift OperatorHub.</p>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -142,11 +148,45 @@
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-This release is a developer preview and should not be used in a production environment.
+This release introduces Knative Knative Eventing <code>v0.7.1</code> on an OpenShift 4.1 cluster (OCP) and should not be used in a production environment.
 </td>
 </tr>
 </table>
 </div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+ClusterChannelProvisioners have been deprecated and will be removed in future releases. Please use <a href="https://github.com/knative/eventing/releases">CRD-based channel</a> implementations instead.
+</td>
+</tr>
+</table>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Existing CCP</th>
+<th class="tableblock halign-left valign-top">Replacement CRDs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>in-memory</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">InMemoryChannel</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>kafka</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">KafkaChannel</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 <div class="sect1">
@@ -183,77 +223,6 @@ Long-running clusters are not supported in this release.
 </tr>
 </table>
 </div>
-<div class="paragraph">
-<p>During installation, the user must determine the following initial settings for the Operator:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Installation Mode</p>
-</li>
-<li>
-<p>Update Channel</p>
-</li>
-<li>
-<p>Approval strategy</p>
-</li>
-</ul>
-</div>
-<div class="sect2">
-<h3 id="_installation_mode"><a class="anchor" href="#_installation_mode"></a>Installation Mode</h3>
-<div class="ulist">
-<ul>
-<li>
-<p>Choose <strong>All namespaces on the cluster (default)</strong> to have the Operator installed on all namespaces. You can also choose <strong>A specific namespace on the cluster</strong>, if available, to install the operator in a selected namespace.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_update_channel"><a class="anchor" href="#_update_channel"></a>Update Channel</h3>
-<div class="ulist">
-<ul>
-<li>
-<p>If an Operator is available through multiple channels, you can choose the channel to where it is subscribed. For example, to deploy from the <code>example</code> channel, select it from the list drop-down list.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_approval_strategy"><a class="anchor" href="#_approval_strategy"></a>Approval Strategy</h3>
-<div class="ulist">
-<ul>
-<li>
-<p>You can choose <strong>Automatic</strong> or <strong>Manual</strong> updates. If you choose <strong>Automatic</strong> updates for an installed Operator, when a new version of that Operator is available, the OLM automatically upgrades the running instance of your Operator.</p>
-</li>
-<li>
-<p>If you select <strong>Manual</strong> updates, when a newer version of an Operator is available, the OLM creates an update request. As a cluster administrator, you must then manually approve that update request to have the Operator updated to the new version.</p>
-</li>
-</ul>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-With Knative 0.10.0, sources are now using the Destination API, and references to a <code>sink</code> should be written as described below. The previous API has been deprecated and will be removed in future releases.
-</td>
-</tr>
-</table>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">...
-  sink:
-    ref:
-      apiVersion: serving.knative.dev/v1
-      kind: Service
-      name: service-one</code></pre>
-</div>
-</div>
-</div>
 </div>
 </div>
 <div class="sect1">
@@ -262,7 +231,7 @@ With Knative 0.10.0, sources are now using the Destination API, and references t
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Go to <strong>Catalog &gt; OperatorHub</strong> in the OpenShift Container Platform web console. A list of operators for OpenShift, provided by Red Hat as well as a community of partners and open-source projects is provided. Click on the <strong>Knative Eventing Operator</strong> tile.</p>
+<p>Go to <strong>Catalog &gt; OperatorHub</strong> in the OpenShift web console. A list of operators for OpenShift, provided by Red Hat as well as a community of partners and open-source projects is provided. Click on the <strong>Knative Eventing Operator</strong> tile.</p>
 <div class="admonitionblock note">
 <table>
 <tr>
