@@ -2,7 +2,15 @@
 //
 = OpenShift Serverless Functions
 
-// TODO: What is it? Use cases, benefits?
-// Links to OCP docs as required
-// Configuration to use with Serverless
-// Configuration to use with upstream knative -> knative.dev?
+OpenShift Serverless Functions provides a `faas` CLI that enables developers to create and deploy stateless, event-driven functions as a Knative service on OpenShift Container Platform.
+
+The `faas` CLI uses the CNCF Buildpack API to create a container image.
+Once a container image has been created, the CLI can deploy it as a Knative service on the cluster configured in ``~/.kube/config`.
+
+Buildpacks and function runtimes are currently available for the Go, Node.js and Quarkus languages.
+
+OpenShift Serverless Functions currently supports the use of HTTP requests or events, as well as standard Kubernetes CloudEvents.
+// Boson grid. This service, has REST endpoints for platform-agnostic Subscription and Discovery APIs, allowing the function to subscribe to event sources upon startup.
+
+// == Getting started
+// Install
