@@ -1,0 +1,75 @@
+= Functions Quick Start Guide
+
+You can use this guide to set up the tools required to use Functions on OpenShift Serveless.
+
+.Prerequisites
+
+* Install OpenShift Serverless, including the Knative Serving and Knative Eventing APIs on https://docs.openshift.com/container-platform/4.5/serverless/installing_serverless/installing-openshift-serverless.html#installing-openshift-serverless[OpenShift Container Platform].
+* Install the https://docs.openshift.com/container-platform/4.5/serverless/installing_serverless/installing-kn.html[`kn` CLI].
+
+== Installing the CLI
+. Download the `faas` CLI:
++
+
+[source,terminal]
+----
+$ curl -L -o faas https://github.com/boson-project/faas/releases/download/v0.7.0/faas_linux_amd64 && chmod 755 faas
+----
+
+. Move the binary to your `$PATH`:
++
+
+[source,terminal]
+----
+$ sudo mv faas /usr/local/bin
+----
+// revisit these steps closer to release.
+
+== Setting up a container registry
+
+Functions uses OCI container images for deployment, typically referred to as Docker container images.
+To enable the `faas` CLI to manage these container images, you must have access to a container registry and a repository in that registry.
+
+. Login to Docker hub:
++
+
+[source,terminal]
+----
+$ docker login -u <username> -p <password>
+----
+
+. Many `faas` CLI commands require a `--repository` argument.
++
+You can set the `FAAS_REPOSITORY` environment variable so that you can omit this parameter when using the CLI:
++
+
+[source,terminal]
+----
+$ export FAAS_REPOSITORY=docker.io/<username>/<repository_name>
+----
+
+== Create a Functions project
+
+. Create a project directory:
++
+
+[source,terminal]
+----
+$ mkdir fn.example.io
+----
+
+. Navigate to the new directory:
++
+
+[source,terminal]
+----
+$ cd fn.example.io
+----
+
+. Create the project files, build a container, and deploy the function as a Knative service:
++
+
+[source,terminal]
+----
+$ faas create -l node -y
+----
