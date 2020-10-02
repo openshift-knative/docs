@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OpenShift Serverless Functions :: Red Hat OpenShift Serverless previews</title>
-    <link rel="canonical" href="https://openshift-knative.github.io/docs/docs/con_functions.html">
+    <title>Functions Quick Start Guide :: Red Hat OpenShift Serverless previews</title>
+    <link rel="canonical" href="https://openshift-knative.github.io/docs/docs/quickstart-functions.html">
     <meta name="generator" content="Antora 2.1.1">
     <link rel="stylesheet" href="../_/css/site.css">
   </head>
@@ -67,11 +67,11 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="1">
+  <li class="nav-item" data-depth="1">
     <button class="nav-toggle"></button>
     <a class="nav-link" href="con_functions.html">Functions</a>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="quickstart-functions.html">Functions quick start guide</a>
   </li>
 </ul>
@@ -120,28 +120,124 @@
   <ul>
     <li class="crumb"><a href="index.html">OpenShift Serverless Previews</a></li>
     <li class="crumb"><a href="con_functions.html">Functions</a></li>
+    <li class="crumb"><a href="quickstart-functions.html">Functions quick start guide</a></li>
   </ul>
 </nav>
   <!--
-  <div class="edit-this-page"><a href="file:///home/abrennan/git-repos/docs-1/modules/ROOT/pages/con_functions.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="file:///home/abrennan/git-repos/docs-1/modules/ROOT/pages/quickstart-functions.adoc">Edit this Page</a></div>
   -->
 </div>
     <div class="main-view-and-toc">
         <main class="main">
           <article class="doc">
-<h1>OpenShift Serverless Functions</h1>
+<h1>Functions Quick Start Guide</h1>
+<div id="preamble">
+<div class="sectionbody">
 <div class="paragraph">
-<p>OpenShift Serverless Functions enables developers to create and deploy stateless, event-driven functions as a Knative service on OpenShift Container Platform.</p>
+<p>You can use this guide to set up the tools required to use Functions on OpenShift Serveless.</p>
 </div>
-<div class="paragraph">
-<p>The <code>faas</code> CLI uses the CNCF Buildpack API to create a container image.
-Once a container image has been created, the CLI can deploy it as a Knative service on the cluster configured in <code>`~/.kube/config</code>.</p>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>Install OpenShift Serverless, including the Knative Serving and Knative Eventing APIs on <a href="https://docs.openshift.com/container-platform/4.5/serverless/installing_serverless/installing-openshift-serverless.html#installing-openshift-serverless">OpenShift Container Platform</a>.</p>
+</li>
+<li>
+<p>Install the <a href="https://docs.openshift.com/container-platform/4.5/serverless/installing_serverless/installing-kn.html"><code>kn</code> CLI</a>.</p>
+</li>
+</ul>
 </div>
-<div class="paragraph">
-<p>Serverless Functions supports the Go, Node.js and Quarkus runtimes.</p>
 </div>
+</div>
+<div class="sect1">
+<h2 id="_installing_the_cli"><a class="anchor" href="#_installing_the_cli"></a>Installing the CLI</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Download the <code>faas</code> CLI:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ curl -L -o faas https://github.com/boson-project/faas/releases/download/v0.7.0/faas_linux_amd64 &amp;&amp; chmod 755 faas</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Move the binary to your <code>$PATH</code>:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ sudo mv faas /usr/local/bin</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_setting_up_a_container_registry"><a class="anchor" href="#_setting_up_a_container_registry"></a>Setting up a container registry</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>OpenShift Serverless Functions currently supports the use of HTTP triggered functions, as well as functions triggered through Knative CloudEvents.</p>
+<p>Functions uses OCI container images for deployment, typically referred to as Docker container images.
+To enable the <code>faas</code> CLI to manage these container images, you must have access to a container registry and a repository in that registry.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Login to Docker hub:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ docker login -u &lt;username&gt; -p &lt;password&gt;</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Many <code>faas</code> CLI commands require a <code>--repository</code> argument.</p>
+<div class="paragraph">
+<p>You can set the <code>FAAS_REPOSITORY</code> environment variable so that you can omit this parameter when using the CLI:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ export FAAS_REPOSITORY=docker.io/&lt;username&gt;/&lt;repository_name&gt;</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_create_a_functions_project"><a class="anchor" href="#_create_a_functions_project"></a>Create a Functions project</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create a project directory:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ mkdir fn.example.io</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Navigate to the new directory:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ cd fn.example.io</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Create the project files, build a container, and deploy the function as a Knative service:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ faas create -l node -y</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
 </div>
 </article>
         </main>
