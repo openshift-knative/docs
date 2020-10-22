@@ -1,89 +1,25 @@
-= Functions Quick Start Guide
+= Boson Functions quick start guide
 
-You can use this guide to set up the tools required to use Functions on OpenShift Serveless.
+This quick start guide demonstrates how you can create, deploy, and modify a Boson Functions project.
 
 .Prerequisites
 
-* Install OpenShift Serverless, including the Knative Serving and Knative Eventing APIs on https://docs.openshift.com/container-platform/4.5/serverless/installing_serverless/installing-openshift-serverless.html#installing-openshift-serverless[OpenShift Container Platform].
-* Install the https://docs.openshift.com/container-platform/4.5/serverless/installing_serverless/installing-kn.html[`kn` CLI].
-* Install Docker and set up a DockerHub account.
+Before you can complete the steps in the following procedures, you must ensure that:
 
-== Installing the CLI
-. Download the `faas` CLI:
+* You have access to an OpenShift Container Platform cluster, which has the https://docs.openshift.com/container-platform/4.5/serverless/installing_serverless/installing-openshift-serverless.html[OpenShift Serverless Operator], https://docs.openshift.com/container-platform/4.5/serverless/installing_serverless/installing-knative-serving.html#installing-knative-serving[Knative Serving] and https://docs.openshift.com/container-platform/4.5/serverless/installing_serverless/installing-knative-eventing.html#installing-knative-eventing[Knative Eventing] installed.
+* You have installed the https://docs.openshift.com/container-platform/4.5/cli_reference/openshift_cli/getting-started-cli.html#cli-getting-started[OpenShift `oc` CLI].
+* You have installed the https://docs.openshift.com/container-platform/4.5/serverless/installing_serverless/installing-kn.html#installing-kn[Knative `kn` CLI].
+* You must have installed https://docs.docker.com/install/[Docker], and have access to a DockerHub account.
+
+// still need to do
+//curl -L -o - faas.gz https://github.com/boson-project/faas/releases/download/v0.8.0/faas_linux_amd64.gz | gunzip > faas && chmod 755 faas
+// sudo mv faas /usr/local/bin
+// or is everything just installed with `kn` now?
+.Create a project
+. Create a project directory consisting of three URL parts.
 +
-
+.Example
 [source,terminal]
 ----
-$ curl -L -o faas https://github.com/boson-project/faas/releases/download/v0.7.0/faas_linux_amd64 && chmod 755 faas
-----
-
-. Move the binary to your `$PATH`:
-+
-
-[source,terminal]
-----
-$ sudo mv faas /usr/local/bin
-----
-// revisit these steps closer to release.
-
-== Setting up a container registry
-
-Functions uses OCI container images for deployment, typically referred to as Docker container images.
-To enable the `faas` CLI to manage these container images, you must have access to a container registry and a repository in that registry.
-
-. Login to Docker hub:
-+
-
-[source,terminal]
-----
-$ docker login -u <username> -p <password>
-----
-
-. Many `faas` CLI commands require a `--repository` argument.
-+
-You can set the `FAAS_REGISTRY` environment variable so that you can omit this parameter when using the CLI:
-+
-
-[source,terminal]
-----
-$ export FAAS_REGISTRY=docker.io/<username>
-----
-
-== Create a Functions project
-
-. Create a project directory, with a function and runtime:
-+
-
-[source,terminal]
-----
-$ mkdir <directory_name> && faas init <function_name> -l node
-----
-
-.Example output
-[source,termina]
-----
-Project path: /home/<user>/<directory_name>
-Function name: <function_name>
-Runtime: node
-Trigger: http
-----
-// Question: can the trigger be set to anything else?
-
-. Create the project files, build a container, and deploy the function as a Knative service:
-+
-
-[source,terminal]
-----
-$ faas create -l node -c
-----
-
-. You will be prompted to enter or confirm for the following information:
-+
-
-[source,terminal]
-----
-Project path (/home/<user>):
-Runtime (node):
-Trigger (http):
-Repository for Function images:
-----
+$ mkdir fn.example.io
+```
