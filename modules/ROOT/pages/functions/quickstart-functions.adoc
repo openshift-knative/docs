@@ -1,6 +1,6 @@
-= Boson Functions quick start guide
+= Quick start
 
-This quick start guide demonstrates how you can create, deploy, and modify Boson Functions.
+The procedures in this quick start demonstrate how you can create, deploy, and modify functions.
 
 == Prerequisites
 
@@ -11,47 +11,13 @@ Before you can complete the steps in the following procedures, you must ensure t
 * You must have installed https://docs.docker.com/install/[Docker], and have access to a DockerHub account.
 * You have installed the https://docs.openshift.com/container-platform/4.6/serverless/installing_serverless/installing-kn.html#installing-kn[Knative `kn` CLI]. Installing `kn` provides the binary that enables use of the `kn faas` commands. There is no additional setup required to use `kn faas` commands after `kn` is successfully installed.
 
-== Creating and managing Functions as a Knative service
-
-After `kn` is installed, you can enter `kn faas --help` to see available options for using the CLI to create and manage functions.
-
-.Example output
-[source,terminal]
-----
-Function as a Service
-
-Create and run Functions as a Service.
-
-Usage:
-  faas [command]
-
-Available Commands:
-  build       Build an existing Function project as an OCI image
-  completion  Generate bash/zsh completion scripts
-  create      Create a new Function, including initialization of local files and deployment
-  delete      Delete a Function deployment
-  deploy      Deploy an existing Function project to a cluster
-  describe    Describes the Function
-  help        Help about any command
-  init        Initialize a new Function project
-  list        Lists deployed Functions
-  run         Runs the Function locally
-  version     Print version.  With --verbose the build date stamp and commit hash are included if available.
-
-Flags:
-  -h, --help      help for faas
-  -v, --verbose   print verbose logs
-
-Use "faas [command] --help" for more information about a command.
-----
-
 === Creating a function
 
 You can create a function by using the `kn faas create` command.
 
 .Procedure
 
-. Create a directory for the function:
+. Create a directory for the function and navigate to it:
 +
 .Example commands
 [source,terminal]
@@ -65,13 +31,7 @@ $ cd fn.example.io
 +
 [source,terminal]
 ----
-$ kn faas create -r <registry> -l <runtime> -t <trigger> -i <image> -n <namespace>
-----
-+
-.Example command
-[source,terminal]
-----
-$ kn faas create -r docker.io/test -l node -n default
+$ kn faas init
 ----
 +
 .Example output
@@ -79,11 +39,44 @@ $ kn faas create -r docker.io/test -l node -n default
 ----
 Project path: /home/user/functions/fn.example.io
 Function name: fn.example.io
-Runtime: node
-\ 3/4 Deploying Function to cluster
-Function deployed at URL: http://fn-example-io-default.apps.ci-ln-g9f36hb-d5d6b.4/4 Create complete
+Runtime: go
+Trigger: http
 ----
 
 === Deploying a function
-=== Describe a function
+
+=== Describing a function
+
+You can see information about a function by describing it in the terminal using the `kn faas describe` command.
+
+.Procedure
+. Navigate to the functions directory:
++
+.Example command
+[source,terminal]
+----
+$ cd fn.example.io
+----
+. After you have navigated to the functions directory, describe the function:
++
+[source,terminal]
+----
+$ kn faas describe
+----
++
+.Example output
+[source,terminal]
+----
+Function name:
+  fn.example.io
+Function is built in image:
+  docker.io/abrennan89/fn.example.io:latest
+Function is deployed as Knative Service:
+  fn-example-io
+Function is deployed in namespace:
+  default
+Routes:
+  http://fn-example-io-default.apps.ci-ln-g9f36hb-d5d6b.origin-ci-int-aws.dev.rhcloud.com
+----
+
 === Delete a function

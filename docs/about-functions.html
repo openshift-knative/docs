@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OpenShift Serverless Functions :: Red Hat OpenShift Serverless previews</title>
-    <link rel="canonical" href="https://openshift-knative.github.io/docs/docs/con_functions.html">
+    <title>About OpenShift Serverless Functions :: Red Hat OpenShift Serverless previews</title>
+    <link rel="canonical" href="https://openshift-knative.github.io/docs/docs/about-functions.html">
     <meta name="generator" content="Antora 2.1.1">
     <link rel="stylesheet" href="../_/css/site.css">
   </head>
@@ -67,11 +67,11 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="1">
+  <li class="nav-item" data-depth="1">
     <button class="nav-toggle"></button>
     <a class="nav-link" href="con_functions.html">Functions</a>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="about-functions.html">About Functions</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -111,25 +111,29 @@
   <ul>
     <li class="crumb"><a href="index.html">OpenShift Serverless Previews</a></li>
     <li class="crumb"><a href="con_functions.html">Functions</a></li>
+    <li class="crumb"><a href="about-functions.html">About Functions</a></li>
   </ul>
 </nav>
   <!--
-  <div class="edit-this-page"><a href="file:///home/abrennan/git-repos/docs-1/modules/ROOT/pages/con_functions.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="file:///home/abrennan/git-repos/docs-1/modules/ROOT/pages/about-functions.adoc">Edit this Page</a></div>
   -->
 </div>
     <div class="main-view-and-toc">
         <main class="main">
           <article class="doc">
-<h1>OpenShift Serverless Functions</h1>
+<h1>About OpenShift Serverless Functions</h1>
 <div class="paragraph">
 <p>OpenShift Serverless Functions enables developers to create and deploy stateless, event-driven functions as a Knative service on OpenShift Container Platform.</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="quickstart-functions.html" class="page">Functions quick start guide</a></p>
-</li>
-</ul>
+<div class="paragraph">
+<p>The <code>faas</code> CLI uses the CNCF Buildpack API to create a container image.
+Once a container image has been created, the CLI can deploy it as a Knative service on the cluster configured in <code>`~/.kube/config</code>.</p>
+</div>
+<div class="paragraph">
+<p>Serverless Functions supports the Go, Node.js and Quarkus runtimes.</p>
+</div>
+<div class="paragraph">
+<p>OpenShift Serverless Functions currently supports the use of HTTP triggered functions, as well as functions triggered through Knative CloudEvents.</p>
 </div>
 </article>
         </main>

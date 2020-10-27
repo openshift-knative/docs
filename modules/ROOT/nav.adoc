@@ -1,6 +1,7 @@
 // * xref:proc_knative-eventing.adoc[Knative Eventing on Red Hat OpenShift Container Platform]
-* xref:con_functions.adoc[Functions]
-** xref:quickstart-functions.adoc[Functions quick start guide]
-* xref:assembly_event-source-operators.adoc[Event Source Operators on Red Hat OpenShift Container Platform]
-** xref:proc_apache-camel.adoc[Apache Camel Operator]
-** xref:proc_apache-kafka.adoc[Apache Kafka Operator]
+* Functions
+** xref:functions/about-functions.adoc[About Functions]
+** xref:functions/quickstart-functions.adoc[Quick start]
+** xref:functions/functions-reference.adoc[CLI reference guide]
+** Developer's guide
+*** xref:functions/functions-list.adoc[Listing existing functions]

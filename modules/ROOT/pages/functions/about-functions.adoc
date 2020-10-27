@@ -1,6 +1,4 @@
-//
-//
-= OpenShift Serverless Functions
+= About OpenShift Serverless Functions
 
 OpenShift Serverless Functions enables developers to create and deploy stateless, event-driven functions as a Knative service on OpenShift Container Platform.
 
@@ -11,6 +9,4 @@ Serverless Functions supports the Go, Node.js and Quarkus runtimes.
 
 OpenShift Serverless Functions currently supports the use of HTTP triggered functions, as well as functions triggered through Knative CloudEvents.
 
-// Boson grid. This service, has REST endpoints for platform-agnostic Subscription and Discovery APIs, allowing the function to subscribe to event sources upon startup.
-// == Getting started
-// Install
+// TODO: Add architecture section, diagrams, show integration with Knative
