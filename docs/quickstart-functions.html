@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Functions Quick Start Guide :: Red Hat OpenShift Serverless previews</title>
+    <title>Boson Functions quick start guide :: Red Hat OpenShift Serverless previews</title>
     <link rel="canonical" href="https://openshift-knative.github.io/docs/docs/quickstart-functions.html">
     <meta name="generator" content="Antora 2.1.1">
     <link rel="stylesheet" href="../_/css/site.css">
@@ -130,112 +130,132 @@
     <div class="main-view-and-toc">
         <main class="main">
           <article class="doc">
-<h1>Functions Quick Start Guide</h1>
+<h1>Boson Functions quick start guide</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>You can use this guide to set up the tools required to use Functions on OpenShift Serveless.</p>
+<p>This quick start guide demonstrates how you can create, deploy, and modify Boson Functions.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_prerequisites"><a class="anchor" href="#_prerequisites"></a>Prerequisites</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Before you can complete the steps in the following procedures, you must ensure that:</p>
 </div>
 <div class="ulist">
-<div class="title">Prerequisites</div>
 <ul>
 <li>
-<p>Install OpenShift Serverless, including the Knative Serving and Knative Eventing APIs on <a href="https://docs.openshift.com/container-platform/4.5/serverless/installing_serverless/installing-openshift-serverless.html#installing-openshift-serverless">OpenShift Container Platform</a>.</p>
+<p>You have access to an OpenShift Container Platform cluster, which has the <a href="https://docs.openshift.com/container-platform/4.6/serverless/installing_serverless/installing-openshift-serverless.html">OpenShift Serverless Operator</a>, <a href="https://docs.openshift.com/container-platform/4.6/serverless/installing_serverless/installing-knative-serving.html#installing-knative-serving">Knative Serving</a> and <a href="https://docs.openshift.com/container-platform/4.6/serverless/installing_serverless/installing-knative-eventing.html#installing-knative-eventing">Knative Eventing</a> installed.</p>
 </li>
 <li>
-<p>Install the <a href="https://docs.openshift.com/container-platform/4.5/serverless/installing_serverless/installing-kn.html"><code>kn</code> CLI</a>.</p>
+<p>You have installed the <a href="https://docs.openshift.com/container-platform/4.6/cli_reference/openshift_cli/getting-started-cli.html#cli-getting-started">OpenShift <code>oc</code> CLI</a>.</p>
+</li>
+<li>
+<p>You must have installed <a href="https://docs.docker.com/install/">Docker</a>, and have access to a DockerHub account.</p>
+</li>
+<li>
+<p>You have installed the <a href="https://docs.openshift.com/container-platform/4.6/serverless/installing_serverless/installing-kn.html#installing-kn">Knative <code>kn</code> CLI</a>. Installing <code>kn</code> provides the binary that enables use of the <code>kn faas</code> commands. There is no additional setup required to use <code>kn faas</code> commands after <code>kn</code> is successfully installed.</p>
 </li>
 </ul>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_installing_the_cli"><a class="anchor" href="#_installing_the_cli"></a>Installing the CLI</h2>
-<div class="sectionbody">
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Download the <code>faas</code> CLI:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ curl -L -o faas https://github.com/boson-project/faas/releases/download/v0.7.0/faas_linux_amd64 &amp;&amp; chmod 755 faas</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Move the binary to your <code>$PATH</code>:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ sudo mv faas /usr/local/bin</code></pre>
-</div>
-</div>
-</li>
-</ol>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_setting_up_a_container_registry"><a class="anchor" href="#_setting_up_a_container_registry"></a>Setting up a container registry</h2>
+<h2 id="_creating_and_managing_functions_as_a_knative_service"><a class="anchor" href="#_creating_and_managing_functions_as_a_knative_service"></a>Creating and managing Functions as a Knative service</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Functions uses OCI container images for deployment, typically referred to as Docker container images.
-To enable the <code>faas</code> CLI to manage these container images, you must have access to a container registry and a repository in that registry.</p>
+<p>After <code>kn</code> is installed, you can enter <code>kn faas --help</code> to see available options for using the CLI to create and manage functions.</p>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Login to Docker hub:</p>
 <div class="listingblock">
+<div class="title">Example output</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ docker login -u &lt;username&gt; -p &lt;password&gt;</code></pre>
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">Function as a Service
+
+Create and run Functions as a Service.
+
+Usage:
+  faas [command]
+
+Available Commands:
+  build       Build an existing Function project as an OCI image
+  completion  Generate bash/zsh completion scripts
+  create      Create a new Function, including initialization of local files and deployment
+  delete      Delete a Function deployment
+  deploy      Deploy an existing Function project to a cluster
+  describe    Describes the Function
+  help        Help about any command
+  init        Initialize a new Function project
+  list        Lists deployed Functions
+  run         Runs the Function locally
+  version     Print version.  With --verbose the build date stamp and commit hash are included if available.
+
+Flags:
+  -h, --help      help for faas
+  -v, --verbose   print verbose logs
+
+Use "faas [command] --help" for more information about a command.</code></pre>
 </div>
 </div>
-</li>
-<li>
-<p>Many <code>faas</code> CLI commands require a <code>--repository</code> argument.</p>
+<div class="sect2">
+<h3 id="_creating_a_function"><a class="anchor" href="#_creating_a_function"></a>Creating a function</h3>
 <div class="paragraph">
-<p>You can set the <code>FAAS_REPOSITORY</code> environment variable so that you can omit this parameter when using the CLI:</p>
+<p>You can create a function by using the <code>kn faas create</code> command.</p>
 </div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ export FAAS_REPOSITORY=docker.io/&lt;username&gt;/&lt;repository_name&gt;</code></pre>
-</div>
-</div>
-</li>
-</ol>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_create_a_functions_project"><a class="anchor" href="#_create_a_functions_project"></a>Create a Functions project</h2>
-<div class="sectionbody">
 <div class="olist arabic">
+<div class="title">Procedure</div>
 <ol class="arabic">
 <li>
-<p>Create a project directory:</p>
+<p>Create a directory for the function:</p>
 <div class="listingblock">
+<div class="title">Example commands</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ mkdir fn.example.io</code></pre>
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ mkdir functions
+$ cd functions
+$ mkdir fn.example.io
+$ cd fn.example.io</code></pre>
 </div>
 </div>
 </li>
 <li>
-<p>Navigate to the new directory:</p>
+<p>After you have navigated to the functions directory, create a function:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ cd fn.example.io</code></pre>
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ kn faas create -r &lt;registry&gt; -l &lt;runtime&gt; -t &lt;trigger&gt; -i &lt;image&gt; -n &lt;namespace&gt;</code></pre>
 </div>
 </div>
-</li>
-<li>
-<p>Create the project files, build a container, and deploy the function as a Knative service:</p>
 <div class="listingblock">
+<div class="title">Example command</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ faas create -l node -y</code></pre>
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ kn faas create -r docker.io/test -l node -n default</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">Project path: /home/user/functions/fn.example.io
+Function name: fn.example.io
+Runtime: node
+\ 3/4 Deploying Function to cluster
+Function deployed at URL: http://fn-example-io-default.apps.ci-ln-g9f36hb-d5d6b.4/4 Create complete</code></pre>
 </div>
 </div>
 </li>
 </ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_deploying_a_function"><a class="anchor" href="#_deploying_a_function"></a>Deploying a function</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_describe_a_function"><a class="anchor" href="#_describe_a_function"></a>Describe a function</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_delete_a_function"><a class="anchor" href="#_delete_a_function"></a>Delete a function</h3>
+
 </div>
 </div>
 </div>

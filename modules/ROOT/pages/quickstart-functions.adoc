@@ -1,75 +1,89 @@
-= Functions Quick Start Guide
+= Boson Functions quick start guide
 
-You can use this guide to set up the tools required to use Functions on OpenShift Serveless.
+This quick start guide demonstrates how you can create, deploy, and modify Boson Functions.
 
-.Prerequisites
+== Prerequisites
 
-* Install OpenShift Serverless, including the Knative Serving and Knative Eventing APIs on https://docs.openshift.com/container-platform/4.5/serverless/installing_serverless/installing-openshift-serverless.html#installing-openshift-serverless[OpenShift Container Platform].
-* Install the https://docs.openshift.com/container-platform/4.5/serverless/installing_serverless/installing-kn.html[`kn` CLI].
+Before you can complete the steps in the following procedures, you must ensure that:
 
-== Installing the CLI
-. Download the `faas` CLI:
-+
+* You have access to an OpenShift Container Platform cluster, which has the https://docs.openshift.com/container-platform/4.6/serverless/installing_serverless/installing-openshift-serverless.html[OpenShift Serverless Operator], https://docs.openshift.com/container-platform/4.6/serverless/installing_serverless/installing-knative-serving.html#installing-knative-serving[Knative Serving] and https://docs.openshift.com/container-platform/4.6/serverless/installing_serverless/installing-knative-eventing.html#installing-knative-eventing[Knative Eventing] installed.
+* You have installed the https://docs.openshift.com/container-platform/4.6/cli_reference/openshift_cli/getting-started-cli.html#cli-getting-started[OpenShift `oc` CLI].
+* You must have installed https://docs.docker.com/install/[Docker], and have access to a DockerHub account.
+* You have installed the https://docs.openshift.com/container-platform/4.6/serverless/installing_serverless/installing-kn.html#installing-kn[Knative `kn` CLI]. Installing `kn` provides the binary that enables use of the `kn faas` commands. There is no additional setup required to use `kn faas` commands after `kn` is successfully installed.
 
+== Creating and managing Functions as a Knative service
+
+After `kn` is installed, you can enter `kn faas --help` to see available options for using the CLI to create and manage functions.
+
+.Example output
 [source,terminal]
 ----
-$ curl -L -o faas https://github.com/boson-project/faas/releases/download/v0.7.0/faas_linux_amd64 && chmod 755 faas
+Function as a Service
+
+Create and run Functions as a Service.
+
+Usage:
+  faas [command]
+
+Available Commands:
+  build       Build an existing Function project as an OCI image
+  completion  Generate bash/zsh completion scripts
+  create      Create a new Function, including initialization of local files and deployment
+  delete      Delete a Function deployment
+  deploy      Deploy an existing Function project to a cluster
+  describe    Describes the Function
+  help        Help about any command
+  init        Initialize a new Function project
+  list        Lists deployed Functions
+  run         Runs the Function locally
+  version     Print version.  With --verbose the build date stamp and commit hash are included if available.
+
+Flags:
+  -h, --help      help for faas
+  -v, --verbose   print verbose logs
+
+Use "faas [command] --help" for more information about a command.
 ----
 
-. Move the binary to your `$PATH`:
-+
+=== Creating a function
 
+You can create a function by using the `kn faas create` command.
+
+.Procedure
+
+. Create a directory for the function:
++
+.Example commands
 [source,terminal]
 ----
-$ sudo mv faas /usr/local/bin
-----
-// revisit these steps closer to release.
-
-== Setting up a container registry
-
-Functions uses OCI container images for deployment, typically referred to as Docker container images.
-To enable the `faas` CLI to manage these container images, you must have access to a container registry and a repository in that registry.
-
-. Login to Docker hub:
-+
-
-[source,terminal]
-----
-$ docker login -u <username> -p <password>
-----
-
-. Many `faas` CLI commands require a `--repository` argument.
-+
-You can set the `FAAS_REPOSITORY` environment variable so that you can omit this parameter when using the CLI:
-+
-
-[source,terminal]
-----
-$ export FAAS_REPOSITORY=docker.io/<username>/<repository_name>
-----
-
-== Create a Functions project
-
-. Create a project directory:
-+
-
-[source,terminal]
-----
+$ mkdir functions
+$ cd functions
 $ mkdir fn.example.io
-----
-
-. Navigate to the new directory:
-+
-
-[source,terminal]
-----
 $ cd fn.example.io
 ----
-
-. Create the project files, build a container, and deploy the function as a Knative service:
+. After you have navigated to the functions directory, create a function:
 +
-
 [source,terminal]
 ----
-$ faas create -l node -y
+$ kn faas create -r <registry> -l <runtime> -t <trigger> -i <image> -n <namespace>
 ----
++
+.Example command
+[source,terminal]
+----
+$ kn faas create -r docker.io/test -l node -n default
+----
++
+.Example output
+[source,terminal]
+----
+Project path: /home/user/functions/fn.example.io
+Function name: fn.example.io
+Runtime: node
+\ 3/4 Deploying Function to cluster
+Function deployed at URL: http://fn-example-io-default.apps.ci-ln-g9f36hb-d5d6b.4/4 Create complete
+----
+
+=== Deploying a function
+=== Describe a function
+=== Delete a function
