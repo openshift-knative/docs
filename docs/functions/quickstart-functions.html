@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Boson Functions quick start guide :: Red Hat OpenShift Serverless previews</title>
-    <link rel="canonical" href="https://openshift-knative.github.io/docs/docs/quickstart-functions.html">
+    <title>Quick start :: Red Hat OpenShift Serverless previews</title>
+    <link rel="canonical" href="https://openshift-knative.github.io/docs/docs/functions/quickstart-functions.html">
     <meta name="generator" content="Antora 2.1.1">
-    <link rel="stylesheet" href="../_/css/site.css">
+    <link rel="stylesheet" href="../../_/css/site.css">
   </head>
   <body class="article">
 <header class="header">
@@ -63,19 +63,37 @@
     <div class="panels">
 <div class="navigation-menu is-active" data-panel="menu">
   <nav class="nav-menu">
-    <h3 class="title"><a href="index.html">OpenShift Serverless Previews</a></h3>
+    <h3 class="title"><a href="../index.html">OpenShift Serverless Previews</a></h3>
 <ul class="nav-list">
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="con_functions.html">Functions</a>
+    <span class="nav-text">Functions</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="about-functions.html">About Functions</a>
   </li>
   <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="quickstart-functions.html">Functions quick start guide</a>
+    <a class="nav-link" href="quickstart-functions.html">Quick start</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Developer guide</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="functions-list.html">Listing existing functions</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="describe-function.html">Describing a function</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">Reference</span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="functions-reference.html">CLI reference guide</a>
   </li>
 </ul>
   </li>
@@ -94,7 +112,7 @@
       <span class="title">OpenShift Serverless Previews</span>
       <ul class="versions">
         <li class="version is-current is-latest">
-          <a href="index.html">master</a>
+          <a href="../index.html">master</a>
         </li>
       </ul>
     </li>
@@ -106,26 +124,26 @@
   <div class="main-view-and-toolbar">
     <div class="toolbar" role="navigation">
   <button class="navigation-toggle"></button>
-  <a href="index.html" class="home-link"></a>
+  <a href="../index.html" class="home-link"></a>
 <nav class="crumbs" aria-label="breadcrumbs">
   <ul>
-    <li class="crumb"><a href="index.html">OpenShift Serverless Previews</a></li>
-    <li class="crumb"><a href="con_functions.html">Functions</a></li>
-    <li class="crumb"><a href="quickstart-functions.html">Functions quick start guide</a></li>
+    <li class="crumb"><a href="../index.html">OpenShift Serverless Previews</a></li>
+    <li class="crumb">Functions</li>
+    <li class="crumb"><a href="quickstart-functions.html">Quick start</a></li>
   </ul>
 </nav>
   <!--
-  <div class="edit-this-page"><a href="file:///home/abrennan/git-repos/docs-1/modules/ROOT/pages/quickstart-functions.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="file:///home/abrennan/git-repos/docs-1/modules/ROOT/pages/functions/quickstart-functions.adoc">Edit this Page</a></div>
   -->
 </div>
     <div class="main-view-and-toc">
         <main class="main">
           <article class="doc">
-<h1>Boson Functions quick start guide</h1>
+<h1>Quick start</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>This quick start guide demonstrates how you can create, deploy, and modify Boson Functions.</p>
+<p>The procedures in this quick start demonstrate how you can create, deploy, and modify functions.</p>
 </div>
 </div>
 </div>
@@ -151,70 +169,44 @@
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>After <code>kn</code> is installed, you can enter <code>kn faas --help</code> to see available options for using the CLI to create and manage functions.</p>
-</div>
-<div class="listingblock">
-<div class="title">Example output</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">Function as a Service
-
-Create and run Functions as a Service.
-
-Usage:
-  faas [command]
-
-Available Commands:
-  build       Build an existing Function project as an OCI image
-  completion  Generate bash/zsh completion scripts
-  create      Create a new Function, including initialization of local files and deployment
-  delete      Delete a Function deployment
-  deploy      Deploy an existing Function project to a cluster
-  describe    Describes the Function
-  help        Help about any command
-  init        Initialize a new Function project
-  list        Lists deployed Functions
-  run         Runs the Function locally
-  version     Print version.  With --verbose the build date stamp and commit hash are included if available.
-
-Flags:
-  -h, --help      help for faas
-  -v, --verbose   print verbose logs
-
-Use "faas [command] --help" for more information about a command.</code></pre>
-</div>
-</div>
 <div class="sect2">
 <h3 id="_creating_a_function"><a class="anchor" href="#_creating_a_function"></a>Creating a function</h3>
 <div class="paragraph">
-<p>You can create a function by using the <code>kn faas create</code> command.</p>
+<p>You can create a function by using the <code>kn faas init</code> command.</p>
 </div>
-<div class="olist arabic">
-<div class="title">Procedure</div>
-<ol class="arabic">
-<li>
-<p>Create a directory for the function:</p>
 <div class="listingblock">
-<div class="title">Example commands</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ mkdir functions
-$ cd functions
-$ mkdir fn.example.io
-$ cd fn.example.io</code></pre>
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ kn faas init &lt;path&gt; [-l &lt;runtime&gt; -t &lt;trigger&gt;]</code></pre>
 </div>
 </div>
+<div class="ulist">
+<ul>
+<li>
+<p>This command creates a new Function project at <code>path</code>.</p>
 </li>
 <li>
-<p>After you have navigated to the functions directory, create a function:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ kn faas create -r &lt;registry&gt; -l &lt;runtime&gt; -t &lt;trigger&gt; -i &lt;image&gt; -n &lt;namespace&gt;</code></pre>
+<p>If the path is not specified, the current directory is used.</p>
+</li>
+<li>
+<p>If the path does not exist but is specified, it will be created.</p>
+</li>
+<li>
+<p>The function name is the name of the leaf directory at path.</p>
+</li>
+<li>
+<p>The user can specify the runtime and trigger with flags.</p>
+</li>
+</ul>
 </div>
-</div>
+<div class="ulist">
+<div class="title">Procedure</div>
+<ul>
+<li>
+<p>Create a function:</p>
 <div class="listingblock">
 <div class="title">Example command</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ kn faas create -r docker.io/test -l node -n default</code></pre>
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ kn faas init functions/fn.example.io</code></pre>
 </div>
 </div>
 <div class="listingblock">
@@ -222,50 +214,8 @@ $ cd fn.example.io</code></pre>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">Project path: /home/user/functions/fn.example.io
 Function name: fn.example.io
-Runtime: node
-\ 3/4 Deploying Function to cluster
-Function deployed at URL: http://fn-example-io-default.apps.ci-ln-g9f36hb-d5d6b.4/4 Create complete</code></pre>
-</div>
-</div>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_listing_existing_functions"><a class="anchor" href="#_listing_existing_functions"></a>Listing existing functions</h3>
-<div class="paragraph">
-<p>You can list all existing functions by using the <code>kn faas list</code> command to list the names of functions.
-However, because functions on OpenShift Serverless are deployed as Knative services, you can also list them using <code>kn service list</code>.</p>
-</div>
-<div class="ulist">
-<div class="title">Procedure</div>
-<ul>
-<li>
-<p>List function names:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ kn faas list</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Example output</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">fn.example.io</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>List functions as Knative services:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ kn service list</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Example output</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">NAME            URL                                                                                       LATEST                AGE   CONDITIONS   READY   REASON
-fn-example-io   http://fn-example-io-default.apps.ci-ln-g9f36hb-d5d6b.origin-ci-int-aws.dev.rhcloud.com   fn-example-io-gzl4c   16m   3 OK / 3     True</code></pre>
+Runtime: go
+Trigger: http</code></pre>
 </div>
 </div>
 </li>
@@ -274,10 +224,6 @@ fn-example-io   http://fn-example-io-default.apps.ci-ln-g9f36hb-d5d6b.origin-ci-
 </div>
 <div class="sect2">
 <h3 id="_deploying_a_function"><a class="anchor" href="#_deploying_a_function"></a>Deploying a function</h3>
-
-</div>
-<div class="sect2">
-<h3 id="_describe_a_function"><a class="anchor" href="#_describe_a_function"></a>Describe a function</h3>
 
 </div>
 <div class="sect2">
@@ -293,8 +239,8 @@ fn-example-io   http://fn-example-io-default.apps.ci-ln-g9f36hb-d5d6b.origin-ci-
 </div><footer class="footer">
   <p>Adapted from Antora default UI, (c) 2019</p>
 </footer>
-<script src="../_/js/site.js"></script>
-<script src="../_/js/vendor/highlight.js"></script>
+<script src="../../_/js/site.js"></script>
+<script src="../../_/js/vendor/highlight.js"></script>
 <script>hljs.initHighlighting()</script>
   </body>
 </html>

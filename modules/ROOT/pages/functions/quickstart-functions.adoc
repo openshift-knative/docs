@@ -1,0 +1,52 @@
+= Quick start
+
+The procedures in this quick start demonstrate how you can create, deploy, and modify functions.
+
+== Prerequisites
+
+Before you can complete the steps in the following procedures, you must ensure that:
+
+* You have access to an OpenShift Container Platform cluster, which has the https://docs.openshift.com/container-platform/4.6/serverless/installing_serverless/installing-openshift-serverless.html[OpenShift Serverless Operator], https://docs.openshift.com/container-platform/4.6/serverless/installing_serverless/installing-knative-serving.html#installing-knative-serving[Knative Serving] and https://docs.openshift.com/container-platform/4.6/serverless/installing_serverless/installing-knative-eventing.html#installing-knative-eventing[Knative Eventing] installed.
+* You have installed the https://docs.openshift.com/container-platform/4.6/cli_reference/openshift_cli/getting-started-cli.html#cli-getting-started[OpenShift `oc` CLI].
+* You must have installed https://docs.docker.com/install/[Docker], and have access to a DockerHub account.
+* You have installed the https://docs.openshift.com/container-platform/4.6/serverless/installing_serverless/installing-kn.html#installing-kn[Knative `kn` CLI]. Installing `kn` provides the binary that enables use of the `kn faas` commands. There is no additional setup required to use `kn faas` commands after `kn` is successfully installed.
+
+=== Creating a function
+
+You can create a function by using the `kn faas init` command.
+
+[source,terminal]
+----
+$ kn faas init <path> [-l <runtime> -t <trigger>]
+----
+
+* This command creates a new Function project at `path`.
+* If the path is not specified, the current directory is used.
+* If the path does not exist but is specified, it will be created.
+* The function name is the name of the leaf directory at path.
+* The user can specify the runtime and trigger with flags.
+// TODO: more details about runtimes and triggers; what are the defaults? Can defaults be changed?
+// TODO: How to use templates?
+
+.Procedure
+
+* Create a function:
++
+.Example command
+[source,terminal]
+----
+$ kn faas init functions/fn.example.io
+----
++
+.Example output
+[source,terminal]
+----
+Project path: /home/user/functions/fn.example.io
+Function name: fn.example.io
+Runtime: go
+Trigger: http
+----
+
+=== Deploying a function
+
+=== Delete a function
