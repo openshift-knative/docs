@@ -2,6 +2,8 @@
 * Functions
 ** xref:functions/about-functions.adoc[About Functions]
 ** xref:functions/quickstart-functions.adoc[Quick start]
-** xref:functions/functions-reference.adoc[CLI reference guide]
-** Developer's guide
+** Developer guide
 *** xref:functions/functions-list.adoc[Listing existing functions]
+*** xref:functions/describe-function.adoc[Describing a function]
+** Reference
+** xref:functions/functions-reference.adoc[CLI reference guide]

@@ -13,25 +13,29 @@ Before you can complete the steps in the following procedures, you must ensure t
 
 === Creating a function
 
-You can create a function by using the `kn faas create` command.
+You can create a function by using the `kn faas init` command.
+
+[source,terminal]
+----
+$ kn faas init <path> [-l <runtime> -t <trigger>]
+----
+
+* This command creates a new Function project at `path`.
+* If the path is not specified, the current directory is used.
+* If the path does not exist but is specified, it will be created.
+* The function name is the name of the leaf directory at path.
+* The user can specify the runtime and trigger with flags.
+// TODO: more details about runtimes and triggers; what are the defaults? Can defaults be changed?
+// TODO: How to use templates?
 
 .Procedure
 
-. Create a directory for the function and navigate to it:
+* Create a function:
 +
-.Example commands
+.Example command
 [source,terminal]
 ----
-$ mkdir functions
-$ cd functions
-$ mkdir fn.example.io
-$ cd fn.example.io
-----
-. After you have navigated to the functions directory, create a function:
-+
-[source,terminal]
-----
-$ kn faas init
+$ kn faas init functions/fn.example.io
 ----
 +
 .Example output
@@ -44,39 +48,5 @@ Trigger: http
 ----
 
 === Deploying a function
-
-=== Describing a function
-
-You can see information about a function by describing it in the terminal using the `kn faas describe` command.
-
-.Procedure
-. Navigate to the functions directory:
-+
-.Example command
-[source,terminal]
-----
-$ cd fn.example.io
-----
-. After you have navigated to the functions directory, describe the function:
-+
-[source,terminal]
-----
-$ kn faas describe
-----
-+
-.Example output
-[source,terminal]
-----
-Function name:
-  fn.example.io
-Function is built in image:
-  docker.io/abrennan89/fn.example.io:latest
-Function is deployed as Knative Service:
-  fn-example-io
-Function is deployed in namespace:
-  default
-Routes:
-  http://fn-example-io-default.apps.ci-ln-g9f36hb-d5d6b.origin-ci-int-aws.dev.rhcloud.com
-----
 
 === Delete a function

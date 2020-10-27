@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Listing existing functions :: Red Hat OpenShift Serverless previews</title>
-    <link rel="canonical" href="https://openshift-knative.github.io/docs/docs/functions/functions-list.html">
+    <title>Describing a function :: Red Hat OpenShift Serverless previews</title>
+    <link rel="canonical" href="https://openshift-knative.github.io/docs/docs/functions/describe-function.html">
     <meta name="generator" content="Antora 2.1.1">
     <link rel="stylesheet" href="../../_/css/site.css">
   </head>
@@ -81,10 +81,10 @@
     <button class="nav-toggle"></button>
     <span class="nav-text">Developer guide</span>
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="3">
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="functions-list.html">Listing existing functions</a>
   </li>
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item is-current-page" data-depth="3">
     <a class="nav-link" href="describe-function.html">Describing a function</a>
   </li>
 </ul>
@@ -130,54 +130,56 @@
     <li class="crumb"><a href="../index.html">OpenShift Serverless Previews</a></li>
     <li class="crumb">Functions</li>
     <li class="crumb">Developer guide</li>
-    <li class="crumb"><a href="functions-list.html">Listing existing functions</a></li>
+    <li class="crumb"><a href="describe-function.html">Describing a function</a></li>
   </ul>
 </nav>
   <!--
-  <div class="edit-this-page"><a href="file:///home/abrennan/git-repos/docs-1/modules/ROOT/pages/functions/functions-list.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="file:///home/abrennan/git-repos/docs-1/modules/ROOT/pages/functions/describe-function.adoc">Edit this Page</a></div>
   -->
 </div>
     <div class="main-view-and-toc">
         <main class="main">
           <article class="doc">
-<h1>Listing existing functions</h1>
+<h1>Describing a function</h1>
 <div class="paragraph">
-<p>You can list all existing functions by using the <code>kn faas list</code> command to list the names of functions.
-However, because functions on OpenShift Serverless are deployed as Knative services, you can also list them using <code>kn service list</code>.</p>
+<p>You can see information about a function by describing it in the terminal using the <code>kn faas describe</code> command.</p>
 </div>
-<div class="ulist">
+<div class="olist arabic">
 <div class="title">Procedure</div>
-<ul>
+<ol class="arabic">
 <li>
-<p>List function names:</p>
+<p>Navigate to the functions directory:</p>
+<div class="listingblock">
+<div class="title">Example command</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ cd fn.example.io</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>After you have navigated to the functions directory, describe the function:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ kn faas list</code></pre>
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ kn faas describe</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">Example output</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">fn.example.io</code></pre>
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">Function name:
+  fn.example.io
+Function is built in image:
+  docker.io/abrennan89/fn.example.io:latest
+Function is deployed as Knative Service:
+  fn-example-io
+Function is deployed in namespace:
+  default
+Routes:
+  http://fn-example-io-default.apps.ci-ln-g9f36hb-d5d6b.origin-ci-int-aws.dev.rhcloud.com</code></pre>
 </div>
 </div>
 </li>
-<li>
-<p>List functions as Knative services:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ kn service list</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Example output</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">NAME            URL                                                                                       LATEST                AGE   CONDITIONS   READY   REASON
-fn-example-io   http://fn-example-io-default.apps.ci-ln-g9f36hb-d5d6b.origin-ci-int-aws.dev.rhcloud.com   fn-example-io-gzl4c   16m   3 OK / 3     True</code></pre>
-</div>
-</div>
-</li>
-</ul>
+</ol>
 </div>
 </article>
         </main>

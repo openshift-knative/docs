@@ -78,16 +78,22 @@
     <a class="nav-link" href="quickstart-functions.html">Quick start</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="functions-reference.html">CLI reference guide</a>
-  </li>
-  <li class="nav-item" data-depth="2">
     <button class="nav-toggle"></button>
-    <span class="nav-text">Developer&#8217;s guide</span>
+    <span class="nav-text">Developer guide</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="functions-list.html">Listing existing functions</a>
   </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="describe-function.html">Describing a function</a>
+  </li>
 </ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">Reference</span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="functions-reference.html">CLI reference guide</a>
   </li>
 </ul>
   </li>
@@ -166,34 +172,41 @@
 <div class="sect2">
 <h3 id="_creating_a_function"><a class="anchor" href="#_creating_a_function"></a>Creating a function</h3>
 <div class="paragraph">
-<p>You can create a function by using the <code>kn faas create</code> command.</p>
+<p>You can create a function by using the <code>kn faas init</code> command.</p>
 </div>
-<div class="olist arabic">
-<div class="title">Procedure</div>
-<ol class="arabic">
-<li>
-<p>Create a directory for the function:</p>
 <div class="listingblock">
-<div class="title">Example commands</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ mkdir functions
-$ cd functions
-$ mkdir fn.example.io
-$ cd fn.example.io</code></pre>
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ kn faas init &lt;path&gt; [-l &lt;runtime&gt; -t &lt;trigger&gt;]</code></pre>
 </div>
 </div>
+<div class="ulist">
+<ul>
+<li>
+<p>This command creates a new Function project at <code>path</code>.</p>
 </li>
 <li>
-<p>After you have navigated to the functions directory, create a function:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ kn faas create -r &lt;registry&gt; -l &lt;runtime&gt; -t &lt;trigger&gt; -i &lt;image&gt; -n &lt;namespace&gt;</code></pre>
+<p>If the path is not specified, the current directory is used.</p>
+</li>
+<li>
+<p>If the path does not exist but is specified, it will be created.</p>
+</li>
+<li>
+<p>The function name is the name of the leaf directory at path.</p>
+</li>
+<li>
+<p>The user can specify the runtime and trigger with flags.</p>
+</li>
+</ul>
 </div>
-</div>
+<div class="ulist">
+<div class="title">Procedure</div>
+<ul>
+<li>
+<p>Create a function:</p>
 <div class="listingblock">
 <div class="title">Example command</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ kn faas create -r docker.io/test -l node -n default</code></pre>
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ kn faas init functions/fn.example.io</code></pre>
 </div>
 </div>
 <div class="listingblock">
@@ -201,21 +214,16 @@ $ cd fn.example.io</code></pre>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">Project path: /home/user/functions/fn.example.io
 Function name: fn.example.io
-Runtime: node
-\ 3/4 Deploying Function to cluster
-Function deployed at URL: http://fn-example-io-default.apps.ci-ln-g9f36hb-d5d6b.4/4 Create complete</code></pre>
+Runtime: go
+Trigger: http</code></pre>
 </div>
 </div>
 </li>
-</ol>
+</ul>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_deploying_a_function"><a class="anchor" href="#_deploying_a_function"></a>Deploying a function</h3>
-
-</div>
-<div class="sect2">
-<h3 id="_describe_a_function"><a class="anchor" href="#_describe_a_function"></a>Describe a function</h3>
 
 </div>
 <div class="sect2">
