@@ -10,3 +10,9 @@ ui:
   bundle:
     url: ./ui-bundle.zip
   supplemental_files: ./supplemental_ui
+asciidoc:
+  attributes:
+    hide-uri-scheme: ''
+    product-name: 'OpenShift Serverless Functions'
+    short-name: 'Functions'
+    toc: ~

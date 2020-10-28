@@ -35,9 +35,9 @@
           <div class="gcse-searchbox" enableAutoComplete="true"></div>
         </div>
       -->
-        <a class="navbar-item" href="#">Home</a>
-        <a class="navbar-item" href="">Blog</a>
-        <a class="navbar-item" href="">Source Code</a>
+        <a class="navbar-item" href="https://openshift-knative.github.io/docs/docs/index.html">Home</a>
+        <a class="navbar-item" href="https://developers.redhat.com/topics/serverless-architecture">Blog</a>
+        <a class="navbar-item" href="https://knative.dev/docs/">Knative Project</a>
       </div>
     </div>
   </nav>
@@ -139,31 +139,57 @@
         <main class="main">
           <article class="doc">
 <h1>About OpenShift Serverless Functions</h1>
+<div id="preamble">
+<div class="sectionbody">
 <div class="paragraph">
 <p>OpenShift Serverless Functions enables developers to create and deploy stateless, event-driven functions as a Knative service on OpenShift Container Platform.</p>
 </div>
 <div class="paragraph">
-<p>The <code>faas</code> CLI uses the CNCF Buildpack API to create a container image.
-Once a container image has been created, the CLI can deploy it as a Knative service on the cluster configured in <code>`~/.kube/config</code>.</p>
+<p>The Functions <code>faas</code> CLI is provided as a plugin for the Knative <code>kn</code> CLI.</p>
 </div>
-<div class="paragraph">
-<p>Serverless Functions supports the Go, Node.js and Quarkus runtimes.</p>
 </div>
+</div>
+<div class="sect1">
+<h2 id="_how_it_works"><a class="anchor" href="#_how_it_works"></a>How it works</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>OpenShift Serverless Functions currently supports the use of HTTP triggered functions, as well as functions triggered through Knative CloudEvents.</p>
+<p>OpenShift Serverless Functions uses the <a href="https://buildpacks.io/">CNCF Buildpack API</a> to create container images.
+Once a container image has been created, the CLI can deploy the container image as a Knative service on the cluster.</p>
+</div>
+<div class="sect2">
+<h3 id="_supported_runtimes"><a class="anchor" href="#_supported_runtimes"></a>Supported runtimes</h3>
+<div class="paragraph">
+<p>OpenShift Serverless Functions supports the following runtimes:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://golang.org/">Go</a></p>
+</li>
+<li>
+<p><a href="https://nodejs.org/en/">Node.js</a></p>
+</li>
+<li>
+<p><a href="https://quarkus.io/">Quarkus</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_supported_triggers"><a class="anchor" href="#_supported_triggers"></a>Supported triggers</h3>
+<div class="paragraph">
+<p>OpenShift Serverless Functions currently supports the use of HTTP triggered functions, as well as functions triggered through  <a href="https://cloudevents.io/">CloudEvents</a>.</p>
+</div>
+</div>
+</div>
 </div>
 </article>
         </main>
             </div>
   </div>
 </div><footer class="footer">
-    <div><a href="https://www.eclipse.org" target="_blank">Eclipse Foundation</a> | 
-       <a href="https://www.eclipse.org/legal/privacy.php" target="_blank">Privacy Policy</a> |
-       <a href="https://www.eclipse.org/legal/termsofuse.php" target="_blank">Terms of Use</a> |
-       <a href="https://www.eclipse.org/legal/epl-2.0/" target="_blank">Eclipse Public License</a> |
-       <a href="https://www.eclipse.org/legal" target="_blank">Legal Resources</a></div>
+  <p>Adapted from Antora default UI, (c) 2019</p>
 </footer>
-
 <script src="../../_/js/site.js"></script>
 <script src="../../_/js/vendor/highlight.js"></script>
 <script>hljs.initHighlighting()</script>
