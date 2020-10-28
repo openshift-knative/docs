@@ -1,16 +1,8 @@
-//
-//
-
-= About OpenShift Serverless previews
-
-OpenShift Serverless is Generally Available and supported by Red Hat on OpenShift Container Platform 4.3 and newer versions.
+= Overview
 
 _OpenShift Serverless previews_ provides tutorials and information about additional, advanced use cases and integrations that are possible using OpenShift Container Platform and OpenShift Serverless, but are for development purposes only and are not officially supported by Red Hat.
 
-== Getting started with OpenShift Serverless
-
 Before you can complete the tasks documented on this site, you will need a working installation of OpenShift Serverless.
-This can be installed by cluster administrators on Red Hat OpenShift Container Platform 4.3 and newer versions.
 
 * See the link:https://docs.openshift.com/container-platform/4.5/serverless/serverless-getting-started.html#serverless-getting-started-supported-configs[OpenShift Serverless supported configurations] documentation.
 * See the link:https://docs.openshift.com/container-platform/4.5/serverless/installing_serverless/installing-openshift-serverless.html[Installing OpenShift Serverless] documentation.

@@ -1,9 +1,10 @@
-// * xref:proc_knative-eventing.adoc[Knative Eventing on Red Hat OpenShift Container Platform]
 * Functions
 ** xref:functions/about-functions.adoc[About Functions]
 ** xref:functions/quickstart-functions.adoc[Quick start]
-** Developer guide
+** User guide
 *** xref:functions/functions-list.adoc[Listing existing functions]
 *** xref:functions/describe-function.adoc[Describing a function]
+** Administration guide
+*** Placeholder
 ** Reference
-** xref:functions/functions-reference.adoc[CLI reference guide]
+*** xref:functions/functions-reference.adoc[CLI reference guide]
