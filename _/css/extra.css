@@ -55,9 +55,9 @@ i.fa.icon-caution::before {
     background-color: #dadada;
 }
 
-/* Navigation sidebar on the left slightly wider than Antora default */
+/* Navigation sidebar */
 .nav-container {
-    width: 17rem;
+    width: 15rem;
 }
 
 /* Navigation sidebar on the left slightly darker than Antora default */
