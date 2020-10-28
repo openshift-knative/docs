@@ -1,21 +1,8 @@
 = Listing existing functions
 
-You can list all existing functions by using the `kn faas list` command to list the names of functions.
-However, because functions on OpenShift Serverless are deployed as Knative services, you can also list them using `kn service list`.
+You can list existing functions that have been deployed as Knatives services, by using `kn service list`.
 
 .Procedure
-* List function names:
-+
-[source,terminal]
-----
-$ kn faas list
-----
-+
-.Example output
-[source,terminal]
-----
-fn.example.io
-----
 
 * List functions as Knative services:
 +

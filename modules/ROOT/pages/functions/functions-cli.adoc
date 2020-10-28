@@ -35,12 +35,14 @@ Use "faas [command] --help" for more information about a command.
 
 == kn faas init
 
+`kn faas init` creates a new {short-name} project.
+
 [source,terminal]
 ----
 $ kn faas init <path> [flags]
 ----
 
-The following flags can be specified when creating a function:
+The following flags can be specified when creating a function project:
 // TODO: Add examples for all the flags?
 
 `path`:: Specifies the location where the function will be created.

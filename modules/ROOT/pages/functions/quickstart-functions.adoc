@@ -11,7 +11,7 @@ Before you can complete the steps in the following procedures, you must ensure t
 * You must have installed https://docs.docker.com/install/[Docker], and have access to a DockerHub account.
 * You have installed the https://docs.openshift.com/container-platform/4.6/serverless/installing_serverless/installing-kn.html#installing-kn[Knative `kn` CLI]. Installing `kn` provides the binary that enables use of the `kn faas` commands. There is no additional setup required to use `kn faas` commands after `kn` is successfully installed.
 
-include::user_guide/create-function-kn.adoc[leveloffset=+1]
+include::user_guide/create-function-project-kn.adoc[leveloffset=+1]
 
 === Deploying a function
 
