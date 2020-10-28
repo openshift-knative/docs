@@ -69,10 +69,13 @@
     <span class="nav-text">User guide</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="functions-list.html">Listing existing functions</a>
+    <a class="nav-link" href="user_guide/create-function-kn.html">Creating a function</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="describe-function.html">Describing a function</a>
+    <a class="nav-link" href="user_guide/functions-list.html">Listing existing functions</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="user_guide/describe-function.html">Describing a function</a>
   </li>
 </ul>
   </li>
@@ -90,7 +93,7 @@
     <span class="nav-text">Reference</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="functions-reference.html">CLI reference guide</a>
+    <a class="nav-link" href="functions-cli.html">CLI reference guide</a>
   </li>
 </ul>
   </li>
@@ -142,14 +145,10 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>The procedures in this quick start demonstrate how you can create, deploy, and modify functions.</p>
+<p>The procedures in this quick start guide demonstrate how you can create, deploy, and modify functions.</p>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_prerequisites"><a class="anchor" href="#_prerequisites"></a>Prerequisites</h2>
-<div class="sectionbody">
 <div class="paragraph">
+<div class="title">Prerequisites</div>
 <p>Before you can complete the steps in the following procedures, you must ensure that:</p>
 </div>
 <div class="ulist">
@@ -168,34 +167,13 @@
 </li>
 </ul>
 </div>
-<div class="sect2">
-<h3 id="_creating_a_function"><a class="anchor" href="#_creating_a_function"></a>Creating a function</h3>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_creating_a_functions_project"><a class="anchor" href="#_creating_a_functions_project"></a>Creating a functions project</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>You can create a function by using the <code>kn faas init</code> command.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ kn faas init &lt;path&gt; [-l &lt;runtime&gt; -t &lt;trigger&gt;]</code></pre>
-</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>This command creates a new Function project at <code>path</code>.</p>
-</li>
-<li>
-<p>If the path is not specified, the current directory is used.</p>
-</li>
-<li>
-<p>If the path does not exist but is specified, it will be created.</p>
-</li>
-<li>
-<p>The function name is the name of the leaf directory at path.</p>
-</li>
-<li>
-<p>The user can specify the runtime and trigger with flags.</p>
-</li>
-</ul>
 </div>
 <div class="ulist">
 <div class="title">Procedure</div>
@@ -220,6 +198,13 @@ Trigger: http</code></pre>
 </li>
 </ul>
 </div>
+<div class="ulist">
+<div class="title">Additional resources</div>
+<ul>
+<li>
+<p>For more information about optional flags that can be set when creating a function, see the <a href="functions-cli.html" class="page">CLI reference guide</a>.</p>
+</li>
+</ul>
 </div>
 <div class="sect2">
 <h3 id="_deploying_a_function"><a class="anchor" href="#_deploying_a_function"></a>Deploying a function</h3>

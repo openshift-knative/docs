@@ -2,9 +2,10 @@
 ** xref:functions/about-functions.adoc[About Functions]
 ** xref:functions/quickstart-functions.adoc[Quick start]
 ** User guide
-*** xref:functions/functions-list.adoc[Listing existing functions]
-*** xref:functions/describe-function.adoc[Describing a function]
+*** xref:functions/user_guide/create-function-kn.adoc[Creating a function]
+*** xref:functions/user_guide/functions-list.adoc[Listing existing functions]
+*** xref:functions/user_guide/describe-function.adoc[Describing a function]
 ** Administration guide
 *** Placeholder
 ** Reference
-*** xref:functions/functions-reference.adoc[CLI reference guide]
+*** xref:functions/functions-cli.adoc[CLI reference guide]

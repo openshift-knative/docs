@@ -68,7 +68,12 @@ i.fa.icon-caution::before {
 /* .Headings made more prominent */
 .doc .title {
     font-weight: bold;
-    color: #3a415f;
+    margin: 1.5rem 0 1rem;
+    font-size: 1.3rem;
+}
+
+code, kbd, pre {
+    font-size: 0.85em;
 }
 
 /* Google Search Box fix for empty line below header */

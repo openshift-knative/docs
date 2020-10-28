@@ -1,0 +1,29 @@
+// Module included in the following assemblies
+// functions/quickstart-functions.adoc
+
+// [id="create-function-kn_{context}"]
+= Creating a functions project
+
+You can create a function by using the `kn faas init` command.
+
+.Procedure
+
+* Create a function:
++
+.Example command
+[source,terminal]
+----
+$ kn faas init functions/fn.example.io
+----
++
+.Example output
+[source,terminal]
+----
+Project path: /home/user/functions/fn.example.io
+Function name: fn.example.io
+Runtime: go
+Trigger: http
+----
+
+.Additional resources
+* For more information about optional flags that can be set when creating a function, see the xref:../functions/functions-cli.adoc[CLI reference guide].
