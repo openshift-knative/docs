@@ -1,4 +1,3 @@
-// * xref:proc_knative-eventing.adoc[Knative Eventing on Red Hat OpenShift Container Platform]
 * Functions
 ** xref:functions/about-functions.adoc[About Functions]
 ** xref:functions/quickstart-functions.adoc[Quick start]

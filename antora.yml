@@ -1,5 +1,5 @@
 name: docs
-title: OpenShift Serverless Previews
+title: Documentation
 version: master
 nav:
   - modules/ROOT/nav.adoc
