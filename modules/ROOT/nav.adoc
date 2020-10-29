@@ -7,6 +7,7 @@
 *** xref:/functions/user_guide/deploy-function-kn.adoc[Deploying functions]
 *** xref:functions/user_guide/functions-list-kn.adoc[Listing existing functions]
 *** xref:functions/user_guide/describe-function.adoc[Describing a function]
+*** xref:functions/user_guide/delete-function-kn.adoc[Deleting a function]
 ** Administration guide
 *** Placeholder
 ** Reference

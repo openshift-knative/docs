@@ -2,19 +2,22 @@
 
 The procedures in this quick start guide demonstrate how you can create, deploy, and modify functions.
 
-.Prerequisites
+//[id="quickstart-functions-prerequisites"]
+== Prerequisites
 
 Before you can complete the steps in the following procedures, you must ensure that:
 
 * You have access to an OpenShift Container Platform cluster, which has the https://docs.openshift.com/container-platform/4.6/serverless/installing_serverless/installing-openshift-serverless.html[OpenShift Serverless Operator], https://docs.openshift.com/container-platform/4.6/serverless/installing_serverless/installing-knative-serving.html#installing-knative-serving[Knative Serving] and https://docs.openshift.com/container-platform/4.6/serverless/installing_serverless/installing-knative-eventing.html#installing-knative-eventing[Knative Eventing] installed.
 * You have installed the https://docs.openshift.com/container-platform/4.6/cli_reference/openshift_cli/getting-started-cli.html#cli-getting-started[OpenShift `oc` CLI].
-* You must have installed https://docs.docker.com/install/[Docker], and have access to a DockerHub account.
+* You have installed https://docs.docker.com/install/[Docker], and have access to a DockerHub account.
 * You have installed the https://docs.openshift.com/container-platform/4.6/serverless/installing_serverless/installing-kn.html#installing-kn[Knative `kn` CLI]. Installing `kn` provides the binary that enables use of the `kn faas` commands. There is no additional setup required to use `kn faas` commands after `kn` is successfully installed.
 
 include::user_guide/create-function-project-kn.adoc[leveloffset=+1]
 include::user_guide/build-function-kn.adoc[leveloffset=+1]
+include::user_guide/deploy-function-kn.adoc[leveloffset=+1]
+include::user_guide/delete-function-kn.adoc[leveloffset=+1]
 
-run
+== run
 
 Runs the Function project locally in the container. If a container has not yet been created, prompts the user to run faas build. The user may specify a path to the project directory using the --path or -p flag.
 
@@ -26,9 +29,7 @@ When run as a kn plugin.
 
 kn faas run [-p <path>]
 
-
-
-describe
+== describe
 
 Prints the name, route and any event subscriptions for a deployed Function. The user may also specify the name of the function to describe. The namespace defaults to the value in faas.yaml or the namespace currently active in the user's Kubernetes configuration. The namespace may be specified on the command line, and if so this will overwrite the value in faas.yaml.
 
@@ -40,7 +41,7 @@ When run as a kn plugin.
 
 kn faas describe [-f <format> -n <namespace> -p <path>]
 
-list
+== list
 
 Lists all deployed functions. The namespace defaults to the value in faas.yaml or the namespace currently active in the user's Kubernetes configuration. The namespace defaults to the value in faas.yaml or the namespace currently active in the user's Kubernetes configuration. The namespace may be specified on the command line, and if so this will overwrite the value in faas.yaml.
 
@@ -52,7 +53,7 @@ When run as a kn plugin.
 
 kn faas list [-n <namespace> -p <path>]
 
-create
+== create
 
 Creates a new Function project at path. If path does not exist, it is created. The function name is the name of the leaf directory at path. After creating the project, it builds a container image and deploys it. This command wraps init, build and deploy all up into one command.
 
@@ -66,14 +67,7 @@ When run as a kn plugin.
 
 kn faas create <path> -r <registry> -l <runtime> -t <trigger> -i <image> -n <namespace>
 
-delete
+// [id="quickstart-functions-additional-resources"]
+== Additional resources
 
-Removes a deployed function from the cluster. The user may specify a function by name, path or if neither of those are provided, the current directory will be searched for a faas.yaml configuration file to determine the function to be removed. The namespace defaults to the value in faas.yaml or the namespace currently active in the user's Kubernetes configuration. The namespace may be specified on the command line, and if so this will overwrite the value in faas.yaml.
-
-Similar kn command: kn service delete NAME [flags].
-
-faas delete <name> [-n namespace, -p path]
-
-When run as a kn plugin.
-
-kn faas delete <name> [-n namespace, -p path]
+* For more information about optional flags that can be set when creating a {short-name} project, see the xref:../functions/functions-cli.adoc[CLI reference guide].
