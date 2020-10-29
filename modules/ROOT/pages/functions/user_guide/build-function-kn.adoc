@@ -1,0 +1,43 @@
+// Module included in the following assemblies
+//
+// functions/quickstart-functions.adoc
+// nav.adoc
+
+// [id="build-function-kn_{context}"]
+= Building a function
+
+You can build a {short-name} project by using the `kn faas build` command.
+
+The build command reads the `faas.yaml` file in the directory for your function to determine the image name and registry.
+
+If both of these values are unset, you will be prompted to provide a registry.
+An image name can then be derived from the registry.
+
+.Example `faas.yaml`
+[source,yaml]
+----
+name: fn.example.io
+namespace: default
+runtime: node
+image: <image_from_registry>
+imageDigest: ""
+trigger: http
+builder: default
+builderMap:
+  default: quay.io/boson/faas-nodejs-builder
+envVars: {}
+----
+
+The value(s) provided for image and registry are persisted to the `faas.yaml` file, so that subsequent invocations do not require the user to specify these again.
+
+.Procedure
+// have to initialize a function first, then nav to or provide the path to it
+* Build a function:
++
+[source,terminal]
+----
+$ kn faas build [-i <image> -r <registry> -p <path>]
+----
+
+.Additional resources
+* For more information about optional flags that can be set when creating a {short-name} project, see the xref:../functions/functions-cli.adoc[CLI reference guide].

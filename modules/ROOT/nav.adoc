@@ -3,7 +3,9 @@
 ** xref:functions/quickstart-functions.adoc[Quick start]
 ** User guide
 *** xref:functions/user_guide/create-function-project-kn.adoc[Creating a {short-name} project]
-*** xref:functions/user_guide/functions-list.adoc[Listing existing functions]
+*** xref:functions/user_guide/build-function-kn.adoc[Building a function]
+*** xref:/functions/user_guide/deploy-function-kn.adoc[Deploying functions]
+*** xref:functions/user_guide/functions-list-kn.adoc[Listing existing functions]
 *** xref:functions/user_guide/describe-function.adoc[Describing a function]
 ** Administration guide
 *** Placeholder

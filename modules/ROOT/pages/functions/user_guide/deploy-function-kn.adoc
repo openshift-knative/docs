@@ -1,0 +1,32 @@
+// Module included in the following assemblies
+//
+// functions/quickstart-functions.adoc
+// nav.adoc
+
+// [id="deploy-function-kn_{context}"]
+= Deploying a function
+
+You can deploy a function to your cluster as a Knative service, by using the `kn faas deploy` command.
+// determines image name, namespace (otherwise uses current) from faas.yaml
+// specifying namespace -n overwrites yaml file
+If the targeted function is already deployed, it is updated with a new container image that is pushed to a container image registry, and the Knative service is updated.
+
+.Prerequisites
+
+* You must have already initialized the function that you want to deploy.
+
+.Procedure
+
+* Deploy a function:
++
+[source,terminal]
+----
+$ kn faas deploy [-n <namespace> -p <path> -i <image> -r <registry>]
+----
+** If no `namespace` is specified, the function will be deployed in the current namespace.
+** The function is deployed from the current directory, unless a `path` is specified.
+** The Knative service name is derived from the project name, and cannot be changed using this command.
+
+
+.Additional resources
+* For more information about optional flags that can be set when creating a {short-name} project, see the xref:../functions/functions-cli.adoc[CLI reference guide].

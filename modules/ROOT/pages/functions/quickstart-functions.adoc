@@ -12,7 +12,68 @@ Before you can complete the steps in the following procedures, you must ensure t
 * You have installed the https://docs.openshift.com/container-platform/4.6/serverless/installing_serverless/installing-kn.html#installing-kn[Knative `kn` CLI]. Installing `kn` provides the binary that enables use of the `kn faas` commands. There is no additional setup required to use `kn faas` commands after `kn` is successfully installed.
 
 include::user_guide/create-function-project-kn.adoc[leveloffset=+1]
+include::user_guide/build-function-kn.adoc[leveloffset=+1]
 
-=== Deploying a function
+run
 
-=== Delete a function
+Runs the Function project locally in the container. If a container has not yet been created, prompts the user to run faas build. The user may specify a path to the project directory using the --path or -p flag.
+
+Similar kn command: none.
+
+faas run
+
+When run as a kn plugin.
+
+kn faas run [-p <path>]
+
+
+
+describe
+
+Prints the name, route and any event subscriptions for a deployed Function. The user may also specify the name of the function to describe. The namespace defaults to the value in faas.yaml or the namespace currently active in the user's Kubernetes configuration. The namespace may be specified on the command line, and if so this will overwrite the value in faas.yaml.
+
+Similar kn command: kn service describe NAME [flags]. This flag provides a lot of nice information not available in faas describe, such as revisions, age, annotations and labels. This command should be renamed to make it distinct from kn - e.g. faas status.
+
+faas describe [-f <format> -n <namespace> -p <path>]
+
+When run as a kn plugin.
+
+kn faas describe [-f <format> -n <namespace> -p <path>]
+
+list
+
+Lists all deployed functions. The namespace defaults to the value in faas.yaml or the namespace currently active in the user's Kubernetes configuration. The namespace defaults to the value in faas.yaml or the namespace currently active in the user's Kubernetes configuration. The namespace may be specified on the command line, and if so this will overwrite the value in faas.yaml.
+
+Similar kn command: kn service list [name] [flags]. This command lists all deployed Knative Services. As with other kn commands that have similar functionality, there is more information and flexibilty in the kn command. However, kn will return all Services, while faas list will only display the boson Functions that have been deployed. Consider improving the output of the faas list command so that it is at least as informative as kn service list.
+
+faas list [-n <namespace> -p <path>]
+
+When run as a kn plugin.
+
+kn faas list [-n <namespace> -p <path>]
+
+create
+
+Creates a new Function project at path. If path does not exist, it is created. The function name is the name of the leaf directory at path. After creating the project, it builds a container image and deploys it. This command wraps init, build and deploy all up into one command.
+
+The user may specify the runtime, trigger, image name, image registry, and namespace as flags on the command line. If the image name and image registry are both unspecified, the user will be prompted for a registry name, and the image name can be inferred from that plus the function name. The function name, namespace and image name are all persisted in the project configuration file faas.yaml.
+
+Similar kn command: none.
+
+faas create <path> -r <registry> -l <runtime> -t <trigger> -i <image> -n <namespace>
+
+When run as a kn plugin.
+
+kn faas create <path> -r <registry> -l <runtime> -t <trigger> -i <image> -n <namespace>
+
+delete
+
+Removes a deployed function from the cluster. The user may specify a function by name, path or if neither of those are provided, the current directory will be searched for a faas.yaml configuration file to determine the function to be removed. The namespace defaults to the value in faas.yaml or the namespace currently active in the user's Kubernetes configuration. The namespace may be specified on the command line, and if so this will overwrite the value in faas.yaml.
+
+Similar kn command: kn service delete NAME [flags].
+
+faas delete <name> [-n namespace, -p path]
+
+When run as a kn plugin.
+
+kn faas delete <name> [-n namespace, -p path]

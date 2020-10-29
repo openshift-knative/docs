@@ -33,17 +33,9 @@ Flags:
 Use "faas [command] --help" for more information about a command.
 ----
 
-== kn faas init
+== Flags
 
-`kn faas init` creates a new {short-name} project.
-
-[source,terminal]
-----
-$ kn faas init <path> [flags]
-----
-
-The following flags can be specified when creating a function project:
-// TODO: Add examples for all the flags?
+// add note for each about which `kn faas` commands these apply to.
 
 `path`:: Specifies the location where the function will be created.
 ** If the path is not specified, the current directory is used.
@@ -65,3 +57,5 @@ Available triggers: `http` or `events`.
 
 `templates`:: You can specify one or more templates for the function by using the  `--templates` flag.
 The default templates location is ``/home/<user>/.config/faas/templates`.
+
+// `image`::
