@@ -2,6 +2,8 @@
 
 The procedures in this quick start guide demonstrate how you can create, deploy, and modify functions.
 
+toc::[]
+
 //[id="quickstart-functions-prerequisites"]
 == Prerequisites
 

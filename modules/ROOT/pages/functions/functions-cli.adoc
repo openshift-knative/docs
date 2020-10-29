@@ -2,6 +2,8 @@
 
 After `kn` is installed, you can enter `kn faas --help` to see available options for using the CLI to create and manage functions.
 
+toc::[]
+
 .Example output
 
 [source,terminal]

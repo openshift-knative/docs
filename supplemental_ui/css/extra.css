@@ -92,3 +92,8 @@ code, kbd, pre {
     width: 120%;
     font-weight: bold;
 }
+
+.toc {
+    margin: 0 0;
+    padding: 1rem 0 0 0;
+}
