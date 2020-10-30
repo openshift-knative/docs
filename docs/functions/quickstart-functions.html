@@ -37,7 +37,7 @@
       -->
         <a class="navbar-item" href="https://openshift-knative.github.io/docs/docs/index.html">Home</a>
         <a class="navbar-item" href="https://developers.redhat.com/topics/serverless-architecture">Blog</a>
-        <a class="navbar-item" href="https://knative.dev/docs/">Knative Project</a>
+        <a class="navbar-item" href="https://github.com/boson-project/">The Boson Project</a>
       </div>
     </div>
   </nav>
@@ -156,8 +156,27 @@
 <div class="paragraph">
 <p>The procedures in this quick start guide demonstrate how you can create, deploy, and modify functions.</p>
 </div>
+<!-- toc disabled -->
+</div>
+<div id="toc" class="toc">
+<div id="toctitle"></div>
+<ul class="sectlevel1">
+<li><a href="#_prerequisites">Prerequisites</a></li>
+<li><a href="#_creating_a_functions_project">Creating a functions project</a></li>
+<li><a href="#_building_a_function">Building a function</a></li>
+<li><a href="#_deploying_a_function">Deploying a function</a></li>
+<li><a href="#_deleting_a_function">Deleting a function</a></li>
+<li><a href="#_run">run</a></li>
+<li><a href="#_describe">describe</a></li>
+<li><a href="#_list">list</a></li>
+<li><a href="#_additional_resources">Additional resources</a></li>
+</ul>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_prerequisites"><a class="anchor" href="#_prerequisites"></a>Prerequisites</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<div class="title">Prerequisites</div>
 <p>Before you can complete the steps in the following procedures, you must ensure that:</p>
 </div>
 <div class="ulist">
@@ -169,7 +188,7 @@
 <p>You have installed the <a href="https://docs.openshift.com/container-platform/4.6/cli_reference/openshift_cli/getting-started-cli.html#cli-getting-started">OpenShift <code>oc</code> CLI</a>.</p>
 </li>
 <li>
-<p>You must have installed <a href="https://docs.docker.com/install/">Docker</a>, and have access to a DockerHub account.</p>
+<p>You have installed <a href="https://docs.docker.com/install/">Docker</a>, and have access to a DockerHub account.</p>
 </li>
 <li>
 <p>You have installed the <a href="https://docs.openshift.com/container-platform/4.6/serverless/installing_serverless/installing-kn.html#installing-kn">Knative <code>kn</code> CLI</a>. Installing <code>kn</code> provides the binary that enables use of the <code>kn faas</code> commands. There is no additional setup required to use <code>kn faas</code> commands after <code>kn</code> is successfully installed.</p>
@@ -184,6 +203,33 @@
 <div class="paragraph">
 <p>You can create a Functions project by using the <code>kn faas init</code> command.</p>
 </div>
+<div class="listingblock">
+<div class="title">Example command</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ kn faas init &lt;path&gt; -r &lt;registry&gt; -l &lt;runtime&gt; -t &lt;trigger&gt; -i &lt;image&gt; -n &lt;namespace&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can specify the runtime, trigger, image, and namespace as flags on the command line.</p>
+</div>
+<div class="paragraph">
+<p>The value(s) provided for image and registry are persisted to the <code>faas.yaml</code> file, so that subsequent invocations do not require the user to specify these again.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example <code>faas.yaml</code></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">name: fn.example.io
+namespace: default
+runtime: node
+image: &lt;image_from_registry&gt;
+imageDigest: ""
+trigger: http
+builder: default
+builderMap:
+  default: quay.io/boson/faas-nodejs-builder
+envVars: {}</code></pre>
+</div>
+</div>
 <div class="ulist">
 <div class="title">Procedure</div>
 <ul>
@@ -191,8 +237,11 @@
 <p>Create a Functions project:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ kn faas init &lt;path&gt;</code></pre>
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ kn faas init &lt;path&gt; -r &lt;registry&gt; -l &lt;runtime&gt; -t &lt;trigger&gt; -i &lt;image&gt; -n &lt;namespace&gt;</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>If the image is unspecified, you will be prompted for a registry name. The image name will be derived from this registry and the function name.</p>
 </div>
 <div class="listingblock">
 <div class="title">Example command</div>
@@ -212,14 +261,6 @@ Trigger: http</code></pre>
 </li>
 </ul>
 </div>
-<div class="ulist">
-<div class="title">Additional resources</div>
-<ul>
-<li>
-<p>For more information about optional flags that can be set when creating a Functions project, see the <a href="functions-cli.html" class="page">CLI reference guide</a>.</p>
-</li>
-</ul>
-</div>
 </div>
 </div>
 <div class="sect1">
@@ -230,10 +271,6 @@ Trigger: http</code></pre>
 </div>
 <div class="paragraph">
 <p>The build command reads the <code>faas.yaml</code> file in the directory for your function to determine the image name and registry.</p>
-</div>
-<div class="paragraph">
-<p>If both of these values are unset, you will be prompted to provide a registry.
-An image name can then be derived from the registry.</p>
 </div>
 <div class="listingblock">
 <div class="title">Example <code>faas.yaml</code></div>
@@ -251,6 +288,10 @@ envVars: {}</code></pre>
 </div>
 </div>
 <div class="paragraph">
+<p>If both of these values are unset, you will be prompted to provide a registry.
+An image name is then be derived from the registry.</p>
+</div>
+<div class="paragraph">
 <p>The value(s) provided for image and registry are persisted to the <code>faas.yaml</code> file, so that subsequent invocations do not require the user to specify these again.</p>
 </div>
 <div class="ulist">
@@ -263,14 +304,6 @@ envVars: {}</code></pre>
 <pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ kn faas build [-i &lt;image&gt; -r &lt;registry&gt; -p &lt;path&gt;]</code></pre>
 </div>
 </div>
-</li>
-</ul>
-</div>
-<div class="ulist">
-<div class="title">Additional resources</div>
-<ul>
-<li>
-<p>For more information about optional flags that can be set when creating a Functions project, see the <a href="functions-cli.html" class="page">CLI reference guide</a>.</p>
 </li>
 </ul>
 </div>
@@ -317,14 +350,6 @@ If the targeted function is already deployed, it is updated with a new container
 </li>
 </ul>
 </div>
-<div class="ulist">
-<div class="title">Additional resources</div>
-<ul>
-<li>
-<p>For more information about optional flags that can be set when creating a Functions project, see the <a href="functions-cli.html" class="page">CLI reference guide</a>.</p>
-</li>
-</ul>
-</div>
 </div>
 </div>
 <div class="sect1">
@@ -353,14 +378,6 @@ If the targeted function is already deployed, it is updated with a new container
 </li>
 </ul>
 </div>
-</li>
-</ul>
-</div>
-<div class="ulist">
-<div class="title">Additional resources</div>
-<ul>
-<li>
-<p>For more information about optional flags that can be set when creating a Functions project, see the <a href="functions-cli.html" class="page">CLI reference guide</a>.</p>
 </li>
 </ul>
 </div>
@@ -427,25 +444,14 @@ If the targeted function is already deployed, it is updated with a new container
 </div>
 </div>
 <div class="sect1">
-<h2 id="_create"><a class="anchor" href="#_create"></a>create</h2>
+<h2 id="_additional_resources"><a class="anchor" href="#_additional_resources"></a>Additional resources</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>Creates a new Function project at path. If path does not exist, it is created. The function name is the name of the leaf directory at path. After creating the project, it builds a container image and deploys it. This command wraps init, build and deploy all up into one command.</p>
-</div>
-<div class="paragraph">
-<p>The user may specify the runtime, trigger, image name, image registry, and namespace as flags on the command line. If the image name and image registry are both unspecified, the user will be prompted for a registry name, and the image name can be inferred from that plus the function name. The function name, namespace and image name are all persisted in the project configuration file faas.yaml.</p>
-</div>
-<div class="paragraph">
-<p>Similar kn command: none.</p>
-</div>
-<div class="paragraph">
-<p>faas create &lt;path&gt; -r &lt;registry&gt; -l &lt;runtime&gt; -t &lt;trigger&gt; -i &lt;image&gt; -n &lt;namespace&gt;</p>
-</div>
-<div class="paragraph">
-<p>When run as a kn plugin.</p>
-</div>
-<div class="paragraph">
-<p>kn faas create &lt;path&gt; -r &lt;registry&gt; -l &lt;runtime&gt; -t &lt;trigger&gt; -i &lt;image&gt; -n &lt;namespace&gt;</p>
+<div class="ulist">
+<ul>
+<li>
+<p>For more information about optional flags that can be set when creating a Functions project, see the <a href="functions-cli.html" class="page">CLI reference guide</a>.</p>
+</li>
+</ul>
 </div>
 </div>
 </div>

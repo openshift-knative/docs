@@ -1,18 +1,17 @@
+// [id="about-functions"]
 = About OpenShift Serverless Functions
 
 {product-name} enables developers to create and deploy stateless, event-driven functions as a Knative service on OpenShift Container Platform.
 
 The {short-name} `faas` CLI is provided as a plugin for the Knative `kn` CLI.
-
-== How it works
-
 {product-name} uses the link:https://buildpacks.io/[CNCF Buildpack API] to create container images.
 Once a container image has been created, the CLI can deploy the container image as a Knative service on the cluster.
 //  configured in ``~/.kube/config`.
 // Admin guide, configure kubeconfig? Point to OCP docs? Is there additional config needed for serverless besides CLI connecting kn to cluster?
 //TODO add CLI connecting to cluster docs to OCP docs?
 
-=== Supported runtimes
+// [id="about-functions-supported-runtimes"]
+== Supported runtimes
 
 {product-name} supports the following runtimes:
 
@@ -20,8 +19,11 @@ Once a container image has been created, the CLI can deploy the container image 
 * link:https://nodejs.org/en/[Node.js]
 * link:https://quarkus.io/[Quarkus]
 
-=== Supported triggers
+// [id="about-functions-supported-triggers"]
+== Supported triggers
 
 {product-name} currently supports the use of HTTP triggered functions, as well as functions triggered through  link:https://cloudevents.io/[CloudEvents].
-
 // TODO: Add architecture section, diagrams, show integration with Knative
+
+// [id="about-functions-additional-resources"]
+// == Additional resources

@@ -10,9 +10,6 @@ You can build a {short-name} project by using the `kn faas build` command.
 
 The build command reads the `faas.yaml` file in the directory for your function to determine the image name and registry.
 
-If both of these values are unset, you will be prompted to provide a registry.
-An image name can then be derived from the registry.
-
 .Example `faas.yaml`
 [source,yaml]
 ----
@@ -28,6 +25,9 @@ builderMap:
 envVars: {}
 ----
 
+If both of these values are unset, you will be prompted to provide a registry.
+An image name is then be derived from the registry.
+
 The value(s) provided for image and registry are persisted to the `faas.yaml` file, so that subsequent invocations do not require the user to specify these again.
 
 .Procedure
@@ -38,6 +38,3 @@ The value(s) provided for image and registry are persisted to the `faas.yaml` fi
 ----
 $ kn faas build [-i <image> -r <registry> -p <path>]
 ----
-
-.Additional resources
-* For more information about optional flags that can be set when creating a {short-name} project, see the xref:../functions/functions-cli.adoc[CLI reference guide].

@@ -55,20 +55,6 @@ When run as a kn plugin.
 
 kn faas list [-n <namespace> -p <path>]
 
-== create
-
-Creates a new Function project at path. If path does not exist, it is created. The function name is the name of the leaf directory at path. After creating the project, it builds a container image and deploys it. This command wraps init, build and deploy all up into one command.
-
-The user may specify the runtime, trigger, image name, image registry, and namespace as flags on the command line. If the image name and image registry are both unspecified, the user will be prompted for a registry name, and the image name can be inferred from that plus the function name. The function name, namespace and image name are all persisted in the project configuration file faas.yaml.
-
-Similar kn command: none.
-
-faas create <path> -r <registry> -l <runtime> -t <trigger> -i <image> -n <namespace>
-
-When run as a kn plugin.
-
-kn faas create <path> -r <registry> -l <runtime> -t <trigger> -i <image> -n <namespace>
-
 // [id="quickstart-functions-additional-resources"]
 == Additional resources
 

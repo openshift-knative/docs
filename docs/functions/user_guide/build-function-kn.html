@@ -37,7 +37,7 @@
       -->
         <a class="navbar-item" href="https://openshift-knative.github.io/docs/docs/index.html">Home</a>
         <a class="navbar-item" href="https://developers.redhat.com/topics/serverless-architecture">Blog</a>
-        <a class="navbar-item" href="https://knative.dev/docs/">Knative Project</a>
+        <a class="navbar-item" href="https://github.com/boson-project/">The Boson Project</a>
       </div>
     </div>
   </nav>
@@ -158,10 +158,6 @@
 <div class="paragraph">
 <p>The build command reads the <code>faas.yaml</code> file in the directory for your function to determine the image name and registry.</p>
 </div>
-<div class="paragraph">
-<p>If both of these values are unset, you will be prompted to provide a registry.
-An image name can then be derived from the registry.</p>
-</div>
 <div class="listingblock">
 <div class="title">Example <code>faas.yaml</code></div>
 <div class="content">
@@ -178,6 +174,10 @@ envVars: {}</code></pre>
 </div>
 </div>
 <div class="paragraph">
+<p>If both of these values are unset, you will be prompted to provide a registry.
+An image name is then be derived from the registry.</p>
+</div>
+<div class="paragraph">
 <p>The value(s) provided for image and registry are persisted to the <code>faas.yaml</code> file, so that subsequent invocations do not require the user to specify these again.</p>
 </div>
 <div class="ulist">
@@ -190,14 +190,6 @@ envVars: {}</code></pre>
 <pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ kn faas build [-i &lt;image&gt; -r &lt;registry&gt; -p &lt;path&gt;]</code></pre>
 </div>
 </div>
-</li>
-</ul>
-</div>
-<div class="ulist">
-<div class="title">Additional resources</div>
-<ul>
-<li>
-<p>For more information about optional flags that can be set when creating a Functions project, see the <a href="../functions-cli.html" class="page">CLI reference guide</a>.</p>
 </li>
 </ul>
 </div>

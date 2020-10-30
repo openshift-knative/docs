@@ -2,9 +2,34 @@
 // functions/quickstart-functions.adoc
 
 // [id="create-function-project-kn_{context}"]
-= Creating a functions project
+= Creating a {short-name} project
 
 You can create a {short-name} project by using the `kn faas init` command.
+
+.Example command
+[source,terminal]
+----
+$ kn faas init <path> -r <registry> -l <runtime> -t <trigger> -i <image> -n <namespace>
+----
+
+You can specify the runtime, trigger, image, and namespace as flags on the command line.
+
+The value(s) provided for image and registry are persisted to the `faas.yaml` file, so that subsequent invocations do not require the user to specify these again.
+
+.Example `faas.yaml`
+[source,yaml]
+----
+name: fn.example.io
+namespace: default
+runtime: node
+image: <image_from_registry>
+imageDigest: ""
+trigger: http
+builder: default
+builderMap:
+  default: quay.io/boson/faas-nodejs-builder
+envVars: {}
+----
 
 .Procedure
 
@@ -12,8 +37,10 @@ You can create a {short-name} project by using the `kn faas init` command.
 +
 [source,terminal]
 ----
-$ kn faas init <path>
+$ kn faas init <path> -r <registry> -l <runtime> -t <trigger> -i <image> -n <namespace>
 ----
++
+If the image is unspecified, you will be prompted for a registry name. The image name will be derived from this registry and the function name.
 +
 .Example command
 [source,terminal]
@@ -29,6 +56,3 @@ Function name: fn.example.io
 Runtime: go
 Trigger: http
 ----
-
-.Additional resources
-* For more information about optional flags that can be set when creating a {short-name} project, see the xref:../functions/functions-cli.adoc[CLI reference guide].
