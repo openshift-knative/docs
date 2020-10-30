@@ -81,7 +81,7 @@
     <a class="nav-link" href="user_guide/functions-list-kn.html">Listing existing functions</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="user_guide/describe-function.html">Describing a function</a>
+    <a class="nav-link" href="#functions/user_guide/describe-function.adoc">Describing a function</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="user_guide/delete-function-kn.html">Deleting a function</a>
@@ -162,12 +162,11 @@
 <div id="toctitle"></div>
 <ul class="sectlevel1">
 <li><a href="#_prerequisites">Prerequisites</a></li>
-<li><a href="#_creating_a_functions_project">Creating a functions project</a></li>
+<li><a href="#_creating_a_functions_project">Creating a Functions project</a></li>
 <li><a href="#_building_a_function">Building a function</a></li>
 <li><a href="#_deploying_a_function">Deploying a function</a></li>
 <li><a href="#_deleting_a_function">Deleting a function</a></li>
 <li><a href="#_run">run</a></li>
-<li><a href="#_describe">describe</a></li>
 <li><a href="#_list">list</a></li>
 <li><a href="#_additional_resources">Additional resources</a></li>
 </ul>
@@ -198,7 +197,7 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="_creating_a_functions_project"><a class="anchor" href="#_creating_a_functions_project"></a>Creating a functions project</h2>
+<h2 id="_creating_a_functions_project"><a class="anchor" href="#_creating_a_functions_project"></a>Creating a Functions project</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>You can create a Functions project by using the <code>kn faas init</code> command.</p>
@@ -400,26 +399,6 @@ If the targeted function is already deployed, it is updated with a new container
 </div>
 <div class="paragraph">
 <p>kn faas run [-p &lt;path&gt;]</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_describe"><a class="anchor" href="#_describe"></a>describe</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Prints the name, route and any event subscriptions for a deployed Function. The user may also specify the name of the function to describe. The namespace defaults to the value in faas.yaml or the namespace currently active in the user&#8217;s Kubernetes configuration. The namespace may be specified on the command line, and if so this will overwrite the value in faas.yaml.</p>
-</div>
-<div class="paragraph">
-<p>Similar kn command: kn service describe NAME [flags]. This flag provides a lot of nice information not available in faas describe, such as revisions, age, annotations and labels. This command should be renamed to make it distinct from kn - e.g. faas status.</p>
-</div>
-<div class="paragraph">
-<p>faas describe [-f &lt;format&gt; -n &lt;namespace&gt; -p &lt;path&gt;]</p>
-</div>
-<div class="paragraph">
-<p>When run as a kn plugin.</p>
-</div>
-<div class="paragraph">
-<p>kn faas describe [-f &lt;format&gt; -n &lt;namespace&gt; -p &lt;path&gt;]</p>
 </div>
 </div>
 </div>

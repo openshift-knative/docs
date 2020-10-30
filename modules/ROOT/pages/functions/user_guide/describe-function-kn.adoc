@@ -1,0 +1,37 @@
+// [id="describe-function-kn_{context}"]
+= Describing a function
+
+The `kn faas describe` command prints information for a deployed function, such as the function name, image, namespace, information about the Knative service, route information, and event subscriptions.
+// add link to service describe docs, and talk about differences
+// Similar kn command: kn service describe NAME [flags]. This flag provides a lot of nice information not available in faas describe, such as revisions, age, annotations and labels. This command should be renamed to make it distinct from kn - e.g. faas status.
+
+.Procedure
+
+* Describe a function:
++
+[source,termnal]
+----
+$ kn faas describe [-f <format> -n <namespace> -p <path>]
+----
+// what formats are available?
++
+.Example command
+[source,terminal]
+----
+$ kn faas describe function/fn.example.io
+----
++
+.Example output
+[source,terminal]
+----
+Function name:
+  fn.example.io
+Function is built in image:
+  docker.io/user/fn.example.io:latest
+Function is deployed as Knative Service:
+  fn-example-io
+Function is deployed in namespace:
+  default
+Routes:
+  http://fn-example-io-default.apps.ci-ln-g9f36hb-d5d6b.origin-ci-int-aws.dev.rhcloud.com
+----

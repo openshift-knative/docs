@@ -31,18 +31,6 @@ When run as a kn plugin.
 
 kn faas run [-p <path>]
 
-== describe
-
-Prints the name, route and any event subscriptions for a deployed Function. The user may also specify the name of the function to describe. The namespace defaults to the value in faas.yaml or the namespace currently active in the user's Kubernetes configuration. The namespace may be specified on the command line, and if so this will overwrite the value in faas.yaml.
-
-Similar kn command: kn service describe NAME [flags]. This flag provides a lot of nice information not available in faas describe, such as revisions, age, annotations and labels. This command should be renamed to make it distinct from kn - e.g. faas status.
-
-faas describe [-f <format> -n <namespace> -p <path>]
-
-When run as a kn plugin.
-
-kn faas describe [-f <format> -n <namespace> -p <path>]
-
 == list
 
 Lists all deployed functions. The namespace defaults to the value in faas.yaml or the namespace currently active in the user's Kubernetes configuration. The namespace defaults to the value in faas.yaml or the namespace currently active in the user's Kubernetes configuration. The namespace may be specified on the command line, and if so this will overwrite the value in faas.yaml.
