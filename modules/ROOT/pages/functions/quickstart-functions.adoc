@@ -1,52 +1,49 @@
 = Quick start
 
-The procedures in this quick start demonstrate how you can create, deploy, and modify functions.
+The procedures in this quick start guide demonstrate how you can create, deploy, and modify functions.
 
+toc::[]
+
+//[id="quickstart-functions-prerequisites"]
 == Prerequisites
 
 Before you can complete the steps in the following procedures, you must ensure that:
 
 * You have access to an OpenShift Container Platform cluster, which has the https://docs.openshift.com/container-platform/4.6/serverless/installing_serverless/installing-openshift-serverless.html[OpenShift Serverless Operator], https://docs.openshift.com/container-platform/4.6/serverless/installing_serverless/installing-knative-serving.html#installing-knative-serving[Knative Serving] and https://docs.openshift.com/container-platform/4.6/serverless/installing_serverless/installing-knative-eventing.html#installing-knative-eventing[Knative Eventing] installed.
 * You have installed the https://docs.openshift.com/container-platform/4.6/cli_reference/openshift_cli/getting-started-cli.html#cli-getting-started[OpenShift `oc` CLI].
-* You must have installed https://docs.docker.com/install/[Docker], and have access to a DockerHub account.
+* You have installed https://docs.docker.com/install/[Docker], and have access to a DockerHub account.
 * You have installed the https://docs.openshift.com/container-platform/4.6/serverless/installing_serverless/installing-kn.html#installing-kn[Knative `kn` CLI]. Installing `kn` provides the binary that enables use of the `kn faas` commands. There is no additional setup required to use `kn faas` commands after `kn` is successfully installed.
 
-=== Creating a function
+include::user_guide/create-function-project-kn.adoc[leveloffset=+1]
+include::user_guide/build-function-kn.adoc[leveloffset=+1]
+include::user_guide/deploy-function-kn.adoc[leveloffset=+1]
+include::user_guide/delete-function-kn.adoc[leveloffset=+1]
 
-You can create a function by using the `kn faas init` command.
+== run
 
-[source,terminal]
-----
-$ kn faas init <path> [-l <runtime> -t <trigger>]
-----
+Runs the Function project locally in the container. If a container has not yet been created, prompts the user to run faas build. The user may specify a path to the project directory using the --path or -p flag.
 
-* This command creates a new Function project at `path`.
-* If the path is not specified, the current directory is used.
-* If the path does not exist but is specified, it will be created.
-* The function name is the name of the leaf directory at path.
-* The user can specify the runtime and trigger with flags.
-// TODO: more details about runtimes and triggers; what are the defaults? Can defaults be changed?
-// TODO: How to use templates?
+Similar kn command: none.
 
-.Procedure
+faas run
 
-* Create a function:
-+
-.Example command
-[source,terminal]
-----
-$ kn faas init functions/fn.example.io
-----
-+
-.Example output
-[source,terminal]
-----
-Project path: /home/user/functions/fn.example.io
-Function name: fn.example.io
-Runtime: go
-Trigger: http
-----
+When run as a kn plugin.
 
-=== Deploying a function
+kn faas run [-p <path>]
 
-=== Delete a function
+== list
+
+Lists all deployed functions. The namespace defaults to the value in faas.yaml or the namespace currently active in the user's Kubernetes configuration. The namespace defaults to the value in faas.yaml or the namespace currently active in the user's Kubernetes configuration. The namespace may be specified on the command line, and if so this will overwrite the value in faas.yaml.
+
+Similar kn command: kn service list [name] [flags]. This command lists all deployed Knative Services. As with other kn commands that have similar functionality, there is more information and flexibilty in the kn command. However, kn will return all Services, while faas list will only display the boson Functions that have been deployed. Consider improving the output of the faas list command so that it is at least as informative as kn service list.
+
+faas list [-n <namespace> -p <path>]
+
+When run as a kn plugin.
+
+kn faas list [-n <namespace> -p <path>]
+
+// [id="quickstart-functions-additional-resources"]
+== Additional resources
+
+* For more information about optional flags that can be set when creating a {short-name} project, see the xref:../functions/functions-cli.adoc[CLI reference guide].

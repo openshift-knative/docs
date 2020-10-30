@@ -1,10 +1,14 @@
 * Functions
-** xref:functions/about-functions.adoc[About Functions]
+** xref:functions/about-functions.adoc[About {short-name}]
 ** xref:functions/quickstart-functions.adoc[Quick start]
 ** User guide
-*** xref:functions/functions-list.adoc[Listing existing functions]
-*** xref:functions/describe-function.adoc[Describing a function]
+*** xref:functions/user_guide/create-function-project-kn.adoc[Creating a {short-name} project]
+*** xref:functions/user_guide/build-function-kn.adoc[Building a function]
+*** xref:/functions/user_guide/deploy-function-kn.adoc[Deploying functions]
+*** xref:functions/user_guide/functions-list-kn.adoc[Listing existing functions]
+*** xref:functions/user_guide/describe-function-kn.adoc[Describing a function]
+*** xref:functions/user_guide/delete-function-kn.adoc[Deleting a function]
 ** Administration guide
 *** Placeholder
 ** Reference
-*** xref:functions/functions-reference.adoc[CLI reference guide]
+*** xref:functions/functions-cli.adoc[CLI reference guide]

@@ -1,0 +1,63 @@
+[id="functions-cli"]
+= CLI reference guide
+
+After `kn` is installed, you can enter `kn faas --help` to see available options for using the CLI to create and manage functions.
+
+toc::[]
+
+.Example output
+[source,terminal]
+----
+Function as a Service
+
+Create and run Functions as a Service.
+
+Usage:
+  faas [command]
+
+Available Commands:
+  build       Build an existing Function project as an OCI image
+  completion  Generate bash/zsh completion scripts
+  create      Create a new Function, including initialization of local files and deployment
+  delete      Delete a Function deployment
+  deploy      Deploy an existing Function project to a cluster
+  describe    Describes the Function
+  help        Help about any command
+  init        Initialize a new Function project
+  list        Lists deployed Functions
+  run         Runs the Function locally
+  version     Print version.  With --verbose the build date stamp and commit hash are included if available.
+
+Flags:
+  -h, --help      help for faas
+  -v, --verbose   print verbose logs
+
+Use "faas [command] --help" for more information about a command.
+----
+
+[id="functions-cli-flags"]
+== Flags
+// add note for each about which `kn faas` commands these apply to.
+
+`path`:: Specifies the location where the function will be created.
+** If the path is not specified, the current directory is used.
+** If the path does not exist but is specified, it will be created.
++
+[NOTE]
+====
+The function name is the name of the leaf directory at path.
+====
+
+`runtime`:: The function runtime language or framework, specified by `-l`.
+The default runtime is `go`.
+Available runtimes: `node`, `quarkus` and `go`.
+
+`trigger`:: Use the `--trigger` or `-t` flag to specify the function invocation context, or _trigger_.
+By default, the trigger is `http`. To create a function for CloudEvents, use
+the `events` trigger.
+Available triggers: `http` or `events`.
+
+`templates`:: You can specify one or more templates for the function by using the  `--templates` flag.
+The default templates location is ``/home/<user>/.config/faas/templates`.
+
+// `image`::

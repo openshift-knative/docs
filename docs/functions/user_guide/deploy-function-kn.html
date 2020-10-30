@@ -3,14 +3,14 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Overview :: Red Hat OpenShift Serverless previews</title>
-    <link rel="canonical" href="https://openshift-knative.github.io/docs/docs/index.html">
+    <title>Deploying a function :: Red Hat OpenShift Serverless previews</title>
+    <link rel="canonical" href="https://openshift-knative.github.io/docs/docs/functions/user_guide/deploy-function-kn.html">
     <meta name="generator" content="Antora 2.1.1">
-    <link rel="stylesheet" href="../_/css/site.css">
-<link rel="stylesheet" href="../_/css/extra.css">
-<link rel="stylesheet" href="../_/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+<link rel="stylesheet" href="../../../_/css/extra.css">
+<link rel="stylesheet" href="../../../_/font-awesome-4.7.0/css/font-awesome.min.css">
 <!--
-<link rel="icon" href="../favicon.ico" type="image/x-icon">
+<link rel="icon" href="../../../favicon.ico" type="image/x-icon">
 -->
   </head>
   <body class="article">
@@ -23,7 +23,7 @@
           <span></span>
           <span></span>
         </button>
-        <img src="../_/img/serverless-icon.svg" class="navbar-logo" alt="OpenShift Serverless icon">
+        <img src="../../../_/img/serverless-icon.svg" class="navbar-logo" alt="OpenShift Serverless icon">
         <a href="">OpenShift Serverless Previews</a>
       </div>
     </div>
@@ -50,7 +50,7 @@
     <div class="panels">
 <div class="navigation-menu is-active" data-panel="menu">
   <nav class="nav-menu">
-    <h3 class="title"><a href="index.html">Documentation</a></h3>
+    <h3 class="title"><a href="../../index.html">Documentation</a></h3>
 <ul class="nav-list">
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
@@ -59,32 +59,32 @@
     <span class="nav-text">Functions</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="functions/about-functions.html">About Functions</a>
+    <a class="nav-link" href="../about-functions.html">About Functions</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="functions/quickstart-functions.html">Quick start</a>
+    <a class="nav-link" href="../quickstart-functions.html">Quick start</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-toggle"></button>
     <span class="nav-text">User guide</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="functions/user_guide/create-function-project-kn.html">Creating a Functions project</a>
+    <a class="nav-link" href="create-function-project-kn.html">Creating a Functions project</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="functions/user_guide/build-function-kn.html">Building a function</a>
+    <a class="nav-link" href="build-function-kn.html">Building a function</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="deploy-function-kn.html">Deploying functions</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="functions/user_guide/deploy-function-kn.html">Deploying functions</a>
+    <a class="nav-link" href="functions-list-kn.html">Listing existing functions</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="functions/user_guide/functions-list-kn.html">Listing existing functions</a>
+    <a class="nav-link" href="describe-function-kn.html">Describing a function</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="functions/user_guide/describe-function-kn.html">Describing a function</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="functions/user_guide/delete-function-kn.html">Deleting a function</a>
+    <a class="nav-link" href="delete-function-kn.html">Deleting a function</a>
   </li>
 </ul>
   </li>
@@ -102,7 +102,7 @@
     <span class="nav-text">Reference</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="functions/functions-cli.html">CLI reference guide</a>
+    <a class="nav-link" href="../functions-cli.html">CLI reference guide</a>
   </li>
 </ul>
   </li>
@@ -123,7 +123,7 @@
       <span class="title">Documentation</span>
       <ul class="versions">
         <li class="version is-current is-latest">
-          <a href="index.html">master</a>
+          <a href="../../index.html">master</a>
         </li>
       </ul>
     </li>
@@ -135,34 +135,58 @@
   <div class="main-view-and-toolbar">
     <div class="toolbar" role="navigation">
   <button class="navigation-toggle"></button>
-  <a href="index.html" class="home-link is-current"></a>
+  <a href="../../index.html" class="home-link"></a>
 <nav class="crumbs" aria-label="breadcrumbs">
   <ul>
-    <li class="crumb"><a href="index.html">Documentation</a></li>
-    <li class="crumb"><a href="index.html">Overview</a></li>
+    <li class="crumb"><a href="../../index.html">Documentation</a></li>
+    <li class="crumb">Functions</li>
+    <li class="crumb">User guide</li>
+    <li class="crumb"><a href="deploy-function-kn.html">Deploying functions</a></li>
   </ul>
 </nav>
   <!--
-  <div class="edit-this-page"><a href="file:///home/abrennan/git-repos/docs-1/modules/ROOT/pages/index.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="file:///home/abrennan/git-repos/docs-1/modules/ROOT/pages/functions/user_guide/deploy-function-kn.adoc">Edit this Page</a></div>
   -->
 </div>
     <div class="main-view-and-toc">
         <main class="main">
           <article class="doc">
-<h1>Overview</h1>
+<h1>Deploying a function</h1>
 <div class="paragraph">
-<p><em>OpenShift Serverless previews</em> provides tutorials and information about additional, advanced use cases and integrations that are possible using OpenShift Container Platform and OpenShift Serverless, but are for development purposes only and are not officially supported by Red Hat.</p>
+<p>You can deploy a function to your cluster as a Knative service, by using the <code>kn faas deploy</code> command.
+If the targeted function is already deployed, it is updated with a new container image that is pushed to a container image registry, and the Knative service is updated.</p>
 </div>
-<div class="paragraph">
-<p>Before you can complete the tasks documented on this site, you will need a working installation of OpenShift Serverless.</p>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>You must have already initialized the function that you want to deploy.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<div class="title">Procedure</div>
+<ul>
+<li>
+<p>Deploy a function:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ kn faas deploy [-n &lt;namespace&gt; -p &lt;path&gt; -i &lt;image&gt; -r &lt;registry&gt;]</code></pre>
+</div>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>See the <a href="https://docs.openshift.com/container-platform/4.5/serverless/serverless-getting-started.html#serverless-getting-started-supported-configs">OpenShift Serverless supported configurations</a> documentation.</p>
+<p>If no <code>namespace</code> is specified, the function will be deployed in the current namespace.</p>
 </li>
 <li>
-<p>See the <a href="https://docs.openshift.com/container-platform/4.5/serverless/installing_serverless/installing-openshift-serverless.html">Installing OpenShift Serverless</a> documentation.</p>
+<p>The function is deployed from the current directory, unless a <code>path</code> is specified.</p>
+</li>
+<li>
+<p>The Knative service name is derived from the project name, and cannot be changed using this command.</p>
+</li>
+</ul>
+</div>
 </li>
 </ul>
 </div>
@@ -173,8 +197,8 @@
 </div><footer class="footer">
   <p>Adapted from Antora default UI, (c) 2019</p>
 </footer>
-<script src="../_/js/site.js"></script>
-<script src="../_/js/vendor/highlight.js"></script>
+<script src="../../../_/js/site.js"></script>
+<script src="../../../_/js/vendor/highlight.js"></script>
 <script>hljs.initHighlighting()</script>
   </body>
 </html>

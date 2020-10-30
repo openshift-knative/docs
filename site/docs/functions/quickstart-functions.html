@@ -37,7 +37,7 @@
       -->
         <a class="navbar-item" href="https://openshift-knative.github.io/docs/docs/index.html">Home</a>
         <a class="navbar-item" href="https://developers.redhat.com/topics/serverless-architecture">Blog</a>
-        <a class="navbar-item" href="https://knative.dev/docs/">Knative Project</a>
+        <a class="navbar-item" href="https://github.com/boson-project/">The Boson Project</a>
       </div>
     </div>
   </nav>
@@ -69,10 +69,22 @@
     <span class="nav-text">User guide</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="functions-list.html">Listing existing functions</a>
+    <a class="nav-link" href="user_guide/create-function-project-kn.html">Creating a Functions project</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="describe-function.html">Describing a function</a>
+    <a class="nav-link" href="user_guide/build-function-kn.html">Building a function</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="user_guide/deploy-function-kn.html">Deploying functions</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="user_guide/functions-list-kn.html">Listing existing functions</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="user_guide/describe-function-kn.html">Describing a function</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="user_guide/delete-function-kn.html">Deleting a function</a>
   </li>
 </ul>
   </li>
@@ -90,7 +102,7 @@
     <span class="nav-text">Reference</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="functions-reference.html">CLI reference guide</a>
+    <a class="nav-link" href="functions-cli.html">CLI reference guide</a>
   </li>
 </ul>
   </li>
@@ -142,8 +154,22 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>The procedures in this quick start demonstrate how you can create, deploy, and modify functions.</p>
+<p>The procedures in this quick start guide demonstrate how you can create, deploy, and modify functions.</p>
 </div>
+<!-- toc disabled -->
+</div>
+<div id="toc" class="toc">
+<div id="toctitle"></div>
+<ul class="sectlevel1">
+<li><a href="#_prerequisites">Prerequisites</a></li>
+<li><a href="#_creating_a_functions_project">Creating a Functions project</a></li>
+<li><a href="#_building_a_function">Building a function</a></li>
+<li><a href="#_deploying_a_function">Deploying a function</a></li>
+<li><a href="#_deleting_a_function">Deleting a function</a></li>
+<li><a href="#_run">run</a></li>
+<li><a href="#_list">list</a></li>
+<li><a href="#_additional_resources">Additional resources</a></li>
+</ul>
 </div>
 </div>
 <div class="sect1">
@@ -161,47 +187,61 @@
 <p>You have installed the <a href="https://docs.openshift.com/container-platform/4.6/cli_reference/openshift_cli/getting-started-cli.html#cli-getting-started">OpenShift <code>oc</code> CLI</a>.</p>
 </li>
 <li>
-<p>You must have installed <a href="https://docs.docker.com/install/">Docker</a>, and have access to a DockerHub account.</p>
+<p>You have installed <a href="https://docs.docker.com/install/">Docker</a>, and have access to a DockerHub account.</p>
 </li>
 <li>
 <p>You have installed the <a href="https://docs.openshift.com/container-platform/4.6/serverless/installing_serverless/installing-kn.html#installing-kn">Knative <code>kn</code> CLI</a>. Installing <code>kn</code> provides the binary that enables use of the <code>kn faas</code> commands. There is no additional setup required to use <code>kn faas</code> commands after <code>kn</code> is successfully installed.</p>
 </li>
 </ul>
 </div>
-<div class="sect2">
-<h3 id="_creating_a_function"><a class="anchor" href="#_creating_a_function"></a>Creating a function</h3>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_creating_a_functions_project"><a class="anchor" href="#_creating_a_functions_project"></a>Creating a Functions project</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>You can create a function by using the <code>kn faas init</code> command.</p>
+<p>You can create a Functions project by using the <code>kn faas init</code> command.</p>
 </div>
 <div class="listingblock">
+<div class="title">Example command</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ kn faas init &lt;path&gt; [-l &lt;runtime&gt; -t &lt;trigger&gt;]</code></pre>
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ kn faas init &lt;path&gt; -r &lt;registry&gt; -l &lt;runtime&gt; -t &lt;trigger&gt; -i &lt;image&gt; -n &lt;namespace&gt;</code></pre>
 </div>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p>This command creates a new Function project at <code>path</code>.</p>
-</li>
-<li>
-<p>If the path is not specified, the current directory is used.</p>
-</li>
-<li>
-<p>If the path does not exist but is specified, it will be created.</p>
-</li>
-<li>
-<p>The function name is the name of the leaf directory at path.</p>
-</li>
-<li>
-<p>The user can specify the runtime and trigger with flags.</p>
-</li>
-</ul>
+<div class="paragraph">
+<p>You can specify the runtime, trigger, image, and namespace as flags on the command line.</p>
+</div>
+<div class="paragraph">
+<p>The value(s) provided for image and registry are persisted to the <code>faas.yaml</code> file, so that subsequent invocations do not require the user to specify these again.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example <code>faas.yaml</code></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">name: fn.example.io
+namespace: default
+runtime: node
+image: &lt;image_from_registry&gt;
+imageDigest: ""
+trigger: http
+builder: default
+builderMap:
+  default: quay.io/boson/faas-nodejs-builder
+envVars: {}</code></pre>
+</div>
 </div>
 <div class="ulist">
 <div class="title">Procedure</div>
 <ul>
 <li>
-<p>Create a function:</p>
+<p>Create a Functions project:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ kn faas init &lt;path&gt; -r &lt;registry&gt; -l &lt;runtime&gt; -t &lt;trigger&gt; -i &lt;image&gt; -n &lt;namespace&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If the image is unspecified, you will be prompted for a registry name. The image name will be derived from this registry and the function name.</p>
+</div>
 <div class="listingblock">
 <div class="title">Example command</div>
 <div class="content">
@@ -221,13 +261,176 @@ Trigger: http</code></pre>
 </ul>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_deploying_a_function"><a class="anchor" href="#_deploying_a_function"></a>Deploying a function</h3>
-
 </div>
-<div class="sect2">
-<h3 id="_delete_a_function"><a class="anchor" href="#_delete_a_function"></a>Delete a function</h3>
-
+<div class="sect1">
+<h2 id="_building_a_function"><a class="anchor" href="#_building_a_function"></a>Building a function</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You can build a Functions project by using the <code>kn faas build</code> command.</p>
+</div>
+<div class="paragraph">
+<p>The build command reads the <code>faas.yaml</code> file in the directory for your function to determine the image name and registry.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example <code>faas.yaml</code></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">name: fn.example.io
+namespace: default
+runtime: node
+image: &lt;image_from_registry&gt;
+imageDigest: ""
+trigger: http
+builder: default
+builderMap:
+  default: quay.io/boson/faas-nodejs-builder
+envVars: {}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If both of these values are unset, you will be prompted to provide a registry.
+An image name is then be derived from the registry.</p>
+</div>
+<div class="paragraph">
+<p>The value(s) provided for image and registry are persisted to the <code>faas.yaml</code> file, so that subsequent invocations do not require the user to specify these again.</p>
+</div>
+<div class="ulist">
+<div class="title">Procedure</div>
+<ul>
+<li>
+<p>Build a function:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ kn faas build [-i &lt;image&gt; -r &lt;registry&gt; -p &lt;path&gt;]</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_deploying_a_function"><a class="anchor" href="#_deploying_a_function"></a>Deploying a function</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You can deploy a function to your cluster as a Knative service, by using the <code>kn faas deploy</code> command.
+If the targeted function is already deployed, it is updated with a new container image that is pushed to a container image registry, and the Knative service is updated.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>You must have already initialized the function that you want to deploy.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<div class="title">Procedure</div>
+<ul>
+<li>
+<p>Deploy a function:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ kn faas deploy [-n &lt;namespace&gt; -p &lt;path&gt; -i &lt;image&gt; -r &lt;registry&gt;]</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>If no <code>namespace</code> is specified, the function will be deployed in the current namespace.</p>
+</li>
+<li>
+<p>The function is deployed from the current directory, unless a <code>path</code> is specified.</p>
+</li>
+<li>
+<p>The Knative service name is derived from the project name, and cannot be changed using this command.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_deleting_a_function"><a class="anchor" href="#_deleting_a_function"></a>Deleting a function</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You can delete a function from your cluster by using the <code>kn faas delete</code> command.</p>
+</div>
+<div class="ulist">
+<div class="title">Procedure</div>
+<ul>
+<li>
+<p>Delete a function:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ kn faas delete &lt;name&gt; [-n &lt;namespace&gt; -p &lt;path&gt;]</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>If the name or path of the function to delete is not specified, the current directory is searched for a <code>faas.yaml</code> file that can be used to determine the function to delete.</p>
+</li>
+<li>
+<p>If the namespace is not specified, this defaults to the <code>namespace</code> value in the <code>faas.yaml</code> file.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_run"><a class="anchor" href="#_run"></a>run</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Runs the Function project locally in the container. If a container has not yet been created, prompts the user to run faas build. The user may specify a path to the project directory using the --path or -p flag.</p>
+</div>
+<div class="paragraph">
+<p>Similar kn command: none.</p>
+</div>
+<div class="paragraph">
+<p>faas run</p>
+</div>
+<div class="paragraph">
+<p>When run as a kn plugin.</p>
+</div>
+<div class="paragraph">
+<p>kn faas run [-p &lt;path&gt;]</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_list"><a class="anchor" href="#_list"></a>list</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Lists all deployed functions. The namespace defaults to the value in faas.yaml or the namespace currently active in the user&#8217;s Kubernetes configuration. The namespace defaults to the value in faas.yaml or the namespace currently active in the user&#8217;s Kubernetes configuration. The namespace may be specified on the command line, and if so this will overwrite the value in faas.yaml.</p>
+</div>
+<div class="paragraph">
+<p>Similar kn command: kn service list [name] [flags]. This command lists all deployed Knative Services. As with other kn commands that have similar functionality, there is more information and flexibilty in the kn command. However, kn will return all Services, while faas list will only display the boson Functions that have been deployed. Consider improving the output of the faas list command so that it is at least as informative as kn service list.</p>
+</div>
+<div class="paragraph">
+<p>faas list [-n &lt;namespace&gt; -p &lt;path&gt;]</p>
+</div>
+<div class="paragraph">
+<p>When run as a kn plugin.</p>
+</div>
+<div class="paragraph">
+<p>kn faas list [-n &lt;namespace&gt; -p &lt;path&gt;]</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_additional_resources"><a class="anchor" href="#_additional_resources"></a>Additional resources</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>For more information about optional flags that can be set when creating a Functions project, see the <a href="functions-cli.html" class="page">CLI reference guide</a>.</p>
+</li>
+</ul>
 </div>
 </div>
 </div>

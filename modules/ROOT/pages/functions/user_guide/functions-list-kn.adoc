@@ -1,0 +1,23 @@
+// Module included in the following assemblies
+//
+
+// [id="functions-list-kn_{context}"]
+= Listing existing functions
+
+You can list existing functions that have been deployed as Knatives services, by using `kn service list`.
+
+.Procedure
+
+* List functions as Knative services:
++
+[source,terminal]
+----
+$ kn service list
+----
++
+.Example output
+[source,terminal]
+----
+NAME            URL                                                                                       LATEST                AGE   CONDITIONS   READY   REASON
+fn-example-io   http://fn-example-io-default.apps.ci-ln-g9f36hb-d5d6b.origin-ci-int-aws.dev.rhcloud.com   fn-example-io-gzl4c   16m   3 OK / 3     True
+----

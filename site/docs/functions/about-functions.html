@@ -37,7 +37,7 @@
       -->
         <a class="navbar-item" href="https://openshift-knative.github.io/docs/docs/index.html">Home</a>
         <a class="navbar-item" href="https://developers.redhat.com/topics/serverless-architecture">Blog</a>
-        <a class="navbar-item" href="https://knative.dev/docs/">Knative Project</a>
+        <a class="navbar-item" href="https://github.com/boson-project/">The Boson Project</a>
       </div>
     </div>
   </nav>
@@ -69,10 +69,22 @@
     <span class="nav-text">User guide</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="functions-list.html">Listing existing functions</a>
+    <a class="nav-link" href="user_guide/create-function-project-kn.html">Creating a Functions project</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="describe-function.html">Describing a function</a>
+    <a class="nav-link" href="user_guide/build-function-kn.html">Building a function</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="user_guide/deploy-function-kn.html">Deploying functions</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="user_guide/functions-list-kn.html">Listing existing functions</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="user_guide/describe-function-kn.html">Describing a function</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="user_guide/delete-function-kn.html">Deleting a function</a>
   </li>
 </ul>
   </li>
@@ -90,7 +102,7 @@
     <span class="nav-text">Reference</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="functions-reference.html">CLI reference guide</a>
+    <a class="nav-link" href="functions-cli.html">CLI reference guide</a>
   </li>
 </ul>
   </li>
@@ -145,19 +157,22 @@
 <p>OpenShift Serverless Functions enables developers to create and deploy stateless, event-driven functions as a Knative service on OpenShift Container Platform.</p>
 </div>
 <div class="paragraph">
-<p>The Functions <code>faas</code> CLI is provided as a plugin for the Knative <code>kn</code> CLI.</p>
+<p>The Functions <code>faas</code> CLI is provided as a plugin for the Knative <code>kn</code> CLI.
+OpenShift Serverless Functions uses the <a href="https://buildpacks.io/">CNCF Buildpack API</a> to create container images.
+Once a container image has been created, the CLI can deploy the container image as a Knative service on the cluster.</p>
 </div>
+</div>
+<div id="toc" class="toc">
+<div id="toctitle"></div>
+<ul class="sectlevel1">
+<li><a href="#_supported_runtimes">Supported runtimes</a></li>
+<li><a href="#_supported_triggers">Supported triggers</a></li>
+</ul>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_how_it_works"><a class="anchor" href="#_how_it_works"></a>How it works</h2>
+<h2 id="_supported_runtimes"><a class="anchor" href="#_supported_runtimes"></a>Supported runtimes</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>OpenShift Serverless Functions uses the <a href="https://buildpacks.io/">CNCF Buildpack API</a> to create container images.
-Once a container image has been created, the CLI can deploy the container image as a Knative service on the cluster.</p>
-</div>
-<div class="sect2">
-<h3 id="_supported_runtimes"><a class="anchor" href="#_supported_runtimes"></a>Supported runtimes</h3>
 <div class="paragraph">
 <p>OpenShift Serverless Functions supports the following runtimes:</p>
 </div>
@@ -175,11 +190,12 @@ Once a container image has been created, the CLI can deploy the container image 
 </ul>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_supported_triggers"><a class="anchor" href="#_supported_triggers"></a>Supported triggers</h3>
+</div>
+<div class="sect1">
+<h2 id="_supported_triggers"><a class="anchor" href="#_supported_triggers"></a>Supported triggers</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>OpenShift Serverless Functions currently supports the use of HTTP triggered functions, as well as functions triggered through  <a href="https://cloudevents.io/">CloudEvents</a>.</p>
-</div>
 </div>
 </div>
 </div>

@@ -1,0 +1,21 @@
+// Module included in the following assemblies
+//
+// functions/quickstart-functions.adoc
+// nav.adoc
+
+// [id="delete-function-kn_{context}"]
+= Deleting a function
+
+You can delete a function from your cluster by using the `kn faas delete` command.
+
+.Procedure
+
+* Delete a function:
++
+[source,terminal]
+----
+$ kn faas delete <name> [-n <namespace> -p <path>]
+----
+** If the name or path of the function to delete is not specified, the current directory is searched for a `faas.yaml` file that can be used to determine the function to delete.
+// recommend one function per directory?
+** If the namespace is not specified, this defaults to the `namespace` value in the `faas.yaml` file.
