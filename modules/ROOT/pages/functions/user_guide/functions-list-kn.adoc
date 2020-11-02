@@ -7,12 +7,12 @@
 You can list existing functions by using `kn faas list`.
 If you want to list functions that have been deployed as Knative services, you can also use `kn service list`.
 
-.Procedure
-
 [NOTE]
 ====
 If the namespace is not specified for the following commands, this defaults to the current namespace.
 ====
+
+.Procedure
 
 . List existing functions:
 +
