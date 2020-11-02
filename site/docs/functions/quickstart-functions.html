@@ -166,8 +166,6 @@
 <li><a href="#_building_a_function">Building a function</a></li>
 <li><a href="#_deploying_a_function">Deploying a function</a></li>
 <li><a href="#_deleting_a_function">Deleting a function</a></li>
-<li><a href="#_run">run</a></li>
-<li><a href="#_list">list</a></li>
 <li><a href="#_additional_resources">Additional resources</a></li>
 </ul>
 </div>
@@ -379,46 +377,6 @@ If the targeted function is already deployed, it is updated with a new container
 </div>
 </li>
 </ul>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_run"><a class="anchor" href="#_run"></a>run</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Runs the Function project locally in the container. If a container has not yet been created, prompts the user to run faas build. The user may specify a path to the project directory using the --path or -p flag.</p>
-</div>
-<div class="paragraph">
-<p>Similar kn command: none.</p>
-</div>
-<div class="paragraph">
-<p>faas run</p>
-</div>
-<div class="paragraph">
-<p>When run as a kn plugin.</p>
-</div>
-<div class="paragraph">
-<p>kn faas run [-p &lt;path&gt;]</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_list"><a class="anchor" href="#_list"></a>list</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Lists all deployed functions. The namespace defaults to the value in faas.yaml or the namespace currently active in the user&#8217;s Kubernetes configuration. The namespace defaults to the value in faas.yaml or the namespace currently active in the user&#8217;s Kubernetes configuration. The namespace may be specified on the command line, and if so this will overwrite the value in faas.yaml.</p>
-</div>
-<div class="paragraph">
-<p>Similar kn command: kn service list [name] [flags]. This command lists all deployed Knative Services. As with other kn commands that have similar functionality, there is more information and flexibilty in the kn command. However, kn will return all Services, while faas list will only display the boson Functions that have been deployed. Consider improving the output of the faas list command so that it is at least as informative as kn service list.</p>
-</div>
-<div class="paragraph">
-<p>faas list [-n &lt;namespace&gt; -p &lt;path&gt;]</p>
-</div>
-<div class="paragraph">
-<p>When run as a kn plugin.</p>
-</div>
-<div class="paragraph">
-<p>kn faas list [-n &lt;namespace&gt; -p &lt;path&gt;]</p>
 </div>
 </div>
 </div>
