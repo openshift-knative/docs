@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deleting a function :: Red Hat OpenShift Serverless previews</title>
-    <link rel="canonical" href="https://openshift-knative.github.io/docs/docs/functions/user_guide/delete-function-kn.html">
+    <title>Tracing function requests :: Red Hat OpenShift Serverless previews</title>
+    <link rel="canonical" href="https://openshift-knative.github.io/docs/docs/functions/admin_guide/tracing-functions.html">
     <meta name="generator" content="Antora 2.1.1">
     <link rel="stylesheet" href="../../../_/css/site.css">
 <link rel="stylesheet" href="../../../_/css/extra.css">
@@ -69,22 +69,22 @@
     <span class="nav-text">User guide</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="create-function-project-kn.html">Creating a Functions project</a>
+    <a class="nav-link" href="../user_guide/create-function-project-kn.html">Creating a Functions project</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="build-function-kn.html">Building a function</a>
+    <a class="nav-link" href="../user_guide/build-function-kn.html">Building a function</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="deploy-function-kn.html">Deploying functions</a>
+    <a class="nav-link" href="../user_guide/deploy-function-kn.html">Deploying functions</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="functions-list-kn.html">Listing existing functions</a>
+    <a class="nav-link" href="../user_guide/functions-list-kn.html">Listing existing functions</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="describe-function-kn.html">Describing a function</a>
+    <a class="nav-link" href="../user_guide/describe-function-kn.html">Describing a function</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="3">
-    <a class="nav-link" href="delete-function-kn.html">Deleting a function</a>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../user_guide/delete-function-kn.html">Deleting a function</a>
   </li>
 </ul>
   </li>
@@ -92,8 +92,8 @@
     <button class="nav-toggle"></button>
     <span class="nav-text">Administration guide</span>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../admin_guide/tracing-functions.html">Tracing function requests</a>
+  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="tracing-functions.html">Tracing function requests</a>
   </li>
 </ul>
   </li>
@@ -140,43 +140,23 @@
   <ul>
     <li class="crumb"><a href="../../index.html">Documentation</a></li>
     <li class="crumb">Functions</li>
-    <li class="crumb">User guide</li>
-    <li class="crumb"><a href="delete-function-kn.html">Deleting a function</a></li>
+    <li class="crumb">Administration guide</li>
+    <li class="crumb"><a href="tracing-functions.html">Tracing function requests</a></li>
   </ul>
 </nav>
   <!--
-  <div class="edit-this-page"><a href="file:///home/abrennan/git-repos/docs-1/modules/ROOT/pages/functions/user_guide/delete-function-kn.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="file:///home/abrennan/git-repos/docs-1/modules/ROOT/pages/functions/admin_guide/tracing-functions.adoc">Edit this Page</a></div>
   -->
 </div>
     <div class="main-view-and-toc">
         <main class="main">
           <article class="doc">
-<h1>Deleting a function</h1>
+<h1>Tracing function requests</h1>
 <div class="paragraph">
-<p>You can delete a function from your cluster by using the <code>kn function delete</code> command.</p>
+<p>You can use Jaeger on OpenShift Container Platform to provide tracing information for functions deployed as Knative services.</p>
 </div>
-<div class="ulist">
-<div class="title">Procedure</div>
-<ul>
-<li>
-<p>Delete a function:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ kn function delete &lt;name&gt; [-n &lt;namespace&gt; -p &lt;path&gt;]</code></pre>
-</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>If the name or path of the function to delete is not specified, the current directory is searched for a <code>faas.yaml</code> file that can be used to determine the function to delete.</p>
-</li>
-<li>
-<p>If the namespace is not specified, this defaults to the <code>namespace</code> value in the <code>faas.yaml</code> file.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
+<div class="paragraph">
+<p>For more information, see <a href="https://docs.openshift.com/container-platform/4.6/serverless/serverless-tracing.html">Tracing requests using Jaeger</a> in the OpenShift Container Platform documentation.</p>
 </div>
 </article>
         </main>

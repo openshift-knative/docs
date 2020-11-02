@@ -1,0 +1,6 @@
+// [id="tracing-functions"]
+= Tracing function requests
+
+You can use Jaeger on OpenShift Container Platform to provide tracing information for functions deployed as Knative services.
+
+For more information, see link:https://docs.openshift.com/container-platform/4.6/serverless/serverless-tracing.html[Tracing requests using Jaeger] in the OpenShift Container Platform documentation.

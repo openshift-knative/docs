@@ -12,7 +12,7 @@ Before you can complete the steps in the following procedures, you must ensure t
 * You have access to an OpenShift Container Platform cluster, which has the https://docs.openshift.com/container-platform/4.6/serverless/installing_serverless/installing-openshift-serverless.html[OpenShift Serverless Operator], https://docs.openshift.com/container-platform/4.6/serverless/installing_serverless/installing-knative-serving.html#installing-knative-serving[Knative Serving] and https://docs.openshift.com/container-platform/4.6/serverless/installing_serverless/installing-knative-eventing.html#installing-knative-eventing[Knative Eventing] installed.
 * You have installed the https://docs.openshift.com/container-platform/4.6/cli_reference/openshift_cli/getting-started-cli.html#cli-getting-started[OpenShift `oc` CLI].
 * You have installed https://docs.docker.com/install/[Docker], and have access to a DockerHub account.
-* You have installed the https://docs.openshift.com/container-platform/4.6/serverless/installing_serverless/installing-kn.html#installing-kn[Knative `kn` CLI]. Installing `kn` provides the binary that enables use of the `kn faas` commands. There is no additional setup required to use `kn faas` commands after `kn` is successfully installed.
+* You have installed the https://docs.openshift.com/container-platform/4.6/serverless/installing_serverless/installing-kn.html#installing-kn[Knative `kn` CLI]. Installing `kn` provides the binary that enables use of the `kn faas` commands. There is no additional setup required to use `kn function` commands after `kn` is successfully installed.
 
 include::user_guide/create-function-project-kn.adoc[leveloffset=+1]
 include::user_guide/build-function-kn.adoc[leveloffset=+1]

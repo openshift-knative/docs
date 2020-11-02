@@ -93,7 +93,7 @@
     <span class="nav-text">Administration guide</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <span class="nav-text">Placeholder</span>
+    <a class="nav-link" href="admin_guide/tracing-functions.html">Tracing function requests</a>
   </li>
 </ul>
   </li>
@@ -155,39 +155,9 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>After <code>kn</code> is installed, you can enter <code>kn faas --help</code> to see available options for using the CLI to create and manage functions.</p>
+<p>After <code>kn</code> is installed, you can enter <code>kn function --help</code> to see available options for using the CLI to create and manage functions.</p>
 </div>
 <!-- toc disabled -->
-<div class="listingblock">
-<div class="title">Example output</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">Function as a Service
-
-Create and run Functions as a Service.
-
-Usage:
-  faas [command]
-
-Available Commands:
-  build       Build an existing Function project as an OCI image
-  completion  Generate bash/zsh completion scripts
-  create      Create a new Function, including initialization of local files and deployment
-  delete      Delete a Function deployment
-  deploy      Deploy an existing Function project to a cluster
-  describe    Describes the Function
-  help        Help about any command
-  init        Initialize a new Function project
-  list        Lists deployed Functions
-  run         Runs the Function locally
-  version     Print version.  With --verbose the build date stamp and commit hash are included if available.
-
-Flags:
-  -h, --help      help for faas
-  -v, --verbose   print verbose logs
-
-Use "faas [command] --help" for more information about a command.</code></pre>
-</div>
-</div>
 </div>
 <div id="toc" class="toc">
 <div id="toctitle"></div>
@@ -245,7 +215,7 @@ Available triggers: <code>http</code> or <code>events</code>.</p>
 <dt class="hdlist1"><code>templates</code></dt>
 <dd>
 <p>You can specify one or more templates for the function by using the  <code>--templates</code> flag.
-The default templates location is <code>`/home/&lt;user&gt;/.config/faas/templates</code>.</p>
+The default templates location is <code>/home/&lt;user&gt;/.config/faas/templates</code>.</p>
 </dd>
 </dl>
 </div>

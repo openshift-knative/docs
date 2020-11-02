@@ -6,7 +6,7 @@
 // [id="delete-function-kn_{context}"]
 = Deleting a function
 
-You can delete a function from your cluster by using the `kn faas delete` command.
+You can delete a function from your cluster by using the `kn function delete` command.
 
 .Procedure
 
@@ -14,7 +14,7 @@ You can delete a function from your cluster by using the `kn faas delete` comman
 +
 [source,terminal]
 ----
-$ kn faas delete <name> [-n <namespace> -p <path>]
+$ kn function delete <name> [-n <namespace> -p <path>]
 ----
 ** If the name or path of the function to delete is not specified, the current directory is searched for a `faas.yaml` file that can be used to determine the function to delete.
 // recommend one function per directory?

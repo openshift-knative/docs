@@ -4,7 +4,7 @@
 // [id="functions-list-kn_{context}"]
 = Listing existing functions
 
-You can list existing functions by using `kn faas list`.
+You can list existing functions by using `kn function list`.
 If you want to list functions that have been deployed as Knative services, you can also use `kn service list`.
 
 [NOTE]
@@ -18,7 +18,7 @@ If the namespace is not specified for the following commands, this defaults to t
 +
 [source,terminal]
 ----
-$ kn faas list [-n <namespace> -p <path>]
+$ kn function list [-n <namespace> -p <path>]
 ----
 +
 .Example output
