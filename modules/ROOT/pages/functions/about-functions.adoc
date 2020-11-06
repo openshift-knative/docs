@@ -3,7 +3,7 @@
 
 {product-name} enables developers to create and deploy stateless, event-driven functions as a Knative service on OpenShift Container Platform.
 
-The {short-name} `function` CLI is provided as a plugin for the Knative `kn` CLI.
+The {short-name} `func` CLI is provided as a plugin for the Knative `kn` CLI.
 {product-name} uses the link:https://buildpacks.io/[CNCF Buildpack API] to create container images.
 Once a container image has been created, the CLI can deploy the container image as a Knative service on the cluster.
 //  configured in ``~/.kube/config`.

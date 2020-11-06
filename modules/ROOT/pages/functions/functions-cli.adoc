@@ -1,7 +1,7 @@
 [id="functions-cli"]
 = CLI reference guide
 
-After `kn` is installed, you can enter `kn function --help` to see available options for using the CLI to create and manage functions.
+After `kn` is installed, you can enter `kn func --help` to see available options for using the CLI to create and manage functions.
 
 toc::[]
 
