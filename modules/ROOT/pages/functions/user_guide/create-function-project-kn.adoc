@@ -4,7 +4,7 @@
 // [id="create-function-project-kn_{context}"]
 = Creating a {short-name} project
 
-You can create a {short-name} project by using the `kn function init` command.
+You can create a {short-name} project by using the `kn func init` command.
 
 .Example command
 [source,terminal]
