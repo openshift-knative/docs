@@ -1,0 +1,12 @@
+= Using {short-name} templates
+
+The {product-name} templates provided are designed so that developers can concentrate solely on the business logic of their applications.
+Tasks such as managing network connections are managed by the runtime framework of the template.
+
+Templates for the following runtimes are available:
+
+* Node.js
+// * Go
+// * Quarkus
+
+// include procedure modules

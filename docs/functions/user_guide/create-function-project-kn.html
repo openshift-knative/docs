@@ -93,7 +93,7 @@
     <span class="nav-text">Administration guide</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <span class="nav-text">Placeholder</span>
+    <a class="nav-link" href="../admin_guide/tracing-functions.html">Tracing function requests</a>
   </li>
 </ul>
   </li>
@@ -153,12 +153,12 @@
           <article class="doc">
 <h1>Creating a Functions project</h1>
 <div class="paragraph">
-<p>You can create a Functions project by using the <code>kn faas init</code> command.</p>
+<p>You can create a Functions project by using the <code>kn func init</code> command.</p>
 </div>
 <div class="listingblock">
 <div class="title">Example command</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ kn faas init &lt;path&gt; -r &lt;registry&gt; -l &lt;runtime&gt; -t &lt;trigger&gt; -i &lt;image&gt; -n &lt;namespace&gt;</code></pre>
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ kn func init &lt;path&gt; -r &lt;registry&gt; -l &lt;runtime&gt; -t &lt;trigger&gt; -i &lt;image&gt; -n &lt;namespace&gt;</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -189,7 +189,7 @@ envVars: {}</code></pre>
 <p>Create a Functions project:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ kn faas init &lt;path&gt; -r &lt;registry&gt; -l &lt;runtime&gt; -t &lt;trigger&gt; -i &lt;image&gt; -n &lt;namespace&gt;</code></pre>
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ kn func init &lt;path&gt; -r &lt;registry&gt; -l &lt;runtime&gt; -t &lt;trigger&gt; -i &lt;image&gt; -n &lt;namespace&gt;</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -198,7 +198,7 @@ envVars: {}</code></pre>
 <div class="listingblock">
 <div class="title">Example command</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ kn faas init functions/fn.example.io</code></pre>
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ kn func init functions/fn.example.io</code></pre>
 </div>
 </div>
 <div class="listingblock">

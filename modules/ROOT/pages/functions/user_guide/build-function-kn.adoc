@@ -6,7 +6,7 @@
 // [id="build-function-kn_{context}"]
 = Building a function
 
-You can build a {short-name} project by using the `kn faas build` command.
+You can build a {short-name} project by using the `kn func build` command.
 
 The build command reads the `faas.yaml` file in the directory for your function to determine the image name and registry.
 
@@ -36,5 +36,5 @@ The value(s) provided for image and registry are persisted to the `faas.yaml` fi
 +
 [source,terminal]
 ----
-$ kn faas build [-i <image> -r <registry> -p <path>]
+$ kn func build [-i <image> -r <registry> -p <path>]
 ----

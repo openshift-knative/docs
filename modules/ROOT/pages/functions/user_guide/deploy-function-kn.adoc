@@ -6,9 +6,8 @@
 // [id="deploy-function-kn_{context}"]
 = Deploying a function
 
-You can deploy a function to your cluster as a Knative service, by using the `kn faas deploy` command.
-// determines image name, namespace (otherwise uses current) from faas.yaml
-// specifying namespace -n overwrites yaml file
+You can deploy a function to your cluster as a Knative service, by using the `kn func deploy` command.
+
 If the targeted function is already deployed, it is updated with a new container image that is pushed to a container image registry, and the Knative service is updated.
 
 .Prerequisites
@@ -21,7 +20,7 @@ If the targeted function is already deployed, it is updated with a new container
 +
 [source,terminal]
 ----
-$ kn faas deploy [-n <namespace> -p <path> -i <image> -r <registry>]
+$ kn func deploy [-n <namespace> -p <path> -i <image> -r <registry>]
 ----
 ** If no `namespace` is specified, the function will be deployed in the current namespace.
 ** The function is deployed from the current directory, unless a `path` is specified.

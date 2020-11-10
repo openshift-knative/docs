@@ -9,6 +9,6 @@
 *** xref:functions/user_guide/describe-function-kn.adoc[Describing a function]
 *** xref:functions/user_guide/delete-function-kn.adoc[Deleting a function]
 ** Administration guide
-*** Placeholder
+*** xref:functions/admin_guide/tracing-functions.adoc[Tracing function requests]
 ** Reference
 *** xref:functions/functions-cli.adoc[CLI reference guide]

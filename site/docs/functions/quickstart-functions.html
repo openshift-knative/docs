@@ -93,7 +93,7 @@
     <span class="nav-text">Administration guide</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <span class="nav-text">Placeholder</span>
+    <a class="nav-link" href="admin_guide/tracing-functions.html">Tracing function requests</a>
   </li>
 </ul>
   </li>
@@ -188,7 +188,7 @@
 <p>You have installed <a href="https://docs.docker.com/install/">Docker</a>, and have access to a DockerHub account.</p>
 </li>
 <li>
-<p>You have installed the <a href="https://docs.openshift.com/container-platform/4.6/serverless/installing_serverless/installing-kn.html#installing-kn">Knative <code>kn</code> CLI</a>. Installing <code>kn</code> provides the binary that enables use of the <code>kn faas</code> commands. There is no additional setup required to use <code>kn faas</code> commands after <code>kn</code> is successfully installed.</p>
+<p>You have installed the <a href="https://docs.openshift.com/container-platform/4.6/serverless/installing_serverless/installing-kn.html#installing-kn">Knative <code>kn</code> CLI</a>. Installing <code>kn</code> provides the binary that enables use of the <code>kn func</code> commands. There is no additional setup required to use <code>kn func</code> commands after <code>kn</code> is successfully installed.</p>
 </li>
 </ul>
 </div>
@@ -198,12 +198,12 @@
 <h2 id="_creating_a_functions_project"><a class="anchor" href="#_creating_a_functions_project"></a>Creating a Functions project</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>You can create a Functions project by using the <code>kn faas init</code> command.</p>
+<p>You can create a Functions project by using the <code>kn func init</code> command.</p>
 </div>
 <div class="listingblock">
 <div class="title">Example command</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ kn faas init &lt;path&gt; -r &lt;registry&gt; -l &lt;runtime&gt; -t &lt;trigger&gt; -i &lt;image&gt; -n &lt;namespace&gt;</code></pre>
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ kn func init &lt;path&gt; -r &lt;registry&gt; -l &lt;runtime&gt; -t &lt;trigger&gt; -i &lt;image&gt; -n &lt;namespace&gt;</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -234,7 +234,7 @@ envVars: {}</code></pre>
 <p>Create a Functions project:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ kn faas init &lt;path&gt; -r &lt;registry&gt; -l &lt;runtime&gt; -t &lt;trigger&gt; -i &lt;image&gt; -n &lt;namespace&gt;</code></pre>
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ kn func init &lt;path&gt; -r &lt;registry&gt; -l &lt;runtime&gt; -t &lt;trigger&gt; -i &lt;image&gt; -n &lt;namespace&gt;</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -243,7 +243,7 @@ envVars: {}</code></pre>
 <div class="listingblock">
 <div class="title">Example command</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ kn faas init functions/fn.example.io</code></pre>
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ kn func init functions/fn.example.io</code></pre>
 </div>
 </div>
 <div class="listingblock">
@@ -264,7 +264,7 @@ Trigger: http</code></pre>
 <h2 id="_building_a_function"><a class="anchor" href="#_building_a_function"></a>Building a function</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>You can build a Functions project by using the <code>kn faas build</code> command.</p>
+<p>You can build a Functions project by using the <code>kn func build</code> command.</p>
 </div>
 <div class="paragraph">
 <p>The build command reads the <code>faas.yaml</code> file in the directory for your function to determine the image name and registry.</p>
@@ -298,7 +298,7 @@ An image name is then be derived from the registry.</p>
 <p>Build a function:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ kn faas build [-i &lt;image&gt; -r &lt;registry&gt; -p &lt;path&gt;]</code></pre>
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ kn func build [-i &lt;image&gt; -r &lt;registry&gt; -p &lt;path&gt;]</code></pre>
 </div>
 </div>
 </li>
@@ -310,8 +310,10 @@ An image name is then be derived from the registry.</p>
 <h2 id="_deploying_a_function"><a class="anchor" href="#_deploying_a_function"></a>Deploying a function</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>You can deploy a function to your cluster as a Knative service, by using the <code>kn faas deploy</code> command.
-If the targeted function is already deployed, it is updated with a new container image that is pushed to a container image registry, and the Knative service is updated.</p>
+<p>You can deploy a function to your cluster as a Knative service, by using the <code>kn func deploy</code> command.</p>
+</div>
+<div class="paragraph">
+<p>If the targeted function is already deployed, it is updated with a new container image that is pushed to a container image registry, and the Knative service is updated.</p>
 </div>
 <div class="ulist">
 <div class="title">Prerequisites</div>
@@ -328,7 +330,7 @@ If the targeted function is already deployed, it is updated with a new container
 <p>Deploy a function:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ kn faas deploy [-n &lt;namespace&gt; -p &lt;path&gt; -i &lt;image&gt; -r &lt;registry&gt;]</code></pre>
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ kn func deploy [-n &lt;namespace&gt; -p &lt;path&gt; -i &lt;image&gt; -r &lt;registry&gt;]</code></pre>
 </div>
 </div>
 <div class="ulist">
@@ -353,7 +355,7 @@ If the targeted function is already deployed, it is updated with a new container
 <h2 id="_deleting_a_function"><a class="anchor" href="#_deleting_a_function"></a>Deleting a function</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>You can delete a function from your cluster by using the <code>kn faas delete</code> command.</p>
+<p>You can delete a function from your cluster by using the <code>kn func delete</code> command.</p>
 </div>
 <div class="ulist">
 <div class="title">Procedure</div>
@@ -362,7 +364,7 @@ If the targeted function is already deployed, it is updated with a new container
 <p>Delete a function:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ kn faas delete &lt;name&gt; [-n &lt;namespace&gt; -p &lt;path&gt;]</code></pre>
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ kn func delete &lt;name&gt; [-n &lt;namespace&gt; -p &lt;path&gt;]</code></pre>
 </div>
 </div>
 <div class="ulist">
