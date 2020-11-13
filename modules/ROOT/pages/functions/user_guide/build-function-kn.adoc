@@ -31,7 +31,7 @@ An image name is then be derived from the registry.
 The value(s) provided for image and registry are persisted to the `func.yaml` file, so that subsequent invocations do not require the user to specify these again.
 
 .Procedure
-// have to initialize a function first, then nav to or provide the path to it
+
 * Build a function:
 +
 [source,terminal]
