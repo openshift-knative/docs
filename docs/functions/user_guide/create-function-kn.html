@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Creating a functions project :: Red Hat OpenShift Serverless previews</title>
+    <title>Creating functions :: Red Hat OpenShift Serverless previews</title>
     <link rel="canonical" href="https://openshift-knative.github.io/docs/docs/functions/user_guide/create-function-kn.html">
     <meta name="generator" content="Antora 2.1.1">
     <link rel="stylesheet" href="../../../_/css/site.css">
@@ -37,7 +37,7 @@
       -->
         <a class="navbar-item" href="https://openshift-knative.github.io/docs/docs/index.html">Home</a>
         <a class="navbar-item" href="https://developers.redhat.com/topics/serverless-architecture">Blog</a>
-        <a class="navbar-item" href="https://knative.dev/docs/">Knative Project</a>
+        <a class="navbar-item" href="https://github.com/boson-project/">The Boson Project</a>
       </div>
     </div>
   </nav>
@@ -68,14 +68,26 @@
     <button class="nav-toggle"></button>
     <span class="nav-text">User guide</span>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="#functions/user_guide/create-function-project-kn.adoc">Creating a function</a>
+  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="create-function-kn.html">Creating functions</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="functions-list.html">Listing existing functions</a>
+    <a class="nav-link" href="build-function-kn.html">Building a function</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="describe-function.html">Describing a function</a>
+    <a class="nav-link" href="deploy-function-kn.html">Deploying functions</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="functions-list-kn.html">Listing existing functions</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="describe-function-kn.html">Describing a function</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="delete-function-kn.html">Deleting a function</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="event-workflows.html">Event workflows</a>
   </li>
 </ul>
   </li>
@@ -84,7 +96,7 @@
     <span class="nav-text">Administration guide</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <span class="nav-text">Placeholder</span>
+    <a class="nav-link" href="../admin_guide/tracing-functions.html">Tracing function requests</a>
   </li>
 </ul>
   </li>
@@ -130,7 +142,9 @@
 <nav class="crumbs" aria-label="breadcrumbs">
   <ul>
     <li class="crumb"><a href="../../index.html">Documentation</a></li>
-    <li class="crumb"><a href="create-function-kn.html">Creating a functions project</a></li>
+    <li class="crumb">Functions</li>
+    <li class="crumb">User guide</li>
+    <li class="crumb"><a href="create-function-kn.html">Creating functions</a></li>
   </ul>
 </nav>
   <!--
@@ -140,9 +154,36 @@
     <div class="main-view-and-toc">
         <main class="main">
           <article class="doc">
-<h1>Creating a functions project</h1>
+<h1>Creating functions</h1>
 <div class="paragraph">
-<p>You can create a Functions project by using the <code>kn faas init</code> command.</p>
+<p>You can create a function by using the <code>kn func create</code> command.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example command</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ kn func create &lt;path&gt; -r &lt;registry&gt; -l &lt;runtime&gt; -t &lt;trigger&gt; -i &lt;image&gt; -n &lt;namespace&gt; -c</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can specify the runtime, trigger, image, and namespace as flags on the command line, or use the <code>-c</code> flag to start the interactive experience using the CLI prompt.</p>
+</div>
+<div class="paragraph">
+<p>The value(s) provided for image and registry are persisted to the <code>func.yaml</code> file, so that subsequent invocations do not require the user to specify these again.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example <code>func.yaml</code></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">name: fn.example.io
+namespace: default
+runtime: node
+image: &lt;image_from_registry&gt;
+imageDigest: ""
+trigger: http
+builder: default
+builderMap:
+  default: quay.io/boson/faas-nodejs-builder
+envVars: {}</code></pre>
+</div>
 </div>
 <div class="ulist">
 <div class="title">Procedure</div>
@@ -151,13 +192,16 @@
 <p>Create a Functions project:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ kn faas init &lt;path&gt;</code></pre>
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ kn func create &lt;path&gt; -r &lt;registry&gt; -l &lt;runtime&gt; -t &lt;trigger&gt; -i &lt;image&gt; -n &lt;namespace&gt;</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>If the image is unspecified, you will be prompted for a registry name. The image name will be derived from this registry and the function name.</p>
 </div>
 <div class="listingblock">
 <div class="title">Example command</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ kn faas init functions/fn.example.io</code></pre>
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ kn func create functions/fn.example.io</code></pre>
 </div>
 </div>
 <div class="listingblock">
@@ -169,14 +213,6 @@ Runtime: go
 Trigger: http</code></pre>
 </div>
 </div>
-</li>
-</ul>
-</div>
-<div class="ulist">
-<div class="title">Additional resources</div>
-<ul>
-<li>
-<p>For more information about optional flags that can be set when creating a function, see the <a href="../functions-cli.html" class="page">CLI reference guide</a>.</p>
 </li>
 </ul>
 </div>

@@ -69,7 +69,7 @@
     <span class="nav-text">User guide</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="user_guide/create-function-project-kn.html">Creating a Functions project</a>
+    <a class="nav-link" href="user_guide/create-function-kn.html">Creating functions</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="user_guide/build-function-kn.html">Building a function</a>
@@ -85,6 +85,9 @@
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="user_guide/delete-function-kn.html">Deleting a function</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="user_guide/event-workflows.html">Event workflows</a>
   </li>
 </ul>
   </li>
@@ -165,16 +168,16 @@ Once a container image has been created, the CLI can deploy the container image 
 <div id="toc" class="toc">
 <div id="toctitle"></div>
 <ul class="sectlevel1">
-<li><a href="#_supported_runtimes">Supported runtimes</a></li>
-<li><a href="#_supported_triggers">Supported triggers</a></li>
+<li><a href="#_runtimes">Runtimes</a></li>
+<li><a href="#_triggers">Triggers</a></li>
 </ul>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_supported_runtimes"><a class="anchor" href="#_supported_runtimes"></a>Supported runtimes</h2>
+<h2 id="_runtimes"><a class="anchor" href="#_runtimes"></a>Runtimes</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>OpenShift Serverless Functions supports the following runtimes:</p>
+<p>OpenShift Serverless Functions provides templates that can be used to create basic functions for the following runtimes:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -189,16 +192,13 @@ Once a container image has been created, the CLI can deploy the container image 
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>Functions provides templates that can be used to create basic functions for all supported runtimes.</p>
-</div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_supported_triggers"><a class="anchor" href="#_supported_triggers"></a>Supported triggers</h2>
+<h2 id="_triggers"><a class="anchor" href="#_triggers"></a>Triggers</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>OpenShift Serverless Functions currently supports the use of HTTP triggered functions, as well as functions triggered through  <a href="https://cloudevents.io/">CloudEvents</a>.</p>
+<p>OpenShift Serverless Functions can be invoked by using a plain http request or a  <a href="https://cloudevents.io/">CloudEvent</a> as a trigger.</p>
 </div>
 </div>
 </div>

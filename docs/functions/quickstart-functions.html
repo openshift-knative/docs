@@ -69,7 +69,7 @@
     <span class="nav-text">User guide</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="user_guide/create-function-project-kn.html">Creating a Functions project</a>
+    <a class="nav-link" href="user_guide/create-function-kn.html">Creating functions</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="user_guide/build-function-kn.html">Building a function</a>
@@ -85,6 +85,9 @@
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="user_guide/delete-function-kn.html">Deleting a function</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="user_guide/event-workflows.html">Event workflows</a>
   </li>
 </ul>
   </li>
@@ -162,7 +165,7 @@
 <div id="toctitle"></div>
 <ul class="sectlevel1">
 <li><a href="#_prerequisites">Prerequisites</a></li>
-<li><a href="#_creating_a_functions_project">Creating a Functions project</a></li>
+<li><a href="#_creating_functions">Creating functions</a></li>
 <li><a href="#_building_a_function">Building a function</a></li>
 <li><a href="#_deploying_a_function">Deploying a function</a></li>
 <li><a href="#_deleting_a_function">Deleting a function</a></li>
@@ -185,7 +188,21 @@
 <p>You have installed the <a href="https://docs.openshift.com/container-platform/4.6/cli_reference/openshift_cli/getting-started-cli.html#cli-getting-started">OpenShift <code>oc</code> CLI</a>.</p>
 </li>
 <li>
-<p>You have installed <a href="https://docs.docker.com/install/">Docker</a>, and have access to a DockerHub account.</p>
+<p>You have installed <a href="https://docs.docker.com/install/">Docker</a>, and have access to a publicly available image registry.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>If you are using <code>quay.io</code> as the image registry, you must ensure that the repository is not private. The first time an image is deployed these settings may need to be updated.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
 </li>
 <li>
 <p>You have installed the <a href="https://docs.openshift.com/container-platform/4.6/serverless/installing_serverless/installing-kn.html#installing-kn">Knative <code>kn</code> CLI</a>. Installing <code>kn</code> provides the binary that enables use of the <code>kn func</code> commands. There is no additional setup required to use <code>kn func</code> commands after <code>kn</code> is successfully installed.</p>
@@ -195,25 +212,25 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="_creating_a_functions_project"><a class="anchor" href="#_creating_a_functions_project"></a>Creating a Functions project</h2>
+<h2 id="_creating_functions"><a class="anchor" href="#_creating_functions"></a>Creating functions</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>You can create a Functions project by using the <code>kn func init</code> command.</p>
+<p>You can create a function by using the <code>kn func create</code> command.</p>
 </div>
 <div class="listingblock">
 <div class="title">Example command</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ kn func init &lt;path&gt; -r &lt;registry&gt; -l &lt;runtime&gt; -t &lt;trigger&gt; -i &lt;image&gt; -n &lt;namespace&gt;</code></pre>
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ kn func create &lt;path&gt; -r &lt;registry&gt; -l &lt;runtime&gt; -t &lt;trigger&gt; -i &lt;image&gt; -n &lt;namespace&gt; -c</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>You can specify the runtime, trigger, image, and namespace as flags on the command line.</p>
+<p>You can specify the runtime, trigger, image, and namespace as flags on the command line, or use the <code>-c</code> flag to start the interactive experience using the CLI prompt.</p>
 </div>
 <div class="paragraph">
-<p>The value(s) provided for image and registry are persisted to the <code>faas.yaml</code> file, so that subsequent invocations do not require the user to specify these again.</p>
+<p>The value(s) provided for image and registry are persisted to the <code>func.yaml</code> file, so that subsequent invocations do not require the user to specify these again.</p>
 </div>
 <div class="listingblock">
-<div class="title">Example <code>faas.yaml</code></div>
+<div class="title">Example <code>func.yaml</code></div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">name: fn.example.io
 namespace: default
@@ -234,7 +251,7 @@ envVars: {}</code></pre>
 <p>Create a Functions project:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ kn func init &lt;path&gt; -r &lt;registry&gt; -l &lt;runtime&gt; -t &lt;trigger&gt; -i &lt;image&gt; -n &lt;namespace&gt;</code></pre>
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ kn func create &lt;path&gt; -r &lt;registry&gt; -l &lt;runtime&gt; -t &lt;trigger&gt; -i &lt;image&gt; -n &lt;namespace&gt;</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -243,7 +260,7 @@ envVars: {}</code></pre>
 <div class="listingblock">
 <div class="title">Example command</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ kn func init functions/fn.example.io</code></pre>
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ kn func create functions/fn.example.io</code></pre>
 </div>
 </div>
 <div class="listingblock">
@@ -264,13 +281,13 @@ Trigger: http</code></pre>
 <h2 id="_building_a_function"><a class="anchor" href="#_building_a_function"></a>Building a function</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>You can build a Functions project by using the <code>kn func build</code> command.</p>
+<p>You can build a function project by using the <code>kn func build</code> command.</p>
 </div>
 <div class="paragraph">
-<p>The build command reads the <code>faas.yaml</code> file in the directory for your function to determine the image name and registry.</p>
+<p>The build command reads the <code>func.yaml</code> file in the directory for your function to determine the image name and registry.</p>
 </div>
 <div class="listingblock">
-<div class="title">Example <code>faas.yaml</code></div>
+<div class="title">Example <code>func.yaml</code></div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">name: fn.example.io
 namespace: default
@@ -289,7 +306,7 @@ envVars: {}</code></pre>
 An image name is then be derived from the registry.</p>
 </div>
 <div class="paragraph">
-<p>The value(s) provided for image and registry are persisted to the <code>faas.yaml</code> file, so that subsequent invocations do not require the user to specify these again.</p>
+<p>The value(s) provided for image and registry are persisted to the <code>func.yaml</code> file, so that subsequent invocations do not require the user to specify these again.</p>
 </div>
 <div class="ulist">
 <div class="title">Procedure</div>
@@ -314,6 +331,20 @@ An image name is then be derived from the registry.</p>
 </div>
 <div class="paragraph">
 <p>If the targeted function is already deployed, it is updated with a new container image that is pushed to a container image registry, and the Knative service is updated.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>If you are using <code>quay.io</code> as the image registry, you must ensure that the repository is not private. The first time an image is deployed these settings may need to be updated.</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 <div class="ulist">
 <div class="title">Prerequisites</div>
@@ -370,10 +401,10 @@ An image name is then be derived from the registry.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>If the name or path of the function to delete is not specified, the current directory is searched for a <code>faas.yaml</code> file that can be used to determine the function to delete.</p>
+<p>If the name or path of the function to delete is not specified, the current directory is searched for a <code>func.yaml</code> file that can be used to determine the function to delete.</p>
 </li>
 <li>
-<p>If the namespace is not specified, this defaults to the <code>namespace</code> value in the <code>faas.yaml</code> file.</p>
+<p>If the namespace is not specified, this defaults to the <code>namespace</code> value in the <code>func.yaml</code> file.</p>
 </li>
 </ul>
 </div>
@@ -389,6 +420,9 @@ An image name is then be derived from the registry.</p>
 <ul>
 <li>
 <p>For more information about optional flags that can be set when creating a Functions project, see the <a href="functions-cli.html" class="page">CLI reference guide</a>.</p>
+</li>
+<li>
+<p>For information about using functions as part of an event-driven workflow, see <a href="user_guide/event-workflows.html" class="page">Event workflows</a>.</p>
 </li>
 </ul>
 </div>

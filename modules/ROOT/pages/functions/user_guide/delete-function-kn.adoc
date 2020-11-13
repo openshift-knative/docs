@@ -16,6 +16,6 @@ You can delete a function from your cluster by using the `kn func delete` comman
 ----
 $ kn func delete <name> [-n <namespace> -p <path>]
 ----
-** If the name or path of the function to delete is not specified, the current directory is searched for a `faas.yaml` file that can be used to determine the function to delete.
+** If the name or path of the function to delete is not specified, the current directory is searched for a `func.yaml` file that can be used to determine the function to delete.
 // recommend one function per directory?
-** If the namespace is not specified, this defaults to the `namespace` value in the `faas.yaml` file.
+** If the namespace is not specified, this defaults to the `namespace` value in the `func.yaml` file.

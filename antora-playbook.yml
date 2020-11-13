@@ -15,5 +15,6 @@ asciidoc:
     hide-uri-scheme: ''
     product-name: 'OpenShift Serverless Functions'
     short-name: 'Functions'
+    serverless: 'OpenShift Serverless'
     toc: preamble
     toc-title: ~
