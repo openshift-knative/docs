@@ -10,22 +10,19 @@ Once a container image has been created, the CLI can deploy the container image 
 // Admin guide, configure kubeconfig? Point to OCP docs? Is there additional config needed for serverless besides CLI connecting kn to cluster?
 //TODO add CLI connecting to cluster docs to OCP docs?
 
-// [id="about-functions-supported-runtimes"]
-== Supported runtimes
+// [id="about-functions-runtimes"]
+== Runtimes
 
-{product-name} supports the following runtimes:
+{product-name} provides templates that can be used to create basic functions for the following runtimes:
 
 * link:https://golang.org/[Go]
 * link:https://nodejs.org/en/[Node.js]
 * link:https://quarkus.io/[Quarkus]
 
-{short-name} provides templates that can be used to create basic functions for all supported runtimes.
-// add link for templates docs
+// [id="about-functions-triggers"]
+== Triggers
 
-// [id="about-functions-supported-triggers"]
-== Supported triggers
-
-{product-name} currently supports the use of HTTP triggered functions, as well as functions triggered through  link:https://cloudevents.io/[CloudEvents].
+{product-name} can be invoked by using a plain http request or a  link:https://cloudevents.io/[CloudEvent] as a trigger.
 // TODO: Add architecture section, diagrams, show integration with Knative
 
 // [id="about-functions-additional-resources"]

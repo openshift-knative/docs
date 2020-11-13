@@ -69,7 +69,7 @@
     <span class="nav-text">User guide</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="create-function-project-kn.html">Creating a Functions project</a>
+    <a class="nav-link" href="create-function-kn.html">Creating functions</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="build-function-kn.html">Building a function</a>
@@ -157,6 +157,20 @@
 </div>
 <div class="paragraph">
 <p>If the targeted function is already deployed, it is updated with a new container image that is pushed to a container image registry, and the Knative service is updated.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>If you are using <code>quay.io</code> as the image registry, you must ensure that the repository is not private. The first time an image is deployed these settings may need to be updated.</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 <div class="ulist">
 <div class="title">Prerequisites</div>

@@ -10,6 +10,11 @@ You can deploy a function to your cluster as a Knative service, by using the `kn
 
 If the targeted function is already deployed, it is updated with a new container image that is pushed to a container image registry, and the Knative service is updated.
 
+[NOTE]
+====
+If you are using `quay.io` as the image registry, you must ensure that the repository is not private. The first time an image is deployed these settings may need to be updated.
+====
+
 .Prerequisites
 
 * You must have already initialized the function that you want to deploy.

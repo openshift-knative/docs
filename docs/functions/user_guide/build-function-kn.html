@@ -69,7 +69,7 @@
     <span class="nav-text">User guide</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="create-function-project-kn.html">Creating a Functions project</a>
+    <a class="nav-link" href="create-function-kn.html">Creating functions</a>
   </li>
   <li class="nav-item is-current-page" data-depth="3">
     <a class="nav-link" href="build-function-kn.html">Building a function</a>
@@ -153,13 +153,13 @@
           <article class="doc">
 <h1>Building a function</h1>
 <div class="paragraph">
-<p>You can build a Functions project by using the <code>kn func build</code> command.</p>
+<p>You can build a function project by using the <code>kn func build</code> command.</p>
 </div>
 <div class="paragraph">
-<p>The build command reads the <code>faas.yaml</code> file in the directory for your function to determine the image name and registry.</p>
+<p>The build command reads the <code>func.yaml</code> file in the directory for your function to determine the image name and registry.</p>
 </div>
 <div class="listingblock">
-<div class="title">Example <code>faas.yaml</code></div>
+<div class="title">Example <code>func.yaml</code></div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">name: fn.example.io
 namespace: default
@@ -178,7 +178,7 @@ envVars: {}</code></pre>
 An image name is then be derived from the registry.</p>
 </div>
 <div class="paragraph">
-<p>The value(s) provided for image and registry are persisted to the <code>faas.yaml</code> file, so that subsequent invocations do not require the user to specify these again.</p>
+<p>The value(s) provided for image and registry are persisted to the <code>func.yaml</code> file, so that subsequent invocations do not require the user to specify these again.</p>
 </div>
 <div class="ulist">
 <div class="title">Procedure</div>
