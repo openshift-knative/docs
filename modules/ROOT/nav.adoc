@@ -8,6 +8,7 @@
 *** xref:functions/user_guide/functions-list-kn.adoc[Listing existing functions]
 *** xref:functions/user_guide/describe-function-kn.adoc[Describing a function]
 *** xref:functions/user_guide/delete-function-kn.adoc[Deleting a function]
+*** xref:functions/user_guide/event-workflows.adoc[Event workflows]
 ** Administration guide
 *** xref:functions/admin_guide/tracing-functions.adoc[Tracing function requests]
 ** Reference

@@ -29,3 +29,4 @@ include::user_guide/delete-function-kn.adoc[leveloffset=+1]
 == Additional resources
 
 * For more information about optional flags that can be set when creating a {short-name} project, see the xref:../functions/functions-cli.adoc[CLI reference guide].
+* For information about using functions as part of an event-driven workflow, see xref:../functions/user_guide/event-workflows.adoc[Event workflows].

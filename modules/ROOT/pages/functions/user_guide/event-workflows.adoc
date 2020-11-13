@@ -1,0 +1,8 @@
+[id="event-workflows"]
+= Event workflows
+
+{serverless} provides a set of Knative Eventing components that can be used with functions deployed as Knative services to create event-driven workflows.
+
+* link:https://docs.openshift.com/container-platform/4.6/serverless/event_sources/knative-event-sources.html[Getting started with event sources]
+* link:https://docs.openshift.com/container-platform/4.6/serverless/event_workflows/serverless-using-brokers.html[Event delivery workflows using brokers and triggers]
+* link:https://docs.openshift.com/container-platform/4.6/serverless/event_workflows/serverless-channels.html[Event delivery workflows using channels]
