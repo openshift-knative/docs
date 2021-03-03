@@ -1,0 +1,267 @@
+Node.js Function Template Reference
+===================================
+
+The Node.js function templates are designed to allow developers to concentrate
+solely on the business logic of the application, leaving things like managing
+network connections to the runtime framework. Whether responding to
+`CloudEvents` or simple HTTP requests, the function templates are simple and
+straightforward.
+
+== Function Invocation
+
+=== Parameters
+OpenShift Serverless functions are invoked when an incoming HTTP request is
+received. Invocation parameters include a `Context` object as the first
+parameter. If the incoming request contains a `CloudEvent`, any data associated
+with the `CloudEvent` is extracted from the event and provided as a second
+parameter. For example, if a `CloudEvent` is received which contains a JSON
+string such as `{ "name": "tiger" }` in its data property, the second parameter
+to the function, after the `Context` object, is a JavaScript object having a
+"name" property with "tiger" as the property value.
+
+==== Example
+A function that expects to receive `CloudEvents` containing customer data has a
+signature accepting both a `context` and a `customer` object. The function name
+can be any valid JavaScript function name, and should be exported from the
+file.
+
+```js
+// This is our function to be invoked. It's parameters
+// are a context object, and the customer data in a 
+// received CloudEvent's data property
+function processCustomer(context, customer) {
+
+  // process customer data
+
+}
+
+// The function exported from index.js will be the that is invoked
+module.exports = processCustomer;
+```
+
+=== Return Values
+Functions may return any valid JavaScript type, or nothing at all. When a
+function returns nothing, and no failure is indicated, the caller will receive
+a "204 No Content" response. Functions may also return a `CloudEvent`, or a
+`Message` object in order to push events into the Knative eventing system. In
+this case, the developer is not required to understand or implement the
+CloudEvent messaging specification. Headers and other relevant information from
+the returned values are extracted and sent with the response.
+
+==== Example
+```js
+function processCustomer(context, customer) {
+  // process customer and return a new CloudEvent
+  return new CloudEvent({
+    source: 'customer.processor',
+    type: 'customer.processed'
+  })
+}
+```
+
+=== Response headers
+Functions may additionally set headers to be sent with the response by adding a
+`headers` property to the object being returned. These headers will be
+extracted and sent with the response to the caller.
+
+==== Example
+```js
+function processCustomer(context, customer) {
+  // process customer and return custom headers
+  // the response will be '204 No content'
+  return { headers: { customerid: customer.id } }; 
+}
+```
+
+=== Response codes
+Developers may set the response code returned to the caller by adding a
+"statusCode" property to the response.
+
+==== Example
+```js
+function processCustomer(context, customer) {
+  // process customer
+  if (customer.restricted) {
+    return { statusCode: 451 }
+  } 
+}
+```
+
+This also works with `Error` objects thrown from the function.
+
+==== Example
+```js
+function processCustomer(context, customer) {
+  // process customer
+  if (customer.restricted) {
+    const err = new Error(‘Unavailable for legal reasons’);
+    err.statusCode = 451;
+    throw err;
+  } 
+}
+```
+
+== The Context Object
+Functions are invoked with a context object as the first parameter. This object
+provides access to the incoming request information. Developers can get the
+HTTP request method, any query strings sent with the request, the headers, the
+HTTP version, the request body. If the incoming request is a `CloudEvent`, the
+`CloudEvent` itself will also be found on the context object.
+
+The `Context` object has several properties that may be accessed by the
+function developer.
+
+=== `log`
+Provides a logging object that can be used to write output to the cluster logs.
+The log adheres to the Pino logging API (https://getpino.io/#/docs/api).
+
+==== Example
+```js
+Function myFunction(context) {
+  context.log.info(“Processing customer”);
+}
+```
+
+Access the function via `curl` to invoke it.
+
+```sh
+curl http://example.com
+```
+
+The function will log 
+
+```console
+{"level":30,"time":1604511655265,"pid":3430203,"hostname":"localhost.localdomain","reqId":1,"msg":"Processing customer"}
+```
+
+=== `query`
+Returns the query string for the request, if any, as key value pairs. These
+attributes are also found on the context object itself.
+
+==== Example
+```js
+Function myFunction(context) {
+  // Log the 'name' query parameter
+  context.log.info(context.query.name);
+  // Query parameters also are attached to the context
+  context.log.info(context.name);
+}
+```
+
+Access the function via `curl` to invoke it.
+
+```sh
+curl http://example.com?name=tiger
+```
+The function will log 
+
+```console
+{"level":30,"time":1604511655265,"pid":3430203,"hostname":"localhost.localdomain","reqId":1,"msg":"tiger"}
+{"level":30,"time":1604511655265,"pid":3430203,"hostname":"localhost.localdomain","reqId":1,"msg":"tiger"}
+```
+
+=== `body`
+Returns the request body if any. If the request body contains JSON, this will
+be parsed so that the attributes are directly available.
+
+==== Example
+```js
+Function myFunction(context) {
+  // log the incoming request body's 'hello' parameter
+  context.log.info(context.body.hello);
+}
+```
+
+Access the function via `curl` to invoke it.
+
+```console
+curl -X POST -d '{"hello": "world"}'  -H'Content-type: application/json' http://example.com
+```
+
+The function will log 
+```console
+{"level":30,"time":1604511655265,"pid":3430203,"hostname":"localhost.localdomain","reqId":1,"msg":"world"}
+```
+
+=== `headers`
+Returns the HTTP request headers as an object.
+
+==== Example
+```js
+Function myFunction(context) {
+  context.log.info(context.headers[custom-header]);
+}
+```
+Access the function via `curl` to invoke it.
+
+```console
+curl -H'x-custom-header: some-value’' http://example.com
+```
+The function will log 
+```console
+{"level":30,"time":1604511655265,"pid":3430203,"hostname":"localhost.localdomain","reqId":1,"msg":"some-value"}
+```
+
+=== `method`
+
+Returns the HTTP request method as a string.
+
+
+=== `httpVersion`
+Returns the HTTP version as a string.
+
+=== `httpVersionMajor`
+
+Returns the HTTP major version number as a string.
+
+=== `httpVersionMinor`
+Returns the HTTP minor version number as a string.
+
+=== `httpVersionMinor`
+Returns the HTTP minor version number as a string.
+
+== Context Methods
+There is a single method on the `Context` object which is a convenience
+function for returning a `CloudEvent` object. In Knative systems, if a function
+service is invoked by an event broker with a `CloudEvent`, the broker will
+examine the response. If the response is a `CloudEvent`, this event will then
+be handled by the broker just as with any other event it receives.
+
+=== cloudEventResponse()
+A function which accepts a data value and returns a CloudEvent.
+
+==== Example
+```js
+// Expects to receive a CloudEvent with customer data
+function processCustomer(context, customer) {
+  // process the customer
+  const processed = processCustomer(customer);
+  return context.cloudEventResponse(customer);
+}
+```
+
+== Dependencies
+Developers are not restricted to the dependencies provided in the template
+package.json file. Additional dependencies can be added as they would be in any
+other Node.js project.
+
+=== Example
+```console
+npm install --save opossum
+```
+
+When the project is built for deployment, these dependencies will be included
+in the resulting runtime container image.
+
+== Testing
+The function templates come complete with a few simple tests. Your project will
+contain a test folder with two files.
+
+* `test/unit.js` exercises the function in isolation, outside of network requests
+* `test/integration.js` loads and invokes the function over HTTP
+
+The test framework used in these files is
+https://www.npmjs.com/package/tape[tape], but this is only by choice of the
+template authors. Developers may choose any other testing framework that they
+are comfortable with. To run the tests, execute “npm test”.
+

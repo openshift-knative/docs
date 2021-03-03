@@ -1,5 +1,6 @@
 * Functions
 ** xref:functions/about-functions.adoc[About {short-name}]
+** xref:functions/faq.adoc[FAQ]
 ** xref:functions/quickstart-functions.adoc[Quick start]
 ** User guide
 *** xref:functions/user_guide/create-function-kn.adoc[Creating functions]
@@ -9,6 +10,8 @@
 *** xref:functions/user_guide/describe-function-kn.adoc[Describing a function]
 *** xref:functions/user_guide/delete-function-kn.adoc[Deleting a function]
 *** xref:functions/user_guide/event-workflows.adoc[Event workflows]
+** Template Reference
+*** xref:functions/templates/node.adoc[Node.js]
 ** Administration guide
 *** xref:functions/admin_guide/tracing-functions.adoc[Tracing function requests]
 ** Reference
