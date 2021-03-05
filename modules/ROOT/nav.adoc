@@ -1,6 +1,5 @@
 * Functions
 ** xref:functions/about-functions.adoc[About {short-name}]
-** xref:functions/faq.adoc[FAQ]
 ** xref:functions/quickstart-functions.adoc[Quick start]
 ** User guide
 *** xref:functions/user_guide/create-function-kn.adoc[Creating functions]
