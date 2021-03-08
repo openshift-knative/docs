@@ -5,6 +5,7 @@ site:
 content:
   sources:
     - url: .
+      edit_url: ~ 
       branches: HEAD
 ui:
   bundle:

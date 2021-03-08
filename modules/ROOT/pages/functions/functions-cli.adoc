@@ -1,7 +1,10 @@
+// This file is an assembly
 [id="functions-cli"]
 = CLI reference guide
 
-After `kn` is installed, you can enter `kn func --help` to see available options and commands for using the CLI to create and manage functions.
+After `kn` is installed, you can enter `kn func` to see available options and commands for using the CLI to create and manage functions.
+
+include::user_guide/kn-func-list-all-commands.adoc[leveloffset=+1]
 
 toc::[]
 
