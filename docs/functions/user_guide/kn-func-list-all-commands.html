@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Using Functions templates :: Red Hat OpenShift Serverless previews</title>
-    <link rel="canonical" href="https://openshift-knative.github.io/docs/docs/functions/user_guide/templates-function-kn.html">
+    <title>Listing available kn func commands :: Red Hat OpenShift Serverless previews</title>
+    <link rel="canonical" href="https://openshift-knative.github.io/docs/docs/functions/user_guide/kn-func-list-all-commands.html">
     <meta name="generator" content="Antora 2.3.4">
     <link rel="stylesheet" href="../../../_/css/site.css">
 <link rel="stylesheet" href="../../../_/css/extra.css">
@@ -68,7 +68,7 @@
     <button class="nav-toggle"></button>
     <span class="nav-text">User guide</span>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item is-current-page" data-depth="3">
     <a class="nav-link" href="kn-func-list-all-commands.html">Listing available kn func commands</a>
   </li>
   <li class="nav-item" data-depth="3">
@@ -145,28 +145,74 @@
 <nav class="crumbs" aria-label="breadcrumbs">
   <ul>
     <li class="crumb"><a href="../../index.html">Documentation</a></li>
-    <li class="crumb"><a href="templates-function-kn.html">Using Functions templates</a></li>
+    <li class="crumb">Functions</li>
+    <li class="crumb">User guide</li>
+    <li class="crumb"><a href="kn-func-list-all-commands.html">Listing available kn func commands</a></li>
   </ul>
 </nav>
   <!--
-  <div class="edit-this-page"><a href="https://github.com/abrennan89/docs-1/edit/knfunc/modules/ROOT/pages/functions/user_guide/templates-function-kn.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/abrennan89/docs-1/edit/knfunc/modules/ROOT/pages/functions/user_guide/kn-func-list-all-commands.adoc">Edit this Page</a></div>
   -->
 </div>
     <div class="main-view-and-toc">
         <main class="main">
           <article class="doc">
-<h1>Using Functions templates</h1>
+<h1>Listing available kn func commands</h1>
 <div class="paragraph">
-<p>The OpenShift Serverless Functions templates provided are designed so that developers can concentrate solely on the business logic of their applications.
-Tasks such as managing network connections are managed by the runtime framework of the template.</p>
-</div>
-<div class="paragraph">
-<p>Templates for the following runtimes are available:</p>
+<p>You can view a list of available <code>kn func</code> plugin commands in the terminal.</p>
 </div>
 <div class="ulist">
+<div class="title">Procedure</div>
 <ul>
 <li>
-<p>Node.js</p>
+<p>List the available <code>kn func</code> commands:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ kn func</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">Serverless functions
+
+Create, build and deploy functions in serverless containers for multiple runtimes on Knative
+
+Usage:
+  func [command]
+
+Examples:
+
+# Create a node function called "node-sample" and enter the directory
+kn func create myfunc &amp;&amp; cd myfunc
+
+# Build the container image, push it to a registry and deploy it to the connected Knative cluster
+# (replace &lt;registry/user&gt; with something like quay.io/user with an account that have you access to)
+kn func deploy --registry &lt;registry/user&gt;
+
+# Curl the service with the service URL
+curl $(kn service describe myfunc -o url)
+
+
+Available Commands:
+  build       Build a function project as a container image
+  completion  Generate completion scripts for bash, fish and zsh
+  create      Create a function project
+  delete      Undeploy a function
+  deploy      Deploy a function
+  describe    Show details of a function
+  help        Help about any command
+  list        List functions
+  run         Run the function locally
+  version     Show the version
+
+Flags:
+  -h, --help      help for func
+  -v, --verbose   print verbose logs
+
+Use "func [command] --help" for more information about a command.</code></pre>
+</div>
+</div>
 </li>
 </ul>
 </div>

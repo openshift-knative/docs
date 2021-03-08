@@ -2,6 +2,7 @@
 ** xref:functions/about-functions.adoc[About {short-name}]
 ** xref:functions/quickstart-functions.adoc[Quick start]
 ** User guide
+*** xref:functions/user_guide/kn-func-list-all-commands.adoc[Listing available kn func commands]
 *** xref:functions/user_guide/create-function-kn.adoc[Creating functions]
 *** xref:functions/user_guide/build-function-kn.adoc[Building a function]
 *** xref:/functions/user_guide/deploy-function-kn.adoc[Deploying functions]
