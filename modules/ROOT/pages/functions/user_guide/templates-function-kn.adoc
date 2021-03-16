@@ -1,12 +1,35 @@
-= Using {short-name} templates
+= Using the {short-name} API
 
-The {product-name} templates provided are designed so that developers can concentrate solely on the business logic of their applications.
-Tasks such as managing network connections are managed by the runtime framework of the template.
+When you create a function by using the `kn func create` command, a template function project for your chosen runtime is created at the specified path.
 
-Templates for the following runtimes are available:
+Each template project contains configuration files that are required to build and deploy the function, as well as templates that can be modified to include the business logic or code for your function application.
+
+Project templates are provided for the following runtimes:
 
 * Node.js
-// * Go
-// * Quarkus
+* Go
+* Quarkus
+* SpringBoot
+* Python
+
+== Triggers
+
+The template project provided for a runtime will be based on which trigger type is specified when creating the function. For example, if you specify `--trigger http` when creating the function, the template provided will be tailored to support HTTP use cases. If you specify `--trigger events`, the template will be tailored to better suit https://cloudevents.io/[CloudEvent] use cases.
+////
+For both CloudEvent and HTTP templates, Documents should include:
+
+1.  The parameters provided to the function when it's invoked
+
+2.  The accepted return values for a user's function
+
+3. How to see and set things like headers and other standard HTTP transport metadata
+
+4. How to set the HTTP return code
+
+5. What is the context object and how to use it
+
+6. How to add dependencies
+////
 
 // include procedure modules
+include::templates/nodejs-template.adoc[leveloffset=+1]

@@ -1,0 +1,66 @@
+// Module included in the following assemblies
+//
+// functions/templates-function-kn.adoc
+// nav.adoc
+
+// [id="nodejs-template_{context}"]
+= Using a Node.js template
+
+== Invoking a function
+
+Node.js runtime functions are invoked when an incoming HTTP request is
+received.
+
+Invocation parameters include a `context` object as the first parameter. If the incoming request contains a CloudEvent, any data associated
+with the event is extracted and provided as a second
+parameter.
+
+For example, a function that expects to receive CloudEvents containing customer data has a signature accepting both a `context` and a `customer` object. The function name can be any valid JavaScript function name, and must be exported from the file.
+
+.Example: Invocation parameters using the context object
+[source,javascript]
+----
+// This is our function to be invoked. It's parameters
+// are a context object, and the customer data in a
+// received CloudEvent's data property
+function processCustomer(context, customer) {
+  // process customer data
+}
+// The function exported from index.js will be the that is invoked
+module.exports = processCustomer;
+----
+
+=== Adding return values
+
+Functions do not require a return value, but they can return any valid JavaScript type.
+
+When a function returns nothing, and no failure is indicated, the caller will receive a `204 No Content` response.
+
+Functions may also return a `CloudEvent`, or a `Message` object in order to push events into the Knative Eventing system. In this case, the developer is not required to understand or implement the CloudEvent messaging specification. Headers and other relevant information from the returned values are extracted and sent with the response.
+
+.Example: Setting return values
+[source,javascript]
+----
+function processCustomer(context, customer) {
+  // process customer and return a new CloudEvent
+  return new CloudEvent({
+    source: 'customer.processor',
+    type: 'customer.processed'
+  })
+}
+----
+
+=== Response headers
+
+Functions can set headers to be sent with a return value by adding a
+`headers` property to the object being returned.
+
+.Example: Setting return headers
+[source,javascript]
+----
+function processCustomer(context, customer) {
+  // process customer and return custom headers
+  // the response will be '204 No content'
+  return { headers: { customerid: customer.id } };
+}
+----

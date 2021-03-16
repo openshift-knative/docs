@@ -4,15 +4,21 @@
 // [id="create-function-kn_{context}"]
 = Creating functions
 
-You can create a function by using the `kn func create` command.
+You can create a function project for your chosen runtime by using the `kn func create` command. This command creates a template project for your specified runtime, which provides configuration files that are used to build and deploy the function, as well as templates for code or business logic that provide building blocks for you to use the {short-name} API.
 
-.Example command
+You can use the `kn func create` command in two ways; you can specify the path, registry, runtime, trigger, image, and namespace as flags on the command line, or use the `-c` flag to start the interactive experience using the CLI prompt.
+
+.Example command with specified flags
 [source,terminal]
 ----
-$ kn func create <path> -r <registry> -l <runtime> -t <trigger> -i <image> -n <namespace> -c
+$ kn func create <path> -r <registry> -l <runtime> -t <trigger> -i <image> -n <namespace>
 ----
 
-You can specify the runtime, trigger, image, and namespace as flags on the command line, or use the `-c` flag to start the interactive experience using the CLI prompt.
+.Example command to start the CLI prompt
+[source,terminal]
+----
+$ kn func create -c
+----
 
 The value(s) provided for image and registry are persisted to the `func.yaml` file, so that subsequent invocations do not require the user to specify these again.
 
@@ -45,7 +51,7 @@ If the image is unspecified, you will be prompted for a registry name. The image
 .Example command
 [source,terminal]
 ----
-$ kn func create functions/fn.example.io
+$ kn func create functions/fn.example.io -r docker.io/user -l go -t http
 ----
 +
 .Example output
