@@ -15,8 +15,7 @@ Current projects in this category include:
 
 ## Building the Site
 
-If you would like to build this site locally, you will need to
-have the site generation tool,
+If you want to build this site locally, you must use the site generation tool,
 [Antorra](https://docs.antora.org/antora/2.3/install/install-antora/).
 
 To build the site:
