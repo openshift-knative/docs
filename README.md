@@ -8,7 +8,7 @@ purposes only.  This repository contains the source files for the OpenShift
 Serverless Previews documentation found at
 https://openshift-knative.github.io/docs/.
 
-Current projects that fall into this category include
+Current projects in this category include:
 
 * OpenShift Serverless Functions [Developer Preview] https://openshift-knative.github.io/docs/docs/functions/about-functions.html
 
