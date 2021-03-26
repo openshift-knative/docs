@@ -1,0 +1,38 @@
+= Developing Node.js functions
+
+toc::[]
+
+When you create a Node.js function using the `kn func` CLI, the project directory looks like a typical Node.js project, with the exception of an additional `func.yaml` configuration file. Both `http` and `event` trigger functions have the same template structure:
+
+.Template structure
+[source,terminal]
+----
+.
+├── func.yaml <1>
+├── index.js <2>
+├── package.json <3>
+├── README.md
+└── test <4>
+    ├── integration.js
+    └── unit.js
+----
+<1> The `func.yaml` configuration file is used to determine the image name and registry.
+<2> Your project must contain an `index.js` file which _exports_ a single function.
+<3> You can add required dependencies in the `package.json` configuration file, which can include local JavaScript files.
+<4> Integration and unit test scripts are provided as part of the function template.
+// Add more info about how to run / use the tests
+
+include::/functions/user_guide/invoking-functions.adoc[leveloffset=+1]
+
+When an incoming request is received, functions are invoked with a `Context` object as the first parameter.
+
+If the incoming request is a CloudEvent, any data associated with the CloudEvent is extracted from the event and provided as a second parameter. For example, a CloudEvent is received which contains a JSON string such as this in its data property,
+
+{
+  "customerId": "0123456",
+  "productId": "6543210"
+}
+
+When invoked, the second parameter to the function, after the Context object, will be a JavaScript object having customerId and productId properties. The function signature might look like this, with the data parameter having these properties.
+
+function processPurchase(context, data)

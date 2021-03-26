@@ -1,7 +1,9 @@
 * Functions
 ** xref:functions/about-functions.adoc[About {short-name}]
 ** xref:functions/quickstart-functions.adoc[Quick start]
-** User guide
+** Concepts
+*** xref:functions/user_guide/event-workflows.adoc[Event workflows]
+** CLI reference guide
 *** xref:functions/user_guide/kn-func-list-all-commands.adoc[Listing available kn func commands]
 *** xref:functions/user_guide/create-function-kn.adoc[Creating functions]
 *** xref:functions/user_guide/build-function-kn.adoc[Building a function]
@@ -9,8 +11,8 @@
 *** xref:functions/user_guide/functions-list-kn.adoc[Listing existing functions]
 *** xref:functions/user_guide/describe-function-kn.adoc[Describing a function]
 *** xref:functions/user_guide/delete-function-kn.adoc[Deleting a function]
-*** xref:functions/user_guide/event-workflows.adoc[Event workflows]
+*** xref:functions/functions-cli.adoc[CLI options]
+** Developer guide
+*** xref:functions/dev_guide/develop-nodejs.adoc[Developing Node.js functions]
 ** Administration guide
 *** xref:functions/admin_guide/tracing-functions.adoc[Tracing function requests]
-** Reference
-*** xref:functions/functions-cli.adoc[CLI reference guide]

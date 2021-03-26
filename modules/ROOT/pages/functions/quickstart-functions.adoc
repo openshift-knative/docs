@@ -20,13 +20,12 @@ If you are using `quay.io` as the image registry, you must ensure that the repos
 * You have installed the https://docs.openshift.com/container-platform/4.6/serverless/installing_serverless/installing-kn.html#installing-kn[Knative `kn` CLI]. Installing `kn` provides the binary that enables use of the `kn func` commands. There is no additional setup required to use `kn func` commands after `kn` is successfully installed.
 
 include::user_guide/create-function-kn.adoc[leveloffset=+1]
-// create with templates?
 include::user_guide/build-function-kn.adoc[leveloffset=+1]
 include::user_guide/deploy-function-kn.adoc[leveloffset=+1]
 include::user_guide/delete-function-kn.adoc[leveloffset=+1]
-// run function?
+
 // [id="quickstart-functions-additional-resources"]
 == Additional resources
 
-* For more information about optional flags that can be set when creating a {short-name} project, see the xref:../functions/functions-cli.adoc[CLI reference guide].
-* For information about using functions as part of an event-driven workflow, see xref:../functions/user_guide/event-workflows.adoc[Event workflows].
+* For more information about optional flags that can be set when creating a {short-name} project, see xref:../functions/functions-cli.adoc[CLI options].
+* For information about using functions as part of an event-driven workflow, see xref:../functions/concepts/event-workflows.adoc[Event workflows].

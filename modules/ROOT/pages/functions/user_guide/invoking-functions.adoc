@@ -1,0 +1,13 @@
+// Module included in the following assemblies
+//
+// functions/quickstart-functions.adoc
+// nav.adoc
+
+// [id="invoking-functions_{context}"]
+= Invoking a function
+
+When using the `kn func` CLI to create a function project you can generate a project that responds to link:https://cloudevents.io/[CloudEvents], or one that responds to simple HTTP requests.
+
+CloudEvents in Knative are transported over HTTP as a POST request, so both function types will listen and respond to incoming HTTP events.
+// then why are there two different trigger types?
+Functions can be invoked with a simple HTTP request. You can test to see if the function is working by using your browser to visit `http://localhost:8080`. You can also access liveness and readiness endpoints at `http://localhost:8080/health/liveness` and `http://localhost:8080/health/readiness`. These two endpoints are used by Kubernetes to determine the health of your function. If your function is working correctly, both of these endpoints will return `OK`.

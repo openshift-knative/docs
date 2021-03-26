@@ -1,6 +1,6 @@
 // This file is an assembly
 [id="functions-cli"]
-= CLI reference guide
+= CLI options
 
 After `kn` is installed, you can enter `kn func` to see available options and commands for using the CLI to create and manage functions.
 
