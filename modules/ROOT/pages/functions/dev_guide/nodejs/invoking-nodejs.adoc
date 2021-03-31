@@ -24,4 +24,4 @@ When invoked, the second parameter to the function, after the `context` object, 
 function processPurchase(context, data)
 ----
 
-The `data` parameter in this example contains the `customerId` and `productId` properties.
+The `data` parameter in this example is a JavaScript object that contains the `customerId` and `productId` properties.
