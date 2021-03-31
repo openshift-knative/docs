@@ -1,22 +1,7 @@
 // Module included in the following assemblies
 // /functions/user_guide/develop-nodejs.adoc
-// nav.adoc
 
 // [id="invoking-functions_{context}"]
 = Invoking a function
 
 When using the `kn func` CLI to create a function project you can generate a project that responds to link:https://cloudevents.io/[CloudEvents], or one that responds to simple HTTP requests. CloudEvents in Knative are transported over HTTP as a POST request, so both function types will listen and respond to incoming HTTP events.
-
-Functions can be invoked with a simple HTTP request. When an incoming request is received, functions are invoked with a `Context` object as the first parameter.
-
-If the incoming request is a CloudEvent, any data associated with the CloudEvent is extracted from the event and provided as a second parameter. For example, if a CloudEvent is received which contains a JSON string similar to the following in its data property:
-
-[source,json]
-----
-{
-  "customerId": "0123456",
-  "productId": "6543210"
-}
-----
-
-When invoked, the second parameter to the function, after the `Context` object, will be a JavaScript object that has `customerId` and `productId` properties.

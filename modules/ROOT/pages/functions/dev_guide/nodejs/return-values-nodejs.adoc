@@ -1,0 +1,22 @@
+// Module included in the following assemblies
+//
+// functions/user_guide/develop-nodejs.adoc
+
+// [id="return-values-nodejs_{context}"]
+= Return values
+
+Functions can return any valid JavaScript type or can have no return value. When a function has no return value specified, and no failure is indicated, the caller will receive a `204 No Content` response.
+
+Functions may also return a CloudEvent, or a `Message` object in order to push events into the Knative Eventing system. In this case, the developer is not required to understand or implement the CloudEvent messaging specification. Headers and other relevant information from the returned values are extracted and sent with the response.
+
+.Example
+[source,javascript]
+----
+function processCustomer(context, customer) {
+  // process customer and return a new CloudEvent
+  return new CloudEvent({
+    source: 'customer.processor',
+    type: 'customer.processed'
+  })
+}
+----

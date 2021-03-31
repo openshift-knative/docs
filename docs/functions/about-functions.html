@@ -66,7 +66,16 @@
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-toggle"></button>
-    <span class="nav-text">User guide</span>
+    <span class="nav-text">Concepts</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="concepts/event-workflows.html">Event workflows</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">CLI reference guide</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="user_guide/kn-func-list-all-commands.html">Listing available kn func commands</a>
@@ -90,7 +99,16 @@
     <a class="nav-link" href="user_guide/delete-function-kn.html">Deleting a function</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="user_guide/event-workflows.html">Event workflows</a>
+    <a class="nav-link" href="functions-cli.html">CLI flags</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Developer guide</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="dev_guide/nodejs/develop-nodejs.html">Developing Node.js functions</a>
   </li>
 </ul>
   </li>
@@ -100,15 +118,6 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="admin_guide/tracing-functions.html">Tracing function requests</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-toggle"></button>
-    <span class="nav-text">Reference</span>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="functions-cli.html">CLI reference guide</a>
   </li>
 </ul>
   </li>
@@ -154,8 +163,6 @@
         <main class="main">
           <article class="doc">
 <h1>About OpenShift Serverless Functions</h1>
-<div id="preamble">
-<div class="sectionbody">
 <div class="paragraph">
 <p>OpenShift Serverless Functions enables developers to create and deploy stateless, event-driven functions as a Knative service on OpenShift Container Platform.</p>
 </div>
@@ -164,19 +171,8 @@
 OpenShift Serverless Functions uses the <a href="https://buildpacks.io/">CNCF Buildpack API</a> to create container images.
 Once a container image has been created, the CLI can deploy the container image as a Knative service on the cluster.</p>
 </div>
-</div>
-<div id="toc" class="toc">
-<div id="toctitle"></div>
-<ul class="sectlevel1">
-<li><a href="#_runtimes">Runtimes</a></li>
-<li><a href="#_triggers">Triggers</a></li>
-</ul>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_runtimes"><a class="anchor" href="#_runtimes"></a>Runtimes</h2>
-<div class="sectionbody">
 <div class="paragraph">
+<div class="title">Runtimes</div>
 <p>OpenShift Serverless Functions provides templates that can be used to create basic functions for the following runtimes:</p>
 </div>
 <div class="ulist">
@@ -185,22 +181,16 @@ Once a container image has been created, the CLI can deploy the container image 
 <p><a href="https://golang.org/">Go</a></p>
 </li>
 <li>
-<p><a href="https://nodejs.org/en/">Node.js</a></p>
+<p><a href="dev_guide/nodejs/develop-nodejs.html#develop-nodejs" class="page">Node.js</a></p>
 </li>
 <li>
 <p><a href="https://quarkus.io/">Quarkus</a></p>
 </li>
 </ul>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_triggers"><a class="anchor" href="#_triggers"></a>Triggers</h2>
-<div class="sectionbody">
 <div class="paragraph">
+<div class="title">Triggers</div>
 <p>OpenShift Serverless Functions can be invoked by using a plain http request or a  <a href="https://cloudevents.io/">CloudEvent</a> as a trigger.</p>
-</div>
-</div>
 </div>
 </article>
         </main>
