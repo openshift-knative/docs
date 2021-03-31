@@ -1,0 +1,7 @@
+[id="develop-nodejs"]
+= Developing Node.js functions
+
+toc::[]
+
+include::nodejs-template.adoc[leveloffset=+1]
+include::../../../functions/user_guide/invoking-functions.adoc[leveloffset=+1]

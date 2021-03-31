@@ -1,16 +1,6 @@
 // This file is an assembly
 [id="functions-cli"]
-= CLI options
-
-After `kn` is installed, you can enter `kn func` to see available options and commands for using the CLI to create and manage functions.
-
-include::user_guide/kn-func-list-all-commands.adoc[leveloffset=+1]
-
-toc::[]
-
-[id="functions-cli-flags"]
-== Flags
-// add note for each about which `kn function` commands these apply to.
+= Flags
 
 `path`:: Specifies the location where the function will be created.
 ** If the path is not specified, the current directory is used.
