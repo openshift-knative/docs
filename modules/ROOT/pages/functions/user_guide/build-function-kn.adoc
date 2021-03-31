@@ -6,9 +6,7 @@
 // [id="build-function-kn_{context}"]
 = Building a function
 
-You can build a function project by using the `kn func build` command.
-
-The build command reads the `func.yaml` file in the directory for your function to determine the image name and registry.
+Before you can run a function, you must build the function project by using the `kn func build` command. The build command reads the `func.yaml` file in the directory for your function to determine the image name and registry.
 
 .Example `func.yaml`
 [source,yaml]
@@ -38,3 +36,5 @@ The value(s) provided for image and registry are persisted to the `func.yaml` fi
 ----
 $ kn func build [-i <image> -r <registry> -p <path>]
 ----
++
+This step creates an OCI container image that can be run locally on your computer, or on a Kubernetes cluster.

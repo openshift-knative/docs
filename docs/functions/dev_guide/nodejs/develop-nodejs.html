@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Developing Node.js functions :: Red Hat OpenShift Serverless previews</title>
+    <link rel="canonical" href="https://openshift-knative.github.io/docs/docs/functions/dev_guide/nodejs/develop-nodejs.html">
+    <meta name="generator" content="Antora 2.3.4">
+    <link rel="stylesheet" href="../../../../_/css/site.css">
+<link rel="stylesheet" href="../../../../_/css/extra.css">
+<link rel="stylesheet" href="../../../../_/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--
+<link rel="icon" href="../../../../favicon.ico" type="image/x-icon">
+-->
+  </head>
+  <body class="article">
+<header class="header" role="banner">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <div class="navbar-item">
+        <button class="navbar-burger" data-target="topbar-nav">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <img src="../../../../_/img/serverless-icon.svg" class="navbar-logo" alt="OpenShift Serverless icon">
+        <a href="">OpenShift Serverless Previews</a>
+      </div>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <!-- search broken
+        <div class="navbar-item hide-for-print">
+          <script async src="https://cse.google.com/cse.js?cx=002898025167115630151:gnr5edrg2eo"></script>
+          <div class="gcse-searchbox" enableAutoComplete="true"></div>
+        </div>
+      -->
+        <a class="navbar-item" href="https://openshift-knative.github.io/docs/docs/index.html">Home</a>
+        <a class="navbar-item" href="https://developers.redhat.com/topics/serverless-architecture">Blog</a>
+        <a class="navbar-item" href="https://github.com/boson-project/">The Boson Project</a>
+      </div>
+    </div>
+  </nav>
+<!-- need alt search type-->
+<!--<div class="gcse-searchresults"></div>-->
+</header>
+<div class="main-wrapper">
+  <div class="navigation-container" data-component="docs" data-version="master">
+  <aside class="navigation">
+    <div class="panels">
+<div class="navigation-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../../../index.html">Documentation</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Functions</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../about-functions.html">About Functions</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../quickstart-functions.html">Quick start</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Concepts</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../concepts/event-workflows.html">Event workflows</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">CLI reference guide</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../user_guide/kn-func-list-all-commands.html">Listing available kn func commands</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../user_guide/create-function-kn.html">Creating functions</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../user_guide/build-function-kn.html">Building a function</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../user_guide/deploy-function-kn.html">Deploying functions</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../user_guide/functions-list-kn.html">Listing existing functions</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../user_guide/describe-function-kn.html">Describing a function</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../user_guide/delete-function-kn.html">Deleting a function</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../functions-cli.html">CLI flags</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Developer guide</span>
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="develop-nodejs.html">Developing Node.js functions</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Administration guide</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../admin_guide/tracing-functions.html">Tracing function requests</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="navigation-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Documentation</span>
+    <span class="version">master</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">Documentation</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../../../index.html">master</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+  <div class="main-view-and-toolbar">
+    <div class="toolbar" role="navigation">
+  <button class="navigation-toggle"></button>
+  <a href="../../../index.html" class="home-link"></a>
+<nav class="crumbs" aria-label="breadcrumbs">
+  <ul>
+    <li class="crumb"><a href="../../../index.html">Documentation</a></li>
+    <li class="crumb">Functions</li>
+    <li class="crumb">Developer guide</li>
+    <li class="crumb"><a href="develop-nodejs.html">Developing Node.js functions</a></li>
+  </ul>
+</nav>
+</div>
+    <div class="main-view-and-toc">
+        <main class="main">
+          <article class="doc">
+<h1>Developing Node.js functions</h1>
+<div id="preamble">
+<div class="sectionbody">
+<!-- toc disabled -->
+</div>
+<div id="toc" class="toc">
+<div id="toctitle"></div>
+<ul class="sectlevel1">
+<li><a href="#_node_js_function_template_structure">Node.js function template structure</a></li>
+<li><a href="#_invoking_a_function">Invoking a function</a></li>
+<li><a href="#_return_values">Return values</a></li>
+</ul>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_node_js_function_template_structure"><a class="anchor" href="#_node_js_function_template_structure"></a>Node.js function template structure</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>When you create a Node.js function using the <code>kn func</code> CLI, the project directory looks like a typical Node.js project, with the exception of an additional <code>func.yaml</code> configuration file. Both <code>http</code> and <code>event</code> trigger functions have the same template structure:</p>
+</div>
+<div class="listingblock">
+<div class="title">Template structure</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">.
+├── func.yaml <i class="conum" data-value="1"></i><b>(1)</b>
+├── index.js <i class="conum" data-value="2"></i><b>(2)</b>
+├── package.json <i class="conum" data-value="3"></i><b>(3)</b>
+├── README.md
+└── test <i class="conum" data-value="4"></i><b>(4)</b>
+    ├── integration.js
+    └── unit.js</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The <code>func.yaml</code> configuration file is used to determine the image name and registry.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Your project must contain an <code>index.js</code> file which <em>exports</em> a single function.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>You can add required dependencies in the <code>package.json</code> configuration file, which can include local JavaScript files.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Integration and unit test scripts are provided as part of the function template.</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_invoking_a_function"><a class="anchor" href="#_invoking_a_function"></a>Invoking a function</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>When using the <code>kn func</code> CLI to create a function project you can generate a project that responds to <a href="https://cloudevents.io/">CloudEvents</a>, or one that responds to simple HTTP requests. CloudEvents in Knative are transported over HTTP as a POST request, so both function types will listen and respond to incoming HTTP events.</p>
+</div>
+<div class="paragraph">
+<p>Functions can be invoked with a simple HTTP request. When an incoming request is received, functions are invoked with a <code>context</code> object as the first parameter.</p>
+</div>
+<div class="paragraph">
+<p>If the incoming request is a CloudEvent, any data associated with the CloudEvent is extracted from the event and provided as a second parameter. For example, if a CloudEvent is received which contains a JSON string similar to the following in its data property:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "customerId": "0123456",
+  "productId": "6543210"
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When invoked, the second parameter to the function, after the <code>context</code> object, will be a JavaScript object that has <code>customerId</code> and <code>productId</code> properties.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example signature</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">function processPurchase(context, data)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>data</code> parameter in this example is a JavaScript object that contains the <code>customerId</code> and <code>productId</code> properties.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_return_values"><a class="anchor" href="#_return_values"></a>Return values</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Functions can return any valid JavaScript type or can have no return value. When a function has no return value specified, and no failure is indicated, the caller will receive a <code>204 No Content</code> response.</p>
+</div>
+<div class="paragraph">
+<p>Functions may also return a CloudEvent, or a <code>Message</code> object in order to push events into the Knative Eventing system. In this case, the developer is not required to understand or implement the CloudEvent messaging specification. Headers and other relevant information from the returned values are extracted and sent with the response.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">function processCustomer(context, customer) {
+  // process customer and return a new CloudEvent
+  return new CloudEvent({
+    source: 'customer.processor',
+    type: 'customer.processed'
+  })
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</article>
+        </main>
+            </div>
+  </div>
+</div><footer class="footer">
+  <p>Adapted from Antora default UI, (c) 2019</p>
+</footer>
+<script src="../../../../_/js/site.js"></script>
+<script src="../../../../_/js/vendor/highlight.js"></script>
+<script>hljs.initHighlighting()</script>
+  </body>
+</html>
