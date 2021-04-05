@@ -181,7 +181,8 @@
 <li><a href="#dependencies-nodejs">Dependencies</a></li>
 <li><a href="#_invoking_a_function">Invoking a function</a>
 <ul class="sectlevel2">
-<li><a href="#invoking-nodejs">Invoking Node.js functions</a></li>
+<li><a href="#_context_objects">Context objects</a></li>
+<li><a href="#_cloudevent_data">CloudEvent data</a></li>
 </ul>
 </li>
 <li><a href="#_return_values">Return values</a>
@@ -257,15 +258,13 @@
 <div class="paragraph">
 <p>When using the <code>kn func</code> CLI to create a function project you can generate a project that responds to <a href="https://cloudevents.io/">CloudEvents</a>, or one that responds to simple HTTP requests. CloudEvents in Knative are transported over HTTP as a POST request, so both function types will listen and respond to incoming HTTP events.</p>
 </div>
-<div class="sect2">
-<h3 id="invoking-nodejs"><a class="anchor" href="#invoking-nodejs"></a>Invoking Node.js functions</h3>
 <div class="paragraph">
-<p>Functions can be invoked with a simple HTTP request. When an incoming request is received, functions are invoked with a <code>context</code> object as the first parameter.</p>
+<p>Node.js functions can be invoked with a simple HTTP request. When an incoming request is received, functions are invoked with a <code>context</code> object as the first parameter.</p>
 </div>
-<div class="sect3">
-<h4 id="_context_objects"><a class="anchor" href="#_context_objects"></a>Context objects</h4>
+<div class="sect2">
+<h3 id="_context_objects"><a class="anchor" href="#_context_objects"></a>Context objects</h3>
 <div class="paragraph">
-<p>Functions are invoked by calling a <code>context</code> object as the first parameter.</p>
+<p>Functions are invoked by providing a <code>context</code> object as the first parameter.</p>
 </div>
 <div class="listingblock">
 <div class="title">Example context object</div>
@@ -274,10 +273,13 @@
 </div>
 </div>
 <div class="paragraph">
-<p>This object provides access to the incoming HTTP request information, including the HTTP request method, any query strings or headers sent with the request, the HTTP version, and the request body. If the incoming request is a CloudEvent, the CloudEvent itself will also be found on the context object.</p>
+<p>This object provides access to the incoming HTTP request information, including the HTTP request method, any query strings or headers sent with the request, the HTTP version, and the request body.</p>
 </div>
-<div class="sect4">
-<h5 id="_context_object_methods"><a class="anchor" href="#_context_object_methods"></a>Context object methods</h5>
+<div class="paragraph">
+<p>Incoming requests that contain a CloudEvent attach the incoming instance of the CloudEvent to the context object, so that it can be accessed using <code>context.cloudevent</code>.</p>
+</div>
+<div class="sect3">
+<h4 id="_context_object_methods"><a class="anchor" href="#_context_object_methods"></a>Context object methods</h4>
 <div class="paragraph">
 <p>The <code>context</code> object has a single method, <code>cloudEventResponse()</code> that accepts a data value and returns a CloudEvent.</p>
 </div>
@@ -297,8 +299,8 @@ function processCustomer(context, customer) {
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_second_parameter"><a class="anchor" href="#_second_parameter"></a>Second parameter</h4>
+<div class="sect2">
+<h3 id="_cloudevent_data"><a class="anchor" href="#_cloudevent_data"></a>CloudEvent data</h3>
 <div class="paragraph">
 <p>If the incoming request is a CloudEvent, any data associated with the CloudEvent is extracted from the event and provided as a second parameter. For example, if a CloudEvent is received which contains a JSON string similar to the following in its data property:</p>
 </div>
@@ -321,7 +323,6 @@ function processCustomer(context, customer) {
 </div>
 <div class="paragraph">
 <p>The <code>data</code> parameter in this example is a JavaScript object that contains the <code>customerId</code> and <code>productId</code> properties.</p>
-</div>
 </div>
 </div>
 </div>
@@ -366,7 +367,7 @@ function processCustomer(context, customer) {
 <div class="sect2">
 <h3 id="_returning_status_codes"><a class="anchor" href="#_returning_status_codes"></a>Returning status codes</h3>
 <div class="paragraph">
-<p>You can set a status code that is returned to the caller by adding a <code>statusCode</code> property to the <code>return</code> object.</p>
+<p>You can set a status code that is returned to the caller by adding a <code>statusCode</code> property to the <code>return</code> object:</p>
 </div>
 <div class="listingblock">
 <div class="title">Example status code</div>
@@ -380,7 +381,7 @@ function processCustomer(context, customer) {
 </div>
 </div>
 <div class="paragraph">
-<p>Status codes can also be set for errors that are defined in the function.</p>
+<p>Status codes can also be set for errors that are created and thrown by the function:</p>
 </div>
 <div class="listingblock">
 <div class="title">Example error status code</div>

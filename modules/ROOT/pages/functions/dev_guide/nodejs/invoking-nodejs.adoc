@@ -4,7 +4,7 @@
 // [id="invoking-nodejs"]
 // = Invoking Node.js functions
 
-Functions can be invoked with a simple HTTP request. When an incoming request is received, functions are invoked with a `context` object as the first parameter.
+Node.js functions can be invoked with a simple HTTP request. When an incoming request is received, functions are invoked with a `context` object as the first parameter.
 
 == Context objects
 
