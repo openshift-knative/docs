@@ -108,7 +108,13 @@
     <span class="nav-text">Developer guide</span>
 <ul class="nav-list">
   <li class="nav-item is-current-page" data-depth="3">
+    <button class="nav-toggle"></button>
     <a class="nav-link" href="develop-nodejs.html">Developing Node.js functions</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="context-obj-reference.html">Context object reference guide</a>
+  </li>
+</ul>
   </li>
 </ul>
   </li>
@@ -172,8 +178,19 @@
 <div id="toctitle"></div>
 <ul class="sectlevel1">
 <li><a href="#_node_js_function_template_structure">Node.js function template structure</a></li>
-<li><a href="#_invoking_a_function">Invoking a function</a></li>
-<li><a href="#_return_values">Return values</a></li>
+<li><a href="#dependencies-nodejs">Dependencies</a></li>
+<li><a href="#_invoking_a_function">Invoking a function</a>
+<ul class="sectlevel2">
+<li><a href="#_context_objects">Context objects</a></li>
+<li><a href="#_cloudevent_data">CloudEvent data</a></li>
+</ul>
+</li>
+<li><a href="#_return_values">Return values</a>
+<ul class="sectlevel2">
+<li><a href="#_returning_headers">Returning headers</a></li>
+<li><a href="#_returning_status_codes">Returning status codes</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -219,14 +236,71 @@
 </div>
 </div>
 <div class="sect1">
+<h2 id="dependencies-nodejs"><a class="anchor" href="#dependencies-nodejs"></a>Dependencies</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Developers are not restricted to the dependencies provided in the template <code>package.json</code> file. Additional dependencies can be added as they would be in any other Node.js project.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example of adding npm dependencies</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">npm install --save opossum</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When the project is built for deployment, these dependencies will be included in the created runtime container image.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="_invoking_a_function"><a class="anchor" href="#_invoking_a_function"></a>Invoking a function</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>When using the <code>kn func</code> CLI to create a function project you can generate a project that responds to <a href="https://cloudevents.io/">CloudEvents</a>, or one that responds to simple HTTP requests. CloudEvents in Knative are transported over HTTP as a POST request, so both function types will listen and respond to incoming HTTP events.</p>
 </div>
 <div class="paragraph">
-<p>Functions can be invoked with a simple HTTP request. When an incoming request is received, functions are invoked with a <code>context</code> object as the first parameter.</p>
+<p>Node.js functions can be invoked with a simple HTTP request. When an incoming request is received, functions are invoked with a <code>context</code> object as the first parameter.</p>
 </div>
+<div class="sect2">
+<h3 id="_context_objects"><a class="anchor" href="#_context_objects"></a>Context objects</h3>
+<div class="paragraph">
+<p>Functions are invoked by providing a <code>context</code> object as the first parameter.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example context object</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">function processPurchase(context, data)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This object provides access to the incoming HTTP request information, including the HTTP request method, any query strings or headers sent with the request, the HTTP version, and the request body.</p>
+</div>
+<div class="paragraph">
+<p>Incoming requests that contain a CloudEvent attach the incoming instance of the CloudEvent to the context object, so that it can be accessed using <code>context.cloudevent</code>.</p>
+</div>
+<div class="sect3">
+<h4 id="_context_object_methods"><a class="anchor" href="#_context_object_methods"></a>Context object methods</h4>
+<div class="paragraph">
+<p>The <code>context</code> object has a single method, <code>cloudEventResponse()</code> that accepts a data value and returns a CloudEvent.</p>
+</div>
+<div class="paragraph">
+<p>In a Knative system, if a function deployed as a service is invoked by an event broker sending a CloudEvent, the broker will examine the response. If the response is a CloudEvent, this event will then be handled by the broker.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">// Expects to receive a CloudEvent with customer data
+function processCustomer(context, customer) {
+  // process the customer
+  const processed = processCustomer(customer);
+  return context.cloudEventResponse(customer);
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_cloudevent_data"><a class="anchor" href="#_cloudevent_data"></a>CloudEvent data</h3>
 <div class="paragraph">
 <p>If the incoming request is a CloudEvent, any data associated with the CloudEvent is extracted from the event and provided as a second parameter. For example, if a CloudEvent is received which contains a JSON string similar to the following in its data property:</p>
 </div>
@@ -252,6 +326,7 @@
 </div>
 </div>
 </div>
+</div>
 <div class="sect1">
 <h2 id="_return_values"><a class="anchor" href="#_return_values"></a>Return values</h2>
 <div class="sectionbody">
@@ -271,6 +346,55 @@
     type: 'customer.processed'
   })
 }</code></pre>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_returning_headers"><a class="anchor" href="#_returning_headers"></a>Returning headers</h3>
+<div class="paragraph">
+<p>You can set a response header by adding a <code>headers</code> property to the <code>return</code> object. These headers will be extracted and sent with the response to the caller.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example response header</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">function processCustomer(context, customer) {
+  // process customer and return custom headers
+  // the response will be '204 No content'
+  return { headers: { customerid: customer.id } };
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_returning_status_codes"><a class="anchor" href="#_returning_status_codes"></a>Returning status codes</h3>
+<div class="paragraph">
+<p>You can set a status code that is returned to the caller by adding a <code>statusCode</code> property to the <code>return</code> object:</p>
+</div>
+<div class="listingblock">
+<div class="title">Example status code</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">function processCustomer(context, customer) {
+  // process customer
+  if (customer.restricted) {
+    return { statusCode: 451 }
+  }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Status codes can also be set for errors that are created and thrown by the function:</p>
+</div>
+<div class="listingblock">
+<div class="title">Example error status code</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">function processCustomer(context, customer) {
+  // process customer
+  if (customer.restricted) {
+    const err = new Error(‘Unavailable for legal reasons’);
+    err.statusCode = 451;
+    throw err;
+  }
+}</code></pre>
+</div>
 </div>
 </div>
 </div>

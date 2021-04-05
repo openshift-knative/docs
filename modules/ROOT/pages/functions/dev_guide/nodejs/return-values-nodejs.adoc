@@ -20,3 +20,48 @@ function processCustomer(context, customer) {
   })
 }
 ----
+
+== Returning headers
+
+You can set a response header by adding a `headers` property to the `return` object. These headers will be extracted and sent with the response to the caller.
+
+.Example response header
+[source,javascript]
+----
+function processCustomer(context, customer) {
+  // process customer and return custom headers
+  // the response will be '204 No content'
+  return { headers: { customerid: customer.id } };
+}
+----
+
+== Returning status codes
+
+You can set a status code that is returned to the caller by adding a `statusCode` property to the `return` object:
+
+.Example status code
+[source,javascript]
+----
+function processCustomer(context, customer) {
+  // process customer
+  if (customer.restricted) {
+    return { statusCode: 451 }
+  }
+}
+----
+
+// Can we add a statusCode doc that gives all the codes?
+Status codes can also be set for errors that are created and thrown by the function:
+
+.Example error status code
+[source,javascript]
+----
+function processCustomer(context, customer) {
+  // process customer
+  if (customer.restricted) {
+    const err = new Error(‘Unavailable for legal reasons’);
+    err.statusCode = 451;
+    throw err;
+  }
+}
+----
