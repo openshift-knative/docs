@@ -4,6 +4,7 @@
 toc::[]
 
 include::nodejs-template.adoc[leveloffset=+1]
+include::dependencies-nodejs.adoc[leveloffset=+1]
 include::../../../functions/user_guide/invoking-functions.adoc[leveloffset=+1]
 include::invoking-nodejs.adoc[leveloffset=+2]
 include::return-values-nodejs.adoc[leveloffset=+1]

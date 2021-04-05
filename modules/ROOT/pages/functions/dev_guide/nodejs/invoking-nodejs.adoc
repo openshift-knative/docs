@@ -18,8 +18,9 @@ function processPurchase(context, data)
 
 This object provides access to the incoming HTTP request information, including the HTTP request method, any query strings or headers sent with the request, the HTTP version, and the request body. If the incoming request is a CloudEvent, the CloudEvent itself will also be found on the context object.
 // this isn't clear what it means to me - isn't it all HTTP? Do we mean the CE data?
+// Add context object reference doc
 
-== Context object methods
+=== Context object methods
 
 The `context` object has a single method, `cloudEventResponse()` that accepts a data value and returns a CloudEvent.
 
