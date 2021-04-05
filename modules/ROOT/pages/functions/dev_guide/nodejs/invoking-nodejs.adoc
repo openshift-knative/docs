@@ -1,7 +1,7 @@
 // Module included in the following assemblies
 // /functions/user_guide/develop-nodejs.adoc
 
-[id="invoking-nodejs_{context}"]
+[id="invoking-nodejs"]
 = Invoking Node.js functions
 
 Functions can be invoked with a simple HTTP request. When an incoming request is received, functions are invoked with a `context` object as the first parameter.

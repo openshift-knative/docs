@@ -14,5 +14,6 @@
 *** xref:functions/functions-cli.adoc[CLI flags]
 ** Developer guide
 *** xref:functions/dev_guide/nodejs/develop-nodejs.adoc[Developing Node.js functions]
+**** xref:functions/dev_guide/nodejs/context-obj-reference.adoc[Context object reference guide]
 ** Administration guide
 *** xref:functions/admin_guide/tracing-functions.adoc[Tracing function requests]

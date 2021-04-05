@@ -1,7 +1,7 @@
 // Module included in the following assemblies
 // /functions/user_guide/develop-nodejs.adoc
 
-[id="dependencies-nodejs_{context}"]
+[id="dependencies-nodejs"]
 = Dependencies
 
 Developers are not restricted to the dependencies provided in the template `package.json` file. Additional dependencies can be added as they would be in any other Node.js project.

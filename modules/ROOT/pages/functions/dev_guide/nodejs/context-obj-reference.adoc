@@ -1,0 +1,120 @@
+[id="context-obj-reference"]
+= Context object reference guide
+
+The `context` object has several properties that may be accessed by the function developer.
+
+== log
+
+Provides a logging object that can be used to write output to the cluster logs. The log adheres to the Pino logging API (https://getpino.io/#/docs/api).
+
+.Example
+[source,js]
+----
+Function myFunction(context) {
+  context.log.info(“Processing customer”);
+}
+----
+
+Access the function via curl to invoke it:
+
+[source,terminal]
+----
+curl http://example.com
+----
+
+The function will log:
+
+[source,terminal]
+----
+{"level":30,"time":1604511655265,"pid":3430203,"hostname":"localhost.localdomain","reqId":1,"msg":"Processing customer"}
+----
+
+== query
+
+Returns the query string for the request, if any, as key value pairs. These attributes are also found on the context object itself.
+
+.Example
+[source,js]
+----
+Function myFunction(context) {
+  // Log the 'name' query parameter
+  context.log.info(context.query.name);
+  // Query parameters also are attached to the context
+  context.log.info(context.name);
+}
+----
+
+Access the function via curl to invoke it:
+
+[source,terminal]
+----
+curl http://example.com?name=tiger
+----
+
+The function will log:
+
+[source,terminal]
+----
+{"level":30,"time":1604511655265,"pid":3430203,"hostname":"localhost.localdomain","reqId":1,"msg":"tiger"}
+{"level":30,"time":1604511655265,"pid":3430203,"hostname":"localhost.localdomain","reqId":1,"msg":"tiger"}
+----
+
+== body
+
+Returns the request body if any. If the request body contains JSON code, this will be parsed so that the attributes are directly available.
+
+.Example
+[source,js]
+----
+Function myFunction(context) {
+  // log the incoming request body's 'hello' parameter
+  context.log.info(context.body.hello);
+}
+----
+
+Access the function via curl to invoke it:
+
+[source,terminal]
+----
+curl -X POST -d '{"hello": "world"}'  -H'Content-type: application/json' http://example.com
+----
+
+The function will log:
+
+[source,terminal]
+----
+{"level":30,"time":1604511655265,"pid":3430203,"hostname":"localhost.localdomain","reqId":1,"msg":"world"}
+----
+
+== headers
+
+Returns the HTTP request headers as an object.
+
+.Example
+[source,js]
+----
+Function myFunction(context) {
+  context.log.info(context.headers[custom-header]);
+}
+----
+
+Access the function via curl to invoke it:
+
+[source,terminal]
+----
+curl -H'x-custom-header: some-value’' http://example.com
+----
+
+The function will log:
+
+[source,terminal]
+----
+{"level":30,"time":1604511655265,"pid":3430203,"hostname":"localhost.localdomain","reqId":1,"msg":"some-value"}
+----
+
+== HTTP requests
+
+method:: Returns the HTTP request method as a string.
+httpVersion:: Returns the HTTP version as a string.
+httpVersionMajor:: Returns the HTTP major version number as a string.
+httpVersionMinor:: Returns the HTTP minor version number as a string.
