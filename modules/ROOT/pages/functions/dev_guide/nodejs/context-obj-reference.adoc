@@ -94,7 +94,7 @@ Returns the HTTP request headers as an object.
 [source,js]
 ----
 Function myFunction(context) {
-  context.log.info(context.headers[custom-header]);
+  context.log.info(context.headers["custom-header"]);
 }
 ----
 

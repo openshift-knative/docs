@@ -37,7 +37,7 @@ function processCustomer(context, customer) {
 
 == Returning status codes
 
-You can set a status code that is returned to the caller by adding a `statusCode` property to the `return` object.
+You can set a status code that is returned to the caller by adding a `statusCode` property to the `return` object:
 
 .Example status code
 [source,javascript]
@@ -51,7 +51,7 @@ function processCustomer(context, customer) {
 ----
 
 // Can we add a statusCode doc that gives all the codes?
-Status codes can also be set for errors that are defined in the function.
+Status codes can also be set for errors that are created and thrown by the function:
 
 .Example error status code
 [source,javascript]
