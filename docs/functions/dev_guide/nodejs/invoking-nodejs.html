@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Untitled :: Red Hat OpenShift Serverless previews</title>
+    <title>Invoking Node.js functions :: Red Hat OpenShift Serverless previews</title>
     <link rel="canonical" href="https://openshift-knative.github.io/docs/docs/functions/dev_guide/nodejs/invoking-nodejs.html">
     <meta name="generator" content="Antora 2.3.4">
     <link rel="stylesheet" href="../../../../_/css/site.css">
@@ -108,7 +108,13 @@
     <span class="nav-text">Developer guide</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
     <a class="nav-link" href="develop-nodejs.html">Developing Node.js functions</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="context-obj-reference.html">Context object reference guide</a>
+  </li>
+</ul>
   </li>
 </ul>
   </li>
@@ -152,14 +158,74 @@
   <button class="navigation-toggle"></button>
   <a href="../../../index.html" class="home-link"></a>
 <nav class="crumbs" aria-label="breadcrumbs">
+  <ul>
+    <li class="crumb"><a href="../../../index.html">Documentation</a></li>
+    <li class="crumb"><a href="invoking-nodejs.html">Invoking Node.js functions</a></li>
+  </ul>
 </nav>
 </div>
     <div class="main-view-and-toc">
         <main class="main">
           <article class="doc">
+<h1>Invoking Node.js functions</h1>
+<div id="preamble">
+<div class="sectionbody">
 <div class="paragraph">
 <p>Functions can be invoked with a simple HTTP request. When an incoming request is received, functions are invoked with a <code>context</code> object as the first parameter.</p>
 </div>
+</div>
+<div id="toc" class="toc">
+<div id="toctitle"></div>
+<ul class="sectlevel1">
+<li><a href="#_context_objects">Context objects</a>
+<ul class="sectlevel2">
+<li><a href="#_context_object_methods">Context object methods</a></li>
+</ul>
+</li>
+<li><a href="#_second_parameter">Second parameter</a></li>
+</ul>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_context_objects"><a class="anchor" href="#_context_objects"></a>Context objects</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Functions are invoked by calling a <code>context</code> object as the first parameter.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example context object</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">function processPurchase(context, data)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This object provides access to the incoming HTTP request information, including the HTTP request method, any query strings or headers sent with the request, the HTTP version, and the request body. If the incoming request is a CloudEvent, the CloudEvent itself will also be found on the context object.</p>
+</div>
+<div class="sect2">
+<h3 id="_context_object_methods"><a class="anchor" href="#_context_object_methods"></a>Context object methods</h3>
+<div class="paragraph">
+<p>The <code>context</code> object has a single method, <code>cloudEventResponse()</code> that accepts a data value and returns a CloudEvent.</p>
+</div>
+<div class="paragraph">
+<p>In a Knative system, if a function deployed as a service is invoked by an event broker sending a CloudEvent, the broker will examine the response. If the response is a CloudEvent, this event will then be handled by the broker.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">// Expects to receive a CloudEvent with customer data
+function processCustomer(context, customer) {
+  // process the customer
+  const processed = processCustomer(customer);
+  return context.cloudEventResponse(customer);
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_second_parameter"><a class="anchor" href="#_second_parameter"></a>Second parameter</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>If the incoming request is a CloudEvent, any data associated with the CloudEvent is extracted from the event and provided as a second parameter. For example, if a CloudEvent is received which contains a JSON string similar to the following in its data property:</p>
 </div>
@@ -182,6 +248,8 @@
 </div>
 <div class="paragraph">
 <p>The <code>data</code> parameter in this example is a JavaScript object that contains the <code>customerId</code> and <code>productId</code> properties.</p>
+</div>
+</div>
 </div>
 </article>
         </main>
