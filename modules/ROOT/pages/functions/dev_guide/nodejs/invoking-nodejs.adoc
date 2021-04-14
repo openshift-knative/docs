@@ -1,5 +1,5 @@
 // Module included in the following assemblies
-// /functions/user_guide/develop-nodejs.adoc
+// /functions/dev_guide/develop-nodejs.adoc
 
 // [id="invoking-nodejs"]
 // = Invoking Node.js functions

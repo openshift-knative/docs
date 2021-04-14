@@ -13,7 +13,10 @@
 *** xref:functions/user_guide/delete-function-kn.adoc[Deleting a function]
 *** xref:functions/functions-cli.adoc[CLI flags]
 ** Developer guide
+// Nodejs
 *** xref:functions/dev_guide/nodejs/develop-nodejs.adoc[Developing Node.js functions]
 **** xref:functions/dev_guide/nodejs/context-obj-reference.adoc[Context object reference guide]
+// Golang
+*** xref:functions/dev_guide/go/develop-go.adoc[Developing Go functions]
 ** Administration guide
 *** xref:functions/admin_guide/tracing-functions.adoc[Tracing function requests]
