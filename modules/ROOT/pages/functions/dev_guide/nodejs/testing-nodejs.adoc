@@ -1,0 +1,27 @@
+// Module included in the following assemblies
+//
+// /functions/dev_guide/develop-nodejs.adoc
+
+// [id="testing-nodejs_{context}"]
+= Testing a Node.js function locally
+
+Node.js functions can be tested locally on your computer. In the default project that is created when you create a function using `kn func create`, there is a test folder which contains some simple unit and integration tests.
+
+. To run these tests locally, you must install the required dependencies:
++
+[source, terminal]
+----
+$ npm install
+----
+
+. Once you have installed the dependencies, run the tests:
++
+[source, terminal]
+----
+$ npm test
+----
+
+[NOTE]
+====
+The default test framework for Node.js functions is tape. If you prefer to use another framework, you can remove the tape dependency from the `package.json` file and install your preferred testing framework.
+====

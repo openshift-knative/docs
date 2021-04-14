@@ -191,6 +191,7 @@
 <li><a href="#_returning_status_codes">Returning status codes</a></li>
 </ul>
 </li>
+<li><a href="#_testing_a_node_js_function_locally">Testing a Node.js function locally</a></li>
 </ul>
 </div>
 </div>
@@ -396,6 +397,48 @@ function processCustomer(context, customer) {
 }</code></pre>
 </div>
 </div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_testing_a_node_js_function_locally"><a class="anchor" href="#_testing_a_node_js_function_locally"></a>Testing a Node.js function locally</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Node.js functions can be tested locally on your computer. In the default project that is created when you create a function using <code>kn func create</code>, there is a test folder which contains some simple unit and integration tests.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>To run these tests locally, you must install the required dependencies:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ npm install</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Once you have installed the dependencies, run the tests:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ npm test</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The default test framework for Node.js functions is tape. If you prefer to use another framework, you can remove the tape dependency from the <code>package.json</code> file and install your preferred testing framework.</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
