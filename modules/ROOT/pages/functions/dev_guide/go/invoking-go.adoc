@@ -8,7 +8,7 @@
 
 When an incoming HTTP request is received, your function will be invoked with a standard Golang https://golang.org/pkg/context/[Context] as the first parameter, followed by two more parameters:
 
-* Golang https://golang.org/pkg/net/http/#ResponseWriter[`http.ResponseWriter`]
+* https://golang.org/pkg/net/http/#ResponseWriter[`http.ResponseWriter`]
 * https://golang.org/pkg/net/http/#Request[`http.Request`]
 
 You can use standard Golang techniques to access the request, and set a proper HTTP response of your function.
