@@ -1,0 +1,11 @@
+[id="develop-go"]
+= Developing Golang functions
+
+toc::[]
+
+include::go-template.adoc[leveloffset=+1]
+include::dependencies-go.adoc[leveloffset=+1]
+include::../../../functions/user_guide/invoking-functions.adoc[leveloffset=+1]
+include::invoking-go.adoc[leveloffset=+1]
+include::return-values-go.adoc[leveloffset=+1]
+include::testing-go.adoc[leveloffset=+1]

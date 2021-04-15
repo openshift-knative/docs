@@ -1,0 +1,94 @@
+// Module included in the following assemblies
+// /functions/dev_guide/develop-go.adoc
+
+// [id="invoking-go"]
+// = Invoking Golang functions
+
+== Function triggered by HTTP request
+
+When an incoming HTTP request is received, your function will be invoked with a standard Golang https://golang.org/pkg/context/[Context] as the first parameter, followed by two more parameters:
+
+* Golang https://golang.org/pkg/net/http/#ResponseWriter[`http.ResponseWriter`]
+* https://golang.org/pkg/net/http/#Request[`http.Request`]
+
+You can use standard Golang techniques to access the request, and set a proper HTTP response of your function.
+
+.Example HTTP response
+[source,go]
+----
+func Handle(ctx context.Context, res http.ResponseWriter, req *http.Request) {
+  // Read body
+  body, err := ioutil.ReadAll(req.Body)
+  defer req.Body.Close()
+  if err != nil {
+	http.Error(res, err.Error(), 500)
+	return
+  }
+  // Process body and function logic
+  // ...
+}
+----
+
+== Function triggered by CloudEvent
+
+When an incoming CloudEvent is received, the event is invoked by the https://cloudevents.github.io/sdk-go/[CloudEvents Golang SDK] and the `Event` type as a parameter.
+
+You can leverage the Golang https://golang.org/pkg/context/[Context] as an optional parameter in the function contract, as shown in the list of supported function signatures:
+
+.Supported function signatures
+[source,go]
+----
+Handle()
+Handle() error
+Handle(context.Context)
+Handle(context.Context) error
+Handle(cloudevents.Event)
+Handle(cloudevents.Event) error
+Handle(context.Context, cloudevents.Event)
+Handle(context.Context, cloudevents.Event) error
+Handle(cloudevents.Event) *cloudevents.Event
+Handle(cloudevents.Event) (*cloudevents.Event, error)
+Handle(context.Context, cloudevents.Event) *cloudevents.Event
+Handle(context.Context, cloudevents.Event) (*cloudevents.Event, error)
+----
+
+.CloudEvent example
+
+. A CloudEvent is received which contains a JSON string in its data property:
++
+[source,json]
+----
+{
+  "customerId": "0123456",
+  "productId": "6543210"
+}
+----
+
+. To access this data, you must define a structure which maps properties in the CloudEvent data, and retrieves the data from the incoming event. This example uses the `Purchase` structure:
++
+[source,go]
+----
+type Purchase struct {
+  CustomerId string `json:"customerId"`
+  ProductId  string `json:"productId"`
+}
+func Handle(ctx context.Context, event cloudevents.Event) err error {
+
+  purchase := &Purchase{}
+  if err = cloudevents.DataAs(purchase); err != nil {
+	fmt.Fprintf(os.Stderr, "failed to parse incoming CloudEvent %s\n", err)
+	return
+  }
+  // ...
+}
+----
+
+. Optional: Alternatively, you can use the Golang `encoding/json` package to access the CloudEvent directly as JSON in the form of a bytes array:
++
+[source,go]
+----
+func Handle(ctx context.Context, event cloudevents.Event) {
+  bytes, err := json.Marshal(event)
+  // ...
+}
+----
