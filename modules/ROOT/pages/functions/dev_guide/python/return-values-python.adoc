@@ -16,7 +16,7 @@ def main(context: Context):
     return body, 200, headers
 ----
 
-Functions can set both headers and response codes as secondary and tertiary response values from function invocation.
+Functions can set both response codes and headers as secondary and tertiary response values from function invocation.
 
 == Returning CloudEvents
 
