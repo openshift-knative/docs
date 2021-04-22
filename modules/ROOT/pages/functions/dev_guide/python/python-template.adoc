@@ -14,7 +14,7 @@ fn
 ├── func.py <1>
 ├── func.yaml <2>
 ├── requirements.txt <3>
-└── test_func.py
+└── test_func.py <4>
 ----
 <1> Python functions have very few restrictions. The only real requirement is that your project contain a `func.py` file which contains a `main()` function.
 <2> The `func.yaml` configuration file is used to determine the image name and registry.
