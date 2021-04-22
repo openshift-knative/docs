@@ -3,14 +3,14 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Describing a function :: Red Hat OpenShift Serverless previews</title>
-    <link rel="canonical" href="https://openshift-knative.github.io/docs/docs/functions/user_guide/describe-function-kn.html">
+    <title>Untitled :: Red Hat OpenShift Serverless previews</title>
+    <link rel="canonical" href="https://openshift-knative.github.io/docs/docs/functions/dev_guide/python/invoking-python.html">
     <meta name="generator" content="Antora 2.3.4">
-    <link rel="stylesheet" href="../../../_/css/site.css">
-<link rel="stylesheet" href="../../../_/css/extra.css">
-<link rel="stylesheet" href="../../../_/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../../../../_/css/site.css">
+<link rel="stylesheet" href="../../../../_/css/extra.css">
+<link rel="stylesheet" href="../../../../_/font-awesome-4.7.0/css/font-awesome.min.css">
 <!--
-<link rel="icon" href="../../../favicon.ico" type="image/x-icon">
+<link rel="icon" href="../../../../favicon.ico" type="image/x-icon">
 -->
   </head>
   <body class="article">
@@ -23,7 +23,7 @@
           <span></span>
           <span></span>
         </button>
-        <img src="../../../_/img/serverless-icon.svg" class="navbar-logo" alt="OpenShift Serverless icon">
+        <img src="../../../../_/img/serverless-icon.svg" class="navbar-logo" alt="OpenShift Serverless icon">
         <a href="">OpenShift Serverless Previews</a>
       </div>
     </div>
@@ -50,7 +50,7 @@
     <div class="panels">
 <div class="navigation-menu is-active" data-panel="menu">
   <nav class="nav-menu">
-    <h3 class="title"><a href="../../index.html">Documentation</a></h3>
+    <h3 class="title"><a href="../../../index.html">Documentation</a></h3>
 <ul class="nav-list">
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
@@ -59,17 +59,17 @@
     <span class="nav-text">Functions</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../about-functions.html">About Functions</a>
+    <a class="nav-link" href="../../about-functions.html">About Functions</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../quickstart-functions.html">Quick start</a>
+    <a class="nav-link" href="../../quickstart-functions.html">Quick start</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-toggle"></button>
     <span class="nav-text">Concepts</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../concepts/event-workflows.html">Event workflows</a>
+    <a class="nav-link" href="../../concepts/event-workflows.html">Event workflows</a>
   </li>
 </ul>
   </li>
@@ -78,28 +78,28 @@
     <span class="nav-text">CLI reference guide</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="kn-func-list-all-commands.html">Listing available kn func commands</a>
+    <a class="nav-link" href="../../user_guide/kn-func-list-all-commands.html">Listing available kn func commands</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="create-function-kn.html">Creating functions</a>
+    <a class="nav-link" href="../../user_guide/create-function-kn.html">Creating functions</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="build-function-kn.html">Building a function</a>
+    <a class="nav-link" href="../../user_guide/build-function-kn.html">Building a function</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="deploy-function-kn.html">Deploying functions</a>
+    <a class="nav-link" href="../../user_guide/deploy-function-kn.html">Deploying functions</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="functions-list-kn.html">Listing existing functions</a>
-  </li>
-  <li class="nav-item is-current-page" data-depth="3">
-    <a class="nav-link" href="describe-function-kn.html">Describing a function</a>
+    <a class="nav-link" href="../../user_guide/functions-list-kn.html">Listing existing functions</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="delete-function-kn.html">Deleting a function</a>
+    <a class="nav-link" href="../../user_guide/describe-function-kn.html">Describing a function</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../functions-cli.html">CLI flags</a>
+    <a class="nav-link" href="../../user_guide/delete-function-kn.html">Deleting a function</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../functions-cli.html">CLI flags</a>
   </li>
 </ul>
   </li>
@@ -109,18 +109,18 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="../dev_guide/nodejs/develop-nodejs.html">Developing Node.js functions</a>
+    <a class="nav-link" href="../nodejs/develop-nodejs.html">Developing Node.js functions</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../dev_guide/nodejs/context-obj-reference.html">Context object reference guide</a>
+    <a class="nav-link" href="../nodejs/context-obj-reference.html">Context object reference guide</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../dev_guide/go/develop-go.html">Developing Go functions</a>
+    <a class="nav-link" href="../go/develop-go.html">Developing Go functions</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../dev_guide/python/develop-python.html">Developing Python functions</a>
+    <a class="nav-link" href="develop-python.html">Developing Python functions</a>
   </li>
 </ul>
   </li>
@@ -129,7 +129,7 @@
     <span class="nav-text">Administration guide</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../admin_guide/tracing-functions.html">Tracing function requests</a>
+    <a class="nav-link" href="../../admin_guide/tracing-functions.html">Tracing function requests</a>
   </li>
 </ul>
   </li>
@@ -150,7 +150,7 @@
       <span class="title">Documentation</span>
       <ul class="versions">
         <li class="version is-current is-latest">
-          <a href="../../index.html">master</a>
+          <a href="../../../index.html">master</a>
         </li>
       </ul>
     </li>
@@ -162,56 +162,49 @@
   <div class="main-view-and-toolbar">
     <div class="toolbar" role="navigation">
   <button class="navigation-toggle"></button>
-  <a href="../../index.html" class="home-link"></a>
+  <a href="../../../index.html" class="home-link"></a>
 <nav class="crumbs" aria-label="breadcrumbs">
-  <ul>
-    <li class="crumb"><a href="../../index.html">Documentation</a></li>
-    <li class="crumb">Functions</li>
-    <li class="crumb">CLI reference guide</li>
-    <li class="crumb"><a href="describe-function-kn.html">Describing a function</a></li>
-  </ul>
 </nav>
 </div>
     <div class="main-view-and-toc">
         <main class="main">
           <article class="doc">
-<h1>Describing a function</h1>
 <div class="paragraph">
-<p>The <code>kn func describe</code> command prints information for a deployed function, such as the function name, image, namespace, information about the Knative service, route information, and event subscriptions.</p>
+<p>Python functions can be invoked with a simple HTTP request. When an incoming request is received, functions are invoked with a <code>context</code> object as the first parameter.</p>
+</div>
+<div class="sect1">
+<h2 id="_context_objects"><a class="anchor" href="#_context_objects"></a>Context objects</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Functions are invoked by providing a <code>context</code> object as the first parameter. This object is a Python class with two attributes.</p>
 </div>
 <div class="ulist">
-<div class="title">Procedure</div>
 <ul>
 <li>
-<p>Describe a function:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-termnal hljs" data-lang="termnal">$ kn func describe [-f &lt;format&gt; -n &lt;namespace&gt; -p &lt;path&gt;]</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Example command</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ kn func describe function/fn.example.io</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Example output</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">Function name:
-  fn.example.io
-Function is built in image:
-  docker.io/user/fn.example.io:latest
-Function is deployed as Knative Service:
-  fn-example-io
-Function is deployed in namespace:
-  default
-Routes:
-  http://fn-example-io-default.apps.ci-ln-g9f36hb-d5d6b.origin-ci-int-aws.dev.rhcloud.com</code></pre>
-</div>
-</div>
+<p>The <code>request</code> attribute will always be present, and contains the Flask <code>request</code> object.</p>
+</li>
+<li>
+<p>The second attribute, <code>cloud_event</code>, will be populated if the incoming request is a <code>CloudEvent</code>.</p>
 </li>
 </ul>
+</div>
+<div class="paragraph">
+<p>Developers may access any <code>CloudEvent</code> data from the context object.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example context object</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">def main(context: Context):
+    """
+    The context parameter contains the Flask request object and any
+    CloudEvent received with the request.
+    """
+    print(f"Method: {context.request.method}")
+    print(f"Event data {context.cloud_event.data})
+    # ... business logic here</code></pre>
+</div>
+</div>
+</div>
 </div>
 </article>
         </main>
@@ -220,8 +213,8 @@ Routes:
 </div><footer class="footer">
   <p>Adapted from Antora default UI, (c) 2019</p>
 </footer>
-<script src="../../../_/js/site.js"></script>
-<script src="../../../_/js/vendor/highlight.js"></script>
+<script src="../../../../_/js/site.js"></script>
+<script src="../../../../_/js/vendor/highlight.js"></script>
 <script>hljs.initHighlighting()</script>
   </body>
 </html>

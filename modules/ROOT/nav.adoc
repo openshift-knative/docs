@@ -18,5 +18,7 @@
 **** xref:functions/dev_guide/nodejs/context-obj-reference.adoc[Context object reference guide]
 // Golang
 *** xref:functions/dev_guide/go/develop-go.adoc[Developing Go functions]
+// Python
+*** xref:functions/dev_guide/python/develop-python.adoc[Developing Python functions]
 ** Administration guide
 *** xref:functions/admin_guide/tracing-functions.adoc[Tracing function requests]

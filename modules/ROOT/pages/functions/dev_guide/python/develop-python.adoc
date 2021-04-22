@@ -1,0 +1,11 @@
+[id="develop-python"]
+= Developing Python functions
+
+toc::[]
+
+include::python-template.adoc[leveloffset=+1]
+include::dependencies-python.adoc[leveloffset=+1]
+include::../../../functions/user_guide/invoking-functions.adoc[leveloffset=+1]
+include::invoking-python.adoc[leveloffset=+1]
+include::return-values-python.adoc[leveloffset=+1]
+include::testing-python.adoc[leveloffset=+1]

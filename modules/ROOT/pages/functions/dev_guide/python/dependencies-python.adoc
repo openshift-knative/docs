@@ -1,0 +1,8 @@
+// Module included in the following assemblies
+//
+// /functions/dev_guide/develop-python.adoc
+
+[id="dependencies-python"]
+= Dependencies
+
+Developers are not restricted to the dependencies provided in the template `requirements.txt` file. Additional dependencies can be added as they would be in any other Python project. When the project is built for deployment, these dependencies will be included in the created runtime container image.

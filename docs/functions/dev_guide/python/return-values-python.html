@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Untitled :: Red Hat OpenShift Serverless previews</title>
-    <link rel="canonical" href="https://openshift-knative.github.io/docs/docs/functions/dev_guide/go/invoking-go.html">
+    <title>Return values :: Red Hat OpenShift Serverless previews</title>
+    <link rel="canonical" href="https://openshift-knative.github.io/docs/docs/functions/dev_guide/python/return-values-python.html">
     <meta name="generator" content="Antora 2.3.4">
     <link rel="stylesheet" href="../../../../_/css/site.css">
 <link rel="stylesheet" href="../../../../_/css/extra.css">
@@ -117,10 +117,10 @@
 </ul>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="develop-go.html">Developing Go functions</a>
+    <a class="nav-link" href="../go/develop-go.html">Developing Go functions</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../python/develop-python.html">Developing Python functions</a>
+    <a class="nav-link" href="develop-python.html">Developing Python functions</a>
   </li>
 </ul>
   </li>
@@ -164,120 +164,76 @@
   <button class="navigation-toggle"></button>
   <a href="../../../index.html" class="home-link"></a>
 <nav class="crumbs" aria-label="breadcrumbs">
+  <ul>
+    <li class="crumb"><a href="../../../index.html">Documentation</a></li>
+    <li class="crumb"><a href="return-values-python.html">Return values</a></li>
+  </ul>
 </nav>
 </div>
     <div class="main-view-and-toc">
         <main class="main">
           <article class="doc">
-<div class="sect1">
-<h2 id="_function_triggered_by_http_request"><a class="anchor" href="#_function_triggered_by_http_request"></a>Function triggered by HTTP request</h2>
+<h1>Return values</h1>
+<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>When an incoming HTTP request is received, your function will be invoked with a standard Golang <a href="https://golang.org/pkg/context/">Context</a> as the first parameter, followed by two more parameters:</p>
+<p>Functions may return any value supported by Flask because the invocation framework proxies these values directly to the Flask server.</p>
 </div>
+<div class="listingblock">
+<div class="title">Example</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">def main(context: Context):
+    data = { "message": "Howdy!" }
+    headers = { "content-type": "application/json" }
+    return body, 200, headers</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Functions can set both headers and response codes as secondary and tertiary response values from function invocation.</p>
+</div>
+</div>
+<div id="toc" class="toc">
+<div id="toctitle"></div>
+<ul class="sectlevel1">
+<li><a href="#_returning_cloudevents">Returning CloudEvents</a></li>
+<li><a href="#_additional_resources">Additional resources</a></li>
+</ul>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_returning_cloudevents"><a class="anchor" href="#_returning_cloudevents"></a>Returning CloudEvents</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Developers can use the <code>@event</code> decorator to tell the invoker that the function return value must be converted to a <code>CloudEvent</code> before sending the response.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">@event("event_source"="/my/function", "event_type"="my.type")
+def main(context):
+    # business logic here
+    data = do_something()
+    # more data processing
+    return data</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This example sends a <code>CloudEvent</code> as the response value, with a type of <code>"my.type"</code>, a source of <code>"/my/function"</code>, and the data property set to <code>data</code>. The <code>event_source</code> and <code>event_type</code> decorator attributes are both optional.</p>
+</div>
+<div class="paragraph">
+<p>If not specified, the CloudEvent <code>event_source</code> attribute is set to <code>"/parliament/function"</code>, and the <code>event_type</code> attribute is set to <code>"parliament.response"</code>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_additional_resources"><a class="anchor" href="#_additional_resources"></a>Additional resources</h2>
+<div class="sectionbody">
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://golang.org/pkg/net/http/#ResponseWriter"><code>http.ResponseWriter</code></a></p>
-</li>
-<li>
-<p><a href="https://golang.org/pkg/net/http/#Request"><code>http.Request</code></a></p>
+<p>See the <a href="https://flask.palletsprojects.com/en/1.1.x/quickstart/#about-responses">Flask</a> documentation.</p>
 </li>
 </ul>
-</div>
-<div class="paragraph">
-<p>You can use standard Golang techniques to access the request, and set a proper HTTP response of your function.</p>
-</div>
-<div class="listingblock">
-<div class="title">Example HTTP response</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-go hljs" data-lang="go">func Handle(ctx context.Context, res http.ResponseWriter, req *http.Request) {
-  // Read body
-  body, err := ioutil.ReadAll(req.Body)
-  defer req.Body.Close()
-  if err != nil {
-	http.Error(res, err.Error(), 500)
-	return
-  }
-  // Process body and function logic
-  // ...
-}</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_function_triggered_by_cloudevent"><a class="anchor" href="#_function_triggered_by_cloudevent"></a>Function triggered by CloudEvent</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>When an incoming CloudEvent is received, the event is invoked by the <a href="https://cloudevents.github.io/sdk-go/">CloudEvents Golang SDK</a> and the <code>Event</code> type as a parameter.</p>
-</div>
-<div class="paragraph">
-<p>You can leverage the Golang <a href="https://golang.org/pkg/context/">Context</a> as an optional parameter in the function contract, as shown in the list of supported function signatures:</p>
-</div>
-<div class="listingblock">
-<div class="title">Supported function signatures</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-go hljs" data-lang="go">Handle()
-Handle() error
-Handle(context.Context)
-Handle(context.Context) error
-Handle(cloudevents.Event)
-Handle(cloudevents.Event) error
-Handle(context.Context, cloudevents.Event)
-Handle(context.Context, cloudevents.Event) error
-Handle(cloudevents.Event) *cloudevents.Event
-Handle(cloudevents.Event) (*cloudevents.Event, error)
-Handle(context.Context, cloudevents.Event) *cloudevents.Event
-Handle(context.Context, cloudevents.Event) (*cloudevents.Event, error)</code></pre>
-</div>
-</div>
-<div class="olist arabic">
-<div class="title">CloudEvent example</div>
-<ol class="arabic">
-<li>
-<p>A CloudEvent is received which contains a JSON string in its data property:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
-  "customerId": "0123456",
-  "productId": "6543210"
-}</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>To access this data, you must define a structure which maps properties in the CloudEvent data, and retrieves the data from the incoming event. This example uses the <code>Purchase</code> structure:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-go hljs" data-lang="go">type Purchase struct {
-  CustomerId string `json:"customerId"`
-  ProductId  string `json:"productId"`
-}
-func Handle(ctx context.Context, event cloudevents.Event) err error {
-
-  purchase := &amp;Purchase{}
-  if err = cloudevents.DataAs(purchase); err != nil {
-	fmt.Fprintf(os.Stderr, "failed to parse incoming CloudEvent %s\n", err)
-	return
-  }
-  // ...
-}</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Optional: Alternatively, you can use the Golang <code>encoding/json</code> package to access the CloudEvent directly as JSON in the form of a bytes array:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-go hljs" data-lang="go">func Handle(ctx context.Context, event cloudevents.Event) {
-  bytes, err := json.Marshal(event)
-  // ...
-}</code></pre>
-</div>
-</div>
-</li>
-</ol>
 </div>
 </div>
 </div>
