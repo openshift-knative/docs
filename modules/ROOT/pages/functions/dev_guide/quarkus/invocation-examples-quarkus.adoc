@@ -88,7 +88,7 @@ $ curl http://localhost:8080/ \
           "specversion": "1.0"}'
 ----
 
-* The `withCloudEvent` function of the `Functions` class can be invoked with `CloudEvent` similarly to the `withBeans` function.
+* The `withCloudEvent` function of the `Functions` class can be invoked with `CloudEvent` similarly to the `withBeans` function. However, unlike `withBeans`, `withCloudEvent` cannot be invoked with a plain HTTP request.
 
 * The `withBinary` function of the `Functions` class can be invoked by:
 

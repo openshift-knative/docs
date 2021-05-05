@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Testing a Python function locally :: Red Hat OpenShift Serverless previews</title>
-    <link rel="canonical" href="https://openshift-knative.github.io/docs/docs/functions/dev_guide/python/testing-python.html">
+    <title>CloudEvent attributes :: Red Hat OpenShift Serverless previews</title>
+    <link rel="canonical" href="https://openshift-knative.github.io/docs/docs/functions/dev_guide/quarkus/cloudevent-attributes-quarkus.html">
     <meta name="generator" content="Antora 2.3.4">
     <link rel="stylesheet" href="../../../../_/css/site.css">
 <link rel="stylesheet" href="../../../../_/css/extra.css">
@@ -120,10 +120,10 @@
     <a class="nav-link" href="../go/develop-go.html">Developing Go functions</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="develop-python.html">Developing Python functions</a>
+    <a class="nav-link" href="../python/develop-python.html">Developing Python functions</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../quarkus/develop-quarkus.html">Developing Quarkus functions</a>
+    <a class="nav-link" href="develop-quarkus.html">Developing Quarkus functions</a>
   </li>
 </ul>
   </li>
@@ -169,50 +169,45 @@
 <nav class="crumbs" aria-label="breadcrumbs">
   <ul>
     <li class="crumb"><a href="../../../index.html">Documentation</a></li>
-    <li class="crumb"><a href="testing-python.html">Testing a Python function locally</a></li>
+    <li class="crumb"><a href="cloudevent-attributes-quarkus.html">CloudEvent attributes</a></li>
   </ul>
 </nav>
 </div>
     <div class="main-view-and-toc">
         <main class="main">
           <article class="doc">
-<h1>Testing a Python function locally</h1>
+<h1>CloudEvent attributes</h1>
 <div class="paragraph">
-<p>Python functions can be tested locally on your computer. In the default project that is created when you create a function using <code>kn func create</code>, there is a <code>test_func.py</code> file which contains a simple unit test.</p>
+<p>In many cases, we only need to work with the <code>data</code> property of a <code>CloudEvent</code>. However, sometimes we also need to read or write the attributes of a <code>CloudEvent</code>, such as <code>type</code> or <code>subject</code>.</p>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>To run these tests locally, you must install the required dependencies:</p>
+<div class="paragraph">
+<p>For this purpose, Funqy offers the <code>CloudEvent&lt;T&gt;</code> generic interface and the <code>CloudEventBuilder</code> builder. The <code>&lt;T&gt;</code> type parameter must be one of the permitted types.</p>
+</div>
+<div class="paragraph">
+<p>In this example, <code>CloudEventBuilder</code> is used to return success or failure of processing the purchase.</p>
+</div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ pip install -r requirements.txt</code></pre>
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class Functions {
+
+    private boolean _processPurchase(Purchase purchase) {
+        // do stuff
+    }
+
+    public CloudEvent&lt;Void&gt; processPurchase(CloudEvent&lt;Purchase&gt; purchaseEvent) {
+        System.out.println("subject is: ", purchaseEvent.subject());
+
+        if (!_processPurchase(purchaseEvent.data())) {
+            return CloudEventBuilder.create()
+                    .type("purchase.error")
+                    .build();
+        }
+        return CloudEventBuilder.create()
+                .type("purchase.success")
+                .build();
+    }
+}</code></pre>
 </div>
-</div>
-</li>
-<li>
-<p>Once you have installed the dependencies, run the tests:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ python3 test_func.py</code></pre>
-</div>
-</div>
-</li>
-</ol>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>The default test framework for Python functions is <code>unittest</code>. You can use a different test framework if you prefer.</p>
-</div>
-</td>
-</tr>
-</table>
 </div>
 </article>
         </main>
