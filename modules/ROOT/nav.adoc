@@ -20,5 +20,7 @@
 *** xref:functions/dev_guide/go/develop-go.adoc[Developing Go functions]
 // Python
 *** xref:functions/dev_guide/python/develop-python.adoc[Developing Python functions]
+// Quarkus
+*** xref:functions/dev_guide/quarkus/develop-quarkus.adoc[Developing Quarkus functions]
 ** Administration guide
 *** xref:functions/admin_guide/tracing-functions.adoc[Tracing function requests]

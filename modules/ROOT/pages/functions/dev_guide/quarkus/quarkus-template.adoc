@@ -1,0 +1,38 @@
+// Module included in the following assemblies
+//
+// /functions/dev_guide/develop-quarkus.adoc
+
+// [id="quarkus-template_{context}"]
+= Quarkus function template structure
+
+When you create a Quarkus function using the `kn func` CLI, the project directory looks like a typical `maven` project, with the exception of an additional `func.yaml` configuration file. Both `http` and `event` trigger functions have the same template structure:
+
+.Template structure
+[source,terminal]
+----
+.
+├── func.yaml <1>
+├── mvnw
+├── mvnw.cmd
+├── pom.xml <2>
+├── README.md
+└── src
+    ├── main
+    │   ├── java
+    │   │   └── functions
+    │   │       ├── Function.java <3>
+    │   │       ├── Input.java
+    │   │       └── Output.java
+    │   └── resources
+    │       └── application.properties
+    └── test
+        └── java
+            └── functions <4>
+                ├── FunctionTest.java
+                └── NativeFunctionIT.java
+----
+<1> The `func.yaml` configuration file determines the image name and registry.
+<2> The Project Object Model (POM) file contains project configuration, such as its dependencies.
+<3> The project must contain a Java method annotated with `@Funq`. You can place it in the `Function.java` class.
+<4> Test cases for the function are created automatically.
+

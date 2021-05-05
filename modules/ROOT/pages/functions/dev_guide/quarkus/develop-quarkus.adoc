@@ -1,0 +1,14 @@
+[id="develop-quarkus"]
+= Developing Quarkus functions
+
+toc::[]
+
+include::quarkus-template.adoc[leveloffset=+1]
+include::dependencies-quarkus.adoc[leveloffset=+1]
+include::../../../functions/user_guide/invoking-functions.adoc[leveloffset=+1]
+include::invoking-quarkus.adoc[leveloffset=+1]
+include::return-values-quarkus.adoc[leveloffset=+1]
+include::permitted-types-quarkus.adoc[leveloffset=+1]
+include::cloudevent-attributes-quarkus.adoc[leveloffset=+1]
+include::invocation-examples-quarkus.adoc[leveloffset=+1]
+include::testing-quarkus.adoc[leveloffset=+1]
