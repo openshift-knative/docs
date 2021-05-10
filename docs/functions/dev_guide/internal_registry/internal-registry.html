@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CloudEvent attributes :: Red Hat OpenShift Serverless previews</title>
-    <link rel="canonical" href="https://openshift-knative.github.io/docs/docs/functions/dev_guide/quarkus/cloudevent-attributes-quarkus.html">
+    <title>Using an internal registry :: Red Hat OpenShift Serverless previews</title>
+    <link rel="canonical" href="https://openshift-knative.github.io/docs/docs/functions/dev_guide/internal_registry/internal-registry.html">
     <meta name="generator" content="Antora 2.3.4">
     <link rel="stylesheet" href="../../../../_/css/site.css">
 <link rel="stylesheet" href="../../../../_/css/extra.css">
@@ -123,10 +123,10 @@
     <a class="nav-link" href="../python/develop-python.html">Developing Python functions</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="develop-quarkus.html">Developing Quarkus functions</a>
+    <a class="nav-link" href="../quarkus/develop-quarkus.html">Developing Quarkus functions</a>
   </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../internal_registry/internal-registry.html">Using an internal registry</a>
+  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="internal-registry.html">Using an internal registry</a>
   </li>
 </ul>
   </li>
@@ -172,45 +172,50 @@
 <nav class="crumbs" aria-label="breadcrumbs">
   <ul>
     <li class="crumb"><a href="../../../index.html">Documentation</a></li>
-    <li class="crumb"><a href="cloudevent-attributes-quarkus.html">CloudEvent attributes</a></li>
+    <li class="crumb">Functions</li>
+    <li class="crumb">Developer guide</li>
+    <li class="crumb"><a href="internal-registry.html">Using an internal registry</a></li>
   </ul>
 </nav>
 </div>
     <div class="main-view-and-toc">
         <main class="main">
           <article class="doc">
-<h1>CloudEvent attributes</h1>
+<h1>Using an internal registry</h1>
+<!-- toc disabled -->
 <div class="paragraph">
-<p>In many cases, we only need to work with the <code>data</code> property of a <code>CloudEvent</code>. However, sometimes we also need to read or write the attributes of a <code>CloudEvent</code>, such as <code>type</code> or <code>subject</code>.</p>
+<p>A common use case for building and deploying Functions is to use an external container image registry, such as Quay. However, you can instead use an OpenShift Container Platform internal registry, if it has been exposed:</p>
 </div>
-<div class="paragraph">
-<p>For this purpose, Funqy offers the <code>CloudEvent&lt;T&gt;</code> generic interface and the <code>CloudEventBuilder</code> builder. The <code>&lt;T&gt;</code> type parameter must be one of the permitted types.</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><a href="https://docs.openshift.com/container-platform/latest/registry/securing-exposing-registry.html">Expose an internal OpenShift Container Registry.</a></p>
+</li>
+<li>
+<p>Run the <code>kn func build</code> or <code>kn func deploy</code> function as you normally would, but specify the exposed internal registry for the <code>-r</code> parameter:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>$ kn func build -i my-image -r image-registry.openshift-image-registry.svc???</code></pre>
 </div>
-<div class="paragraph">
-<p>In this example, <code>CloudEventBuilder</code> is used to return success or failure of processing the purchase.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class Functions {
-
-    private boolean _processPurchase(Purchase purchase) {
-        // do stuff
-    }
-
-    public CloudEvent&lt;Void&gt; processPurchase(CloudEvent&lt;Purchase&gt; purchaseEvent) {
-        System.out.println("subject is: ", purchaseEvent.subject());
-
-        if (!_processPurchase(purchaseEvent.data())) {
-            return CloudEventBuilder.create()
-                    .type("purchase.error")
-                    .build();
-        }
-        return CloudEventBuilder.create()
-                .type("purchase.success")
-                .build();
-    }
-}</code></pre>
+<pre class="highlightjs highlight"><code>$ kn func deploy -n my-namespace -i my-image -r image-registry.openshift-image-registry.svc???</code></pre>
 </div>
+</div>
+</li>
+<li>
+<p>Optionally, to verify that the function has been deployed, list all deployed functions in the namespace:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>$ kn service list -n my-namespace</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>You can invoke the function the same way as if you used an external registry. See documentation on the individual runtimes for instructions.</p>
+</li>
+</ol>
 </div>
 </article>
         </main>
