@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Untitled :: Red Hat OpenShift Serverless previews</title>
-    <link rel="canonical" href="https://openshift-knative.github.io/docs/docs/functions/dev_guide/internal_registry/using-an-internal-registry.html">
+    <title>Using the integrated OpenShift Container Registry :: Red Hat OpenShift Serverless previews</title>
+    <link rel="canonical" href="https://openshift-knative.github.io/docs/docs/functions/dev_guide/integrated_registry/integrated-registry.html">
     <meta name="generator" content="Antora 2.3.4">
     <link rel="stylesheet" href="../../../../_/css/site.css">
 <link rel="stylesheet" href="../../../../_/css/extra.css">
@@ -125,8 +125,8 @@
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../quarkus/develop-quarkus.html">Developing Quarkus functions</a>
   </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="internal-registry.html">Using an internal registry</a>
+  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="integrated-registry.html">Using the integrated OpenShift Container Registry</a>
   </li>
 </ul>
   </li>
@@ -170,29 +170,43 @@
   <button class="navigation-toggle"></button>
   <a href="../../../index.html" class="home-link"></a>
 <nav class="crumbs" aria-label="breadcrumbs">
+  <ul>
+    <li class="crumb"><a href="../../../index.html">Documentation</a></li>
+    <li class="crumb">Functions</li>
+    <li class="crumb">Developer guide</li>
+    <li class="crumb"><a href="integrated-registry.html">Using the integrated OpenShift Container Registry</a></li>
+  </ul>
 </nav>
 </div>
     <div class="main-view-and-toc">
         <main class="main">
           <article class="doc">
+<h1>Using the integrated OpenShift Container Registry</h1>
+<!-- toc disabled -->
 <div class="paragraph">
-<p>A common use case for building and deploying Functions is to use an external container image registry, such as Quay. However, you can instead use an OpenShift Container Platform internal registry, if it has been exposed:</p>
+<p>When building and deploying functions, the resulting container image is stored in an image registry. In many cases, this will be a public registry, such as Quay. However, you can instead use the <em>integrated OpenShift Container Registry (OCR)</em>, if it has been exposed.</p>
 </div>
 <div class="olist arabic">
+<div class="title">Prerequisites</div>
 <ol class="arabic">
 <li>
-<p><a href="https://docs.openshift.com/container-platform/latest/registry/securing-exposing-registry.html">Expose an internal OpenShift Container Registry.</a></p>
+<p><a href="https://docs.openshift.com/container-platform/latest/registry/securing-exposing-registry.html">The OpenShift Container Registry has been exposed</a> by a cluster administrator.</p>
 </li>
+</ol>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
 <li>
-<p>Run the <code>kn func build</code> or <code>kn func deploy</code> function as you normally would, but specify the exposed internal registry for the <code>-r</code> parameter:</p>
+<p>Run the <code>kn func build</code> or <code>kn func deploy</code> function as you normally would, but specify the OpenShift Container Registry with the <code>-r</code> parameter:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>$ kn func build -i my-image -r image-registry.openshift-image-registry.svc???</code></pre>
+<pre class="highlightjs highlight"><code>$ kn func build -i my-image -r image-registry.openshift-image-registry.svc</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>$ kn func deploy -n my-namespace -i my-image -r image-registry.openshift-image-registry.svc???</code></pre>
+<pre class="highlightjs highlight"><code>$ kn func deploy -n my-namespace -i my-image -r image-registry.openshift-image-registry.svc</code></pre>
 </div>
 </div>
 </li>

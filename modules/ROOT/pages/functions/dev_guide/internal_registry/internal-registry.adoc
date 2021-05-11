@@ -1,6 +1,0 @@
-[id="internal-registry"]
-= Using an internal registry
-
-toc::[]
-
-include::using-an-internal-registry.adoc[leveloffset=+1]

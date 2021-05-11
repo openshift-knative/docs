@@ -22,7 +22,7 @@
 *** xref:functions/dev_guide/python/develop-python.adoc[Developing Python functions]
 // Quarkus
 *** xref:functions/dev_guide/quarkus/develop-quarkus.adoc[Developing Quarkus functions]
-// Internal registry
-*** xref:functions/dev_guide/internal_registry/internal-registry.adoc[Using an internal registry]
+// Integrated registry
+*** xref:functions/dev_guide/integrated_registry/integrated-registry.adoc[Using the integrated OpenShift Container Registry]
 ** Administration guide
 *** xref:functions/admin_guide/tracing-functions.adoc[Tracing function requests]

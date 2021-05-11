@@ -1,0 +1,6 @@
+[id="internal-registry"]
+= Using the integrated OpenShift Container Registry
+
+toc::[]
+
+include::using-the-integrated-registry.adoc[leveloffset=+1]
