@@ -12,7 +12,8 @@ Functions may also return a CloudEvent, or a `Message` object in order to push e
 .Example
 [source,javascript]
 ----
-function processCustomer(context, customer) {
+function handle(context, event) {
+  const customer = event.data;
   // process customer and return a new CloudEvent
   return new CloudEvent({
     source: 'customer.processor',
@@ -28,7 +29,8 @@ You can set a response header by adding a `headers` property to the `return` obj
 .Example response header
 [source,javascript]
 ----
-function processCustomer(context, customer) {
+function handle(context, event) {
+  const customer = event.data;
   // process customer and return custom headers
   // the response will be '204 No content'
   return { headers: { customerid: customer.id } };
@@ -42,7 +44,8 @@ You can set a status code that is returned to the caller by adding a `statusCode
 .Example status code
 [source,javascript]
 ----
-function processCustomer(context, customer) {
+function handle(context, event) {
+  const customer = event.data;
   // process customer
   if (customer.restricted) {
     return { statusCode: 451 }
@@ -56,7 +59,8 @@ Status codes can also be set for errors that are created and thrown by the funct
 .Example error status code
 [source,javascript]
 ----
-function processCustomer(context, customer) {
+function handle(context, event) {
+  const customer = event.data;
   // process customer
   if (customer.restricted) {
     const err = new Error(‘Unavailable for legal reasons’);

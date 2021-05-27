@@ -13,12 +13,12 @@ Functions are invoked by providing a `context` object as the first parameter.
 .Example context object
 [source,js]
 ----
-function processPurchase(context, data)
+function handle(context, event)
 ----
 
 This object provides access to the incoming HTTP request information, including the HTTP request method, any query strings or headers sent with the request, the HTTP version, and the request body.
 
-Incoming requests that contain a CloudEvent attach the incoming instance of the CloudEvent to the context object, so that it can be accessed using `context.cloudevent`.
+Incoming requests that contain a CloudEvent provide the incoming instance of the CloudEvent as the second parameter to the function.
 
 === Context object methods
 
@@ -30,16 +30,16 @@ In a Knative system, if a function deployed as a service is invoked by an event 
 [source,js]
 ----
 // Expects to receive a CloudEvent with customer data
-function processCustomer(context, customer) {
+function handle(context, event) {
   // process the customer
-  const processed = processCustomer(customer);
-  return context.cloudEventResponse(customer);
+  const processed = processCustomer(event.data);
+  return context.cloudEventResponse(event.data);
 }
 ----
 
 == CloudEvent data
 
-If the incoming request is a CloudEvent, any data associated with the CloudEvent is extracted from the event and provided as a second parameter. For example, if a CloudEvent is received which contains a JSON string similar to the following in its data property:
+If the incoming request is a CloudEvent, any data associated with the CloudEvent is found in the `event.data` attribute. For example, if a CloudEvent is received which contains a JSON string similar to the following in its data property:
 
 [source,json]
 ----
@@ -49,12 +49,14 @@ If the incoming request is a CloudEvent, any data associated with the CloudEvent
 }
 ----
 
-When invoked, the second parameter to the function, after the `context` object, will be a JavaScript object that has `customerId` and `productId` properties.
+When invoked, the second parameter to the function, after the `context` object, will be a CloudEvent that has `customerId` and `productId` properties in the `data`.
 
 .Example signature
 [source,javascript]
 ----
-function processPurchase(context, data)
+function handle(context, event) {
+  console.log(event.data.customerId);
+}
 ----
 
-The `data` parameter in this example is a JavaScript object that contains the `customerId` and `productId` properties.
+The `data` attrribute of the CloudEvent is a JavaScript object that contains the `customerId` and `productId` properties.
