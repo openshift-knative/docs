@@ -36,7 +36,7 @@ Returns the query string for the request, if any, as key value pairs. These attr
 .Example
 [source,js]
 ----
-Function myFunction(context) {
+function handle(context) {
   // Log the 'name' query parameter
   context.log.info(context.query.name);
   // Query parameters also are attached to the context
@@ -66,7 +66,7 @@ Returns the request body if any. If the request body contains JSON code, this wi
 .Example
 [source,js]
 ----
-Function myFunction(context) {
+function handle(context) {
   // log the incoming request body's 'hello' parameter
   context.log.info(context.body.hello);
 }
@@ -93,7 +93,7 @@ Returns the HTTP request headers as an object.
 .Example
 [source,js]
 ----
-Function myFunction(context) {
+function handle(context) {
   context.log.info(context.headers["custom-header"]);
 }
 ----
