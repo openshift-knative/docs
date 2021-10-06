@@ -16,7 +16,7 @@ https://openshift-knative.github.io/docs/.
 
 Current projects in this category include:
 
-* OpenShift Serverless Functions [Developer Preview] https://openshift-knative.github.io/docs/docs/functions/about-functions.html
+* [OpenShift Serverless Functions Developer Preview](https://docs.openshift.com/container-platform/4.8/serverless/functions/serverless-functions-about.html)
 
 
 ## Building the Site
