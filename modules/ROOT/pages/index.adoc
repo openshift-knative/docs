@@ -4,5 +4,5 @@ _OpenShift Serverless previews_ provides tutorials and information about additio
 
 Before you can complete the tasks documented on this site, you will need a working installation of OpenShift Serverless.
 
-* See the link:https://docs.openshift.com/container-platform/4.5/serverless/serverless-getting-started.html#serverless-getting-started-supported-configs[OpenShift Serverless supported configurations] documentation.
-* See the link:https://docs.openshift.com/container-platform/4.5/serverless/installing_serverless/installing-openshift-serverless.html[Installing OpenShift Serverless] documentation.
+* See link:https://access.redhat.com/articles/4912821[OpenShift Serverless supported configurations].
+* See the link:https://docs.openshift.com/container-platform/4.8/serverless/admin_guide/install-serverless-operator.html[Installing OpenShift Serverless] documentation.
