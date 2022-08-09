@@ -1,7 +1,0 @@
-// Module included in the following assemblies
-// /functions/user_guide/develop-nodejs.adoc
-
-// [id="invoking-functions_{context}"]
-= Invoking a function
-
-When using the `kn func` CLI to create a function project you can generate a project that responds to link:https://cloudevents.io/[CloudEvents], or one that responds to simple HTTP requests. CloudEvents in Knative are transported over HTTP as a POST request, so both function types will listen and respond to incoming HTTP events.

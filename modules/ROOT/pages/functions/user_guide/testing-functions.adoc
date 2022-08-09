@@ -1,8 +1,0 @@
-// Module included in the following assemblies
-//
-// nav.adoc
-
-// [id="testing-functions_{context}"]
-= Testing functions
-
-You can test to see if the function is working by using your browser to visit `http://localhost:8080`. You can also access liveness and readiness endpoints at `http://localhost:8080/health/liveness` and `http://localhost:8080/health/readiness`. These two endpoints are used by Kubernetes to determine the health of your function. If your function is working correctly, both of these endpoints will return `OK`.

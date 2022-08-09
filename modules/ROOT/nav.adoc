@@ -1,3 +1,4 @@
+* xref:index.adoc[Overview]
 * Workflows
 ** Getting Started
 *** xref:getting-started/create-your-first-workflow-service.adoc[Creating your first Serverless Workflow service]
@@ -57,32 +58,3 @@
 ** Use Cases
 *** xref:use-cases/orchestration-based-saga-pattern.adoc[Saga orchestration example in Serverless Workflow]
 // *** xref:use-cases/newsletter-subscription-example.adoc[Newsletter subscription example]
-
-* Functions
-** xref:functions/about-functions.adoc[About {short-name}]
-** xref:functions/quickstart-functions.adoc[Quick start]
-** Concepts
-*** xref:functions/concepts/event-workflows.adoc[Event workflows]
-** CLI reference guide
-*** xref:functions/user_guide/kn-func-list-all-commands.adoc[Listing available kn func commands]
-*** xref:functions/user_guide/create-function-kn.adoc[Creating functions]
-*** xref:functions/user_guide/build-function-kn.adoc[Building a function]
-*** xref:/functions/user_guide/deploy-function-kn.adoc[Deploying functions]
-*** xref:functions/user_guide/functions-list-kn.adoc[Listing existing functions]
-*** xref:functions/user_guide/describe-function-kn.adoc[Describing a function]
-*** xref:functions/user_guide/delete-function-kn.adoc[Deleting a function]
-*** xref:functions/functions-cli.adoc[CLI flags]
-** Developer guide
-// Nodejs
-*** xref:functions/dev_guide/nodejs/develop-nodejs.adoc[Developing Node.js functions]
-**** xref:functions/dev_guide/nodejs/context-obj-reference.adoc[Context object reference guide]
-// Golang
-*** xref:functions/dev_guide/go/develop-go.adoc[Developing Go functions]
-// Python
-*** xref:functions/dev_guide/python/develop-python.adoc[Developing Python functions]
-// Quarkus
-*** xref:functions/dev_guide/quarkus/develop-quarkus.adoc[Developing Quarkus functions]
-// Integrated registry
-*** xref:functions/dev_guide/integrated_registry/integrated-registry.adoc[Using the integrated OpenShift Container Registry]
-** Administration guide
-*** xref:functions/admin_guide/tracing-functions.adoc[Tracing function requests]
