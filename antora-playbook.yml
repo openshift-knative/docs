@@ -1,7 +1,7 @@
 site:
   title: Red Hat OpenShift Serverless previews
   url: https://openshift-knative.github.io/docs
-  start_page: docs::index
+  start_page: docs::index.adoc
 content:
   sources:
     - url: .
@@ -11,7 +11,11 @@ ui:
   bundle:
     url: ./ui-bundle.zip
   supplemental_files: ./supplemental_ui
+
 asciidoc:
+  extensions:
+    - asciidoctor-emoji
+    - ./lib/tabs
   attributes:
     hide-uri-scheme: ''
     product-name: 'OpenShift Serverless Functions'
