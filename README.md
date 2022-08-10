@@ -32,14 +32,6 @@ npm run install-build
 
 You will find the output in `build/site`.
 
-After reviewing the generated output, you may publish it by
-copying the output to `./docs`.
-
-```sh
-cp -R site/docs/* docs/
-```
-
-
 --------------
 ## Links
 * [Knative tutorial](https://redhat-developer-demos.github.io/knative-tutorial)
