@@ -16,7 +16,7 @@ https://openshift-knative.github.io/docs/.
 
 Current projects in this category include:
 
-* [OpenShift Serverless Functions Developer Preview](https://docs.openshift.com/container-platform/4.8/serverless/functions/serverless-functions-about.html)
+* OpenShift Serverless Logic Developer Preview
 
 
 ## Building the Site
@@ -26,8 +26,8 @@ If you want to build this site locally, you must use the site generation tool,
 
 To build the site:
 
-```
-antora antora-playbook.yml
+```shell
+npm run install-build
 ```
 
 You will find the output in `build/site`.
