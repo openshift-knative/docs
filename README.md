@@ -1,5 +1,3 @@
-#### THIS REPOSITORY HAS BEEN ARCHIVED.
-
 Please see https://docs.openshift.com/ for the latest documentation for OpenShift Serverless.
 
 #######################################################################################
