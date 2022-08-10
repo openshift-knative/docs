@@ -1,0 +1,26 @@
+{
+  "name": "openshift-knative-docs",
+  "description": "OpenShift Serverless Previews Documentation",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/openshift-knative/docs.git"
+  },
+  "scripts": {
+    "install-build": "npm i && npx antora antora-playbook.yml --stacktrace",
+    "build": "npx antora antora-playbook.yml --stacktrace"
+  },
+  "keywords": [
+    "Openshift",
+    "knative",
+    "serverless workflow"
+  ],
+  "author": "Openshift Knative",
+  "dependencies": {
+    "@antora/cli": "^3.0.1",
+    "@antora/lunr-extension": "^1.0.0-alpha.6",
+    "@antora/site-generator": "^3.0.1",
+    "asciidoctor-emoji": "^0.3.4",
+    "uglify-js": "~3.14"
+  }
+}

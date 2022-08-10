@@ -1,0 +1,7 @@
+= About OpenShift Serverless Logic
+
+_OpenShift Serverless Logic_ enables developers or architects to define declarative workflow models that orchestrate event-driven, serverless applications. Serverless Logic implements the link:https://github.com/serverlessworkflow/specification[CNCF Serverless Workflow specification], allowing developers and architects to define logical steps of execution declaratively (no code) for cloud-native services. The specification is hosted by the link:https://www.cncf.io/[Cloud Native Computing Foundation (CNCF)] and is currently a link:https://www.cncf.io/projects/serverless-workflow/[CNCF Sandbox project].
+
+OpenShift Serverless Logic is also designed to write workflows in formats (JSON or YAML) that might be better suited for developing and deploying serverless applications in cloud or container environments.
+
+For Serverless Logic implementation, link:https://kubernetes.io/docs/concepts/extend-kubernetes/operator/[Kubernetes Operator] can be used to deploy the workflow models using link:https://knative.dev/docs/[Knative]. link:https://knative.dev/docs/eventing/[Knative Eventing] plays an important role and provides the essential infrastructure for event-driven architectures.
