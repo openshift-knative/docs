@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Building Serverless Workflow Images using Quarkus CLI :: Red Hat OpenShift Serverless previews</title>
+    <title>Building workflow images using Quarkus CLI :: Red Hat OpenShift Serverless previews</title>
     <link rel="canonical" href="https://openshift-knative.github.io/docs/docs/main/cloud/build-workflow-image-with-quarkus-cli.html">
     <meta name="description" content="Build Serverless Application with Quarkus CLI">
     <meta name="keywords" content="kogito, workflow, quarkus, serverless, quarkus-cli">
@@ -59,6 +59,12 @@
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../index.html">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../about.html">About</a>
+  </li>
+  <li class="nav-item" data-depth="1">
     <button class="nav-toggle"></button>
     <span class="nav-text">Workflows</span>
 <ul class="nav-list">
@@ -67,13 +73,13 @@
     <span class="nav-text">Getting Started</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../getting-started/create-your-first-workflow-service.html">Creating your first Serverless Workflow service</a>
+    <a class="nav-link" href="../getting-started/create-your-first-workflow-service.html">Creating your first workflow service</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../getting-started/cncf-serverless-workflow-specification-support.html">CNCF Serverless Workflow specification</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../getting-started/getting-familiar-with-our-tooling.html">Getting familiar with Serverless Workflow tooling</a>
+    <a class="nav-link" href="../getting-started/getting-familiar-with-our-tooling.html">Getting familiar with OpenShift Serverless Logic tooling</a>
   </li>
 </ul>
   </li>
@@ -82,19 +88,19 @@
     <span class="nav-text">Core</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../core/understanding-jq-expressions.html">jq expressions in Serverless Workflow</a>
+    <a class="nav-link" href="../core/understanding-jq-expressions.html">jq expressions in OpenShift Serverless Logic</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../core/understanding-workflow-error-handling.html">Error handling in Serverless Workflow</a>
+    <a class="nav-link" href="../core/understanding-workflow-error-handling.html">Error handling in OpenShift Serverless Logic</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../core/working-with-parallelism.html">Parallelism in Serverless Workflow</a>
+    <a class="nav-link" href="../core/working-with-parallelism.html">Parallelism in OpenShift Serverless Logic</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../core/configuration-properties.html">Configuration properties in Serverless Workflow</a>
+    <a class="nav-link" href="../core/configuration-properties.html">Configuration properties in OpenShift Serverless Logic</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../core/custom-functions-support.html">Custom functions for your Serverless Workflow service</a>
+    <a class="nav-link" href="../core/custom-functions-support.html">Custom functions for your OpenShift Serverless Logic service</a>
   </li>
 </ul>
   </li>
@@ -124,17 +130,17 @@
 </ul>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../tooling/kn-plugin-workflow-overview.html">Serverless Workflow plug-in for Knative CLI</a>
+    <a class="nav-link" href="../tooling/kn-plugin-workflow-overview.html">OpenShift Serverless Logic plug-in for Knative CLI</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <button class="nav-toggle"></button>
     <span class="nav-text">Service Orchestration</span>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../service-orchestration/orchestration-of-openapi-based-services.html">Orchestrating the OpenAPI services</a>
   </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../service-orchestration/orchestration-of-openapi-based-services.html">Orchestrating the OpenAPI services</a>
+<ul class="nav-list">
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../service-orchestration/configuring-openapi-services-endpoints.html">Configuring the OpenAPI services endpoints</a>
   </li>
@@ -148,7 +154,7 @@
     <span class="nav-text">Eventing</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../eventing/handling-events-on-workflows.html">Event state in Serverless Workflow</a>
+    <a class="nav-link" href="../eventing/handling-events-on-workflows.html">Event state in OpenShift Serverless Logic</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../eventing/consume-producing-events-with-kafka.html">Consuming and producing events using Apache Kafka</a>
@@ -157,7 +163,10 @@
     <a class="nav-link" href="../eventing/consume-produce-events-with-knative-eventing.html">Consuming and producing events on Knative Eventing</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../eventing/working-with-callbacks.html">Callback state in Serverless Workflow</a>
+    <a class="nav-link" href="../eventing/event-correlation-with-workflows.html">Event correlation in OpenShift Serverless Logic</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../eventing/working-with-callbacks.html">Callback state in OpenShift Serverless Logic</a>
   </li>
 </ul>
   </li>
@@ -166,10 +175,10 @@
     <span class="nav-text">Security</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../security/authention-support-for-openapi-services.html">Authentication for OpenAPI services in Serverless Workflow</a>
+    <a class="nav-link" href="../security/authention-support-for-openapi-services.html">Authentication for OpenAPI services in OpenShift Serverless Logic</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../security/orchestrating-third-party-services-with-oauth2.html">Orchestration of third-party services using OAuth 2.0 authentication in Serverless Workflow</a>
+    <a class="nav-link" href="../security/orchestrating-third-party-services-with-oauth2.html">Orchestration of third-party services using OAuth 2.0 authentication in OpenShift Serverless Logic</a>
   </li>
 </ul>
   </li>
@@ -184,10 +193,10 @@
     <a class="nav-link" href="../testing-and-troubleshooting/mocking-openapi-services-with-wiremock.html">Mocking OpenAPI services using WireMock</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../testing-and-troubleshooting/basic-integration-tests-with-restassured.html">Testing your Serverless Workflow application using REST Assured</a>
+    <a class="nav-link" href="../testing-and-troubleshooting/basic-integration-tests-with-restassured.html">Testing your workflow application using REST Assured</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../testing-and-troubleshooting/integration-tests-with-postgresql.html">Serverless Workflow integration test using PostgreSQL</a>
+    <a class="nav-link" href="../testing-and-troubleshooting/integration-tests-with-postgresql.html">OpenShift Serverless Logic integration test using PostgreSQL</a>
   </li>
 </ul>
   </li>
@@ -196,7 +205,7 @@
     <span class="nav-text">Persistence</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../persistence/persistence-with-postgresql.html">Running a Serverless Workflow service using PostgreSQL</a>
+    <a class="nav-link" href="../persistence/persistence-with-postgresql.html">Running a workflow service using PostgreSQL</a>
   </li>
 </ul>
   </li>
@@ -205,10 +214,10 @@
     <span class="nav-text">Cloud</span>
 <ul class="nav-list">
   <li class="nav-item is-current-page" data-depth="3">
-    <a class="nav-link" href="build-workflow-image-with-quarkus-cli.html">Building Serverless Workflow Images using Quarkus CLI</a>
+    <a class="nav-link" href="build-workflow-image-with-quarkus-cli.html">Building workflow images using Quarkus CLI</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="deploying-on-minikube.html">Deploying your Serverless Workflow application on Minikube</a>
+    <a class="nav-link" href="deploying-on-minikube.html">Deploying your OpenShift Serverless Logic application on Minikube</a>
   </li>
 </ul>
   </li>
@@ -217,7 +226,7 @@
     <span class="nav-text">Integrations</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../integrations/serverless-dashboard-with-runtime-data.html">Displaying Serverless Workflow data in dashboards</a>
+    <a class="nav-link" href="../integrations/serverless-dashboard-with-runtime-data.html">Displaying workflow data in dashboards</a>
   </li>
 </ul>
   </li>
@@ -226,7 +235,7 @@
     <span class="nav-text">Use Cases</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../use-cases/orchestration-based-saga-pattern.html">Saga orchestration example in Serverless Workflow</a>
+    <a class="nav-link" href="../use-cases/orchestration-based-saga-pattern.html">Saga orchestration example in OpenShift Serverless Logic</a>
   </li>
 </ul>
   </li>
@@ -265,24 +274,24 @@
     <li class="crumb"><a href="../index.html">Documentation</a></li>
     <li class="crumb">Workflows</li>
     <li class="crumb">Cloud</li>
-    <li class="crumb"><a href="build-workflow-image-with-quarkus-cli.html">Building Serverless Workflow Images using Quarkus CLI</a></li>
+    <li class="crumb"><a href="build-workflow-image-with-quarkus-cli.html">Building workflow images using Quarkus CLI</a></li>
   </ul>
 </nav>
 </div>
     <div class="main-view-and-toc">
         <main class="main">
           <article class="doc">
-<h1>Building Serverless Workflow Images using Quarkus CLI</h1>
+<h1>Building workflow images using Quarkus CLI</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>This document describes how to build Serverless Application Container Image using the <a href="https://quarkus.io/guides/cli-tooling">Quarkus CLI</a>.</p>
+<p>This document describes how to build a Serverless Application Container image using the <a href="https://quarkus.io/guides/cli-tooling">Quarkus CLI</a>.</p>
 </div>
 <div class="ulist">
 <div class="title">Prerequisites</div>
 <ul>
 <li>
-<p>A Serverless Workflow project is created.</p>
+<p>A workflow project is created.</p>
 <div class="paragraph">
 <p>For more information about creating a workflow project, see <a href="../getting-started/create-your-first-workflow-service.html" class="xref page">Creating your first Serverless Workflow service</a>.</p>
 </div>
@@ -299,19 +308,19 @@
 <p>Quarkus provides a few extensions to build container images, such as <code>Jib</code>, <code>docker</code>, <code>s2i</code>, and <code>buildpacks</code>. For more information about the Quarkus extensions, see the <a href="https://quarkus.io/guides/container-image">Quarkus documentation</a>.</p>
 </div>
 <div class="paragraph">
-<p>The examples in this document assume that you have the Quarkus tooling installed. For more information about the tooling, see <a href="../getting-started/getting-familiar-with-our-tooling.html" class="xref page">Using Serverless Workflow tooling</a>.</p>
+<p>The examples in this document assume that you have the Quarkus tooling installed. For more information about the tooling, see <a href="../getting-started/getting-familiar-with-our-tooling.html" class="xref page">Getting familiar with OpenShift Serverless Logic tooling</a>.</p>
 </div>
 </div>
 <div id="toc" class="toc">
 <div id="toctitle"></div>
 <ul class="sectlevel1">
 <li><a href="#proc-using-example-application">Using an example application</a></li>
-<li><a href="#proc-building-serverless-workflow-application">Building the Serverless Workflow application</a>
+<li><a href="#proc-building-serverless-workflow-application">Building the workflow application</a>
 <ul class="sectlevel2">
-<li><a href="#proc-building-serverless-workflow-application-using-native-image">Building the Serverless Workflow application using a native image</a></li>
+<li><a href="#proc-building-serverless-workflow-application-using-native-image">Building the workflow application using a native image</a></li>
 </ul>
 </li>
-<li><a href="#proc-testing-serverless-workflow-image">Testing your Serverless Workflow image</a></li>
+<li><a href="#proc-testing-serverless-workflow-image">Testing your workflow image</a></li>
 <li><a href="#_additional_resources">Additional resources</a></li>
 <li><a href="#_found_an_issue"><em><strong>Found an issue?</strong></em></a></li>
 </ul>
@@ -321,15 +330,7 @@
 <h2 id="proc-using-example-application"><a class="anchor" href="#proc-using-example-application"></a>Using an example application</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>To get started with building Serverless Workflow images, you can use the <a href="https://github.com/kiegroup/kogito-examples/tree/main/serverless-workflow-examples/serverless-workflow-greeting-quarkus">serverless-workflow-greeting-quarkus</a> example application.</p>
-</div>
-<div class="ulist">
-<div class="title">Prerequisites</div>
-<ul>
-<li>
-<p>Quarkus 2.10.2.Final is installed.</p>
-</li>
-</ul>
+<p>To get started with building workflow images, you can use the <a href="https://github.com/kiegroup/kogito-examples/tree/main/serverless-workflow-examples/serverless-workflow-greeting-quarkus"><code>serverless-workflow-greeting-quarkus</code></a> example application.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -338,7 +339,7 @@
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-You can skip the following procedure, if you already have a Serverless Workflow application.
+You can skip the following procedure if you already have a workflow application.
 </td>
 </tr>
 </table>
@@ -347,16 +348,17 @@ You can skip the following procedure, if you already have a Serverless Workflow 
 <div class="title">Procedure</div>
 <ol class="arabic">
 <li>
-<p>Clone the <a href="https://github.com/kiegroup/kogito-examples.git">kogito-examples</a> repository and navigate to the <a href="https://github.com/kiegroup/kogito-examples/tree/main/serverless-workflow-examples/serverless-workflow-greeting-quarkus">serverless-workflow-greeting-quarkus</a> example application.</p>
+<p>Clone the <a href="https://github.com/kiegroup/kogito-examples.git">kogito-examples</a> repository and navigate to the <a href="https://github.com/kiegroup/kogito-examples/tree/main/serverless-workflow-examples/serverless-workflow-greeting-quarkus"><code>serverless-workflow-greeting-quarkus</code></a> example application.</p>
 <div class="listingblock">
 <div class="title">Clone an example application</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">git clone --branch main https://github.com/kiegroup/kogito-examples.git &amp;&amp; cd kogito-examples/serverless-workflow-examples/serverless-workflow-greeting-quarkus</code></pre>
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">git clone --branch main https://github.com/kiegroup/kogito-examples.git
+cd kogito-examples/serverless-workflow-examples/serverless-workflow-greeting-quarkus</code></pre>
 </div>
 </div>
 </li>
 <li>
-<p>To run the example application, follow the instructions in <a href="../getting-started/create-your-first-workflow-service.html" class="xref page">Creating your first Serverless Workflow service</a>.</p>
+<p>To run the example application, follow the instructions in <a href="../getting-started/create-your-first-workflow-service.html" class="xref page">Creating your first workflow service</a>.</p>
 </li>
 <li>
 <p>Install the Quarkus command line interface (CLI). For more information, see <a href="https://quarkus.io/guides/cli-tooling">Installing the Quarkus CLI</a>.</p>
@@ -372,7 +374,7 @@ You can skip the following procedure, if you already have a Serverless Workflow 
 </div>
 </div>
 <div class="paragraph">
-<p>After adding the Jib extension, if you see the <code>pom.xml</code> file, you can verify the newly added dependency:</p>
+<p>After adding the Jib extension, you can verify the newly added dependency in the <code>pom.xml</code> file:</p>
 </div>
 <div class="listingblock">
 <div class="title">Verify the Jib extension</div>
@@ -391,10 +393,10 @@ You can skip the following procedure, if you already have a Serverless Workflow 
 </div>
 </div>
 <div class="sect1">
-<h2 id="proc-building-serverless-workflow-application"><a class="anchor" href="#proc-building-serverless-workflow-application"></a>Building the Serverless Workflow application</h2>
+<h2 id="proc-building-serverless-workflow-application"><a class="anchor" href="#proc-building-serverless-workflow-application"></a>Building the workflow application</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>After installing the required tooling, you can start building your Serverless Workflow application.</p>
+<p>After installing the required tooling, you can start building your workflow application.</p>
 </div>
 <div class="ulist">
 <div class="title">Prerequisites</div>
@@ -403,7 +405,8 @@ You can skip the following procedure, if you already have a Serverless Workflow 
 <p>You have created a Quarkus project.</p>
 </li>
 <li>
-<p>Quarkus CLI is installed. For more information about installing the Quarkus CLI, see <a href="https://quarkus.io/guides/cli-tooling#installing-the-cli">Installing the Quarkus CLI</a>.</p>
+<p>Quarkus CLI is installed.
+For more information about installing the Quarkus CLI, see <a href="https://quarkus.io/guides/cli-tooling#installing-the-cli">Installing the Quarkus CLI</a>.</p>
 </li>
 </ul>
 </div>
@@ -414,11 +417,36 @@ You can skip the following procedure, if you already have a Serverless Workflow 
 <p>In a command terminal, navigate to your Quarkus project.</p>
 </li>
 <li>
-<p>To build your Serverless Workflow application on Quarkus, run the following command:</p>
+<p>To build your workflow application on Quarkus, set the <code>quarkus.container-image.build</code> property value to <code>true</code> and run the following command:</p>
 <div class="openblock">
 <div class="content">
 <div class="listingblock">
-<div class="title">Build your Serverless Workflow application</div>
+<div class="title">Build your workflow application</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">quarkus build -Dquarkus.container-image.build=true</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The previous command builds your image with name: <code>{system_username}/{project_artifactId}:{project_version}</code>.</p>
+</div>
+<div class="paragraph">
+<p>Optionally, you can set the following properties to specify the image:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>quarkus.container-image.registry</code>: To define the registry address of the image, such as <code>quay.io</code>.</p>
+</li>
+<li>
+<p><code>quarkus.container-image.group</code>: To define the registry namespace of the image. For example, <code>context/namespace</code> or in case of Kubernetes or OpenShift <code>namespace/project</code>.</p>
+</li>
+<li>
+<p><code>quarkus.container-image.name</code>: To override the image name. By default, this property uses artifact ID.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Build your workflow application with specific image information</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">quarkus build -Dquarkus.container-image.build=true \
     -Dquarkus.container-image.group=kogito \
@@ -427,35 +455,27 @@ You can skip the following procedure, if you already have a Serverless Workflow 
     -Dquarkus.container-image.registry=quay.io</code></pre>
 </div>
 </div>
-<div class="admonitionblock note">
+<div class="admonitionblock tip">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-note" title="Note"></i>
+<i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>The added Jib extension caches the <code>target/lib</code> directory. Based on the size of your project, Jib speeds up the rebuilds. If you want to push your Serverless Workflow application to a registry, ensure that you define the following properties as required:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>quarkus.container-image.registry</code>: To define the registry address, such as <code>quay.io</code>.</p>
-</li>
-<li>
-<p><code>quarkus.container-image.group</code>: To define the registry. For example, <code>context/namespace</code> or in case of Kubernetes or OpenShift <code>namespace/project</code>.</p>
-</li>
-<li>
-<p><code>quarkus.container-image.push</code>: To define whether or not to push an image. Set the value of this property to <code>true</code>. By default, this property is set as <code>false</code>.</p>
-</li>
-</ul>
+<p>The added Jib extension caches the <code>target/lib</code> directory. Based on the size of your project, Jib speeds up the rebuilds.</p>
 </div>
 </td>
 </tr>
 </table>
 </div>
+</div>
+</div>
+</li>
+<li>
+<p>You can also push your workflow application to the defined registry. You need to set the <code>quarkus.container-image.push</code> property value to <code>true</code> (default value is <code>false</code>).</p>
 <div class="listingblock">
-<div class="title">Example of pushing the built Serverless Workflow application to a registry</div>
+<div class="title">Example of pushing the built workflow application to a registry</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">quarkus build -Dquarkus.container-image.build=true \
     -Dquarkus.container-image.group=kogito \
@@ -466,12 +486,10 @@ You can skip the following procedure, if you already have a Serverless Workflow 
 </div>
 </div>
 <div class="paragraph">
-<p>The previous command results in the following container image:</p>
+<p>The previous command results in the following container image pushed to <code>quay.io</code>:</p>
 </div>
 <div class="paragraph">
 <p><code>quay.io/kogito/serverless-workflow-greeting-quarkus:1.0</code></p>
-</div>
-</div>
 </div>
 </li>
 <li>
@@ -509,9 +527,9 @@ You can skip the following procedure, if you already have a Serverless Workflow 
 </ol>
 </div>
 <div class="sect2">
-<h3 id="proc-building-serverless-workflow-application-using-native-image"><a class="anchor" href="#proc-building-serverless-workflow-application-using-native-image"></a>Building the Serverless Workflow application using a native image</h3>
+<h3 id="proc-building-serverless-workflow-application-using-native-image"><a class="anchor" href="#proc-building-serverless-workflow-application-using-native-image"></a>Building the workflow application using a native image</h3>
 <div class="paragraph">
-<p>When it comes to Serverless Workflow, a small startup footprint is expected, which can be better when using the native builds to build a Serverless Workflow application.</p>
+<p>When it comes to workflows, a small startup footprint is expected, which can be better when using the native builds to build a workflow application.</p>
 </div>
 <div class="ulist">
 <div class="title">Prerequisites</div>
@@ -520,7 +538,8 @@ You can skip the following procedure, if you already have a Serverless Workflow 
 <p>You have created a Quarkus project.</p>
 </li>
 <li>
-<p>Quarkus CLI is installed. For more information about installing the Quarkus CLI, see <a href="https://quarkus.io/guides/cli-tooling">Installing the Quarkus CLI</a>.</p>
+<p>Quarkus CLI is installed.
+For more information about installing the Quarkus CLI, see <a href="https://quarkus.io/guides/cli-tooling">Installing the Quarkus CLI</a>.</p>
 </li>
 </ul>
 </div>
@@ -558,7 +577,7 @@ You can skip the following procedure, if you already have a Serverless Workflow 
 </td>
 <td class="content">
 <div class="paragraph">
-<p>In case GraalVM is not installed, you can set the <code>quarkus.native.container-build=true</code> system property, which creates a Linux executable.</p>
+<p>In case GraalVM is not installed, you can set the <code>-Dquarkus.native.container-build=true</code> system property, which creates a Linux executable.</p>
 </div>
 </td>
 </tr>
@@ -574,25 +593,6 @@ You can skip the following procedure, if you already have a Serverless Workflow 
 <div class="title">Configure Docker to use the in-cluster (Remote) Docker daemon</div>
 <div class="paragraph">
 <p>When build Container Images using a remote Docker Daemon, i.e. Minikube, you need to use the following system property instead of <code>-Dquarkus.native.container-build=true</code></p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">-Dquarkus.native.remote-container-build=true</code></pre>
-</div>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>When you build Container Images using a remote Docker Daemon, such as Minikube, then use the following system property instead of <code>-Dquarkus.native.container-build=true</code> property:</p>
 </div>
 <div class="listingblock">
 <div class="title">System property to use a remote Docker Daemon</div>
@@ -616,10 +616,10 @@ You can skip the following procedure, if you already have a Serverless Workflow 
 </div>
 </div>
 <div class="sect1">
-<h2 id="proc-testing-serverless-workflow-image"><a class="anchor" href="#proc-testing-serverless-workflow-image"></a>Testing your Serverless Workflow image</h2>
+<h2 id="proc-testing-serverless-workflow-image"><a class="anchor" href="#proc-testing-serverless-workflow-image"></a>Testing your workflow image</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>After building your Serverless Workflow image using Quarkus CLI, you can test the built image.</p>
+<p>After building your workflow image using Quarkus CLI, you can test the built image.</p>
 </div>
 <div class="ulist">
 <div class="title">Prerequisites</div>
@@ -675,7 +675,7 @@ INFO  [io.quarkus] (main) serverless-workflow-greeting-quarkus 1.22.1.Final nati
 </div>
 </li>
 <li>
-<p>To invoke the Serverless Workflow application, execute the following command once the container is started:</p>
+<p>To invoke the workflow application, execute the following command once the container is started:</p>
 <div class="openblock">
 <div class="content">
 <div class="tabset is-loading">
@@ -726,10 +726,7 @@ INFO  [io.quarkus] (main) serverless-workflow-greeting-quarkus 1.22.1.Final nati
 <div class="ulist">
 <ul>
 <li>
-<p><a href="deploying-on-minikube.html" class="xref page">Deploying your Serverless Workflow application on Minikube</a></p>
-</li>
-<li>
-<p><a href="deploying-on-kubernetes-cluster.html" class="xref page">Deploying your Serverless Workflow application on Kubernetes</a></p>
+<p><a href="deploying-on-minikube.html" class="xref page">Deploying your OpenShift Serverless Logic application on Minikube</a></p>
 </li>
 </ul>
 </div>

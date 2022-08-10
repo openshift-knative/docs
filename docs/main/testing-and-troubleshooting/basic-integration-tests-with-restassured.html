@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Testing your Serverless Workflow application using REST Assured :: Red Hat OpenShift Serverless previews</title>
+    <title>Testing your workflow application using REST Assured :: Red Hat OpenShift Serverless previews</title>
     <link rel="canonical" href="https://openshift-knative.github.io/docs/docs/main/testing-and-troubleshooting/basic-integration-tests-with-restassured.html">
     <meta name="description" content="Basic Integration Test with REST Assured">
     <meta name="keywords" content="kogito, workflow, quarkus, serverless, quarkus-cli, test, restassured">
@@ -59,6 +59,12 @@
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../index.html">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../about.html">About</a>
+  </li>
+  <li class="nav-item" data-depth="1">
     <button class="nav-toggle"></button>
     <span class="nav-text">Workflows</span>
 <ul class="nav-list">
@@ -67,13 +73,13 @@
     <span class="nav-text">Getting Started</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../getting-started/create-your-first-workflow-service.html">Creating your first Serverless Workflow service</a>
+    <a class="nav-link" href="../getting-started/create-your-first-workflow-service.html">Creating your first workflow service</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../getting-started/cncf-serverless-workflow-specification-support.html">CNCF Serverless Workflow specification</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../getting-started/getting-familiar-with-our-tooling.html">Getting familiar with Serverless Workflow tooling</a>
+    <a class="nav-link" href="../getting-started/getting-familiar-with-our-tooling.html">Getting familiar with OpenShift Serverless Logic tooling</a>
   </li>
 </ul>
   </li>
@@ -82,19 +88,19 @@
     <span class="nav-text">Core</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../core/understanding-jq-expressions.html">jq expressions in Serverless Workflow</a>
+    <a class="nav-link" href="../core/understanding-jq-expressions.html">jq expressions in OpenShift Serverless Logic</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../core/understanding-workflow-error-handling.html">Error handling in Serverless Workflow</a>
+    <a class="nav-link" href="../core/understanding-workflow-error-handling.html">Error handling in OpenShift Serverless Logic</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../core/working-with-parallelism.html">Parallelism in Serverless Workflow</a>
+    <a class="nav-link" href="../core/working-with-parallelism.html">Parallelism in OpenShift Serverless Logic</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../core/configuration-properties.html">Configuration properties in Serverless Workflow</a>
+    <a class="nav-link" href="../core/configuration-properties.html">Configuration properties in OpenShift Serverless Logic</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../core/custom-functions-support.html">Custom functions for your Serverless Workflow service</a>
+    <a class="nav-link" href="../core/custom-functions-support.html">Custom functions for your OpenShift Serverless Logic service</a>
   </li>
 </ul>
   </li>
@@ -124,17 +130,17 @@
 </ul>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../tooling/kn-plugin-workflow-overview.html">Serverless Workflow plug-in for Knative CLI</a>
+    <a class="nav-link" href="../tooling/kn-plugin-workflow-overview.html">OpenShift Serverless Logic plug-in for Knative CLI</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <button class="nav-toggle"></button>
     <span class="nav-text">Service Orchestration</span>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../service-orchestration/orchestration-of-openapi-based-services.html">Orchestrating the OpenAPI services</a>
   </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../service-orchestration/orchestration-of-openapi-based-services.html">Orchestrating the OpenAPI services</a>
+<ul class="nav-list">
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../service-orchestration/configuring-openapi-services-endpoints.html">Configuring the OpenAPI services endpoints</a>
   </li>
@@ -148,7 +154,7 @@
     <span class="nav-text">Eventing</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../eventing/handling-events-on-workflows.html">Event state in Serverless Workflow</a>
+    <a class="nav-link" href="../eventing/handling-events-on-workflows.html">Event state in OpenShift Serverless Logic</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../eventing/consume-producing-events-with-kafka.html">Consuming and producing events using Apache Kafka</a>
@@ -157,7 +163,10 @@
     <a class="nav-link" href="../eventing/consume-produce-events-with-knative-eventing.html">Consuming and producing events on Knative Eventing</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../eventing/working-with-callbacks.html">Callback state in Serverless Workflow</a>
+    <a class="nav-link" href="../eventing/event-correlation-with-workflows.html">Event correlation in OpenShift Serverless Logic</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../eventing/working-with-callbacks.html">Callback state in OpenShift Serverless Logic</a>
   </li>
 </ul>
   </li>
@@ -166,10 +175,10 @@
     <span class="nav-text">Security</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../security/authention-support-for-openapi-services.html">Authentication for OpenAPI services in Serverless Workflow</a>
+    <a class="nav-link" href="../security/authention-support-for-openapi-services.html">Authentication for OpenAPI services in OpenShift Serverless Logic</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../security/orchestrating-third-party-services-with-oauth2.html">Orchestration of third-party services using OAuth 2.0 authentication in Serverless Workflow</a>
+    <a class="nav-link" href="../security/orchestrating-third-party-services-with-oauth2.html">Orchestration of third-party services using OAuth 2.0 authentication in OpenShift Serverless Logic</a>
   </li>
 </ul>
   </li>
@@ -184,10 +193,10 @@
     <a class="nav-link" href="mocking-openapi-services-with-wiremock.html">Mocking OpenAPI services using WireMock</a>
   </li>
   <li class="nav-item is-current-page" data-depth="3">
-    <a class="nav-link" href="basic-integration-tests-with-restassured.html">Testing your Serverless Workflow application using REST Assured</a>
+    <a class="nav-link" href="basic-integration-tests-with-restassured.html">Testing your workflow application using REST Assured</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="integration-tests-with-postgresql.html">Serverless Workflow integration test using PostgreSQL</a>
+    <a class="nav-link" href="integration-tests-with-postgresql.html">OpenShift Serverless Logic integration test using PostgreSQL</a>
   </li>
 </ul>
   </li>
@@ -196,7 +205,7 @@
     <span class="nav-text">Persistence</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../persistence/persistence-with-postgresql.html">Running a Serverless Workflow service using PostgreSQL</a>
+    <a class="nav-link" href="../persistence/persistence-with-postgresql.html">Running a workflow service using PostgreSQL</a>
   </li>
 </ul>
   </li>
@@ -205,10 +214,10 @@
     <span class="nav-text">Cloud</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../cloud/build-workflow-image-with-quarkus-cli.html">Building Serverless Workflow Images using Quarkus CLI</a>
+    <a class="nav-link" href="../cloud/build-workflow-image-with-quarkus-cli.html">Building workflow images using Quarkus CLI</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../cloud/deploying-on-minikube.html">Deploying your Serverless Workflow application on Minikube</a>
+    <a class="nav-link" href="../cloud/deploying-on-minikube.html">Deploying your OpenShift Serverless Logic application on Minikube</a>
   </li>
 </ul>
   </li>
@@ -217,7 +226,7 @@
     <span class="nav-text">Integrations</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../integrations/serverless-dashboard-with-runtime-data.html">Displaying Serverless Workflow data in dashboards</a>
+    <a class="nav-link" href="../integrations/serverless-dashboard-with-runtime-data.html">Displaying workflow data in dashboards</a>
   </li>
 </ul>
   </li>
@@ -226,7 +235,7 @@
     <span class="nav-text">Use Cases</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../use-cases/orchestration-based-saga-pattern.html">Saga orchestration example in Serverless Workflow</a>
+    <a class="nav-link" href="../use-cases/orchestration-based-saga-pattern.html">Saga orchestration example in OpenShift Serverless Logic</a>
   </li>
 </ul>
   </li>
@@ -265,27 +274,27 @@
     <li class="crumb"><a href="../index.html">Documentation</a></li>
     <li class="crumb">Workflows</li>
     <li class="crumb">Testing and Troubleshooting</li>
-    <li class="crumb"><a href="basic-integration-tests-with-restassured.html">Testing your Serverless Workflow application using REST Assured</a></li>
+    <li class="crumb"><a href="basic-integration-tests-with-restassured.html">Testing your workflow application using REST Assured</a></li>
   </ul>
 </nav>
 </div>
     <div class="main-view-and-toc">
         <main class="main">
           <article class="doc">
-<h1>Testing your Serverless Workflow application using REST Assured</h1>
+<h1>Testing your workflow application using REST Assured</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>This document describes how to test your Serverless Workflow application using REST Assured.</p>
+<p>This document describes how to test your workflow application using REST Assured.</p>
 </div>
 <div class="paragraph">
 <p>Rest Assured enables you to test REST APIs using Java libraries and integrates with Apache Maven. For more information about REST Assured, see <a href="https://rest-assured.io/">REST Assured page</a>.</p>
 </div>
 <div class="paragraph">
-<p>The testing procedure in this document is based on the <code>serverless-workflow-examples/serverless-workflow-testing-with-rest-assured</code> example application. You can access this example application in <a href="https://github.com/kiegroup/kogito-examples.git">Kogito Examples</a> GitHub repository</p>
+<p>The testing procedure in this document is based on the <code>serverless-workflow-examples/serverless-workflow-testing-with-rest-assured</code> example application. You can access this example application in <a href="https://github.com/kiegroup/kogito-examples.git">Kogito Examples</a> GitHub repository.</p>
 </div>
 <div class="paragraph">
-<p>The following procedure describes how to test a Serverless Workflow application that exposes the <code>hello</code> endpoint, which expects a <code>name</code> as a request parameter and returns <code>greeting</code> value:</p>
+<p>The following procedure describes how to test a workflow application that exposes the <code>hello</code> endpoint, which expects a <code>name</code> as a request parameter and returns <code>greeting</code> value:</p>
 </div>
 <div class="listingblock">
 <div class="title">Example request body</div>
@@ -312,7 +321,7 @@
 <div class="title">Prerequisites</div>
 <ul>
 <li>
-<p>A Serverless Workflow project is created.</p>
+<p>A workflow project is created.</p>
 <div class="paragraph">
 <p>For more information about creating a workflow project, see <a href="../getting-started/create-your-first-workflow-service.html" class="xref page">Creating your first Serverless Workflow service</a>.</p>
 </div>
@@ -337,8 +346,7 @@
 <div class="title">Procedure</div>
 <ol class="arabic">
 <li>
-<p>Create a test class named <code>HelloTest</code> in the <code>src/test/java/org/kie/kogito/examples/</code>
-directory, containing the following content:</p>
+<p>Create a test class named <code>HelloTest</code> in the <code>src/test/java/org/kie/kogito/examples/</code> directory, containing the following content:</p>
 <div class="openblock">
 <div class="content">
 <div class="listingblock">
@@ -486,10 +494,10 @@ class HelloTest {
 <p><a href="mocking-openapi-services-with-wiremock.html" class="xref page">Mocking OpenAPI services using WireMock</a></p>
 </li>
 <li>
-<p><a href="mocking-http-cloudevents-with-wiremock.html" class="xref page">Mocking HTTP CloudEvents using WireMock</a></p>
+<p><a href="mocking-http-cloudevents-with-wiremock.html" class="xref page">Mocking HTTP CloudEvents sink using WireMock</a></p>
 </li>
 <li>
-<p><a href="integration-tests-with-postgresql.html" class="xref page">Testing your Serverless Workflow application using PostgreSQL</a></p>
+<p><a href="integration-tests-with-postgresql.html" class="xref page">OpenShift Serverless Logic integration test using PostgreSQL</a></p>
 </li>
 <li>
 <p><a href="https://quarkus.io/guides/getting-started-testing">Testing a Quarkus application</a></p>

@@ -59,6 +59,12 @@
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../index.html">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../about.html">About</a>
+  </li>
+  <li class="nav-item" data-depth="1">
     <button class="nav-toggle"></button>
     <span class="nav-text">Workflows</span>
 <ul class="nav-list">
@@ -67,13 +73,13 @@
     <span class="nav-text">Getting Started</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../getting-started/create-your-first-workflow-service.html">Creating your first Serverless Workflow service</a>
+    <a class="nav-link" href="../getting-started/create-your-first-workflow-service.html">Creating your first workflow service</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../getting-started/cncf-serverless-workflow-specification-support.html">CNCF Serverless Workflow specification</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../getting-started/getting-familiar-with-our-tooling.html">Getting familiar with Serverless Workflow tooling</a>
+    <a class="nav-link" href="../getting-started/getting-familiar-with-our-tooling.html">Getting familiar with OpenShift Serverless Logic tooling</a>
   </li>
 </ul>
   </li>
@@ -82,19 +88,19 @@
     <span class="nav-text">Core</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../core/understanding-jq-expressions.html">jq expressions in Serverless Workflow</a>
+    <a class="nav-link" href="../core/understanding-jq-expressions.html">jq expressions in OpenShift Serverless Logic</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../core/understanding-workflow-error-handling.html">Error handling in Serverless Workflow</a>
+    <a class="nav-link" href="../core/understanding-workflow-error-handling.html">Error handling in OpenShift Serverless Logic</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../core/working-with-parallelism.html">Parallelism in Serverless Workflow</a>
+    <a class="nav-link" href="../core/working-with-parallelism.html">Parallelism in OpenShift Serverless Logic</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../core/configuration-properties.html">Configuration properties in Serverless Workflow</a>
+    <a class="nav-link" href="../core/configuration-properties.html">Configuration properties in OpenShift Serverless Logic</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../core/custom-functions-support.html">Custom functions for your Serverless Workflow service</a>
+    <a class="nav-link" href="../core/custom-functions-support.html">Custom functions for your OpenShift Serverless Logic service</a>
   </li>
 </ul>
   </li>
@@ -124,17 +130,17 @@
 </ul>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../tooling/kn-plugin-workflow-overview.html">Serverless Workflow plug-in for Knative CLI</a>
+    <a class="nav-link" href="../tooling/kn-plugin-workflow-overview.html">OpenShift Serverless Logic plug-in for Knative CLI</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <button class="nav-toggle"></button>
     <span class="nav-text">Service Orchestration</span>
-<ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="3">
-    <a class="nav-link" href="orchestration-of-openapi-based-services.html">Orchestrating the OpenAPI services</a>
   </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="orchestration-of-openapi-based-services.html">Orchestrating the OpenAPI services</a>
+<ul class="nav-list">
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="configuring-openapi-services-endpoints.html">Configuring the OpenAPI services endpoints</a>
   </li>
@@ -148,7 +154,7 @@
     <span class="nav-text">Eventing</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../eventing/handling-events-on-workflows.html">Event state in Serverless Workflow</a>
+    <a class="nav-link" href="../eventing/handling-events-on-workflows.html">Event state in OpenShift Serverless Logic</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../eventing/consume-producing-events-with-kafka.html">Consuming and producing events using Apache Kafka</a>
@@ -157,7 +163,10 @@
     <a class="nav-link" href="../eventing/consume-produce-events-with-knative-eventing.html">Consuming and producing events on Knative Eventing</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../eventing/working-with-callbacks.html">Callback state in Serverless Workflow</a>
+    <a class="nav-link" href="../eventing/event-correlation-with-workflows.html">Event correlation in OpenShift Serverless Logic</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../eventing/working-with-callbacks.html">Callback state in OpenShift Serverless Logic</a>
   </li>
 </ul>
   </li>
@@ -166,10 +175,10 @@
     <span class="nav-text">Security</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../security/authention-support-for-openapi-services.html">Authentication for OpenAPI services in Serverless Workflow</a>
+    <a class="nav-link" href="../security/authention-support-for-openapi-services.html">Authentication for OpenAPI services in OpenShift Serverless Logic</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../security/orchestrating-third-party-services-with-oauth2.html">Orchestration of third-party services using OAuth 2.0 authentication in Serverless Workflow</a>
+    <a class="nav-link" href="../security/orchestrating-third-party-services-with-oauth2.html">Orchestration of third-party services using OAuth 2.0 authentication in OpenShift Serverless Logic</a>
   </li>
 </ul>
   </li>
@@ -184,10 +193,10 @@
     <a class="nav-link" href="../testing-and-troubleshooting/mocking-openapi-services-with-wiremock.html">Mocking OpenAPI services using WireMock</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../testing-and-troubleshooting/basic-integration-tests-with-restassured.html">Testing your Serverless Workflow application using REST Assured</a>
+    <a class="nav-link" href="../testing-and-troubleshooting/basic-integration-tests-with-restassured.html">Testing your workflow application using REST Assured</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../testing-and-troubleshooting/integration-tests-with-postgresql.html">Serverless Workflow integration test using PostgreSQL</a>
+    <a class="nav-link" href="../testing-and-troubleshooting/integration-tests-with-postgresql.html">OpenShift Serverless Logic integration test using PostgreSQL</a>
   </li>
 </ul>
   </li>
@@ -196,7 +205,7 @@
     <span class="nav-text">Persistence</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../persistence/persistence-with-postgresql.html">Running a Serverless Workflow service using PostgreSQL</a>
+    <a class="nav-link" href="../persistence/persistence-with-postgresql.html">Running a workflow service using PostgreSQL</a>
   </li>
 </ul>
   </li>
@@ -205,10 +214,10 @@
     <span class="nav-text">Cloud</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../cloud/build-workflow-image-with-quarkus-cli.html">Building Serverless Workflow Images using Quarkus CLI</a>
+    <a class="nav-link" href="../cloud/build-workflow-image-with-quarkus-cli.html">Building workflow images using Quarkus CLI</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../cloud/deploying-on-minikube.html">Deploying your Serverless Workflow application on Minikube</a>
+    <a class="nav-link" href="../cloud/deploying-on-minikube.html">Deploying your OpenShift Serverless Logic application on Minikube</a>
   </li>
 </ul>
   </li>
@@ -217,7 +226,7 @@
     <span class="nav-text">Integrations</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../integrations/serverless-dashboard-with-runtime-data.html">Displaying Serverless Workflow data in dashboards</a>
+    <a class="nav-link" href="../integrations/serverless-dashboard-with-runtime-data.html">Displaying workflow data in dashboards</a>
   </li>
 </ul>
   </li>
@@ -226,7 +235,7 @@
     <span class="nav-text">Use Cases</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../use-cases/orchestration-based-saga-pattern.html">Saga orchestration example in Serverless Workflow</a>
+    <a class="nav-link" href="../use-cases/orchestration-based-saga-pattern.html">Saga orchestration example in OpenShift Serverless Logic</a>
   </li>
 </ul>
   </li>
@@ -264,7 +273,6 @@
   <ul>
     <li class="crumb"><a href="../index.html">Documentation</a></li>
     <li class="crumb">Workflows</li>
-    <li class="crumb">Service Orchestration</li>
     <li class="crumb"><a href="orchestration-of-openapi-based-services.html">Orchestrating the OpenAPI services</a></li>
   </ul>
 </nav>
@@ -282,15 +290,15 @@
 <div class="title">Prerequisites</div>
 <ul>
 <li>
-<p>A Serverless Workflow project is created.</p>
+<p>A workflow project is created.</p>
 <div class="paragraph">
 <p>For more information about creating a workflow project, see <a href="../getting-started/create-your-first-workflow-service.html" class="xref page">Creating your first Serverless Workflow service</a>.</p>
 </div>
 </li>
 <li>
-<p>You have installed the Kogito tooling.</p>
+<p>You have installed the tooling.</p>
 <div class="paragraph">
-<p>For more information about the tooling, see <a href="../getting-started/getting-familiar-with-our-tooling.html" class="xref page">Using Serverless Workflow tooling</a>.</p>
+<p>For more information about the tooling, see <a href="../getting-started/getting-familiar-with-our-tooling.html" class="xref page">Getting familiar with OpenShift Serverless Logic tooling</a>.</p>
 </div>
 </li>
 </ul>
@@ -302,8 +310,8 @@
 <li><a href="#con-openapi-function-definition">OpenAPI function definition</a></li>
 <li><a href="#proc-send-request-rest-call-openapi-spec">Sending REST requests based on the OpenAPI specification</a>
 <ul class="sectlevel2">
-<li><a href="#proc-define-openapi-functions">Defining OpenAPI functions in Serverless Workflow</a></li>
-<li><a href="#proc-access-function-sw-states">Accessing functions in the Serverless Workflow states</a></li>
+<li><a href="#proc-define-openapi-functions">Defining OpenAPI functions in a workflow</a></li>
+<li><a href="#proc-access-function-sw-states">Accessing functions in the workflow states</a></li>
 </ul>
 </li>
 <li><a href="#proc-configuring-openapi-service-endpoint-url">Configuring the endpoint URL of OpenAPI services</a></li>
@@ -316,7 +324,7 @@
 <h2 id="con-openapi-function-definition"><a class="anchor" href="#con-openapi-function-definition"></a>OpenAPI function definition</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Kogito follows the <a href="https://github.com/serverlessworkflow/specification/blob/0.8.x/specification.md#using-functions-for-restful-service-invocations">CNCF Serverless Workflow specification function definition</a> to send requests to remote REST services using an OpenAPI specification reference as shown in the following example:</p>
+<p>OpenShift Serverless Logic follows the <a href="https://github.com/serverlessworkflow/specification/blob/0.8.x/specification.md#using-functions-for-restful-service-invocations">CNCF Serverless Workflow specification function definition</a> to send requests to remote REST services using an OpenAPI specification reference as shown in the following example:</p>
 </div>
 <div class="listingblock">
 <div class="title">Example of an OpenAPI function definition</div>
@@ -359,7 +367,7 @@
 </ul>
 </div>
 <div class="paragraph">
-<p>Kogito supports the following URI schemes:</p>
+<p>OpenShift Serverless Logic supports the following URI schemes:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -389,10 +397,10 @@
 </td>
 <td class="content">
 <div class="paragraph">
-<p>The OpenAPI specification files must be available during the build time, because Kogito leverages the internal code generation feature to send requests on runtime. Therefore, once you have built the application image, Kogito will not have access to the files.</p>
+<p>The OpenAPI specification files must be available during the build time, because OpenShift Serverless Logic leverages the internal code generation feature to send requests on runtime. Therefore, once you have built the application image, OpenShift Serverless Logic will not have access to the files.</p>
 </div>
 <div class="paragraph">
-<p>For more information about building Serverless Workflow images, see <a href="../cloud/build-workflow-image-with-quarkus-cli.html" class="xref page">Building Serverless Workflow Images using Quarkus CLI</a>.</p>
+<p>For more information about building workflow images, see <a href="../cloud/build-workflow-image-with-quarkus-cli.html" class="xref page">Building workflow images using Quarkus CLI</a>.</p>
 </div>
 </td>
 </tr>
@@ -402,7 +410,7 @@
 <p>To get started with orchestrating the OpenAPI based services, you must locate the REST services OpenAPI specification files. Usually, REST services expose their interface using the OpenAPI specification. For example, see the <a href="https://petstore3.swagger.io/api/v3/openapi.json">Petstore API</a>.</p>
 </div>
 <div class="paragraph">
-<p>In case, the OpenAPI service that you want to add to the Serverless Workflow does not contain a specification file, you can either create a specification file or update the OpenAPI service to generate and expose the file.</p>
+<p>In case, the OpenAPI service that you want to add to the workflow does not contain a specification file, you can either create a specification file or update the OpenAPI service to generate and expose the file.</p>
 </div>
 <div class="paragraph">
 <p>There are various REST frameworks that support the OpenAPI specification generation, including:</p>
@@ -491,12 +499,12 @@
 <p>Define the function references</p>
 </li>
 <li>
-<p>Access the defined functions in the Serverless Workflow states</p>
+<p>Access the defined functions in the workflow states</p>
 </li>
 </ol>
 </div>
 <div class="sect2">
-<h3 id="proc-define-openapi-functions"><a class="anchor" href="#proc-define-openapi-functions"></a>Defining OpenAPI functions in Serverless Workflow</h3>
+<h3 id="proc-define-openapi-functions"><a class="anchor" href="#proc-define-openapi-functions"></a>Defining OpenAPI functions in a workflow</h3>
 <div class="paragraph">
 <p>To send requests with the REST calls, first you need to define the OpenAPI functions.</p>
 </div>
@@ -506,7 +514,7 @@
 <li>
 <p>You have access to the OpenAPI specification files.</p>
 <div class="paragraph">
-<p>Once you have access to the OpenAPI specification files, you can define the functions in the Serverless Workflow.</p>
+<p>Once you have access to the OpenAPI specification files, you can define the functions in the workflow.</p>
 </div>
 </li>
 </ul>
@@ -518,7 +526,7 @@
 <div class="title">Procedure</div>
 <ol class="arabic">
 <li>
-<p>Copy the OpenAPI specification files of the service(s) you want to invoke into your Serverless Workflow service directory, which can be <code>src/main/resources/specs</code>.</p>
+<p>Copy the OpenAPI specification files of the service(s) you want to invoke into your workflow service directory, which can be <code>src/main/resources/specs</code>.</p>
 <div class="openblock">
 <div class="content">
 <div class="paragraph">
@@ -645,15 +653,15 @@ components:
 </div>
 </div>
 <div class="sect2">
-<h3 id="proc-access-function-sw-states"><a class="anchor" href="#proc-access-function-sw-states"></a>Accessing functions in the Serverless Workflow states</h3>
+<h3 id="proc-access-function-sw-states"><a class="anchor" href="#proc-access-function-sw-states"></a>Accessing functions in the workflow states</h3>
 <div class="paragraph">
-<p>After defining the function definitions, you can access the defined functions in the Serverless Workflow states.</p>
+<p>After defining the function definitions, you can access the defined functions in the workflow states.</p>
 </div>
 <div class="ulist">
 <div class="title">Prerequisites</div>
 <ul>
 <li>
-<p>You have defined the OpenAPI functions in Serverless Workflow. For more information, see <a href="#proc-define-openapi-functions">Defining OpenAPI functions in Serverless Workflow</a>.</p>
+<p>You have defined the OpenAPI functions in a workflow. For more information, see <a href="#proc-define-openapi-functions">Defining OpenAPI functions in a workflow</a>.</p>
 </li>
 </ul>
 </div>
@@ -823,7 +831,7 @@ components:
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>Arguments definition. In the previous example, Kogito adds the argument <code>petId</code> to the request path before sending a request.</td>
+<td>Arguments definition. In the previous example, OpenShift Serverless Logic adds the argument <code>petId</code> to the request path before sending a request.</td>
 </tr>
 </table>
 </div>
@@ -839,19 +847,19 @@ components:
 <h2 id="proc-configuring-openapi-service-endpoint-url"><a class="anchor" href="#proc-configuring-openapi-service-endpoint-url"></a>Configuring the endpoint URL of OpenAPI services</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>After accessing the function definitions in Serverless Workflow states, you can configure the endpoint URL of OpenAPI services.</p>
+<p>After accessing the function definitions in workflow states, you can configure the endpoint URL of OpenAPI services.</p>
 </div>
 <div class="paragraph">
-<p>Kogito uses the <a href="https://github.com/quarkiverse/quarkus-openapi-generator">Quarkus OpenAPI Generator extension</a> and the <a href="https://quarkus.io/guides/rest-client">Quarkus REST Client</a>, and all the configurations are based on these components, which are backed using <a href="https://quarkus.io/guides/config">Quarkus Configuration</a>.</p>
+<p>OpenShift Serverless Logic uses the <a href="https://github.com/quarkiverse/quarkus-openapi-generator">Quarkus OpenAPI Generator extension</a> and the <a href="https://quarkus.io/guides/rest-client">Quarkus REST Client</a>, and all the configurations are based on these components, which are backed using <a href="https://quarkus.io/guides/config">Quarkus Configuration</a>.</p>
 </div>
 <div class="ulist">
 <div class="title">Prerequisites</div>
 <ul>
 <li>
-<p>You have defined the function definitions in the Serverless Workflow. For more information, see <a href="#proc-define-openapi-functions">Defining OpenAPI functions in Serverless Workflow</a>.</p>
+<p>You have defined the function definitions in the workflow. For more information, see <a href="#proc-define-openapi-functions">Defining OpenAPI functions in a workflow</a>.</p>
 </li>
 <li>
-<p>You have the access to the defined functions in the Serverless Workflow states. For more information, see <a href="#proc-access-function-sw-states">Accessing functions in the Serverless Workflow states</a>.</p>
+<p>You have the access to the defined functions in the workflow states. For more information, see <a href="#proc-access-function-sw-states">Accessing functions in the workflow states</a>.</p>
 </li>
 </ul>
 </div>
@@ -866,7 +874,7 @@ components:
 <p>For example, a file named as <code>subtraction.yaml</code> contains the configuration key as <code>subtraction_yaml</code>.</p>
 </div>
 <div class="paragraph">
-<p>For more information about how Kogito sanitizes file names, see <a href="https://github.com/eclipse/microprofile-config/blob/master/spec/src/main/asciidoc/configsources.asciidoc#environment-variables-mapping-rules">Environment Variables Mapping Rules</a>.</p>
+<p>For more information about how to sanitize file names, see <a href="https://github.com/eclipse/microprofile-config/blob/master/spec/src/main/asciidoc/configsources.asciidoc#environment-variables-mapping-rules">Environment Variables Mapping Rules</a>.</p>
 </div>
 </div>
 </div>
@@ -885,7 +893,7 @@ components:
 </div>
 </li>
 <li>
-<p>To avoid hardcoding the URL in the application properties, you can use <a href="https://quarkus.io/guides/config#with-environment-variables">environment variables substitution</a>, as shown in the following example:</p>
+<p>To avoid hardcoding the URL in the <code>application.properties</code> file, you can use <a href="https://quarkus.io/guides/config#with-environment-variables">environment variables substitution</a>, as shown in the following example:</p>
 <div class="openblock">
 <div class="content">
 <div class="listingblock">
@@ -912,7 +920,7 @@ components:
 </table>
 </div>
 <div class="paragraph">
-<p>For more information about endpoints and general configuration, see <a href="configuring-openapi-services-endpoints.html" class="xref page">Configuring OpenAPI services endpoints</a>.</p>
+<p>For more information about endpoints and general configuration, see <a href="configuring-openapi-services-endpoints.html" class="xref page">Configuring the OpenAPI services endpoints</a>.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -922,7 +930,7 @@ components:
 </td>
 <td class="content">
 <div class="paragraph">
-<p>In a future release, Kogito will provide support for Kubernetes Service Discovery feature. Using the Kubernetes Service Discovery feature, you can point to a Kubernetes or Knative object that you want to call. After that, the engine will automatically configure the endpoints once you deploy the endpoints in the cluster.</p>
+<p>In a future release, OpenShift Serverless Logic will provide support for Kubernetes Service Discovery feature. Using the Kubernetes Service Discovery feature, you can point to a Kubernetes or Knative object that you want to call. After that, the engine will automatically configure the endpoints once you deploy the endpoints in the cluster.</p>
 </div>
 </td>
 </tr>
@@ -944,10 +952,7 @@ components:
 <p><a href="configuring-openapi-services-endpoints.html" class="xref page">Configuring OpenAPI services endpoints</a></p>
 </li>
 <li>
-<p><a href="../integrations/camel-k-integration.html" class="xref page">Integrating Camel K</a></p>
-</li>
-<li>
-<p><a href="../security/authention-support-for-openapi-services.html" class="xref page">Authentication for OpenAPI services in Serverless Workflow</a></p>
+<p><a href="../security/authention-support-for-openapi-services.html" class="xref page">Authentication for OpenAPI services in OpenShift Serverless Logic</a></p>
 </li>
 </ul>
 </div>

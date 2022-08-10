@@ -57,6 +57,12 @@
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../index.html">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../about.html">About</a>
+  </li>
+  <li class="nav-item" data-depth="1">
     <button class="nav-toggle"></button>
     <span class="nav-text">Workflows</span>
 <ul class="nav-list">
@@ -65,13 +71,13 @@
     <span class="nav-text">Getting Started</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../getting-started/create-your-first-workflow-service.html">Creating your first Serverless Workflow service</a>
+    <a class="nav-link" href="../getting-started/create-your-first-workflow-service.html">Creating your first workflow service</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../getting-started/cncf-serverless-workflow-specification-support.html">CNCF Serverless Workflow specification</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../getting-started/getting-familiar-with-our-tooling.html">Getting familiar with Serverless Workflow tooling</a>
+    <a class="nav-link" href="../getting-started/getting-familiar-with-our-tooling.html">Getting familiar with OpenShift Serverless Logic tooling</a>
   </li>
 </ul>
   </li>
@@ -80,19 +86,19 @@
     <span class="nav-text">Core</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../core/understanding-jq-expressions.html">jq expressions in Serverless Workflow</a>
+    <a class="nav-link" href="../core/understanding-jq-expressions.html">jq expressions in OpenShift Serverless Logic</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../core/understanding-workflow-error-handling.html">Error handling in Serverless Workflow</a>
+    <a class="nav-link" href="../core/understanding-workflow-error-handling.html">Error handling in OpenShift Serverless Logic</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../core/working-with-parallelism.html">Parallelism in Serverless Workflow</a>
+    <a class="nav-link" href="../core/working-with-parallelism.html">Parallelism in OpenShift Serverless Logic</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../core/configuration-properties.html">Configuration properties in Serverless Workflow</a>
+    <a class="nav-link" href="../core/configuration-properties.html">Configuration properties in OpenShift Serverless Logic</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../core/custom-functions-support.html">Custom functions for your Serverless Workflow service</a>
+    <a class="nav-link" href="../core/custom-functions-support.html">Custom functions for your OpenShift Serverless Logic service</a>
   </li>
 </ul>
   </li>
@@ -122,17 +128,17 @@
 </ul>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../tooling/kn-plugin-workflow-overview.html">Serverless Workflow plug-in for Knative CLI</a>
+    <a class="nav-link" href="../tooling/kn-plugin-workflow-overview.html">OpenShift Serverless Logic plug-in for Knative CLI</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <button class="nav-toggle"></button>
     <span class="nav-text">Service Orchestration</span>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../service-orchestration/orchestration-of-openapi-based-services.html">Orchestrating the OpenAPI services</a>
   </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../service-orchestration/orchestration-of-openapi-based-services.html">Orchestrating the OpenAPI services</a>
+<ul class="nav-list">
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../service-orchestration/configuring-openapi-services-endpoints.html">Configuring the OpenAPI services endpoints</a>
   </li>
@@ -146,7 +152,7 @@
     <span class="nav-text">Eventing</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../eventing/handling-events-on-workflows.html">Event state in Serverless Workflow</a>
+    <a class="nav-link" href="../eventing/handling-events-on-workflows.html">Event state in OpenShift Serverless Logic</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../eventing/consume-producing-events-with-kafka.html">Consuming and producing events using Apache Kafka</a>
@@ -155,7 +161,10 @@
     <a class="nav-link" href="../eventing/consume-produce-events-with-knative-eventing.html">Consuming and producing events on Knative Eventing</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../eventing/working-with-callbacks.html">Callback state in Serverless Workflow</a>
+    <a class="nav-link" href="../eventing/event-correlation-with-workflows.html">Event correlation in OpenShift Serverless Logic</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../eventing/working-with-callbacks.html">Callback state in OpenShift Serverless Logic</a>
   </li>
 </ul>
   </li>
@@ -164,10 +173,10 @@
     <span class="nav-text">Security</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../security/authention-support-for-openapi-services.html">Authentication for OpenAPI services in Serverless Workflow</a>
+    <a class="nav-link" href="../security/authention-support-for-openapi-services.html">Authentication for OpenAPI services in OpenShift Serverless Logic</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../security/orchestrating-third-party-services-with-oauth2.html">Orchestration of third-party services using OAuth 2.0 authentication in Serverless Workflow</a>
+    <a class="nav-link" href="../security/orchestrating-third-party-services-with-oauth2.html">Orchestration of third-party services using OAuth 2.0 authentication in OpenShift Serverless Logic</a>
   </li>
 </ul>
   </li>
@@ -182,10 +191,10 @@
     <a class="nav-link" href="mocking-openapi-services-with-wiremock.html">Mocking OpenAPI services using WireMock</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="basic-integration-tests-with-restassured.html">Testing your Serverless Workflow application using REST Assured</a>
+    <a class="nav-link" href="basic-integration-tests-with-restassured.html">Testing your workflow application using REST Assured</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="integration-tests-with-postgresql.html">Serverless Workflow integration test using PostgreSQL</a>
+    <a class="nav-link" href="integration-tests-with-postgresql.html">OpenShift Serverless Logic integration test using PostgreSQL</a>
   </li>
 </ul>
   </li>
@@ -194,7 +203,7 @@
     <span class="nav-text">Persistence</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../persistence/persistence-with-postgresql.html">Running a Serverless Workflow service using PostgreSQL</a>
+    <a class="nav-link" href="../persistence/persistence-with-postgresql.html">Running a workflow service using PostgreSQL</a>
   </li>
 </ul>
   </li>
@@ -203,10 +212,10 @@
     <span class="nav-text">Cloud</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../cloud/build-workflow-image-with-quarkus-cli.html">Building Serverless Workflow Images using Quarkus CLI</a>
+    <a class="nav-link" href="../cloud/build-workflow-image-with-quarkus-cli.html">Building workflow images using Quarkus CLI</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../cloud/deploying-on-minikube.html">Deploying your Serverless Workflow application on Minikube</a>
+    <a class="nav-link" href="../cloud/deploying-on-minikube.html">Deploying your OpenShift Serverless Logic application on Minikube</a>
   </li>
 </ul>
   </li>
@@ -215,7 +224,7 @@
     <span class="nav-text">Integrations</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../integrations/serverless-dashboard-with-runtime-data.html">Displaying Serverless Workflow data in dashboards</a>
+    <a class="nav-link" href="../integrations/serverless-dashboard-with-runtime-data.html">Displaying workflow data in dashboards</a>
   </li>
 </ul>
   </li>
@@ -224,7 +233,7 @@
     <span class="nav-text">Use Cases</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../use-cases/orchestration-based-saga-pattern.html">Saga orchestration example in Serverless Workflow</a>
+    <a class="nav-link" href="../use-cases/orchestration-based-saga-pattern.html">Saga orchestration example in OpenShift Serverless Logic</a>
   </li>
 </ul>
   </li>
@@ -286,12 +295,12 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Required tooling is installed. For more information, see <a href="xref:getting-started/getting-familiar-with-our-tooling.adoc">Getting familiar with our tooling</a>.</p>
+<p>Required tooling is installed. For more information, see <a href="../getting-started/getting-familiar-with-our-tooling.html" class="xref page">Getting familiar with OpenShift Serverless Logic tooling</a>.</p>
 </li>
 <li>
-<p>A Serverless Workflow project is created and orchestrates OpenAPI services.</p>
+<p>A workflow project is created and orchestrates OpenAPI services.</p>
 <div class="paragraph">
-<p>For more information about orchestrating OpenAPI services, see <a href="xref:service-orchestration/orchestration-of-openapi-based-services.adoc">Orchestrating the OpenAPI services</a>.</p>
+<p>For more information about orchestrating OpenAPI services, see <a href="../service-orchestration/orchestration-of-openapi-based-services.html" class="xref page">Orchestrating the OpenAPI services</a>.</p>
 </div>
 </li>
 </ul>
@@ -315,13 +324,13 @@
 <h2 id="proc-add-mocked-openapi-service-tests"><a class="anchor" href="#proc-add-mocked-openapi-service-tests"></a>Adding a mocked OpenAPI service to your tests</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The procedure in this section describes how you can add WireMock to your Serverless Workflow application.</p>
+<p>The procedure in this section describes how you can add WireMock to your workflow application.</p>
 </div>
 <div class="ulist">
 <div class="title">Prerequisites</div>
 <ul>
 <li>
-<p>A Serverless Workflow project is created.</p>
+<p>A workflow project is created.</p>
 <div class="paragraph">
 <p>For more information about creating a workflow project, see <a href="../getting-started/create-your-first-workflow-service.html" class="xref page">Creating your first Serverless Workflow service</a>.</p>
 </div>
@@ -483,13 +492,13 @@ wireMockServer.stubFor(WireMock.get(WireMock.urlEqualTo("/rest/v2/name/Greece"))
 <p>In the process of adding a mocked OpenAPI service to your tests, you need to start the WireMock server. You can start the WireMock server either as a <code>QuarkusTestResource</code> or you can start the server for each test.</p>
 </div>
 <div class="paragraph">
-<p>The procedure in this section describes how you can start the WireMock server as a <code>QuarkusTestResource</code>. For more information about <code>QuarkusTestResource</code>, see <a href="https://quarkus.io/guides/getting-started-testing#quarkus-test-resource">Starting services before the Quarkus application starts</a> documentation.</p>
+<p>The procedure in this section describes how you can start the WireMock server as a <code>QuarkusTestResource</code>. For more information about <code>QuarkusTestResource</code>, see <a href="https://quarkus.io/guides/getting-started-testing#quarkus-test-resource">Starting services before the Quarkus application starts</a> document.</p>
 </div>
 <div class="ulist">
 <div class="title">Prerequisites</div>
 <ul>
 <li>
-<p>A Serverless Workflow project is created.</p>
+<p>A workflow project is created.</p>
 <div class="paragraph">
 <p>For more information about creating a workflow project, see <a href="../getting-started/create-your-first-workflow-service.html" class="xref page">Creating your first Serverless Workflow service</a>.</p>
 </div>
@@ -629,7 +638,7 @@ class CountryServiceWorkflowTest {
 <div class="title">Prerequisites</div>
 <ul>
 <li>
-<p>A Serverless Workflow project is created.</p>
+<p>A workflow project is created.</p>
 <div class="paragraph">
 <p>For more information about creating a workflow project, see <a href="../getting-started/create-your-first-workflow-service.html" class="xref page">Creating your first Serverless Workflow service</a>.</p>
 </div>
@@ -718,7 +727,7 @@ class CountryServiceWorkflowTest {
 </ol>
 </div>
 <div class="paragraph">
-<p>You can test your Serverless Workflow application using the instructions described in <a href="basic-integration-tests-with-restassured.html" class="xref page">Testing your Serverless Workflow application using REST Assured</a> document.</p>
+<p>You can test your workflow application using the instructions described in <a href="basic-integration-tests-with-restassured.html" class="xref page">Testing your workflow application using REST Assured</a> document.</p>
 </div>
 </div>
 </div>
@@ -729,10 +738,10 @@ class CountryServiceWorkflowTest {
 <div class="ulist">
 <ul>
 <li>
-<p><a href="../getting-started/create-your-first-workflow-service.html" class="xref page">Creating your first Serverless Workflow service</a></p>
+<p><a href="../getting-started/create-your-first-workflow-service.html" class="xref page">Creating your first workflow service</a></p>
 </li>
 <li>
-<p><a href="basic-integration-tests-with-restassured.html" class="xref page">Testing your Serverless Workflow application using REST Assured</a></p>
+<p><a href="basic-integration-tests-with-restassured.html" class="xref page">Testing your workflow application using REST Assured</a></p>
 </li>
 </ul>
 </div>

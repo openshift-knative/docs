@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Orchestration of third-party services using OAuth 2.0 authentication in Serverless Workflow :: Red Hat OpenShift Serverless previews</title>
+    <title>Orchestration of third-party services using OAuth 2.0 authentication in OpenShift Serverless Logic :: Red Hat OpenShift Serverless previews</title>
     <link rel="canonical" href="https://openshift-knative.github.io/docs/docs/main/security/orchestrating-third-party-services-with-oauth2.html">
     <meta name="generator" content="Antora 3.0.3">
     <link rel="stylesheet" href="../../../_/css/site.css">
@@ -57,6 +57,12 @@
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../index.html">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../about.html">About</a>
+  </li>
+  <li class="nav-item" data-depth="1">
     <button class="nav-toggle"></button>
     <span class="nav-text">Workflows</span>
 <ul class="nav-list">
@@ -65,13 +71,13 @@
     <span class="nav-text">Getting Started</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../getting-started/create-your-first-workflow-service.html">Creating your first Serverless Workflow service</a>
+    <a class="nav-link" href="../getting-started/create-your-first-workflow-service.html">Creating your first workflow service</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../getting-started/cncf-serverless-workflow-specification-support.html">CNCF Serverless Workflow specification</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../getting-started/getting-familiar-with-our-tooling.html">Getting familiar with Serverless Workflow tooling</a>
+    <a class="nav-link" href="../getting-started/getting-familiar-with-our-tooling.html">Getting familiar with OpenShift Serverless Logic tooling</a>
   </li>
 </ul>
   </li>
@@ -80,19 +86,19 @@
     <span class="nav-text">Core</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../core/understanding-jq-expressions.html">jq expressions in Serverless Workflow</a>
+    <a class="nav-link" href="../core/understanding-jq-expressions.html">jq expressions in OpenShift Serverless Logic</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../core/understanding-workflow-error-handling.html">Error handling in Serverless Workflow</a>
+    <a class="nav-link" href="../core/understanding-workflow-error-handling.html">Error handling in OpenShift Serverless Logic</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../core/working-with-parallelism.html">Parallelism in Serverless Workflow</a>
+    <a class="nav-link" href="../core/working-with-parallelism.html">Parallelism in OpenShift Serverless Logic</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../core/configuration-properties.html">Configuration properties in Serverless Workflow</a>
+    <a class="nav-link" href="../core/configuration-properties.html">Configuration properties in OpenShift Serverless Logic</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../core/custom-functions-support.html">Custom functions for your Serverless Workflow service</a>
+    <a class="nav-link" href="../core/custom-functions-support.html">Custom functions for your OpenShift Serverless Logic service</a>
   </li>
 </ul>
   </li>
@@ -122,17 +128,17 @@
 </ul>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../tooling/kn-plugin-workflow-overview.html">Serverless Workflow plug-in for Knative CLI</a>
+    <a class="nav-link" href="../tooling/kn-plugin-workflow-overview.html">OpenShift Serverless Logic plug-in for Knative CLI</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <button class="nav-toggle"></button>
     <span class="nav-text">Service Orchestration</span>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../service-orchestration/orchestration-of-openapi-based-services.html">Orchestrating the OpenAPI services</a>
   </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../service-orchestration/orchestration-of-openapi-based-services.html">Orchestrating the OpenAPI services</a>
+<ul class="nav-list">
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../service-orchestration/configuring-openapi-services-endpoints.html">Configuring the OpenAPI services endpoints</a>
   </li>
@@ -146,7 +152,7 @@
     <span class="nav-text">Eventing</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../eventing/handling-events-on-workflows.html">Event state in Serverless Workflow</a>
+    <a class="nav-link" href="../eventing/handling-events-on-workflows.html">Event state in OpenShift Serverless Logic</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../eventing/consume-producing-events-with-kafka.html">Consuming and producing events using Apache Kafka</a>
@@ -155,7 +161,10 @@
     <a class="nav-link" href="../eventing/consume-produce-events-with-knative-eventing.html">Consuming and producing events on Knative Eventing</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../eventing/working-with-callbacks.html">Callback state in Serverless Workflow</a>
+    <a class="nav-link" href="../eventing/event-correlation-with-workflows.html">Event correlation in OpenShift Serverless Logic</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../eventing/working-with-callbacks.html">Callback state in OpenShift Serverless Logic</a>
   </li>
 </ul>
   </li>
@@ -164,10 +173,10 @@
     <span class="nav-text">Security</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="authention-support-for-openapi-services.html">Authentication for OpenAPI services in Serverless Workflow</a>
+    <a class="nav-link" href="authention-support-for-openapi-services.html">Authentication for OpenAPI services in OpenShift Serverless Logic</a>
   </li>
   <li class="nav-item is-current-page" data-depth="3">
-    <a class="nav-link" href="orchestrating-third-party-services-with-oauth2.html">Orchestration of third-party services using OAuth 2.0 authentication in Serverless Workflow</a>
+    <a class="nav-link" href="orchestrating-third-party-services-with-oauth2.html">Orchestration of third-party services using OAuth 2.0 authentication in OpenShift Serverless Logic</a>
   </li>
 </ul>
   </li>
@@ -182,10 +191,10 @@
     <a class="nav-link" href="../testing-and-troubleshooting/mocking-openapi-services-with-wiremock.html">Mocking OpenAPI services using WireMock</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../testing-and-troubleshooting/basic-integration-tests-with-restassured.html">Testing your Serverless Workflow application using REST Assured</a>
+    <a class="nav-link" href="../testing-and-troubleshooting/basic-integration-tests-with-restassured.html">Testing your workflow application using REST Assured</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../testing-and-troubleshooting/integration-tests-with-postgresql.html">Serverless Workflow integration test using PostgreSQL</a>
+    <a class="nav-link" href="../testing-and-troubleshooting/integration-tests-with-postgresql.html">OpenShift Serverless Logic integration test using PostgreSQL</a>
   </li>
 </ul>
   </li>
@@ -194,7 +203,7 @@
     <span class="nav-text">Persistence</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../persistence/persistence-with-postgresql.html">Running a Serverless Workflow service using PostgreSQL</a>
+    <a class="nav-link" href="../persistence/persistence-with-postgresql.html">Running a workflow service using PostgreSQL</a>
   </li>
 </ul>
   </li>
@@ -203,10 +212,10 @@
     <span class="nav-text">Cloud</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../cloud/build-workflow-image-with-quarkus-cli.html">Building Serverless Workflow Images using Quarkus CLI</a>
+    <a class="nav-link" href="../cloud/build-workflow-image-with-quarkus-cli.html">Building workflow images using Quarkus CLI</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../cloud/deploying-on-minikube.html">Deploying your Serverless Workflow application on Minikube</a>
+    <a class="nav-link" href="../cloud/deploying-on-minikube.html">Deploying your OpenShift Serverless Logic application on Minikube</a>
   </li>
 </ul>
   </li>
@@ -215,7 +224,7 @@
     <span class="nav-text">Integrations</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../integrations/serverless-dashboard-with-runtime-data.html">Displaying Serverless Workflow data in dashboards</a>
+    <a class="nav-link" href="../integrations/serverless-dashboard-with-runtime-data.html">Displaying workflow data in dashboards</a>
   </li>
 </ul>
   </li>
@@ -224,7 +233,7 @@
     <span class="nav-text">Use Cases</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../use-cases/orchestration-based-saga-pattern.html">Saga orchestration example in Serverless Workflow</a>
+    <a class="nav-link" href="../use-cases/orchestration-based-saga-pattern.html">Saga orchestration example in OpenShift Serverless Logic</a>
   </li>
 </ul>
   </li>
@@ -263,27 +272,27 @@
     <li class="crumb"><a href="../index.html">Documentation</a></li>
     <li class="crumb">Workflows</li>
     <li class="crumb">Security</li>
-    <li class="crumb"><a href="orchestrating-third-party-services-with-oauth2.html">Orchestration of third-party services using OAuth 2.0 authentication in Serverless Workflow</a></li>
+    <li class="crumb"><a href="orchestrating-third-party-services-with-oauth2.html">Orchestration of third-party services using OAuth 2.0 authentication in OpenShift Serverless Logic</a></li>
   </ul>
 </nav>
 </div>
     <div class="main-view-and-toc">
         <main class="main">
           <article class="doc">
-<h1>Orchestration of third-party services using OAuth 2.0 authentication in Serverless Workflow</h1>
+<h1>Orchestration of third-party services using OAuth 2.0 authentication in OpenShift Serverless Logic</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>This document describes the example of how you can implement and configure a Serverless Workflow that orchestrates the interaction with an OAuth 2.0 secured REST service.</p>
+<p>This document describes the example of how you can implement and configure a workflow that orchestrates the interaction with an OAuth 2.0 secured REST service.</p>
 </div>
 <div class="paragraph">
-<p>For more information about orchestrating and configuring OpenAPI services, see <a href="../service-orchestration/orchestration-of-openapi-based-services.html" class="xref page">Orchestrating the OpenAPI services</a>, <a href="../service-orchestration/configuring-openapi-services-endpoints.html" class="xref page">Configuring the OpenAPI services endpoints</a>, and <a href="authention-support-for-openapi-services.html" class="xref page">Authentication for OpenAPI services in Serverless Workflow</a>.</p>
+<p>For more information about orchestrating and configuring OpenAPI services, see <a href="../service-orchestration/orchestration-of-openapi-based-services.html" class="xref page">Orchestrating the OpenAPI services</a>, <a href="../service-orchestration/configuring-openapi-services-endpoints.html" class="xref page">Configuring the OpenAPI services endpoints</a>, and <a href="authention-support-for-openapi-services.html" class="xref page">Authentication for OpenAPI services in OpenShift Serverless Logic</a>.</p>
 </div>
 </div>
 <div id="toc" class="toc">
 <div id="toctitle"></div>
 <ul class="sectlevel1">
-<li><a href="#ref-example-oauth2-orchestration">Example of OAuth 2.0 orchestration in Serverless Workflow</a>
+<li><a href="#ref-example-oauth2-orchestration">Example of OAuth 2.0 orchestration in a workflow</a>
 <ul class="sectlevel2">
 <li><a href="#con-example-sw-configuration">Configuration in <code>serverless-workflow-oauth2-orchestration-quarkus</code> example application</a></li>
 <li><a href="#proc-run-example-application">Running the example application</a></li>
@@ -295,16 +304,16 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="ref-example-oauth2-orchestration"><a class="anchor" href="#ref-example-oauth2-orchestration"></a>Example of OAuth 2.0 orchestration in Serverless Workflow</h2>
+<h2 id="ref-example-oauth2-orchestration"><a class="anchor" href="#ref-example-oauth2-orchestration"></a>Example of OAuth 2.0 orchestration in a workflow</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>To understand the example of OAuth 2.0 orchestration in Serverless Workflow, you can use the <a href="https://github.com/kiegroup/kogito-examples/tree/main/serverless-workflow-examples/serverless-workflow-oauth2-orchestration-quarkus"><code>serverless-workflow-oauth2-orchestration-quarkus</code></a> example application. This example application implements a workflow related to currency exchange calculations, which orchestrates an OAuth 2.0 secured REST service provided by Acme Financial Services.</p>
+<p>To understand the example of OAuth 2.0 orchestration in a workflow, you can use the <a href="https://github.com/kiegroup/kogito-examples/tree/main/serverless-workflow-examples/serverless-workflow-oauth2-orchestration-quarkus"><code>serverless-workflow-oauth2-orchestration-quarkus</code></a> example application. This example application implements a workflow related to currency exchange calculations, which orchestrates an OAuth 2.0 secured REST service provided by Acme Financial Services.</p>
 </div>
 <div class="paragraph">
 <p>Suppose you have a set of applications that must resolve the currency exchange calculations as their regular operations, and to resolve the currency exchange calculations, you need to get the accurate exchange rates. For this purpose, you can use the Acme Financial Services.</p>
 </div>
 <div class="paragraph">
-<p>When you use the Acme Financial Services, you can query the exchange rates using their OAuth 2.0 secured services, which you can access using the granted credentials. However, you do not want to expose the services provided by Acme to the applications. In this case, you can implement a Serverless Workflow that resolves the following aspects:</p>
+<p>When you use the Acme Financial Services, you can query the exchange rates using their OAuth 2.0 secured services, which you can access using the granted credentials. However, you do not want to expose the services provided by Acme to the applications. In this case, you can implement a workflow that resolves the following aspects:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -331,7 +340,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p><code>currency-exchange-workflow</code>: Serverless Workflow that implements the currency exchange calculations.</p>
+<p><code>currency-exchange-workflow</code>: Workflow that implements the currency exchange calculations.</p>
 </li>
 <li>
 <p><code>acme-financial-service</code>: REST service that provides the exchange rates.</p>
@@ -353,19 +362,19 @@
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>The application creates a Serverless Workflow instance to calculate the currency exchange.</p>
+<p>The application creates a workflow instance to calculate the currency exchange.</p>
 </li>
 <li>
-<p>The Serverless Workflow executes an OpenAPI operation to get the exchange rates information.</p>
+<p>The workflow executes an OpenAPI operation to get the exchange rates information.</p>
 </li>
 <li>
 <p>Authorizations are produced to validate the access.</p>
 </li>
 <li>
-<p>The Serverless Workflow receives the exchange rates information and executes the calculations.</p>
+<p>The workflow receives the exchange rates information and executes the calculations.</p>
 </li>
 <li>
-<p>The execution of Serverless Workflow is finalized by sending the result to the application.</p>
+<p>The execution of workflow is finalized by sending the result to the application.</p>
 </li>
 </ol>
 </div>
@@ -377,7 +386,7 @@
 </td>
 <td class="content">
 <div class="paragraph">
-<p>The Serverless Workflow automatically manages the interactions with the OAuth 2.0 server. Also, you must configure a <a href="https://quarkus.io/guides/security-openid-connect-client">Quarkus OpenId Connect Client (OIDC)</a>. For more information, see <a href="#con-example-sw-configuration">Configuration in <code>serverless-workflow-oauth2-orchestration-quarkus</code> example application</a>.</p>
+<p>The workflow automatically manages the interactions with the OAuth 2.0 server. Also, you must configure a <a href="https://quarkus.io/guides/security-openid-connect-client">Quarkus OpenId Connect Client (OIDC)</a>. For more information, see <a href="#con-example-sw-configuration">Configuration in <code>serverless-workflow-oauth2-orchestration-quarkus</code> example application</a>.</p>
 </div>
 </td>
 </tr>
@@ -390,7 +399,7 @@
 <div class="openblock">
 <div class="content">
 <div class="paragraph">
-<p>The <code>currency-exchange-workflow</code> in <code>serverless-workflow-oauth2-orchestration-quarkus</code> example application is a Serverless Workflow that implements the currency exchange calculations.</p>
+<p>The <code>currency-exchange-workflow</code> in <code>serverless-workflow-oauth2-orchestration-quarkus</code> example application is a workflow that implements the currency exchange calculations.</p>
 </div>
 <div class="paragraph">
 <p>The following figure describes the workflow in <code>currency-exchange-workflow</code>:</p>
@@ -447,7 +456,7 @@
 <p>The following <code>currency-exchange-workflow.sw.json</code> file shows the specification of the <code>currency-exchange-workflow</code>:</p>
 </div>
 <div class="listingblock">
-<div class="title">currency-exchange-workflow.sw.json file</div>
+<div class="title"><code>currency-exchange-workflow.sw.json</code> file</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
   "id": "currency_exchange_workflow",
@@ -588,7 +597,7 @@
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td><code>GetExchangeRate</code> state executes the <code>getExchangeRate</code> function  to retrieve the exchange rate from the remote server.</td>
+<td><code>GetExchangeRate</code> state executes the <code>getExchangeRate</code> function to retrieve the exchange rate from the remote server.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="4"></i><b>4</b></td>
@@ -605,7 +614,7 @@
 </table>
 </div>
 <div class="paragraph">
-<p>The <code>validateInputs</code> function is used to execute the custom Java processing as part of the Serverless Workflow. For more information about custom functions, see <a href="https://github.com/serverlessworkflow/specification/blob/0.8.x/specification.md#defining-custom-function-types">Serverless Workflow specification</a>.</p>
+<p>The <code>validateInputs</code> function is used to execute the custom Java processing as part of the workflow. For more information about custom functions, see <a href="https://github.com/serverlessworkflow/specification/blob/0.8.x/specification.md#defining-custom-function-types">Serverless Workflow specification</a>.</p>
 </div>
 <div class="paragraph">
 <p>The following is an example of <code>validateInputs</code> function definition:</p>
@@ -670,7 +679,7 @@ public class ExchangeWorkflowHelper {
 </div>
 </div>
 <div class="paragraph">
-<p>To access the <code>acme-financial-service</code> REST service in <code>currency-exchange-workflow</code>, a Serverless Workflow function such as <code>getExchangeRate</code> is used. For more information about using functions for REST services, see <a href="https://github.com/serverlessworkflow/specification/blob/0.8.x/specification.md#using-functions-for-restful-service-invocations">Serverless Workflow specification</a>.</p>
+<p>To access the <code>acme-financial-service</code> REST service in <code>currency-exchange-workflow</code>, a workflow function such as <code>getExchangeRate</code> is used. For more information about using functions for REST services, see <a href="https://github.com/serverlessworkflow/specification/blob/0.8.x/specification.md#using-functions-for-restful-service-invocations">Serverless Workflow specification</a>.</p>
 </div>
 <div class="paragraph">
 <p>Following is the function definition of <code>getExchangeRate</code>:</p>
@@ -888,7 +897,7 @@ components:
 <div class="sect2">
 <h3 id="con-example-sw-configuration"><a class="anchor" href="#con-example-sw-configuration"></a>Configuration in <code>serverless-workflow-oauth2-orchestration-quarkus</code> example application</h3>
 <div class="paragraph">
-<p>The configuration for the Serverless Workflow used in <code>serverless-workflow-oauth2-orchestration-quarkus</code> example application includes defining required properties in <code>application.properties</code> file as shown in the following example:</p>
+<p>The configuration for the workflow used in <code>serverless-workflow-oauth2-orchestration-quarkus</code> example application includes defining required properties in <code>application.properties</code> file as shown in the following example:</p>
 </div>
 <div class="listingblock">
 <div class="title">Example <code>application.properties</code> file configuration</div>
@@ -930,7 +939,7 @@ quarkus.oidc-client.acme_financial_oauth.credentials.client-secret.value=secret 
 </tr>
 <tr>
 <td><i class="conum" data-value="6"></i><b>6</b></td>
-<td>Client ID to identify the Serverless Workflow against the authorization service, such as <code>kogito-app</code>. This identifier must be provided by Acme.</td>
+<td>Client ID to identify the workflow against the authorization service, such as <code>kogito-app</code>. This identifier must be provided by Acme.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="7"></i><b>7</b></td>
@@ -938,7 +947,7 @@ quarkus.oidc-client.acme_financial_oauth.credentials.client-secret.value=secret 
 </tr>
 <tr>
 <td><i class="conum" data-value="8"></i><b>8</b></td>
-<td><code>client-secret</code> to authenticate the Serverless Workflow against the authorization service when the client grant type is used. This secret must be provided by Acme.</td>
+<td><code>client-secret</code> to authenticate the workflow against the authorization service when the client grant type is used. This secret must be provided by Acme.</td>
 </tr>
 </table>
 </div>
@@ -1070,6 +1079,9 @@ java -jar target/quarkus-app/quarkus-run.jar</code></pre>
 <p>When all the services are running, use the following <code>curl</code> commands to run the <code>currency-exchange-workflow</code>:</p>
 <div class="openblock">
 <div class="content">
+<div class="paragraph">
+<p>The following is an example of successful execution when calculating the currency exchange from <code>EUR</code> to <code>USD</code>:</p>
+</div>
 <div class="tabset is-loading">
 <div class="ulist tabs">
 <ul>
@@ -1120,6 +1132,9 @@ java -jar target/quarkus-app/quarkus-run.jar</code></pre>
 </div>
 </div>
 </div>
+</div>
+<div class="paragraph">
+<p>The following is an example of an unsupported currency error when calculating the currency exchange from <code>EUR</code> to <code>MXN</code>:</p>
 </div>
 <div class="tabset is-loading">
 <div class="ulist tabs">
@@ -1179,11 +1194,17 @@ java -jar target/quarkus-app/quarkus-run.jar</code></pre>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>In the previous examples, the currencies supported by the <code>currency-exchange-workflow</code> include <code>EUR</code>, <code>USD</code>, <code>JPY</code>, <code>GBP</code>, <code>CAD</code>, <code>BRL</code>, and <code>AUD</code>. However, the <code>acme-financial-service</code> REST service can resolve any type of currency exchange. This is an example of a Serverless Workflow implementing the intermediate data filtering, transforming, and validations.</p>
+<p>In the previous examples, the currencies supported by the <code>currency-exchange-workflow</code> include <code>EUR</code>, <code>USD</code>, <code>JPY</code>, <code>GBP</code>, <code>CAD</code>, <code>BRL</code>, and <code>AUD</code>. However, the <code>acme-financial-service</code> REST service can resolve any type of currency exchange. This is an example of a workflow implementing the intermediate data filtering, transforming, and validations.</p>
 </div>
 </td>
 </tr>
 </table>
+</div>
+<div class="paragraph">
+<p>The following is an example of the occurrence of unexpected errors when accessing <code>acme-financial-service</code>:</p>
+</div>
+<div class="paragraph">
+<p>Before you launch the command, you must go to the terminal window where you started the <code>acme-financial-service</code> and stop the service using <code>CTRL+C</code>.</p>
 </div>
 <div class="tabset is-loading">
 <div class="ulist tabs">
@@ -1234,6 +1255,20 @@ java -jar target/quarkus-app/quarkus-run.jar</code></pre>
 </div>
 </div>
 </div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>In this example the error indicates that it was not possible to contact the <code>acme-financial-service</code>.</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
