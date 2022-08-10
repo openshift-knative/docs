@@ -1,5 +1,5 @@
 * xref:index.adoc[Overview]
-* xref:about.adoc[About]
+* xref:about.adoc[About OpenShift Serverless Logic]
 * Workflows
 ** Getting Started
 *** xref:getting-started/create-your-first-workflow-service.adoc[Creating your first workflow service]
