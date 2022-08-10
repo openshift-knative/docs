@@ -39,7 +39,7 @@
       -->
         <a class="navbar-item" href="https://openshift-knative.github.io/docs/docs/index.html">Home</a>
         <a class="navbar-item" href="https://developers.redhat.com/topics/serverless-architecture">Blog</a>
-        <a class="navbar-item" href="https://github.com/boson-project/">The Boson Project</a>
+        <a class="navbar-item" href="https://kogito.kie.org/">The Kogito Project</a>
       </div>
     </div>
   </nav>
@@ -107,13 +107,16 @@
     <span class="nav-text">Tooling</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
     <a class="nav-link" href="tooling/serverless-workflow-editor/swf-editor-overview.html">Serverless Workflow editor</a>
-  </li>
-  <li class="nav-item" data-depth="3">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
     <a class="nav-link" href="tooling/serverless-workflow-editor/swf-editor-vscode-extension.html">VS Code extension for Serverless Workflow editor</a>
   </li>
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item" data-depth="4">
     <a class="nav-link" href="tooling/serverless-workflow-editor/swf-editor-chrome-extension.html">Chrome GitHub extension for Serverless Workflow editor</a>
+  </li>
+</ul>
   </li>
   <li class="nav-item" data-depth="3">
     <button class="nav-toggle"></button>
@@ -133,12 +136,12 @@
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <span class="nav-text">Service Orchestration</span>
-  </li>
-  <li class="nav-item" data-depth="2">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="service-orchestration/orchestration-of-openapi-based-services.html">Orchestrating the OpenAPI services</a>
+    <span class="nav-text">Service Orchestration</span>
 <ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="service-orchestration/orchestration-of-openapi-based-services.html">Orchestrating the OpenAPI services</a>
+  </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="service-orchestration/configuring-openapi-services-endpoints.html">Configuring the OpenAPI services endpoints</a>
   </li>
@@ -279,13 +282,13 @@
           <article class="doc">
 <h1>About OpenShift Serverless Logic</h1>
 <div class="paragraph">
-<p><em>OpenShift Serverless Logic</em> enables developers or architects to define declarative workflow models that orchestrate event-driven, serverless applications. Serverless Logic implements the CNCF Serverless Workflow specification, allowing developers and architects to define logical steps of execution declaratively (no code) for cloud-native services. The specification is hosted by the Cloud Native Computing Foundation (CNCF) and is currently a CNCF Sandbox project.</p>
+<p><em>OpenShift Serverless Logic</em> enables developers or architects to define declarative workflow models that orchestrate event-driven, serverless applications. Serverless Logic implements the <a href="https://github.com/serverlessworkflow/specification">CNCF Serverless Workflow specification</a>, allowing developers and architects to define logical steps of execution declaratively (no code) for cloud-native services. The specification is hosted by the <a href="https://www.cncf.io/">Cloud Native Computing Foundation (CNCF)</a> and is currently a <a href="https://www.cncf.io/projects/serverless-workflow/">CNCF Sandbox project</a>.</p>
 </div>
 <div class="paragraph">
 <p>OpenShift Serverless Logic is also designed to write workflows in formats (JSON or YAML) that might be better suited for developing and deploying serverless applications in cloud or container environments.</p>
 </div>
 <div class="paragraph">
-<p>For Serverless Logic implementation, Kubernetes Operator can be used to deploy the workflow models using Knative. Knative Eventing plays an important role and provides the essential infrastructure for event-driven architectures.</p>
+<p>For Serverless Logic implementation, <a href="https://kubernetes.io/docs/concepts/extend-kubernetes/operator/">Kubernetes Operator</a> can be used to deploy the workflow models using <a href="https://knative.dev/docs/">Knative</a>. <a href="https://knative.dev/docs/eventing/">Knative Eventing</a> plays an important role and provides the essential infrastructure for event-driven architectures.</p>
 </div>
 </article>
         </main>

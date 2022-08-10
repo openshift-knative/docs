@@ -39,7 +39,7 @@
       -->
         <a class="navbar-item" href="https://openshift-knative.github.io/docs/docs/index.html">Home</a>
         <a class="navbar-item" href="https://developers.redhat.com/topics/serverless-architecture">Blog</a>
-        <a class="navbar-item" href="https://github.com/boson-project/">The Boson Project</a>
+        <a class="navbar-item" href="https://kogito.kie.org/">The Kogito Project</a>
       </div>
     </div>
   </nav>
@@ -107,13 +107,16 @@
     <span class="nav-text">Tooling</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
     <a class="nav-link" href="../tooling/serverless-workflow-editor/swf-editor-overview.html">Serverless Workflow editor</a>
-  </li>
-  <li class="nav-item" data-depth="3">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
     <a class="nav-link" href="../tooling/serverless-workflow-editor/swf-editor-vscode-extension.html">VS Code extension for Serverless Workflow editor</a>
   </li>
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item" data-depth="4">
     <a class="nav-link" href="../tooling/serverless-workflow-editor/swf-editor-chrome-extension.html">Chrome GitHub extension for Serverless Workflow editor</a>
+  </li>
+</ul>
   </li>
   <li class="nav-item" data-depth="3">
     <button class="nav-toggle"></button>
@@ -133,12 +136,12 @@
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <span class="nav-text">Service Orchestration</span>
-  </li>
-  <li class="nav-item" data-depth="2">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="../service-orchestration/orchestration-of-openapi-based-services.html">Orchestrating the OpenAPI services</a>
+    <span class="nav-text">Service Orchestration</span>
 <ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../service-orchestration/orchestration-of-openapi-based-services.html">Orchestrating the OpenAPI services</a>
+  </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../service-orchestration/configuring-openapi-services-endpoints.html">Configuring the OpenAPI services endpoints</a>
   </li>
@@ -333,7 +336,7 @@
 <p>Apache Maven 3.8.1 is installed.</p>
 </li>
 <li>
-<p><a href="https://quarkus.io/guides/cli-tooling">Quarkus CLI</a> 2.7.6.Final-redhat-00006 or <a href="../tooling/kn-plugin-workflow-overview.html" class="xref page">Knative CLI</a> 0.0.0 is installed.</p>
+<p><a href="https://quarkus.io/guides/cli-tooling">Quarkus CLI</a> 2.7.6.Final-redhat-00006 or <a href="../tooling/kn-plugin-workflow-overview.html" class="xref page">Knative CLI</a> 0.21.2 is installed.</p>
 </li>
 <li>
 <p>Visual Studio Code with <a href="https://marketplace.visualstudio.com/items?itemName=redhat.java">Red Hat Java Extension</a>
@@ -383,7 +386,7 @@ and <a href="https://marketplace.visualstudio.com/items?itemName=redhat.vscode-e
             &lt;dependency&gt;
                 &lt;groupId&gt;org.kie.kogito&lt;/groupId&gt;
                 &lt;artifactId&gt;kogito-bom&lt;/artifactId&gt;
-                &lt;version&gt;1.24.0.Final-redhat-00001&lt;/version&gt;
+                &lt;version&gt;1.24.0.Final-redhat-00011&lt;/version&gt;
                 &lt;type&gt;pom&lt;/type&gt;
                 &lt;scope&gt;import&lt;/scope&gt;
             &lt;/dependency&gt;
@@ -456,7 +459,7 @@ and <a href="https://marketplace.visualstudio.com/items?itemName=redhat.vscode-e
 <div class="title">Create a project using Quarkus CLI</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">quarkus create app \
-    -x=org.kie.kogito:kogito-quarkus-serverless-workflow:1.24.0.Final-redhat-00001 \
+    -x=org.kie.kogito:kogito-quarkus-serverless-workflow:1.24.0.Final-redhat-00011 \
     -x=quarkus-container-image-jib \
     -x=quarkus-resteasy-jackson \
     -x=quarkus-smallrye-openapi \
@@ -470,7 +473,7 @@ and <a href="https://marketplace.visualstudio.com/items?itemName=redhat.vscode-e
 <div class="ulist">
 <ul>
 <li>
-<p><code>org.kie.kogito:kogito-quarkus-serverless-workflow:1.24.0.Final-redhat-00001</code>: Adds support for workflows.</p>
+<p><code>org.kie.kogito:kogito-quarkus-serverless-workflow:1.24.0.Final-redhat-00011</code>: Adds support for workflows.</p>
 </li>
 <li>
 <p><code>quarkus-container-image-jib</code>: Adds support for Container Image Builds.</p>
@@ -497,7 +500,7 @@ and <a href="https://marketplace.visualstudio.com/items?itemName=redhat.vscode-e
 <pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">mvn com.redhat.quarkus.platform:quarkus-maven-plugin:2.7.6.Final-redhat-00006:create \
     -DprojectGroupId=org.kie.kogito.examples \
     -DprojectArtifactId=serverless-workflow-hello-world \
-    -Dextensions="org.kie.kogito:kogito-quarkus-serverless-workflow:1.24.0.Final-redhat-00001,quarkus-container-image-jib,quarkus-resteasy-jackson,quarkus-smallrye-openapi" \
+    -Dextensions="org.kie.kogito:kogito-quarkus-serverless-workflow:1.24.0.Final-redhat-00011,quarkus-container-image-jib,quarkus-resteasy-jackson,quarkus-smallrye-openapi" \
     -DnoCode
 cd serverless-workflow-hello-world</code></pre>
 </div>
