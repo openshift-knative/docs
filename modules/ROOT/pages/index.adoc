@@ -1,8 +1,0 @@
-= Overview
-
-_OpenShift Serverless previews_ provides tutorials and information about additional, advanced use cases and integrations that are possible using OpenShift Container Platform and OpenShift Serverless, but are for development purposes only and are not officially supported by Red Hat.
-
-Before you can complete the tasks documented on this site, you will need a working installation of OpenShift Serverless.
-
-* See link:https://access.redhat.com/articles/4912821[OpenShift Serverless supported configurations].
-* See the link:https://docs.openshift.com/container-platform/4.8/serverless/admin_guide/install-serverless-operator.html[Installing OpenShift Serverless] documentation.
