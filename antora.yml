@@ -8,8 +8,7 @@ asciidoc:
   attributes:
     product_name: OpenShift Serverless Logic
     context: OpenShift Serverless Logic
-    quarkus_cli_platform_redhat: '-Pcom.redhat.quarkus.platform:quarkus-bom:2.7.6.Final-redhat-00006'
-    kogito_version_redhat: 1.24.0.Final-redhat-00011
+    kogito_version_redhat: ""
     quarkus_platform: com.redhat.quarkus.platform
     kogito_sw_ga: >-
       org.kie.kogito:kogito-quarkus-serverless-workflow
