@@ -20,7 +20,7 @@ This document describes how you can install and use the `kn-plugin-workflow` plu
 [[proc-install-sw-plugin-kn-cli]]
 == Installing the {context} plug-in for Knative CLI
 
-You can use the {context} plug-in to set up your local workflow project quickly using Knative CLI. 
+You can use the {context} plug-in to set up your local workflow project quickly using Knative CLI.
 
 .Prerequisites
 * link:{java_install_url}[Java] {java_min_version} is installed.
@@ -43,7 +43,7 @@ You can use the {context} plug-in to set up your local workflow project quickly 
 `chmod +x /usr/local/bin/kn-workflow`
 +
 [WARNING]
-==== 
+====
 Some systems might block the application to run due to Apple enforcing policies. To fix this problem, check the *Security & Privacy* section in the *System Preferences* -> *General* tab to approve the application to run. For more information, see link:{apple_support_url}[Apple support article: Open a Mac app from an unidentified developer].
 ====
 .. Run the following command to verify that `kn-workflow` plug-in is installed successfully:
@@ -97,7 +97,7 @@ The `create` command sets up Quarkus project containing minimal extensions to bu
 * {context} plug-in for Knative CLI is installed.
 +
 For more information about installing the plug-in, see <<proc-install-sw-plugin-kn-cli, Installing the {context} plug-in for Knative CLI>>.
-ifeval::["{quarkus_cli_platform_redhat}" != ""]
+ifeval::["{kogito_version_redhat}" != ""]
 * You followed the steps in xref:getting-started/create-your-first-workflow-service.adoc#proc-configuring-maven-rhbq[Configuring your Maven project to Red Hat build of Quarkus and OpenShift Serverless Logic]
 endif::[]
 
@@ -132,7 +132,7 @@ kn workflow create --extension quarkus-jsonp,quarkus-smallrye-openapi
 You can add multiple extensions using the comma-separated names of the extensions in the previous command.
 
 [NOTE]
-==== 
+====
 When you run the `create` command for the first time, it might take a while due to the necessity of downloading the required dependencies for the Quarkus project.
 ====
 --
@@ -140,7 +140,7 @@ When you run the `create` command for the first time, it might take a while due 
 [[proc-build-sw-project-kn-cli]]
 == Building a workflow project using Knative CLI
 
-After creating your workflow project, you can use the `build` command with `kn workflow` to build your workflow project in your current directory and to generate a container image. 
+After creating your workflow project, you can use the `build` command with `kn workflow` to build your workflow project in your current directory and to generate a container image.
 
 The process of building your workflow project produces a `knative.yml` file in the `./target/kubernetes` folder. If your workflow contains events, then the building process also generates a `kogito.yml` file.
 
@@ -241,7 +241,7 @@ Before using the `--push` option, ensure that you have access to your registry. 
 Using Docker::
 +
 --
-The process of building your workflow project using Docker is straightforward and also a default approach. 
+The process of building your workflow project using Docker is straightforward and also a default approach.
 
 When using Docker, you can automatically push the container image to the respective registry by using the `--push` option as shown in the following command:
 
