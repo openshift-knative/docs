@@ -2,6 +2,8 @@ site:
   title: Red Hat OpenShift Serverless previews
   url: https://openshift-knative.github.io/docs
   start_page: docs::index.adoc
+urls:
+  latest_version_segment: latest
 content:
   sources:
     - url: .

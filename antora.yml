@@ -22,8 +22,7 @@ asciidoc:
     kn-cli-version: 0.21.3
     kogito_devservices_imagename: registry.redhat.io/openshift-serverless-1-tech-preview/logic-data-index-ephemeral-rhel8:1.24.0-11
     kogito_examples_repository_url: 'https://github.com/kiegroup/kogito-examples'
-    kogito_sw_examples_url: >-
-      https://github.com/kiegroup/kogito-examples/tree/main/serverless-workflow-examples
+    kogito_sw_examples_url: https://github.com/kiegroup/kogito-examples/tree/1.24.x/serverless-workflow-examples
     kogito_examples_url: 'https://github.com/kiegroup/kogito-examples.git'
     quarkus_cli_url: 'https://quarkus.io/guides/cli-tooling'
     spec_website_url: 'https://serverlessworkflow.io/'

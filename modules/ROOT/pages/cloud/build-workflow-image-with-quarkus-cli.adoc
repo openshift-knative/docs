@@ -4,7 +4,6 @@
 :description: Build Serverless Application with Quarkus CLI
 :keywords: kogito, workflow, quarkus, serverless, quarkus-cli
 // links
-:example_project_url: https://github.com/kiegroup/kogito-examples/tree/main/serverless-workflow-examples/serverless-workflow-greeting-quarkus
 :quarkus_container_images_url: https://quarkus.io/guides/container-image
 :quarkus_native_builds_url: https://quarkus.io/guides/building-native-image
 :google_jib_url: https://github.com/GoogleContainerTools/jib
@@ -34,7 +33,7 @@ NOTE: You can skip the following procedure if you already have a workflow applic
 .Clone an example application
 [source,shell,subs="attributes+"]
 ----
-git clone --branch main {kogito_sw_examples_git_repo_url} 
+git clone --branch main {kogito_sw_examples_git_repo_url}
 cd kogito-examples/serverless-workflow-examples/serverless-workflow-greeting-quarkus
 ----
 
@@ -68,7 +67,7 @@ After installing the required tooling, you can start building your workflow appl
 
 .Prerequisites
 * You have created a Quarkus project.
-* Quarkus CLI is installed. 
+* Quarkus CLI is installed.
 For more information about installing the Quarkus CLI, see link:https://quarkus.io/guides/cli-tooling#installing-the-cli[Installing the Quarkus CLI].
 
 .Procedure
@@ -158,7 +157,7 @@ When it comes to workflows, a small startup footprint is expected, which can be 
 
 .Prerequisites
 * You have created a Quarkus project.
-* Quarkus CLI is installed. 
+* Quarkus CLI is installed.
 For more information about installing the Quarkus CLI, see link:{quarkus_cli_url}[Installing the Quarkus CLI].
 
 .Procedure
