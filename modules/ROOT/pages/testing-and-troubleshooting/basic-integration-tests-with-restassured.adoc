@@ -146,7 +146,7 @@ If you see a similar output, this means your test is executed successfully.
 * xref:testing-and-troubleshooting/mocking-openapi-services-with-wiremock.adoc[Mocking OpenAPI services using WireMock]
 * xref:testing-and-troubleshooting/mocking-http-cloudevents-with-wiremock.adoc[Mocking HTTP CloudEvents sink using WireMock]
 * xref:testing-and-troubleshooting/integration-tests-with-postgresql.adoc[{context} integration test using PostgreSQL]
-* link:https://quarkus.io/guides/getting-started-testing[Testing a Quarkus application]
+* link:https://access.redhat.com/documentation/en-us/red_hat_build_of_quarkus/quarkus-2-7/guide/f93c45bd-4feb-4f74-a70a-022e9fb41957#proc_quarkus-junit-testing_quarkus-getting-started[Testing a Quarkus application]
 * link:https://rest-assured.io/#docs[REST Assured Documentation]
 
 include::../../pages/_common-content/report-issue.adoc[]
