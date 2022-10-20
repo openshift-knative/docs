@@ -38,7 +38,7 @@
 
 .tabset.is-loading .tabs li:not(:first-child),
 .tabset:not(.is-loading) .tabs li:not(.is-active) {
-  background-color: #085870;
+  background-color: #000000;
   color: white;
 }
 

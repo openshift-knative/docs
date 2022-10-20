@@ -98,6 +98,9 @@
     <a class="nav-link" href="../core/configuration-properties.html">Configuration properties in OpenShift Serverless Logic</a>
   </li>
   <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../core/defining-an-input-schema-for-workflows.html">Defining an input schema for your workflows</a>
+  </li>
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../core/custom-functions-support.html">Custom functions for your OpenShift Serverless Logic service</a>
   </li>
 </ul>
@@ -132,6 +135,27 @@
   </li>
   <li class="nav-item is-current-page" data-depth="3">
     <a class="nav-link" href="kn-plugin-workflow-overview.html">OpenShift Serverless Logic plug-in for Knative CLI</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="serverless-logic-web-tools/serverless-logic-web-tools-overview.html">Serverless Logic Web Tools</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="serverless-logic-web-tools/serverless-logic-web-tools-github-integration.html">GitHub integration</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="serverless-logic-web-tools/serverless-logic-web-tools-openshift-integration.html">OpenShift integration</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="serverless-logic-web-tools/serverless-logic-web-tools-redhat-application-services-integration.html">Red Hat OpenShift Application and Data Services integration</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="serverless-logic-web-tools/serverless-logic-web-tools-deploy-projects.html">Deploying projects</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="serverless-logic-web-tools/serverless-logic-web-tools-enable-kogito-swf-visualization.html">Kogito Serverless Workflow Visualization</a>
+  </li>
+</ul>
   </li>
 </ul>
   </li>
@@ -220,12 +244,18 @@
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../cloud/deploying-on-minikube.html">Deploying your OpenShift Serverless Logic application on Minikube</a>
   </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../cloud/kubernetes-service-discovery.html">Kubernetes service discovery in OpenShift Serverless Logic</a>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-toggle"></button>
     <span class="nav-text">Integrations</span>
 <ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../integrations/expose-metrics-to-prometheus.html">Exposing the workflow base metrics to Prometheus</a>
+  </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../integrations/serverless-dashboard-with-runtime-data.html">Displaying workflow data in dashboards</a>
   </li>
@@ -303,7 +333,6 @@
 </ul>
 </li>
 <li><a href="#proc-deploy-sw-project-kn-cli">Deploying a workflow project using Knative CLI</a></li>
-<li><a href="#proc-build-sw-project-source">Building a workflow project from source</a></li>
 <li><a href="#_additional_resources">Additional resources</a></li>
 <li><a href="#_found_an_issue"><em><strong>Found an issue?</strong></em></a></li>
 </ul>
@@ -801,75 +830,6 @@ Use "kn workflow [command] --help" for more information about a command.</code><
 </div>
 </li>
 </ol>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="proc-build-sw-project-source"><a class="anchor" href="#proc-build-sw-project-source"></a>Building a workflow project from source</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>As an alternative, you can build your workflow project from source.</p>
-</div>
-<div class="ulist">
-<div class="title">Prerequisites</div>
-<ul>
-<li>
-<p>A workflow project is created.</p>
-<div class="paragraph">
-<p>For more information about creating a workflow project, see <a href="../getting-started/create-your-first-workflow-service.html" class="xref page">Creating your first Serverless Workflow service</a>.</p>
-</div>
-</li>
-</ul>
-</div>
-<div class="olist arabic">
-<div class="title">Procedure</div>
-<ol class="arabic">
-<li>
-<p>In a command terminal, enter the following command to clone the <code>kie-tools</code> GitHub repository:</p>
-<div class="openblock">
-<div class="content">
-<div class="listingblock">
-<div class="title">Clone <code>kie-tools</code> repository</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">git clone git@github.com:kiegroup/kie-tools.git</code></pre>
-</div>
-</div>
-</div>
-</div>
-</li>
-<li>
-<p>Navigate to the cloned <code>kie-tools</code> directory and enter the following command to access the OpenShift Serverless Logic plug-in:</p>
-<div class="openblock">
-<div class="content">
-<div class="listingblock">
-<div class="title">Access OpenShift Serverless Logic plug-in</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">cd kie-tools
-pnpm bootstrap
-pnpm -F @kie-tools/kn-plugin-workflow... build:dev</code></pre>
-</div>
-</div>
-</div>
-</div>
-</li>
-<li>
-<p>Go to the plug-in folder and enter the following command to build the workflow project:</p>
-<div class="openblock">
-<div class="content">
-<div class="listingblock">
-<div class="title">Build workflow project from source</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">cd packages/kn-plugin-workflow
-go mod tidy</code></pre>
-</div>
-</div>
-</div>
-</div>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>You have successfully built your workflow project from source.</p>
 </div>
 </div>
 </div>
