@@ -47,7 +47,7 @@ To indicate that an event match occurs when both `noisy` and `silent` CloudEvent
         "eventRefs": [
           "noisyEvent"
          ],
-         "actions": [
+         "actions": [ 
            {
              "functionRef": "letsGetLoud"
            }
@@ -57,14 +57,14 @@ To indicate that an event match occurs when both `noisy` and `silent` CloudEvent
         "eventRefs": [
            "silentEvent"
         ],
-        "actions": [
+        "actions": [ 
           {
             "functionRef": "beQuiet"
           }
         ]
       }
     ]
-    ,
+    , 
     "exclusive": false
   }
 ----
@@ -83,7 +83,7 @@ To execute the same action when both event types are received, use only one `onE
           "noisyEvent",
           "silentEvent"
          ],
-         "actions": [
+         "actions": [ 
            {
              "functionRef": "notCareAboutNoise"
            }
@@ -109,7 +109,7 @@ If you want the same action to be executed when any of the event types is receiv
           "noisyEvent",
           "silentEvent"
          ],
-         "actions": [
+         "actions": [ 
            {
              "functionRef": "notCareAboutNoise"
            }
@@ -141,3 +141,5 @@ Similar to the callback state in a workflow, the workflow instance to be resumed
 * xref:eventing/consume-produce-events-with-knative-eventing.adoc[Consuming and producing events on Knative Eventing]
 
 include::../../pages/_common-content/report-issue.adoc[]
+
+ 
