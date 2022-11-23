@@ -45,3 +45,25 @@
     ...
 </project>
 ----
++
+// Needed only for Developer Preview 3
+. *[Optional]* If you want to use Binary CloudEvents (where the event data is stored in the message body, and event attributes are stored as part of message metadata), you need to upgrade the version of the `quarkus-reactive-messaging-http` dependency:
++
+.Override of `quarkus-reactive-messaging-http` in `pom.xml` file
+[source,xml,subs="attributes+"]
+----
+<project>
+    ...
+    <dependencyManagement>
+        <dependencies>
+            ...
+            <dependency>
+                <groupId>io.quarkiverse.reactivemessaging.http</groupId>
+                <artifactId>quarkus-reactive-messaging-http</artifactId>
+                <version>1.0.8</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+    ...
+</project>
+----
