@@ -10,7 +10,7 @@
 This document describes how you can configure OpenAPI service endpoints in {context}.
 
 [[con-config-openapi-services-endpoints]]
-== Overview 
+== Overview
 
 {product_name} leverages MicroProfile REST Client to invoke OpenAPI services. Therefore, you can configure the OpenAPI services by following the MicroProfile Config specification. For the list of properties to configure in the MicroProfile REST Client specification, see link:https://download.eclipse.org/microprofile/microprofile-rest-client-2.0/microprofile-rest-client-spec-2.0.html#mpconfig[Support for MicroProfile Config] in MicroProfile REST Client documentation.
 
@@ -115,7 +115,7 @@ A Kubernetes service endpoint can be used as a service URL if the target service
 
 === Using URI alias
 
-As an alternative to `kogito.sw.operationIdStrategy`, you can assign an alias name to an URI by using `workflow-uri-definitions` custom link:{spec_doc_url}#extensions[extension]. Then you can use that alias as configuration key and in function definitions. 
+As an alternative to `kogito.sw.operationIdStrategy`, you can assign an alias name to an URI by using `workflow-uri-definitions` custom link:{spec_doc_url}#extensions[extension]. Then you can use that alias as configuration key and in function definitions.
 
 .Example workflow
 [source,json]
@@ -126,12 +126,12 @@ As an alternative to `kogito.sw.operationIdStrategy`, you can assign an alias na
         "remoteCatalog": "https://my.remote.host/apicatalog/apis/123/document",
        }
      }
-  ], 
+  ],
   "functions": [
         {
           "name": "operation1",
           "operation": "remoteCatalog#operation1"
-        }, 
+        },
         {
           "name": "operation2",
           "operation": "remoteCatalog#operation2"
@@ -322,7 +322,7 @@ You can access the `real-stock-service` service at `http://localhost:8383/`.
 . In a separate command terminal window, run the `fake-stock-service` service:
 +
 --
-.Run `fake-stock-service` service 
+.Run `fake-stock-service` service
 [source,shell]
 ----
 cd fake-stock-service
@@ -335,7 +335,7 @@ You can access the`fake-stock-service` service at `http://localhost:8181/`.
 [[proc-config-openapi-services-running-sw-application-in-development-mode]]
 === Running workflow application in development mode
 
-When you define `%dev.quarkus.rest-client.stock_svc_yaml.url=http://localhost:8181/`, the `fake-stock-service` service is used in the development mode and you get the same result every time you run the workflow. Using this example, you can run the workflow application in development mode. 
+When you define `%dev.quarkus.rest-client.stock_svc_yaml.url=http://localhost:8181/`, the `fake-stock-service` service is used in the development mode and you get the same result every time you run the workflow. Using this example, you can run the workflow application in development mode.
 
 .Prerequisites
 * Services that the workflow application sends requests to are started.
@@ -364,7 +364,7 @@ curl -X 'POST' \
   'http://localhost:8080/stockprofit' \
   -H 'accept: */*' \
   -H 'Content-Type: application/json' \
-  -d '{ "workflowdata": {"symbol": "KGTO" } }'
+  -d '{ "symbol": "KGTO" }'
 ----
 
 .Example response
@@ -418,7 +418,7 @@ curl -X 'POST' \
   'http://localhost:8080/stockprofit' \
   -H 'accept: */*' \
   -H 'Content-Type: application/json' \
-  -d '{ "workflowdata": {"symbol": "KGTO" } }'
+  -d '{ "symbol": "KGTO" }'
 ----
 
 .Example response
@@ -465,7 +465,7 @@ curl -X 'POST' \
   'http://localhost:8080/stockprofit' \
   -H 'accept: */*' \
   -H 'Content-Type: application/json' \
-  -d '{ "workflowdata": {"symbol": "KGTO" } }'
+  -d '{ "symbol": "KGTO" }'
 ----
 
 .Example response

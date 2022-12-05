@@ -33,7 +33,7 @@ NOTE: You can skip the following procedure if you already have a workflow applic
 .Clone an example application
 [source,shell,subs="attributes+"]
 ----
-git clone --branch main {kogito_sw_examples_git_repo_url} 
+git clone --branch main {kogito_sw_examples_git_repo_url}
 cd kogito-examples/serverless-workflow-examples/serverless-workflow-greeting-quarkus
 ----
 
@@ -67,7 +67,7 @@ After installing the required tooling, you can start building your workflow appl
 
 .Prerequisites
 * You have created a Quarkus project.
-* Quarkus CLI is installed. 
+* Quarkus CLI is installed.
 For more information about installing the Quarkus CLI, see link:https://quarkus.io/guides/cli-tooling#installing-the-cli[Installing the Quarkus CLI].
 
 .Procedure
@@ -157,7 +157,7 @@ When it comes to workflows, a small startup footprint is expected, which can be 
 
 .Prerequisites
 * You have created a Quarkus project.
-* Quarkus CLI is installed. 
+* Quarkus CLI is installed.
 For more information about installing the Quarkus CLI, see link:{quarkus_cli_url}[Installing the Quarkus CLI].
 
 .Procedure
@@ -242,7 +242,7 @@ Example request::
 +
 [source,shell]
 ----
-curl -X POST -H 'Content-Type:application/json' -H 'Accept:application/json' -d '{"workflowdata" : {"name": "John", "language": "English"}}' http://localhost:8080/jsongreet
+curl -X POST -H 'Content-Type:application/json' -H 'Accept:application/json' -d '{"name": "John", "language": "English"}' http://localhost:8080/jsongreet
 ----
 Example response::
 +
