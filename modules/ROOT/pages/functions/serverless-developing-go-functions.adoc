@@ -1,0 +1,35 @@
+[id="serverless-developing-go-functions"]
+= Developing Go functions
+:context: serverless-developing-go-functions
+
+:ServerlessOperatorName: OpenShift Serverless Operator
+:FunctionsProductName: OpenShift Serverless Functions
+
+:FeatureName: {FunctionsProductName}
+include::../_common-content/technology-preview.adoc[leveloffset=+2]
+
+After you have link:https://docs.openshift.com/container-platform/4.11/serverless/functions/serverless-functions-getting-started.html#serverless-create-func-kn_serverless-functions-getting-started[created a Go function project], you can modify the template files provided to add business logic to your function. This includes configuring function invocation and the returned headers and status codes.
+
+[id="prerequisites_serverless-developing-go-functions"]
+== Prerequisites
+
+* Before you can develop functions, you must complete the steps in link:https://docs.openshift.com/container-platform/4.11/serverless/functions/serverless-functions-setup.html#serverless-functions-setup[Setting up {FunctionsProductName}].
+
+include::modules/serverless-go-template.adoc[leveloffset=+1]
+
+
+[id="serverless-developing-go-functions-about-invoking"]
+== About invoking Go functions
+
+When using the Knative (`kn`) CLI to create a function project, you can generate a project that responds to CloudEvents, or one that responds to simple HTTP requests. Go functions are invoked by using different methods, depending on whether they are triggered by an HTTP request or a CloudEvent.
+
+include::modules/serverless-invoking-go-functions-http.adoc[leveloffset=+2]
+include::modules/serverless-invoking-go-functions-cloudevent.adoc[leveloffset=+2]
+
+include::modules/serverless-go-function-return-values.adoc[leveloffset=+1]
+include::modules/serverless-testing-go-functions.adoc[leveloffset=+1]
+
+[id="next-steps_serverless-developing-go-functions"]
+== Next steps
+
+* link:https://docs.openshift.com/container-platform/4.11/serverless/functions/serverless-functions-getting-started.html#serverless-build-func-kn_serverless-functions-getting-started[Build] and link:https://docs.openshift.com/container-platform/4.11/serverless/functions/serverless-functions-getting-started.html#serverless-deploy-func-kn_serverless-functions-getting-started[deploy] a function.
