@@ -9,9 +9,6 @@
 = Building and deploying functions on the cluster
 You can use the Knative (`kn`) CLI to initiate a function project build and then deploy the function directly on the cluster. To build a function project in this way, the source code for your function project must exist in a Git repository branch that is accessible to your cluster.
 
-:FeatureName: {FunctionsProductName}
-include::../_common-content/technology-preview.adoc[leveloffset=+1]
-
 .Prerequisites
 * {pipelines-title} must be installed on your cluster.
 * You have installed the OpenShift CLI (`oc`).

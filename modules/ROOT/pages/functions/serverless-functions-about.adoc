@@ -8,8 +8,6 @@ Function lifecycle management includes creating, building, and deploying a funct
 See link:https://docs.openshift.com/container-platform/4.11/serverless/functions/serverless-functions-getting-started.html#serverless-functions-getting-started[Getting started with OpenShift Serverless Functions].
 
 :FunctionsProductName: OpenShift Serverless Functions
-:FeatureName: {FunctionsProductName}
-include::../_common-content/technology-preview.adoc[leveloffset=+1]
 
 Some parts of {FunctionsProductName} are in Developer Preview and are documented in the following pages:
 
