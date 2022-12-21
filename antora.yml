@@ -8,7 +8,7 @@ asciidoc:
   attributes:
     product_name: OpenShift Serverless Logic
     context: OpenShift Serverless Logic
-    kogito_version_redhat: 1.27.0.Final-redhat-00005
+    kogito_version_redhat: 1.30.0.Final-redhat-00001
     quarkus_platform: com.redhat.quarkus.platform
     kogito_sw_ga: >-
       org.kie.kogito:kogito-quarkus-serverless-workflow
@@ -18,7 +18,7 @@ asciidoc:
     graalvm_min_version: 21.3.0
     spec_version: 0.8
     vscode_version: 1.46.0
-    kn_cli_version: 0.21.3
+    kn_cli_version: 0.25.0
     kie_tools_node_min_version: 16.13.2
     kie_tools_pnpm_min_version: 7.0.0
     kie_tools_golang_min_version: 1.19
