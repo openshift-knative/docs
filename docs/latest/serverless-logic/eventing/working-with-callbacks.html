@@ -114,6 +114,9 @@
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="../core/custom-functions-support.html">Custom functions for your OpenShift Serverless Logic service</a>
   </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../core/timeouts-support.html">Timeouts in OpenShift Serverless Logic</a>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="3">
@@ -378,7 +381,7 @@
 <h2 id="ref-example-callback"><a class="anchor" href="#ref-example-callback"></a>Example of Callback state</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>To understand the Callback state, see the <a href="https://github.com/kiegroup/kogito-examples/tree/1.27.x/serverless-workflow-examples/serverless-workflow-callback-quarkus"><code>serverless-workflow-callback-quarkus</code></a> example application in GitHub repository.</p>
+<p>To understand the Callback state, see the <a href="https://github.com/kiegroup/kogito-examples/tree/1.30.x/serverless-workflow-examples/serverless-workflow-callback-quarkus"><code>serverless-workflow-callback-quarkus</code></a> example application in GitHub repository.</p>
 </div>
 <div class="paragraph">
 <p>The initial model of the <code>serverless-workflow-callback-quarkus</code> example application is empty. Once the workflow is started, it publishes a CloudEvent of the <code>resume</code> type and waits for a CloudEvent, which contains the type <code>wait</code>.</p>
@@ -435,7 +438,7 @@
 </div>
 </div>
 <div class="paragraph">
-<p>An <a href="https://github.com/kiegroup/kogito-examples/tree/1.27.x/serverless-workflow-examples/serverless-workflow-callback-quarkus/src/main/java/org/kie/kogito/examples/PrintService.java">event listener</a> consumes the <code>resume</code> type CloudEvent and publishes a new <code>wait</code> type CloudEvent. Following is an example of a Java method that publishes the <code>wait</code> type CloudEvent:</p>
+<p>An <a href="https://github.com/kiegroup/kogito-examples/tree/1.30.x/serverless-workflow-examples/serverless-workflow-callback-quarkus/src/main/java/org/kie/kogito/examples/PrintService.java">event listener</a> consumes the <code>resume</code> type CloudEvent and publishes a new <code>wait</code> type CloudEvent. Following is an example of a Java method that publishes the <code>wait</code> type CloudEvent:</p>
 </div>
 <div class="listingblock">
 <div class="title">Example of a Java method that publishes the <code>wait</code> CloudEvent</div>
@@ -495,7 +498,7 @@
 <p>The <code>serverless-workflow-callback-quarkus</code> example application requires an external broker to manage the associated CloudEvents. The default setup in the <code>serverless-workflow-callback-quarkus</code> example application uses <a href="https://kafka.apache.org/documentation/">Apache Kafka</a>. However, you can also use <a href="consume-produce-events-with-knative-eventing.html" class="xref page">Knative Eventing</a>.</p>
 </div>
 <div class="paragraph">
-<p>Apache Kafka uses topics to publish or consume messages. In the <code>serverless-workflow-callback-quarkus</code> example application, two topics are used, matching the name of the CloudEvent types that are defined in the workflow, such as <code>resume</code> and <code>wait</code>. The <code>resume</code> and <code>wait</code> CloudEvent types are configured in the <a href="https://github.com/kiegroup/kogito-examples/tree/1.27.x/serverless-workflow-examples/serverless-workflow-callback-quarkus/src/main/resources/application.properties"><code>application.properties</code></a> file.</p>
+<p>Apache Kafka uses topics to publish or consume messages. In the <code>serverless-workflow-callback-quarkus</code> example application, two topics are used, matching the name of the CloudEvent types that are defined in the workflow, such as <code>resume</code> and <code>wait</code>. The <code>resume</code> and <code>wait</code> CloudEvent types are configured in the <a href="https://github.com/kiegroup/kogito-examples/tree/1.30.x/serverless-workflow-examples/serverless-workflow-callback-quarkus/src/main/resources/application.properties"><code>application.properties</code></a> file.</p>
 </div>
 <div class="paragraph">
 <p>For more information about using Apache Kafka with events, see <a href="xref:consume-producing-events-with-kafka.adoc">Consuming and producing events using Apache Kafka</a>.</p>

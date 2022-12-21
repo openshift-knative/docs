@@ -114,6 +114,9 @@
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="../core/custom-functions-support.html">Custom functions for your OpenShift Serverless Logic service</a>
   </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../core/timeouts-support.html">Timeouts in OpenShift Serverless Logic</a>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="3">
@@ -807,7 +810,7 @@ http://hello.serverless-workflow-greeting-quarkus.10.103.94.37.sslip.io</code></
 <div class="listingblock">
 <div class="title">Example request</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">curl -X POST -H 'Content-Type:application/json' -H 'Accept:application/json' -d '{"workflowdata" : {"name": "John", "language": "English"}}' http://hello.serverless-workflow-greeting-quarkus.10.103.94.37.sslip.io/jsongreet</code></pre>
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">curl -X POST -H 'Content-Type:application/json' -H 'Accept:application/json' -d '{"name": "John", "language": "English"}' http://hello.serverless-workflow-greeting-quarkus.10.103.94.37.sslip.io/jsongreet</code></pre>
 </div>
 </div>
 <div class="listingblock">
@@ -1071,7 +1074,7 @@ greeting-quarkus-kubectl   http://greeting-quarkus-kubectl.serverless-workflow-g
 <div class="listingblock">
 <div class="title">Access workflow application</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">curl -X POST -H 'Content-Type:application/json' -H 'Accept:application/json' -d '{"workflowdata" : {"name": "John", "language": "English"}}' http://greeting-quarkus-kubectl.serverless-workflow-greeting-quarkus.10.103.94.37.sslip.io/jsongreet</code></pre>
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">curl -X POST -H 'Content-Type:application/json' -H 'Accept:application/json' -d '{"name": "John", "language": "English"}' http://greeting-quarkus-kubectl.serverless-workflow-greeting-quarkus.10.103.94.37.sslip.io/jsongreet</code></pre>
 </div>
 </div>
 </div>
@@ -1213,7 +1216,7 @@ greeting-quarkus-cli   http://greeting-quarkus-cli.serverless-workflow-greeting-
 <div class="listingblock">
 <div class="title">Access your workflow application</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">curl -X POST -H 'Content-Type:application/json' -H 'Accept:application/json' -d '{"workflowdata" : {"name": "John", "language": "English"}}' http://greeting-quarkus-cli.serverless-workflow-greeting-quarkus.10.103.94.37.sslip.io/jsongreet.37.sslip.io/jsongreet</code></pre>
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">curl -X POST -H 'Content-Type:application/json' -H 'Accept:application/json' -d '{"name": "John", "language": "English"}' http://greeting-quarkus-cli.serverless-workflow-greeting-quarkus.10.103.94.37.sslip.io/jsongreet.37.sslip.io/jsongreet</code></pre>
 </div>
 </div>
 </div>

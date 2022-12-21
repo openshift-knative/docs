@@ -116,6 +116,9 @@
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="../core/custom-functions-support.html">Custom functions for your OpenShift Serverless Logic service</a>
   </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../core/timeouts-support.html">Timeouts in OpenShift Serverless Logic</a>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="3">
@@ -363,7 +366,9 @@
 </td>
 <td class="content">
 <div class="paragraph">
-<p>OpenShift Serverless Logic does not support <a href="https://github.com/serverlessworkflow/specification/blob/0.8.x/specification.md#Retry-Definition">Retries</a>, <a href="https://github.com/serverlessworkflow/specification/blob/0.8.x/specification.md#sleep-state">Sleep State</a>, and <a href="https://github.com/serverlessworkflow/specification/blob/0.8.x/specification.md#workflow-timeouts">Timeouts</a> features of Serverless Workflow specification.</p>
+<p>OpenShift Serverless Logic does not support <a href="https://github.com/serverlessworkflow/specification/blob/0.8.x/specification.md#Retry-Definition">Retries</a>, <a href="https://github.com/serverlessworkflow/specification/blob/0.8.x/specification.md#sleep-state">Sleep
+State</a>, and has a limited support of <a href="https://github.com/serverlessworkflow/specification/blob/0.8.x/specification.md#workflow-timeouts">Timeouts</a> features of Serverless Workflow
+specification.</p>
 </div>
 </td>
 </tr>
@@ -448,7 +453,7 @@
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#timeouts">Timeouts</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><img class="emoji" draggable="false" height="24px" width="24px" src="https://twemoji.maxcdn.com/2/svg/1f6a7.svg" /></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><img class="emoji" draggable="false" height="24px" width="24px" src="https://twemoji.maxcdn.com/2/svg/1f317.svg" /></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/serverlessworkflow/specification/blob/0.8.x/specification.md#workflow-timeouts">Workflow Timeouts</a></p></td>
 </tr>
 <tr>
@@ -725,7 +730,11 @@
 <h2 id="timeouts"><a class="anchor" href="#timeouts"></a>Timeouts</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>OpenShift Serverless Logic does not support Timeouts feature, however, it will be implemented in a future release.</p>
+<p>OpenShift Serverless Logic has limited support for the Timeouts feature, which covers only <strong>Callback</strong> and <strong>Switch</strong> states with events.
+Other states will be included in future releases.</p>
+</div>
+<div class="paragraph">
+<p>For more information about timeouts, see <a href="../core/timeouts-support.html" class="xref page">Timeouts on events for OpenShift Serverless Logic</a>.</p>
 </div>
 </div>
 </div>

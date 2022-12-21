@@ -116,6 +116,9 @@
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="../core/custom-functions-support.html">Custom functions for your OpenShift Serverless Logic service</a>
   </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../core/timeouts-support.html">Timeouts in OpenShift Serverless Logic</a>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="3">
@@ -353,10 +356,10 @@
 <p>This document describes how to test your workflow application using REST Assured.</p>
 </div>
 <div class="paragraph">
-<p>Rest Assured enables you to test REST APIs using Java libraries and integrates with Apache Maven. For more information about REST Assured, see <a href="https://rest-assured.io/">REST Assured page</a>.</p>
+<p>REST Assured enables you to test REST APIs using Java libraries and integrates with Apache Maven. For more information about REST Assured, see <a href="https://rest-assured.io/">REST Assured page</a>.</p>
 </div>
 <div class="paragraph">
-<p>The testing procedure in this document is based on the <code>serverless-workflow-examples/serverless-workflow-testing-with-rest-assured</code> example application. You can access this example application in <a href="https://github.com/kiegroup/kogito-examples/tree/1.27.x/serverless-workflow-examples">Kogito Examples</a> GitHub repository.</p>
+<p>The testing procedure in this document is based on the <code>serverless-workflow-examples/serverless-workflow-testing-with-rest-assured</code> example application. You can access this example application in <a href="https://github.com/kiegroup/kogito-examples/tree/1.30.x/serverless-workflow-examples/serverless-workflow-testing-with-rest-assured">Kogito Examples</a> GitHub repository.</p>
 </div>
 <div class="paragraph">
 <p>The following procedure describes how to test a workflow application that exposes the <code>hello</code> endpoint, which expects a <code>name</code> as a request parameter and returns <code>greeting</code> value:</p>
@@ -365,9 +368,7 @@
 <div class="title">Example request body</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
-  "workflowdata": {
-    "name": "John Doe"
-  }
+  "name": "John Doe"
 }</code></pre>
 </div>
 </div>
@@ -401,7 +402,7 @@
 </td>
 <td class="content">
 <div class="paragraph">
-<p>This document is based on the <code>serverless-workflow-testing-with-rest-assured</code> example application from the <a href="https://github.com/kiegroup/kogito-examples/tree/1.27.x/serverless-workflow-examples">GitHub repository</a>.</p>
+<p>This document is based on the <code>serverless-workflow-testing-with-rest-assured</code> example application from the <a href="https://github.com/kiegroup/kogito-examples/tree/1.30.x/serverless-workflow-examples">GitHub repository</a>.</p>
 </div>
 </td>
 </tr>
@@ -410,6 +411,22 @@
 <div class="olist arabic">
 <div class="title">Procedure</div>
 <ol class="arabic">
+<li>
+<p>Check if your project has the REST Assured dependency in your <code>pom.xml</code> file. If it doesn&#8217;t, add it like the following:</p>
+<div class="openblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;dependency&gt;
+    &lt;groupId&gt;io.rest-assured&lt;/groupId&gt;
+    &lt;artifactId&gt;rest-assured&lt;/artifactId&gt;
+    &lt;scope&gt;test&lt;/scope&gt;
+&lt;/dependency&gt;</code></pre>
+</div>
+</div>
+</div>
+</div>
+</li>
 <li>
 <p>Create a test class named <code>HelloTest</code> in the <code>src/test/java/org/kie/kogito/examples/</code> directory, containing the following content:</p>
 <div class="openblock">
@@ -441,7 +458,7 @@ class HelloTest {
         given()
                 .contentType(ContentType.JSON) <i class="conum" data-value="2"></i><b>(2)</b>
                 .accept(ContentType.JSON) <i class="conum" data-value="3"></i><b>(3)</b>
-                .body("{\"workflowdata\": {\"name\": \"John Doe\"}}") <i class="conum" data-value="4"></i><b>(4)</b>
+                .body("{\"name\": \"John Doe\"}") <i class="conum" data-value="4"></i><b>(4)</b>
                 .when()
                 .post("/hello") <i class="conum" data-value="5"></i><b>(5)</b>
                 .then()
@@ -467,7 +484,7 @@ class HelloTest {
 </tr>
 <tr>
 <td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>Defines the request body as <code>{"workflowdata": {"name": "John Doe"}}</code>.</td>
+<td>Defines the request body as <code>{"name": "John Doe"}</code>.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="5"></i><b>5</b></td>

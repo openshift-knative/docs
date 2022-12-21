@@ -116,6 +116,9 @@
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="custom-functions-support.html">Custom functions for your OpenShift Serverless Logic service</a>
   </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="timeouts-support.html">Timeouts in OpenShift Serverless Logic</a>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="3">
@@ -353,7 +356,7 @@
 <p>This document describes how you can run parallel tasks in OpenShift Serverless Logic.</p>
 </div>
 <div class="paragraph">
-<p>The testing procedure described in this document is based on the <code>serverless-workflow-service-calls-quarkus</code> example application in <a href="https://github.com/kiegroup/kogito-examples/tree/1.27.x/serverless-workflow-examples/serverless-workflow-service-calls-quarkus">GitHub repository</a>.</p>
+<p>The testing procedure described in this document is based on the <code>serverless-workflow-service-calls-quarkus</code> example application in <a href="https://github.com/kiegroup/kogito-examples/tree/1.30.x/serverless-workflow-examples/serverless-workflow-service-calls-quarkus">GitHub repository</a>.</p>
 </div>
 <div class="admonitionblock warning">
 <table>
@@ -573,9 +576,7 @@
   'http://localhost:8080/parallel' \
   -H 'accept: */*' \
   -H 'Content-Type: application/json' \
-  -d '{
-  "workflowdata": {}
-}'</code></pre>
+  -d '{}'</code></pre>
 </div>
 </div>
 <div class="listingblock">
@@ -722,9 +723,7 @@
   'http://localhost:8080/parallel' \
   -H 'accept: */*' \
   -H 'Content-Type: application/json' \
-  -d '{
-  "workflowdata": {}
-}'</code></pre>
+  -d '{}'</code></pre>
 </div>
 </div>
 <div class="listingblock">

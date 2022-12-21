@@ -116,6 +116,9 @@
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="../core/custom-functions-support.html">Custom functions for your OpenShift Serverless Logic service</a>
   </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../core/timeouts-support.html">Timeouts in OpenShift Serverless Logic</a>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="3">
@@ -401,7 +404,7 @@
 <h2 id="ref-example-event-correlation"><a class="anchor" href="#ref-example-event-correlation"></a>Example of event correlation in a workflow</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>You can see the correlation configuration in the <a href="https://github.com/kiegroup/kogito-examples/tree/1.27.x/serverless-workflow-examples/serverless-workflow-correlation-quarkus"><code>serverless-workflow-correlation-quarkus</code></a> example application, describing the setup and usage of event correlation in a workflow.</p>
+<p>You can see the correlation configuration in the <a href="https://github.com/kiegroup/kogito-examples/tree/1.30.x/serverless-workflow-examples/serverless-workflow-correlation-quarkus"><code>serverless-workflow-correlation-quarkus</code></a> example application, describing the setup and usage of event correlation in a workflow.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -410,7 +413,7 @@
 <div class="title">Figure 2. Event correlation evaluation process</div>
 </div>
 <div class="paragraph">
-<p>The <a href="https://github.com/kiegroup/kogito-examples/tree/1.27.x/serverless-workflow-examples/serverless-workflow-correlation-quarkus/src/main/resources/correlation.sw.json">workflow definition file</a> contains the correlation information, in which the events section is defined as follows:</p>
+<p>The <a href="https://github.com/kiegroup/kogito-examples/tree/1.30.x/serverless-workflow-examples/serverless-workflow-correlation-quarkus/src/main/resources/correlation.sw.json">workflow definition file</a> contains the correlation information, in which the events section is defined as follows:</p>
 </div>
 <div id="ref-correlation-event-definition" class="listingblock">
 <div class="title">Example event correlation in a workflow</div>
@@ -514,7 +517,7 @@
 </table>
 </div>
 <div class="paragraph">
-<p>Using the <a href="https://github.com/kiegroup/kogito-examples/tree/1.27.x/serverless-workflow-examples/serverless-workflow-correlation-quarkus/src/main/resources/correlation.sw.json">workflow definition</a> in <code>serverless-workflow-correlation-quarkus</code> example application, you can define other events that are published and consumed by the workflow.</p>
+<p>Using the <a href="https://github.com/kiegroup/kogito-examples/tree/1.30.x/serverless-workflow-examples/serverless-workflow-correlation-quarkus/src/main/resources/correlation.sw.json">workflow definition</a> in <code>serverless-workflow-correlation-quarkus</code> example application, you can define other events that are published and consumed by the workflow.</p>
 </div>
 <div class="paragraph">
 <p>The <code>serverless-workflow-correlation-quarkus</code> example application uses Callback states, such as <a href="#ref-validade-user-email-state"><code>Validate User Email</code></a>. This means that once the workflow execution reaches the Callback state, the workflow publishes an event of <a href="#ref-correlation-event-definition"><code>validateAccountEmailEvent</code></a> type and waits to receive an event of <a href="#ref-correlation-event-definition"><code>validatedAccountEmailEvent</code></a> type. For more information about callback state, see <a href="working-with-callbacks.html" class="xref page">Callback state in OpenShift Serverless Logic</a>.</p>
