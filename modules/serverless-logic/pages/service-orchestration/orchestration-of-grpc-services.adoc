@@ -149,7 +149,7 @@ In the same GitHub repository as the example application, there is a link:{grpc_
 == Default enum values
 
 gRPC link:{grpc_enum_url}[specification] requires enumeration types to have a default value. The default value is not included in the server response payload. Therefore, use an empty value such as `UNKNOWN` as default.
-If, for any reason, your default value is semantically valid and you want the value to be included in the workflow model, you must set `kogito.grpc.enum.includeDefault` property to true. This way enumeration fields are always filled by the workflow if the server response does not include them. 
+If, for any reason, your default value is semantically valid and you want the value to be included in the workflow model, you must set `kogito.grpc.enum.includeDefault` property to true. This way enumeration fields are always filled by the workflow if the server response does not include them.
 
 [[running-serverless-workflow-application]]
 == Running the workflow application
@@ -161,21 +161,21 @@ If, for any reason, your default value is semantically valid and you want the va
 mvn compile exec:java -Dexec.mainClass="org.kie.kogito.examples.sw.greeting.GreeterService"
 ----
 
-. Now you need to run the workflow application 
+. Once the server is running, you must navigate to the `serverless-workflow-greeting-client-rpc-quarkus` directory in a separate command terminal and run the workflow application by entering the following command:
 +
 [source,shell]
 ----
 mvn clean quarkus:dev
 ----
 
-. Once the workflow application is started, you can invoke the workflow instance using any http client, such as `curl`
+. Once the workflow application is started, you can invoke the workflow instance using any HTTP client, such as `curl`, from a separate command terminal.
 
 === Simple gRPC
 
 .Example request
 [source,shell]
 ----
-curl -X POST -H 'Content-Type:application/json' -H 'Accept:application/json' -d '{"workflowdata" : {"name": "John", "language": "English"}}' http://localhost:8080/jsongreet
+curl -X POST -H 'Content-Type:application/json' -H 'Accept:application/json' -d '{"name": "John", "language": "English"}' http://localhost:8080/jsongreet
 ----
 
 .Example response
@@ -188,7 +188,7 @@ You can also try greeting in a different language.
 
 [source,shell]
 ----
-curl -X POST -H 'Content-Type:application/json' -H 'Accept:application/json' -d '{"workflowdata" : {"name": "Javi", "language": "Spanish"}}' http://localhost:8080/jsongreet
+curl -X POST -H 'Content-Type:application/json' -H 'Accept:application/json' -d '{"name": "Javi", "language": "Spanish"}' http://localhost:8080/jsongreet
 ----
 
 In response, you will see the greeting in Spanish language.
@@ -198,7 +198,7 @@ In response, you will see the greeting in Spanish language.
 .Example request
 [source,shell]
 ----
-curl -X POST -H 'Content-Type:application/json' -H 'Accept:application/json' -d '{"workflowdata" : {"name": "John"}}' http://localhost:8080/jsongreetserverstream
+curl -X POST -H 'Content-Type:application/json' -H 'Accept:application/json' -d '{"name": "John"}' http://localhost:8080/jsongreetserverstream
 ----
 
 .Example response
@@ -212,12 +212,7 @@ curl -X POST -H 'Content-Type:application/json' -H 'Accept:application/json' -d 
 .Example request
 [source,shell]
 ----
-curl -X POST -H 'Content-Type:application/json' -H 'Accept:application/json' -d '{"workflowdata" : {
-                                                                                                    "helloRequests" : [
-                                                                                                                        {"name" : "Javierito", "language":"Spanish"},
-                                                                                                                        {"name" : "John", "language":"English"},
-                                                                                                                        {"name" : "Jan", "language":"Czech"}
-                                                                                                                      ]}}' http://localhost:8080/jsongreetclientstream
+curl -X POST -H 'Content-Type:application/json' -H 'Accept:application/json' -d '{"helloRequests" : [{"name" : "Javierito", "language":"Spanish"}, {"name" : "John", "language":"English"}, {"name" : "Jan", "language":"Czech"}]}' http://localhost:8080/jsongreetclientstream
 ----
 
 .Example response
@@ -241,12 +236,7 @@ curl -X POST -H 'Content-Type:application/json' -H 'Accept:application/json' -d 
 .Example request
 [source,shell]
 ----
-curl -X POST -H 'Content-Type:application/json' -H 'Accept:application/json' -d '{"workflowdata" : {
-                                                                                                    "helloRequests" : [
-                                                                                                                        {"name" : "Javierito", "language":"Spanish"},
-                                                                                                                        {"name" : "John", "language":"English"},
-                                                                                                                        {"name" : "Jan", "language":"Czech"}
-                                                                                                                      ]}}' http://localhost:8080/jsongreetbidistream
+curl -X POST -H 'Content-Type:application/json' -H 'Accept:application/json' -d '{"helloRequests" : [{"name" : "Javierito", "language":"Spanish"},{"name" : "John", "language":"English"},{"name" : "Jan", "language":"Czech"}]}' http://localhost:8080/jsongreetbidistream
 ----
 
 .Example response

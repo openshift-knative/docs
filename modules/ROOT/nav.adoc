@@ -14,6 +14,7 @@
 //**** xref:serverless-logic:core/accessing-workflow-metainformation-in-runtime.adoc[Accessing workflow metainformation in runtime]
 **** xref:serverless-logic:core/defining-an-input-schema-for-workflows.adoc[Defining an input schema for your workflows]
 **** xref:serverless-logic:core/custom-functions-support.adoc[Custom functions for your {context} service]
+**** xref:serverless-logic:core/timeouts-support.adoc[Timeouts in {context}]
 *** Tooling
 **** xref:serverless-logic:tooling/serverless-workflow-editor/swf-editor-overview.adoc[Serverless Workflow editor]
 ***** xref:serverless-logic:tooling/serverless-workflow-editor/swf-editor-vscode-extension.adoc[VS Code extension for Serverless Workflow editor]

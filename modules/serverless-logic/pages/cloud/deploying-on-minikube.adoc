@@ -169,7 +169,7 @@ For more information, see link:{knative_issue_url}[How to use locally built dock
 
 In that case, use the `-Dquarkus.container-image.registry=some_of_the_values_above` property to enable Knative fetch the container images from Minikube Docker Daemon.
 
-If you do not use the values, you might need to set the `imagePullPolicy` to `Never` or `IfNotPresent`, otherwise, Minikube pulls the images from a remote registry. 
+If you do not use the values, you might need to set the `imagePullPolicy` to `Never` or `IfNotPresent`, otherwise, Minikube pulls the images from a remote registry.
 This behavior can be avoided by tagging the image using previously listed domains.
 ====
 --
@@ -294,7 +294,7 @@ http://hello.serverless-workflow-greeting-quarkus.10.103.94.37.sslip.io
 .Example request
 [source,shell]
 ----
-curl -X POST -H 'Content-Type:application/json' -H 'Accept:application/json' -d '{"workflowdata" : {"name": "John", "language": "English"}}' http://hello.serverless-workflow-greeting-quarkus.10.103.94.37.sslip.io/jsongreet
+curl -X POST -H 'Content-Type:application/json' -H 'Accept:application/json' -d '{"name": "John", "language": "English"}' http://hello.serverless-workflow-greeting-quarkus.10.103.94.37.sslip.io/jsongreet
 ----
 
 .Example response
@@ -473,7 +473,7 @@ greeting-quarkus-kubectl   http://greeting-quarkus-kubectl.serverless-workflow-g
 .Access workflow application
 [source,shell]
 ----
-curl -X POST -H 'Content-Type:application/json' -H 'Accept:application/json' -d '{"workflowdata" : {"name": "John", "language": "English"}}' http://greeting-quarkus-kubectl.serverless-workflow-greeting-quarkus.10.103.94.37.sslip.io/jsongreet
+curl -X POST -H 'Content-Type:application/json' -H 'Accept:application/json' -d '{"name": "John", "language": "English"}' http://greeting-quarkus-kubectl.serverless-workflow-greeting-quarkus.10.103.94.37.sslip.io/jsongreet
 ----
 --
 
@@ -555,7 +555,7 @@ greeting-quarkus-cli   http://greeting-quarkus-cli.serverless-workflow-greeting-
 .Access your workflow application
 [source,shell]
 ----
-curl -X POST -H 'Content-Type:application/json' -H 'Accept:application/json' -d '{"workflowdata" : {"name": "John", "language": "English"}}' http://greeting-quarkus-cli.serverless-workflow-greeting-quarkus.10.103.94.37.sslip.io/jsongreet.37.sslip.io/jsongreet
+curl -X POST -H 'Content-Type:application/json' -H 'Accept:application/json' -d '{"name": "John", "language": "English"}' http://greeting-quarkus-cli.serverless-workflow-greeting-quarkus.10.103.94.37.sslip.io/jsongreet.37.sslip.io/jsongreet
 ----
 --
 

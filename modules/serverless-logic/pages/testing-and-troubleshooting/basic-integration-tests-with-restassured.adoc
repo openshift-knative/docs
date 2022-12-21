@@ -6,9 +6,9 @@
 
 This document describes how to test your workflow application using REST Assured.
 
-Rest Assured enables you to test REST APIs using Java libraries and integrates with Apache Maven. For more information about REST Assured, see link:https://rest-assured.io/[REST Assured page].
+REST Assured enables you to test REST APIs using Java libraries and integrates with Apache Maven. For more information about REST Assured, see link:https://rest-assured.io/[REST Assured page].
 
-The testing procedure in this document is based on the `serverless-workflow-examples/serverless-workflow-testing-with-rest-assured` example application. You can access this example application in link:{kogito_sw_examples_url}[Kogito Examples] GitHub repository.
+The testing procedure in this document is based on the `serverless-workflow-examples/serverless-workflow-testing-with-rest-assured` example application. You can access this example application in link:{kogito_sw_examples_url}/serverless-workflow-testing-with-rest-assured[Kogito Examples] GitHub repository.
 
 The following procedure describes how to test a workflow application that exposes the `hello` endpoint, which expects a `name` as a request parameter and returns `greeting` value:
 
@@ -16,9 +16,7 @@ The following procedure describes how to test a workflow application that expose
 [source,json]
 ----
 {
-  "workflowdata": {
-    "name": "John Doe"
-  }
+  "name": "John Doe"
 }
 ----
 
@@ -42,6 +40,21 @@ This document is based on the `serverless-workflow-testing-with-rest-assured` ex
 ====
 
 .Procedure
+
+. Check if your project has the REST Assured dependency in your `pom.xml` file. If it doesn't, add it like the following:
+
++
+--
+[source,xml]
+----
+<dependency>
+    <groupId>io.rest-assured</groupId>
+    <artifactId>rest-assured</artifactId>
+    <scope>test</scope>
+</dependency>
+----
+--
+
 . Create a test class named `HelloTest` in the `src/test/java/org/kie/kogito/examples/` directory, containing the following content:
 +
 --
@@ -72,7 +85,7 @@ class HelloTest {
         given()
                 .contentType(ContentType.JSON) <2>
                 .accept(ContentType.JSON) <3>
-                .body("{\"workflowdata\": {\"name\": \"John Doe\"}}") <4>
+                .body("{\"name\": \"John Doe\"}") <4>
                 .when()
                 .post("/hello") <5>
                 .then()
@@ -85,7 +98,7 @@ class HelloTest {
 <1> Enables logging of the request and response when the test fails.
 <2> Defines JSON as the content type of the request.
 <3> Specifies the `accept` header of the request. This is an alternative for `header("Accept", "application/json")`.
-<4> Defines the request body as `{"workflowdata": {"name": "John Doe"}}`.
+<4> Defines the request body as `{"name": "John Doe"}`.
 <5> Specifies the request as a POST method to the `/hello` URL.
 <6> Defines `201` as the expected response status code.
 <7> Defines that `Hello, John Doe` is expected in the `workflowdata.greeting` JSON path.
