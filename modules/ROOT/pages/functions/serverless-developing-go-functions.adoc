@@ -6,7 +6,6 @@
 :FunctionsProductName: OpenShift Serverless Functions
 
 :FeatureName: {FunctionsProductName}
-include::../_common-content/technology-preview.adoc[leveloffset=+2]
 
 After you have link:https://docs.openshift.com/container-platform/4.11/serverless/functions/serverless-functions-getting-started.html#serverless-create-func-kn_serverless-functions-getting-started[created a Go function project], you can modify the template files provided to add business logic to your function. This includes configuring function invocation and the returned headers and status codes.
 
