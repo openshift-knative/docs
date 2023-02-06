@@ -6,7 +6,7 @@ And, instead of creating `knative` `yaml|json` descriptors, you can leverage the
 Kogito Knative add-on to generate the descriptors.
 
 .Prerequisites
-* Kogito Workflow application ready to use.
+* Workflow application ready to use.
 * `kubectl` command-line tool is installed.
 * (Optional) Quarkus CLI is installed +
 For more information about installing the Quarkus CLI, see link:{quarkus_cli_url}#installing-the-cli[Installing the Quarkus CLI].

@@ -1,4 +1,4 @@
-= Deploying your Serverless Workflow application on Kubernetes
+= Deploying your {context} application on Kubernetes
 :description: Deploying Serverless Application on Kubernetes
 :keywords: kogito, workflow, quarkus, serverless, kn, kubectl
 :table-caption: Data Set
