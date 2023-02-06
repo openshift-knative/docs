@@ -51,6 +51,7 @@
 //**** xref:serverless-logic:testing-and-troubleshooting/development-tools-for-troubleshooting.adoc[Development tools for troubleshooting]
 *** Persistence
 **** xref:serverless-logic:persistence/persistence-with-postgresql.adoc[Running a workflow service using PostgreSQL]
+**** xref:serverless-logic:persistence/postgresql-flyway-migration.adoc[Migrate your PostgreSQL database]
 //**** xref:serverless-logic:persistence/workflow-database-for-db-admins.adoc[Workflows database for DB admins]
 // **** xref:serverless-logic:persistence/data-consistency.adoc[Data consistency]
 *** Cloud
