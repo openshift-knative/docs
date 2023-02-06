@@ -39,6 +39,7 @@
 **** xref:serverless-logic:eventing/consume-produce-events-with-knative-eventing.adoc[Consuming and producing events on Knative Eventing]
 **** xref:serverless-logic:eventing/event-correlation-with-workflows.adoc[Event correlation in {context}]
 **** xref:serverless-logic:eventing/working-with-callbacks.adoc[Callback state in {context}]
+**** xref:serverless-logic:eventing/working-with-openapi-callbacks.adoc[OpenAPI Callback in {context}]
 *** Security
 **** xref:serverless-logic:security/authention-support-for-openapi-services.adoc[Authentication for OpenAPI services in {context}]
 **** xref:serverless-logic:security/orchestrating-third-party-services-with-oauth2.adoc[Orchestration of third-party services using OAuth 2.0 authentication in {context}]
