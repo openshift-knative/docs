@@ -17,7 +17,7 @@ This feature is meant for a quick preview on community repositories, and it's no
 This feature is meant for a quick preview on community repositories, and it's not part of the developer preview.
 ====
 
-This document describes how to build and deploy your workflow application using a Kubernetes cluster with the link:{kogito_serverless_operator_url}[{product_name} Serverless Operator]. If you don't have any cluster operational, link:{minikube_url}[Minikube] commands are given throughout the guide.
+This document describes how to build and deploy your workflow application using a Kubernetes cluster with the link:{kogito_serverless_operator_url}[{product_name} Operator]. If you don't have any cluster operational, link:{minikube_url}[Minikube] commands are given throughout the guide.
 
 Using the {product_name} Operator, you will be able to build and deploy a {product_name} application only by having a workflow definition.
 
