@@ -11,9 +11,7 @@
 <link rel="stylesheet" href="../../../../_/css/custom.css">
 <link rel="stylesheet" href="../../../../_/css/tabs.css">
 <link rel="stylesheet" href="../../../../_/font-awesome-4.7.0/css/font-awesome.min.css">
-<!--
-<link rel="icon" href="../../../../favicon.ico" type="image/x-icon">
--->
+<link rel="icon" href="../../../../_/img/favicon.ico" type="image/x-icon">
   </head>
   <body class="article">
 <header class="header" role="banner">
@@ -207,6 +205,9 @@
   <li class="nav-item is-current-page" data-depth="4">
     <a class="nav-link" href="working-with-callbacks.html">Callback state in OpenShift Serverless Logic</a>
   </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="working-with-openapi-callbacks.html">OpenAPI Callback in OpenShift Serverless Logic</a>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="3">
@@ -246,6 +247,9 @@
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="../persistence/persistence-with-postgresql.html">Running a workflow service using PostgreSQL</a>
   </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../persistence/postgresql-flyway-migration.html">Migrate your PostgreSQL database</a>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="3">
@@ -259,7 +263,13 @@
     <a class="nav-link" href="../cloud/deploying-on-minikube.html">Deploying your OpenShift Serverless Logic application on Minikube</a>
   </li>
   <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../cloud/deploying-on-kubernetes.html">Deploying your OpenShift Serverless Logic application on Kubernetes</a>
+  </li>
+  <li class="nav-item" data-depth="4">
     <a class="nav-link" href="../cloud/kubernetes-service-discovery.html">Kubernetes service discovery in OpenShift Serverless Logic</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../cloud/build-and-deploy-with-serverless-operator-on-kubernetes.html">Buiding and deploying a  OpenShift Serverless Logic application on Kubernetes using the OpenShift Serverless Logic Serverless Operator</a>
   </li>
 </ul>
   </li>
@@ -381,7 +391,7 @@
 <h2 id="ref-example-callback"><a class="anchor" href="#ref-example-callback"></a>Example of Callback state</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>To understand the Callback state, see the <a href="https://github.com/kiegroup/kogito-examples/tree/1.30.x/serverless-workflow-examples/serverless-workflow-callback-quarkus"><code>serverless-workflow-callback-quarkus</code></a> example application in GitHub repository.</p>
+<p>To understand the Callback state, see the <a href="https://github.com/kiegroup/kogito-examples/tree/1.32.x/serverless-workflow-examples/serverless-workflow-callback-quarkus"><code>serverless-workflow-callback-quarkus</code></a> example application in GitHub repository.</p>
 </div>
 <div class="paragraph">
 <p>The initial model of the <code>serverless-workflow-callback-quarkus</code> example application is empty. Once the workflow is started, it publishes a CloudEvent of the <code>resume</code> type and waits for a CloudEvent, which contains the type <code>wait</code>.</p>
@@ -438,7 +448,7 @@
 </div>
 </div>
 <div class="paragraph">
-<p>An <a href="https://github.com/kiegroup/kogito-examples/tree/1.30.x/serverless-workflow-examples/serverless-workflow-callback-quarkus/src/main/java/org/kie/kogito/examples/PrintService.java">event listener</a> consumes the <code>resume</code> type CloudEvent and publishes a new <code>wait</code> type CloudEvent. Following is an example of a Java method that publishes the <code>wait</code> type CloudEvent:</p>
+<p>An <a href="https://github.com/kiegroup/kogito-examples/tree/1.32.x/serverless-workflow-examples/serverless-workflow-callback-quarkus/src/main/java/org/kie/kogito/examples/PrintService.java">event listener</a> consumes the <code>resume</code> type CloudEvent and publishes a new <code>wait</code> type CloudEvent. Following is an example of a Java method that publishes the <code>wait</code> type CloudEvent:</p>
 </div>
 <div class="listingblock">
 <div class="title">Example of a Java method that publishes the <code>wait</code> CloudEvent</div>
@@ -498,7 +508,7 @@
 <p>The <code>serverless-workflow-callback-quarkus</code> example application requires an external broker to manage the associated CloudEvents. The default setup in the <code>serverless-workflow-callback-quarkus</code> example application uses <a href="https://kafka.apache.org/documentation/">Apache Kafka</a>. However, you can also use <a href="consume-produce-events-with-knative-eventing.html" class="xref page">Knative Eventing</a>.</p>
 </div>
 <div class="paragraph">
-<p>Apache Kafka uses topics to publish or consume messages. In the <code>serverless-workflow-callback-quarkus</code> example application, two topics are used, matching the name of the CloudEvent types that are defined in the workflow, such as <code>resume</code> and <code>wait</code>. The <code>resume</code> and <code>wait</code> CloudEvent types are configured in the <a href="https://github.com/kiegroup/kogito-examples/tree/1.30.x/serverless-workflow-examples/serverless-workflow-callback-quarkus/src/main/resources/application.properties"><code>application.properties</code></a> file.</p>
+<p>Apache Kafka uses topics to publish or consume messages. In the <code>serverless-workflow-callback-quarkus</code> example application, two topics are used, matching the name of the CloudEvent types that are defined in the workflow, such as <code>resume</code> and <code>wait</code>. The <code>resume</code> and <code>wait</code> CloudEvent types are configured in the <a href="https://github.com/kiegroup/kogito-examples/tree/1.32.x/serverless-workflow-examples/serverless-workflow-callback-quarkus/src/main/resources/application.properties"><code>application.properties</code></a> file.</p>
 </div>
 <div class="paragraph">
 <p>For more information about using Apache Kafka with events, see <a href="xref:consume-producing-events-with-kafka.adoc">Consuming and producing events using Apache Kafka</a>.</p>

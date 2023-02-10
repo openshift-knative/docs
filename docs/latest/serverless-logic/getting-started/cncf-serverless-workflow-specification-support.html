@@ -13,9 +13,7 @@
 <link rel="stylesheet" href="../../../../_/css/custom.css">
 <link rel="stylesheet" href="../../../../_/css/tabs.css">
 <link rel="stylesheet" href="../../../../_/font-awesome-4.7.0/css/font-awesome.min.css">
-<!--
-<link rel="icon" href="../../../../favicon.ico" type="image/x-icon">
--->
+<link rel="icon" href="../../../../_/img/favicon.ico" type="image/x-icon">
   </head>
   <body class="article">
 <header class="header" role="banner">
@@ -209,6 +207,9 @@
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="../eventing/working-with-callbacks.html">Callback state in OpenShift Serverless Logic</a>
   </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../eventing/working-with-openapi-callbacks.html">OpenAPI Callback in OpenShift Serverless Logic</a>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="3">
@@ -248,6 +249,9 @@
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="../persistence/persistence-with-postgresql.html">Running a workflow service using PostgreSQL</a>
   </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../persistence/postgresql-flyway-migration.html">Migrate your PostgreSQL database</a>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="3">
@@ -261,7 +265,13 @@
     <a class="nav-link" href="../cloud/deploying-on-minikube.html">Deploying your OpenShift Serverless Logic application on Minikube</a>
   </li>
   <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../cloud/deploying-on-kubernetes.html">Deploying your OpenShift Serverless Logic application on Kubernetes</a>
+  </li>
+  <li class="nav-item" data-depth="4">
     <a class="nav-link" href="../cloud/kubernetes-service-discovery.html">Kubernetes service discovery in OpenShift Serverless Logic</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../cloud/build-and-deploy-with-serverless-operator-on-kubernetes.html">Buiding and deploying a  OpenShift Serverless Logic application on Kubernetes using the OpenShift Serverless Logic Serverless Operator</a>
   </li>
 </ul>
   </li>
@@ -730,8 +740,13 @@ specification.</p>
 <h2 id="timeouts"><a class="anchor" href="#timeouts"></a>Timeouts</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>OpenShift Serverless Logic has limited support for the Timeouts feature, which covers only <strong>Callback</strong> and <strong>Switch</strong> states with events.
-Other states will be included in future releases.</p>
+<p>OpenShift Serverless Logic has limited support for the timeouts feature, which covers only <strong>Callback</strong>, <strong>Switch</strong>, and <strong>Event</strong> states.</p>
+</div>
+<div class="paragraph">
+<p>For start event state the <code>exclusive</code> property is not supported if set to <code>false</code>, therefore the timeout is not supported for the event state when starting a workflow.</p>
+</div>
+<div class="paragraph">
+<p>Other states will be included in future releases.</p>
 </div>
 <div class="paragraph">
 <p>For more information about timeouts, see <a href="../core/timeouts-support.html" class="xref page">Timeouts on events for OpenShift Serverless Logic</a>.</p>

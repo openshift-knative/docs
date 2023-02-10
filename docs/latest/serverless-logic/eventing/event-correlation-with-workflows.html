@@ -13,9 +13,7 @@
 <link rel="stylesheet" href="../../../../_/css/custom.css">
 <link rel="stylesheet" href="../../../../_/css/tabs.css">
 <link rel="stylesheet" href="../../../../_/font-awesome-4.7.0/css/font-awesome.min.css">
-<!--
-<link rel="icon" href="../../../../favicon.ico" type="image/x-icon">
--->
+<link rel="icon" href="../../../../_/img/favicon.ico" type="image/x-icon">
   </head>
   <body class="article">
 <header class="header" role="banner">
@@ -209,6 +207,9 @@
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="working-with-callbacks.html">Callback state in OpenShift Serverless Logic</a>
   </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="working-with-openapi-callbacks.html">OpenAPI Callback in OpenShift Serverless Logic</a>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="3">
@@ -248,6 +249,9 @@
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="../persistence/persistence-with-postgresql.html">Running a workflow service using PostgreSQL</a>
   </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../persistence/postgresql-flyway-migration.html">Migrate your PostgreSQL database</a>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="3">
@@ -261,7 +265,13 @@
     <a class="nav-link" href="../cloud/deploying-on-minikube.html">Deploying your OpenShift Serverless Logic application on Minikube</a>
   </li>
   <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../cloud/deploying-on-kubernetes.html">Deploying your OpenShift Serverless Logic application on Kubernetes</a>
+  </li>
+  <li class="nav-item" data-depth="4">
     <a class="nav-link" href="../cloud/kubernetes-service-discovery.html">Kubernetes service discovery in OpenShift Serverless Logic</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../cloud/build-and-deploy-with-serverless-operator-on-kubernetes.html">Buiding and deploying a  OpenShift Serverless Logic application on Kubernetes using the OpenShift Serverless Logic Serverless Operator</a>
   </li>
 </ul>
   </li>
@@ -404,7 +414,7 @@
 <h2 id="ref-example-event-correlation"><a class="anchor" href="#ref-example-event-correlation"></a>Example of event correlation in a workflow</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>You can see the correlation configuration in the <a href="https://github.com/kiegroup/kogito-examples/tree/1.30.x/serverless-workflow-examples/serverless-workflow-correlation-quarkus"><code>serverless-workflow-correlation-quarkus</code></a> example application, describing the setup and usage of event correlation in a workflow.</p>
+<p>You can see the correlation configuration in the <a href="https://github.com/kiegroup/kogito-examples/tree/1.32.x/serverless-workflow-examples/serverless-workflow-correlation-quarkus"><code>serverless-workflow-correlation-quarkus</code></a> example application, describing the setup and usage of event correlation in a workflow.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -413,7 +423,7 @@
 <div class="title">Figure 2. Event correlation evaluation process</div>
 </div>
 <div class="paragraph">
-<p>The <a href="https://github.com/kiegroup/kogito-examples/tree/1.30.x/serverless-workflow-examples/serverless-workflow-correlation-quarkus/src/main/resources/correlation.sw.json">workflow definition file</a> contains the correlation information, in which the events section is defined as follows:</p>
+<p>The <a href="https://github.com/kiegroup/kogito-examples/tree/1.32.x/serverless-workflow-examples/serverless-workflow-correlation-quarkus/src/main/resources/correlation.sw.json">workflow definition file</a> contains the correlation information, in which the events section is defined as follows:</p>
 </div>
 <div id="ref-correlation-event-definition" class="listingblock">
 <div class="title">Example event correlation in a workflow</div>
@@ -517,7 +527,7 @@
 </table>
 </div>
 <div class="paragraph">
-<p>Using the <a href="https://github.com/kiegroup/kogito-examples/tree/1.30.x/serverless-workflow-examples/serverless-workflow-correlation-quarkus/src/main/resources/correlation.sw.json">workflow definition</a> in <code>serverless-workflow-correlation-quarkus</code> example application, you can define other events that are published and consumed by the workflow.</p>
+<p>Using the <a href="https://github.com/kiegroup/kogito-examples/tree/1.32.x/serverless-workflow-examples/serverless-workflow-correlation-quarkus/src/main/resources/correlation.sw.json">workflow definition</a> in <code>serverless-workflow-correlation-quarkus</code> example application, you can define other events that are published and consumed by the workflow.</p>
 </div>
 <div class="paragraph">
 <p>The <code>serverless-workflow-correlation-quarkus</code> example application uses Callback states, such as <a href="#ref-validade-user-email-state"><code>Validate User Email</code></a>. This means that once the workflow execution reaches the Callback state, the workflow publishes an event of <a href="#ref-correlation-event-definition"><code>validateAccountEmailEvent</code></a> type and waits to receive an event of <a href="#ref-correlation-event-definition"><code>validatedAccountEmailEvent</code></a> type. For more information about callback state, see <a href="working-with-callbacks.html" class="xref page">Callback state in OpenShift Serverless Logic</a>.</p>

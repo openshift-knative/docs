@@ -3,17 +3,15 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Untitled :: Red Hat OpenShift Serverless previews</title>
-    <link rel="canonical" href="https://openshift-knative.github.io/docs/docs/latest/serverless-logic/cloud/build-workflow-images-with-kn-cli.html">
+    <title>Migrating Your PostgreSQL Database with a OpenShift Serverless Logic upgrade :: Red Hat OpenShift Serverless previews</title>
+    <link rel="canonical" href="https://openshift-knative.github.io/docs/docs/latest/serverless-logic/persistence/postgresql-flyway-migration.html">
     <meta name="generator" content="Antora 3.0.3">
     <link rel="stylesheet" href="../../../../_/css/site.css">
 <link rel="stylesheet" href="../../../../_/css/extra.css">
 <link rel="stylesheet" href="../../../../_/css/custom.css">
 <link rel="stylesheet" href="../../../../_/css/tabs.css">
 <link rel="stylesheet" href="../../../../_/font-awesome-4.7.0/css/font-awesome.min.css">
-<!--
-<link rel="icon" href="../../../../favicon.ico" type="image/x-icon">
--->
+<link rel="icon" href="../../../../_/img/favicon.ico" type="image/x-icon">
   </head>
   <body class="article">
 <header class="header" role="banner">
@@ -207,6 +205,9 @@
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="../eventing/working-with-callbacks.html">Callback state in OpenShift Serverless Logic</a>
   </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../eventing/working-with-openapi-callbacks.html">OpenAPI Callback in OpenShift Serverless Logic</a>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="3">
@@ -244,7 +245,10 @@
     <span class="nav-text">Persistence</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../persistence/persistence-with-postgresql.html">Running a workflow service using PostgreSQL</a>
+    <a class="nav-link" href="persistence-with-postgresql.html">Running a workflow service using PostgreSQL</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="4">
+    <a class="nav-link" href="postgresql-flyway-migration.html">Migrate your PostgreSQL database</a>
   </li>
 </ul>
   </li>
@@ -253,13 +257,19 @@
     <span class="nav-text">Cloud</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="build-workflow-image-with-quarkus-cli.html">Building workflow images using Quarkus CLI</a>
+    <a class="nav-link" href="../cloud/build-workflow-image-with-quarkus-cli.html">Building workflow images using Quarkus CLI</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="deploying-on-minikube.html">Deploying your OpenShift Serverless Logic application on Minikube</a>
+    <a class="nav-link" href="../cloud/deploying-on-minikube.html">Deploying your OpenShift Serverless Logic application on Minikube</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="kubernetes-service-discovery.html">Kubernetes service discovery in OpenShift Serverless Logic</a>
+    <a class="nav-link" href="../cloud/deploying-on-kubernetes.html">Deploying your OpenShift Serverless Logic application on Kubernetes</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../cloud/kubernetes-service-discovery.html">Kubernetes service discovery in OpenShift Serverless Logic</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../cloud/build-and-deploy-with-serverless-operator-on-kubernetes.html">Buiding and deploying a  OpenShift Serverless Logic application on Kubernetes using the OpenShift Serverless Logic Serverless Operator</a>
   </li>
 </ul>
   </li>
@@ -335,12 +345,241 @@
   <button class="navigation-toggle"></button>
   <a href="../../index.html" class="home-link"></a>
 <nav class="crumbs" aria-label="breadcrumbs">
+  <ul>
+    <li class="crumb"><a href="../../index.html">Documentation</a></li>
+    <li class="crumb">Serverless Logic</li>
+    <li class="crumb">User Guides</li>
+    <li class="crumb">Persistence</li>
+    <li class="crumb"><a href="postgresql-flyway-migration.html">Migrate your PostgreSQL database</a></li>
+  </ul>
 </nav>
 </div>
     <div class="main-view-and-toc">
         <main class="main">
           <article class="doc">
-
+<h1>Migrating Your PostgreSQL Database with a OpenShift Serverless Logic upgrade</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>OpenShift Serverless Logic provides an out-of-the-box way to manage your database schema changes with each upgrade. It uses <a href="https://flywaydb.org/">Flyway</a> to achieve this functionality.</p>
+</div>
+<div class="paragraph">
+<p>When you upgrade your OpenShift Serverless Logic version, by default it will pick up the latest changes available from OpenShift Serverless Logic and apply them automatically.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This feature is currently available only for <code>kogito-addons-quarkus-persistence-postgresql</code> extension.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div id="toc" class="toc">
+<div id="toctitle"></div>
+<ul class="sectlevel1">
+<li><a href="#_how_to_migrate">How to migrate</a>
+<ul class="sectlevel2">
+<li><a href="#_migrate_using_flyway_config">Migrate using Flyway Config</a></li>
+<li><a href="#_migrate_using_flyway_cli">Migrate using Flyway CLI</a></li>
+<li><a href="#_manually_executing_scripts">Manually executing scripts</a></li>
+</ul>
+</li>
+<li><a href="#_baseline_migration">Baseline migration</a>
+<ul class="sectlevel2">
+<li><a href="#_baseline_using_quarkus_configuration">Baseline using Quarkus Configuration:</a></li>
+<li><a href="#_baseline_using_flyway_cli">Baseline using Flyway CLI:</a></li>
+<li><a href="#_more_details_on_flyway_migrations">More details on Flyway migrations</a></li>
+</ul>
+</li>
+<li><a href="#_found_an_issue"><em><strong>Found an issue?</strong></em></a></li>
+</ul>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_how_to_migrate"><a class="anchor" href="#_how_to_migrate"></a>How to migrate</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_migrate_using_flyway_config"><a class="anchor" href="#_migrate_using_flyway_config"></a>Migrate using Flyway Config</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>OpenShift Serverless Logic provides a default mechanism for migrating your database while updating the OpenShift Serverless Logic version using the following <code>Flyway</code> properties (default value is <code>false</code>):</p>
+<div class="openblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">quarkus.flyway.migrate-at-start=true</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>This will create a schema history table <code>flyway_schema_history</code> in your database to track the version of each database, recording in it every versioned migration file applied to build that version.</p>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_migrate_using_flyway_cli"><a class="anchor" href="#_migrate_using_flyway_cli"></a>Migrate using Flyway CLI</h3>
+<div class="paragraph">
+<p>If you want to migrate manually you can use the Flyway migration CLI tool.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Download Flyway migration command-line tool from the <a href="https://flywaydb.org/download/community">Download Flyway Community Edition</a> website.</p>
+</li>
+<li>
+<p>Add the following properties in the <code>/conf/flyway.conf</code> file:</p>
+<div class="openblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">flyway.url=jdbc:postgresql://localhost:5432/foobardb
+flyway.user=foo
+flyway.password=bar</code></pre>
+</div>
+</div>
+</div>
+</div>
+</li>
+<li>
+<p>You can specify these options with commands as well. The Flyway CLI will prompt for the username and password if they are missing in the configuration.</p>
+<div class="openblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">$ flyway migrate -url=jdbc:postgresql://localhost:5432/foobardb -user=foo -password=bar</code></pre>
+</div>
+</div>
+</div>
+</div>
+</li>
+<li>
+<p>Download the OpenShift Serverless Logic DDL zip from <a href="https://repo1.maven.org/maven2/org/kie/kogito/kogito-ddl">this link</a>, choose the correct version,  extract the files and use the scripts from the <code>postgresql</code> folder.</p>
+</li>
+<li>
+<p>You can specify the location of the SQL files that need to be migrated using the <code>flyway.locations</code> option. For example,</p>
+<div class="openblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">flyway.locations=classpath:com.mycomp.migration,database/migrations,filesystem:/sql-migrations,s3:migrationsBucket,gcs:migrationsBucket</code></pre>
+</div>
+</div>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_manually_executing_scripts"><a class="anchor" href="#_manually_executing_scripts"></a>Manually executing scripts</h3>
+<div class="paragraph">
+<p>You can use the provided SQL scripts in the zip file to migrate the database by executing them one by one.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>You can find the OpenShift Serverless Logic DDL scripts by visiting <a href="https://repo1.maven.org/maven2/org/kie/kogito/kogito-ddl">this link</a>.</p>
+</li>
+<li>
+<p>Download the zip file of the scripts from the needed version for the OpenShift Serverless Logic upgrade.</p>
+</li>
+<li>
+<p>Extract the files.</p>
+</li>
+<li>
+<p>Execute the <code>sql</code> files from <code>postgresql</code> folder.</p>
+<div class="openblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">&gt; psql -H host -U username -d database_name -a -f create_table.sql</code></pre>
+</div>
+</div>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_baseline_migration"><a class="anchor" href="#_baseline_migration"></a>Baseline migration</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In order to apply migrations to an existing schema. It is necessary to establish the baseline from where Flyway should start executing new migrations. That means, in case your schema already contains a structure and from now on, new changes provided by OpenShift Serverless Logic should be applied via Flyway integration. In Flyway terms, only migrations above <code>baselineVersion</code> will then be applied.
+Using below properties you can initialize flyway schema table.</p>
+</div>
+<div class="sect2">
+<h3 id="_baseline_using_quarkus_configuration"><a class="anchor" href="#_baseline_using_quarkus_configuration"></a>Baseline using Quarkus Configuration:</h3>
+<div class="openblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">quarkus.flyway.baseline-on-migrate=true
+quarkus.flyway.baseline-version=1.32.0</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_baseline_using_flyway_cli"><a class="anchor" href="#_baseline_using_flyway_cli"></a>Baseline using Flyway CLI:</h3>
+<div class="openblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">$ flyway -baselineOnMigrate="true" -baselineVersion="1.32.0" migrate</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Be careful when enabling this feature as it removes the safety net which ensures that Flyway does not migrate the wrong database in case of a configuration mistake.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_more_details_on_flyway_migrations"><a class="anchor" href="#_more_details_on_flyway_migrations"></a>More details on Flyway migrations</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://documentation.red-gate.com/fd/baseline-migrations-184127465.html">Baseline Migrations Documentation</a>.</p>
+</li>
+<li>
+<p><a href="https://flywaydb.org/documentation/learnmore/existing">Existing Database Setup Documentation</a>.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_found_an_issue"><a class="anchor" href="#_found_an_issue"></a><em><strong>Found an issue?</strong></em></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>If you find an issue or any misleading information, please feel free to report it <a href="https://github.com/kiegroup/kogito-docs/issues/new">here</a>.
+We really appreciate it!</p>
+</div>
+</div>
+</div>
 </article>
         </main>
             </div>
