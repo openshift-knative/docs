@@ -39,6 +39,7 @@
 **** xref:serverless-logic:eventing/consume-produce-events-with-knative-eventing.adoc[Consuming and producing events on Knative Eventing]
 **** xref:serverless-logic:eventing/event-correlation-with-workflows.adoc[Event correlation in {context}]
 **** xref:serverless-logic:eventing/working-with-callbacks.adoc[Callback state in {context}]
+**** xref:serverless-logic:eventing/working-with-openapi-callbacks.adoc[OpenAPI Callback in {context}]
 *** Security
 **** xref:serverless-logic:security/authention-support-for-openapi-services.adoc[Authentication for OpenAPI services in {context}]
 **** xref:serverless-logic:security/orchestrating-third-party-services-with-oauth2.adoc[Orchestration of third-party services using OAuth 2.0 authentication in {context}]
@@ -51,16 +52,19 @@
 //**** xref:serverless-logic:testing-and-troubleshooting/development-tools-for-troubleshooting.adoc[Development tools for troubleshooting]
 *** Persistence
 **** xref:serverless-logic:persistence/persistence-with-postgresql.adoc[Running a workflow service using PostgreSQL]
+**** xref:serverless-logic:persistence/postgresql-flyway-migration.adoc[Migrate your PostgreSQL database]
 //**** xref:serverless-logic:persistence/workflow-database-for-db-admins.adoc[Workflows database for DB admins]
 // **** xref:serverless-logic:persistence/data-consistency.adoc[Data consistency]
 *** Cloud
 **** xref:serverless-logic:cloud/build-workflow-image-with-quarkus-cli.adoc[Building workflow images using Quarkus CLI]
-// **** xref:serverless-logic:cloud/build-workflow-images-with-kn-cli.adoc[Building Workflow Images locally with KN CLI]
 // **** xref:serverless-logic:cloud/build-workflow-images-with-tekton.adoc[Building Workflow Images with Tekton Pipelines]
 **** xref:serverless-logic:cloud/deploying-on-minikube.adoc[Deploying your {context} application on Minikube]
-// **** xref:serverless-logic:cloud/deploying-on-kubernetes-cluster.adoc[Deploying on Kubernetes Clusters]
+**** xref:serverless-logic:cloud/deploying-on-kubernetes.adoc[Deploying your {context} application on Kubernetes]
 // **** xref:serverless-logic:cloud/versioning-workflows-in-knative.adoc[Versioning workflows in Knative]
 **** xref:serverless-logic:cloud/kubernetes-service-discovery.adoc[Kubernetes service discovery in {context}]
+**** xref:serverless-logic:cloud/build-and-deploy-with-serverless-operator-on-kubernetes.adoc[Buiding and deploying a  {context} application on Kubernetes using the {product_name} Serverless Operator]
+
+
 *** Integrations
 **** xref:serverless-logic:integrations/expose-metrics-to-prometheus.adoc[Exposing the workflow base metrics to Prometheus]
 // **** xref:serverless-logic:integrations/camel-k-integration.adoc[Integrating with Camel-K]
