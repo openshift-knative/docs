@@ -13,6 +13,7 @@ asciidoc:
     kogito_sw_ga: >-
       org.kie.kogito:kogito-quarkus-serverless-workflow
     quarkus_version: 2.13.5.Final-redhat-00003
+    quarkus_platform_version: 2.13.5.Final-redhat-00002
     java_min_version: 11+
     maven_min_version: 3.8.1
     graalvm_min_version: 21.3.0
