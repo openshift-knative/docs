@@ -12,5 +12,4 @@ See link:https://docs.openshift.com/container-platform/4.11/serverless/functions
 Some parts of {FunctionsProductName} are in Developer Preview and are documented in the following pages:
 
 * xref:functions/serverless-functions-buildpacks.adoc[Building and deploying functions on the cluster]
-* xref:functions/serverless-developing-python-functions.adoc[Developing Python functions]
 * xref:functions/serverless-developing-go-functions.adoc[Developing Go functions]

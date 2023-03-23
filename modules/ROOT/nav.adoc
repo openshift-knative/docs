@@ -75,5 +75,4 @@
 * Buildpacks for Serverless Functions
 ** xref:functions/serverless-functions-about.adoc[About buildpacks for OpenShift Serverless Functions]
 ** xref:functions/serverless-functions-buildpacks.adoc[Building and deploying functions on the cluster]
-** xref:functions/serverless-developing-python-functions.adoc[Developing Python functions]
 ** xref:functions/serverless-developing-go-functions.adoc[Developing Go functions]
