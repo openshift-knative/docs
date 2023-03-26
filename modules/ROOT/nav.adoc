@@ -68,7 +68,7 @@
 
 
 *** Integrations
-** xref:serverless-logic:integrations/camel-routes-integration.adoc[Integrating with Camel Routes]
+**** xref:serverless-logic:integrations/camel-routes-integration.adoc[Integrating with Camel Routes]
 **** xref:serverless-logic:integrations/custom-functions-knative.adoc[Invoking Knative services from {context}]
 **** xref:serverless-logic:integrations/expose-metrics-to-prometheus.adoc[Exposing the workflow base metrics to Prometheus]
 // **** xref:serverless-logic:integrations/camel-k-integration.adoc[Integrating with Camel-K]
@@ -77,6 +77,7 @@
 **** xref:serverless-logic:use-cases/orchestration-based-saga-pattern.adoc[Saga orchestration example in {context}]
 // **** xref:serverless-logic:use-cases/newsletter-subscription-example.adoc[Newsletter subscription example]
 **** xref:serverless-logic:use-cases/timeout-showcase-example.adoc[Timeout example in {context}]
+** xref:serverless-logic:release-notes.adoc[Release notes for Serverless Logic]
 * Buildpacks for Serverless Functions
 ** xref:functions/serverless-functions-about.adoc[About buildpacks for OpenShift Serverless Functions]
 ** xref:functions/serverless-functions-buildpacks.adoc[Building and deploying functions on the cluster]
