@@ -67,6 +67,7 @@
 
 
 *** Integrations
+**** xref:serverless-logic:integrations/custom-functions-knative.adoc[Invoking Knative services from {context}]
 **** xref:serverless-logic:integrations/expose-metrics-to-prometheus.adoc[Exposing the workflow base metrics to Prometheus]
 // **** xref:serverless-logic:integrations/camel-k-integration.adoc[Integrating with Camel-K]
 **** xref:serverless-logic:integrations/serverless-dashboard-with-runtime-data.adoc[Displaying workflow data in dashboards]

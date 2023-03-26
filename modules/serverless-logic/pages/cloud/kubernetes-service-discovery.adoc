@@ -6,7 +6,7 @@
 // links
 :quarkus_issue_url: https://github.com/quarkusio/quarkus/issues/27457
 
-The Kubernetes service discovery allows you to have a static URI, defining a Kubernetes resource, which is used to perform HTTP requests. The Kubernetes resource defined in the URI is queried in the current Kubernetes cluster and translated in a valid URL. 
+The Kubernetes service discovery allows you to have a static URI, defining a Kubernetes resource, which is used to perform HTTP requests. The Kubernetes resource defined in the URI is queried in the current Kubernetes cluster and translated in a valid URL.
 
 The Kubernetes service discovery feature works during the workflow application startup, in which this feature scans all the Quarkus configuration in search of the URI pattern. Therefore, you must keep in mind that if application startup time matters, then consider to use a static URL instead.
 
@@ -43,7 +43,7 @@ The following resources are supported for the Kubernetes GVK (Group, Version, an
 
 [IMPORTANT]
 ====
-The Kubernetes GVK is mandatory and cannot be empty. In case the Kubernetes GVK is empty, the engine throws a validation issue and discovery is not performed. The last value in the URI is always considered as resource name. 
+The Kubernetes GVK is mandatory and cannot be empty. In case the Kubernetes GVK is empty, the engine throws a validation issue and discovery is not performed. The last value in the URI is always considered as resource name.
 
 The `namespace` in the URI is optional, however, if `namespace` contains an empty value, the current namespace or context is used.
 ====
@@ -55,7 +55,7 @@ Also known as query string. The query parameters are defined the similar way wit
 
 The following query parameters help the engine to be more precise when querying for a given Kubernetes resource:
 
-* *Custom labels*: The custom labels are used to filter services in case there are more than one service with the same label selector but exposing different ports. In this case, you can instruct the engine that if more than one service is found, then the engine must use the service containing the provided label. 
+* *Custom labels*: The custom labels are used to filter services in case there are more than one service with the same label selector but exposing different ports. In this case, you can instruct the engine that if more than one service is found, then the engine must use the service containing the provided label.
 +
 The label is defined with the following expression and in case of multiple labels, you can use semicolon (;):
 +
@@ -96,6 +96,16 @@ image::cloud/sw-discovery-flow.jpg[]
 
 [[ref-example-kubernetes-service-discovery]]
 == Example of Kubernetes service discovery in {context}
+
+Add the following dependency to your `pom.xml`:
+
+[source,xml]
+----
+<dependency>
+  <groupId>org.kie.kogito</groupId>
+  <artifactId>kogito-addons-quarkus-kubernetes</artifactId>
+</dependency>
+----
 
 The Kubernetes service discovery is performed at the _STATIC_INIT_ time of Quarkus during the workflow application startup. First, the service discovery scans the Quarkus configuration values and searches for the Kubernetes URI pattern. If the URI pattern is found, the engine parses the URI, queries the Kubernetes API searching for the given resource, and overrides the given application property.
 
@@ -164,24 +174,14 @@ When using the Kubernetes service discovery feature, you need to balance if your
 
 If the URI pattern is not found in the application properties, then discovery is not triggered. However, the scanning is performed anyway. Therefore, a short time is required to go through the startup scan.
 
-You can disable the Kubernetes service discovery by excluding the `kogito-addons-quarkus-kubernetes` library from the classpath of the application as shown in the following Maven exclusions:
+You can disable the Kubernetes service discovery by removing the `kogito-addons-quarkus-kubernetes` library from the application's dependencies:
 
-.Example Maven exclusions
+.Remove the following dependency
 [source,shell]
 ----
 <dependency>
   <groupId>org.kie.kogito</groupId>
-  <artifactId>kogito-quarkus-serverless-workflow</artifactId>
-  <exclusions>
-    <exclusion>
-      <groupId>org.kie.kogito</groupId>
-      <artifactId>kogito-addons-quarkus-kubernetes</artifactId>
-    </exclusion>
-    <exclusion>
-      <groupId>org.kie.kogito</groupId>
-      <artifactId>kogito-addons-quarkus-kubernetes-deployment</artifactId>
-    </exclusion>
-  </exclusions>
+  <artifactId>kogito-addons-quarkus-kubernetes</artifactId>
 </dependency>
 ----
 
