@@ -73,6 +73,7 @@
 *** Use Cases
 **** xref:serverless-logic:use-cases/orchestration-based-saga-pattern.adoc[Saga orchestration example in {context}]
 // **** xref:serverless-logic:use-cases/newsletter-subscription-example.adoc[Newsletter subscription example]
+**** xref:serverless-logic:use-cases/timeout-showcase-example.adoc[Timeout example in {context}]
 * Buildpacks for Serverless Functions
 ** xref:functions/serverless-functions-about.adoc[About buildpacks for OpenShift Serverless Functions]
 ** xref:functions/serverless-functions-buildpacks.adoc[Building and deploying functions on the cluster]
