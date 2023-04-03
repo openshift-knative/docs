@@ -5,7 +5,7 @@
 :description: Configuration Properties
 :keywords: kogito, workflow, serverless, configuration, properties
 
-The following table serves as a quick reference for commonly used configuration properties supported in {context}. You can define the following properties in the `src/main/resources/application.properties` file of your project. 
+The following table serves as a quick reference for commonly used configuration properties supported in {context}. You can define the following properties in the `src/main/resources/application.properties` file of your project.
 
 .Common configuration properties
 [cols="20%,30%,20%,15%,15%", options="header"]
@@ -37,14 +37,8 @@ a|Defines the type of persistence database. The possible values of this property
 |`false`
 |Yes
 
-|`kogito.persistence.auto.ddl`
-|Applies the database schema changes automatically.
-|boolean
-|`true`
-|Yes
-
 |`kogito.workflow.version-strategy`
-a| Defines strategy to resolve a process version to use. The possible values of this property include:
+| Defines strategy to resolve a process version to use. The possible values of this property include:
 
 * `workflow`
 * `project`
@@ -71,7 +65,7 @@ a| Defines strategy to resolve a process version to use. The possible values of 
 |No
 
 |`kogito.addon.messaging.outgoing.defaultName`
-|Defines the default name of the outgoing channel. 
+|Defines the default name of the outgoing channel.
 |string
 |`kogito_outgoing_stream`
 |No

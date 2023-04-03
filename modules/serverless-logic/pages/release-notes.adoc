@@ -1,0 +1,15 @@
+= New features on OpenShift Serverless - Developer Preview Releases
+:compat-mode!:
+
+== Notable changes
+
+* link:https://issues.redhat.com/browse/SRVLOGIC-7[SRVLOGIC-7] - [core] Simplified serverless knative function invocation
+* link:https://issues.redhat.com/browse/SRVLOGIC-47[SRVLOGIC-47] - [use case] Improve Workflow Timeouts support (community only)
+* link:https://issues.redhat.com/browse/SRVLOGIC-62[SRVLOGIC-62] - Data Index as Quarkus extension
+* link:https://issues.redhat.com/browse/SRVLOGIC-65[SRVLOGIC-65] - Upgrade Workflow Runtime to RHBQ 2.13
+* link:https://issues.redhat.com/browse/SRVLOGIC-66[SRVLOGIC-66] - [SWF Editor] Add support to Async API
+* link:https://issues.redhat.com/browse/SRVLOGIC-67[SRVLOGIC-67] - Serverless Workflow Visualization Improvements - DP5
+* link:https://issues.redhat.com/browse/SRVLOGIC-69[SRVLOGIC-69] - [SWF Dev UI] Add support to start workflows using gateway API and cloud events
+* link:https://issues.redhat.com/browse/SRVLOGIC-76[SRVLOGIC-76] - Data-index prod ephemeral image is missing the `KOGITO_DATA_INDEX_QUARKUS_PROFILE`
+
+== Other changes and Bug fixes

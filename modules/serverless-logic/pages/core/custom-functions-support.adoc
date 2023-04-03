@@ -15,7 +15,7 @@ The CNCF specification does not support `java` and `sysout` functions. Therefore
 ====
 
 [[con-func-sysout]]
-== `sysout` custom function
+== Sysout custom function
 
 You can use the `sysout` function for debugging or for quick demonstrations as shown in the following example:
 
@@ -65,7 +65,7 @@ You must avoid using the `sysout` function in a production environment since it 
 ====
 
 [[con-func-java]]
-== `java` custom function
+== Java custom function
 
 {product_name} supports the `java` functions within an Apache Maven project, in which you define your workflow service.
 
@@ -108,6 +108,7 @@ For example, if you invoke a function using one argument as follows, then your m
      "number": "${.number}"
    }
  }
+}
 ----
 
 
@@ -143,7 +144,6 @@ When using the following example function reference with no arguments, and if th
 [source,java]
 ----
 public class MyInterfaceOrClass {
-
 
     public JsonNode myMethod(JsonNode workflowData) {
         // do whatever I want with the Workflow model
@@ -200,12 +200,279 @@ public class MyInterfaceOrClass {
 
 [WARNING]
 ====
-Avoid using `java` functions to call the external services, instead, you can use the xref:serverless-logic:service-orchestration/orchestration-of-openapi-based-services.adoc[services orchestration features].
+Avoid using `java` functions to call the external services, instead, you can use the xref:service-orchestration/orchestration-of-openapi-based-services.adoc[services orchestration features].
 ====
+
+== Camel custom function
+
+Kogito supports the link:{camel_url}[Camel Routes] functions within an Apache Maven project, in which you define your workflow service.
+
+[NOTE]
+====
+This section briefly exemplifies how to define and use Camel Routes within your workflow application. For more information, see the xref:integrations/camel-routes-integration.adoc[Integrating with Camel Routes].
+====
+
+=== Function definition
+
+The following example shows the declaration of a Camel function:
+
+[source,json]
+----
+{
+  "functions": [
+    {
+      "name": "myCamelEndpoint", <1>
+      "type": "custom",  <2>
+      "operation": "camel:direct:myendpoint" <3>
+    }
+  ]
+}
+----
+
+<1> `myCamelEndpoint` is the function name
+<2> `custom` is the function type
+<3> `camel:direct:myendpoint` is the custom operation definition. In this definition, `camel` is the reserved keyword followed by the `direct` endpoint. link:{camel_extensions_url}/direct.html[Camel Direct] is the only supported consumer by {context}. Finally, `myendpoint` is the endpoint URI name found in the route within your project's context.
+
+=== Function arguments
+
+The Camel function arguments must follow a specific structure when passing data from the workflow state to the route. The `body` and `headers` are the only attributes supported in the function arguments. Both are optional if you need to call the Camel routes without arguments. The only constraint is that you can not call a Camel route with only `headers`.
+
+The following examples display valid argument structures for Camel function arguments:
+
+.Example calling a Camel route using `body` and `headers`
+[source,json]
+----
+{
+  "functionRef": {
+    "refName": "myCamelEndpoint",
+    "arguments": {
+      "body": "${ .my.body.data }", <1>
+      "headers": { <2>
+        "key1": "${ .my.value }",
+        "key2": "${ .my.other.value }"
+      }
+    }
+  }
+}
+----
+
+<1> `jq` expression filtering the state data for the `body` argument.
+<2> JSON key/value pair for the `headers` argument. A `jq` expression returning the same JSON object is also valid.
+
+.Example calling a Camel route using `body`
+[source,json]
+----
+{
+  "functionRef": {
+    "refName": "myCamelEndpoint",
+    "arguments": {
+      "body": "${ .my.body.data }"
+    }
+  }
+}
+----
+
+.Example calling a Camel route without arguments
+[source,json]
+----
+{
+  "functionRef": {
+    "refName": "myCamelEndpoint"
+  }
+}
+----
+
+.Example calling a Camel route with only one argument
+[source,json]
+----
+{
+  "functionRef": {
+    "refName": "myCamelEndpoint",
+    "arguments": "${ .my.body.data }"
+  }
+}
+----
+
+In this last example, the `jq` expression result is used as the `body` argument in a way to simplify the definition.
+
+=== Function return values
+
+The Camel route is responsible to produce the return value in a way that the workflow can understand. The following are considered valid objects:
+
+include::../../pages/_common-content/camel-valid-responses.adoc[]
+
+[#knative-custom-function]
+== Knative custom function
+
+{product_name} provides an implementation of a custom function through the `knative-serving` add-on to invoke Knative services. It allows you to have a static URI, defining a Knative service, which is used to perform HTTP requests. The Knative service defined in the URI is queried in the current Knative cluster and translated to a valid URL.
+
+[NOTE]
+====
+This section briefly exemplifies how to define and use Knative custom functions within your workflow application. For more information, see xref:integrations/custom-functions-knative.adoc[Invoking Knative services from Serverless Workflow].
+====
+
+=== Function definition
+
+Given the following deployed Knative service:
+
+[source,bash]
+----
+$ kn service list
+NAME                              URL                                                                      LATEST                                  AGE     CONDITIONS   READY   REASON
+custom-function-knative-service   http://custom-function-knative-service.default.10.109.169.193.sslip.io   custom-function-knative-service-00001   3h16m   3 OK / 3     True
+----
+
+You can declare a {context} custom function using the Knative service name, like the following:
+
+[source,json]
+----
+  "functions": [
+    {
+      "name": "greet", <1>
+      "type": "custom", <2>
+      "operation": "knative:custom-function-knative-service" <3>
+    }
+  ]
+----
+
+<1> `greet` is the function name
+<2> `custom` is the function type
+<3> `knative:custom-function-knative-service` is the custom operation definition. In this definition, `knative` is the reserved keyword followed by the `custom-function-knative-service` Knative service.
+
+The above function will send a `POST` request to the http://custom-function-knative-service.default.10.109.169.193.sslip.io URL.
+
+[NOTE]
+====
+`GET` requests are not yet supported.
+====
+
+[[about-namespaces]]
+==== About namespaces
+
+Note that in the above example, you declared only the name of the service you wanted to call, but not a namespace. In this case, {product_name} will look for a Knative service in the same namespace the workflow service is running.
+
+In case you need to call a Knative service in a different namespace, you can declare the function as:
+
+[source,json]
+----
+  "functions": [
+    {
+      "name": "greet",
+      "type": "custom",
+      "operation": "knative:my_different_namespace/custom-function-knative-service"
+    }
+  ]
+----
+
+In the above example, {product_name} will look for the `custom-function-knative-service` in the `my_different_namespace` namespace.
+
+=== Function metadata
+
+==== HTTP resource path
+
+You can specify the HTTP resource path by adding the `path` property to the function's metadata.
+
+For instance, given the `/path/to/my/resource` HTTP resource path, you can define your function as:
+
+[source,json]
+----
+  "functions": [
+    {
+      "name": "greet",
+      "type": "custom",
+      "operation": "knative:custom-function-knative-service",
+      "metadata": {
+        "path": "/path/to/my/resource"
+      }
+    }
+  ]
+----
+
+In case you don't specify any path, the root path will be used. For instance, the following function:
+
+[source,json]
+----
+  "functions": [
+    {
+      "name": "greet",
+      "type": "custom",
+      "operation": "knative:custom-function-knative-service"
+    }
+  ]
+----
+
+Is exactly the same as:
+
+[source,json]
+----
+  "functions": [
+    {
+      "name": "greet",
+      "type": "custom",
+      "operation": "knative:custom-function-knative-service",
+      "metadata": {
+        "path": "/"
+      }
+    }
+  ]
+----
+
+=== Function arguments
+
+In case you need to send a payload in the request, you can add it to `arguments` in `functionRef`.
+
+For instance, given you want to send the following JSON object as the payload:
+
+[source,json]
+----
+{
+  "product_id": ".product_id",
+  "customer_name": ".customer_name"
+}
+----
+
+You must declare a `functionRef` like the following.
+
+[source,json]
+----
+  "states": [
+    {
+      "name": "invokeFunction",
+      "type": "operation",
+      "actions": [
+        {
+          "functionRef": {
+            "refName": "greet",
+            "arguments": { <1>
+              "product_id": ".product_id",
+              "customer_name": ".customer_name"
+            }
+          }
+        }
+      ],
+      "end": true
+    }
+  ]
+----
+<1> The request payload is set in `arguments`.
+
+=== Configurations
+
+==== Request timeout
+
+By default, the Knative service must respond within 10 seconds. You can use the `kogito.addon.knative-serving.request-timeout` property to configure this value.
+
+For instance, if you want to reduce the request timeout to 5 seconds, you must add the following to your `application.properties` file:
+
+[source,properties]
+----
+kogito.addon.knative-serving.request-timeout=5000 <1>
+----
+<1> Time in milliseconds
 
 == Custom function types
 
-You can add your custom types by using the Kogito add-on mechanism. As predefined custom types like xref:serverless-logic:core/custom-functions-support.adoc#con-func-sysout[`sysout`] or xref:serverless-logic:core/custom-functions-support.adoc#con-func-java[`java`], the custom type identifier is the prefix of the operation field of the function definition.
+You can add your custom types by using the Kogito add-on mechanism. As predefined custom types like xref:core/custom-functions-support.adoc#con-func-sysout[`sysout`] or xref:core/custom-functions-support.adoc#con-func-java[`java`], the custom type identifier is the prefix of the operation field of the function definition.
 
 Kogito add-ons relies on the link:{quarkus_guides_base_url}/writing-extensions[Quarkus extensions] mechanism. And the add-on consists of at least two Maven projects:
 
@@ -312,17 +579,19 @@ The implementation invokes the link:{kogito_sw_examples_url}/serverless-workflow
 
 [source, json]
 ----
-"actions": [
-       {
-          "functionRef": {
-             "refName": "division",
-             "arguments": {
-                 "dividend": ".dividend",
-                 "divisor" : ".divisor"
-             }
-           }
-
-       }
+{
+  "actions":[
+    {
+      "functionRef":{
+        "refName":"division",
+        "arguments":{
+          "dividend":".dividend",
+          "divisor":".divisor"
+        }
+      }
+    }
+  ]
+}
 ----
 
 The `RPCCustomWorkItemHandlerConfig` is a bean that registers the handler name.
@@ -340,10 +609,9 @@ void init () {
 }
 ----
 
-
 == Additional resources
 
-* xref:serverless-logic:getting-started/cncf-serverless-workflow-specification-support.adoc[CNCF Serverless Workflow specification]
-* xref:serverless-logic:core/understanding-jq-expressions.adoc[jq expressions in {context}]
+* xref:getting-started/cncf-serverless-workflow-specification-support.adoc[CNCF Serverless Workflow specification]
+* xref:core/understanding-jq-expressions.adoc[jq expressions in {context}]
 
 include::../../pages/_common-content/report-issue.adoc[]

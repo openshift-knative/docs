@@ -83,6 +83,8 @@ The Kogito Serverless Workflow Tools extension contains the following pages:
 
 * xref:serverless-logic:tooling/quarkus-dev-ui-extension/quarkus-dev-ui-workflow-instances-page.adoc[Workflow Instances]
 * xref:serverless-logic:tooling/quarkus-dev-ui-extension/quarkus-dev-ui-workflow-definition-page.adoc[Workflow Definitions]
+* xref:tooling/quarkus-dev-ui-extension/quarkus-dev-ui-custom-dashboard-page.adoc[Dashboards]
+
 --
 
 
