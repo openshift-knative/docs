@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Building workflow images using Quarkus CLI :: Red Hat OpenShift Serverless previews</title>
-    <link rel="canonical" href="https://openshift-knative.github.io/docs/docs/latest/serverless-logic/cloud/build-workflow-image-with-quarkus-cli.html">
-    <meta name="description" content="Build Serverless Application with Quarkus CLI">
-    <meta name="keywords" content="kogito, workflow, quarkus, serverless, quarkus-cli">
+    <title>Timeout example in OpenShift Serverless Logic :: Red Hat OpenShift Serverless previews</title>
+    <link rel="canonical" href="https://openshift-knative.github.io/docs/docs/latest/serverless-logic/use-cases/timeout-showcase-example.html">
+    <meta name="description" content="Timeout example use case example in Serverless Workflow">
+    <meta name="keywords" content="kogito, workflow, serverless, timer, timeout">
     <meta name="generator" content="Antora 3.0.3">
     <link rel="stylesheet" href="../../../../_/css/site.css">
 <link rel="stylesheet" href="../../../../_/css/extra.css">
@@ -264,20 +264,20 @@
     <button class="nav-toggle"></button>
     <span class="nav-text">Cloud</span>
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="4">
-    <a class="nav-link" href="build-workflow-image-with-quarkus-cli.html">Building workflow images using Quarkus CLI</a>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../cloud/build-workflow-image-with-quarkus-cli.html">Building workflow images using Quarkus CLI</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="deploying-on-minikube.html">Deploying your OpenShift Serverless Logic application on Minikube</a>
+    <a class="nav-link" href="../cloud/deploying-on-minikube.html">Deploying your OpenShift Serverless Logic application on Minikube</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="deploying-on-kubernetes.html">Deploying your OpenShift Serverless Logic application on Kubernetes</a>
+    <a class="nav-link" href="../cloud/deploying-on-kubernetes.html">Deploying your OpenShift Serverless Logic application on Kubernetes</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="kubernetes-service-discovery.html">Kubernetes service discovery in OpenShift Serverless Logic</a>
+    <a class="nav-link" href="../cloud/kubernetes-service-discovery.html">Kubernetes service discovery in OpenShift Serverless Logic</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="build-and-deploy-with-serverless-operator-on-kubernetes.html">Buiding and deploying a  OpenShift Serverless Logic application on Kubernetes using the OpenShift Serverless Logic Serverless Operator</a>
+    <a class="nav-link" href="../cloud/build-and-deploy-with-serverless-operator-on-kubernetes.html">Buiding and deploying a  OpenShift Serverless Logic application on Kubernetes using the OpenShift Serverless Logic Serverless Operator</a>
   </li>
 </ul>
   </li>
@@ -304,10 +304,10 @@
     <span class="nav-text">Use Cases</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../use-cases/orchestration-based-saga-pattern.html">Saga orchestration example in OpenShift Serverless Logic</a>
+    <a class="nav-link" href="orchestration-based-saga-pattern.html">Saga orchestration example in OpenShift Serverless Logic</a>
   </li>
-  <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../use-cases/timeout-showcase-example.html">Timeout example in OpenShift Serverless Logic</a>
+  <li class="nav-item is-current-page" data-depth="4">
+    <a class="nav-link" href="timeout-showcase-example.html">Timeout example in OpenShift Serverless Logic</a>
   </li>
 </ul>
   </li>
@@ -369,450 +369,366 @@
     <li class="crumb"><a href="../../index.html">Documentation</a></li>
     <li class="crumb">Serverless Logic</li>
     <li class="crumb">User Guides</li>
-    <li class="crumb">Cloud</li>
-    <li class="crumb"><a href="build-workflow-image-with-quarkus-cli.html">Building workflow images using Quarkus CLI</a></li>
+    <li class="crumb">Use Cases</li>
+    <li class="crumb"><a href="timeout-showcase-example.html">Timeout example in OpenShift Serverless Logic</a></li>
   </ul>
 </nav>
 </div>
     <div class="main-view-and-toc">
         <main class="main">
           <article class="doc">
-<h1>Building workflow images using Quarkus CLI</h1>
+<h1>Timeout example in OpenShift Serverless Logic</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>This document describes how to build a Serverless Application Container image using the <a href="https://quarkus.io/guides/cli-tooling">Quarkus CLI</a>.</p>
-</div>
-<div class="ulist">
-<div class="title">Prerequisites</div>
-<ul>
-<li>
-<p>A workflow project is created.</p>
-<div class="paragraph">
-<p>For more information about creating a workflow project, see <a href="../getting-started/create-your-first-workflow-service.html" class="xref page">Creating your first Serverless Workflow service</a>.</p>
-</div>
-</li>
-<li>
-<p>Latest version of Docker is installed. Alternatively, you can use <a href="https://github.com/GoogleContainerTools/jib">Jib</a> to build container images. However, Docker is required to build GraalVM native image using the Quarkus native builder image.</p>
-</li>
-<li>
-<p>Optionally, GraalVM 21.3.0 is installed.</p>
-</li>
-</ul>
+<p>In the <a href="https://github.com/kiegroup/kogito-examples/tree/1.32.x/serverless-workflow-examples/serverless-workflow-timeouts-showcase">serverless-workflow-timeouts-showcase</a> you can see an end-to-end example that contains a serverless workflow application with timeouts configured alongside Job Service running on Knative.</p>
 </div>
 <div class="paragraph">
-<p>Quarkus provides a few extensions to build container images, such as <code>Jib</code>, <code>docker</code>, <code>s2i</code>, and <code>buildpacks</code>. For more information about the Quarkus extensions, see the <a href="https://quarkus.io/guides/container-image">Quarkus documentation</a>.</p>
-</div>
-<div class="paragraph">
-<p>The examples in this document assume that you have the Quarkus tooling installed. For more information about the tooling, see <a href="../getting-started/getting-familiar-with-our-tooling.html" class="xref page">Getting familiar with OpenShift Serverless Logic tooling</a>.</p>
+<p>There are two workflows that showcase the timeouts usage in the <code>Callback</code> and <code>Switch</code> states.</p>
 </div>
 </div>
 <div id="toc" class="toc">
 <div id="toctitle"></div>
 <ul class="sectlevel1">
-<li><a href="#proc-using-example-application">Using an example application</a></li>
-<li><a href="#proc-building-serverless-workflow-application">Building the workflow application</a>
-<ul class="sectlevel2">
-<li><a href="#proc-building-serverless-workflow-application-using-native-image">Building the workflow application using a native image</a></li>
-</ul>
-</li>
-<li><a href="#proc-testing-serverless-workflow-image">Testing your workflow image</a></li>
+<li><a href="#_callback_workflow">Callback workflow</a></li>
+<li><a href="#_switch_workflow">Switch workflow</a></li>
+<li><a href="#_event_workflow">Event workflow</a></li>
+<li><a href="#_running_the_example">Running the example</a></li>
+<li><a href="#_deploying_the_database">Deploying the database</a></li>
+<li><a href="#job-service-deploy">Deploying Job Service</a></li>
+<li><a href="#_deploying_the_timeout_showcase_workflow">Deploying the timeout showcase workflow</a></li>
+<li><a href="#_creating_a_workflow_instance">Creating a workflow instance</a></li>
+<li><a href="#_using_the_showcase_ui">Using the showcase UI</a></li>
+<li><a href="#_using_rest_apis">Using REST APIs</a></li>
 <li><a href="#_additional_resources">Additional resources</a></li>
 <li><a href="#_found_an_issue"><em><strong>Found an issue?</strong></em></a></li>
 </ul>
 </div>
 </div>
 <div class="sect1">
-<h2 id="proc-using-example-application"><a class="anchor" href="#proc-using-example-application"></a>Using an example application</h2>
+<h2 id="_callback_workflow"><a class="anchor" href="#_callback_workflow"></a>Callback workflow</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>To get started with building workflow images, you can use the <a href="https://github.com/kiegroup/kogito-examples/tree/1.32.x/serverless-workflow-examples/serverless-workflow-greeting-quarkus"><code>serverless-workflow-greeting-quarkus</code></a> example application.</p>
+<p>It is a simple workflow, where once the execution reaches the callback state it waits for the event <code>callbackEvent</code> to arrive and continue the execution.</p>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-You can skip the following procedure if you already have a workflow application.
-</td>
-</tr>
-</table>
-</div>
-<div class="olist arabic">
-<div class="title">Procedure</div>
-<ol class="arabic">
-<li>
-<p>Clone the <a href="https://github.com/kiegroup/kogito-examples.git">kogito-examples</a> repository and navigate to the <a href="https://github.com/kiegroup/kogito-examples/tree/1.32.x/serverless-workflow-examples/serverless-workflow-greeting-quarkus"><code>serverless-workflow-greeting-quarkus</code></a> example application.</p>
-<div class="listingblock">
-<div class="title">Clone an example application</div>
+<div class="imageblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">git clone --branch main https://github.com/kiegroup/kogito-examples.git
-cd kogito-examples/serverless-workflow-examples/serverless-workflow-greeting-quarkus</code></pre>
+<img src="../_images/core/callback-state-timeouts.svg" alt="callback state timeouts">
 </div>
-</div>
-</li>
-<li>
-<p>To run the example application, follow the instructions in <a href="../getting-started/create-your-first-workflow-service.html" class="xref page">Creating your first workflow service</a>.</p>
-</li>
-<li>
-<p>Install the Quarkus command line interface (CLI). For more information, see <a href="https://quarkus.io/guides/cli-tooling">Installing the Quarkus CLI</a>.</p>
-</li>
-<li>
-<p>Add the required Quarkus extension using Quarkus CLI:</p>
-<div class="openblock">
-<div class="content">
-<div class="listingblock">
-<div class="title">Add the Jib extension</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">quarkus extension add 'container-image-jib'</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>After adding the Jib extension, you can verify the newly added dependency in the <code>pom.xml</code> file:</p>
+<div class="title">Figure 1. Callback timeout workflow</div>
 </div>
 <div class="listingblock">
-<div class="title">Verify the Jib extension</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;dependency&gt;
-  &lt;groupId&gt;io.quarkus&lt;/groupId&gt;
-  &lt;artifactId&gt;quarkus-container-image-jib&lt;/artifactId&gt;
-&lt;/dependency&gt;</code></pre>
-</div>
-</div>
-</div>
-</div>
-</li>
-</ol>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="proc-building-serverless-workflow-application"><a class="anchor" href="#proc-building-serverless-workflow-application"></a>Building the workflow application</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>After installing the required tooling, you can start building your workflow application.</p>
-</div>
-<div class="ulist">
-<div class="title">Prerequisites</div>
-<ul>
-<li>
-<p>You have created a Quarkus project.</p>
-</li>
-<li>
-<p>Quarkus CLI is installed.
-For more information about installing the Quarkus CLI, see <a href="https://quarkus.io/guides/cli-tooling#installing-the-cli">Installing the Quarkus CLI</a>.</p>
-</li>
-</ul>
-</div>
-<div class="olist arabic">
-<div class="title">Procedure</div>
-<ol class="arabic">
-<li>
-<p>In a command terminal, navigate to your Quarkus project.</p>
-</li>
-<li>
-<p>To build your workflow application on Quarkus, set the <code>quarkus.container-image.build</code> property value to <code>true</code> and run the following command:</p>
-<div class="openblock">
-<div class="content">
-<div class="listingblock">
-<div class="title">Build your workflow application</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">quarkus build -Dquarkus.container-image.build=true</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The previous command builds your image with name: <code>{system_username}/{project_artifactId}:{project_version}</code>.</p>
-</div>
-<div class="paragraph">
-<p>Optionally, you can set the following properties to specify the image:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>quarkus.container-image.registry</code>: To define the registry address of the image, such as <code>quay.io</code>.</p>
-</li>
-<li>
-<p><code>quarkus.container-image.group</code>: To define the registry namespace of the image. For example, <code>context/namespace</code> or in case of Kubernetes or OpenShift <code>namespace/project</code>.</p>
-</li>
-<li>
-<p><code>quarkus.container-image.name</code>: To override the image name. By default, this property uses artifact ID.</p>
-</li>
-</ul>
-</div>
-<div class="listingblock">
-<div class="title">Build your workflow application with specific image information</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">quarkus build -Dquarkus.container-image.build=true \
-    -Dquarkus.container-image.group=kogito \
-    -Dquarkus.container-image.name=serverless-workflow-greeting-quarkus \
-    -Dquarkus.container-image.tag=1.0 \
-    -Dquarkus.container-image.registry=quay.io</code></pre>
-</div>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>The added Jib extension caches the <code>target/lib</code> directory. Based on the size of your project, Jib speeds up the rebuilds.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-</li>
-<li>
-<p>You can also push your workflow application to the defined registry. You need to set the <code>quarkus.container-image.push</code> property value to <code>true</code> (default value is <code>false</code>).</p>
-<div class="listingblock">
-<div class="title">Example of pushing the built workflow application to a registry</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">quarkus build -Dquarkus.container-image.build=true \
-    -Dquarkus.container-image.group=kogito \
-    -Dquarkus.container-image.name=serverless-workflow-greeting-quarkus \
-    -Dquarkus.container-image.tag=1.0 \
-    -Dquarkus.container-image.registry=quay.io \
-    -Dquarkus.container-image.push=true</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The previous command results in the following container image pushed to <code>quay.io</code>:</p>
-</div>
-<div class="paragraph">
-<p><code>quay.io/kogito/serverless-workflow-greeting-quarkus:1.0</code></p>
-</div>
-</li>
-<li>
-<p>Alternatively, you can create an Apache Maven profile to build the container image, which can be triggered by setting the target profile.</p>
-<div class="openblock">
-<div class="content">
-<div class="listingblock">
-<div class="title">Example Apache Maven profile</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;profile&gt;
-  &lt;id&gt;build-container&lt;/id&gt;
-  &lt;properties&gt;
-    &lt;quarkus.container-image.build&gt;true&lt;/quarkus.container-image.build&gt;
-    &lt;quarkus.container-image.group&gt;kogito&lt;/quarkus.container-image.group&gt;
-    &lt;quarkus.container-image.name&gt;serverless-workflow-greeting-quarkus&lt;/quarkus.container-image.name&gt;
-    &lt;quarkus.container-image.tag&gt;1.0&lt;/quarkus.container-image.tag&gt;
-    &lt;quarkus.container-image.registry&gt;quay.io&lt;/quarkus.container-image.registry&gt;
-    &lt;quarkus.container-image.push&gt;true&lt;/quarkus.container-image.push&gt;
-  &lt;/properties&gt;
-&lt;/profile&gt;</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>You can activate the created Apache Maven profile using Quarkus CLI:</p>
-</div>
-<div class="listingblock">
-<div class="title">Activate the Apache Maven profile</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell"> quarkus build -- -Pbuild-container</code></pre>
-</div>
-</div>
-</div>
-</div>
-</li>
-</ol>
-</div>
-<div class="sect2">
-<h3 id="proc-building-serverless-workflow-application-using-native-image"><a class="anchor" href="#proc-building-serverless-workflow-application-using-native-image"></a>Building the workflow application using a native image</h3>
-<div class="paragraph">
-<p>When it comes to workflows, a small startup footprint is expected, which can be better when using the native builds to build a workflow application.</p>
-</div>
-<div class="ulist">
-<div class="title">Prerequisites</div>
-<ul>
-<li>
-<p>You have created a Quarkus project.</p>
-</li>
-<li>
-<p>Quarkus CLI is installed.
-For more information about installing the Quarkus CLI, see <a href="https://quarkus.io/guides/cli-tooling">Installing the Quarkus CLI</a>.</p>
-</li>
-</ul>
-</div>
-<div class="olist arabic">
-<div class="title">Procedure</div>
-<ol class="arabic">
-<li>
-<p>In a command terminal, navigate to your Quarkus project.</p>
-</li>
-<li>
-<p>To build a native image, pass the <code>--native</code> flag using Quarkus CLI:</p>
-<div class="openblock">
-<div class="content">
-<div class="listingblock">
-<div class="title">Example of building a native image</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">quarkus build --native -Dquarkus.container-image.build=true \
-    -Dquarkus.container-image.group=kogito \
-    -Dquarkus.container-image.name=serverless-workflow-greeting-quarkus \
-    -Dquarkus.container-image.tag=1.0-native \
-    -Dquarkus.container-image.registry=quay.io</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The previous command results in the following container image:</p>
-</div>
-<div class="paragraph">
-<p><code>quay.io/kogito/serverless-workflow-greeting-quarkus:1.0-native</code></p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>In case GraalVM is not installed, you can set the <code>-Dquarkus.native.container-build=true</code> system property, which creates a Linux executable.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-<div class="title">Configure Docker to use the in-cluster (Remote) Docker daemon</div>
-<div class="paragraph">
-<p>When build Container Images using a remote Docker Daemon, i.e. Minikube, you need to use the following system property instead of <code>-Dquarkus.native.container-build=true</code></p>
-</div>
-<div class="listingblock">
-<div class="title">System property to use a remote Docker Daemon</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">-Dquarkus.native.remote-container-build=true</code></pre>
-</div>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>For more information about native builds, see <a href="https://quarkus.io/guides/building-native-image">Building a native executable</a>.</p>
-</div>
-</div>
-</div>
-</li>
-</ol>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="proc-testing-serverless-workflow-image"><a class="anchor" href="#proc-testing-serverless-workflow-image"></a>Testing your workflow image</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>After building your workflow image using Quarkus CLI, you can test the built image.</p>
-</div>
-<div class="ulist">
-<div class="title">Prerequisites</div>
-<ul>
-<li>
-<p>Latest version of Docker is installed.</p>
-</li>
-</ul>
-</div>
-<div class="olist arabic">
-<div class="title">Procedure</div>
-<ol class="arabic">
-<li>
-<p>Start JVM and native Container Images.</p>
-<div class="openblock">
-<div class="content">
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset1_example-jvm-image"></a>Example JVM image</p>
-</li>
-<li>
-<p><a id="tabset1_example-native-image"></a>Example native image</p>
-</li>
-</ul>
-</div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset1_example-jvm-image">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">docker run -it -p 8080:8080 quay.io/kogito/serverless-workflow-greeting-quarkus:1.0
-...
-INFO  [io.quarkus] (main) serverless-workflow-greeting-quarkus 1.22.1.Final on JVM (powered by Quarkus 2.9.2.Final) started in 1.302s</code></pre>
-</div>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset1_example-native-image">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">docker run -it -p 8080:8080 quay.io/kogito/serverless-workflow-greeting-quarkus:1.0-native
-...
-INFO  [io.quarkus] (main) serverless-workflow-greeting-quarkus 1.22.1.Final native (powered by Quarkus 2.9.2.Final) started in 0.039s</code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Note that the startup of native image is faster than the JVM image.</p>
-</div>
-</div>
-</div>
-</li>
-<li>
-<p>To invoke the workflow application, execute the following command once the container is started:</p>
-<div class="openblock">
-<div class="content">
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset2_example-request"></a>Example request</p>
-</li>
-<li>
-<p><a id="tabset2_example-response"></a>Example response</p>
-</li>
-</ul>
-</div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset2_example-request">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">curl -X POST -H 'Content-Type:application/json' -H 'Accept:application/json' -d '{"name": "John", "language": "English"}' http://localhost:8080/jsongreet</code></pre>
-</div>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset2_example-response">
-<div class="listingblock">
+<div class="title">Callback event</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
-    "id": "2acf710d-7e4a-481d-925c-dfd85a369987",
-    "workflowdata": {
-        "name": "John",
-        "language": "English",
-        "greeting": "Hello from JSON Workflow, "
-    }
+"name": "callbackEvent",
+"source": "",
+"type": "callback_event_type"
 }</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>The timeout is configured with a maximum time 30 seconds to be waited by the workflow to receive the callbackEvent, in case it does not arrive in time, the execution moves, and the eventData variable remains null.
+See the <a href="../core/timeouts-support.html#callback-state" class="xref page">callback state definition</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_switch_workflow"><a class="anchor" href="#_switch_workflow"></a>Switch workflow</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The switch example is similar to the callback but once the execution reaches the state, it waits for one of the two configured events, <code>visaDeniedEvent</code> or <code>visaApprovedEvent</code>, to arrive, see the <a href="#switch-state">switch state definition</a>.</p>
+</div>
+<div class="paragraph">
+<p>If any of the configured events arrives before the timeout is overdue, the workflow execution moves to the next state defined in the corresponding <code>transition</code>.</p>
+</div>
+<div class="paragraph">
+<p>If none of the events arrive before the timeout is overdue, the workflow then moves to the state defined in <code>defaultCondition</code> transition.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/core/switch-state-timeouts.svg" alt="switch state timeouts">
+</div>
+<div class="title">Figure 2. Switch timeout workflow</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_event_workflow"><a class="anchor" href="#_event_workflow"></a>Event workflow</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The event example is similar to the switch one but once the execution reaches the state, it waits for one of the configured events, <code>event1</code> or <code>event2</code>, to arrive, see the <a href="#event-state">event state definition</a>.</p>
+</div>
+<div class="paragraph">
+<p>If none of the configured events arrive before the timeout is overdue, the workflow execution moves to the next state defined in the corresponding <code>transition</code> property, skipping the events that were not received in time together with actions configured for them.</p>
+</div>
+<div class="paragraph">
+<p>If one of the events arrives before the timeout is overdue, the workflow then moves to the state defined in <code>transition</code>, executing the corresponding event that has arrived in the state definition together with actions defined for it.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/core/event-state-timeouts.svg" alt="event state timeouts">
+</div>
+<div class="title">Figure 3. Event timeout workflow</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_running_the_example"><a class="anchor" href="#_running_the_example"></a>Running the example</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To run the example you must have access to a kubernetes cluster running with Knative configured.</p>
+</div>
+<div class="paragraph">
+<p>For simplicity, the example uses minikube, you can follow the steps described in the example&#8217;s <a href="https://github.com/kiegroup/kogito-examples/tree/1.32.x/serverless-workflow-examples/serverless-workflow-timeouts-showcase">readme</a>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>All the descriptor files used to deploy the example infrastructure are present in the example.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The database and Job Service deployment files are located under <code>/kubernetes</code> folder.</p>
+</div>
+<div class="paragraph">
+<p>The descriptors related to the workflow application are generated after the build under <code>/target/kubernetes</code>.</p>
+</div>
+<div class="paragraph">
+<p>The following diagram shows the example&#8217;s architecture when it is deployed in the Kubernetes + Knative infrastructure.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/core/jobs-service-knative-architecture.png" alt="jobs service knative architecture">
+</div>
+<div class="title">Figure 4. Knative Workflow with Job Service architecture</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_deploying_the_database"><a class="anchor" href="#_deploying_the_database"></a>Deploying the database</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The workflow application and Job Service uses PostgreSQL as the persistence backend to store information about the workflow instances and jobs, respectively.
+In the example you can deploy a single database instance to be used on both, in a production environment is recommended to have independent database instances.</p>
+</div>
+<div class="paragraph">
+<p>To run PostgreSQL you need to apply the following on the cluster:</p>
+</div>
+<div class="listingblock">
+<div class="title">Deploying the database</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kubectl apply -f kubernetes/timeouts-showcase-database.yml</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">After executing the command, you will see an output like this:</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">secret/timeouts-showcase-database created
+deployment.apps/timeouts-showcase-database created
+service/timeouts-showcase-database created</code></pre>
 </div>
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="job-service-deploy"><a class="anchor" href="#job-service-deploy"></a>Deploying Job Service</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="title">Deploying Job Service</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kubectl apply -f kubernetes/jobs-service-postgresql.yml</code></pre>
 </div>
+</div>
+<div class="listingblock">
+<div class="title">After executing the command, you will see an output like this:</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">service/jobs-service-postgresql created
+deployment.apps/jobs-service-postgresql created
+trigger.eventing.knative.dev/jobs-service-postgresql-create-job-trigger created
+trigger.eventing.knative.dev/jobs-service-postgresql-cancel-job-trigger created
+sinkbinding.sources.knative.dev/jobs-service-postgresql-sb created</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_deploying_the_timeout_showcase_workflow"><a class="anchor" href="#_deploying_the_timeout_showcase_workflow"></a>Deploying the timeout showcase workflow</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You need to build the workflow with the <code>knative</code> maven profile, then the descriptor files are generated under the <code>target/kubernetes</code> folder, and the image is pushed in the container registry.</p>
+</div>
+<div class="listingblock">
+<div class="title">Building the timeout workflow showcase for Knative</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">mvn clean install -Pknative</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Deploying the timeout workflow showcase in Knative</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kubectl apply -f target/kubernetes/knative.yml
+kubectl apply -f target/kubernetes/kogito.yml</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">After executing the commands you will see an output like this:</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">service.serving.knative.dev/timeouts-showcase created
+
+trigger.eventing.knative.dev/visa-denied-event-type-trigger-timeouts-showcase created
+trigger.eventing.knative.dev/visa-approved-event-type-trigger-timeouts-showcase created
+trigger.eventing.knative.dev/callback-event-type-trigger-timeouts-showcase created
+sinkbinding.sources.knative.dev/sb-timeouts-showcase created</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_creating_a_workflow_instance"><a class="anchor" href="#_creating_a_workflow_instance"></a>Creating a workflow instance</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To create a workflow you can interact with the workflow using the provided REST APIs, in the example provide a test Web UI to make it easy to test.</p>
+</div>
+<div class="paragraph">
+<p>First, you need to get the service URL on the cluster.</p>
+</div>
+<div class="listingblock">
+<div class="title">Getting the workflow service URL on the cluster</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kn service list | grep timeouts-showcase</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Service URL in the response, similar to this.</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">NAME                      URL                                                             LATEST                          AGE     CONDITIONS   READY   REASON
+timeouts-showcase         http://timeouts-showcase.default.10.105.86.217.sslip.io         timeouts-showcase-00001         3m50s   3 OK / 3     True</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_using_the_showcase_ui"><a class="anchor" href="#_using_the_showcase_ui"></a>Using the showcase UI</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The example Web UI is handy to interact with the workflow, you just need to open in the browser the URL you got from the previous step.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/core/timeout-switch-wokflow-ui.png" alt="timeout switch wokflow ui">
+</div>
+<div class="title">Figure 5. Timeout workflow showcase UI</div>
+</div>
+<div class="paragraph">
+<p>You can create new workflow instances and interact with them to complete, or simply wait for the timeout to be triggered to check it&#8217;s working.
+More details on the <a href="https://github.com/kiegroup/kogito-examples/tree/1.32.x/serverless-workflow-examples/serverless-workflow-timeouts-showcase#timeouts-showcase-ui">readme</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_using_rest_apis"><a class="anchor" href="#_using_rest_apis"></a>Using REST APIs</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You can test the workflows using the REST APIs, in fact they are the same used by the Web UI in both workflows.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Callback</p>
 </li>
-</ol>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Creating a callback workflow with timeout</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">curl -X 'POST' \
+'http://timeouts-showcase.default.10.105.86.217.sslip.io/callback_state_timeouts' \
+-H 'accept: */*' \
+-H 'Content-Type: application/json' \
+-d '{}'</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Switch</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Creating a Switch workflow with timeout</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">curl -X 'POST' \
+'http://timeouts-showcase.default.10.105.86.217.sslip.io/callback_state_timeouts' \
+-H 'accept: */*' \
+-H 'Content-Type: application/json' \
+-d '{}'</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Event</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Creating an event workflow with timeout</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">curl -X 'POST' \
+'http://timeouts-showcase.default.10.105.86.217.sslip.io/event_state_timeouts' \
+-H 'accept: */*' \
+-H 'Content-Type: application/json' \
+-d '{}'</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Checking whether the workflow instance was created</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Getting the created workflow instance</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">curl -X 'GET' 'http://timeouts-showcase.default.10.105.86.217.sslip.io/switch_state_timeouts'</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The command will produce an output like this, which indicates that the process is waiting for an event to arrive.</p>
+</div>
+<div class="listingblock">
+<div class="title">Response with the created instance</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">[{"id":"2e8e1930-9bae-4d60-b364-6fbd61128f51","workflowdata":{}}]</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Checking the timeout was executed after 30 seconds:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Getting the created workflow instance after 30 seconds</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">curl -X 'GET' 'http://timeouts-showcase.default.10.105.86.217.sslip.io/switch_state_timeouts'
+[]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>As you can see there are no active workflow instances, indicating the timeout was executed and the created instance was completed.</p>
 </div>
 </div>
 </div>
@@ -822,10 +738,7 @@ INFO  [io.quarkus] (main) serverless-workflow-greeting-quarkus 1.22.1.Final nati
 <div class="ulist">
 <ul>
 <li>
-<p><a href="deploying-on-minikube.html" class="xref page">Deploying your OpenShift Serverless Logic application on Minikube</a></p>
-</li>
-<li>
-<p><a href="deploying-on-kubernetes.html" class="xref page">Deploying your OpenShift Serverless Logic application on Kubernetes</a></p>
+<p><a href="../core/timeouts-support.html" class="xref page">Timeout support in OpenShift Serverless Logic</a></p>
 </li>
 </ul>
 </div>

@@ -3,10 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Building workflow images using Quarkus CLI :: Red Hat OpenShift Serverless previews</title>
-    <link rel="canonical" href="https://openshift-knative.github.io/docs/docs/latest/serverless-logic/cloud/build-workflow-image-with-quarkus-cli.html">
-    <meta name="description" content="Build Serverless Application with Quarkus CLI">
-    <meta name="keywords" content="kogito, workflow, quarkus, serverless, quarkus-cli">
+    <title>Integrating with Camel routes :: Red Hat OpenShift Serverless previews</title>
+    <link rel="canonical" href="https://openshift-knative.github.io/docs/docs/latest/serverless-logic/integrations/camel-routes-integration.html">
     <meta name="generator" content="Antora 3.0.3">
     <link rel="stylesheet" href="../../../../_/css/site.css">
 <link rel="stylesheet" href="../../../../_/css/extra.css">
@@ -264,20 +262,20 @@
     <button class="nav-toggle"></button>
     <span class="nav-text">Cloud</span>
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="4">
-    <a class="nav-link" href="build-workflow-image-with-quarkus-cli.html">Building workflow images using Quarkus CLI</a>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../cloud/build-workflow-image-with-quarkus-cli.html">Building workflow images using Quarkus CLI</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="deploying-on-minikube.html">Deploying your OpenShift Serverless Logic application on Minikube</a>
+    <a class="nav-link" href="../cloud/deploying-on-minikube.html">Deploying your OpenShift Serverless Logic application on Minikube</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="deploying-on-kubernetes.html">Deploying your OpenShift Serverless Logic application on Kubernetes</a>
+    <a class="nav-link" href="../cloud/deploying-on-kubernetes.html">Deploying your OpenShift Serverless Logic application on Kubernetes</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="kubernetes-service-discovery.html">Kubernetes service discovery in OpenShift Serverless Logic</a>
+    <a class="nav-link" href="../cloud/kubernetes-service-discovery.html">Kubernetes service discovery in OpenShift Serverless Logic</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="build-and-deploy-with-serverless-operator-on-kubernetes.html">Buiding and deploying a  OpenShift Serverless Logic application on Kubernetes using the OpenShift Serverless Logic Serverless Operator</a>
+    <a class="nav-link" href="../cloud/build-and-deploy-with-serverless-operator-on-kubernetes.html">Buiding and deploying a  OpenShift Serverless Logic application on Kubernetes using the OpenShift Serverless Logic Serverless Operator</a>
   </li>
 </ul>
   </li>
@@ -285,17 +283,17 @@
     <button class="nav-toggle"></button>
     <span class="nav-text">Integrations</span>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../integrations/camel-routes-integration.html">Integrating with Camel Routes</a>
+  <li class="nav-item is-current-page" data-depth="4">
+    <a class="nav-link" href="camel-routes-integration.html">Integrating with Camel Routes</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../integrations/custom-functions-knative.html">Invoking Knative services from OpenShift Serverless Logic</a>
+    <a class="nav-link" href="custom-functions-knative.html">Invoking Knative services from OpenShift Serverless Logic</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../integrations/expose-metrics-to-prometheus.html">Exposing the workflow base metrics to Prometheus</a>
+    <a class="nav-link" href="expose-metrics-to-prometheus.html">Exposing the workflow base metrics to Prometheus</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../integrations/serverless-dashboard-with-runtime-data.html">Displaying workflow data in dashboards</a>
+    <a class="nav-link" href="serverless-dashboard-with-runtime-data.html">Displaying workflow data in dashboards</a>
   </li>
 </ul>
   </li>
@@ -369,115 +367,63 @@
     <li class="crumb"><a href="../../index.html">Documentation</a></li>
     <li class="crumb">Serverless Logic</li>
     <li class="crumb">User Guides</li>
-    <li class="crumb">Cloud</li>
-    <li class="crumb"><a href="build-workflow-image-with-quarkus-cli.html">Building workflow images using Quarkus CLI</a></li>
+    <li class="crumb">Integrations</li>
+    <li class="crumb"><a href="camel-routes-integration.html">Integrating with Camel Routes</a></li>
   </ul>
 </nav>
 </div>
     <div class="main-view-and-toc">
         <main class="main">
           <article class="doc">
-<h1>Building workflow images using Quarkus CLI</h1>
+<h1>Integrating with Camel routes</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>This document describes how to build a Serverless Application Container image using the <a href="https://quarkus.io/guides/cli-tooling">Quarkus CLI</a>.</p>
-</div>
-<div class="ulist">
-<div class="title">Prerequisites</div>
-<ul>
-<li>
-<p>A workflow project is created.</p>
-<div class="paragraph">
-<p>For more information about creating a workflow project, see <a href="../getting-started/create-your-first-workflow-service.html" class="xref page">Creating your first Serverless Workflow service</a>.</p>
-</div>
-</li>
-<li>
-<p>Latest version of Docker is installed. Alternatively, you can use <a href="https://github.com/GoogleContainerTools/jib">Jib</a> to build container images. However, Docker is required to build GraalVM native image using the Quarkus native builder image.</p>
-</li>
-<li>
-<p>Optionally, GraalVM 21.3.0 is installed.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Quarkus provides a few extensions to build container images, such as <code>Jib</code>, <code>docker</code>, <code>s2i</code>, and <code>buildpacks</code>. For more information about the Quarkus extensions, see the <a href="https://quarkus.io/guides/container-image">Quarkus documentation</a>.</p>
-</div>
-<div class="paragraph">
-<p>The examples in this document assume that you have the Quarkus tooling installed. For more information about the tooling, see <a href="../getting-started/getting-familiar-with-our-tooling.html" class="xref page">Getting familiar with OpenShift Serverless Logic tooling</a>.</p>
+<p>OpenShift Serverless Logic can integrate with <a href="https://camel.apache.org/">Apache Camel Routes</a> by adding the Kogito Quarkus Camel Add-on to your project. It enables the workflow engine to identify and call Camel routes declared in YAML or XML in the same workflow project context.</p>
 </div>
 </div>
 <div id="toc" class="toc">
 <div id="toctitle"></div>
 <ul class="sectlevel1">
-<li><a href="#proc-using-example-application">Using an example application</a></li>
-<li><a href="#proc-building-serverless-workflow-application">Building the workflow application</a>
-<ul class="sectlevel2">
-<li><a href="#proc-building-serverless-workflow-application-using-native-image">Building the workflow application using a native image</a></li>
-</ul>
-</li>
-<li><a href="#proc-testing-serverless-workflow-image">Testing your workflow image</a></li>
+<li><a href="#proc-enable-quarkus-camel">Enabling Quarkus Camel in OpenShift Serverless Logic</a></li>
+<li><a href="#con-creating-camel-routes">Creating Camel routes in OpenShift Serverless Logic</a></li>
+<li><a href="#con-importing-camel-routes">Defining and referencing Camel functions in the Workflow DSL</a></li>
+<li><a href="#_example_project">Example project</a></li>
 <li><a href="#_additional_resources">Additional resources</a></li>
 <li><a href="#_found_an_issue"><em><strong>Found an issue?</strong></em></a></li>
 </ul>
 </div>
 </div>
 <div class="sect1">
-<h2 id="proc-using-example-application"><a class="anchor" href="#proc-using-example-application"></a>Using an example application</h2>
+<h2 id="proc-enable-quarkus-camel"><a class="anchor" href="#proc-enable-quarkus-camel"></a>Enabling Quarkus Camel in OpenShift Serverless Logic</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>To get started with building workflow images, you can use the <a href="https://github.com/kiegroup/kogito-examples/tree/1.32.x/serverless-workflow-examples/serverless-workflow-greeting-quarkus"><code>serverless-workflow-greeting-quarkus</code></a> example application.</p>
+<p>You can enable Quarkus Camel in your project.</p>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-You can skip the following procedure if you already have a workflow application.
-</td>
-</tr>
-</table>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>A workflow application is created.</p>
+<div class="paragraph">
+<p>For more information about creating a workflow, see <a href="../getting-started/create-your-first-workflow-service.html" class="xref page">Creating your first workflow service</a>.</p>
+</div>
+</li>
+</ul>
 </div>
 <div class="olist arabic">
 <div class="title">Procedure</div>
 <ol class="arabic">
 <li>
-<p>Clone the <a href="https://github.com/kiegroup/kogito-examples.git">kogito-examples</a> repository and navigate to the <a href="https://github.com/kiegroup/kogito-examples/tree/1.32.x/serverless-workflow-examples/serverless-workflow-greeting-quarkus"><code>serverless-workflow-greeting-quarkus</code></a> example application.</p>
-<div class="listingblock">
-<div class="title">Clone an example application</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">git clone --branch main https://github.com/kiegroup/kogito-examples.git
-cd kogito-examples/serverless-workflow-examples/serverless-workflow-greeting-quarkus</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>To run the example application, follow the instructions in <a href="../getting-started/create-your-first-workflow-service.html" class="xref page">Creating your first workflow service</a>.</p>
-</li>
-<li>
-<p>Install the Quarkus command line interface (CLI). For more information, see <a href="https://quarkus.io/guides/cli-tooling">Installing the Quarkus CLI</a>.</p>
-</li>
-<li>
-<p>Add the required Quarkus extension using Quarkus CLI:</p>
+<p>To add the Quarkus Camel to your workflow application, add the <code>org.kie.kogito:kogito-addons-quarkus-camel</code> dependency to the <code>pom.xml</code> file of your project as follows:</p>
 <div class="openblock">
 <div class="content">
 <div class="listingblock">
-<div class="title">Add the Jib extension</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">quarkus extension add 'container-image-jib'</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>After adding the Jib extension, you can verify the newly added dependency in the <code>pom.xml</code> file:</p>
-</div>
-<div class="listingblock">
-<div class="title">Verify the Jib extension</div>
+<div class="title">Dependency to be added to the <code>pom.xml</code> file to enable metrics</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;dependency&gt;
-  &lt;groupId&gt;io.quarkus&lt;/groupId&gt;
-  &lt;artifactId&gt;quarkus-container-image-jib&lt;/artifactId&gt;
+    &lt;groupId&gt;org.kie.kogito&lt;/groupId&gt;
+    &lt;artifactId&gt;kogito-addons-quarkus-camel&lt;/artifactId&gt;
 &lt;/dependency&gt;</code></pre>
 </div>
 </div>
@@ -489,239 +435,89 @@ cd kogito-examples/serverless-workflow-examples/serverless-workflow-greeting-qua
 </div>
 </div>
 <div class="sect1">
-<h2 id="proc-building-serverless-workflow-application"><a class="anchor" href="#proc-building-serverless-workflow-application"></a>Building the workflow application</h2>
+<h2 id="con-creating-camel-routes"><a class="anchor" href="#con-creating-camel-routes"></a>Creating Camel routes in OpenShift Serverless Logic</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>After installing the required tooling, you can start building your workflow application.</p>
-</div>
-<div class="ulist">
-<div class="title">Prerequisites</div>
-<ul>
-<li>
-<p>You have created a Quarkus project.</p>
-</li>
-<li>
-<p>Quarkus CLI is installed.
-For more information about installing the Quarkus CLI, see <a href="https://quarkus.io/guides/cli-tooling#installing-the-cli">Installing the Quarkus CLI</a>.</p>
-</li>
-</ul>
+<p>You can add YAML or XML Camel routes to your workflow project.</p>
 </div>
 <div class="olist arabic">
 <div class="title">Procedure</div>
 <ol class="arabic">
 <li>
-<p>In a command terminal, navigate to your Quarkus project.</p>
+<p>Create a YAML or XML Camel Routes using your IDE or the <a href="https://marketplace.visualstudio.com/items?itemName=redhat.vscode-kaoto">Kaoto VSCode Editor</a> and place them in the <code>src/main/resources/routes</code> directory.</p>
 </li>
 <li>
-<p>To build your workflow application on Quarkus, set the <code>quarkus.container-image.build</code> property value to <code>true</code> and run the following command:</p>
-<div class="openblock">
-<div class="content">
-<div class="listingblock">
-<div class="title">Build your workflow application</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">quarkus build -Dquarkus.container-image.build=true</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The previous command builds your image with name: <code>{system_username}/{project_artifactId}:{project_version}</code>.</p>
-</div>
-<div class="paragraph">
-<p>Optionally, you can set the following properties to specify the image:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>quarkus.container-image.registry</code>: To define the registry address of the image, such as <code>quay.io</code>.</p>
+<p>The route <code>from</code> endpoint must be a <code>direct</code> component. That&#8217;s the endpoint producer expected by the workflow engine.</p>
 </li>
 <li>
-<p><code>quarkus.container-image.group</code>: To define the registry namespace of the image. For example, <code>context/namespace</code> or in case of Kubernetes or OpenShift <code>namespace/project</code>.</p>
-</li>
-<li>
-<p><code>quarkus.container-image.name</code>: To override the image name. By default, this property uses artifact ID.</p>
-</li>
-</ul>
-</div>
-<div class="listingblock">
-<div class="title">Build your workflow application with specific image information</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">quarkus build -Dquarkus.container-image.build=true \
-    -Dquarkus.container-image.group=kogito \
-    -Dquarkus.container-image.name=serverless-workflow-greeting-quarkus \
-    -Dquarkus.container-image.tag=1.0 \
-    -Dquarkus.container-image.registry=quay.io</code></pre>
-</div>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>The added Jib extension caches the <code>target/lib</code> directory. Based on the size of your project, Jib speeds up the rebuilds.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-</li>
-<li>
-<p>You can also push your workflow application to the defined registry. You need to set the <code>quarkus.container-image.push</code> property value to <code>true</code> (default value is <code>false</code>).</p>
-<div class="listingblock">
-<div class="title">Example of pushing the built workflow application to a registry</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">quarkus build -Dquarkus.container-image.build=true \
-    -Dquarkus.container-image.group=kogito \
-    -Dquarkus.container-image.name=serverless-workflow-greeting-quarkus \
-    -Dquarkus.container-image.tag=1.0 \
-    -Dquarkus.container-image.registry=quay.io \
-    -Dquarkus.container-image.push=true</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The previous command results in the following container image pushed to <code>quay.io</code>:</p>
-</div>
-<div class="paragraph">
-<p><code>quay.io/kogito/serverless-workflow-greeting-quarkus:1.0</code></p>
-</div>
-</li>
-<li>
-<p>Alternatively, you can create an Apache Maven profile to build the container image, which can be triggered by setting the target profile.</p>
-<div class="openblock">
-<div class="content">
-<div class="listingblock">
-<div class="title">Example Apache Maven profile</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;profile&gt;
-  &lt;id&gt;build-container&lt;/id&gt;
-  &lt;properties&gt;
-    &lt;quarkus.container-image.build&gt;true&lt;/quarkus.container-image.build&gt;
-    &lt;quarkus.container-image.group&gt;kogito&lt;/quarkus.container-image.group&gt;
-    &lt;quarkus.container-image.name&gt;serverless-workflow-greeting-quarkus&lt;/quarkus.container-image.name&gt;
-    &lt;quarkus.container-image.tag&gt;1.0&lt;/quarkus.container-image.tag&gt;
-    &lt;quarkus.container-image.registry&gt;quay.io&lt;/quarkus.container-image.registry&gt;
-    &lt;quarkus.container-image.push&gt;true&lt;/quarkus.container-image.push&gt;
-  &lt;/properties&gt;
-&lt;/profile&gt;</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>You can activate the created Apache Maven profile using Quarkus CLI:</p>
-</div>
-<div class="listingblock">
-<div class="title">Activate the Apache Maven profile</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell"> quarkus build -- -Pbuild-container</code></pre>
-</div>
-</div>
-</div>
-</div>
-</li>
-</ol>
-</div>
-<div class="sect2">
-<h3 id="proc-building-serverless-workflow-application-using-native-image"><a class="anchor" href="#proc-building-serverless-workflow-application-using-native-image"></a>Building the workflow application using a native image</h3>
-<div class="paragraph">
-<p>When it comes to workflows, a small startup footprint is expected, which can be better when using the native builds to build a workflow application.</p>
-</div>
-<div class="ulist">
-<div class="title">Prerequisites</div>
-<ul>
-<li>
-<p>You have created a Quarkus project.</p>
-</li>
-<li>
-<p>Quarkus CLI is installed.
-For more information about installing the Quarkus CLI, see <a href="https://quarkus.io/guides/cli-tooling">Installing the Quarkus CLI</a>.</p>
-</li>
-</ul>
-</div>
+<p>The route response must be in a valid format that the workflow context can understand:</p>
 <div class="olist arabic">
-<div class="title">Procedure</div>
 <ol class="arabic">
 <li>
-<p>In a command terminal, navigate to your Quarkus project.</p>
+<p>A string that contains a valid JSON object</p>
 </li>
 <li>
-<p>To build a native image, pass the <code>--native</code> flag using Quarkus CLI:</p>
-<div class="openblock">
-<div class="content">
-<div class="listingblock">
-<div class="title">Example of building a native image</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">quarkus build --native -Dquarkus.container-image.build=true \
-    -Dquarkus.container-image.group=kogito \
-    -Dquarkus.container-image.name=serverless-workflow-greeting-quarkus \
-    -Dquarkus.container-image.tag=1.0-native \
-    -Dquarkus.container-image.registry=quay.io</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The previous command results in the following container image:</p>
-</div>
-<div class="paragraph">
-<p><code>quay.io/kogito/serverless-workflow-greeting-quarkus:1.0-native</code></p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>In case GraalVM is not installed, you can set the <code>-Dquarkus.native.container-build=true</code> system property, which creates a Linux executable.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-<div class="title">Configure Docker to use the in-cluster (Remote) Docker daemon</div>
-<div class="paragraph">
-<p>When build Container Images using a remote Docker Daemon, i.e. Minikube, you need to use the following system property instead of <code>-Dquarkus.native.container-build=true</code></p>
-</div>
-<div class="listingblock">
-<div class="title">System property to use a remote Docker Daemon</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">-Dquarkus.native.remote-container-build=true</code></pre>
-</div>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>For more information about native builds, see <a href="https://quarkus.io/guides/building-native-image">Building a native executable</a>.</p>
-</div>
-</div>
+<p>A valid Java bean that can be serialized to JSON</p>
+</li>
+<li>
+<p>A Jackson&#8217;s <code>JsonNode</code> object</p>
+</li>
+<li>
+<p>Any primitive type (Integer, Float, Decimal, String, etc)</p>
+</li>
+</ol>
 </div>
 </li>
 </ol>
 </div>
+<div class="paragraph">
+<p>The response will be merged into the workflow state context. If it is an array or a complex object, the response will be added to the special attribute <code>response</code>.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example of a Camel route with the <code>direct</code> endpoint returning a valid JSON string representation</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">- from:
+    uri: direct:logRouteReplaceHeader <i class="conum" data-value="1"></i><b>(1)</b>
+    steps: <i class="conum" data-value="2"></i><b>(2)</b>
+      - setBody:
+          simple: '{ "id": "${header.WorkflowID}", "arg1": { "arg2": "value1" } }' <i class="conum" data-value="3"></i><b>(3)</b>
+      - log:
+          message: We received the ${body} <i class="conum" data-value="4"></i><b>(4)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Camel route producer definition using the <code>direct</code> component</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Definition of the Camel route steps</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Replace the Camel message body with a valid JSON object containing the header <code>WorkflowID</code> from the workflow context</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Log the Camel message body in the console for debugging purposes.</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="proc-testing-serverless-workflow-image"><a class="anchor" href="#proc-testing-serverless-workflow-image"></a>Testing your workflow image</h2>
+<h2 id="con-importing-camel-routes"><a class="anchor" href="#con-importing-camel-routes"></a>Defining and referencing Camel functions in the Workflow DSL</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>After building your workflow image using Quarkus CLI, you can test the built image.</p>
+<p>You can define and reference your Camel functions in the workflow definition.</p>
 </div>
 <div class="ulist">
 <div class="title">Prerequisites</div>
 <ul>
 <li>
-<p>Latest version of Docker is installed.</p>
+<p>You have created Camel routes in the workflow Maven project.</p>
 </li>
 </ul>
 </div>
@@ -729,90 +525,106 @@ For more information about installing the Quarkus CLI, see <a href="https://quar
 <div class="title">Procedure</div>
 <ol class="arabic">
 <li>
-<p>Start JVM and native Container Images.</p>
-<div class="openblock">
-<div class="content">
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset1_example-jvm-image"></a>Example JVM image</p>
-</li>
-<li>
-<p><a id="tabset1_example-native-image"></a>Example native image</p>
-</li>
-</ul>
-</div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset1_example-jvm-image">
+<p>In the <code>functions</code> definition section of your workflow DSL, declare the Camel route as exemplified below:</p>
 <div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">docker run -it -p 8080:8080 quay.io/kogito/serverless-workflow-greeting-quarkus:1.0
-...
-INFO  [io.quarkus] (main) serverless-workflow-greeting-quarkus 1.22.1.Final on JVM (powered by Quarkus 2.9.2.Final) started in 1.302s</code></pre>
-</div>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset1_example-native-image">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">docker run -it -p 8080:8080 quay.io/kogito/serverless-workflow-greeting-quarkus:1.0-native
-...
-INFO  [io.quarkus] (main) serverless-workflow-greeting-quarkus 1.22.1.Final native (powered by Quarkus 2.9.2.Final) started in 0.039s</code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Note that the startup of native image is faster than the JVM image.</p>
-</div>
-</div>
-</div>
-</li>
-<li>
-<p>To invoke the workflow application, execute the following command once the container is started:</p>
-<div class="openblock">
-<div class="content">
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset2_example-request"></a>Example request</p>
-</li>
-<li>
-<p><a id="tabset2_example-response"></a>Example response</p>
-</li>
-</ul>
-</div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset2_example-request">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">curl -X POST -H 'Content-Type:application/json' -H 'Accept:application/json' -d '{"name": "John", "language": "English"}' http://localhost:8080/jsongreet</code></pre>
-</div>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset2_example-response">
-<div class="listingblock">
+<div class="title">Example of a Camel Route function definition</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
-    "id": "2acf710d-7e4a-481d-925c-dfd85a369987",
-    "workflowdata": {
-        "name": "John",
-        "language": "English",
-        "greeting": "Hello from JSON Workflow, "
+  "functions": [
+    {
+      "name": "logRoute",
+      "type": "custom",
+      "operation": "camel:direct:logRouteReplaceHeader"
     }
+  ]
 }</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>The operation description must have the prefix <code>camel:direct:</code>, indicating that you want to produce a message to this route via the <a href="https://camel.apache.org/camel-quarkus/2.14.x/reference/extensions/direct.html">Camel Direct Component</a>. Direct is the only component supported by OpenShift Serverless Logic at the moment.</p>
+</div>
+<div class="paragraph">
+<p>The <code>operation</code> suffix contains the name of the route endpoint. In the case of this example, <code>logRouteReplaceHeader</code>.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The Camel route defined in the workflow must be available in your project during runtime, otherwise, an <code>IllegalArgumentException</code> will be thrown.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>To use the Camel function definition in a workflow action, you can simply reference it as you normally would with any other OpenShift Serverless Logic function definitions. For example:</p>
+<div class="listingblock">
+<div class="title">Example of a workflow state action referencing</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "states": [
+    {
+      "name": "sendToLog",
+      "type": "operation",
+      "actions": [
+        {
+          "functionRef": {
+            "refName": "logRoute", <i class="conum" data-value="1"></i><b>(1)</b>
+            "arguments": {
+              "body": "${ . }", <i class="conum" data-value="2"></i><b>(2)</b>
+              "headers": {
+                "WorkflowID": "$WORKFLOW.instanceId" <i class="conum" data-value="3"></i><b>(3)</b>
+              }
+            }
+          }
+        }
+      ],
+      "end": true
+    }
+  ]
+}</code></pre>
 </div>
 </div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The function reference name, as defined in the function attribute.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>The body definition. A <code>jq</code> expression to be evaluated in runtime resulting in the body payload.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>The <code>headers</code> definition that must be a key/value pair or a valid <code>jq</code> expression evaluated in runtime.</td>
+</tr>
+</table>
 </div>
+<div class="paragraph">
+<p>Once a message is received back from the Camel route, the data is merged into the workflow payload:</p>
+</div>
+<div class="listingblock">
+<div class="title">Message payload example returned by the Camel route</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{ "id": "777adb97-d297-45fd-9969-efafe4dfb3e7", "arg1": { "arg2": "value1" } }</code></pre>
 </div>
 </div>
 </li>
 </ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_example_project"><a class="anchor" href="#_example_project"></a>Example project</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>There is an <a href="https://github.com/kiegroup/kogito-examples/tree/1.32.x/serverless-workflow-examples/serverless-workflow-camel-routes">example project available on GitHub</a> using this new feature. You can use it as a reference to have a better understanding of the Camel integration with OpenShift Serverless Logic.</p>
 </div>
 </div>
 </div>
@@ -822,10 +634,10 @@ INFO  [io.quarkus] (main) serverless-workflow-greeting-quarkus 1.22.1.Final nati
 <div class="ulist">
 <ul>
 <li>
-<p><a href="deploying-on-minikube.html" class="xref page">Deploying your OpenShift Serverless Logic application on Minikube</a></p>
+<p><a href="../core/custom-functions-support.html" class="xref page">Custom functions for your OpenShift Serverless Logic service</a></p>
 </li>
 <li>
-<p><a href="deploying-on-kubernetes.html" class="xref page">Deploying your OpenShift Serverless Logic application on Kubernetes</a></p>
+<p><a href="../core/understanding-jq-expressions.html" class="xref page">jq expressions in OpenShift Serverless Logic</a></p>
 </li>
 </ul>
 </div>

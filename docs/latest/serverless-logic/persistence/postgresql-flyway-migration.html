@@ -143,6 +143,9 @@
   <li class="nav-item" data-depth="5">
     <a class="nav-link" href="../tooling/quarkus-dev-ui-extension/quarkus-dev-ui-workflow-definition-page.html">Workflow Definitions in Kogito Serverless Workflow Tools extension</a>
   </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../tooling/quarkus-dev-ui-extension/quarkus-dev-ui-custom-dashboard-page.html">Dashboards in Kogito Serverless Workflow Tools extension</a>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="4">
@@ -180,6 +183,9 @@
   </li>
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="../service-orchestration/configuring-openapi-services-endpoints.html">Configuring the OpenAPI services endpoints</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../service-orchestration/orchestration-of-asyncapi-based-services.html">Orchestrating the AsyncAPI services</a>
   </li>
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="../service-orchestration/orchestration-of-grpc-services.html">Orchestration of gRPC based services</a>
@@ -278,6 +284,12 @@
     <span class="nav-text">Integrations</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../integrations/camel-routes-integration.html">Integrating with Camel Routes</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../integrations/custom-functions-knative.html">Invoking Knative services from OpenShift Serverless Logic</a>
+  </li>
+  <li class="nav-item" data-depth="4">
     <a class="nav-link" href="../integrations/expose-metrics-to-prometheus.html">Exposing the workflow base metrics to Prometheus</a>
   </li>
   <li class="nav-item" data-depth="4">
@@ -292,9 +304,15 @@
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="../use-cases/orchestration-based-saga-pattern.html">Saga orchestration example in OpenShift Serverless Logic</a>
   </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../use-cases/timeout-showcase-example.html">Timeout example in OpenShift Serverless Logic</a>
+  </li>
 </ul>
   </li>
 </ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../release-notes.html">Release notes for Serverless Logic</a>
   </li>
 </ul>
   </li>
@@ -361,22 +379,10 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>OpenShift Serverless Logic provides an out-of-the-box way to manage your database schema changes with each upgrade. It uses <a href="https://flywaydb.org/">Flyway</a> to achieve this functionality.</p>
+<p>When working with OpenShift Serverless Logic PostgreSQL database, you can either opt to use <a href="https://flywaydb.org/">Flyway</a> or manually upgrade your database via DDL scripts.</p>
 </div>
 <div class="paragraph">
-<p>When you upgrade your OpenShift Serverless Logic version, by default it will pick up the latest changes available from OpenShift Serverless Logic and apply them automatically.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-This feature is currently available only for <code>kogito-addons-quarkus-persistence-postgresql</code> extension.
-</td>
-</tr>
-</table>
+<p>When you upgrade your OpenShift Serverless Logic version, by default it <strong>won&#8217;t</strong> pick up the latest changes available.</p>
 </div>
 </div>
 <div id="toc" class="toc">
@@ -408,12 +414,13 @@ This feature is currently available only for <code>kogito-addons-quarkus-persist
 <div class="ulist">
 <ul>
 <li>
-<p>OpenShift Serverless Logic provides a default mechanism for migrating your database while updating the OpenShift Serverless Logic version using the following <code>Flyway</code> properties (default value is <code>false</code>):</p>
+<p>OpenShift Serverless Logic provides a mechanism for migrating your database while updating the OpenShift Serverless Logic version using the following <code>Flyway</code> properties (default value is <code>false</code>, not upgrade):</p>
 <div class="openblock">
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">quarkus.flyway.migrate-at-start=true</code></pre>
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">quarkus.flyway.migrate-at-start=true
+quarkus.datasource.db-kind=postgresql</code></pre>
 </div>
 </div>
 </div>
@@ -423,6 +430,18 @@ This feature is currently available only for <code>kogito-addons-quarkus-persist
 </div>
 </li>
 </ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+When using <code>kogito-addons-persistence-jdbc</code>, it is mandatory to set the <code>quarkus.datasource.db-kind</code> property, so that Flyway can locate the appropriate scripts for the database.
+</td>
+</tr>
+</table>
 </div>
 </div>
 <div class="sect2">
@@ -441,7 +460,7 @@ This feature is currently available only for <code>kogito-addons-quarkus-persist
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">flyway.url=jdbc:postgresql://localhost:5432/foobardb
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">flyway.url=jdbc:postgresql://localhost:5432/foobardb
 flyway.user=foo
 flyway.password=bar</code></pre>
 </div>
@@ -525,7 +544,7 @@ Using below properties you can initialize flyway schema table.</p>
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">quarkus.flyway.baseline-on-migrate=true
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">quarkus.flyway.baseline-on-migrate=true
 quarkus.flyway.baseline-version=1.32.0</code></pre>
 </div>
 </div>

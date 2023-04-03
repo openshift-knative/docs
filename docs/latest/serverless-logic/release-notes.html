@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About OpenShift Serverless Logic :: Red Hat OpenShift Serverless previews</title>
-    <link rel="canonical" href="https://openshift-knative.github.io/docs/docs/latest/serverless-logic/about.html">
+    <title>New features on OpenShift Serverless - Developer Preview Releases :: Red Hat OpenShift Serverless previews</title>
+    <link rel="canonical" href="https://openshift-knative.github.io/docs/docs/latest/serverless-logic/release-notes.html">
     <meta name="generator" content="Antora 3.0.3">
     <link rel="stylesheet" href="../../../_/css/site.css">
 <link rel="stylesheet" href="../../../_/css/extra.css">
@@ -68,7 +68,7 @@
     <button class="nav-toggle"></button>
     <span class="nav-text">Serverless Logic</span>
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="2">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="about.html">About OpenShift Serverless Logic</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -311,7 +311,7 @@
   </li>
 </ul>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="release-notes.html">Release notes for Serverless Logic</a>
   </li>
 </ul>
@@ -366,22 +366,52 @@
   <ul>
     <li class="crumb"><a href="../index.html">Documentation</a></li>
     <li class="crumb">Serverless Logic</li>
-    <li class="crumb"><a href="about.html">About OpenShift Serverless Logic</a></li>
+    <li class="crumb"><a href="release-notes.html">Release notes for Serverless Logic</a></li>
   </ul>
 </nav>
 </div>
     <div class="main-view-and-toc">
         <main class="main">
           <article class="doc">
-<h1>About OpenShift Serverless Logic</h1>
-<div class="paragraph">
-<p><em>OpenShift Serverless Logic</em> enables developers or architects to define declarative workflow models that orchestrate event-driven, serverless applications. Serverless Logic implements the <a href="https://github.com/serverlessworkflow/specification">CNCF Serverless Workflow specification</a>, allowing developers and architects to define logical steps of execution declaratively (no code) for cloud-native services. The specification is hosted by the <a href="https://www.cncf.io/">Cloud Native Computing Foundation (CNCF)</a> and is currently a <a href="https://www.cncf.io/projects/serverless-workflow/">CNCF Sandbox project</a>.</p>
+<h1>New features on OpenShift Serverless - Developer Preview Releases</h1>
+<div class="sect1">
+<h2 id="_notable_changes"><a class="anchor" href="#_notable_changes"></a>Notable changes</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://issues.redhat.com/browse/SRVLOGIC-7">SRVLOGIC-7</a> - [core] Simplified serverless knative function invocation</p>
+</li>
+<li>
+<p><a href="https://issues.redhat.com/browse/SRVLOGIC-47">SRVLOGIC-47</a> - [use case] Improve Workflow Timeouts support (community only)</p>
+</li>
+<li>
+<p><a href="https://issues.redhat.com/browse/SRVLOGIC-62">SRVLOGIC-62</a> - Data Index as Quarkus extension</p>
+</li>
+<li>
+<p><a href="https://issues.redhat.com/browse/SRVLOGIC-65">SRVLOGIC-65</a> - Upgrade Workflow Runtime to RHBQ 2.13</p>
+</li>
+<li>
+<p><a href="https://issues.redhat.com/browse/SRVLOGIC-66">SRVLOGIC-66</a> - [SWF Editor] Add support to Async API</p>
+</li>
+<li>
+<p><a href="https://issues.redhat.com/browse/SRVLOGIC-67">SRVLOGIC-67</a> - Serverless Workflow Visualization Improvements - DP5</p>
+</li>
+<li>
+<p><a href="https://issues.redhat.com/browse/SRVLOGIC-69">SRVLOGIC-69</a> - [SWF Dev UI] Add support to start workflows using gateway API and cloud events</p>
+</li>
+<li>
+<p><a href="https://issues.redhat.com/browse/SRVLOGIC-76">SRVLOGIC-76</a> - Data-index prod ephemeral image is missing the <code>KOGITO_DATA_INDEX_QUARKUS_PROFILE</code></p>
+</li>
+</ul>
 </div>
-<div class="paragraph">
-<p>OpenShift Serverless Logic is also designed to write workflows in formats (JSON or YAML) that might be better suited for developing and deploying serverless applications in cloud or container environments.</p>
 </div>
-<div class="paragraph">
-<p>For Serverless Logic implementation, <a href="https://kubernetes.io/docs/concepts/extend-kubernetes/operator/">Kubernetes Operator</a> can be used to deploy the workflow models using <a href="https://knative.dev/docs/">Knative</a>. <a href="https://knative.dev/docs/eventing/">Knative Eventing</a> plays an important role and provides the essential infrastructure for event-driven architectures.</p>
+</div>
+<div class="sect1">
+<h2 id="_other_changes_and_bug_fixes"><a class="anchor" href="#_other_changes_and_bug_fixes"></a>Other changes and Bug fixes</h2>
+<div class="sectionbody">
+
+</div>
 </div>
 </article>
         </main>

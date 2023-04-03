@@ -145,6 +145,9 @@
   <li class="nav-item" data-depth="5">
     <a class="nav-link" href="../tooling/quarkus-dev-ui-extension/quarkus-dev-ui-workflow-definition-page.html">Workflow Definitions in Kogito Serverless Workflow Tools extension</a>
   </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../tooling/quarkus-dev-ui-extension/quarkus-dev-ui-custom-dashboard-page.html">Dashboards in Kogito Serverless Workflow Tools extension</a>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="4">
@@ -182,6 +185,9 @@
   </li>
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="../service-orchestration/configuring-openapi-services-endpoints.html">Configuring the OpenAPI services endpoints</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../service-orchestration/orchestration-of-asyncapi-based-services.html">Orchestrating the AsyncAPI services</a>
   </li>
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="../service-orchestration/orchestration-of-grpc-services.html">Orchestration of gRPC based services</a>
@@ -280,6 +286,12 @@
     <span class="nav-text">Integrations</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../integrations/camel-routes-integration.html">Integrating with Camel Routes</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../integrations/custom-functions-knative.html">Invoking Knative services from OpenShift Serverless Logic</a>
+  </li>
+  <li class="nav-item" data-depth="4">
     <a class="nav-link" href="../integrations/expose-metrics-to-prometheus.html">Exposing the workflow base metrics to Prometheus</a>
   </li>
   <li class="nav-item" data-depth="4">
@@ -294,9 +306,15 @@
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="../use-cases/orchestration-based-saga-pattern.html">Saga orchestration example in OpenShift Serverless Logic</a>
   </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../use-cases/timeout-showcase-example.html">Timeout example in OpenShift Serverless Logic</a>
+  </li>
 </ul>
   </li>
 </ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../release-notes.html">Release notes for Serverless Logic</a>
   </li>
 </ul>
   </li>
@@ -740,13 +758,10 @@ specification.</p>
 <h2 id="timeouts"><a class="anchor" href="#timeouts"></a>Timeouts</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>OpenShift Serverless Logic has limited support for the timeouts feature, which covers only <strong>Callback</strong>, <strong>Switch</strong>, and <strong>Event</strong> states.</p>
+<p>OpenShift Serverless Logic has limited support for the timeouts feature, which covers only workflow and event timeouts.</p>
 </div>
 <div class="paragraph">
 <p>For start event state the <code>exclusive</code> property is not supported if set to <code>false</code>, therefore the timeout is not supported for the event state when starting a workflow.</p>
-</div>
-<div class="paragraph">
-<p>Other states will be included in future releases.</p>
 </div>
 <div class="paragraph">
 <p>For more information about timeouts, see <a href="../core/timeouts-support.html" class="xref page">Timeouts on events for OpenShift Serverless Logic</a>.</p>

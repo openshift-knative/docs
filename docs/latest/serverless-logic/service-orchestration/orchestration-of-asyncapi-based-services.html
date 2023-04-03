@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Building workflow images using Quarkus CLI :: Red Hat OpenShift Serverless previews</title>
-    <link rel="canonical" href="https://openshift-knative.github.io/docs/docs/latest/serverless-logic/cloud/build-workflow-image-with-quarkus-cli.html">
-    <meta name="description" content="Build Serverless Application with Quarkus CLI">
-    <meta name="keywords" content="kogito, workflow, quarkus, serverless, quarkus-cli">
+    <title>Orchestrating the AsyncAPI services :: Red Hat OpenShift Serverless previews</title>
+    <link rel="canonical" href="https://openshift-knative.github.io/docs/docs/latest/serverless-logic/service-orchestration/orchestration-of-asyncapi-based-services.html">
+    <meta name="description" content="Orchestration of AsyncAPI based services">
+    <meta name="keywords" content="kogito, workflow, serverless, AsyncApi, quarkiverse">
     <meta name="generator" content="Antora 3.0.3">
     <link rel="stylesheet" href="../../../../_/css/site.css">
 <link rel="stylesheet" href="../../../../_/css/extra.css">
@@ -181,16 +181,16 @@
     <span class="nav-text">Service Orchestration</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../service-orchestration/orchestration-of-openapi-based-services.html">Orchestrating the OpenAPI services</a>
+    <a class="nav-link" href="orchestration-of-openapi-based-services.html">Orchestrating the OpenAPI services</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../service-orchestration/configuring-openapi-services-endpoints.html">Configuring the OpenAPI services endpoints</a>
+    <a class="nav-link" href="configuring-openapi-services-endpoints.html">Configuring the OpenAPI services endpoints</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="4">
+    <a class="nav-link" href="orchestration-of-asyncapi-based-services.html">Orchestrating the AsyncAPI services</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../service-orchestration/orchestration-of-asyncapi-based-services.html">Orchestrating the AsyncAPI services</a>
-  </li>
-  <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../service-orchestration/orchestration-of-grpc-services.html">Orchestration of gRPC based services</a>
+    <a class="nav-link" href="orchestration-of-grpc-services.html">Orchestration of gRPC based services</a>
   </li>
 </ul>
   </li>
@@ -264,20 +264,20 @@
     <button class="nav-toggle"></button>
     <span class="nav-text">Cloud</span>
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="4">
-    <a class="nav-link" href="build-workflow-image-with-quarkus-cli.html">Building workflow images using Quarkus CLI</a>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../cloud/build-workflow-image-with-quarkus-cli.html">Building workflow images using Quarkus CLI</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="deploying-on-minikube.html">Deploying your OpenShift Serverless Logic application on Minikube</a>
+    <a class="nav-link" href="../cloud/deploying-on-minikube.html">Deploying your OpenShift Serverless Logic application on Minikube</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="deploying-on-kubernetes.html">Deploying your OpenShift Serverless Logic application on Kubernetes</a>
+    <a class="nav-link" href="../cloud/deploying-on-kubernetes.html">Deploying your OpenShift Serverless Logic application on Kubernetes</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="kubernetes-service-discovery.html">Kubernetes service discovery in OpenShift Serverless Logic</a>
+    <a class="nav-link" href="../cloud/kubernetes-service-discovery.html">Kubernetes service discovery in OpenShift Serverless Logic</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="build-and-deploy-with-serverless-operator-on-kubernetes.html">Buiding and deploying a  OpenShift Serverless Logic application on Kubernetes using the OpenShift Serverless Logic Serverless Operator</a>
+    <a class="nav-link" href="../cloud/build-and-deploy-with-serverless-operator-on-kubernetes.html">Buiding and deploying a  OpenShift Serverless Logic application on Kubernetes using the OpenShift Serverless Logic Serverless Operator</a>
   </li>
 </ul>
   </li>
@@ -369,465 +369,210 @@
     <li class="crumb"><a href="../../index.html">Documentation</a></li>
     <li class="crumb">Serverless Logic</li>
     <li class="crumb">User Guides</li>
-    <li class="crumb">Cloud</li>
-    <li class="crumb"><a href="build-workflow-image-with-quarkus-cli.html">Building workflow images using Quarkus CLI</a></li>
+    <li class="crumb">Service Orchestration</li>
+    <li class="crumb"><a href="orchestration-of-asyncapi-based-services.html">Orchestrating the AsyncAPI services</a></li>
   </ul>
 </nav>
 </div>
     <div class="main-view-and-toc">
         <main class="main">
           <article class="doc">
-<h1>Building workflow images using Quarkus CLI</h1>
+<h1>Orchestrating the AsyncAPI services</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>This document describes how to build a Serverless Application Container image using the <a href="https://quarkus.io/guides/cli-tooling">Quarkus CLI</a>.</p>
+<p>This document describes how to trigger and publish events using an <a href="https://www.asyncapi.com/docs/reference/specification/v2.0.0">AsyncAPI</a> specification file.
+Underneath, OpenShift Serverless Logic uses the <a href="https://github.com/quarkiverse/quarkus-asyncapi">AsyncAPI Quarkiverse extension</a>.
+This extension automatically generates all the required <a href="https://smallrye.io/smallrye-reactive-messaging/smallrye-reactive-messaging/3.3">Smallrye</a> properties to make OpenShift Serverless Logic work with the servers declared in the AsyncAPI file. Therefore, you do not need to add any property specific to your event broker to make AsyncAPI work. This is a huge advantage over regular <a href="../eventing/handling-events-on-workflows.html" class="xref page">event states</a>, where whether using <a href="../eventing/consume-producing-events-with-kafka.html" class="xref page">Kafka</a> or <a href="../eventing/consume-produce-events-with-knative-eventing.html" class="xref page">Knative</a>, you have to provide additional configuration</p>
 </div>
-<div class="ulist">
-<div class="title">Prerequisites</div>
-<ul>
-<li>
-<p>A workflow project is created.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
 <div class="paragraph">
-<p>For more information about creating a workflow project, see <a href="../getting-started/create-your-first-workflow-service.html" class="xref page">Creating your first Serverless Workflow service</a>.</p>
+<p>AsyncAPI Quarkiverse extension only supports <code>kafka</code> and <code>http</code> protocols at the moment.</p>
 </div>
-</li>
-<li>
-<p>Latest version of Docker is installed. Alternatively, you can use <a href="https://github.com/GoogleContainerTools/jib">Jib</a> to build container images. However, Docker is required to build GraalVM native image using the Quarkus native builder image.</p>
-</li>
-<li>
-<p>Optionally, GraalVM 21.3.0 is installed.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Quarkus provides a few extensions to build container images, such as <code>Jib</code>, <code>docker</code>, <code>s2i</code>, and <code>buildpacks</code>. For more information about the Quarkus extensions, see the <a href="https://quarkus.io/guides/container-image">Quarkus documentation</a>.</p>
-</div>
-<div class="paragraph">
-<p>The examples in this document assume that you have the Quarkus tooling installed. For more information about the tooling, see <a href="../getting-started/getting-familiar-with-our-tooling.html" class="xref page">Getting familiar with OpenShift Serverless Logic tooling</a>.</p>
+</td>
+</tr>
+</table>
 </div>
 </div>
 <div id="toc" class="toc">
 <div id="toctitle"></div>
 <ul class="sectlevel1">
-<li><a href="#proc-using-example-application">Using an example application</a></li>
-<li><a href="#proc-building-serverless-workflow-application">Building the workflow application</a>
-<ul class="sectlevel2">
-<li><a href="#proc-building-serverless-workflow-application-using-native-image">Building the workflow application using a native image</a></li>
-</ul>
-</li>
-<li><a href="#proc-testing-serverless-workflow-image">Testing your workflow image</a></li>
-<li><a href="#_additional_resources">Additional resources</a></li>
+<li><a href="#_consuming_an_event">Consuming an event</a></li>
+<li><a href="#_publishing_an_event">Publishing an event</a></li>
 <li><a href="#_found_an_issue"><em><strong>Found an issue?</strong></em></a></li>
 </ul>
 </div>
 </div>
 <div class="sect1">
-<h2 id="proc-using-example-application"><a class="anchor" href="#proc-using-example-application"></a>Using an example application</h2>
+<h2 id="_consuming_an_event"><a class="anchor" href="#_consuming_an_event"></a>Consuming an event</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>To get started with building workflow images, you can use the <a href="https://github.com/kiegroup/kogito-examples/tree/1.32.x/serverless-workflow-examples/serverless-workflow-greeting-quarkus"><code>serverless-workflow-greeting-quarkus</code></a> example application.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-You can skip the following procedure if you already have a workflow application.
-</td>
-</tr>
-</table>
-</div>
-<div class="olist arabic">
-<div class="title">Procedure</div>
-<ol class="arabic">
-<li>
-<p>Clone the <a href="https://github.com/kiegroup/kogito-examples.git">kogito-examples</a> repository and navigate to the <a href="https://github.com/kiegroup/kogito-examples/tree/1.32.x/serverless-workflow-examples/serverless-workflow-greeting-quarkus"><code>serverless-workflow-greeting-quarkus</code></a> example application.</p>
-<div class="listingblock">
-<div class="title">Clone an example application</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">git clone --branch main https://github.com/kiegroup/kogito-examples.git
-cd kogito-examples/serverless-workflow-examples/serverless-workflow-greeting-quarkus</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>To run the example application, follow the instructions in <a href="../getting-started/create-your-first-workflow-service.html" class="xref page">Creating your first workflow service</a>.</p>
-</li>
-<li>
-<p>Install the Quarkus command line interface (CLI). For more information, see <a href="https://quarkus.io/guides/cli-tooling">Installing the Quarkus CLI</a>.</p>
-</li>
-<li>
-<p>Add the required Quarkus extension using Quarkus CLI:</p>
-<div class="openblock">
-<div class="content">
-<div class="listingblock">
-<div class="title">Add the Jib extension</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">quarkus extension add 'container-image-jib'</code></pre>
-</div>
+<p>Let&#8217;s assume there is an AsyncAPI specification file called <code>asyncAPI.yaml</code>, located in the classpath of your project.</p>
 </div>
 <div class="paragraph">
-<p>After adding the Jib extension, you can verify the newly added dependency in the <code>pom.xml</code> file:</p>
+<p>This file contains a <code>servers</code> definition which <code>protocol</code> is Kafka:</p>
 </div>
 <div class="listingblock">
-<div class="title">Verify the Jib extension</div>
+<div class="title">Example of an AsyncAPI kafka server definition</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;dependency&gt;
-  &lt;groupId&gt;io.quarkus&lt;/groupId&gt;
-  &lt;artifactId&gt;quarkus-container-image-jib&lt;/artifactId&gt;
-&lt;/dependency&gt;</code></pre>
-</div>
-</div>
-</div>
-</div>
-</li>
-</ol>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="proc-building-serverless-workflow-application"><a class="anchor" href="#proc-building-serverless-workflow-application"></a>Building the workflow application</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>After installing the required tooling, you can start building your workflow application.</p>
-</div>
-<div class="ulist">
-<div class="title">Prerequisites</div>
-<ul>
-<li>
-<p>You have created a Quarkus project.</p>
-</li>
-<li>
-<p>Quarkus CLI is installed.
-For more information about installing the Quarkus CLI, see <a href="https://quarkus.io/guides/cli-tooling#installing-the-cli">Installing the Quarkus CLI</a>.</p>
-</li>
-</ul>
-</div>
-<div class="olist arabic">
-<div class="title">Procedure</div>
-<ol class="arabic">
-<li>
-<p>In a command terminal, navigate to your Quarkus project.</p>
-</li>
-<li>
-<p>To build your workflow application on Quarkus, set the <code>quarkus.container-image.build</code> property value to <code>true</code> and run the following command:</p>
-<div class="openblock">
-<div class="content">
-<div class="listingblock">
-<div class="title">Build your workflow application</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">quarkus build -Dquarkus.container-image.build=true</code></pre>
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">servers:
+  development:
+    url: localhost:9092
+    description: Development server
+    protocol: kafka
+    protocolVersion: '1.0.0'</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The previous command builds your image with name: <code>{system_username}/{project_artifactId}:{project_version}</code>.</p>
-</div>
-<div class="paragraph">
-<p>Optionally, you can set the following properties to specify the image:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>quarkus.container-image.registry</code>: To define the registry address of the image, such as <code>quay.io</code>.</p>
-</li>
-<li>
-<p><code>quarkus.container-image.group</code>: To define the registry namespace of the image. For example, <code>context/namespace</code> or in case of Kubernetes or OpenShift <code>namespace/project</code>.</p>
-</li>
-<li>
-<p><code>quarkus.container-image.name</code>: To override the image name. By default, this property uses artifact ID.</p>
-</li>
-</ul>
+<p>and a subscription channel named <code>wait</code>:</p>
 </div>
 <div class="listingblock">
-<div class="title">Build your workflow application with specific image information</div>
+<div class="title">Example of an AsyncAPI subscribing channel definition</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">quarkus build -Dquarkus.container-image.build=true \
-    -Dquarkus.container-image.group=kogito \
-    -Dquarkus.container-image.name=serverless-workflow-greeting-quarkus \
-    -Dquarkus.container-image.tag=1.0 \
-    -Dquarkus.container-image.registry=quay.io</code></pre>
-</div>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>The added Jib extension caches the <code>target/lib</code> directory. Based on the size of your project, Jib speeds up the rebuilds.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-</li>
-<li>
-<p>You can also push your workflow application to the defined registry. You need to set the <code>quarkus.container-image.push</code> property value to <code>true</code> (default value is <code>false</code>).</p>
-<div class="listingblock">
-<div class="title">Example of pushing the built workflow application to a registry</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">quarkus build -Dquarkus.container-image.build=true \
-    -Dquarkus.container-image.group=kogito \
-    -Dquarkus.container-image.name=serverless-workflow-greeting-quarkus \
-    -Dquarkus.container-image.tag=1.0 \
-    -Dquarkus.container-image.registry=quay.io \
-    -Dquarkus.container-image.push=true</code></pre>
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">channels:
+  wait:
+    description: A message channel
+    subscribe:
+      operationId: consumeWait
+      summary: Get messages
+      message:
+        $ref: '#/components/messages/message'</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The previous command results in the following container image pushed to <code>quay.io</code>:</p>
-</div>
-<div class="paragraph">
-<p><code>quay.io/kogito/serverless-workflow-greeting-quarkus:1.0</code></p>
-</div>
-</li>
-<li>
-<p>Alternatively, you can create an Apache Maven profile to build the container image, which can be triggered by setting the target profile.</p>
-<div class="openblock">
-<div class="content">
-<div class="listingblock">
-<div class="title">Example Apache Maven profile</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;profile&gt;
-  &lt;id&gt;build-container&lt;/id&gt;
-  &lt;properties&gt;
-    &lt;quarkus.container-image.build&gt;true&lt;/quarkus.container-image.build&gt;
-    &lt;quarkus.container-image.group&gt;kogito&lt;/quarkus.container-image.group&gt;
-    &lt;quarkus.container-image.name&gt;serverless-workflow-greeting-quarkus&lt;/quarkus.container-image.name&gt;
-    &lt;quarkus.container-image.tag&gt;1.0&lt;/quarkus.container-image.tag&gt;
-    &lt;quarkus.container-image.registry&gt;quay.io&lt;/quarkus.container-image.registry&gt;
-    &lt;quarkus.container-image.push&gt;true&lt;/quarkus.container-image.push&gt;
-  &lt;/properties&gt;
-&lt;/profile&gt;</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>You can activate the created Apache Maven profile using Quarkus CLI:</p>
+<p>You can define a function in your workflow, of type <code>asyncapi</code>, that points to <code>consumerWait</code> operationId:</p>
 </div>
 <div class="listingblock">
-<div class="title">Activate the Apache Maven profile</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell"> quarkus build -- -Pbuild-container</code></pre>
-</div>
-</div>
-</div>
-</div>
-</li>
-</ol>
-</div>
-<div class="sect2">
-<h3 id="proc-building-serverless-workflow-application-using-native-image"><a class="anchor" href="#proc-building-serverless-workflow-application-using-native-image"></a>Building the workflow application using a native image</h3>
-<div class="paragraph">
-<p>When it comes to workflows, a small startup footprint is expected, which can be better when using the native builds to build a workflow application.</p>
-</div>
-<div class="ulist">
-<div class="title">Prerequisites</div>
-<ul>
-<li>
-<p>You have created a Quarkus project.</p>
-</li>
-<li>
-<p>Quarkus CLI is installed.
-For more information about installing the Quarkus CLI, see <a href="https://quarkus.io/guides/cli-tooling">Installing the Quarkus CLI</a>.</p>
-</li>
-</ul>
-</div>
-<div class="olist arabic">
-<div class="title">Procedure</div>
-<ol class="arabic">
-<li>
-<p>In a command terminal, navigate to your Quarkus project.</p>
-</li>
-<li>
-<p>To build a native image, pass the <code>--native</code> flag using Quarkus CLI:</p>
-<div class="openblock">
-<div class="content">
-<div class="listingblock">
-<div class="title">Example of building a native image</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">quarkus build --native -Dquarkus.container-image.build=true \
-    -Dquarkus.container-image.group=kogito \
-    -Dquarkus.container-image.name=serverless-workflow-greeting-quarkus \
-    -Dquarkus.container-image.tag=1.0-native \
-    -Dquarkus.container-image.registry=quay.io</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The previous command results in the following container image:</p>
-</div>
-<div class="paragraph">
-<p><code>quay.io/kogito/serverless-workflow-greeting-quarkus:1.0-native</code></p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>In case GraalVM is not installed, you can set the <code>-Dquarkus.native.container-build=true</code> system property, which creates a Linux executable.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-<div class="title">Configure Docker to use the in-cluster (Remote) Docker daemon</div>
-<div class="paragraph">
-<p>When build Container Images using a remote Docker Daemon, i.e. Minikube, you need to use the following system property instead of <code>-Dquarkus.native.container-build=true</code></p>
-</div>
-<div class="listingblock">
-<div class="title">System property to use a remote Docker Daemon</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">-Dquarkus.native.remote-container-build=true</code></pre>
-</div>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>For more information about native builds, see <a href="https://quarkus.io/guides/building-native-image">Building a native executable</a>.</p>
-</div>
-</div>
-</div>
-</li>
-</ol>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="proc-testing-serverless-workflow-image"><a class="anchor" href="#proc-testing-serverless-workflow-image"></a>Testing your workflow image</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>After building your workflow image using Quarkus CLI, you can test the built image.</p>
-</div>
-<div class="ulist">
-<div class="title">Prerequisites</div>
-<ul>
-<li>
-<p>Latest version of Docker is installed.</p>
-</li>
-</ul>
-</div>
-<div class="olist arabic">
-<div class="title">Procedure</div>
-<ol class="arabic">
-<li>
-<p>Start JVM and native Container Images.</p>
-<div class="openblock">
-<div class="content">
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset1_example-jvm-image"></a>Example JVM image</p>
-</li>
-<li>
-<p><a id="tabset1_example-native-image"></a>Example native image</p>
-</li>
-</ul>
-</div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset1_example-jvm-image">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">docker run -it -p 8080:8080 quay.io/kogito/serverless-workflow-greeting-quarkus:1.0
-...
-INFO  [io.quarkus] (main) serverless-workflow-greeting-quarkus 1.22.1.Final on JVM (powered by Quarkus 2.9.2.Final) started in 1.302s</code></pre>
-</div>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset1_example-native-image">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">docker run -it -p 8080:8080 quay.io/kogito/serverless-workflow-greeting-quarkus:1.0-native
-...
-INFO  [io.quarkus] (main) serverless-workflow-greeting-quarkus 1.22.1.Final native (powered by Quarkus 2.9.2.Final) started in 0.039s</code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Note that the startup of native image is faster than the JVM image.</p>
-</div>
-</div>
-</div>
-</li>
-<li>
-<p>To invoke the workflow application, execute the following command once the container is started:</p>
-<div class="openblock">
-<div class="content">
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset2_example-request"></a>Example request</p>
-</li>
-<li>
-<p><a id="tabset2_example-response"></a>Example response</p>
-</li>
-</ul>
-</div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset2_example-request">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">curl -X POST -H 'Content-Type:application/json' -H 'Accept:application/json' -d '{"name": "John", "language": "English"}' http://localhost:8080/jsongreet</code></pre>
-</div>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset2_example-response">
-<div class="listingblock">
+<div class="title">Example of an AsyncAPI subscribing function definition</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
-    "id": "2acf710d-7e4a-481d-925c-dfd85a369987",
-    "workflowdata": {
-        "name": "John",
-        "language": "English",
-        "greeting": "Hello from JSON Workflow, "
-    }
+   "functions": [
+      {
+          "name": "consumeEvent",
+          "type": "asyncapi",
+          "operation": "asyncAPI.yaml#consumeWait"
+       }
+   ]
 }</code></pre>
 </div>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Remember that, as happens with <code>REST</code> and <code>RPC</code> types, the URI part of the <code>operation</code> property supports <code>http</code>, <code>https</code>, and <code>file</code> schemas. If no schema is present, it assumes the specification file is on the project classpath.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Once the function is defined, you can invoke it within an <code>operation</code> state:</p>
+</div>
+<div class="listingblock">
+<div class="title">Example of an AsyncAPI subscribing function invocation</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">   {
+      "name": "waitForEvent",
+      "type": "operation",
+      "actions": [
+          {
+           "functionRef": "consumeEvent"
+          }
+       ]
+    }</code></pre>
 </div>
 </div>
-</div>
-</div>
-</div>
-</li>
-</ol>
+<div class="paragraph">
+<p>When your flow reach the <code>waitForEvent</code> state, it will stop until it receives a CloudEvent published over the Kafka topic <code>wait</code>.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_additional_resources"><a class="anchor" href="#_additional_resources"></a>Additional resources</h2>
+<h2 id="_publishing_an_event"><a class="anchor" href="#_publishing_an_event"></a>Publishing an event</h2>
 <div class="sectionbody">
-<div class="ulist">
-<ul>
-<li>
-<p><a href="deploying-on-minikube.html" class="xref page">Deploying your OpenShift Serverless Logic application on Minikube</a></p>
-</li>
-<li>
-<p><a href="deploying-on-kubernetes.html" class="xref page">Deploying your OpenShift Serverless Logic application on Kubernetes</a></p>
-</li>
-</ul>
+<div class="paragraph">
+<p>Let&#8217;s assume there is an AsyncAPI specification file called <code>asyncAPI.yaml</code>, located in the classpath of your project.</p>
+</div>
+<div class="paragraph">
+<p>This file contains a <code>servers</code> definition which <code>protocol</code> is HTTP:</p>
+</div>
+<div class="listingblock">
+<div class="title">Example of an AsyncAPI http server definition</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">servers:
+  development:
+    url: localhost:8080
+    description: Development server
+    protocol: http
+    protocolVersion: '1.0.0'</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>and a publishing channel named <code>resume</code>:</p>
+</div>
+<div class="listingblock">
+<div class="title">Example of an AsyncAPI publishing channel definition</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">channels:
+  resume:
+    description: A message channel
+    publish:
+      operationId: sendResume
+      summary: Get messages
+      message:
+        $ref: '#/components/messages/message'</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can define a function in your workflow, of type <code>asyncapi</code>, that point to <code>sendResume</code> operationId:</p>
+</div>
+<div class="listingblock">
+<div class="title">Example of an AsyncAPI publishing function definition</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+   "functions": [
+      {
+          "name": "sendResume",
+          "type": "asyncapi",
+          "operation": "asyncAPI.yaml#sendResume"
+       }
+   ]
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Once the function is defined, you can invoke it within an <code>operation</code> state:</p>
+</div>
+<div class="listingblock">
+<div class="title">Example of an AsyncAPI publishing function invocation</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">   {
+      "name": "sendEvent",
+      "type": "operation",
+      "actions": [
+          {
+           "functionRef": "sendResume",
+           "arguments" : {
+              "name" : "Javierito"
+            }
+          }
+       ]
+    }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When your flow reach the <code>sendEvent</code> state, it will send an event to the endpoint <code><a href="http://localhost:8080/resume" class="bare">localhost:8080/resume</a></code>, with the payload <code>{"name":"Javierito"}</code></p>
 </div>
 </div>
 </div>
