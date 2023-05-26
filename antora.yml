@@ -7,9 +7,9 @@ start_ROOT: 'ROOT:index.adoc'
 asciidoc:
   attributes:
     product_name: OpenShift Serverless Logic
-    context: OpenShift Serverless Logic
     kogito_version_redhat: 1.35.0.Final-redhat-00003
-    quarkus_platform: com.redhat.quarkus.platform
+    operator_name: Kogito Serverless Workflow Operator
+    quarkus_platform: io.quarkus.platform
     kogito_sw_ga: >-
       org.kie.kogito:kogito-quarkus-serverless-workflow
     quarkus_version: 2.13.7.Final-redhat-00003
@@ -39,6 +39,7 @@ asciidoc:
     quarkus_openapi_gen_url: 'https://github.com/quarkiverse/quarkus-openapi-generator'
     kie_tools_releases_page_url: 'https://github.com/kiegroup/kie-tools/releases'
     quarkus_guides_base_url: 'https://quarkus.io/guides'
+    quarkus_url: https://quarkus.io/
     smallrye_messaging_url: >-
       https://smallrye.io/smallrye-reactive-messaging/smallrye-reactive-messaging/3.3
     quarkus_config_url: 'https://quarkus.io/guides/config'
@@ -73,3 +74,5 @@ asciidoc:
     kaoto_url: https://marketplace.visualstudio.com/items?itemName=redhat.vscode-kaoto
 
     minikube_url: https://minikube.sigs.k8s.io
+    kogito_serverless_operator_url: https://github.com/kiegroup/kogito-serverless-operator/
+    docs_issues_url: https://github.com/kiegroup/kogito-docs/issues/new
