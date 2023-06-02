@@ -72,7 +72,7 @@
 *** xref:serverless-logic:cloud/quarkus/deploying-on-kubernetes.adoc[Deploying Workflows on Kubernetes]
 // *** xref:serverless-logic:cloud/versioning-workflows-in-knative.adoc[Versioning workflows in Knative]
 *** xref:serverless-logic:cloud/quarkus/kubernetes-service-discovery.adoc[Kubernetes service discovery]
-//**** xref:serverless-logic:cloud/build-and-deploy-with-serverless-operator-on-kubernetes.adoc[Buiding and deploying a  {context} application on Kubernetes using the {product_name} Serverless Operator]
+//**** xref:serverless-logic:cloud/build-and-deploy-with-serverless-operator-on-kubernetes.adoc[Buiding and deploying a  {product_name} application on Kubernetes using the {product_name} Serverless Operator]
 
 
 *** Integrations

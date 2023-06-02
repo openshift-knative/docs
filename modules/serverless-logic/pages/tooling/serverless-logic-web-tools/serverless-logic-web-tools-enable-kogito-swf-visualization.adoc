@@ -1,10 +1,10 @@
-= Enable the Kogito Serverless Workflow Visualization feature preview for {context}
+= Enable the Kogito Serverless Workflow Visualization feature preview for {product_name}
 :compat-mode!:
 // Metadata:
 :description: Enable the Kogito Serverless Workflow Visualization diagram preview
 :keywords: kogito, workflow, serverless, editor, logic, web, tools, stunner, visualization
 
-The Kogito Serverless Workflow Visualization is a new way to preview your {context} diagrams alongside the editor. In this tutorial, you'll learn how to enable it and try it out.
+The Kogito Serverless Workflow Visualization is a new way to preview your {product_name} diagrams alongside the editor. In this tutorial, you'll learn how to enable it and try it out.
 
 .Procedure
 . On the top right corner, click on the **Cog wheel** (⚙️);
@@ -17,7 +17,7 @@ The Kogito Serverless Workflow Visualization is a new way to preview your {conte
 image::tooling/serverless-logic-web-tools/serverless-logic-web-tools-feature-preview.png[]
 --
 
-That's it, now you can try out the new visualization for {context}.
+That's it, now you can try out the new visualization for {product_name}.
 
 --
 .Kogito Serverless Workflow Visualization
