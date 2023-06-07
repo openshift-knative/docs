@@ -3,13 +3,6 @@
 
 == Notable changes
 
-* link:https://issues.redhat.com/browse/SRVLOGIC-62[SRVLOGIC-62] - Data Index as Quarkus extension
 * link:https://issues.redhat.com/browse/SRVLOGIC-136[SRVLOGIC-136] - Recollection of DP6 small features
-* link:https://issues.redhat.com/browse/SRVLOGIC-130[SRVLOGIC-130] - Execute serverless workflow without code generation
-* link:https://issues.redhat.com/browse/SRVLOGIC-129[SRVLOGIC-129] - Jobs Service features, fixes, and enhancements available in the technical preview
-* link:https://issues.redhat.com/browse/SRVLOGIC-132[SRVLOGIC-132] - Jobs Service Embedded Addon
 
 == Other changes and Bug fixes
-
-* link:https://issues.redhat.com/browse/SRVLOGIC-129[SRVLOGIC-129] - Jobs Service features, fixes, and enhancements available in the technical preview
-* link:https://issues.redhat.com/browse/SRVLOGIC-71[SRVLOGIC-71] - [use case] Add support for Workflow CR devmode in the Serverless Logic Operator
