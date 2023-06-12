@@ -4,5 +4,8 @@
 == Notable changes
 
 * link:https://issues.redhat.com/browse/SRVLOGIC-136[SRVLOGIC-136] - Recollection of DP6 small features
+* link:https://issues.redhat.com/browse/SRVLOGIC-68[SRVLOGIC-68] - YAML Serverless Workflow parsing on Stunner
+* link:https://issues.redhat.com/browse/SRVLOGIC-133[SRVLOGIC-133] - Support validation of output schema
+* link:https://issues.redhat.com/browse/SRVLOGIC-145[SRVLOGIC-145] - Serverless Workflow Visualization Improvements - DP6
 
 == Other changes and Bug fixes
