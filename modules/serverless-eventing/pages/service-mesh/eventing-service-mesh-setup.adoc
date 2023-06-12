@@ -43,7 +43,7 @@ spec:
 +
 [IMPORTANT]
 ====
-This list of namespaces must include the `knative-serving` namespace.
+This list of namespaces must include the `knative-serving` and `knative-eventing` namespaces.
 ====
 
 . Apply the `ServiceMeshMemberRoll` resource:
