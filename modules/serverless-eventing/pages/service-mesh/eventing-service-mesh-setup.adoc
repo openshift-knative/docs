@@ -37,9 +37,11 @@ spec:
   members: <1>
     - knative-serving
     - knative-eventing
+    - authz-tests <2>
     - <namespace>
 ----
 <1> A list of namespaces to be integrated with {SMProductShortName}.
+<2> Example namespace that will be used to showcase certain functionalities.
 +
 [IMPORTANT]
 ====

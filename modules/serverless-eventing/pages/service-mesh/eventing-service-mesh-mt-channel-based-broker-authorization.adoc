@@ -1,0 +1,328 @@
+= Access control for Knative Broker with class MTChannelBasedBroker using {SMProductName}
+:compat-mode!:
+// Metadata:
+:description: Access control for Knative Brokers with {SMProductName}
+
+By default, every workload is allowed to send events to a Knative Broker, with {SMProductName}, we can
+apply policies to control who can post events to Knative brokers.
+
+.Prerequisites
+
+* You have followed the setup {SMProductShortName} with {ServerlessProductName} procedure.
+
+.Setup procedure
+
+. Create a `Broker` with class `MTChannelBasedBroker` in a namespace that is member of the `ServiceMeshMemberRoll`:
++
+[source,yaml]
+----
+apiVersion: eventing.knative.dev/v1
+kind: Broker
+metadata:
+  name: channel-based-broker-br
+  namespace: authz-tests <1>
+  annotations:
+    eventing.knative.dev/broker.class: MTChannelBasedBroker
+spec:
+  config:
+    apiVersion: v1
+    kind: ConfigMap
+    name: config-br-default-channel
+    namespace: knative-eventing
+----
+<1> A namespace that is member of the `ServiceMeshMemberRoll`.
+
+. Apply the `Broker` resource:
++
+[source,terminal]
+----
+$ oc apply -f <filename>
+----
+
+. Create a `ContainerSource` in a namespace that is member of the `ServiceMeshMemberRoll`:
++
+[source,yaml]
+----
+apiVersion: sources.knative.dev/v1
+kind: ContainerSource
+metadata:
+  name: heartbeat-source-mt-channel-based-broker
+  namespace: authz-tests <1>
+spec:
+  template:
+    metadata:
+      annotations:
+        sidecar.istio.io/inject: 'true' <2>
+    spec:
+      containers:
+        - image: quay.io/openshift-knative/heartbeats
+          name: heartbeats
+          args:
+            - --period=1
+          env:
+            - name: POD_NAME
+              value: "mypod"
+            - name: POD_NAMESPACE
+              value: "authz-tests"
+  sink:
+    ref:
+      apiVersion: eventing.knative.dev/v1
+      kind: Broker
+      name: channel-based-broker-br
+----
+<1> A namespace that is member of the `ServiceMeshMemberRoll`.
+<2> Injects {SMProductShortName} sidecars into the `ContainerSource` pods.
+
+. Apply the `ContainerSource` resource:
++
+[source,terminal]
+----
+$ oc apply -f <filename>
+----
+
+. Create a consumer service, consisting of `Trigger`, `Service`, and `Pod`, in a namespace that is member of the `ServiceMeshMemberRoll`:
++
+[source,yaml]
+----
+apiVersion: eventing.knative.dev/v1
+kind: Trigger
+metadata:
+  name: channel-based-broker-tr
+  namespace: authz-tests <1>
+spec:
+  broker: channel-based-broker-br
+  subscriber:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: event-display
+  namespace: authz-tests <1>
+spec:
+  selector:
+    app: event-display
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: event-display
+  namespace: authz-tests <1>
+  annotations:
+    sidecar.istio.io/inject: 'true' <2>
+  labels:
+    app: event-display
+spec:
+  containers:
+    - name: event-display
+      image: quay.io/openshift-knative/knative-eventing-sources-event-display
+      ports:
+        - containerPort: 8080
+----
+<1> A namespace that is member of the `ServiceMeshMemberRoll`.
+<2> Injects {SMProductShortName} sidecars into the pod.
+
+. Apply the consumer service resources:
++
+[source,terminal]
+----
+$ oc apply -f <filename>
+----
+
+.Securing access to the Knative Broker
+
+By default, every workload is allowed to send events to a Knative Broker, with {SMProductName}, we can
+apply a policy to deny posting events by default.
+
+.Apply a deny by default authorization policy
+
+. Create a deny by default `AuthorizationPolicy` in the `knative-eventing` namespace:
++
+[source,yaml]
+----
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: deny-all-by-default
+  namespace: knative-eventing
+spec: { } <1>
+----
+<1> Disallow any operations to every workload that is part of the service mesh in the `knative-eventing` namespace.
+
+. Apply the `AuthorizationPolicy` resource:
++
+[source,terminal]
+----
+$ oc apply -f <filename>
+----
+
+. Verify access is denied
+
++
+we have denied access to every workload to the knative-eventing namespace, which disallows the
+`ContainerSource` `heartbeat-source-mt-channel-based-broker` to send events to the Knative `Broker`
+`channel-based-broker-br`, therefore, we should see the following lines in the `heartbeats` pods:
+
++
+[source,terminal]
+----
+$ oc logs $(oc get pod -n authz-tests -o name | grep heartbeat-source-mt-channel-based-broker) -c heartbeats -n authz-tests
+----
++
+.Example output
+[source,terminal]
+----
+2023/06/13 10:17:04 sending cloudevent to http://broker-ingress.knative-eventing.svc.cluster.local/authz-tests/channel-based-broker-br
+2023/06/13 10:17:04 failed to send cloudevent: 403:
+2023/06/13 10:17:05 sending cloudevent to http://broker-ingress.knative-eventing.svc.cluster.local/authz-tests/channel-based-broker-br
+2023/06/13 10:17:05 failed to send cloudevent: 403:
+----
+
+.Authorize source to post events to Knative Broker
+
+In the previous section, we denied access to Knative Eventing workloads, to grant permissions to
+post events to a Knative Broker with class MTChannelBasedBroker.
+
+. Create a `AuthorizationPolicy` in the `knative-eventing` namespace to allow pods
+in the `authz-tests` namespace to send events to Knative Brokers in the same `authz-tests` namespace:
++
+[source,yaml]
+----
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: allow-authz-tests-mt-channel-based-broker
+  namespace: knative-eventing
+spec:
+  action: ALLOW
+  selector:
+    matchLabels:
+      app.kubernetes.io/component: "broker-ingress" <2>
+  rules:
+    - from: <1>
+        - source:
+            namespaces: [ "authz-tests" ]
+      to: <2>
+        - operation:
+            methods: [ "POST" ]
+            paths: [ "/authz-tests/*" ] <3>
+----
+<1> Allow workloads in the `authz-tests` namespace
+<2> To post events to Knative brokers in the `authz-tests` namespace.
+<3> Knative Broker with class MTChannelBasedBroker accepts events on HTTP path following the pattern: `/<broker-namespace>/<broker-name>`.
+
+. Apply the `AuthorizationPolicy` resource:
++
+[source,terminal]
+----
+$ oc apply -f <filename>
+----
+
+. Create a `AuthorizationPolicy` in the `knative-eventing` namespace to allow `mt-broker-ingress` in
+the `knative-eventing` namespace to post events to the `InMemoryChannel` dispatcher:
++
+[source,yaml]
+----
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: allow-mt-channel-based-broker-ingress-to-imc-dispatcher
+  namespace: knative-eventing
+spec:
+  action: ALLOW
+  selector:
+    matchLabels:
+      app.kubernetes.io/component: "imc-dispatcher" <2>
+  rules:
+    - from: <1>
+        - source:
+            namespaces: [ "knative-eventing" ]
+            principals: [ "cluster.local/ns/knative-eventing/sa/mt-broker-ingress" ]
+      to: <2>
+        - operation:
+            methods: [ "POST" ]
+----
+<1> Allow `mt-broker-ingress` in the `knative-eventing` namespace.
+<2> To post events to the `InMemoryChannel` dispatcher.
+
+. Apply the `AuthorizationPolicy` resource:
++
+[source,terminal]
+----
+$ oc apply -f <filename>
+----
+
+. Create a `AuthorizationPolicy` in the `knative-eventing` namespace to allow `imc-dispatcher` in
+the `knative-eventing` namespace to post events to the `mt-broker-filter`:
++
+[source,yaml]
+----
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: allow-imc-dispatcher-to-mt-channel-based-broker-filter
+  namespace: knative-eventing
+spec:
+  action: ALLOW
+  selector:
+    matchLabels:
+      app.kubernetes.io/component: "broker-filter" <2>
+  rules:
+    - from: <1>
+        - source:
+            namespaces: [ "knative-eventing" ]
+            principals: [ "cluster.local/ns/knative-eventing/sa/imc-dispatcher" ]
+      to: <2>
+        - operation:
+            methods: [ "POST" ]
+----
+<1> Allow `imc-dispatcher` in the `knative-eventing` namespace.
+<2> To post events to the `mt-broker-filter`.
+
+. Apply the `AuthorizationPolicy` resource:
++
+[source,terminal]
+----
+$ oc apply -f <filename>
+----
+
+.Verification
+
+You can verify that the events were sent to the Knative event sink by looking at the message dumper function logs.
+
+. Enter the command:
++
+[source,terminal]
+----
+$ oc logs $(oc get pod -n authz-tests -o name | grep event-display) -c event-display -n authz-tests
+----
++
+.Example output
+[source,terminal]
+----
+☁️  cloudevents.Event
+Validation: valid
+Context Attributes,
+  specversion: 1.0
+  type: dev.knative.eventing.samples.heartbeat
+  source: https://knative.dev/eventing-contrib/cmd/heartbeats/#event-test/mypod
+  id: 2b72d7bf-c38f-4a98-a433-608fbcdd2596
+  time: 2019-10-18T15:23:20.809775386Z
+  contenttype: application/json
+Extensions,
+  beats: true
+  heart: yes
+  the: 42
+Data,
+  {
+    "id": 1,
+    "label": ""
+  }
+----
