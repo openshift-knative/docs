@@ -6,6 +6,11 @@ nav:
 start_ROOT: 'ROOT:index.adoc'
 asciidoc:
   attributes:
+    smproductshortname: Service Mesh
+    smproductname: OpenShift Service Mesh
+    product-title: OpenShift
+    serverlessoperatorname: OpenShift Serverless Operator
+    serverlessproductname: OpenShift Serverless
     product_name: OpenShift Serverless Logic
     context: OpenShift Serverless Logic
     kogito_version_redhat: 1.35.0.Final-redhat-00003
