@@ -3,8 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Functions triggered by a cloud event :: Red Hat OpenShift Serverless previews</title>
-    <link rel="canonical" href="https://openshift-knative.github.io/docs/docs/latest/functions/modules/serverless-invoking-go-functions-cloudevent.html">
+    <title>Using ContainerSource with OpenShift Service Mesh :: Red Hat OpenShift Serverless previews</title>
+    <link rel="canonical" href="https://openshift-knative.github.io/docs/docs/latest/serverless-eventing/service-mesh/eventing-service-mesh-containersource.html">
+    <meta name="description" content="Using ContainerSource with OpenShift Service Mesh">
     <meta name="generator" content="Antora 3.0.3">
     <link rel="stylesheet" href="../../../../_/css/site.css">
 <link rel="stylesheet" href="../../../../_/css/extra.css">
@@ -73,13 +74,13 @@
     <span class="nav-text">Using Eventing with OpenShift Service Mesh</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../serverless-eventing/service-mesh/eventing-service-mesh-setup.html">Setup Eventing with OpenShift Service Mesh</a>
+    <a class="nav-link" href="eventing-service-mesh-setup.html">Setup Eventing with OpenShift Service Mesh</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="eventing-service-mesh-containersource.html">Using ContainerSource with OpenShift Service Mesh</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../serverless-eventing/service-mesh/eventing-service-mesh-containersource.html">Using ContainerSource with OpenShift Service Mesh</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../serverless-eventing/service-mesh/eventing-service-mesh-sinkbinding.html">Using SinkBinding with OpenShift Service Mesh</a>
+    <a class="nav-link" href="eventing-service-mesh-sinkbinding.html">Using SinkBinding with OpenShift Service Mesh</a>
   </li>
 </ul>
   </li>
@@ -342,13 +343,13 @@
     <span class="nav-text">Buildpacks for Serverless Functions</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../serverless-functions-about.html">About buildpacks for OpenShift Serverless Functions</a>
+    <a class="nav-link" href="../../functions/serverless-functions-about.html">About buildpacks for OpenShift Serverless Functions</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../serverless-functions-buildpacks.html">Building and deploying functions on the cluster</a>
+    <a class="nav-link" href="../../functions/serverless-functions-buildpacks.html">Building and deploying functions on the cluster</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../serverless-developing-go-functions.html">Developing Go functions</a>
+    <a class="nav-link" href="../../functions/serverless-developing-go-functions.html">Developing Go functions</a>
   </li>
 </ul>
   </li>
@@ -383,93 +384,171 @@
 <nav class="crumbs" aria-label="breadcrumbs">
   <ul>
     <li class="crumb"><a href="../../index.html">Documentation</a></li>
-    <li class="crumb"><a href="serverless-invoking-go-functions-cloudevent.html">Functions triggered by a cloud event</a></li>
+    <li class="crumb">Serverless Eventing</li>
+    <li class="crumb">Using Eventing with OpenShift Service Mesh</li>
+    <li class="crumb"><a href="eventing-service-mesh-containersource.html">Using ContainerSource with OpenShift Service Mesh</a></li>
   </ul>
 </nav>
 </div>
     <div class="main-view-and-toc">
         <main class="main">
           <article class="doc">
-<h1>Functions triggered by a cloud event</h1>
-<div id="preamble">
-<div class="sectionbody">
-<div class="paragraph">
-<p>When an incoming cloud event is received, the event is invoked by the <a href="https://cloudevents.github.io/sdk-go/">CloudEvents Go SDK</a>. The invocation uses the <code>Event</code> type as a parameter.</p>
-</div>
-<div class="paragraph">
-<p>You can leverage the Go <a href="https://golang.org/pkg/context/">Context</a> as an optional parameter in the function contract, as shown in the list of supported function signatures:</p>
-</div>
-<div class="listingblock">
-<div class="title">Supported function signatures</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-go hljs" data-lang="go">Handle()
-Handle() error
-Handle(context.Context)
-Handle(context.Context) error
-Handle(cloudevents.Event)
-Handle(cloudevents.Event) error
-Handle(context.Context, cloudevents.Event)
-Handle(context.Context, cloudevents.Event) error
-Handle(cloudevents.Event) *cloudevents.Event
-Handle(cloudevents.Event) (*cloudevents.Event, error)
-Handle(context.Context, cloudevents.Event) *cloudevents.Event
-Handle(context.Context, cloudevents.Event) (*cloudevents.Event, error)</code></pre>
-</div>
-</div>
-</div>
-<div id="toc" class="toc">
-<div id="toctitle"></div>
-<ul class="sectlevel1">
-<li><a href="#serverless-invoking-go-functions-cloudevent-example_OpenShift Serverless Logic">CloudEvent trigger example</a></li>
+<h1>Using ContainerSource with OpenShift Service Mesh</h1>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>You have followed the setup Service Mesh with OpenShift Serverless procedure</p>
+</li>
 </ul>
 </div>
-</div>
-<div class="sect1">
-<h2 id="serverless-invoking-go-functions-cloudevent-example_OpenShift Serverless Logic"><a class="anchor" href="#serverless-invoking-go-functions-cloudevent-example_OpenShift Serverless Logic"></a>CloudEvent trigger example</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>A cloud event is received which contains a JSON string in the data property:</p>
-</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Create a <code>Service</code> in a namespace that is member of the <code>ServiceMeshMemberRoll</code>:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
-  "customerId": "0123456",
-  "productId": "6543210"
-}</code></pre>
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: event-display
+  namespace: &lt;namespace&gt; <i class="conum" data-value="1"></i><b>(1)</b>
+spec:
+  template:
+    metadata:
+      annotations:
+        sidecar.istio.io/inject: "true" <i class="conum" data-value="2"></i><b>(2)</b>
+        sidecar.istio.io/rewriteAppHTTPProbers: "true"
+    spec:
+      containers:
+      - image: quay.io/openshift-knative/knative-eventing-sources-event-display:latest</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>To access this data, a structure must be defined which maps properties in the cloud event data, and retrieves the data from the incoming event. The following example uses the <code>Purchase</code> structure:</p>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>A namespace that is member of the <code>ServiceMeshMemberRoll</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Injects Service Mesh sidecars into the Knative service pods.</td>
+</tr>
+</table>
 </div>
+</li>
+<li>
+<p>Apply the <code>Service</code> resource:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-go hljs" data-lang="go">type Purchase struct {
-  CustomerId string `json:"customerId"`
-  ProductId  string `json:"productId"`
-}
-func Handle(ctx context.Context, event cloudevents.Event) (err error) {
-
-  purchase := &amp;Purchase{}
-  if err = event.DataAs(purchase); err != nil {
-	fmt.Fprintf(os.Stderr, "failed to parse incoming CloudEvent %s\n", err)
-	return
-  }
-  // ...
-}</code></pre>
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ oc apply -f &lt;filename&gt;</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>Alternatively, a Go <code>encoding/json</code> package could be used to access the cloud event directly as JSON in the form of a bytes array:</p>
-</div>
+</li>
+<li>
+<p>Create a <code>ContainerSource</code> in a namespace that is member of the <code>ServiceMeshMemberRoll</code> and sink set to the <code>event-display</code>:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-go hljs" data-lang="go">func Handle(ctx context.Context, event cloudevents.Event) {
-  bytes, err := json.Marshal(event)
-  // ...
-}</code></pre>
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: sources.knative.dev/v1
+kind: ContainerSource
+metadata:
+  name: test-heartbeats
+  namespace: &lt;namespace&gt; <i class="conum" data-value="1"></i><b>(1)</b>
+spec:
+  template:
+    metadata: <i class="conum" data-value="2"></i><b>(2)</b>
+      annotations:
+        sidecar.istio.io/inject": "true"
+        sidecar.istio.io/rewriteAppHTTPProbers: "true"
+    spec:
+      containers:
+        # This corresponds to a heartbeats image URI that you have built and published
+        - image: quay.io/openshift-knative/heartbeats
+          name: heartbeats
+          args:
+            - --period=1s
+          env:
+            - name: POD_NAME
+              value: "example-pod"
+            - name: POD_NAMESPACE
+              value: "event-test"
+  sink:
+    ref:
+      apiVersion: serving.knative.dev/v1
+      kind: Service
+      name: event-display-service</code></pre>
 </div>
 </div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>A namespace that is part of the <code>ServiceMeshMemberRoll</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Enables Service Mesh integration with a <code>ContainerSource</code></td>
+</tr>
+</table>
 </div>
+</li>
+<li>
+<p>Apply the <code>ContainerSource</code> resource:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ oc apply -f &lt;filename&gt;</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<div class="title">Verification</div>
+<p>You can verify that the events were sent to the Knative event sink by looking at the message dumper function logs.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Enter the command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ oc get pods</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Enter the command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ oc logs $(oc get pod -o name | grep event-display) -c user-container</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">☁️  cloudevents.Event
+Validation: valid
+Context Attributes,
+  specversion: 1.0
+  type: dev.knative.eventing.samples.heartbeat
+  source: https://knative.dev/eventing-contrib/cmd/heartbeats/#event-test/mypod
+  id: 2b72d7bf-c38f-4a98-a433-608fbcdd2596
+  time: 2019-10-18T15:23:20.809775386Z
+  contenttype: application/json
+Extensions,
+  beats: true
+  heart: yes
+  the: 42
+Data,
+  {
+    "id": 1,
+    "label": ""
+  }</code></pre>
+</div>
+</div>
+</li>
+</ol>
 </div>
 </article>
         </main>

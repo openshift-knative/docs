@@ -3,8 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Functions triggered by a cloud event :: Red Hat OpenShift Serverless previews</title>
-    <link rel="canonical" href="https://openshift-knative.github.io/docs/docs/latest/functions/modules/serverless-invoking-go-functions-cloudevent.html">
+    <title>Setup Eventing with OpenShift Service Mesh :: Red Hat OpenShift Serverless previews</title>
+    <link rel="canonical" href="https://openshift-knative.github.io/docs/docs/latest/serverless-eventing/service-mesh/eventing-service-mesh-setup.html">
+    <meta name="description" content="Setup Eventing with OpenShift Service Mesh">
     <meta name="generator" content="Antora 3.0.3">
     <link rel="stylesheet" href="../../../../_/css/site.css">
 <link rel="stylesheet" href="../../../../_/css/extra.css">
@@ -72,14 +73,14 @@
     <button class="nav-toggle"></button>
     <span class="nav-text">Using Eventing with OpenShift Service Mesh</span>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../serverless-eventing/service-mesh/eventing-service-mesh-setup.html">Setup Eventing with OpenShift Service Mesh</a>
+  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="eventing-service-mesh-setup.html">Setup Eventing with OpenShift Service Mesh</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../serverless-eventing/service-mesh/eventing-service-mesh-containersource.html">Using ContainerSource with OpenShift Service Mesh</a>
+    <a class="nav-link" href="eventing-service-mesh-containersource.html">Using ContainerSource with OpenShift Service Mesh</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../serverless-eventing/service-mesh/eventing-service-mesh-sinkbinding.html">Using SinkBinding with OpenShift Service Mesh</a>
+    <a class="nav-link" href="eventing-service-mesh-sinkbinding.html">Using SinkBinding with OpenShift Service Mesh</a>
   </li>
 </ul>
   </li>
@@ -342,13 +343,13 @@
     <span class="nav-text">Buildpacks for Serverless Functions</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../serverless-functions-about.html">About buildpacks for OpenShift Serverless Functions</a>
+    <a class="nav-link" href="../../functions/serverless-functions-about.html">About buildpacks for OpenShift Serverless Functions</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../serverless-functions-buildpacks.html">Building and deploying functions on the cluster</a>
+    <a class="nav-link" href="../../functions/serverless-functions-buildpacks.html">Building and deploying functions on the cluster</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../serverless-developing-go-functions.html">Developing Go functions</a>
+    <a class="nav-link" href="../../functions/serverless-developing-go-functions.html">Developing Go functions</a>
   </li>
 </ul>
   </li>
@@ -383,93 +384,516 @@
 <nav class="crumbs" aria-label="breadcrumbs">
   <ul>
     <li class="crumb"><a href="../../index.html">Documentation</a></li>
-    <li class="crumb"><a href="serverless-invoking-go-functions-cloudevent.html">Functions triggered by a cloud event</a></li>
+    <li class="crumb">Serverless Eventing</li>
+    <li class="crumb">Using Eventing with OpenShift Service Mesh</li>
+    <li class="crumb"><a href="eventing-service-mesh-setup.html">Setup Eventing with OpenShift Service Mesh</a></li>
   </ul>
 </nav>
 </div>
     <div class="main-view-and-toc">
         <main class="main">
           <article class="doc">
-<h1>Functions triggered by a cloud event</h1>
-<div id="preamble">
-<div class="sectionbody">
+<h1>Setup Eventing with OpenShift Service Mesh</h1>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>You have access to an OpenShift account with cluster administrator access.</p>
+</li>
+<li>
+<p>You have created a project or have access to a project with the appropriate roles and permissions to create applications and other workloads in OpenShift.</p>
+</li>
+<li>
+<p>Install the OpenShift Service Mesh Operator and create a <code>ServiceMeshControlPlane</code> resource in the <code>istio-system</code> namespace. If you want to use mTLS functionality, you must also set the <code>spec.security.dataPlane.mtls</code> field for the <code>ServiceMeshControlPlane</code> resource to <code>true</code>.</p>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
 <div class="paragraph">
-<p>When an incoming cloud event is received, the event is invoked by the <a href="https://cloudevents.github.io/sdk-go/">CloudEvents Go SDK</a>. The invocation uses the <code>Event</code> type as a parameter.</p>
+<p>Using OpenShift Serverless with Service Mesh is only supported with OpenShift Service Mesh version 2.0.5 or later.</p>
 </div>
-<div class="paragraph">
-<p>You can leverage the Go <a href="https://golang.org/pkg/context/">Context</a> as an optional parameter in the function contract, as shown in the list of supported function signatures:</p>
+</td>
+</tr>
+</table>
 </div>
-<div class="listingblock">
-<div class="title">Supported function signatures</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-go hljs" data-lang="go">Handle()
-Handle() error
-Handle(context.Context)
-Handle(context.Context) error
-Handle(cloudevents.Event)
-Handle(cloudevents.Event) error
-Handle(context.Context, cloudevents.Event)
-Handle(context.Context, cloudevents.Event) error
-Handle(cloudevents.Event) *cloudevents.Event
-Handle(cloudevents.Event) (*cloudevents.Event, error)
-Handle(context.Context, cloudevents.Event) *cloudevents.Event
-Handle(context.Context, cloudevents.Event) (*cloudevents.Event, error)</code></pre>
-</div>
-</div>
-</div>
-<div id="toc" class="toc">
-<div id="toctitle"></div>
-<ul class="sectlevel1">
-<li><a href="#serverless-invoking-go-functions-cloudevent-example_OpenShift Serverless Logic">CloudEvent trigger example</a></li>
+</li>
+<li>
+<p>Install the OpenShift Serverless Operator.</p>
+</li>
+<li>
+<p>Install the OpenShift CLI (<code>oc</code>).</p>
+</li>
 </ul>
 </div>
-</div>
-<div class="sect1">
-<h2 id="serverless-invoking-go-functions-cloudevent-example_OpenShift Serverless Logic"><a class="anchor" href="#serverless-invoking-go-functions-cloudevent-example_OpenShift Serverless Logic"></a>CloudEvent trigger example</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>A cloud event is received which contains a JSON string in the data property:</p>
-</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Add the namespaces that you would like to integrate with Service Mesh to the <code>ServiceMeshMemberRoll</code> object as members:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
-  "customerId": "0123456",
-  "productId": "6543210"
-}</code></pre>
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: maistra.io/v1
+kind: ServiceMeshMemberRoll
+metadata:
+  name: default
+  namespace: istio-system
+spec:
+  members: <i class="conum" data-value="1"></i><b>(1)</b>
+    - knative-serving
+    - knative-eventing
+    - &lt;namespace&gt;</code></pre>
 </div>
 </div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>A list of namespaces to be integrated with Service Mesh.</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
 <div class="paragraph">
-<p>To access this data, a structure must be defined which maps properties in the cloud event data, and retrieves the data from the incoming event. The following example uses the <code>Purchase</code> structure:</p>
+<p>This list of namespaces must include the <code>knative-serving</code> and <code>knative-eventing</code> namespaces.</p>
 </div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Apply the <code>ServiceMeshMemberRoll</code> resource:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-go hljs" data-lang="go">type Purchase struct {
-  CustomerId string `json:"customerId"`
-  ProductId  string `json:"productId"`
-}
-func Handle(ctx context.Context, event cloudevents.Event) (err error) {
-
-  purchase := &amp;Purchase{}
-  if err = event.DataAs(purchase); err != nil {
-	fmt.Fprintf(os.Stderr, "failed to parse incoming CloudEvent %s\n", err)
-	return
-  }
-  // ...
-}</code></pre>
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ oc apply -f &lt;filename&gt;</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>Alternatively, a Go <code>encoding/json</code> package could be used to access the cloud event directly as JSON in the form of a bytes array:</p>
+</li>
+<li>
+<p>Create the necessary gateways so that Service Mesh can accept traffic:</p>
+<div class="listingblock">
+<div class="title">Example <code>knative-local-gateway</code> object using HTTP</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: knative-ingress-gateway
+  namespace: knative-serving
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+    - port:
+        number: 443
+        name: https
+        protocol: HTTPS
+      hosts:
+        - "*"
+      tls:
+        mode: SIMPLE
+        credentialName: &lt;wildcard_certs&gt; <i class="conum" data-value="1"></i><b>(1)</b>
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+ name: knative-local-gateway
+ namespace: knative-serving
+spec:
+ selector:
+   istio: ingressgateway
+ servers:
+   - port:
+       number: 8081
+       name: http
+       protocol: HTTP <i class="conum" data-value="2"></i><b>(2)</b>
+     hosts:
+       - "*"
+---
+apiVersion: v1
+kind: Service
+metadata:
+ name: knative-local-gateway
+ namespace: istio-system
+ labels:
+   experimental.istio.io/disable-gateway-port-translation: "true"
+spec:
+ type: ClusterIP
+ selector:
+   istio: ingressgateway
+ ports:
+   - name: http2
+     port: 80
+     targetPort: 8081</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Add the name of the secret that contains the wildcard certificate.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>The <code>knative-local-gateway</code> serves HTTP traffic. Using HTTP means that traffic coming from outside of Service Mesh, but using an internal hostname, such as <code>example.default.svc.cluster.local</code>, is not encrypted. You can set up encryption for this path by creating another wildcard certificate and an additional gateway that uses a different <code>protocol</code> spec.</td>
+</tr>
+</table>
 </div>
 <div class="listingblock">
+<div class="title">Example <code>knative-local-gateway</code> object using HTTPS</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-go hljs" data-lang="go">func Handle(ctx context.Context, event cloudevents.Event) {
-  bytes, err := json.Marshal(event)
-  // ...
-}</code></pre>
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: knative-local-gateway
+  namespace: knative-serving
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+    - port:
+        number: 443
+        name: https
+        protocol: HTTPS
+      hosts:
+        - "*"
+      tls:
+        mode: SIMPLE
+        credentialName: &lt;wildcard_certs&gt;</code></pre>
 </div>
 </div>
+</li>
+<li>
+<p>Apply the <code>Gateway</code> resources:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ oc apply -f &lt;filename&gt;</code></pre>
 </div>
+</div>
+</li>
+<li>
+<p>Install Knative Serving by creating the following <code>KnativeServing</code> custom resource, which also enables the Istio integration:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: operator.knative.dev/v1beta1
+kind: KnativeServing
+metadata:
+  name: knative-serving
+  namespace: knative-serving
+spec:
+  ingress:
+    istio:
+      enabled: true <i class="conum" data-value="1"></i><b>(1)</b>
+  deployments: <i class="conum" data-value="2"></i><b>(2)</b>
+  - name: activator
+    annotations:
+      "sidecar.istio.io/inject": "true"
+      "sidecar.istio.io/rewriteAppHTTPProbers": "true"
+  - name: autoscaler
+    annotations:
+      "sidecar.istio.io/inject": "true"
+      "sidecar.istio.io/rewriteAppHTTPProbers": "true"</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Enables Istio integration.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Enables sidecar injection for Knative Serving data plane pods.</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Apply the <code>KnativeServing</code> resource:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ oc apply -f &lt;filename&gt;</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Install Knative Eventing by creating the following <code>KnativeEventing</code> custom resource, which also enables the Istio integration:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: operator.knative.dev/v1beta1
+kind: KnativeEventing
+metadata:
+  name: knative-eventing
+  namespace: knative-eventing
+spec:
+  config:
+    features:
+      istio: enabled <i class="conum" data-value="1"></i><b>(1)</b>
+  workloads: <i class="conum" data-value="2"></i><b>(2)</b>
+  - name: pingsource-mt-adapter
+    annotations:
+      "sidecar.istio.io/inject": "true"
+      "sidecar.istio.io/rewriteAppHTTPProbers": "true"
+  - name: imc-dispatcher
+    annotations:
+      "sidecar.istio.io/inject": "true"
+      "sidecar.istio.io/rewriteAppHTTPProbers": "true"
+  - name: mt-broker-ingress
+    annotations:
+      "sidecar.istio.io/inject": "true"
+      "sidecar.istio.io/rewriteAppHTTPProbers": "true"
+  - name: mt-broker-filter
+    annotations:
+      "sidecar.istio.io/inject": "true"
+      "sidecar.istio.io/rewriteAppHTTPProbers": "true"</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Enables Eventing istio controller to create a <code>DestinationRule</code> for each InMemoryChannel or KafkaChannel service.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Enables sidecar injection for Knative Eventing pods.</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Apply the <code>KnativeEventing</code> resource:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ oc apply -f &lt;filename&gt;</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Install Knative Kafka by creating the following <code>KnativeKafka</code> custom resource, which also enables the Istio integration:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: operator.serverless.openshift.io/v1alpha1
+kind: KnativeKafka
+metadata:
+  name: knative-kafka
+  namespace: knative-eventing
+spec:
+  channel:
+    enabled: true
+    bootstrapServers: &lt;bootstrap_servers&gt; <i class="conum" data-value="1"></i><b>(1)</b>
+  source:
+    enabled: true
+  broker:
+    enabled: true
+    defaultConfig:
+      bootstrapServers: &lt;bootstrap_servers&gt; <i class="conum" data-value="1"></i><b>(1)</b>
+      numPartitions: &lt;num_partitions&gt;
+      replicationFactor: &lt;replication_factor&gt;
+    sink:
+      enabled: true
+  workloads: <i class="conum" data-value="2"></i><b>(2)</b>
+  - name: kafka-controller
+    annotations:
+      "sidecar.istio.io/inject": "true"
+      "sidecar.istio.io/rewriteAppHTTPProbers": "true"
+  - name: kafka-broker-receiver
+    annotations:
+      "sidecar.istio.io/inject": "true"
+      "sidecar.istio.io/rewriteAppHTTPProbers": "true"
+  - name: kafka-broker-dispatcher
+    annotations:
+      "sidecar.istio.io/inject": "true"
+      "sidecar.istio.io/rewriteAppHTTPProbers": "true"
+  - name: kafka-channel-receiver
+    annotations:
+      "sidecar.istio.io/inject": "true"
+      "sidecar.istio.io/rewriteAppHTTPProbers": "true"
+  - name: kafka-channel-dispatcher
+    annotations:
+      "sidecar.istio.io/inject": "true"
+      "sidecar.istio.io/rewriteAppHTTPProbers": "true"
+  - name: kafka-source-dispatcher
+    annotations:
+      "sidecar.istio.io/inject": "true"
+      "sidecar.istio.io/rewriteAppHTTPProbers": "true"
+  - name: kafka-sink-receiver
+    annotations:
+      "sidecar.istio.io/inject": "true"
+      "sidecar.istio.io/rewriteAppHTTPProbers": "true"</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The Apache Kafka cluster URL, for example: <code>my-cluster-kafka-bootstrap.kafka:9092</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Enables sidecar injection for Knative Kafka pods.</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Apply the <code>KnativeKafka</code> resource:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ oc apply -f &lt;filename&gt;</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Install <code>ServiceEntry</code> to make OpenShift Service Mesh aware of the communication between <code>KnativeKafka</code> components and an Apache Kafka cluster:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: networking.istio.io/v1alpha3
+kind: ServiceEntry
+metadata:
+  name: kafka-cluster
+  namespace: knative-eventing
+spec:
+  hosts: <i class="conum" data-value="1"></i><b>(1)</b>
+    - &lt;bootstrap_servers_without_port&gt;
+  exportTo:
+    - "."
+  ports: <i class="conum" data-value="2"></i><b>(2)</b>
+    - number: 9092
+      name: tcp-plain
+      protocol: TCP
+    - number: 9093
+      name: tcp-tls
+      protocol: TCP
+    - number: 9094
+      name: tcp-sasl-tls
+      protocol: TCP
+    - number: 9095
+      name: tcp-sasl-tls
+      protocol: TCP
+    - number: 9096
+      name: tcp-tls
+      protocol: TCP
+  location: MESH_EXTERNAL
+  resolution: NONE</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The list of Apache Kafka cluster hosts, for example: <code>my-cluster-kafka-bootstrap.kafka</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Apache Kafka cluster listeners ports.</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The listed ports in <code>spec.ports</code> are example TPC ports and depend on how the Apache Kafka cluster is configured.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Apply the <code>ServiceEntry</code> resource:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ oc apply -f &lt;filename&gt;</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="olist arabic">
+<div class="title">Verification</div>
+<ol class="arabic">
+<li>
+<p>Create a Knative Service that has sidecar injection enabled and uses a pass-through route:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: &lt;service_name&gt;
+  namespace: &lt;namespace&gt; <i class="conum" data-value="1"></i><b>(1)</b>
+  annotations:
+    serving.knative.openshift.io/enablePassthrough: "true" <i class="conum" data-value="2"></i><b>(2)</b>
+spec:
+  template:
+    metadata:
+      annotations:
+        sidecar.istio.io/inject: "true" <i class="conum" data-value="3"></i><b>(3)</b>
+        sidecar.istio.io/rewriteAppHTTPProbers: "true"
+    spec:
+      containers:
+      - image: &lt;image_url&gt;</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>A namespace that is part of the Service Mesh member roll.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Instructs Knative Serving to generate an OpenShift pass-through enabled route, so that the certificates you have generated are served through the ingress gateway directly.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Injects Service Mesh sidecars into the Knative service pods.</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Apply the <code>Service</code> resource:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ oc apply -f &lt;filename&gt;</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Access your serverless application by using a secure connection that is now trusted by the CA:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ curl --cacert root.crt &lt;service_url&gt;</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example command</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ curl --cacert root.crt https://hello-default.apps.openshift.example.com</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">Hello Openshift!</code></pre>
+</div>
+</div>
+</li>
+</ol>
 </div>
 </article>
         </main>
