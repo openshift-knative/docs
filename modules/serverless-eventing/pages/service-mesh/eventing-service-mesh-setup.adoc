@@ -144,7 +144,7 @@ spec:
 $ oc apply -f <filename>
 ----
 
-. Install Knative Serving by creating the following `KnativeServing` custom resource definition (CRD), which also enables the Istio integration:
+. Install Knative Serving by creating the following `KnativeServing` custom resource, which also enables the Istio integration:
 +
 [source,yaml]
 ----
@@ -177,7 +177,7 @@ spec:
 $ oc apply -f <filename>
 ----
 
-. Install Knative Eventing by creating the following `KnativeEventing` custom resource definition (CRD), which also enables the Istio integration:
+. Install Knative Eventing by creating the following `KnativeEventing` custom resource, which also enables the Istio integration:
 +
 [source,yaml]
 ----
@@ -218,7 +218,7 @@ spec:
 $ oc apply -f <filename>
 ----
 
-. Install Knative Kafka by creating the following `KnativeKafka` custom resource definition (CRD), which also enables the Istio integration:
+. Install Knative Kafka by creating the following `KnativeKafka` custom resource, which also enables the Istio integration:
 +
 [source,yaml]
 ----
