@@ -57,7 +57,7 @@
 **** xref:serverless-logic:persistence/postgresql-flyway-migration.adoc[Migrate your PostgreSQL database]
 //**** xref:serverless-logic:persistence/workflow-database-for-db-admins.adoc[Workflows database for DB admins]
 // **** xref:serverless-logic:persistence/data-consistency.adoc[Data consistency]
-*** Cloud
+*** xref:serverless-logic:cloud/index.adoc[Cloud]
 **** Operator
 ***** xref:serverless-logic:cloud/operator/install-serverless-operator.adoc[Installation]
 ***** xref:serverless-logic:cloud/operator/developing-workflows.adoc[Developing Workflows]
