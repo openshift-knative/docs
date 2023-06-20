@@ -1,0 +1,348 @@
+= Access control for Knative channel for Apache Kafka using {SMProductName}
+:compat-mode!:
+// Metadata:
+:description: Access control for Knative channel for Apache Kafka using {SMProductName}
+
+By default, every workload is allowed to send events to a Knative channel, with {SMProductName}, we can
+apply policies to control who can post events to Knative channels for Apache Kafka.
+
+.Prerequisites
+
+* You have followed the setup {SMProductShortName} with {ServerlessProductName} procedure.
+
+.Setup procedure
+
+. Create a `KafkaChannel` in a namespace that is member of the `ServiceMeshMemberRoll`:
++
+[source,yaml]
+----
+apiVersion: messaging.knative.dev/v1beta1
+kind: KafkaChannel
+metadata:
+  name: kafka-channel
+  namespace: authz-tests <1>
+spec:
+  numPartitions: 10
+  replicationFactor: 3
+  delivery:
+    retry: 12
+    backoffPolicy: exponential
+    backoffDelay: PT1S
+----
+<1> A namespace that is member of the `ServiceMeshMemberRoll`.
+
+. Apply the `KafkaChannel` resource:
++
+[source,terminal]
+----
+$ oc apply -f <filename>
+----
+
+. Create a `ContainerSource` in a namespace that is member of the `ServiceMeshMemberRoll`:
++
+[source,yaml]
+----
+apiVersion: sources.knative.dev/v1
+kind: ContainerSource
+metadata:
+  name: heartbeat-source-kafka-channel
+  namespace: authz-tests <1>
+spec:
+  template:
+    metadata:
+      annotations:
+        sidecar.istio.io/inject: 'true' <2>
+    spec:
+      containers:
+        - image: quay.io/openshift-knative/heartbeats
+          name: heartbeats
+          args:
+            - --period=1
+          env:
+            - name: POD_NAME
+              value: "mypod-channel"
+            - name: POD_NAMESPACE
+              value: "authz-tests"
+  sink:
+    ref:
+      apiVersion: messaging.knative.dev/v1beta1
+      kind: KafkaChannel
+      name: kafka-channel
+----
+<1> A namespace that is member of the `ServiceMeshMemberRoll`.
+<2> Injects {SMProductShortName} sidecars into the `ContainerSource` pods.
+
+. Apply the `ContainerSource` resource:
++
+[source,terminal]
+----
+$ oc apply -f <filename>
+----
+
+. Create a consumer service, consisting of `Subscription`, `Service`, and `Pod`, in a namespace that is member of the `ServiceMeshMemberRoll`:
++
+[source,yaml]
+----
+apiVersion: messaging.knative.dev/v1
+kind: Subscription
+metadata:
+  name: subscription
+  namespace: authz-tests <1>
+spec:
+  channel:
+    apiVersion: messaging.knative.dev/v1beta1
+    kind: KafkaChannel
+    name: kafka-channel
+  subscriber:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: event-display
+  namespace: authz-tests <1>
+spec:
+  selector:
+    app: event-display
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: event-display
+  namespace: authz-tests <1>
+  annotations:
+    sidecar.istio.io/inject: 'true' <2>
+  labels:
+    app: event-display
+spec:
+  containers:
+    - name: event-display
+      image: quay.io/openshift-knative/knative-eventing-sources-event-display
+      ports:
+        - containerPort: 8080
+----
+<1> A namespace that is member of the `ServiceMeshMemberRoll`.
+<2> Injects {SMProductShortName} sidecars into the pod.
+
+. Apply the consumer service resources:
++
+[source,terminal]
+----
+$ oc apply -f <filename>
+----
+
+.Securing access to the Knative channel for Apache Kafka
+
+By default, every workload is allowed to send events to a Knative channel, with {SMProductName}, we can
+apply a policy to deny posting events by default.
+
+.Apply a deny by default authorization policy
+
+. Create a deny by default `AuthorizationPolicy` in the `knative-eventing` namespace:
++
+[source,yaml]
+----
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: deny-all-by-default
+  namespace: knative-eventing
+spec: { } <1>
+----
+<1> Disallow any operations to every workload that is part of the service mesh in the `knative-eventing` namespace.
+
+. Apply the `AuthorizationPolicy` resource:
++
+[source,terminal]
+----
+$ oc apply -f <filename>
+----
+
+. Verify access is denied
+
++
+we have denied access to every workload to the knative-eventing namespace, which disallows the
+`ContainerSource` `heartbeat-source-kafka-channel` to send events to the Knative `KafkaChannel`
+`kafka-channel`, therefore, we should see the following lines in the `heartbeats` pods:
+
++
+[source,terminal]
+----
+$ oc logs $(oc get pod -n authz-tests -o name | grep heartbeat-source-kafka-channel) -c heartbeats -n authz-tests
+----
++
+.Example output
+[source,terminal]
+----
+# TODO: fix output
+2023/06/13 10:17:04 sending cloudevent to http://kafka-channel-ingress.knative-eventing.svc.cluster.local/authz-tests/kafka-broker-br
+2023/06/13 10:17:04 failed to send cloudevent: 403:
+2023/06/13 10:17:05 sending cloudevent to http://kafka-broker-ingress.knative-eventing.svc.cluster.local/authz-tests/kafka-broker-br
+2023/06/13 10:17:05 failed to send cloudevent: 403:
+----
+
+.Authorize Knative Kafka controller to probe Knative Kafka resources
+
+The `kafka-controller` component probes Knative resources for readiness, so that it
+can report and mark them as `Ready` when they are actually ready to serve requests.
+
+Probes are HTTP(S) GET requests sent from the `kafka-controller` to the data plane pods, including:
+`kafka-broker-receiver`, `kafka-channel-receiver`, and `kafka-sink-receiver`.
+
+To authorize the `kafka-controller` to send probe requests, we can:
+
+. Create `AuthorizationPolicy` in the `knative-eventing` namespace to allow Knative Kafka controller
+in the `knative-eventing` namespace to probe for readiness Knative Kafka resources:
++
+[source,yaml]
+----
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: allow-probe-kafka-broker-receiver
+  namespace: knative-eventing
+spec:
+  action: ALLOW
+  selector:
+    matchLabels:
+      app.kubernetes.io/component: "kafka-broker-receiver" <2>
+  rules:
+    - from: <1>
+        - source:
+            namespaces: [ "knative-eventing" ]
+            principals: [ "cluster.local/ns/knative-eventing/sa/kafka-controller" ]
+      to: <2>
+        - operation:
+            methods: [ "GET" ]
+---
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: allow-probe-kafka-sink-receiver
+  namespace: knative-eventing
+spec:
+  action: ALLOW
+  selector:
+    matchLabels:
+      app.kubernetes.io/component: "kafka-sink-receiver" <3>
+  rules:
+    - from: <1>
+        - source:
+            namespaces: [ "knative-eventing" ]
+            principals: [ "cluster.local/ns/knative-eventing/sa/kafka-controller" ]
+      to: <3>
+        - operation:
+            methods: [ "GET" ]
+---
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: allow-probe-kafka-channel-receiver
+  namespace: knative-eventing
+spec:
+  action: ALLOW
+  selector:
+    matchLabels:
+      app.kubernetes.io/component: "kafka-channel-receiver" <4>
+  rules:
+    - from: <1>
+        - source:
+            namespaces: [ "knative-eventing" ]
+            principals: [ "cluster.local/ns/knative-eventing/sa/kafka-controller" ]
+      to:  <4>
+        - operation:
+            methods: [ "GET" ]
+----
+<1> Allow the Knative Kafka controller
+<2> To probe the Knative Kafka Broker receiver
+<3> To probe the Knative Kafka Sink receiver
+<4> To probe the Knative Kafka Channel receiver
+
+. Apply the `AuthorizationPolicy` resource:
++
+[source,terminal]
+----
+$ oc apply -f <filename>
+----
+
+.Authorize source to post events to Knative channel for Apache Kafka
+
+In the previous section, we denied access to Knative Eventing workloads, we can now grant permissions to
+post events to a Knative Broker with class Kafka:
+
+. Create a `AuthorizationPolicy` in the `knative-eventing` namespace to allow pods
+in the `authz-tests` namespace to send events to Knative Brokers in the same `authz-tests` namespace:
++
+[source,yaml]
+----
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: allow-authz-tests-kafka-channel
+  namespace: knative-eventing
+spec:
+  action: ALLOW
+  selector:
+    matchLabels:
+      app.kubernetes.io/component: "kafka-channel-receiver" <2>
+  rules:
+    - from: <1>
+        - source:
+            namespaces: [ "authz-tests" ]
+      to: <2>
+        - operation:
+            hosts: [ "*.authz-tests.svc.cluster.local" ] <3>
+            methods: [ "POST" ]
+----
+<1> Allow workloads in the `authz-tests` namespace
+<2> To post events to Knative channels for Apache Kafka in the `authz-tests` namespace.
+<3> Knative channel for Apache Kafka accepts events on HTTP host following the pattern: `<channel-name>.<channel-name>.svc.<cluster-domain>`.
+
+. Apply the `AuthorizationPolicy` resource:
++
+[source,terminal]
+----
+$ oc apply -f <filename>
+----
+
+.Verification
+
+You can verify that the events were sent to the Knative event sink by looking at the message dumper function logs.
+
+. Enter the command:
++
+[source,terminal]
+----
+$ oc logs $(oc get pod -n authz-tests -o name | grep event-display) -c event-display -n authz-tests
+----
++
+.Example output
+[source,terminal]
+----
+# TODO: fix output
+☁️  cloudevents.Event
+Validation: valid
+Context Attributes,
+  specversion: 1.0
+  type: dev.knative.eventing.samples.heartbeat
+  source: https://knative.dev/eventing-contrib/cmd/heartbeats/#authz-tests/mypod
+  id: 2b72d7bf-c38f-4a98-a433-608fbcdd2596
+  time: 2019-10-18T15:23:20.809775386Z
+  contenttype: application/json
+Extensions,
+  beats: true
+  heart: yes
+  the: 42
+Data,
+  {
+    "id": 1,
+    "label": ""
+  }
+----
