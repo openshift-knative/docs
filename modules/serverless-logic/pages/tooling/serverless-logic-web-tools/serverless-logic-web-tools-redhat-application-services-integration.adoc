@@ -4,7 +4,7 @@
 :description: {serverless_logic_web_tools_name} Red Hat OpenShift Application and Data Services integration
 :keywords: kogito, workflow, serverless, editor, web, tools, settings, red hat, application, data, services, integration
 
-Some {serverless_logic_web_tools_name} features require integration with Red Hat OpenShift Application and Data Services. Uploading OpenAPI specifications to a Service Registry and deploying {context} that required an Apache Kafka stream are some of the examples.
+Some {serverless_logic_web_tools_name} features require integration with Red Hat OpenShift Application and Data Services. Uploading OpenAPI specifications to a Service Registry and deploying {product_name} that required an Apache Kafka stream are some of the examples.
 
 On this page, you'll configure all the settings needed for complete integration.
 

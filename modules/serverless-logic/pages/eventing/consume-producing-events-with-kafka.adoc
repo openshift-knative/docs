@@ -7,6 +7,8 @@
 :kogito_messaging_url: https://docs.jboss.org/kogito/release/latest/html_single/#_kogito_messaging_add_on
 :kogito_kafka_integration_url: https://docs.jboss.org/kogito/release/latest/html_single/#proc-messaging-enabling_kogito-configuring
 :callback_example_url: {kogito_sw_examples_url}/serverless-workflow-callback-quarkus/src/main/resources/application.properties
+:overflow_management_url: https://quarkus.io/blog/reactive-messaging-emitter/#overflow-management
+:overflow_annotation_url: https://smallrye.io/smallrye-reactive-messaging/2.0.3/apidocs/io/smallrye/reactive/messaging/annotations/OnOverflow.html
 :events_example_url: {kogito_sw_examples_url}/serverless-workflow-events-quarkus/src/main/resources/application.properties
 :smallrye_connector_doc_url: {smallrye_messaging_url}/connectors/connectors.html
 :kafka_connector_properties_url: {smallrye_messaging_url}/kafka/kafka.html#_configuration_reference
@@ -26,14 +28,14 @@ You need to add the Kafka Quarkus Smallrye connector dependency to indicate that
 </dependency>
 ----
 
-The messaging capabilities are included in the Quarkus Serverless Workflow extension, even though the messaging capabilities are optional. This means you do not need to explicitly add the messaging add-on dependency when using {context}.
+The messaging capabilities are included in the Quarkus Serverless Workflow extension, even though the messaging capabilities are optional. This means you do not need to explicitly add the messaging add-on dependency when using {product_name}.
 
 [[con-sw-smallrye-channel-configuration]]
 == Smallrye channels configuration for a workflow
 
 You can configure Smallrye channels for a workflow using event definitions. The Smallrye channels are defined using link:{quarkus_config_url}[Quarkus configuration]. The format for Smallrye channel properties is `mp.messaging.[incoming|outgoing].<channel name>.<property_name>`. 
 
-{context} allows the following channel mapping strategies:
+{product_name} allows the following channel mapping strategies:
 
 * Define one default incoming channel to receive all the incoming messages and one default outgoing channel to store all the published messages.
 * Define a channel for each link:{cloud_events_url}[CloudEvent] type so that every message type has a dedicated channel.
@@ -109,11 +111,29 @@ mp.messaging.outgoing.kogito_outgoing_stream.value.serializer=org.apache.kafka.c
 ----
 --
 
+== OnOverflow handling
+
+Smallrye provide means to link:{overflow_management_url}[manage emitter overflow] through link:{overflow_annotation_url}[OnOverflow] annotation
+
+Kogito will annotate generated smallrye `emitters` for a particular channel using the information provided by a property of the form `kogito.addon.messaging.emitter.<channel_name>.overflow-strategy`. The possible values are `BUFFER`, `NONE`, `UNBOUNDED`, `FAIL`, and `DROP`. If the value of the strategy is `BUFFER`, then you must specify the buffer size by using the property of the form `kogito.addon.messaging.emitter.<channel_name>.buffer-size` 
+
+Therefore, for the `wait` channel, in the previous example, if we want to buffer as many as 100 events we will add these two properties
+
+.Example overflow configuration
+[source,properties]
+----
+kogito.addon.messaging.emitter.wait.overflow-strategy=BUFFER
+kogito.addon.messaging.emitter.wait.buffer-size=100
+----
+
+If all your channels use the same strategy and this strategy differs from the `BUFFER` one (you can change buffer size globally by using the `mp.messaging.emitter.default-buffer-size` smallrye property). You can set it up by using `kogito.addon.messaging.emitter.overflow-strategy=NONE|UNBOUNDED|FAIL|DROP`
+
+
 == Additional resources
 
 * xref:serverless-logic:eventing/consume-produce-events-with-knative-eventing.adoc[Consuming and producing events on Knative Eventing]
-* xref:serverless-logic:eventing/event-correlation-with-workflows.adoc[Event correlation in {context}]
-* xref:serverless-logic:eventing/working-with-callbacks.adoc[Callback state in {context}]
+* xref:serverless-logic:eventing/event-correlation-with-workflows.adoc[Event correlation in {product_name}]
+* xref:serverless-logic:eventing/working-with-callbacks.adoc[Callback state in {product_name}]
 
 include::../../pages/_common-content/report-issue.adoc[]
 

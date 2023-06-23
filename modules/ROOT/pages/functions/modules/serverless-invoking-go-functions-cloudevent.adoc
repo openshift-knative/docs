@@ -1,4 +1,4 @@
-[id="serverless-invoking-go-functions-cloudevent_{context}"]
+[id="serverless-invoking-go-functions-cloudevent_{product_name}"]
 = Functions triggered by a cloud event
 
 When an incoming cloud event is received, the event is invoked by the link:https://cloudevents.github.io/sdk-go/[CloudEvents Go SDK]. The invocation uses the `Event` type as a parameter.
@@ -22,7 +22,7 @@ Handle(context.Context, cloudevents.Event) *cloudevents.Event
 Handle(context.Context, cloudevents.Event) (*cloudevents.Event, error)
 ----
 
-[id="serverless-invoking-go-functions-cloudevent-example_{context}"]
+[id="serverless-invoking-go-functions-cloudevent-example_{product_name}"]
 == CloudEvent trigger example
 
 A cloud event is received which contains a JSON string in the data property:

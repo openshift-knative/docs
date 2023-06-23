@@ -1,4 +1,4 @@
-[id="serverless-go-function-return-values_{context}"]
+[id="serverless-go-function-return-values_{product_name}"]
 = Go function return values
 
 Functions triggered by HTTP requests can set the response directly. You can configure the function to do this by using the Go link:https://golang.org/pkg/net/http/#ResponseWriter[http.ResponseWriter].

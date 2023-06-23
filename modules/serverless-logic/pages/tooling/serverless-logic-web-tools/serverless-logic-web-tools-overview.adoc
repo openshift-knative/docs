@@ -4,7 +4,7 @@
 :description: Kogito {serverless_logic_web_tools_name}
 :keywords: kogito, workflow, serverless, editor, logic, web, tools
 
-The link:{serverless_logic_web_tools_url}[{serverless_logic_web_tools_name}] is a web application that allows authors to create and sync {context}, Decision and Dashbuilder files, all in a single interface, while also providing the integrations needed to deploy and test {context} models in development mode.
+The link:{serverless_logic_web_tools_url}[{serverless_logic_web_tools_name}] is a web application that allows authors to create and sync {product_name}, Decision and Dashbuilder files, all in a single interface, while also providing the integrations needed to deploy and test {product_name} models in development mode.
 
 .Home page
 image::tooling/serverless-logic-web-tools/serverless-logic-web-tools-overview.png[]
@@ -14,11 +14,11 @@ image::tooling/serverless-logic-web-tools/serverless-logic-web-tools-overview.pn
 
 The {serverless_logic_web_tools_name} provides 3 different editors for your projects:
 
-* {context} editor, for `.sw.json` or `.sw.yaml|yml` files;
+* {product_name} editor, for `.sw.json` or `.sw.yaml|yml` files;
 * Serverless Decision editor, for `.yard.json` or `.yard.yaml|yml` files;
 * Dashbuilder editor, for `dash.yaml|yml` files.
 
-*Feature Preview*: For an improved experience when previewing your {context}, check out xref:serverless-logic:tooling/serverless-logic-web-tools/serverless-logic-web-tools-enable-kogito-swf-visualization.adoc[how to enable the new Kogito Serverless Workflow Visualization diagram].
+*Feature Preview*: For an improved experience when previewing your {product_name}, check out xref:serverless-logic:tooling/serverless-logic-web-tools/serverless-logic-web-tools-enable-kogito-swf-visualization.adoc[how to enable the new Kogito Serverless Workflow Visualization diagram].
 
 == Getting started
 
