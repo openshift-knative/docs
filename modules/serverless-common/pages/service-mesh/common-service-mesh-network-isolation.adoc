@@ -89,15 +89,34 @@ As soon as one `AuthorizationPolicy` is installed in a namespace, all other traf
 ====
 
 . With this set up in place, cluster administrators can use their own `AuthorizationPolicies` to define which namespaces (tenants) can communicate with each other. Each namespace needs:
-* One AuthorizationPolicy limiting directly incoming traffic in the tenants namespace
-* One AuthorizationPolicy limiting incoming traffic via activator in the `knative-serving` namespace
-* One AuthorizationPolicy allowing Kubernetes to call PreStopHooks on Knative Services
-* One AuthorizationPolicy allowing cluster monitoring to… // TODO
-
+- One AuthorizationPolicy limiting directly incoming traffic in the tenants namespace
+- One AuthorizationPolicy limiting incoming traffic via activator in the `knative-serving` namespace
+- One AuthorizationPolicy allowing Kubernetes to call PreStopHooks on Knative Services
+- One AuthorizationPolicy allowing cluster monitoring to… // TODO
 +
-As it is a cumbersome task to create all those policies by hand, you can use our helm generator to create the necessary resources for each tenant:
+As it is a cumbersome task to create all those policies by hand, you can use our link:https://github.com/openshift-knative/knative-istio-authz-chart[helm based generator] to create the necessary resources for each tenant:
++
+[source,terminal]
+----
+# For Serving
+helm template oci://quay.io/pierdipi/knative-istio-authz-onboarding --version 0.1.0 --set "namespaces={tenant-1}" --set "name=tenant-1" --set=eventing.enabled=false
+helm template oci://quay.io/pierdipi/knative-istio-authz-onboarding --version 0.1.0 --set "namespaces={tenant-2}" --set "name=tenant-2" --set=eventing.enabled=false
 
- TODO
+# For Eventing
+helm template oci://quay.io/pierdipi/knative-istio-authz-onboarding --version 0.1.0 --set "name=order-service" --set "namespaces={ns1, ns2}" --set=serving.enabled=false
+----
++
+And apply the generated resources to your cluster:
++
+[source,terminal]
+----
+$ oc apply -f <filename>
+----
++
+[NOTE]
+====
+The helm chart has several options that can be passed to configure the generated resources. Please refer to the link:https://github.com/openshift-knative/knative-istio-authz-chart/blob/main/values.yaml[values.yaml] for a full reference.
+====
 
 
 .Verifying the {smproductshortname}
