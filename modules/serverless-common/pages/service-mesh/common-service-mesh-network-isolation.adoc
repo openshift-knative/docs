@@ -69,7 +69,6 @@ $ oc apply -f <filename>
 - One AuthorizationPolicy limiting directly incoming traffic in the tenants namespace
 - One AuthorizationPolicy limiting incoming traffic via activator in the `knative-serving` namespace
 - One AuthorizationPolicy allowing Kubernetes to call PreStopHooks on Knative Services
-- One AuthorizationPolicy allowing cluster monitoring to… // TODO
 +
 As it is a cumbersome task to create all those policies by hand, you can use our link:https://github.com/openshift-knative/knative-istio-authz-chart[helm based generator] to create the necessary resources for each tenant:
 +
