@@ -1,9 +1,14 @@
-= Setup Eventing with {SMProductName}
+= Setup {serverlessproductname} with {SMProductName}
 :compat-mode!:
 // Metadata:
-:description: Setup Eventing with {SMProductName}
+:description: Setup {serverlessproductname} with {SMProductName}
 
 // TODO
+
+[IMPORTANT]
+====
+This page describes the integration of {serverlessproductname} with {smproductname}. In this setup, it is assumed that, all Knative internal components, as well as Knative Services, are part of the Service Mesh and have istio-sidecars injected. This means, that strict mTLS is enforced within the whole mesh. All requests to Knative Services require an mTLS connection  (the client must send its certificate), except calls coming from OpenShift Routing.
+====
 
 .Prerequisites
 
@@ -11,18 +16,54 @@
 
 * You have created a project or have access to a project with the appropriate roles and permissions to create applications and other workloads in {product-title}.
 
-* Install the {SMProductName} Operator and create a `ServiceMeshControlPlane` resource in the `istio-system` namespace. If you want to use mTLS functionality, you must also set the `spec.security.dataPlane.mtls` field for the `ServiceMeshControlPlane` resource to `true`.
+* Install the OpenShift CLI (`oc`).
+
+* Install the {SMProductName} Operator.
 +
 [IMPORTANT]
 ====
 Using {ServerlessProductName} with {SMProductShortName} is only supported with {SMProductName} version 2.0.5 or later.
 ====
 
-* Install the {ServerlessOperatorName}.
+.Installing and configuring {smproductname}
 
-* Install the OpenShift CLI (`oc`).
+. Create a `ServiceMeshControlPlane` resource in the `istio-system` namespace. Make sure to use the following settings, to make Service Mesh work with Serverless:
++
+[IMPORTANT]
+====
+If you have an existing `ServiceMeshControlPlane`, make sure that you have the same configuration applied.
+====
++
+[source,yaml]
+----
+apiVersion: maistra.io/v2
+kind: ServiceMeshControlPlane
+metadata:
+  name: basic
+  namespace: istio-system
+spec:
+  profiles:
+  - default
+  security:
+    dataPlane:
+      mtls: true <1>
+  techPreview:
+    meshConfig:
+      defaultConfig:
+        terminationDrainDuration: 35s <2>
+  proxy:
+    networking:
+      trafficControl:
+        inbound:
+          excludedPorts: <3>
+          - 8444 # metrics
+          - 8022 # serving: wait-for-drain k8s pre-stop hook
+----
+<1> This enforces strict mTLS in the mesh. Only calls using a valid client-certificate are allowed.
+<2> OpenShift Serverless has a graceful termination for Knative Services of 30 seconds. The istio-proxy needs to have a longer termination duration to make sure no requests are dropped.
+<3> Those ports are called by Kubernetes and cluster monitoring which are not part of the mesh and cannot be called using mTLS, thus those ports are excluded from the Service Mesh.
++
 
-.Procedure
 
 . Add the namespaces that you would like to integrate with {SMProductShortName} to the `ServiceMeshMemberRoll` object as members:
 +
@@ -55,7 +96,7 @@ $ oc apply -f <filename>
 
 . Create the necessary gateways so that {SMProductShortName} can accept traffic:
 +
-.Example `knative-local-gateway` object using HTTP
+.Example `knative-local-gateway` object using `ISTIO_MUTUAL` (mTLS)
 [source,yaml]
 ----
 apiVersion: networking.istio.io/v1alpha3
@@ -88,8 +129,10 @@ spec:
  servers:
    - port:
        number: 8081
-       name: http
-       protocol: HTTP <2>
+       name: https
+       protocol: HTTPS <2>
+     tls:
+       mode: ISTIO_MUTUAL <2>
      hosts:
        - "*"
 ---
@@ -110,30 +153,7 @@ spec:
      targetPort: 8081
 ----
 <1> Add the name of the secret that contains the wildcard certificate.
-<2> The `knative-local-gateway` serves HTTP traffic. Using HTTP means that traffic coming from outside of {SMProductShortName}, but using an internal hostname, such as `example.default.svc.cluster.local`, is not encrypted. You can set up encryption for this path by creating another wildcard certificate and an additional gateway that uses a different `protocol` spec.
-+
-.Example `knative-local-gateway` object using HTTPS
-[source,yaml]
-----
-apiVersion: networking.istio.io/v1alpha3
-kind: Gateway
-metadata:
-  name: knative-local-gateway
-  namespace: knative-serving
-spec:
-  selector:
-    istio: ingressgateway
-  servers:
-    - port:
-        number: 443
-        name: https
-        protocol: HTTPS
-      hosts:
-        - "*"
-      tls:
-        mode: SIMPLE
-        credentialName: <wildcard_certs>
-----
+<2> The `knative-local-gateway` serves HTTPS traffic and expects all clients to send requests using mTLS. This means, that only traffic coming from withing {SMProductShortName} is possible. Workloads from outside the {smproductshortname} must use the external domain using the `istio-ingressgateway`.
 
 . Apply the `Gateway` resources:
 +
@@ -142,7 +162,11 @@ spec:
 $ oc apply -f <filename>
 ----
 
-. Install Knative Serving by creating the following `KnativeServing` custom resource, which also enables the Istio integration:
+.Installing and configuring {serverless}
+
+. First, install the {serverless} Operator.
+
+. Then, install Knative Serving by creating the following `KnativeServing` custom resource, which also enables the Istio integration:
 +
 [source,yaml]
 ----
@@ -354,6 +378,11 @@ spec:
 <1> A namespace that is part of the Service Mesh member roll.
 <2> Instructs Knative Serving to generate an {product-title} pass-through enabled route, so that the certificates you have generated are served through the ingress gateway directly.
 <3> Injects {SMProductShortName} sidecars into the Knative service pods.
++
+[IMPORTANT]
+====
+Please note, that you have to always add the annotation from the example above to all your Knative `Service` to make them work with {SMPRODUCTSHORTNAME}.
+====
 
 . Apply the `Service` resource:
 +

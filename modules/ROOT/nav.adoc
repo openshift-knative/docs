@@ -1,9 +1,9 @@
 * xref:index.adoc[Overview]
-* Serverless Eventing
-** Using Eventing with OpenShift Service Mesh
-*** xref:serverless-eventing:service-mesh/eventing-service-mesh-setup.adoc[Setup Eventing with OpenShift Service Mesh]
-*** xref:serverless-eventing:service-mesh/eventing-service-mesh-containersource.adoc[Using ContainerSource with OpenShift Service Mesh]
-*** xref:serverless-eventing:service-mesh/eventing-service-mesh-sinkbinding.adoc[Using SinkBinding with OpenShift Service Mesh]
+* Serverless Common
+** Using OpenShift Serverless with OpenShift Service Mesh
+*** xref:serverless-common:service-mesh/common-service-mesh-setup.adoc[Setup Serverless with OpenShift Service Mesh]
+*** xref:serverless-common:service-mesh/eventing-service-mesh-containersource.adoc[Eventing: Using ContainerSource with OpenShift Service Mesh]
+*** xref:serverless-common:service-mesh/eventing-service-mesh-sinkbinding.adoc[Eventing: Using SinkBinding with OpenShift Service Mesh]
 * Serverless Logic
 ** xref:serverless-logic:about.adoc[About OpenShift Serverless Logic]
 ** User Guides
