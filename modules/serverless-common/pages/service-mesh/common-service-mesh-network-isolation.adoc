@@ -1,0 +1,106 @@
+= Use {smproductname} to isolate network traffic with {serverlessproductname}
+:compat-mode!:
+// Metadata:
+:description: Use {smproductname} to isolate network traffic with {serverlessproductname}
+
+// TODO
+
+{smproductshortname} can be used to isolate network-traffic between "tenants" using {smproductshortname} `AuthorizationPolicy` resources. {serverlessproductname} can also leverage this, using several {smproductshortname} resources, as routing in {serverlessproductname} has multiple ways to reach the user workload (for example when scaled to zero).
+
+
+.High-level architecture
+The high-level architecture consists of `AuthorizationPolicies` in the `knative-serving` and the tenants namespaces, while all components are part of the {smproductshortname}. The respective `istio-proxy` sidecars take care of enforcing those rules to isolate traffic between tenants.
+
+image::service-mesh/multi-tenancy-service-mesh.drawio.svg[]
+
+
+.Prerequisites
+
+* You have access to an {product-title} account with cluster administrator access.
+
+* You have created a project or have access to a project with the appropriate roles and permissions to create applications and other workloads in {product-title}.
+
+* You have set up {serverlessproductname} and {smproductname} as documented in xref:./common-service-mesh-setup.adoc[]
+
+
+.Securing the {smproductshortname}
+
+. As in the set-up documentation, make sure that all your tenants are part of the same `ServiceMeshMemberRoll` object as members:
++
+[source,yaml]
+----
+apiVersion: maistra.io/v1
+kind: ServiceMeshMemberRoll
+metadata:
+ name: default
+ namespace: istio-system
+spec:
+ members:
+   - knative-serving
+   - knative-eventing
+   - tenant-1
+   - tenant-2
+----
++
+All the namespaces that are part of the Mesh must enforce mTLS in strict mode. This forces Istio to only accept connections with a client-certificate present and allows the `istio-proxy` to validate the origin using `AuthorizationPolicy`.
++
+. For {serverlessproductname} internal components to work, the following `AuthorizationPolicies` are necessary in the `knative-serving` namespace:
++
+[source,yaml]
+----
+---
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: allow-traffic-to-activator <1>
+  namespace: knative-serving
+spec:
+  selector:
+    matchLabels:
+      app: activator
+  action: ALLOW
+  rules:
+    - from:
+        - source:
+            namespaces: [ "knative-serving", "istio-system" ]
+---
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: allow-traffic-to-autoscaler <2>
+  namespace: knative-serving
+spec:
+  selector:
+    matchLabels:
+      app: autoscaler
+  action: ALLOW
+  rules:
+    - from:
+        - source:
+            namespaces: [ "knative-serving" ]
+---
+----
+<1> This rule allows traffic from `istio-system` and `knative-serving` to activator
+<2> This rule allows traffic from `knative-serving` to autoscaler
++
+[NOTE]
+====
+As soon as one `AuthorizationPolicy` is installed in a namespace, all other traffic is automatically denied.
+====
+
+. With this set up in place, cluster administrators can use their own `AuthorizationPolicies` to define which namespaces (tenants) can communicate with each other. Each namespace needs:
+* One AuthorizationPolicy limiting directly incoming traffic in the tenants namespace
+* One AuthorizationPolicy limiting incoming traffic via activator in the `knative-serving` namespace
+* One AuthorizationPolicy allowing Kubernetes to call PreStopHooks on Knative Services
+* One AuthorizationPolicy allowing cluster monitoring to… // TODO
+
++
+As it is a cumbersome task to create all those policies by hand, you can use our helm generator to create the necessary resources for each tenant:
+
+ TODO
+
+
+.Verifying the {smproductshortname}
+
+ TODO
+
