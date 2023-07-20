@@ -166,7 +166,7 @@ spec:
      targetPort: 8081
 ----
 <1> Add the name of the secret that contains the wildcard certificate.
-<2> The `knative-local-gateway` serves HTTPS traffic and expects all clients to send requests using mTLS. This means, that only traffic coming from withing {SMProductShortName} is possible. Workloads from outside the {smproductshortname} must use the external domain using the `istio-ingressgateway`.
+<2> The `knative-local-gateway` serves HTTPS traffic and expects all clients to send requests using mTLS. This means, that only traffic coming from withing {SMProductShortName} is possible. Workloads from outside the {smproductshortname} must use the external domain via OpenShift Routing.
 
 . Apply the `Gateway` resources:
 +

@@ -5,13 +5,19 @@
 
 // TODO
 
-{smproductshortname} can be used to isolate network-traffic between "tenants" using {smproductshortname} `AuthorizationPolicy` resources. {serverlessproductname} can also leverage this, using several {smproductshortname} resources, as routing in {serverlessproductname} has multiple ways to reach the user workload (for example when scaled to zero).
+{smproductshortname} can be used to isolate network-traffic between "tenants" using {smproductshortname} `AuthorizationPolicy` resources. {serverlessproductname} can also leverage this, using several {smproductshortname} resources.
 
 
 .High-level architecture
-The high-level architecture consists of `AuthorizationPolicies` in the `knative-serving` and the tenants namespaces, while all components are part of the {smproductshortname}. The respective `istio-proxy` sidecars take care of enforcing those rules to isolate traffic between tenants.
+The high-level architecture consists of `AuthorizationPolicies` in the `knative-serving`, `knative-eventing` and the tenants namespaces, while all components are part of the {smproductshortname}. The respective `istio-proxy` sidecars take care of enforcing those rules to isolate traffic between tenants.
+
+*Knative Serving*
 
 image::service-mesh/multi-tenancy-service-mesh.drawio.svg[]
+
+*Knative Eventing*
+
+TODO pierdipi, please add your diagram here!
 
 
 .Prerequisites
