@@ -50,13 +50,195 @@ spec:
 +
 All the namespaces that are part of the Mesh must enforce mTLS in strict mode. This forces Istio to only accept connections with a client-certificate present and allows the `istio-proxy` to validate the origin using `AuthorizationPolicy`.
 +
-. For {serverlessproductname} internal components to work, the several `AuthorizationPolicies` are necessary in the `knative-serving` and the `knative-eventing` namespace. The necessary resources are available in link:https://github.com/openshift-knative/knative-istio-authz-chart/tree/main/setup[here]:
-
-- `deny-all-by-default.yaml` denies all traffic that is not explicitly allowed in `knative-serving` and `knative-eventing`
-- `allow-traffic-to-activator.yaml` allows traffic from `istio-system` and `knative-serving` to activator
-- `allow-traffic-to-autoscaler.yaml` allows traffic from `knative-serving` to autoscaler
-- `allow-probe-kafka-controller.yaml` allows health probes for kafka components in `knative-eventing`
-- `allow-mt-channel-based-broker-to-channels.yaml` allows internal traffic for channel based brokers in `knative-eventing`
+. For {serverlessproductname} internal components to work, the several `AuthorizationPolicies` are necessary in the `knative-serving` and the `knative-eventing` namespace:
++
+[source,yaml]
+----
+---
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: deny-all-by-default
+  namespace: knative-eventing
+spec: { }
+---
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: deny-all-by-default
+  namespace: knative-serving
+spec: { }
+---
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: allow-mt-channel-based-broker-ingress-to-imc-dispatcher
+  namespace: knative-eventing
+spec:
+  action: ALLOW
+  selector:
+    matchLabels:
+      app.kubernetes.io/component: "imc-dispatcher"
+  rules:
+    - from:
+        - source:
+            namespaces: [ "knative-eventing" ]
+            principals: [ "cluster.local/ns/knative-eventing/sa/mt-broker-ingress" ]
+      to:
+        - operation:
+            methods: [ "POST" ]
+---
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: allow-mt-channel-based-broker-ingress-to-kafka-channel
+  namespace: knative-eventing
+spec:
+  action: ALLOW
+  selector:
+    matchLabels:
+      app.kubernetes.io/component: "kafka-channel-receiver"
+  rules:
+    - from:
+        - source:
+            namespaces: [ "knative-eventing" ]
+            principals: [ "cluster.local/ns/knative-eventing/sa/mt-broker-ingress" ]
+      to:
+        - operation:
+            methods: [ "POST" ]
+---
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: allow-kafka-channel-to-mt-channel-based-broker-filter
+  namespace: knative-eventing
+spec:
+  action: ALLOW
+  selector:
+    matchLabels:
+      app.kubernetes.io/component: "broker-filter"
+  rules:
+    - from:
+        - source:
+            namespaces: [ "knative-eventing" ]
+            principals: [ "cluster.local/ns/knative-eventing/sa/knative-kafka-channel-data-plane" ]
+      to:
+        - operation:
+            methods: [ "POST" ]
+---
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: allow-imc-to-mt-channel-based-broker-filter
+  namespace: knative-eventing
+spec:
+  action: ALLOW
+  selector:
+    matchLabels:
+      app.kubernetes.io/component: "broker-filter"
+  rules:
+    - from:
+        - source:
+            namespaces: [ "knative-eventing" ]
+            principals: [ "cluster.local/ns/knative-eventing/sa/imc-dispatcher" ]
+      to:
+        - operation:
+            methods: [ "POST" ]
+---
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: allow-probe-kafka-broker-receiver
+  namespace: knative-eventing
+spec:
+  action: ALLOW
+  selector:
+    matchLabels:
+      app.kubernetes.io/component: "kafka-broker-receiver"
+  rules:
+    - from:
+        - source:
+            namespaces: [ "knative-eventing" ]
+            principals: [ "cluster.local/ns/knative-eventing/sa/kafka-controller" ]
+      to:
+        - operation:
+            methods: [ "GET" ]
+---
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: allow-probe-kafka-sink-receiver
+  namespace: knative-eventing
+spec:
+  action: ALLOW
+  selector:
+    matchLabels:
+      app.kubernetes.io/component: "kafka-sink-receiver"
+  rules:
+    - from:
+        - source:
+            namespaces: [ "knative-eventing" ]
+            principals: [ "cluster.local/ns/knative-eventing/sa/kafka-controller" ]
+      to:
+        - operation:
+            methods: [ "GET" ]
+---
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: allow-probe-kafka-channel-receiver
+  namespace: knative-eventing
+spec:
+  action: ALLOW
+  selector:
+    matchLabels:
+      app.kubernetes.io/component: "kafka-channel-receiver"
+  rules:
+    - from:
+        - source:
+            namespaces: [ "knative-eventing" ]
+            principals: [ "cluster.local/ns/knative-eventing/sa/kafka-controller" ]
+      to:
+        - operation:
+            methods: [ "GET" ]
+---
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: allow-traffic-to-activator
+  namespace: knative-serving
+spec:
+  selector:
+    matchLabels:
+      app: activator
+  action: ALLOW
+  rules:
+    - from:
+        - source:
+            namespaces: [ "knative-serving", "istio-system" ]
+---
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: allow-traffic-to-autoscaler
+  namespace: knative-serving
+spec:
+  selector:
+    matchLabels:
+      app: autoscaler
+  action: ALLOW
+  rules:
+    - from:
+        - source:
+            namespaces: [ "knative-serving" ]
+---
+----
+These policies:
+- Deny all traffic that is not explicitly allowed in `knative-serving` and `knative-eventing`
+- Allow traffic from `istio-system` and `knative-serving` to activator
+- Allow traffic from `knative-serving` to autoscaler
+- Allow health probes for kafka components in `knative-eventing`
+- Allow internal traffic for channel based brokers in `knative-eventing`
 +
 Make sure to apply all those rules to your cluster with
 +
@@ -75,8 +257,8 @@ As it is a cumbersome task to create all those policies by hand, you can use our
 [source,terminal]
 .Create resources per tenant with helm
 ----
-helm template oci://quay.io/pierdipi/knative-istio-authz-onboarding --version 0.1.0 --set "name=tenant-1" --set "namespaces={ns1, ns2}"
-helm template oci://quay.io/pierdipi/knative-istio-authz-onboarding --version 0.1.0 --set "name=tenant-2" --set "namespaces={ns3, ns4}"
+helm template oci://quay.io/openshift-knative/knative-istio-authz-onboarding --version 1.31.0 --set "name=tenant-1" --set "namespaces={ns1, ns2}"
+helm template oci://quay.io/openshift-knative/knative-istio-authz-onboarding --version 1.31.0 --set "name=tenant-2" --set "namespaces={ns3, ns4}"
 ----
 +
 And apply the generated resources to your cluster:
