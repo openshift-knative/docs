@@ -13,11 +13,11 @@ The respective `istio-proxy` sidecars take care of enforcing those rules to isol
 
 *Knative Serving*
 
-image::service-mesh/multi-tenancy-service-mesh.drawio.svg[]
+image::service-mesh/multi-tenancy-service-mesh-Serving.drawio.svg[]
 
 *Knative Eventing*
 
-TODO pierdipi, please add your diagram here!
+image::service-mesh/multi-tenancy-service-mesh-Eventing.drawio.svg[]
 
 .Prerequisites
 * You have access to an {product-title} account with cluster administrator access.
@@ -237,7 +237,7 @@ These policies:
 - Allow traffic from `istio-system` and `knative-serving` to activator - Allow traffic from `knative-serving` to autoscaler - Allow health probes for kafka components in `knative-eventing`
 - Allow internal traffic for channel based brokers in `knative-eventing`
 +
-Make sure to apply all those rules to your cluster with
+Make sure to apply all those rules to your cluster with:
 +
 [source,terminal]
 ----
