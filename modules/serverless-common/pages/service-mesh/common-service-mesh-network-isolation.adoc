@@ -7,9 +7,9 @@
 
 {smproductshortname} can be used to isolate network-traffic between "tenants" using {smproductshortname} `AuthorizationPolicy` resources. {serverlessproductname} can also leverage this, using several {smproductshortname} resources.
 
-
 .High-level architecture
-The high-level architecture consists of `AuthorizationPolicies` in the `knative-serving`, `knative-eventing` and the tenants namespaces, while all components are part of the {smproductshortname}. The respective `istio-proxy` sidecars take care of enforcing those rules to isolate traffic between tenants.
+The high-level architecture consists of `AuthorizationPolicies` in the `knative-serving`, `knative-eventing` and the tenants namespaces, while all components are part of the {smproductshortname}.
+The respective `istio-proxy` sidecars take care of enforcing those rules to isolate traffic between tenants.
 
 *Knative Serving*
 
@@ -19,9 +19,7 @@ image::service-mesh/multi-tenancy-service-mesh.drawio.svg[]
 
 TODO pierdipi, please add your diagram here!
 
-
 .Prerequisites
-
 * You have access to an {product-title} account with cluster administrator access.
 
 * You have created a project or have access to a project with the appropriate roles and permissions to create applications and other workloads in {product-title}.
@@ -30,7 +28,6 @@ TODO pierdipi, please add your diagram here!
 
 
 .Securing the {smproductshortname}
-
 . As in the set-up documentation, make sure that all your tenants are part of the same `ServiceMeshMemberRoll` object as members:
 +
 [source,yaml]
@@ -48,7 +45,8 @@ spec:
    - tenant-2
 ----
 +
-All the namespaces that are part of the Mesh must enforce mTLS in strict mode. This forces Istio to only accept connections with a client-certificate present and allows the `istio-proxy` to validate the origin using `AuthorizationPolicy`.
+All the namespaces that are part of the Mesh must enforce mTLS in strict mode.
+This forces Istio to only accept connections with a client-certificate present and allows the `istio-proxy` to validate the origin using `AuthorizationPolicy`.
 +
 . For {serverlessproductname} internal components to work, the several `AuthorizationPolicies` are necessary in the `knative-serving` and the `knative-eventing` namespace:
 +
@@ -233,11 +231,10 @@ spec:
             namespaces: [ "knative-serving" ]
 ---
 ----
+
 These policies:
 - Deny all traffic that is not explicitly allowed in `knative-serving` and `knative-eventing`
-- Allow traffic from `istio-system` and `knative-serving` to activator
-- Allow traffic from `knative-serving` to autoscaler
-- Allow health probes for kafka components in `knative-eventing`
+- Allow traffic from `istio-system` and `knative-serving` to activator - Allow traffic from `knative-serving` to autoscaler - Allow health probes for kafka components in `knative-eventing`
 - Allow internal traffic for channel based brokers in `knative-eventing`
 +
 Make sure to apply all those rules to your cluster with
@@ -247,7 +244,8 @@ Make sure to apply all those rules to your cluster with
 $ oc apply -f <filename>
 ----
 
-. With this set up in place, cluster administrators can use their own `AuthorizationPolicies` to define which namespaces (tenants) can communicate with each other. Each namespace needs:
+. With this set up in place, cluster administrators can use their own `AuthorizationPolicies` to define which namespaces (tenants) can communicate with each other.
+Each namespace needs:
 - One AuthorizationPolicy limiting directly incoming traffic in the tenants namespace
 - One AuthorizationPolicy limiting incoming traffic via activator in the `knative-serving` namespace
 - One AuthorizationPolicy allowing Kubernetes to call PreStopHooks on Knative Services
@@ -270,12 +268,11 @@ $ oc apply -f <filename>
 +
 [NOTE]
 ====
-The helm chart has several options that can be passed to configure the generated resources. Please refer to the link:https://github.com/openshift-knative/knative-istio-authz-chart/blob/main/values.yaml[values.yaml] for a full reference.
+The helm chart has several options that can be passed to configure the generated resources.
+Please refer to the link:https://github.com/openshift-knative/knative-istio-authz-chart/blob/main/values.yaml[values.yaml] for a full reference.
 ====
 
-
 .Verifying the configuration
-
 This verification is assuming that we have two tenants with one namespace each, all part of the `ServiceMeshMemberRoll`, configured with resources listed above.
 We can then use curl to verify the connectivity:
 
