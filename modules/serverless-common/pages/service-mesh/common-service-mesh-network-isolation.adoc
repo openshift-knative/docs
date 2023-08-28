@@ -3,13 +3,14 @@
 // Metadata:
 :description: Use {smproductname} to isolate network traffic with {serverlessproductname}
 
-// TODO
+{smproductshortname} can be used to isolate network-traffic between tenants on a shared OpenShift cluster using {smproductshortname} `AuthorizationPolicy` resources.
+{serverlessproductname} can also leverage this, using several {smproductshortname} resources.
 
-{smproductshortname} can be used to isolate network-traffic between "tenants" using {smproductshortname} `AuthorizationPolicy` resources. {serverlessproductname} can also leverage this, using several {smproductshortname} resources.
-
+.Tenants
+A tenant is a group of one or multiple OpenShift projects that can access each other over the network on a shared OpenShift cluster.
 
 .High-level architecture
-The high-level architecture consists of `AuthorizationPolicies` in the `knative-serving`, `knative-eventing` and the tenants namespaces, while all components are part of the {smproductshortname}. The respective `istio-proxy` sidecars take care of enforcing those rules to isolate traffic between tenants.
+The high-level architecture consists of `AuthorizationPolicies` in the `knative-serving`, `knative-eventing` and the tenants namespaces, while all components are part of the {smproductshortname}. The injected {smproductshortname} sidecars take care of enforcing those rules to isolate network traffic between tenants.
 
 *Knative Serving*
 
@@ -23,14 +24,14 @@ image::service-mesh/multi-tenancy-service-mesh-Eventing.drawio.svg[]
 
 * You have access to an {product-title} account with cluster administrator access.
 
-* You have created a project or have access to a project with the appropriate roles and permissions to create applications and other workloads in {product-title}.
+* You have set up {serverlessproductname} and {smproductname} as documented in xref:./common-service-mesh-setup.adoc[].
 
-* You have set up {serverlessproductname} and {smproductname} as documented in xref:./common-service-mesh-setup.adoc[]
+* You have created one or multiple OpenShift projects for each tenant.
 
 
 .Securing the {smproductshortname}
 
-. As in the set-up documentation, make sure that all your tenants are part of the same `ServiceMeshMemberRoll` object as members:
+. As in the set-up documentation, make sure that all your tenants OpenShift projects are part of the same `ServiceMeshMemberRoll` object as members:
 +
 [source,yaml]
 ----
@@ -41,19 +42,20 @@ metadata:
  namespace: istio-system
 spec:
  members:
-   - knative-serving
-   - knative-eventing
-   - tenant-1
-   - tenant-2
+   - knative-serving    # static value, needs to be here, see setup page
+   - knative-eventing   # static value, needs to be here, see setup page
+   - team-alpha-1       # example OpenShift project that belongs to the team-alpha tenant
+   - team-alpha-2       # example OpenShift project that belongs th the team-alpha tenant
+   - team-bravo-1       # example OpenShift project that belongs to the team-bravo tenant
+   - team-bravo-2       # example OpenShift project that belongs th the team-bravo tenant
 ----
 +
-All the namespaces that are part of the Mesh must enforce mTLS in strict mode. This forces Istio to only accept connections with a client-certificate present and allows the `istio-proxy` to validate the origin using `AuthorizationPolicy`.
+All the OpenShift projects that are part of the mesh must enforce mTLS in strict mode. This forces Istio to only accept connections with a client-certificate present and allows the {smproductshortname} sidecar to validate the origin using `AuthorizationPolicy`.
 +
 . For {serverlessproductname} internal components to work, the several `AuthorizationPolicies` are necessary in the `knative-serving` and the `knative-eventing` namespace:
 +
 [source,yaml]
 ----
----
 apiVersion: security.istio.io/v1beta1
 kind: AuthorizationPolicy
 metadata:
@@ -230,13 +232,12 @@ spec:
     - from:
         - source:
             namespaces: [ "knative-serving" ]
----
 ----
-These policies:
+These policies restrict the access rules for the network communication between OpenShift Serverless' system components. In detail, they enforce the following rules:
 - Deny all traffic that is not explicitly allowed in `knative-serving` and `knative-eventing`
 - Allow traffic from `istio-system` and `knative-serving` to activator
 - Allow traffic from `knative-serving` to autoscaler
-- Allow health probes for kafka components in `knative-eventing`
+- Allow health probes for Apache Kafka components in `knative-eventing`
 - Allow internal traffic for channel based brokers in `knative-eventing`
 +
 Make sure to apply all those rules to your cluster with:
@@ -246,18 +247,18 @@ Make sure to apply all those rules to your cluster with:
 $ oc apply -f <filename>
 ----
 
-. With this set up in place, cluster administrators can use their own `AuthorizationPolicies` to define which namespaces (tenants) can communicate with each other. Each namespace needs:
-- One AuthorizationPolicy limiting directly incoming traffic in the tenants namespace
-- One AuthorizationPolicy limiting incoming traffic via activator in the `knative-serving` namespace
-- One AuthorizationPolicy allowing Kubernetes to call PreStopHooks on Knative Services
+. With this set up in place, cluster administrators can use their own `AuthorizationPolicies` to define which OpenShift projects can communicate with each other. Every OpenShift project of a tenant needs:
+- One `AuthorizationPolicy` limiting directly incoming traffic to the tenants OpenShift project
+- One `AuthorizationPolicy` limiting incoming traffic via the activator component of {serverlessproductname} that runs in the `knative-serving` OpenShift project
+- One `AuthorizationPolicy` allowing Kubernetes to call `PreStopHooks` on Knative Services
 +
 As it is a cumbersome task to create all those policies by hand, you can use our link:https://github.com/openshift-knative/knative-istio-authz-chart[helm based generator] to create the necessary resources for each tenant:
 +
 [source,terminal]
 .Create resources per tenant with helm
 ----
-helm template oci://quay.io/openshift-knative/knative-istio-authz-onboarding --version 1.31.0 --set "name=tenant-1" --set "namespaces={ns1, ns2}"
-helm template oci://quay.io/openshift-knative/knative-istio-authz-onboarding --version 1.31.0 --set "name=tenant-2" --set "namespaces={ns3, ns4}"
+helm template oci://quay.io/openshift-knative/knative-istio-authz-onboarding --version 1.31.0 --set "name=team-alpha" --set "namespaces={team-alpha-1,team-alpha-2}" > team-alpha.yaml
+helm template oci://quay.io/openshift-knative/knative-istio-authz-onboarding --version 1.31.0 --set "name=team-bravo" --set "namespaces={team-bravo-1,team-bravo-2}" > team-bravo.yaml
 ----
 +
 And apply the generated resources to your cluster:
@@ -282,13 +283,13 @@ We can then use curl to verify the connectivity:
 +
 [source,terminal]
 ----
-# Tenant 1
-cat <<-EOF | oc apply -f -
+# Team Alpha
+cat <<EOF | oc apply -f -
 apiVersion: serving.knative.dev/v1
 kind: Service
 metadata:
   name: test-webapp
-  namespace: tenant-1
+  namespace: team-alpha-1
   annotations:
     serving.knative.openshift.io/enablePassthrough: "true"
 spec:
@@ -296,7 +297,6 @@ spec:
     metadata:
       annotations:
         sidecar.istio.io/inject: 'true'
-        autoscaling.knative.dev/target-burst-capacity: "-1"
     spec:
       containers:
         - image: docker.io/openshift/hello-openshift
@@ -305,12 +305,12 @@ spec:
               value: "Hello Serverless!"
 EOF
 
-cat <<-EOF | oc apply -f -
+cat <<EOF | oc apply -f -
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: curl
-  namespace: tenant-1
+  namespace: team-alpha-1
   labels:
     app: curl
 spec:
@@ -333,13 +333,13 @@ spec:
         - "3600"
 EOF
 
-# Tenant 2
-cat <<-EOF | oc apply -f -
+# Team Bravo
+cat <<EOF | oc apply -f -
 apiVersion: serving.knative.dev/v1
 kind: Service
 metadata:
   name: test-webapp
-  namespace: tenant-2
+  namespace: team-bravo-1
   annotations:
     serving.knative.openshift.io/enablePassthrough: "true"
 spec:
@@ -347,7 +347,6 @@ spec:
     metadata:
       annotations:
         sidecar.istio.io/inject: 'true'
-        autoscaling.knative.dev/target-burst-capacity: "-1"
     spec:
       containers:
         - image: docker.io/openshift/hello-openshift
@@ -361,8 +360,8 @@ EOF
 +
 [source,terminal]
 ----
-# Test tenant-1 -> tenant-1 via cluster local domain (allowed)
-oc exec deployment/curl -n tenant-1 -it -- curl -v http://test-webapp.tenant-1:80
+# Test team-alpha-1 -> team-alpha-1 via cluster local domain (allowed)
+oc exec deployment/curl -n team-alpha-1 -it -- curl -v http://test-webapp.team-alpha-1:80
 
 HTTP/1.1 200 OK
 content-length: 18
@@ -374,9 +373,9 @@ x-envoy-upstream-service-time: 9
 Hello Serverless!
 
 
-# Test tenant-1 -> tenant-1 via external domain (allowed)
-EXTERNAL_URL=$(oc get ksvc -n tenant-1 test-webapp -o custom-columns=:.status.url --no-headers)
-oc exec deployment/curl -n tenant-1 -it -- curl -ik $EXTERNAL_URL
+# Test team-alpha-1 -> team-alpha-1 via external domain (allowed)
+EXTERNAL_URL=$(oc get ksvc -n team-alpha-1 test-webapp -o custom-columns=:.status.url --no-headers)
+oc exec deployment/curl -n team-alpha-1 -it -- curl -ik $EXTERNAL_URL
 
 HTTP/2 200
 content-length: 18
@@ -388,14 +387,14 @@ x-envoy-upstream-service-time: 3629
 Hello Serverless!
 
 
-# Test tenant-1 -> tenant-2 via cluster local domain (not allowed)
-oc exec deployment/curl -n tenant-1 -it -- curl -v http://test-webapp.tenant-2:80
+# Test team-alpha-1 -> team-bravo-1 via cluster local domain (not allowed)
+oc exec deployment/curl -n team-alpha-1 -it -- curl -v http://test-webapp.team-bravo-1:80
 
-* processing: http://test-webapp.tenant-2:80
+* processing: http://test-webapp.team-bravo-1:80
 *   Trying 172.30.73.216:80...
-* Connected to test-webapp.tenant-2 (172.30.73.216) port 80
+* Connected to test-webapp.team-bravo-1 (172.30.73.216) port 80
 > GET / HTTP/1.1
-> Host: test-webapp.tenant-2
+> Host: test-webapp.team-bravo-1
 > User-Agent: curl/8.2.0
 > Accept: */*
 >
@@ -406,13 +405,13 @@ oc exec deployment/curl -n tenant-1 -it -- curl -v http://test-webapp.tenant-2:8
 < server: envoy
 < x-envoy-upstream-service-time: 6
 <
-* Connection #0 to host test-webapp.tenant-2 left intact
+* Connection #0 to host test-webapp.team-bravo-1 left intact
 RBAC: access denied
 
 
-# Test tenant-1 -> tenant-2 via external domain (allowed)
-EXTERNAL_URL=$(oc get ksvc -n tenant-2 test-webapp -o custom-columns=:.status.url --no-headers)
-oc exec deployment/curl -n tenant-1 -it -- curl -ik $EXTERNAL_URL
+# Test team-alpha-1 -> team-bravo-1 via external domain (allowed)
+EXTERNAL_URL=$(oc get ksvc -n team-bravo-1 test-webapp -o custom-columns=:.status.url --no-headers)
+oc exec deployment/curl -n team-alpha-1 -it -- curl -ik $EXTERNAL_URL
 
 HTTP/2 200
 content-length: 18
@@ -430,9 +429,9 @@ Delete the resources that were created for verification:
 +
 [source,terminal]
 ----
-oc delete deployment/curl -n tenant-1
-oc delete ksvc/test-webapp -n tenant-1
-oc delete ksvc/test-webapp -n tenant-2
+oc delete deployment/curl -n team-alpha-1
+oc delete ksvc/test-webapp -n team-alpha-1
+oc delete ksvc/test-webapp -n team-bravo-1
 ----
 
 

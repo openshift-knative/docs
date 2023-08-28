@@ -1,5 +1,5 @@
 * xref:index.adoc[Overview]
-* Serverless Common
+* Serverless
 ** Using OpenShift Serverless with OpenShift Service Mesh
 *** xref:serverless-common:service-mesh/common-service-mesh-setup.adoc[Setup Serverless with OpenShift Service Mesh]
 *** xref:serverless-common:service-mesh/common-service-mesh-network-isolation.adoc[Use Service Mesh to isolate network-traffic]

@@ -3,25 +3,21 @@
 // Metadata:
 :description: Setup {serverlessproductname} with {SMProductName}
 
-// TODO
-
 .Assumptions and limitations
 
 This page describes the integration of {serverlessproductname} with {smproductname}. In this setup, it is assumed that:
 
-* All Knative internal components, as well as Knative Services, are part of the {smproductshortname} and have istio-sidecars injected. This means, that strict mTLS is enforced within the whole mesh. All requests to Knative Services require an mTLS connection  (the client must send its certificate), except calls coming from OpenShift Routing.
-* {serverlessproductname} with Kourier disabled can only target *one* istio service mesh. Multiple meshes can be present in the cluster, but {serverlessproductname} will only be available on one of them.
-* The mesh that {serverlessproductname} is part of has to be distinct and ideally only for {serverlessproductname} workloads, as additional configuration like `Gateways` might interfere with the automated configuration by {serverlessproductname}. Other namespaces can be part of this Mesh, but must not configure the istio custom resource `Gateway` that could overlap with {serverlessproductname} `knative-local-gateway` and `knative-ingress-gateway`.
-* {smproductname} only allows one `Gateway` to claim a wildcard host binding (`hosts: *`) on the same port (`port: 443`). So the `knative-ingress-gateway` and `knative-local-gateway` have to be unique in the Mesh. If another Mesh is already binding this configuration, a separate Mesh has to be created for {serverlessproductname} workloads.
-* Cluster external Knative Services are expected to be called via OpenShift Ingress using OpenShift Routes. It is not supported to access istio directly, e.g. by exposing the `istio-ingressgateway` using a Service with type `NodePort` or `LoadBalancer`.
-* Changing the target `ServiceMeshMemberRole`, that {serverlessproductname} is part of (meaning moving {serverlessproductname} to another mesh) is not supported. The only way to change the targeted Service Mesh is to uninstall and reinstall {serverlessproductname}.
+* All Knative internal components, as well as Knative Services, are part of the {smproductshortname} and have sidecars injection enabled. This means, that strict mTLS is enforced within the whole mesh. All requests to Knative Services require an mTLS connection  (the client must send its certificate), except calls coming from OpenShift Routing.
+* {serverlessproductname} with Kourier disabled can only target *one* service mesh. Multiple meshes can be present in the cluster, but {serverlessproductname} will only be available on one of them.
+* The mesh that {serverlessproductname} is part of has to be distinct and ideally only for {serverlessproductname} workloads, as additional configuration like `Gateways` might interfere with the automated configuration by {serverlessproductname}. Other namespaces can be part of this mesh, but must not configure the {smproductshortname} custom resource `Gateway` that could overlap with {serverlessproductname} `knative-local-gateway` and `knative-ingress-gateway`.
+* {smproductname} only allows one `Gateway` to claim a wildcard host binding (`hosts: *`) on the same port (`port: 443`). So the `knative-ingress-gateway` and `knative-local-gateway` have to be unique in the mesh. If another mesh is already binding this configuration, a separate mesh has to be created for {serverlessproductname} workloads.
+* Cluster external Knative Services are expected to be called via OpenShift Ingress using OpenShift Routes. It is not supported to access {smproductshortname} directly, e.g. by exposing the `istio-ingressgateway` using a Service with type `NodePort` or `LoadBalancer`.
+* Changing the target `ServiceMeshMemberRole`, that {serverlessproductname} is part of (meaning moving {serverlessproductname} to another mesh) is not supported. The only way to change the targeted Service mesh is to uninstall and reinstall {serverlessproductname}.
 
 
 .Prerequisites
 
 * You have access to an {product-title} account with cluster administrator access.
-
-* You have created a project or have access to a project with the appropriate roles and permissions to create applications and other workloads in {product-title}.
 
 * Install the OpenShift CLI (`oc`).
 
@@ -34,7 +30,7 @@ Using {ServerlessProductName} with {SMProductShortName} is only supported with {
 
 .Installing and configuring {smproductname}
 
-. Create a `ServiceMeshControlPlane` resource in the `istio-system` namespace. Make sure to use the following settings, to make Service Mesh work with Serverless:
+. Create a `ServiceMeshControlPlane` resource in the `istio-system` namespace. Make sure to use the following settings, to make Service mesh work with Serverless:
 +
 [IMPORTANT]
 ====
@@ -75,7 +71,7 @@ spec:
 <1> This enforces strict mTLS in the mesh. Only calls using a valid client-certificate are allowed.
 <2> OpenShift Serverless has a graceful termination for Knative Services of 30 seconds. The istio-proxy needs to have a longer termination duration to make sure no requests are dropped.
 <3> Defining a specific selector for the `ingress-gateway` to target only the Knative gateway.
-<4> Those ports are called by Kubernetes and cluster monitoring which are not part of the mesh and cannot be called using mTLS, thus those ports are excluded from the Service Mesh.
+<4> Those ports are called by Kubernetes and cluster monitoring which are not part of the mesh and cannot be called using mTLS, thus those ports are excluded from the Service mesh.
 
 
 . Add the namespaces that you would like to integrate with {SMProductShortName} to the `ServiceMeshMemberRoll` object as members:
@@ -91,7 +87,7 @@ spec:
   members: <1>
     - knative-serving
     - knative-eventing
-    - <namespace>
+    - <your OpenShift projects>
 ----
 <1> A list of namespaces to be integrated with {SMProductShortName}.
 +
@@ -248,7 +244,7 @@ spec:
       "sidecar.istio.io/inject": "true"
       "sidecar.istio.io/rewriteAppHTTPProbers": "true"
 ----
-<1> Enables Eventing istio controller to create a `DestinationRule` for each InMemoryChannel or KafkaChannel service.
+<1> Enables Eventing Istio controller to create a `DestinationRule` for each InMemoryChannel or KafkaChannel service.
 <2> Enables sidecar injection for Knative Eventing pods.
 
 . Apply the `KnativeEventing` resource:
@@ -393,7 +389,7 @@ spec:
       containers:
       - image: <image_url>
 ----
-<1> A namespace that is part of the Service Mesh member roll.
+<1> A namespace that is part of the Service mesh member roll.
 <2> Instructs Knative Serving to generate an {product-title} pass-through enabled route, so that the certificates you have generated are served through the ingress gateway directly.
 <3> Injects {SMProductShortName} sidecars into the Knative service pods.
 +
