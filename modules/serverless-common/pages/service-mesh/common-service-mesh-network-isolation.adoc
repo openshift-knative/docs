@@ -16,6 +16,12 @@ The high-level architecture consists of `AuthorizationPolicies` in the `knative-
 
 image::service-mesh/multi-tenancy-service-mesh-Serving.drawio.svg[]
 
+. Workloads in project tenant-2 can not call workloads in project tenant-1 directly. Requests are rejected in the Istio proxies of tenant-1 workloads.
+. Workloads in project tenant-2 can not call workloads in project tenant-1 via ingress-gateway. Requests are rejected in the Istio proxies of tenant-1 workloads.
+. Workloads in project tenant-2 can not call workloads in project tenant-1 via activator. Requests are rejected in the Istio proxy of the activator component. Note: as ingress-gateway is allowed to call activator, this includes requests from project tenant-2 via ingress-gateway to activator.
+. 🔒 `AuthorizationPolicies` are applied in this project
+
+
 *Knative Eventing*
 
 image::service-mesh/multi-tenancy-service-mesh-Eventing.drawio.svg[]
