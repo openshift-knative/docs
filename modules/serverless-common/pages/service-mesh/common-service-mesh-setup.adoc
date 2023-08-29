@@ -3,16 +3,44 @@
 // Metadata:
 :description: Setup {serverlessproductname} with {SMProductName}
 
+This page describes the integration of {serverlessproductname} with {smproductname}.
+
 .Assumptions and limitations
 
-This page describes the integration of {serverlessproductname} with {smproductname}. In this setup, it is assumed that:
-
-* All Knative internal components, as well as Knative Services, are part of the {smproductshortname} and have sidecars injection enabled. This means, that strict mTLS is enforced within the whole mesh. All requests to Knative Services require an mTLS connection  (the client must send its certificate), except calls coming from OpenShift Routing.
-* {serverlessproductname} with Kourier disabled can only target *one* service mesh. Multiple meshes can be present in the cluster, but {serverlessproductname} will only be available on one of them.
-* The mesh that {serverlessproductname} is part of has to be distinct and ideally only for {serverlessproductname} workloads, as additional configuration like `Gateways` might interfere with the automated configuration by {serverlessproductname}. Other namespaces can be part of this mesh, but must not configure the {smproductshortname} custom resource `Gateway` that could overlap with {serverlessproductname} `knative-local-gateway` and `knative-ingress-gateway`.
-* {smproductname} only allows one `Gateway` to claim a wildcard host binding (`hosts: *`) on the same port (`port: 443`). So the `knative-ingress-gateway` and `knative-local-gateway` have to be unique in the mesh. If another mesh is already binding this configuration, a separate mesh has to be created for {serverlessproductname} workloads.
-* Cluster external Knative Services are expected to be called via OpenShift Ingress using OpenShift Routes. It is not supported to access {smproductshortname} directly, e.g. by exposing the `istio-ingressgateway` using a Service with type `NodePort` or `LoadBalancer`.
+* All Knative internal components, as well as Knative Services, are part of the {smproductshortname} and have sidecars injection enabled. This means, that strict mTLS is enforced within the whole mesh. All requests to Knative Services require an mTLS connection (the client must send its certificate), except calls coming from OpenShift Routing.
+* {serverlessproductname} with {smproductshortname} integration can only target *one* service mesh. Multiple meshes can be present in the cluster, but {serverlessproductname} will only be available on one of them.
 * Changing the target `ServiceMeshMemberRole`, that {serverlessproductname} is part of (meaning moving {serverlessproductname} to another mesh) is not supported. The only way to change the targeted Service mesh is to uninstall and reinstall {serverlessproductname}.
+
+
+.Pre-install verification
+
+Before you install and configure the {smproductshortname} integration with {serverlessproductname}, please run the following pre-install verifications to make sure, the integration will work properly.
+
+. Check for conflicting gateways
++
+The mesh that {serverlessproductname} is part of has to be distinct and ideally only for {serverlessproductname} workloads, as additional configuration like `Gateways` might interfere with the {serverlessproductname} gateways `knative-local-gateway` and `knative-ingress-gateway`. {smproductname} only allows one `Gateway` to claim a wildcard host binding (`hosts: ["*"]`) on the same port (`port: 443`). If another `Gateway` is already binding this configuration, a separate mesh has to be created for {serverlessproductname} workloads. To check if an existing `Gateway` is already binding those, run:
++
+[source,terminal]
+----
+$ oc get gateway -A -o jsonpath='{range .items[*]}{@.metadata.namespace}{"/"}{@.metadata.name}{" "}{@.spec.servers}{"\n"}{end}' | column -t
+knative-serving/knative-ingress-gateway  [{"hosts":["*"],"port":{"name":"https","number":443,"protocol":"HTTPS"},"tls":{"credentialName":"wildcard-certs","mode":"SIMPLE"}}]
+knative-serving/knative-local-gateway    [{"hosts":["*"],"port":{"name":"http","number":8081,"protocol":"HTTP"}}]
+----
++
+This command should not return a `Gateway` that binds `port: 443` and `hosts: ["*"]`, except the `Gateways` in `knative-serving` and `Gateways`, that are part of another {smproductshortname} instance.
+
+. Check if {smproductshortname} is exposed as type `NodePort` or `LoadBalancer`
++
+Cluster external Knative Services are expected to be called via OpenShift Ingress using OpenShift Routes. It is not supported to access {smproductshortname} directly, e.g. by exposing the `istio-ingressgateway` using a Service with type `NodePort` or `LoadBalancer`. To check how your `istio-ingressgateway` is exposed, run:
++
+[source,terminal]
+----
+$ oc get svc -A | grep istio-ingressgateway
+istio-system   istio-ingressgateway  ClusterIP  172.30.46.146 none>   15021/TCP,80/TCP,443/TCP     9m50s
+----
++
+This command should not return a `Service` of type `NodePort` or `LoadBalancer`.
+
 
 
 .Prerequisites
