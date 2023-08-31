@@ -42,7 +42,6 @@ istio-system   istio-ingressgateway  ClusterIP  172.30.46.146 none>   15021/TCP,
 This command should not return a `Service` of type `NodePort` or `LoadBalancer`.
 
 
-
 .Prerequisites
 
 * You have access to an {product-title} account with cluster administrator access.
