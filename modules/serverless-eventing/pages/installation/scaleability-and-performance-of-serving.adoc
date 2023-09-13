@@ -1,0 +1,271 @@
+= Scalability and performance of {serverlessproductname} Serving
+:compat-mode!:
+:description: Scalability and performance of {serverlessproductname} Serving
+
+== Introduction
+
+{serverlessproductname} consists of several different components which have different resource requirements and scaling behaviours.
+As some components, like the `controller` pods, are responsible to watch and react to `CustomResources` and continuously reconfigure the system, these components are called control-plane.
+Other components, like {serverlessproductname} Servings activator, are directly involved in requests and response handling. These components are called data-plane.
+All of these components are horizontally and vertically scalable, but their resource requirements and configuration highly depends on the actual use-case.
+
+Thus, the following paragraphs are outlining a few relevant things to consider while scaling the system to handle increased usage.
+
+=== Overhead of {serverlessproductname} Serving
+
+As components of {serverlessproductname} Serving are part of the data-plane, requests from clients are routed through:
+
+* The ingress-gateway (Kourier or Service Mesh)
+* The `activator` component
+* The `queue-proxy` sidecar container in each Knative Service
+
+As these components introduce an additional hop in networking and do some additional work (like for example adding observability and request queuing),
+they obviously come with some overhead. The following latency overheads have been measured:
+
+* Each additional network hop *adds 0.5-1ms* latency to a request. Note that the `activator` component is not always part of the data-plane depending on the current load of the Knative Service and if the Knative Service was scaled to zero before the request or not.
+* Depending on the payload size, each of those component consumes up to 1 vCPU of CPU for handling 2500 requests per second.
+
+
+=== Known limitations of {serverlessproductname} Serving
+
+The maximum number of Knative Services that can be created using this configuration is *3,000*.
+This corresponds to the OpenShift Container Platform Kubernetes services limit of 10,000, since 1 Knative Service creates 3 Kubernetes services.
+
+
+=== Scalability and performance of {serverlessproductname} Serving
+
+{serverlessproductname} Serving has to be scaled and configured based on the following parameters:
+
+* Number of Knative Services
+* Number of Revisions
+* Amount of concurrent requests in the system
+* Size of payloads of the requests
+* The startup-latency and response latency of the Knative Service added by the user's web application
+* Number of changes of the KnativeService `CustomResources` over time
+
+Scaling of {serverlessproductname} Serving is configured using the `KnativeServing` `CustomResource`.
+
+
+==== `KnativeServing` defaults
+
+Per default, {serverlessproductname} Serving is configured to run all components with high availability and with medium-sized CPU and memory requests/limits.
+This also means, that the `high-available` field in `KnativeServing` is automatically set to a value of 2 and all system components are scaled to two relicas.
+This set-up is suitable for medium-sized workload scenarios. These defaults have been tested with
+
+* 170 Knative Services
+* 1-2 Revisions per Knative Service
+* 89 test scenarios mainly focussed on testing the control-plane
+* 48 re-creating scenarios where Knative Services are deleted and re-created
+* 41 stable scenarios, in which requests are slowly but continuously sent to the system
+
+During these test cases, the system components effectively consumed:
+
+|===
+| Component | Measured resources
+
+| Operator
+| 1 GB Memory, 0.2 Cores of CPU
+
+| Serving components in project `knative-serving`
+| 5 GB Memory, 2.5 Cores of CPU
+|===
+
+While the default set-up is suitable for medium-sized workloads, this might be over-sized for smaller set-ups or under-sized for high-workload scenarios.
+Please see the next sections for possible tuning options.
+
+
+==== Minimal requirements
+
+To configure {serverlessproductname} Serving for a minimal workload scenario, it is important to know the idle consumption of the system components.
+
+.Idle consumption
+The idle consumption is dependent on the number of Knative Services.
+Please note, that for the idle consumption, only Memory is important.
+Relevant cycles of CPU are only used when Knative Services are changed or requests are sent to/from them.
+The following memory consumptions have been measured for the components in the `knative-serving` and `knative-serving-ingress` {product-title} projects:
+
+|===
+| Component | 0 Services | 100 Services | 500 Service | 1000 Services
+
+| activator
+| 55Mi
+| 86Mi
+| 150Mi
+| 200Mi
+
+| autoscaler
+| 52Mi
+| 102Mi
+| 225Mi
+| 350Mi
+
+| controller
+| 100Mi
+| 135Mi
+| 250Mi
+| 400Mi
+
+| webhook
+| 60Mi
+| 60Mi
+| 60Mi
+| 60Mi
+
+| 3scale-kourier-gateway <1>
+| 20Mi
+| 60Mi
+| 190Mi
+| 330Mi
+
+| net-kourier-controller <1>
+| 90Mi
+| 170Mi
+| 340Mi
+| 430Mi
+
+| istio-ingressgateway <1>
+| TODO
+| TODO
+| TODO
+| TODO
+
+| net-istio-controller <1>
+| TODO
+| TODO
+| TODO
+| TODO
+
+|===
+<1> Note: either `3scale-kourier-gateway` + `net-kourier-controller` or `istio-ingressgateway` + `net-istio-controller` are installed
+
+
+.Configuring {serverlessproductname} Serving for minimal workloads
+
+To configure {serverlessproductname} Serving for minimal workloads, you can tune the `KnativeServing` `CustomResource`:
+[source,yaml]
+----
+apiVersion: operator.knative.dev/v1beta1
+kind: KnativeServing
+metadata:
+  name: knative-serving
+  namespace: knative-serving
+spec:
+  high-availability:
+    replicas: 1 <1>
+
+  workloads:
+    - name: activator
+      replicas: 2 <2>
+      resources:
+        - container: activator
+          requests:
+            cpu: 250m <3>
+            memory: 60Mi <4>
+          limits:
+            cpu: 1000m
+            memory: 600Mi
+
+    - name: controller
+      replicas: 1 <6>
+      resources:
+        - container: controller
+          requests:
+            cpu: 10m
+            memory: 100Mi <4>
+          limits: <5>
+            cpu: 200m
+            memory: 300Mi
+
+    - name: webhook
+      replicas: 1 <6>
+      resources:
+        - container: webhook
+          requests:
+            cpu: 100m <7>
+            memory: 20Mi <4>
+          limits:
+            cpu: 200m
+            memory: 200Mi
+
+  podDisruptionBudgets: <8>
+    - name: activator-pdb
+      minAvailable: 1
+    - name: webhook-pdb
+      minAvailable: 1
+----
+<1> Setting this to 1 will scale all system components to one replica.
+<2> Activator should always be scaled to a minimum of two instances to avoid downtime.
+<3> Activator CPU requests should not be set lower than 250m, as a `HorizontalPodAutoscaler` will use this as a reference to scale up and down.
+<4> Adjust memory requests to the idle values from above. Also adjust memory limits according to your expected load (this might need custom testing to find the best values).
+<5> These limits are sufficient for a minimal-workload scenario, but they also might need adjustments depending on your concrete workload.
+<6> One webhook and one controller are sufficient for a minimal-workload scenario
+<7> Webhook CPU requests should not be set lower than 100m, as a `HorizontalPodAutoscaler` will use this as a reference to scale up and down.
+<8> Adjust the `PodDistruptionBudgets` to a value lower or equal to the `replicas`, to avoid problems during node maintenance.
+
+
+==== High-workload configuration
+
+To configure {serverlessproductname} Serving for a high-workload scenario the following findings are relevant:
+
+[NOTE]
+====
+These findings have been tested with requests with a payload size of 0-32kb.
+The Knative Service backends used in those tests had a startup-latency between 0-10 seconds and response times between 0-5 seconds.
+====
+
+* All data-plane components are mostly increasing CPU usage on higher requests and/or payload scenarios, so the CPU requests and limits have to be tested and potentially increased.
+* The `activator` component also might need more memory, when it has to buffer more or bigger request payloads, so the memory requests and limits might need to be increased as well.
+* One `activator` pod can handle *approximately 2500 requests per second* before it starts to increase latency and, at some point, leads to errors.
+* One `3scale-kourier-gateway` or `istio-ingressgateway` pod can also handle *approximately 2500 requests per second* before it starts to increase latency and, at some point, leads to errors.
+* Each of the data-plane components consumes up to 1 vCPU of CPU for handling 2500 requests per second, please note that this highly depends on the payload size and the response times of the Knative Service backend.
+
+[IMPORTANT]
+====
+Please note, that *fast startup* and *fast response-times* of your Knative Service user workloads are *critical* for good performance of the overall system.
+As {serverlessproductname} Serving components are buffering incoming requests when the Knative Service user backend is scaling-up or request concurrency has reached its capacity.
+If your Knative Service user workload introduce long startup- or request-latency, at some point this will either overload the `activator` component (only if the CPU + memory configuration is too low) or leads to errors for the calling clients.
+====
+
+To fine-tune your {serverlessproductname} installation, use the above findings combined with your own test results to configure the `KnativeServing` `CustomResource`:
+
+[source,yaml]
+----
+apiVersion: operator.knative.dev/v1beta1
+kind: KnativeServing
+metadata:
+  name: knative-serving
+  namespace: knative-serving
+spec:
+  high-availability:
+    replicas: 2 <1>
+
+  workloads:
+    - name: component-name <2>
+      replicas: 2 <2>
+      resources:
+        - container: container-name
+          requests:
+            cpu: <3>
+            memory: <3>
+          limits:
+            cpu: <3>
+            memory: <3>
+
+  podDisruptionBudgets: <4>
+    - name: name-of-pod-disruption-budget
+      minAvailable: 1
+----
+<1> Set this to at least 2, to make sure you have always at least two instances of every component running. You can also use `workloads` to override the replicas for certain components.
+<2> Use the `workloads` list to configure specific components. Use the `deployment` name of the component (like `activator`, `autoscaler`, `autoscaler-hpa`, `controller`, `webhook`, `net-kourier-controller`, `3scale-kourier-gateway`, `net-istio-controller`) and set the `replicas`.
+<3> Set the requested and limited CPU + Memory according to at least the idle consumption (see above) while also taking the above findings and your own test results into consideration.
+<4> Adjust the `PodDistruptionBudgets` to a value lower or equal to the `replicas`, to avoid problems during node maintenance.
+
+[IMPORTANT]
+====
+As each environment is highly specific, it is essential to test and find your own ideal configuration.
+Please use the monitoring and alerting functionality of {product-title} to continuously monitor your actual resource consumption and make adjustments if needed.
+
+Also keep in mind, that if you are using the {serverlessproductname} and {smproductshortname} integration, additional CPU overhead is added by the `istio-proxy` sidecar containers.
+For more information on this, see the {smproductshortname} documentation.
+====
+
