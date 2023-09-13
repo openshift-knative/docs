@@ -124,16 +124,16 @@ The following memory consumptions have been measured for the components in the `
 | 430Mi
 
 | istio-ingressgateway (1)
-| TODO
-| TODO
-| TODO
-| TODO
+| 57Mi
+| 107Mi
+| 307Mi
+| 446Mi
 
 | net-istio-controller (1)
-| TODO
-| TODO
-| TODO
-| TODO
+| 60Mi
+| 152Mi
+| 350Mi
+| 504Mi
 
 |===
 <1> Note: either `3scale-kourier-gateway` + `net-kourier-controller` or `istio-ingressgateway` + `net-istio-controller` are installed
