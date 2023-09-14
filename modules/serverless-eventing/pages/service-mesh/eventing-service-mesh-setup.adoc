@@ -5,6 +5,11 @@
 
 // TODO
 
+[IMPORTANT]
+====
+OpenShift Serverless Eventing with {SMProductName} is a Developer Preview feature only. OpenShift Serverless - Developer Preview releases contain features and functionalities that might not be fully tested. Customers are encouraged to provide feedback on Developer Preview releases. Developer Preview releases are not production-ready, and customers are recommended to avoid using the project for production or business-critical workloads.
+====
+
 .Prerequisites
 
 * You have access to an {product-title} account with cluster administrator access.
