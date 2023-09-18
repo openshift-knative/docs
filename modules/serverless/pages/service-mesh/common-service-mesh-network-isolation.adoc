@@ -26,6 +26,13 @@ image::service-mesh/multi-tenancy-service-mesh-Serving.drawio.svg[]
 
 image::service-mesh/multi-tenancy-service-mesh-Eventing.drawio.svg[]
 
+. Workloads in tenant-1 project can send events to Eventing brokers, channels, and sinks endpoints in the tenant-1 project.
+. Eventing sources, triggers and subscriptions in project tenant-1 can send events to workloads in project tenant-1.
+. Workloads in tenant-1 project can _not_ send events to Eventing brokers, channels, and sinks endpoints in the tenant-2 project.
+. Eventing sources, triggers and subscriptions in project tenant-2 can _not_ send events to workloads in project tenant-1.
+. Workloads in project tenant-1 can not call workloads in project tenant-2 as well as workloads in project tenant-2 can not call workloads in project tenant-1.
+. 🔒 `AuthorizationPolicies` are applied in this project
+
 .Prerequisites
 
 * You have access to an {product-title} account with cluster administrator access.
