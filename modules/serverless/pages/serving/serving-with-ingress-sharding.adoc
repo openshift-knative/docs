@@ -1,0 +1,123 @@
+= Use Serving with {product-title} ingress sharding
+:compat-mode!:
+// Metadata:
+:description: Use Serving with {product-title} ingress sharding
+
+This page describes how {serverless} Serving can be used with {product-title} ingress sharding.
+
+.Prerequisites
+
+* You have access to an {product-title} account with cluster administrator access.
+
+* You have an existing {product-title} routing setup that uses ingress shards
+
+
+.Setting up {product-title} ingress shards
+
+{serverless} can be configured to match specific ingress shards with different domains with a label selector.
+The following is an example of how your ingress shard could be configured.
+The relevant fields are marked:
+
+[source,yaml]
+----
+apiVersion: operator.openshift.io/v1
+kind: IngressController
+metadata:
+  name: ingress-dev  <1>
+  namespace: openshift-ingress-operator
+spec:
+  routeSelector:
+    matchLabels:
+      router: dev  <2>
+  domain: "dev.serverless.cluster.example.com"  <3>
+  #... other settings ...
+---
+apiVersion: operator.openshift.io/v1
+kind: IngressController
+metadata:
+  name: ingress-prod  <1>
+  namespace: openshift-ingress-operator
+spec:
+  routeSelector:
+    matchLabels:
+      router: prod  <2>
+  domain: "prod.serverless.cluster.example.com"  <3>
+  #... other settings ...
+----
+<1> The names of your ingress shard, here as an example `dev` and `prod` for different stages
+<2> A label selector to match the ingress shard
+<3> A custom domain for the ingress shard
+
+Replace these values with your own configuration.
+
+.Configuring custom domains in the `KnativeServing` CustomResource
+
+To match the ingress shards, you need to configure `KnativeServing` to use the same domains and labels as your ingress shards.
+For this you need to create or edit your `KnativeServing` resource and add the `spec.config.domain` field:
+[source,yaml]
+----
+spec:
+  config:
+    domain: <1>
+      dev.serverless.cluster.example.com: |
+        selector:
+          router: dev
+      prod.serverless.cluster.example.com: |
+        selector:
+          router: prod
+----
+<1> These values have to match to the ones in the ingress shard configuration.
+
+.Targeting a specific ingress shard in the Knative Service
+
+You can now target a specific ingress shard in your Knative `Service` resources using a label:
+[source,yaml]
+----
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: hello-dev
+  labels:
+    router: dev  <1>
+spec:
+  template:
+    spec:
+      containers:
+      - image: docker.io/openshift/hello-openshift
+---
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: hello-prod
+  labels:
+    router: prod  <1>
+spec:
+  template:
+    spec:
+      containers:
+      - image: docker.io/openshift/hello-openshift
+----
+<1> This have to match the configuration in `KnativeServing`
+
+.Verification
+
+With this setup, your Knative Services should use the correct route and the selected ingress shard:
+[source,terminal]
+----
+$ oc get ksvc
+NAME         URL                                                             LATESTCREATED      LATESTREADY        READY   REASON
+hello-dev    https://hello-dev-default.dev.serverless.cluster.example.com    hello-dev-00001    hello-dev-00001    True
+hello-prod   https://hello-prod-default.prod.serverless.cluster.example.com  hello-prod-00001   hello-prod-00001   True
+----
+[source,terminal]
+----
+$ oc get route -n knative-serving-ingress -o jsonpath='{range .items[*]}{@.metadata.name}{" "}{@.spec.host}{" "}{@.status.ingress[*].routerName}{"\n"}{end}'
+route-19e6628b-77af-4da0-9b4c-1224934b2250-323461616533 hello-prod-default.prod.serverless.cluster.example.com ingress-prod
+route-cb5085d9-b7da-4741-9a56-96c88c6adaaa-373065343266 hello-dev-default.dev.serverless.cluster.example.com ingress-dev
+----
+
+[NOTE]
+====
+Please be aware that even with OpenShift ingress sharding in place, the {serverless} traffic is still routed through a single Knative Ingress Gateway and the activator component in the `knative-serving` project.
+Please also take a look at xref:./../service-mesh/common-service-mesh-network-isolation.adoc[] for more information about isolating the network traffic.
+====

@@ -1,0 +1,539 @@
+= Use {smproductname} to isolate network traffic with {serverlessproductname}
+:compat-mode!:
+// Metadata:
+:description: Use {smproductname} to isolate network traffic with {serverlessproductname}
+
+{smproductshortname} can be used to isolate network-traffic between tenants on a shared OpenShift cluster using {smproductshortname} `AuthorizationPolicy` resources.
+{serverlessproductname} can also leverage this, using several {smproductshortname} resources.
+
+.Tenants
+A tenant is a group of one or multiple OpenShift projects that can access each other over the network on a shared OpenShift cluster.
+
+.High-level architecture
+The high-level architecture consists of `AuthorizationPolicies` in the `knative-serving`, `knative-eventing` and the tenants namespaces, while all components are part of the {smproductshortname}. The injected {smproductshortname} sidecars take care of enforcing those rules to isolate network traffic between tenants.
+
+*Knative Serving*
+
+image::service-mesh/multi-tenancy-service-mesh-Serving.drawio.svg[]
+
+. Workloads in project tenant-2 can not call workloads in project tenant-1 directly. Requests are rejected in the Istio proxies of tenant-1 workloads.
+. Workloads in project tenant-2 can not call workloads in project tenant-1 via ingress-gateway. Requests are rejected in the Istio proxies of tenant-1 workloads.
+. Workloads in project tenant-2 can not call workloads in project tenant-1 via activator. Requests are rejected in the Istio proxy of the activator component. Note: as ingress-gateway is allowed to call activator, this includes requests from project tenant-2 via ingress-gateway to activator.
+. 🔒 `AuthorizationPolicies` are applied in this project
+
+
+*Knative Eventing*
+
+image::service-mesh/multi-tenancy-service-mesh-Eventing.drawio.svg[]
+
+. Workloads in tenant-1 project can send events to Eventing brokers, channels, and sinks endpoints in the tenant-1 project.
+. Eventing sources, triggers and subscriptions in project tenant-1 can send events to workloads in project tenant-1.
+. Workloads in tenant-1 project can _not_ send events to Eventing brokers, channels, and sinks endpoints in the tenant-2 project.
+. Eventing sources, triggers and subscriptions in project tenant-2 can _not_ send events to workloads in project tenant-1.
+. Workloads in project tenant-1 can not call workloads in project tenant-2 as well as workloads in project tenant-2 can not call workloads in project tenant-1.
+. 🔒 `AuthorizationPolicies` are applied in this project
+
+.Prerequisites
+
+* You have access to an {product-title} account with cluster administrator access.
+
+* You have set up {serverlessproductname} and {smproductname} as documented in xref:./common-service-mesh-setup.adoc[].
+
+* You have created one or multiple OpenShift projects for each tenant.
+
+
+.Securing the {smproductshortname}
+
+. As in the set-up documentation, make sure that all your tenants OpenShift projects are part of the same `ServiceMeshMemberRoll` object as members:
++
+[source,yaml]
+----
+apiVersion: maistra.io/v1
+kind: ServiceMeshMemberRoll
+metadata:
+ name: default
+ namespace: istio-system
+spec:
+ members:
+   - knative-serving    # static value, needs to be here, see setup page
+   - knative-eventing   # static value, needs to be here, see setup page
+   - team-alpha-1       # example OpenShift project that belongs to the team-alpha tenant
+   - team-alpha-2       # example OpenShift project that belongs th the team-alpha tenant
+   - team-bravo-1       # example OpenShift project that belongs to the team-bravo tenant
+   - team-bravo-2       # example OpenShift project that belongs th the team-bravo tenant
+----
++
+All the OpenShift projects that are part of the mesh must enforce mTLS in strict mode. This forces Istio to only accept connections with a client-certificate present and allows the {smproductshortname} sidecar to validate the origin using `AuthorizationPolicy`.
++
+. For {serverlessproductname} internal components to work, the several `AuthorizationPolicies` are necessary in the `knative-serving` and the `knative-eventing` namespace:
++
+[source,yaml]
+----
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: deny-all-by-default
+  namespace: knative-eventing
+spec: { }
+---
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: deny-all-by-default
+  namespace: knative-serving
+spec: { }
+---
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: allow-mt-channel-based-broker-ingress-to-imc-dispatcher
+  namespace: knative-eventing
+spec:
+  action: ALLOW
+  selector:
+    matchLabels:
+      app.kubernetes.io/component: "imc-dispatcher"
+  rules:
+    - from:
+        - source:
+            namespaces: [ "knative-eventing" ]
+            principals: [ "cluster.local/ns/knative-eventing/sa/mt-broker-ingress" ]
+      to:
+        - operation:
+            methods: [ "POST" ]
+---
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: allow-mt-channel-based-broker-ingress-to-kafka-channel
+  namespace: knative-eventing
+spec:
+  action: ALLOW
+  selector:
+    matchLabels:
+      app.kubernetes.io/component: "kafka-channel-receiver"
+  rules:
+    - from:
+        - source:
+            namespaces: [ "knative-eventing" ]
+            principals: [ "cluster.local/ns/knative-eventing/sa/mt-broker-ingress" ]
+      to:
+        - operation:
+            methods: [ "POST" ]
+---
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: allow-kafka-channel-to-mt-channel-based-broker-filter
+  namespace: knative-eventing
+spec:
+  action: ALLOW
+  selector:
+    matchLabels:
+      app.kubernetes.io/component: "broker-filter"
+  rules:
+    - from:
+        - source:
+            namespaces: [ "knative-eventing" ]
+            principals: [ "cluster.local/ns/knative-eventing/sa/knative-kafka-channel-data-plane" ]
+      to:
+        - operation:
+            methods: [ "POST" ]
+---
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: allow-imc-to-mt-channel-based-broker-filter
+  namespace: knative-eventing
+spec:
+  action: ALLOW
+  selector:
+    matchLabels:
+      app.kubernetes.io/component: "broker-filter"
+  rules:
+    - from:
+        - source:
+            namespaces: [ "knative-eventing" ]
+            principals: [ "cluster.local/ns/knative-eventing/sa/imc-dispatcher" ]
+      to:
+        - operation:
+            methods: [ "POST" ]
+---
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: allow-probe-kafka-broker-receiver
+  namespace: knative-eventing
+spec:
+  action: ALLOW
+  selector:
+    matchLabels:
+      app.kubernetes.io/component: "kafka-broker-receiver"
+  rules:
+    - from:
+        - source:
+            namespaces: [ "knative-eventing" ]
+            principals: [ "cluster.local/ns/knative-eventing/sa/kafka-controller" ]
+      to:
+        - operation:
+            methods: [ "GET" ]
+---
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: allow-probe-kafka-sink-receiver
+  namespace: knative-eventing
+spec:
+  action: ALLOW
+  selector:
+    matchLabels:
+      app.kubernetes.io/component: "kafka-sink-receiver"
+  rules:
+    - from:
+        - source:
+            namespaces: [ "knative-eventing" ]
+            principals: [ "cluster.local/ns/knative-eventing/sa/kafka-controller" ]
+      to:
+        - operation:
+            methods: [ "GET" ]
+---
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: allow-probe-kafka-channel-receiver
+  namespace: knative-eventing
+spec:
+  action: ALLOW
+  selector:
+    matchLabels:
+      app.kubernetes.io/component: "kafka-channel-receiver"
+  rules:
+    - from:
+        - source:
+            namespaces: [ "knative-eventing" ]
+            principals: [ "cluster.local/ns/knative-eventing/sa/kafka-controller" ]
+      to:
+        - operation:
+            methods: [ "GET" ]
+---
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: allow-traffic-to-activator
+  namespace: knative-serving
+spec:
+  selector:
+    matchLabels:
+      app: activator
+  action: ALLOW
+  rules:
+    - from:
+        - source:
+            namespaces: [ "knative-serving", "istio-system" ]
+---
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: allow-traffic-to-autoscaler
+  namespace: knative-serving
+spec:
+  selector:
+    matchLabels:
+      app: autoscaler
+  action: ALLOW
+  rules:
+    - from:
+        - source:
+            namespaces: [ "knative-serving" ]
+----
+These policies restrict the access rules for the network communication between OpenShift Serverless' system components. In detail, they enforce the following rules:
+- Deny all traffic that is not explicitly allowed in `knative-serving` and `knative-eventing`
+- Allow traffic from `istio-system` and `knative-serving` to activator
+- Allow traffic from `knative-serving` to autoscaler
+- Allow health probes for Apache Kafka components in `knative-eventing`
+- Allow internal traffic for channel based brokers in `knative-eventing`
++
+Make sure to apply all those rules to your cluster with:
++
+[source,terminal]
+----
+$ oc apply -f <filename>
+----
+
+. With this set up in place, cluster administrators can use their own `AuthorizationPolicies` to define which OpenShift projects can communicate with each other. Every OpenShift project of a tenant needs:
+- One `AuthorizationPolicy` limiting directly incoming traffic to the tenants OpenShift project
+- One `AuthorizationPolicy` limiting incoming traffic via the activator component of {serverlessproductname} that runs in the `knative-serving` OpenShift project
+- One `AuthorizationPolicy` allowing Kubernetes to call `PreStopHooks` on Knative Services
++
+As it is a cumbersome task to create all those policies by hand, you can use our link:https://github.com/openshift-knative/knative-istio-authz-chart[helm based generator] to create the necessary resources for each tenant:
++
+[source,terminal]
+.Create resources per tenant with helm
+----
+helm template oci://quay.io/openshift-knative/knative-istio-authz-onboarding --version 1.31.0 --set "name=team-alpha" --set "namespaces={team-alpha-1,team-alpha-2}" > team-alpha.yaml
+helm template oci://quay.io/openshift-knative/knative-istio-authz-onboarding --version 1.31.0 --set "name=team-bravo" --set "namespaces={team-bravo-1,team-bravo-2}" > team-bravo.yaml
+----
++
+And apply the generated resources to your cluster:
++
+[source,terminal]
+----
+$ oc apply -f <filename>
+----
++
+[NOTE]
+====
+The helm chart has several options that can be passed to configure the generated resources. Please refer to the link:https://github.com/openshift-knative/knative-istio-authz-chart/blob/main/values.yaml[values.yaml] for a full reference.
+====
+
+
+.Verifying the configuration
+
+This verification is assuming that we have two tenants with one namespace each, all part of the `ServiceMeshMemberRoll`, configured with resources listed above.
+We can then use curl to verify the connectivity:
+
+. Deploy Knative Services in both tenants namespaces:
++
+[tabs]
+====
+Using the Knative CLI::
++
+[source,terminal]
+----
+# Team Alpha
+kn service create test-webapp -n team-alpha-1 \
+    --annotation-service serving.knative.openshift.io/enablePassthrough=true \
+    --annotation-revision sidecar.istio.io/inject=true \
+    --env RESPONSE="Hello Serverless" \
+    --image docker.io/openshift/hello-openshift
+
+# Team Bravo
+kn service create test-webapp -n team-bravo-1 \
+    --annotation-service serving.knative.openshift.io/enablePassthrough=true \
+    --annotation-revision sidecar.istio.io/inject=true \
+    --env RESPONSE="Hello Serverless" \
+    --image docker.io/openshift/hello-openshift
+----
+Using YAML::
++
+[source,yaml]
+----
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: test-webapp
+  namespace: team-alpha-1
+  annotations:
+    serving.knative.openshift.io/enablePassthrough: "true"
+spec:
+  template:
+    metadata:
+      annotations:
+        sidecar.istio.io/inject: 'true'
+    spec:
+      containers:
+        - image: docker.io/openshift/hello-openshift
+          env:
+            - name: RESPONSE
+              value: "Hello Serverless!"
+---
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: test-webapp
+  namespace: team-bravo-1
+  annotations:
+    serving.knative.openshift.io/enablePassthrough: "true"
+spec:
+  template:
+    metadata:
+      annotations:
+        sidecar.istio.io/inject: 'true'
+    spec:
+      containers:
+        - image: docker.io/openshift/hello-openshift
+          env:
+            - name: RESPONSE
+              value: "Hello Serverless!"
+----
+====
+
+. Deploy a `curl` pod to test the connections:
++
+[source,terminal]
+----
+cat <<EOF | oc apply -f -
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: curl
+  namespace: team-alpha-1
+  labels:
+    app: curl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: curl
+  template:
+    metadata:
+      labels:
+        app: curl
+      annotations:
+        sidecar.istio.io/inject: 'true'
+    spec:
+      containers:
+      - name: curl
+        image: curlimages/curl
+        command:
+        - sleep
+        - "3600"
+EOF
+----
+
+. Verification
++
+[tabs]
+====
+Using the Knative CLI::
++
+[source,terminal]
+----
+# Test team-alpha-1 -> team-alpha-1 via cluster local domain (allowed)
+oc exec deployment/curl -n team-alpha-1 -it -- curl -v http://test-webapp.team-alpha-1:80
+
+HTTP/1.1 200 OK
+content-length: 18
+content-type: text/plain; charset=utf-8
+date: Wed, 26 Jul 2023 12:49:59 GMT
+server: envoy
+x-envoy-upstream-service-time: 9
+
+Hello Serverless!
+
+
+# Test team-alpha-1 -> team-alpha-1 via external domain (allowed)
+oc exec deployment/curl -n team-alpha-1 -it -- curl -ik $(kn service describe test-webapp -o url -n team-alpha-1)
+
+HTTP/2 200
+content-length: 18
+content-type: text/plain; charset=utf-8
+date: Wed, 26 Jul 2023 12:55:30 GMT
+server: istio-envoy
+x-envoy-upstream-service-time: 3629
+
+Hello Serverless!
+
+
+# Test team-alpha-1 -> team-bravo-1 via cluster local domain (not allowed)
+oc exec deployment/curl -n team-alpha-1 -it -- curl -v http://test-webapp.team-bravo-1:80
+
+* processing: http://test-webapp.team-bravo-1:80
+*   Trying 172.30.73.216:80...
+* Connected to test-webapp.team-bravo-1 (172.30.73.216) port 80
+> GET / HTTP/1.1
+> Host: test-webapp.team-bravo-1
+> User-Agent: curl/8.2.0
+> Accept: */*
+>
+< HTTP/1.1 403 Forbidden
+< content-length: 19
+< content-type: text/plain
+< date: Wed, 26 Jul 2023 12:55:49 GMT
+< server: envoy
+< x-envoy-upstream-service-time: 6
+<
+* Connection #0 to host test-webapp.team-bravo-1 left intact
+RBAC: access denied
+
+
+# Test team-alpha-1 -> team-bravo-1 via external domain (allowed)
+oc exec deployment/curl -n team-alpha-1 -it -- curl -ik $(kn service describe test-webapp -o url -n team-bravo-1)
+
+HTTP/2 200
+content-length: 18
+content-type: text/plain; charset=utf-8
+date: Wed, 26 Jul 2023 12:56:22 GMT
+server: istio-envoy
+x-envoy-upstream-service-time: 2856
+
+Hello Serverless!
+----
+Using OC client::
++
+[source,terminal]
+----
+# Test team-alpha-1 -> team-alpha-1 via cluster local domain (allowed)
+oc exec deployment/curl -n team-alpha-1 -it -- curl -v http://test-webapp.team-alpha-1:80
+
+HTTP/1.1 200 OK
+content-length: 18
+content-type: text/plain; charset=utf-8
+date: Wed, 26 Jul 2023 12:49:59 GMT
+server: envoy
+x-envoy-upstream-service-time: 9
+
+Hello Serverless!
+
+
+# Test team-alpha-1 -> team-alpha-1 via external domain (allowed)
+EXTERNAL_URL=$(oc get ksvc -n team-alpha-1 test-webapp -o custom-columns=:.status.url --no-headers)
+oc exec deployment/curl -n team-alpha-1 -it -- curl -ik $EXTERNAL_URL
+
+HTTP/2 200
+content-length: 18
+content-type: text/plain; charset=utf-8
+date: Wed, 26 Jul 2023 12:55:30 GMT
+server: istio-envoy
+x-envoy-upstream-service-time: 3629
+
+Hello Serverless!
+
+
+# Test team-alpha-1 -> team-bravo-1 via cluster local domain (not allowed)
+oc exec deployment/curl -n team-alpha-1 -it -- curl -v http://test-webapp.team-bravo-1:80
+
+* processing: http://test-webapp.team-bravo-1:80
+*   Trying 172.30.73.216:80...
+* Connected to test-webapp.team-bravo-1 (172.30.73.216) port 80
+> GET / HTTP/1.1
+> Host: test-webapp.team-bravo-1
+> User-Agent: curl/8.2.0
+> Accept: */*
+>
+< HTTP/1.1 403 Forbidden
+< content-length: 19
+< content-type: text/plain
+< date: Wed, 26 Jul 2023 12:55:49 GMT
+< server: envoy
+< x-envoy-upstream-service-time: 6
+<
+* Connection #0 to host test-webapp.team-bravo-1 left intact
+RBAC: access denied
+
+
+# Test team-alpha-1 -> team-bravo-1 via external domain (allowed)
+EXTERNAL_URL=$(oc get ksvc -n team-bravo-1 test-webapp -o custom-columns=:.status.url --no-headers)
+oc exec deployment/curl -n team-alpha-1 -it -- curl -ik $EXTERNAL_URL
+
+HTTP/2 200
+content-length: 18
+content-type: text/plain; charset=utf-8
+date: Wed, 26 Jul 2023 12:56:22 GMT
+server: istio-envoy
+x-envoy-upstream-service-time: 2856
+
+Hello Serverless!
+----
+====
+
+. Cleanup
++
+Delete the resources that were created for verification:
++
+[source,terminal]
+----
+oc delete deployment/curl -n team-alpha-1
+oc delete ksvc/test-webapp -n team-alpha-1
+oc delete ksvc/test-webapp -n team-bravo-1
+----
