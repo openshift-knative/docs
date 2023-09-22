@@ -574,7 +574,7 @@ It must contain a Java class that inherits from `WorkItemTypeHandler`. Its respo
 +
 The runtime project consists of a `WorkflowWorkItemHandler` implementation, which name must match with the one provided to `WorkItemNodeFactory` during the deployment phase, and a `WorkItemHandlerConfig` bean that registers that handler with that name.
 +
-When a Serverless Workflow function is called, Kogito identifies the proper `WorkflowWorkItemHandler` instance to be used for that function type (using the handler name associated with that type by the deployment project) and then invokes the `internalExecute` method. The `Map` parameter contains the function arguments defined in the workflow, and the `WorkItem` parameter contains the metadata information added to the handler by the deployment project. Hence, the `executeWorkItem` implementation has an access to all the information needed to perform the computational logic intended for that custom type.
+When a Serverless Workflow function is called, {product_name} identifies the proper `WorkflowWorkItemHandler` instance to be used for that function type (using the handler name associated with that type by the deployment project) and then invokes the `internalExecute` method. The `Map` parameter contains the function arguments defined in the workflow, and the `WorkItem` parameter contains the metadata information added to the handler by the deployment project. Hence, the `executeWorkItem` implementation has an access to all the information needed to perform the computational logic intended for that custom type.
 
 === Custom function type example
 
