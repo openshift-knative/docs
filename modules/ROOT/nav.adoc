@@ -9,40 +9,46 @@
 *** xref:serverless:serving/serving-with-ingress-sharding.adoc[Use Serving with OpenShift ingress sharding]
 * Serverless Logic
 ** xref:serverless-logic:about.adoc[About OpenShift Serverless Logic]
+
 ** User Guides
 *** Getting Started
 **** xref:serverless-logic:getting-started/create-your-first-workflow-service.adoc[Creating your first workflow service]
 **** xref:serverless-logic:getting-started/cncf-serverless-workflow-specification-support.adoc[CNCF Serverless Workflow specification]
 **** xref:serverless-logic:getting-started/getting-familiar-with-our-tooling.adoc[Getting familiar with tooling]
+
 *** Core
 **** xref:serverless-logic:core/understanding-jq-expressions.adoc[jq expressions]
 **** xref:serverless-logic:core/understanding-workflow-error-handling.adoc[Error handling]
 **** xref:serverless-logic:core/working-with-parallelism.adoc[Parallelism]
 **** xref:serverless-logic:core/configuration-properties.adoc[Configuration properties]
 //**** xref:serverless-logic:core/accessing-workflow-metainformation-in-runtime.adoc[Accessing workflow metainformation in runtime]
-**** xref:serverless-logic:core/defining-an-input-schema-for-workflows.adoc[Defining an input schema for your workflows]
-**** xref:serverless-logic:core/custom-functions-support.adoc[Custom functions for your service]
-**** xref:serverless-logic:core/timeouts-support.adoc[Timeouts]
+**** xref:serverless-logic:core/defining-an-input-schema-for-workflows.adoc[Input schema definition]
+**** xref:serverless-logic:core/custom-functions-support.adoc[Custom functions for your workflow service]
+**** xref:serverless-logic:core/timeouts-support.adoc[Timeouts Support]
+
 *** Tooling
-**** xref:serverless-logic:tooling/serverless-workflow-editor/swf-editor-overview.adoc[Serverless Workflow editor]
-***** xref:serverless-logic:tooling/serverless-workflow-editor/swf-editor-vscode-extension.adoc[VS Code extension for Serverless Workflow editor]
-***** xref:serverless-logic:tooling/serverless-workflow-editor/swf-editor-chrome-extension.adoc[Chrome GitHub extension for Serverless Workflow editor]
-**** xref:serverless-logic:tooling/quarkus-dev-ui-extension/quarkus-dev-ui-overview.adoc[Kogito Serverless Workflow Tools extension in Quarkus Dev UI]
-***** xref:serverless-logic:tooling/quarkus-dev-ui-extension/quarkus-dev-ui-workflow-instances-page.adoc[Workflow Instances in Kogito Serverless Workflow Tools extension]
-***** xref:serverless-logic:tooling/quarkus-dev-ui-extension/quarkus-dev-ui-workflow-definition-page.adoc[Workflow Definitions in Kogito Serverless Workflow Tools extension]
-***** xref:serverless-logic:tooling/quarkus-dev-ui-extension/quarkus-dev-ui-custom-dashboard-page.adoc[Dashboards in Kogito Serverless Workflow Tools extension]
-**** xref:serverless-logic:tooling/kn-plugin-workflow-overview.adoc[{product_name} plug-in for Knative CLI]
-**** xref:serverless-logic:tooling/serverless-logic-web-tools/serverless-logic-web-tools-overview.adoc[{serverless_logic_web_tools_name}]
-***** xref:serverless-logic:tooling/serverless-logic-web-tools/serverless-logic-web-tools-github-integration.adoc[GitHub integration]
-***** xref:serverless-logic:tooling/serverless-logic-web-tools/serverless-logic-web-tools-openshift-integration.adoc[OpenShift integration]
-***** xref:serverless-logic:tooling/serverless-logic-web-tools/serverless-logic-web-tools-redhat-application-services-integration.adoc[Red Hat OpenShift Application and Data Services integration]
-***** xref:serverless-logic:tooling/serverless-logic-web-tools/serverless-logic-web-tools-deploy-projects.adoc[Deploying projects]
-***** xref:serverless-logic:tooling/serverless-logic-web-tools/serverless-logic-web-tools-enable-kogito-swf-visualization.adoc[Kogito Serverless Workflow Visualization]
+**** xref:serverless-logic:tooling/serverless-workflow-editor/swf-editor-overview.adoc[Editor]
+**** xref:serverless-logic:tooling/serverless-workflow-editor/swf-editor-vscode-extension.adoc[VS Code extension]
+**** xref:serverless-logic:tooling/serverless-workflow-editor/swf-editor-chrome-extension.adoc[Chrome extension for GitHub]
+//**** xref:serverless-logic:tooling/quarkus-dev-ui-extension/quarkus-dev-ui-overview.adoc[Kogito Serverless Workflow Tools extension in Quarkus Dev UI]
+//***** xref:serverless-logic:tooling/quarkus-dev-ui-extension/quarkus-dev-ui-workflow-instances-page.adoc[Workflow Instances in Kogito Serverless Workflow Tools extension]
+//***** xref:serverless-logic:tooling/quarkus-dev-ui-extension/quarkus-dev-ui-workflow-definition-page.adoc[Workflow Definitions in Kogito Serverless Workflow Tools extension]
+//***** xref:serverless-logic:tooling/quarkus-dev-ui-extension/quarkus-dev-ui-custom-dashboard-page.adoc[Dashboards in Kogito Serverless Workflow Tools extension]
+//**** xref:serverless-logic:tooling/kn-plugin-workflow-overview.adoc[{product_name} plug-in for Knative CLI]
+//**** xref:serverless-logic:tooling/serverless-logic-web-tools/serverless-logic-web-tools-overview.adoc[{serverless_logic_web_tools_name}]
+***** xref:serverless-logic:tooling/serverless-logic-web-tools/serverless-logic-web-tools-github-integration.adoc[Integration with GitHub]
+***** xref:serverless-logic:tooling/serverless-logic-web-tools/serverless-logic-web-tools-openshift-integration.adoc[Integration with OpenShift]
+***** xref:serverless-logic:tooling/serverless-logic-web-tools/serverless-logic-web-tools-redhat-application-services-integration.adoc[Integration with Service Registries]
+//***** xref:serverless-logic:tooling/serverless-logic-web-tools/serverless-logic-web-tools-redhat-application-services-integration.adoc[Red Hat OpenShift Application and Data Services integration]
+***** xref:serverless-logic:tooling/serverless-logic-web-tools/serverless-logic-web-tools-deploy-projects.adoc[Deployment]
+//***** xref:serverless-logic:tooling/serverless-logic-web-tools/serverless-logic-web-tools-enable-kogito-swf-visualization.adoc[Kogito Serverless Workflow Visualization]
+
 *** Service Orchestration
 **** xref:serverless-logic:service-orchestration/orchestration-of-openapi-based-services.adoc[Orchestrating the OpenAPI services]
 **** xref:serverless-logic:service-orchestration/configuring-openapi-services-endpoints.adoc[Configuring the OpenAPI services endpoints]
 **** xref:serverless-logic:service-orchestration/orchestration-of-asyncapi-based-services.adoc[Orchestrating the AsyncAPI services]
 **** xref:serverless-logic:service-orchestration/orchestration-of-grpc-services.adoc[Orchestration of gRPC based services]
+
 *** Eventing
 **** xref:serverless-logic:eventing/handling-events-on-workflows.adoc[Event State]
 **** xref:serverless-logic:eventing/consume-producing-events-with-kafka.adoc[Consuming and producing events using Apache Kafka]
@@ -50,16 +56,27 @@
 **** xref:serverless-logic:eventing/event-correlation-with-workflows.adoc[Event Correlation]
 **** xref:serverless-logic:eventing/working-with-callbacks.adoc[Callback State]
 **** xref:serverless-logic:eventing/working-with-openapi-callbacks.adoc[OpenAPI Callback]
+
 *** Security
-**** xref:serverless-logic:security/authention-support-for-openapi-services.adoc[Authentication for OpenAPI services]
-**** xref:serverless-logic:security/orchestrating-third-party-services-with-oauth2.adoc[Orchestration of third-party services using OAuth 2.0 authentication]
-*** Testing and Troubleshooting
-**** xref:serverless-logic:testing-and-troubleshooting/mocking-http-cloudevents-with-wiremock.adoc[Mocking HTTP CloudEvents sink using WireMock]
-**** xref:serverless-logic:testing-and-troubleshooting/mocking-openapi-services-with-wiremock.adoc[Mocking OpenAPI services using WireMock]
-**** xref:serverless-logic:testing-and-troubleshooting/basic-integration-tests-with-restassured.adoc[Testing using REST Assured]
-//**** xref:serverless-logic:testing-and-troubleshooting/debugging-workflow-execution-runtime.adoc[Debugging the workflow execution in runtime]
-**** xref:serverless-logic:testing-and-troubleshooting/integration-tests-with-postgresql.adoc[Integration tests using PostgreSQL]
-//**** xref:serverless-logic:testing-and-troubleshooting/development-tools-for-troubleshooting.adoc[Development tools for troubleshooting]
+**** Client Authentication
+***** xref:serverless-logic:security/authention-support-for-openapi-services.adoc[OpenAPI Authentication]
+***** xref:serverless-logic:security/orchestrating-third-party-services-with-oauth2.adoc[OpenAPI OAuth2]
+
+*** Executing, Testing and Troubleshooting
+**** Executing and Testing Workflows
+***** xref:serverless-logic:testing-and-troubleshooting/quarkus-dev-ui-extension/quarkus-dev-ui-overview.adoc[Developer UI]
+****** xref:serverless-logic:testing-and-troubleshooting/quarkus-dev-ui-extension/quarkus-dev-ui-workflow-instances-page.adoc[Workflow Instances]
+****** xref:serverless-logic:testing-and-troubleshooting/quarkus-dev-ui-extension/quarkus-dev-ui-workflow-definition-page.adoc[Workflow Definitions]
+****** xref:serverless-logic:testing-and-troubleshooting/quarkus-dev-ui-extension/quarkus-dev-ui-monitoring-page.adoc[Monitoring]
+****** xref:serverless-logic:testing-and-troubleshooting/quarkus-dev-ui-extension/quarkus-dev-ui-custom-dashboard-page.adoc[Dashboards]
+***** xref:serverless-logic:testing-and-troubleshooting/kn-plugin-workflow-overview.adoc[Command Line]
+// *** Swagger UI, GraphiQL, Console logging TODO: https://issues.redhat.com/browse/KOGITO-9462
+
+**** Quarkus
+***** xref:serverless-logic:testing-and-troubleshooting/mocking-http-cloudevents-with-wiremock.adoc[Mocking HTTP CloudEvents]
+***** xref:serverless-logic:testing-and-troubleshooting/mocking-openapi-services-with-wiremock.adoc[Mocking OpenAPI Services]
+***** xref:serverless-logic:testing-and-troubleshooting/basic-integration-tests-with-restassured.adoc[Testing with REST Assured]
+
 *** Persistence
 **** xref:serverless-logic:persistence/persistence-with-postgresql.adoc[Running a workflow service using PostgreSQL]
 **** xref:serverless-logic:persistence/postgresql-flyway-migration.adoc[Migrate your PostgreSQL database]
@@ -68,35 +85,42 @@
 *** xref:serverless-logic:cloud/index.adoc[Cloud]
 **** Operator
 ***** xref:serverless-logic:cloud/operator/install-serverless-operator.adoc[Installation]
-***** xref:serverless-logic:cloud/operator/developing-workflows.adoc[Developing Workflows]
-***** xref:serverless-logic:cloud/operator/configuring-workflows.adoc[Configuring Workflows]
-***** xref:serverless-logic:cloud/operator/workflow-status-conditions.adoc[Workflows Status]
-***** xref:serverless-logic:cloud/operator/build-and-deploy-workflows.adoc[Building and Deploying Workflows]
+***** xref:serverless-logic:cloud/operator/developing-workflows.adoc[Development Mode]
+***** xref:serverless-logic:cloud/operator/referencing-resource-files.adoc[Referencing Workflow Resources]
+***** xref:serverless-logic:cloud/operator/configuring-workflows.adoc[Configuration]
+***** xref:serverless-logic:cloud/operator/build-and-deploy-workflows.adoc[Building and Deploying Workflow Images]
+***** xref:serverless-logic:cloud/operator/workflow-status-conditions.adoc[Custom Resource Status]
 ***** xref:serverless-logic:cloud/operator/known-issues.adoc[Known Issues]
+
 **** Quarkus
 ***** xref:serverless-logic:cloud/quarkus/build-workflow-image-with-quarkus-cli.adoc[Building workflow images using Quarkus CLI]
 // *** xref:serverless-logic:cloud/build-workflow-images-with-tekton.adoc[Building Workflow Images with Tekton Pipelines]
+***** xref:serverless-logic:cloud/quarkus/deploying-on-openshift.adoc[Deploying Workflows on OpenShift]
 ***** xref:serverless-logic:cloud/quarkus/deploying-on-minikube.adoc[Deploying Workflows on Minikube]
 ***** xref:serverless-logic:cloud/quarkus/deploying-on-kubernetes.adoc[Deploying Workflows on Kubernetes]
 // *** xref:serverless-logic:cloud/versioning-workflows-in-knative.adoc[Versioning workflows in Knative]
 ***** xref:serverless-logic:cloud/quarkus/kubernetes-service-discovery.adoc[Kubernetes service discovery]
-//**** xref:serverless-logic:cloud/build-and-deploy-with-serverless-operator-on-kubernetes.adoc[Buiding and deploying a  {product_name} application on Kubernetes using the {product_name} Serverless Operator]
-
 
 *** Integrations
-**** xref:serverless-logic:integrations/camel-routes-integration.adoc[Integrating with Camel Routes]
-**** xref:serverless-logic:integrations/custom-functions-knative.adoc[Invoking Knative services]
-**** xref:serverless-logic:integrations/expose-metrics-to-prometheus.adoc[Exposing the workflow base metrics to Prometheus]
-// **** xref:serverless-logic:integrations/camel-k-integration.adoc[Integrating with Camel-K]
-**** xref:serverless-logic:integrations/serverless-dashboard-with-runtime-data.adoc[Displaying workflow data in dashboards]
-*** Supporting Services
-**** xref:serverless-logic:supporting-services/jobs-service.adoc[Job Service]
+**** xref:serverless-logic:integrations/camel-routes-integration.adoc[Camel Routes]
+**** xref:serverless-logic:integrations/custom-functions-knative.adoc[Knative Serving]
+**** xref:serverless-logic:integrations/expose-metrics-to-prometheus.adoc[Exposing Prometheus Metrics]
+**** xref:serverless-logic:integrations/serverless-dashboard-with-runtime-data.adoc[Displaying workflow Data in Dashboards]
+*** Job Service
+**** xref:serverless-logic:job-services/core-concepts.adoc[Core Concepts]
+**** xref:serverless-logic:job-services/quarkus-extensions.adoc[Quarkus Extensions]
+
+*** Data Index
+**** xref:serverless-logic:data-index/data-index-core-concepts.adoc[Core concepts]
+**** xref:serverless-logic:data-index/data-index-service.adoc[Standalone service]
+**** xref:serverless-logic:data-index/data-index-quarkus-extension.adoc[Quarkus Extension]
 
 *** Use Cases
-**** xref:serverless-logic:use-cases/orchestration-based-saga-pattern.adoc[Saga Orchestration Example]
-// **** xref:serverless-logic:use-cases/newsletter-subscription-example.adoc[Newsletter subscription example]
-**** xref:serverless-logic:use-cases/timeout-showcase-example.adoc[Timeout Example]
+**** xref:serverless-logic:use-cases/orchestration-based-saga-pattern.adoc[Saga Orchestration]
+**** xref:serverless-logic:use-cases/timeout-showcase-example.adoc[Timeouts Showcase]
+
 ** xref:serverless-logic:release-notes.adoc[Release notes for Serverless Logic]
+
 * Buildpacks for Serverless Functions
 ** xref:functions/serverless-functions-about.adoc[About buildpacks for OpenShift Serverless Functions]
 ** xref:functions/serverless-functions-buildpacks.adoc[Building and deploying functions on the cluster]

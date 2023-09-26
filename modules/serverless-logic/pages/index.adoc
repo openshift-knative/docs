@@ -1,0 +1,439 @@
+= {page-component-title}
+
+{product_name} is a tool for building cloud-native workflow applications. You can use it to do the services and events orchestration and choreography. Currently, with {product_name} you can integrate with services and events in your architecture using:
+
+1. **CloudEvents**. Ideal for an Event-Driven architecture where the services are ready to consume and produce events working in a more reactive way.
+2. **Sync or Async REST services invocations via OpenAPI/Async API**. There are options even to directly call a REST service in the architecture or ecosystem. Either async or sync methods are supported depending on your requirements.
+3. **Internal Service execution or invocation**. {product_name} is also a workflow framework to build applications. You can use it to create custom services in the same thread to run a lightweight workflow-based application within the same instance.
+
+You can learn how to create, manage, and deploy your workflow applications with the following guides.
+
+[.card-section]
+== Getting started
+
+[.card]
+--
+[.card-title]
+xref:getting-started/create-your-first-workflow-service.adoc[Creating your first workflow service]
+[.card-description]
+Learn how to create your first Serverless Workflow project
+--
+
+[.card]
+--
+[.card-title]
+xref:getting-started/cncf-serverless-workflow-specification-support.adoc[CNCF Serverless Workflow specification]
+[.card-description]
+Learn about the CNCF Serverless Workflow Specification implementation
+--
+
+[.card]
+--
+[.card-title]
+xref:getting-started/getting-familiar-with-our-tooling.adoc[Getting familiar with {product_name} tooling]
+[.card-description]
+Learn which tools you can use to author your workflow assets
+--
+
+[.card-section]
+== Core
+
+[.card]
+--
+[.card-title]
+xref:core/custom-functions-support.adoc[Custom functions for your {product_name} service]
+[.card-description]
+Learn about the custom functions supported by Serverless Workflow
+--
+
+[.card]
+--
+[.card-title]
+xref:core/understanding-jq-expressions.adoc[jq expressions in {product_name}]
+[.card-description]
+Learn how to create jq expressions to manipulate data within a workflow execution
+--
+
+[.card]
+--
+[.card-title]
+xref:core/understanding-workflow-error-handling.adoc[Error handling in {product_name}]
+[.card-description]
+Learn how to handle errors in your workflow application
+--
+
+[.card]
+--
+[.card-title]
+xref:core/working-with-parallelism.adoc[Parallelism in {product_name}]
+[.card-description]
+Working with parallelism in your workflow service
+--
+
+[.card]
+--
+[.card-title]
+xref:core/configuration-properties.adoc[Configuration properties in {product_name}]
+[.card-description]
+Quick reference of configuration properties in workflow
+--
+
+[.card]
+--
+[.card-title]
+xref:core/defining-an-input-schema-for-workflows.adoc[Input schema definition for {product_name}]
+[.card-description]
+Learn about the input schema definition used to validate the workflow data input against a defined JSON Schema
+--
+
+[.card]
+--
+[.card-title]
+xref:core/timeouts-support.adoc[Timeouts in {product_name}]
+[.card-description]
+Learn how to configure timeouts in the workflow
+--
+
+[.card]
+--
+[.card-title]
+xref:core/working-with-parallelism.adoc[]
+[.card-description]
+Working with parallelism in your workflow project
+--
+
+[.card-section]
+== Tooling
+
+[.card]
+--
+[.card-title]
+xref:tooling/serverless-workflow-editor/swf-editor-overview.adoc[Serverless Workflow editor]
+[.card-description]
+Learn how to install and use the Serverless Workflow editor
+--
+
+[.card]
+--
+[.card-title]
+xref:tooling/serverless-workflow-editor/swf-editor-vscode-extension.adoc[VS Code extension for Serverless Workflow editor]
+[.card-description]
+Learn how to install and use the VS Code extension for Serverless Workflow editor for creating workflows.
+--
+
+[.card]
+--
+[.card-title]
+xref:tooling/serverless-logic-web-tools/serverless-logic-web-tools-overview.adoc[{serverless_logic_web_tools_name}]
+[.card-description]
+Learn how to use {serverless_logic_web_tools_name} for creating and managing workflows, decisions, and dashboards.
+--
+
+[.card]
+--
+[.card-title]
+xref:tooling/serverless-workflow-editor/swf-editor-chrome-extension.adoc[Chrome extension for Serverless Workflow editor on GitHub]
+[.card-description]
+Learn how to install and use the Chrome extension for Serverless Workflow editor to view and edit workflows directly in Github.
+--
+
+[.card-section]
+== Service Orchestration
+
+[.card]
+--
+[.card-title]
+xref:service-orchestration/orchestration-of-openapi-based-services.adoc[Orchestrating the OpenAPI services]
+[.card-description]
+Learn how to orchestrate REST services using OpenAPI specification descriptors
+--
+
+[.card]
+--
+[.card-title]
+xref:service-orchestration/orchestration-of-asyncapi-based-services.adoc[Orchestrating the AsyncAPI services]
+[.card-description]
+Learn how to trigger and consume events using AsyncAPI specification descriptors
+--
+[.card]
+--
+[.card-title]
+xref:service-orchestration/configuring-openapi-services-endpoints.adoc[Configuring the OpenAPI services endpoints]
+[.card-description]
+Learn how to configure OpenAPI services endpoints in different environments
+--
+
+[.card]
+--
+[.card-title]
+xref:service-orchestration/orchestration-of-grpc-services.adoc[Orchestration of gRPC based services]
+[.card-description]
+Learn about orchestrating gRPC services
+--
+
+[.card-section]
+== Eventing
+
+[.card]
+--
+[.card-title]
+xref:eventing/handling-events-on-workflows.adoc[Event state in {product_name}]
+[.card-description]
+Learn how to use the Event state in your workflow application
+--
+
+[.card]
+--
+[.card-title]
+xref:eventing/working-with-callbacks.adoc[Callback state in {product_name}]
+[.card-description]
+Learn how to use the Callback state in your workflow application
+--
+
+[.card]
+--
+[.card-title]
+xref:eventing/consume-producing-events-with-kafka.adoc[Consuming and producing events using Apache Kafka]
+[.card-description]
+Learn how to configure your Serverless Workflow application to produce and consume events using Apache Kafka
+--
+
+[.card]
+--
+[.card-title]
+xref:eventing/consume-produce-events-with-knative-eventing.adoc[Consuming and producing events on Knative Eventing]
+[.card-description]
+Learn how to configure your Serverless Workflow application to produce and consume events on Knative Eventing
+--
+
+[.card]
+--
+[.card-title]
+xref:eventing/event-correlation-with-workflows.adoc[Event correlation in {product_name}]
+[.card-description]
+Learn how to configure event correlation in your workflow application
+--
+
+[.card]
+--
+[.card-title]
+xref:eventing/working-with-openapi-callbacks.adoc[OpenAPI Callback in {product_name}]
+[.card-description]
+Learn how to use the OpenAPI Callback in your workflow application
+--
+
+[.card-section]
+== Security
+
+[.card]
+--
+[.card-title]
+xref:security/authention-support-for-openapi-services.adoc[Authentication for OpenAPI services in {product_name}]
+[.card-description]
+Learn how to use authentication methods when calling REST services using OpenAPI specification
+--
+
+[.card]
+--
+[.card-title]
+xref:security/orchestrating-third-party-services-with-oauth2.adoc[Orchestration of third-party services using OAuth 2.0 authentication]
+[.card-description]
+Learn about the OAuth2 method support when orchestrating REST services using your workflow application
+--
+
+[.card-section]
+== Testing and Troubleshooting
+
+[.card]
+--
+[.card-title]
+xref:testing-and-troubleshooting/quarkus-dev-ui-extension/quarkus-dev-ui-overview.adoc[Kogito Serverless Workflow Tools extension in Quarkus Dev UI]
+[.card-description]
+Learn how to use the Serverless Workflow extension in Quarkus Dev UI
+--
+
+[.card]
+--
+[.card-title]
+xref:testing-and-troubleshooting/kn-plugin-workflow-overview.adoc[{product_name} plug-in for Knative CLI]
+[.card-description]
+Learn how to install the {product_name} plug-in for Knative CLI
+--
+
+[.card]
+--
+[.card-title]
+xref:testing-and-troubleshooting/mocking-http-cloudevents-with-wiremock.adoc[]
+[.card-description]
+Learn how to add unit tests in your workflow application using RestAssured
+--
+
+[.card]
+--
+[.card-title]
+xref:testing-and-troubleshooting/integration-tests-with-postgresql.adoc[{product_name} integration test using PostgreSQL]
+[.card-description]
+Learn how to integrate tests on workflow applications that use PostgreSQL as a persistence storage
+--
+
+[.card]
+--
+[.card-title]
+xref:testing-and-troubleshooting/mocking-openapi-services-with-wiremock.adoc[Mocking OpenAPI services with WireMock]
+[.card-description]
+Learn how to mock external REST requests when testing your Serverless Workflow applications
+--
+
+[.card]
+--
+[.card-title]
+xref:testing-and-troubleshooting/mocking-http-cloudevents-with-wiremock.adoc[Mocking HTTP CloudEvents Sink with WireMock]
+[.card-description]
+Testing Serverless Workflow application that uses HTTP CloudEvents and Knative Sink Binding
+--
+
+[.card-section]
+== Persistence
+
+[.card]
+--
+[.card-title]
+xref:persistence/persistence-with-postgresql.adoc[Running a workflow service using PostgreSQL]
+[.card-description]
+Running Serverless Workflow service using PostgresSQL
+--
+
+[.card]
+--
+[.card-title]
+xref:persistence/postgresql-flyway-migration.adoc[Migrate Your PostgreSQL database with Kogito upgrade]
+[.card-description]
+Migrating your existing PostgreSQL Database with changes from the Kogito upgrade using Flyway
+--
+
+[.card-section]
+== Cloud
+
+[.card]
+--
+[.card-title]
+xref:cloud/index.adoc[{product_name} in the Cloud]
+[.card-description]
+Learn about the options to deploy workflow applications in Kubernetes
+--
+
+[.card]
+--
+[.card-title]
+xref:use-cases/orchestration-based-saga-pattern.adoc[Saga orchestration example in {product_name}]
+[.card-description]
+Learn how and when to use the SAGA pattern in your workflow projects
+--
+
+[.card]
+--
+[.card-title]
+xref:use-cases/timeout-showcase-example.adoc[Timeout example in {product_name}]
+[.card-description]
+Learn how and when to use timeout in your workflow projects
+--
+
+[.card-section]
+== Integrations
+
+[.card]
+--
+[.card-title]
+xref:integrations/camel-routes-integration.adoc[Integrating with Camel Routes]
+[.card-description]
+Learn how to use Camel Routes within your workflow application
+--
+
+[.card]
+--
+[.card-title]
+xref:integrations/custom-functions-knative.adoc[Invoking Knative services from {product_name}]
+[.card-description]
+Learn how to invoke Knative services from {product_name} custom functions
+--
+
+[.card]
+--
+[.card-title]
+xref:integrations/serverless-dashboard-with-runtime-data.adoc[Displaying workflow data in dashboards]
+[.card-description]
+Learn how to use dashboards to display the runtime data of your workflow application
+--
+
+[.card]
+--
+[.card-title]
+xref:integrations/expose-metrics-to-prometheus.adoc[Exposing workflow base metrics to Prometheus]
+[.card-description]
+Exposing the workflow base metrics to Prometheus
+--
+
+[.card-section]
+== Supporting Services
+
+[.card]
+--
+[.card-title]
+xref:job-services/core-concepts.adoc[Job Service]
+[.card-description]
+Details about Job Service to control timers in {PRODUCT_NAME}
+--
+
+[.card]
+--
+[.card-title]
+xref:job-services/quarkus-extensions.adoc[]
+[.card-description]
+Details about how to configure you Quarkus Workflow Project to interact with the Job Service in {PRODUCT_NAME}
+--
+
+[.card-section]
+== Data Index service
+
+[.card]
+--
+[.card-title]
+xref:data-index/data-index-core-concepts.adoc[]
+[.card-description]
+Learn Data Index core concepts, allowing to understand the purpose and the different deployment options that are provided.
+--
+
+[.card]
+--
+[.card-title]
+xref:data-index/data-index-service.adoc[]
+[.card-description]
+Go deeper in details about Data Index as standalone service deployment.
+--
+
+[.card]
+--
+[.card-title]
+xref:data-index/data-index-quarkus-extension.adoc[]
+[.card-description]
+Explore Data Index as Quarkus extension in  {PRODUCT_NAME}
+--
+
+[.card-section]
+== Use Cases
+
+[.card]
+--
+[.card-title]
+xref:use-cases/orchestration-based-saga-pattern.adoc[Saga orchestration example in {product_name}]
+[.card-description]
+Learn how and when to use the SAGA pattern in your workflow projects
+--
+
+[.card]
+--
+[.card-title]
+xref:use-cases/timeout-showcase-example.adoc[Timeout example in {product_name}]
+[.card-description]
+Learn how and when to use timeout in your workflow projects
+--

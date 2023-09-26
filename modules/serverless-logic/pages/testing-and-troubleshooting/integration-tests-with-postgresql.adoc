@@ -4,9 +4,9 @@
 :description: Serverless Workflow integration test with PostgreSQL
 :keywords: kogito, workflow, quarkus, serverless, quarkus-cli, test, integration, postgresql, persistence
 // Referenced documentation pages
-:basic_integration_test_with_restassured_guide: xref:serverless-logic:testing-and-troubleshooting/basic-integration-tests-with-restassured.adoc
-:getting_started_create_first_workflow_guide: xref:serverless-logic:getting-started/create-your-first-workflow-service.adoc
-:persistence_with_postgresql_guide: xref:serverless-logic:persistence/persistence-with-postgresql.adoc
+:basic_integration_test_with_restassured_guide: xref:testing-and-troubleshooting/basic-integration-tests-with-restassured.adoc
+:getting_started_create_first_workflow_guide: xref:getting-started/create-your-first-workflow-service.adoc
+:persistence_with_postgresql_guide: xref:persistence/persistence-with-postgresql.adoc
 // External pages
 :quarkus_testing_guide_url: {quarkus_guides_base_url}/getting-started-testing
 :quarkus_testing_guide_integration_test_url: {quarkus_testing_guide_url}#quarkus-integration-test

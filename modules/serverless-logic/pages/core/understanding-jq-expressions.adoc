@@ -10,7 +10,7 @@
 
 Each workflow instance is associated with a data model. A data model consists of a JSON object regardless of whether the workflow file contains YAML or JSON. The initial content of the JSON object depends on how the workflow is started. If the workflow is created using the link:{cloud_events_url}[Cloud Event], then the workflow content is taken from the `data` property. However, if the workflow is started through an HTTP POST request, then the workflow content is taken from the request body.
 
-The workflow expressions in the link:{spec_doc_url}#workflow-expressions[Serverless Workflow specification] are used to interact with the data model. The supported expression languages include link:{jsonpath_url}[JsonPath] and link:{jq_url}[jq]. jq expression language is the default language. However, you can change the expression language to JsonPath using the `expressionLang` property.
+The workflow expressions in the link:{spec_doc_url}#workflow-expressions[Serverless Workflow specification] are used to interact with the data model. The supported expression languages include link:{jsonpath_url}[JsonPath] and link:{jq_url}[jq]. jq expression language is the default language. However, you can change the expression language to JsonPath using the `expressionLang` property. 
 
 This document describes the usage of jq expressions in switch state conditions, action function arguments, and data filtering.
 
@@ -21,7 +21,7 @@ The conditions occurring in a switch state enable the workflow designer to selec
 
 A condition in a switch state is an expression, which returns a boolean value when evaluated against the data model. If a condition associated with a state transition returns true, then the workflow must follow that transition.
 
-For example, in the link:{kogito_sw_examples_url}/serverless-workflow-greeting-quarkus[`serverless-workflow-greeting-quarkus`] example application, a message is displayed depending on the selected language, that is English or Spanish.
+For example, in the link:{kogito_sw_examples_url}/serverless-workflow-greeting-quarkus[`serverless-workflow-greeting-quarkus`] example application, a message is displayed depending on the selected language, that is English or Spanish. 
 
 If the value of the `language` property is English, the constant literal injected on the `message` property is _Hello from_, otherwise the constant value injected on the `message` property is _Saludos desde…_.
 
@@ -54,7 +54,7 @@ The Serverless Workflow specification requires all the expressions to be embedde
 
 In the Serverless Workflow specification, you can define link:{spec_doc_url}#workflow-functions[workflow functions], which can be invoked several times by the workflow states. Each workflow function call might contain different arguments, which are specified using the function arguments.
 
-For example, you can see the link:{kogito_sw_examples_url}/serverless-workflow-temperature-conversion/conversion-workflow/src/main/resources/fahrenheit-to-celsius.sw.json[temperature conversion] function definition in `serverless-workflow-temperature-conversion` example application. The temperature conversion function performs OpenAPI invocations to convert Fahrenheit to Celsius. For more information about OpenAPI, see xref:serverless-logic:service-orchestration/orchestration-of-openapi-based-services.adoc[Orchestrating the OpenAPI services].
+For example, you can see the link:{kogito_sw_examples_url}/serverless-workflow-temperature-conversion/conversion-workflow/src/main/resources/fahrenheit-to-celsius.sw.json[temperature conversion] function definition in `serverless-workflow-temperature-conversion` example application. The temperature conversion function performs OpenAPI invocations to convert Fahrenheit to Celsius. For more information about OpenAPI, see xref:service-orchestration/orchestration-of-openapi-based-services.adoc[Orchestrating the OpenAPI services].
 
 Following is the `subtraction` function in `serverless-workflow-temperature-conversion` example application:
 
@@ -68,15 +68,15 @@ Following is the `subtraction` function in `serverless-workflow-temperature-conv
 }]
 ----
 
-The arguments in `subtraction` function are expressed as a JSON object, and the property values of the JSON object are either a string containing an expression or a link:{json_data_types_url}[JSON data type], such as string, number, or boolean.
+The arguments in `subtraction` function are expressed as a JSON object, and the property values of the JSON object are either a string containing an expression or a link:{json_data_types_url}[JSON data type], such as string, number, or boolean. 
 
 .Example arguments in `subtraction` function
 [source,json]
 ----
-"functionRef":
+"functionRef": 
 {
   "refName": "subtraction",
-  "arguments":
+  "arguments": 
   {
     "leftElement": ".fahrenheit",
     "rightElement": ".subtractValue"
@@ -84,7 +84,7 @@ The arguments in `subtraction` function are expressed as a JSON object, and the 
 }
 ----
 
-In the previous example, the left number is equal to the `fahrenheit` property (an input number that invokes the workflow), and the right number is equal to the `subtractValue` property (a constant number that is injected to the workflow model by `SetConstants` state). Once the expression evaluation is resolved for all properties that contain an expression, the resulting object is passed in the OpenAPI request. Based on the OpenAPI definition, the properties in the JSON object are used as body, path, query, or header of the upcoming REST invocation.
+In the previous example, the left number is equal to the `fahrenheit` property (an input number that invokes the workflow), and the right number is equal to the `subtractValue` property (a constant number that is injected to the workflow model by `SetConstants` state). Once the expression evaluation is resolved for all properties that contain an expression, the resulting object is passed in the OpenAPI request. Based on the OpenAPI definition, the properties in the JSON object are used as body, path, query, or header of the upcoming REST invocation. 
 
 Following is an example of function arguments defined as string that contains an expression, returning a JSON object:
 
@@ -105,7 +105,7 @@ In the previous example, the result of the expression evaluation is the same JSO
 
 The Serverless Workflow specification defines the following filtering mechanisms to select which information must be part of the workflow data model:
 
-* link:{spec_doc_url}#action-data-filters[Action data filters]: Select the part of the action result that is merged into the data model, which overrides the properties that share the name with the selected action result.
+* link:{spec_doc_url}#action-data-filters[Action data filters]: Select the part of the action result that is merged into the data model, which overrides the properties that share the name with the selected action result.  
 * link:{spec_doc_url}#event-data-filters[Event data filters]: Similar to the action data filters, but apply to the events instead of actions.
 * link:{spec_doc_url}#state-data-filters[State data filters]: Define the workflow model to the JSON object, which is returned by the expression and discards an existing property.
 
@@ -130,9 +130,9 @@ Following is an expression function in `serverless-workflow-expression-quarkus` 
 ]
 ----
 
-In the previous example, an array of complex numbers (`x` is real coordinate and `y` is imaginary coordinate) is accepted and an expression function is defined to calculate the maximum value of `x` and minimum value of `y` for the `numbers` array.
+In the previous example, an array of complex numbers (`x` is real coordinate and `y` is imaginary coordinate) is accepted and an expression function is defined to calculate the maximum value of `x` and minimum value of `y` for the `numbers` array. 
 
-Also, the `serverless-workflow-expression-quarkus` example application contains an action data filter defined inside `squareState` action and a state data filter defined inside `finish` state. The action data filter selects the maximum value of `x` to be merged to the workflow model, and the state data filter defines the maximum value as the entire workflow model that is returned as the workflow response.
+Also, the `serverless-workflow-expression-quarkus` example application contains an action data filter defined inside `squareState` action and a state data filter defined inside `finish` state. The action data filter selects the maximum value of `x` to be merged to the workflow model, and the state data filter defines the maximum value as the entire workflow model that is returned as the workflow response. 
 
 The previous example expression also contains a `max` function of type expression and an `operation` property containing a string of jq expression. This jq expression returns a JSON object, in which the `max` property is the maximum value of the `x` coordinate and the `min` property is the minimum value of the `y` coordinate.
 
@@ -172,7 +172,7 @@ Therefore, after executing the action, the workflow model consists of a `number`
 }
 ----
 
-The original `numbers` array should not be returned as a result of the workflow execution, therefore the final stage consists of a state data filter defining the content of the output model. The output model should contain a `result` property and the value of `result` property should be the maximum number that is stored by the previous state in the `number` property.
+The original `numbers` array should not be returned as a result of the workflow execution, therefore the final stage consists of a state data filter defining the content of the output model. The output model should contain a `result` property and the value of `result` property should be the maximum number that is stored by the previous state in the `number` property. 
 
 In the previous example, the workflow model is changed by the `input` property of the filter, which means that the output model is updated before the state is executed. As a final result, the output model consists of a `result` property, containing the maximum value of `x`.
 --
@@ -181,7 +181,7 @@ Event data filter example::
 +
 --
 
-You can find an example of event data filtering in the link:{kogito_sw_examples_url}/serverless-workflow-callback-quarkus[`serverless-workflow-callback-quarkus`] example application.
+You can find an example of event data filtering in the link:{kogito_sw_examples_url}/serverless-workflow-callback-quarkus[`serverless-workflow-callback-quarkus`] example application. 
 
 .Example event filter
 [source,json]
@@ -198,6 +198,6 @@ The previous example of the event filter copies the content of CloudEvent data `
 
 == Additional resources
 
-* xref:serverless-logic:service-orchestration/configuring-openapi-services-endpoints.adoc[Configuring the OpenAPI services endpoints]
+* xref:service-orchestration/configuring-openapi-services-endpoints.adoc[Configuring the OpenAPI services endpoints]
 
 include::../../pages/_common-content/report-issue.adoc[]

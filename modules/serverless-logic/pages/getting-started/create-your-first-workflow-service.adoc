@@ -20,11 +20,11 @@ image::getting-started/hello-world-workflow.png[]
 .Prerequisites
 * Java {java_min_version} is installed with `JAVA_HOME` configured appropriately.
 * Apache Maven {maven_min_version} is installed.
-* {quarkus_cli_url}[Quarkus CLI] or xref:serverless-logic:tooling/kn-plugin-workflow-overview.adoc[Knative Workflow CLI] {kn_cli_version} is installed.
+* {quarkus_cli_url}[Quarkus CLI] or xref:testing-and-troubleshooting/kn-plugin-workflow-overview.adoc[Knative Workflow CLI] {kn_cli_version} is installed.
 * Visual Studio Code with https://marketplace.visualstudio.com/items?itemName=redhat.java[Red Hat Java Extension]
 and https://marketplace.visualstudio.com/items?itemName=redhat.vscode-extension-serverless-workflow-editor[Red Hat Serverless Workflow Editor] is installed to edit your workflows.
 
-For more information about the tooling and the required dependencies, see xref:serverless-logic:getting-started/getting-familiar-with-our-tooling.adoc[Getting familiar with {product_name} tooling].
+For more information about the tooling and the required dependencies, see xref:getting-started/getting-familiar-with-our-tooling.adoc[Getting familiar with {product_name} tooling].
 
 ifeval::["{kogito_version_redhat}" != ""]
 include::../../pages/_common-content/downstream-project-setup-instructions.adoc[]
@@ -93,7 +93,7 @@ kn workflow create \
   --quarkus-version={quarkus_platform_version}
 ----
 
-For more information about Knative workflow CLI, see xref:serverless-logic:tooling/kn-plugin-workflow-overview.adoc[{product_name} plug-in for Knative CLI].
+For more information about Knative workflow CLI, see xref:testing-and-troubleshooting/kn-plugin-workflow-overview.adoc[{product_name} plug-in for Knative CLI].
 --
 ====
 
@@ -166,7 +166,7 @@ In the previous example:
 [NOTE]
 ====
 The workflow definition follows the CNCF Serverless Workflow specification. For more information, see
-xref:serverless-logic:getting-started/cncf-serverless-workflow-specification-support.adoc[CNCF Serverless Workflow specification].
+xref:getting-started/cncf-serverless-workflow-specification-support.adoc[CNCF Serverless Workflow specification].
 ====
 --
 
@@ -209,7 +209,7 @@ kn workflow build --image dev.local/serverless-workflow-hello-world --verbose
 ----
 The `--verbose` flag is used to display the output of the build command. This flag is optional.
 
-For more information about Knative workflow CLI, see xref:serverless-logic:tooling/kn-plugin-workflow-overview.adoc[{product_name} plug-in for Knative CLI].
+For more information about Knative workflow CLI, see xref:testing-and-troubleshooting/kn-plugin-workflow-overview.adoc[{product_name} plug-in for Knative CLI].
 --
 ====
 
@@ -259,9 +259,9 @@ mvn clean quarkus:dev
 quarkus dev
 ----
 
-For more information about Knative workflow CLI, see xref:serverless-logic:tooling/kn-plugin-workflow-overview.adoc[{product_name} plug-in for Knative CLI].
+For more information about Knative workflow CLI, see xref:testing-and-troubleshooting/kn-plugin-workflow-overview.adoc[{product_name} plug-in for Knative CLI].
 
-Also, to deploy and run your workflow application, see xref:serverless-logic:cloud/quarkus/deploying-on-minikube.adoc[Deploying workflow application on Minikube]
+Also, to deploy and run your workflow application, see xref:cloud/quarkus/deploying-on-minikube.adoc[Deploying workflow application on Minikube]
 --
 ====
 +
@@ -360,11 +360,11 @@ Note that the `mantra` value is updated without restarting the application, beca
 == Testing your workflow application
 
 To test your workflow application, you can follow the instructions in the
-xref:serverless-logic:testing-and-troubleshooting/basic-integration-tests-with-restassured.adoc[Testing your workflow application using REST Assured].
+xref:testing-and-troubleshooting/basic-integration-tests-with-restassured.adoc[Testing your workflow application using REST Assured].
 
 == Additional resources
 
-* xref:serverless-logic:getting-started/getting-familiar-with-our-tooling.adoc[Getting familiar with {product_name} tooling]
-* xref:serverless-logic:service-orchestration/orchestration-of-openapi-based-services.adoc[Orchestrating the OpenAPI services]
+* xref:getting-started/getting-familiar-with-our-tooling.adoc[Getting familiar with {product_name} tooling]
+* xref:service-orchestration/orchestration-of-openapi-based-services.adoc[Orchestrating the OpenAPI services]
 
 include::../../pages/_common-content/report-issue.adoc[]

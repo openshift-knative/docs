@@ -9,7 +9,7 @@
 :grafana_url: https://grafana.com/
 :quarkus_micrometer_url: https://quarkus.io/guides/micrometer
 :openshift_monitoring_url: https://docs.openshift.com/container-platform/4.11/monitoring/enabling-monitoring-for-user-defined-projects.html
-:prometheus_operator_url: https://access.redhat.com/documentation/en-us/openshift_container_platform/3.11/html/configuring_clusters/prometheus-cluster-monitoring
+:prometheus_operator_url: https://prometheus-operator.dev/
 :prometheus_operator_getting_started_guide: https://prometheus.io/docs/prometheus/latest/getting_started/#configure-prometheus-to-monitor-the-sample-targets
 
 {product_name} generates metrics that can be consumed by Prometheus and visualized by dashboard tools, such as link:{openshift_micrometer_url}[OpenShift], link:{dashbuilder_url}[Dashbuilder], and link:{grafana_url}[Grafana].
@@ -22,9 +22,9 @@ This document describes how you can enable and expose the generated metrics to P
 You can enable the metrics in your workflow application.
 
 .Prerequisites
-* A workflow application is created.
+* A workflow application is created. 
 +
-For more information about creating a workflow, see xref:serverless-logic:getting-started/create-your-first-workflow-service.adoc[Creating your first workflow service].
+For more information about creating a workflow, see xref:getting-started/create-your-first-workflow-service.adoc[Creating your first workflow service].
 
 .Procedure
 . To add the metrics to your workflow application, add the `org.kie.kogito:kogito-addons-quarkus-monitoring-prometheus` dependency to the `pom.xml` file of your project:
@@ -60,12 +60,12 @@ If your workflow server is running on OpenShift, then you can use the server to 
 For more information, see <<proc-enable-metrics-sw, Enabling metrics in {product_name}>>.
 
 .Procedure
-. To consume metrics from OpenShift, enable monitoring for user-defined projects.
+. To consume metrics from OpenShift, enable monitoring for user-defined projects. 
 +
 --
 For more information, see link:{openshift_monitoring_url}[Enabling monitoring for user-defined projects] in OpenShift documentation.
 
-When you enable monitoring for user-defined projects, the Prometheus Operator is installed automatically.
+When you enable monitoring for user-defined projects, the Prometheus Operator is installed automatically. 
 --
 
 . Create a service monitor as shown in the following configuration:
@@ -109,7 +109,7 @@ After that, Prometheus sends request to the `/q/metrics` endpoint for all the se
 
 [IMPORTANT]
 ====
-Consuming metrics from Kubernetes is similar to OpenShift. However, you need to install the Prometheus Operator project manually.
+Consuming metrics from Kubernetes is similar to OpenShift. However, you need to install the Prometheus Operator project manually. 
 
 For more information about installing Prometheus Operator, see link:{prometheus_operator_url}[Prometheus Operator] website.
 ====
@@ -152,7 +152,7 @@ In {product_name}, you can check the following example metrics:
 * `kogito_process_instance_completed_total`: Completed workflows
 * `kogito_process_instance_started_total`: Started workflows
 * `kogito_process_instance_running_total`: Running workflows
-* `kogito_process_instance_duration_seconds_sum`: Workflows total duration
+* `kogito_process_instance_duration_seconds_sum`: Workflows total duration 
 
 [NOTE]
 ====

@@ -40,6 +40,22 @@ Learn what is and how the Kubernetes service discovery for workflow application 
 [.card]
 --
 [.card-title]
+xref:cloud/operator/referencing-resource-files.adoc[]
+[.card-description]
+Learn how to reference resource files to the workflow application
+--
+
+[.card]
+--
+[.card-title]
+xref:cloud/operator/configuring-workflows.adoc[]
+[.card-description]
+Learn how to deploy your workflow application on OpenShift cluster
+--
+
+[.card]
+--
+[.card-title]
 xref:cloud/quarkus/deploying-on-minikube.adoc[Deploying your {product_name} application on Minikube]
 [.card-description]
 Learn how to deploy your workflow application on Minikube for local tests and development

@@ -4,8 +4,8 @@
 :description: Running Serverless Workflow service using PostgresSQL
 :keywords: kogito, workflow, quarkus, serverless, quarkus-cli, persistence, postgresql
 // Referenced documentation pages.
-:getting_started_create_first_workflow_guide: xref:serverless-logic:getting-started/create-your-first-workflow-service.adoc
-:persistence_with_postgresql_guide: xref:serverless-logic:persistence/persistence-with-postgresql.adoc
+:getting_started_create_first_workflow_guide: xref:getting-started/create-your-first-workflow-service.adoc
+:persistence_with_postgresql_guide: xref:persistence/persistence-with-postgresql.adoc
 // External pages
 :quarkus_datasource_guide: https://quarkus.io/guides/datasource
 :quarkus_datasource_devservices_guide: https://quarkus.io/guides/databases-dev-services
@@ -16,15 +16,15 @@
 
 This document describes how you can run your workflow application using PostgreSQL persistence.
 
-When your workflow execution requires `wait` states, then running your workflow application with persistence enabled is a recommended approach.
+When your workflow execution requires `wait` states, then running your workflow application with persistence enabled is a recommended approach. 
 
-For example, when a process reaches a `callback` or needs to wait for an event, then the execution of the process is paused and the engine takes a snapshot of the workflow data. The snapshot is persisted in the database as a binary format along with process metadata information. The process metadata information includes process ID, process instance ID, and process version.
+For example, when a process reaches a `callback` or needs to wait for an event, then the execution of the process is paused and the engine takes a snapshot of the workflow data. The snapshot is persisted in the database as a binary format along with process metadata information. The process metadata information includes process ID, process instance ID, and process version. 
 
 Runtime persistence is used for storing data, which is required to resume the workflow execution of a process instance. Once a process is completed, the related data is removed from the database. This means that only required data to resume the execution is persisted.
 
-In {product_name}, you can enable persistence using add-ons. This document describes the use of the `kogito-addons-quarkus-persistence-jdbc` add-on, which is based on Java Database Connectivity (JDBC) along with PostgreSQL.
+In {product_name}, you can enable persistence using add-ons. This document describes the use of the `kogito-addons-quarkus-persistence-jdbc` add-on, which is based on Java Database Connectivity (JDBC) along with PostgreSQL. 
 
-The `kogito-addons-quarkus-persistence-jdbc` add-on also extends on the Quarkus capabilities and you can use the available features directly from Quarkus JDBC support. For more information about Quarkus and JDBC, see link:{quarkus_datasource_guide}[Quarkus Datasources].
+The `kogito-addons-quarkus-persistence-jdbc` add-on also extends on the Quarkus capabilities and you can use the available features directly from Quarkus JDBC support. For more information about Quarkus and JDBC, see link:{quarkus_datasource_guide}[Quarkus Datasources]. 
 
 You can also see the `serverless-workflow-callback-quarkus` example application in GitHub repository. To execute the `serverless-workflow-callback-quarkus` example application, you can follow the instructions mentioned in the `README` file. To clone the `kogito-example` repository, use the following command:
 
@@ -109,7 +109,7 @@ quarkus.datasource.db-kind=postgresql
 You can find more details regarding the PostgreSQL database schema migration in the xref:persistence/postgresql-flyway-migration.adoc[Flyway migration guide].
 --
 
-. Optional: To handle the concurrent requests to shared workflow instances, enable the persistence-enabled optimistic locking for concurrency control using the version field in the database.
+. Optional: To handle the concurrent requests to shared workflow instances, enable the persistence-enabled optimistic locking for concurrency control using the version field in the database. 
 +
 --
 Add `kogito.persistence.optimistic.lock=true` property in the `application.properties` file of your project to enable the optimistic locking.
@@ -127,11 +127,11 @@ Add `kogito.persistence.optimistic.lock=true` property in the `application.prope
   "version": "1.0"
 }
 ----
-The versioning strategy is used to allow different workflow applications to run different versions of a process at the same time. The different versions of a process share the same database. This is useful when you migrate a process from one version to another. When allowing workflow instances to finish executing, a new version can be deployed using a new workflow application setup.
+The versioning strategy is used to allow different workflow applications to run different versions of a process at the same time. The different versions of a process share the same database. This is useful when you migrate a process from one version to another. When allowing workflow instances to finish executing, a new version can be deployed using a new workflow application setup. 
 
 By default, the engine considers the `version` specified in the workflow file as the current version of the asset. Therefore, you need to manually change the `version` in the workflow file, making the engine consider the specified version as a new version.
 
-As an alternative, you can set the `kogito.workflow.version-strategy=project` property in the `application.properties` file of your project. This enables the engine to consider the Maven or Gradle project version as the version of all workflows in the project. For instance, when you release a new version of your Maven project, the version in the workflow file is automatically updated.
+As an alternative, you can set the `kogito.workflow.version-strategy=project` property in the `application.properties` file of your project. This enables the engine to consider the Maven or Gradle project version as the version of all workflows in the project. For instance, when you release a new version of your Maven project, the version in the workflow file is automatically updated. 
 --
 
 [[ref-postgresql-persistence-configuration]]
@@ -166,7 +166,7 @@ The following table serves as a quick reference of commonly used persistence con
 [[postgresql-persistence-additional-resources]]
 == Additional resources
 
-* xref:serverless-logic:testing-and-troubleshooting/integration-tests-with-postgresql.adoc[{product_name} integration test using PostgreSQL]
+* xref:testing-and-troubleshooting/integration-tests-with-postgresql.adoc[{product_name} integration test using PostgreSQL]
 * xref:persistence/postgresql-flyway-migration.adoc[Migrating Your PostgreSQL Database with a Kogito upgrade]
 
 include::../../pages/_common-content/report-issue.adoc[]

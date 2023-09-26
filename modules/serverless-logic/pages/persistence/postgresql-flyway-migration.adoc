@@ -1,4 +1,4 @@
-= Migrating Your PostgreSQL Database with a {product_name} upgrade
+= Migrating Your PostgreSQL Database with a Kogito upgrade
 :flyway_install_url: https://flywaydb.org/download/community
 :flyway_migrate_existing_url: https://flywaydb.org/documentation/learnmore/existing
 :kogito_ddl_script_url: https://repo1.maven.org/maven2/org/kie/kogito/kogito-ddl
@@ -13,7 +13,7 @@ When you upgrade your {product_name} version, by default it **won't** pick up th
 
 === Migrate using Flyway Config
 
-* {product_name} provides a mechanism for migrating your database while updating the {product_name} version using the following `Flyway` properties (default value is `false`, not upgrade):
+* Kogito provides a mechanism for migrating your database while updating the Kogito version using the following `Flyway` properties (default value is `false`, not upgrade):
 +
 --
 [source,properties]
@@ -48,7 +48,7 @@ flyway.password=bar
 $ flyway migrate -url=jdbc:postgresql://localhost:5432/foobardb -user=foo -password=bar
 ----
 --
-* Download the {product_name} DDL zip from link:{kogito_ddl_script_url}[this link], choose the correct version,  extract the files and use the scripts from the `postgresql` folder.
+* Download the Kogito DDL zip from link:{kogito_ddl_script_url}[this link], choose the correct version,  extract the files and use the scripts from the `postgresql` folder.
 * You can specify the location of the SQL files that need to be migrated using the `flyway.locations` option. For example,
 +
 --
@@ -62,8 +62,8 @@ flyway.locations=classpath:com.mycomp.migration,database/migrations,filesystem:/
 === Manually executing scripts
 You can use the provided SQL scripts in the zip file to migrate the database by executing them one by one.
 
-* You can find the {product_name} DDL scripts by visiting link:{kogito_ddl_script_url}[this link].
-* Download the zip file of the scripts from the needed version for the {product_name} upgrade.
+* You can find the Kogito DDL scripts by visiting link:{kogito_ddl_script_url}[this link].
+* Download the zip file of the scripts from the needed version for the Kogito upgrade.
 * Extract the files.
 * Execute the `sql` files from `postgresql` folder.
 +
@@ -75,7 +75,7 @@ You can use the provided SQL scripts in the zip file to migrate the database by 
 --
 
 == Baseline migration
-In order to apply migrations to an existing schema. It is necessary to establish the baseline from where Flyway should start executing new migrations. That means, in case your schema already contains a structure and from now on, new changes provided by {product_name} should be applied via Flyway integration. In Flyway terms, only migrations above `baselineVersion` will then be applied.
+In order to apply migrations to an existing schema. It is necessary to establish the baseline from where Flyway should start executing new migrations. That means, in case your schema already contains a structure and from now on, new changes provided by Kogito should be applied via Flyway integration. In Flyway terms, only migrations above `baselineVersion` will then be applied.
 Using below properties you can initialize flyway schema table.
 
 === Baseline using Quarkus Configuration:
