@@ -54,7 +54,7 @@ For more information, see <<proc-install-chrome-extension-sw-editor, Installing 
 +
 --
 .Serverless Workflow file in GitHub
-image::tooling/serverless-workflow-editor/swf-editor-in-github.png[]
+image::tooling/serverless-workflow-editor/swf-editor-in-github-readonly.png[]
 
 The Serverless Workflow editor opens in read-only mode.
 --
