@@ -27,7 +27,7 @@ image::tooling/serverless-workflow-editor/swf-editor-vscode-extension-page.png[]
 .Procedure
 . You can install the VS Code extension for Serverless Workflow editor using one of the following methods:
 
-* *Go to Visual Studio Marketplace*: Go to link:{kogito_swf_editor_vscode_marketplace_url}[KIE Serverless Workflow Editor}] extension page in Visual Studio Marketplace and click *Install*.
+* *Go to Visual Studio Marketplace*: Go to link:{kogito_swf_editor_vscode_marketplace_url}[KIE Serverless Workflow Editor] extension page in Visual Studio Marketplace and click *Install*.
 +
 --
 .{serverless_workflow_vscode_extension_name} in Visual Studio Marketplace
