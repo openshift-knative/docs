@@ -12,22 +12,22 @@ asciidoc:
     serverlessoperatorname: OpenShift Serverless Operator
     serverlessproductname: OpenShift Serverless
     product_name: OpenShift Serverless Logic
-    kogito_version_redhat: 1.38.0.Final-redhat-00002
+    kogito_version_redhat: 1.40.0.Final-redhat-00009
     operator_name: Kogito Serverless Workflow Operator
     quarkus_platform: com.redhat.quarkus.platform
     kogito_sw_ga: >-
       org.kie.kogito:kogito-quarkus-serverless-workflow
-    quarkus_version: 2.13.7.Final-redhat-00003
-    quarkus_platform_version: 2.13.7.Final-redhat-00003
+    quarkus_version: 2.13.8.Final-redhat-00005
+    quarkus_platform_version: 2.13.8.SP2-redhat-00001
     java_min_version: 11+
     maven_min_version: 3.8.6
     graalvm_min_version: 22.3.0
     spec_version: 0.8
     vscode_version: 1.66.0
-    kn_cli_version: 0.28.0
+    kn_cli_version: 0.30.3
     docker_min_version: 20.10.7
     docker_compose_min_version: 1.27.2
-    operator_version: v1.38.0
+    operator_version: v1.40.0
     kogito_examples_repository_url: 'https://github.com/kiegroup/kogito-examples'
     kogito_sw_examples_url: https://github.com/kiegroup/kogito-examples/tree/1.38.x/serverless-workflow-examples
     kogito_examples_url: 'https://github.com/kiegroup/kogito-examples.git'
