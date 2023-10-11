@@ -258,7 +258,7 @@ spec:
 <1> Set this to at least 2, to make sure you have always at least two instances of every component running. You can also use `workloads` to override the replicas for certain components.
 <2> Use the `workloads` list to configure specific components. Use the `deployment` name of the component (like `activator`, `autoscaler`, `autoscaler-hpa`, `controller`, `webhook`, `net-kourier-controller`, `3scale-kourier-gateway`, `net-istio-controller`) and set the `replicas`.
 <3> Set the requested and limited CPU + Memory according to at least the idle consumption (see above) while also taking the above findings and your own test results into consideration.
-<4> Adjust the `PodDistruptionBudgets` to a value lower or equal to the `replicas`, to avoid problems during node maintenance.
+<4> Adjust the `PodDistruptionBudgets` to a value lower or equal to the `replicas`, to avoid problems during node maintenance. The default `minAvailable` is set to `1`, so if you increase the desired replicas, make sure to also increase `minAvailable`.
 
 [IMPORTANT]
 ====
