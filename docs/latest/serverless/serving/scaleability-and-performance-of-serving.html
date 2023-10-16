@@ -3,9 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Setup OpenShift Serverless with OpenShift Service Mesh :: Red Hat OpenShift Serverless previews</title>
-    <link rel="canonical" href="https://openshift-knative.github.io/docs/docs/latest/serverless/service-mesh/common-service-mesh-setup.html">
-    <meta name="description" content="Setup OpenShift Serverless with OpenShift Service Mesh">
+    <title>Scalability and performance of OpenShift Serverless Serving :: Red Hat OpenShift Serverless previews</title>
+    <link rel="canonical" href="https://openshift-knative.github.io/docs/docs/latest/serverless/serving/scaleability-and-performance-of-serving.html">
+    <meta name="description" content="Scalability and performance of OpenShift Serverless Serving">
     <meta name="generator" content="Antora 3.0.3">
     <link rel="stylesheet" href="../../../../_/css/site.css">
 <link rel="stylesheet" href="../../../../_/css/extra.css">
@@ -73,17 +73,17 @@
     <button class="nav-toggle"></button>
     <span class="nav-text">Using OpenShift Serverless with OpenShift Service Mesh</span>
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="3">
-    <a class="nav-link" href="common-service-mesh-setup.html">Setup Serverless with OpenShift Service Mesh</a>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../service-mesh/common-service-mesh-setup.html">Setup Serverless with OpenShift Service Mesh</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="common-service-mesh-network-isolation.html">Use Service Mesh to isolate network-traffic</a>
+    <a class="nav-link" href="../service-mesh/common-service-mesh-network-isolation.html">Use Service Mesh to isolate network-traffic</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="eventing-service-mesh-containersource.html">Eventing: Using ContainerSource with OpenShift Service Mesh</a>
+    <a class="nav-link" href="../service-mesh/eventing-service-mesh-containersource.html">Eventing: Using ContainerSource with OpenShift Service Mesh</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="eventing-service-mesh-sinkbinding.html">Eventing: Using SinkBinding with OpenShift Service Mesh</a>
+    <a class="nav-link" href="../service-mesh/eventing-service-mesh-sinkbinding.html">Eventing: Using SinkBinding with OpenShift Service Mesh</a>
   </li>
 </ul>
   </li>
@@ -92,10 +92,10 @@
     <span class="nav-text">Serving</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../serving/serving-with-ingress-sharding.html">Use Serving with OpenShift ingress sharding</a>
+    <a class="nav-link" href="serving-with-ingress-sharding.html">Use Serving with OpenShift ingress sharding</a>
   </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../serving/scaleability-and-performance-of-serving.html">Scalability and performance of OpenShift Serverless Serving</a>
+  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="scaleability-and-performance-of-serving.html">Scalability and performance of OpenShift Serverless Serving</a>
   </li>
 </ul>
   </li>
@@ -436,532 +436,47 @@
   <ul>
     <li class="crumb"><a href="../../index.html">Documentation</a></li>
     <li class="crumb">Serverless</li>
-    <li class="crumb">Using OpenShift Serverless with OpenShift Service Mesh</li>
-    <li class="crumb"><a href="common-service-mesh-setup.html">Setup Serverless with OpenShift Service Mesh</a></li>
+    <li class="crumb">Serving</li>
+    <li class="crumb"><a href="scaleability-and-performance-of-serving.html">Scalability and performance of OpenShift Serverless Serving</a></li>
   </ul>
 </nav>
 </div>
     <div class="main-view-and-toc">
         <main class="main">
           <article class="doc">
-<h1>Setup OpenShift Serverless with OpenShift Service Mesh</h1>
+<h1>Scalability and performance of OpenShift Serverless Serving</h1>
+<div class="sect1">
+<h2 id="_introduction"><a class="anchor" href="#_introduction"></a>Introduction</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>This page describes the integration of OpenShift Serverless with OpenShift Service Mesh.</p>
+<p>OpenShift Serverless consists of several different components which have different resource requirements and scaling behaviours.
+As some components, like the <code>controller</code> pods, are responsible to watch and react to <code>CustomResources</code> and continuously reconfigure the system, these components are called control-plane.
+Other components, like OpenShift Serverless Servings <code>activator</code> component, are directly involved in requests and response handling. These components are called data-plane.
+All of these components are horizontally and vertically scalable, but their resource requirements and configuration highly depends on the actual use-case.</p>
+</div>
+<div class="paragraph">
+<p>Thus, the following paragraphs are outlining a few relevant things to consider while scaling the system to handle increased usage.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_test_context"><a class="anchor" href="#_test_context"></a>Test context</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The following metrics and findings were recorded using the following test setup:</p>
 </div>
 <div class="ulist">
-<div class="title">Assumptions and limitations</div>
 <ul>
 <li>
-<p>All Knative internal components, as well as Knative Services, are part of the Service Mesh and have sidecars injection enabled. This means, that strict mTLS is enforced within the whole mesh. All requests to Knative Services require an mTLS connection (the client must send its certificate), except calls coming from OpenShift Routing.</p>
+<p>A cluster running OpenShift version 4.13</p>
 </li>
 <li>
-<p>OpenShift Serverless with Service Mesh integration can only target <strong>one</strong> service mesh. Multiple meshes can be present in the cluster, but OpenShift Serverless will only be available on one of them.</p>
+<p>The cluster running <strong>4 worker nodes</strong> in AWS with a machine type of <code>m6.xlarge</code></p>
 </li>
 <li>
-<p>Changing the target <code>ServiceMeshMemberRole</code>, that OpenShift Serverless is part of (meaning moving OpenShift Serverless to another mesh) is not supported. The only way to change the targeted Service mesh is to uninstall and reinstall OpenShift Serverless.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<div class="title">Pre-install verification</div>
-<p>Before you install and configure the Service Mesh integration with OpenShift Serverless, please run the following pre-install verifications to make sure, the integration will work properly.</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Check for conflicting gateways</p>
-<div class="paragraph">
-<p>The mesh that OpenShift Serverless is part of has to be distinct and ideally only for OpenShift Serverless workloads, as additional configuration like <code>Gateways</code> might interfere with the OpenShift Serverless gateways <code>knative-local-gateway</code> and <code>knative-ingress-gateway</code>. OpenShift Service Mesh only allows one <code>Gateway</code> to claim a wildcard host binding (<code>hosts: ["*"]</code>) on the same port (<code>port: 443</code>). If another <code>Gateway</code> is already binding this configuration, a separate mesh has to be created for OpenShift Serverless workloads. To check if an existing <code>Gateway</code> is already binding those, run:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ oc get gateway -A -o jsonpath='{range .items[*]}{@.metadata.namespace}{"/"}{@.metadata.name}{" "}{@.spec.servers}{"\n"}{end}' | column -t
-knative-serving/knative-ingress-gateway  [{"hosts":["*"],"port":{"name":"https","number":443,"protocol":"HTTPS"},"tls":{"credentialName":"wildcard-certs","mode":"SIMPLE"}}]
-knative-serving/knative-local-gateway    [{"hosts":["*"],"port":{"name":"http","number":8081,"protocol":"HTTP"}}]</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>This command should not return a <code>Gateway</code> that binds <code>port: 443</code> and <code>hosts: ["*"]</code>, except the <code>Gateways</code> in <code>knative-serving</code> and <code>Gateways</code>, that are part of another Service Mesh instance.</p>
-</div>
-</li>
-<li>
-<p>Check if Service Mesh is exposed as type <code>NodePort</code> or <code>LoadBalancer</code></p>
-<div class="paragraph">
-<p>Cluster external Knative Services are expected to be called via OpenShift Ingress using OpenShift Routes. It is not supported to access Service Mesh directly, e.g. by exposing the <code>istio-ingressgateway</code> using a Service with type <code>NodePort</code> or <code>LoadBalancer</code>. To check how your <code>istio-ingressgateway</code> is exposed, run:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ oc get svc -A | grep istio-ingressgateway
-istio-system   istio-ingressgateway  ClusterIP  172.30.46.146 none&gt;   15021/TCP,80/TCP,443/TCP     9m50s</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>This command should not return a <code>Service</code> of type <code>NodePort</code> or <code>LoadBalancer</code>.</p>
-</div>
-</li>
-</ol>
-</div>
-<div class="ulist">
-<div class="title">Prerequisites</div>
-<ul>
-<li>
-<p>You have access to an OpenShift account with cluster administrator access.</p>
-</li>
-<li>
-<p>Install the OpenShift CLI (<code>oc</code>).</p>
-</li>
-<li>
-<p>Install the OpenShift Service Mesh Operator.</p>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>Using OpenShift Serverless with Service Mesh is only supported with OpenShift Service Mesh version 2.0.5 or later.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
+<p>OpenShift Serverless version 1.30</p>
 </li>
 </ul>
-</div>
-<div class="olist arabic">
-<div class="title">Installing and configuring OpenShift Service Mesh</div>
-<ol class="arabic">
-<li>
-<p>Create a <code>ServiceMeshControlPlane</code> resource in the <code>istio-system</code> namespace. Make sure to use the following settings, to make Service mesh work with Serverless:</p>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>If you have an existing <code>ServiceMeshControlPlane</code>, make sure that you have the same configuration applied.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: maistra.io/v2
-kind: ServiceMeshControlPlane
-metadata:
-  name: basic
-  namespace: istio-system
-spec:
-  profiles:
-  - default
-  security:
-    dataPlane:
-      mtls: true <i class="conum" data-value="1"></i><b>(1)</b>
-  techPreview:
-    meshConfig:
-      defaultConfig:
-        terminationDrainDuration: 35s <i class="conum" data-value="2"></i><b>(2)</b>
-  gateways:
-    ingress:
-      service:
-        metadata:
-          labels:
-            knative: ingressgateway <i class="conum" data-value="3"></i><b>(3)</b>
-  proxy:
-    networking:
-      trafficControl:
-        inbound:
-          excludedPorts: <i class="conum" data-value="4"></i><b>(4)</b>
-          - 8444 # metrics
-          - 8022 # serving: wait-for-drain k8s pre-stop hook</code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>This enforces strict mTLS in the mesh. Only calls using a valid client-certificate are allowed.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>OpenShift Serverless has a graceful termination for Knative Services of 30 seconds. The istio-proxy needs to have a longer termination duration to make sure no requests are dropped.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>Defining a specific selector for the <code>ingress-gateway</code> to target only the Knative gateway.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>Those ports are called by Kubernetes and cluster monitoring which are not part of the mesh and cannot be called using mTLS, thus those ports are excluded from the Service mesh.</td>
-</tr>
-</table>
-</div>
-</li>
-<li>
-<p>Add the namespaces that you would like to integrate with Service Mesh to the <code>ServiceMeshMemberRoll</code> object as members:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: maistra.io/v1
-kind: ServiceMeshMemberRoll
-metadata:
-  name: default
-  namespace: istio-system
-spec:
-  members: <i class="conum" data-value="1"></i><b>(1)</b>
-    - knative-serving
-    - knative-eventing
-    - &lt;your OpenShift projects&gt;</code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>A list of namespaces to be integrated with Service Mesh.</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>This list of namespaces must include the <code>knative-serving</code> and <code>knative-eventing</code> namespaces.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-</li>
-<li>
-<p>Apply the <code>ServiceMeshMemberRoll</code> resource:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ oc apply -f &lt;filename&gt;</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Create the necessary gateways so that Service Mesh can accept traffic:</p>
-<div class="listingblock">
-<div class="title">Example <code>knative-local-gateway</code> object using <code>ISTIO_MUTUAL</code> (mTLS)</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: networking.istio.io/v1alpha3
-kind: Gateway
-metadata:
-  name: knative-ingress-gateway
-  namespace: knative-serving
-spec:
-  selector:
-    knative: ingressgateway
-  servers:
-    - port:
-        number: 443
-        name: https
-        protocol: HTTPS
-      hosts:
-        - "*"
-      tls:
-        mode: SIMPLE
-        credentialName: &lt;wildcard_certs&gt; <i class="conum" data-value="1"></i><b>(1)</b>
----
-apiVersion: networking.istio.io/v1alpha3
-kind: Gateway
-metadata:
- name: knative-local-gateway
- namespace: knative-serving
-spec:
- selector:
-   knative: ingressgateway
- servers:
-   - port:
-       number: 8081
-       name: https
-       protocol: HTTPS <i class="conum" data-value="2"></i><b>(2)</b>
-     tls:
-       mode: ISTIO_MUTUAL <i class="conum" data-value="2"></i><b>(2)</b>
-     hosts:
-       - "*"
----
-apiVersion: v1
-kind: Service
-metadata:
- name: knative-local-gateway
- namespace: istio-system
- labels:
-   experimental.istio.io/disable-gateway-port-translation: "true"
-spec:
- type: ClusterIP
- selector:
-   istio: ingressgateway
- ports:
-   - name: http2
-     port: 80
-     targetPort: 8081</code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Add the name of the secret that contains the wildcard certificate.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>The <code>knative-local-gateway</code> serves HTTPS traffic and expects all clients to send requests using mTLS. This means, that only traffic coming from withing Service Mesh is possible. Workloads from outside the Service Mesh must use the external domain via OpenShift Routing.</td>
-</tr>
-</table>
-</div>
-</li>
-<li>
-<p>Apply the <code>Gateway</code> resources:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ oc apply -f &lt;filename&gt;</code></pre>
-</div>
-</div>
-</li>
-</ol>
-</div>
-<div class="olist arabic">
-<div class="title">Installing and configuring OpenShift Serverless</div>
-<ol class="arabic">
-<li>
-<p>First, install the OpenShift Serverless Operator.</p>
-</li>
-<li>
-<p>Then, install Knative Serving by creating the following <code>KnativeServing</code> custom resource, which also enables the Istio integration:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: operator.knative.dev/v1beta1
-kind: KnativeServing
-metadata:
-  name: knative-serving
-  namespace: knative-serving
-spec:
-  ingress:
-    istio:
-      enabled: true <i class="conum" data-value="1"></i><b>(1)</b>
-  deployments: <i class="conum" data-value="2"></i><b>(2)</b>
-  - name: activator
-    annotations:
-      "sidecar.istio.io/inject": "true"
-      "sidecar.istio.io/rewriteAppHTTPProbers": "true"
-  - name: autoscaler
-    annotations:
-      "sidecar.istio.io/inject": "true"
-      "sidecar.istio.io/rewriteAppHTTPProbers": "true"
-  config:
-    istio: <i class="conum" data-value="3"></i><b>(3)</b>
-      gateway.knative-serving.knative-ingress-gateway: istio-ingressgateway.&lt;your-istio-namespace&gt;.svc.cluster.local
-      local-gateway.knative-serving.knative-local-gateway: knative-local-gateway.&lt;your-istio-namespace&gt;.svc.cluster.local</code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Enables Istio integration.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Enables sidecar injection for Knative Serving data plane pods.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>Optional: if your istio is <strong>NOT</strong> running in <code>istio-system</code>, set those two flags with the correct namespace.</td>
-</tr>
-</table>
-</div>
-</li>
-<li>
-<p>Apply the <code>KnativeServing</code> resource:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ oc apply -f &lt;filename&gt;</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Install Knative Eventing by creating the following <code>KnativeEventing</code> custom resource, which also enables the Istio integration:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: operator.knative.dev/v1beta1
-kind: KnativeEventing
-metadata:
-  name: knative-eventing
-  namespace: knative-eventing
-spec:
-  config:
-    features:
-      istio: enabled <i class="conum" data-value="1"></i><b>(1)</b>
-  workloads: <i class="conum" data-value="2"></i><b>(2)</b>
-  - name: pingsource-mt-adapter
-    annotations:
-      "sidecar.istio.io/inject": "true"
-      "sidecar.istio.io/rewriteAppHTTPProbers": "true"
-  - name: imc-dispatcher
-    annotations:
-      "sidecar.istio.io/inject": "true"
-      "sidecar.istio.io/rewriteAppHTTPProbers": "true"
-  - name: mt-broker-ingress
-    annotations:
-      "sidecar.istio.io/inject": "true"
-      "sidecar.istio.io/rewriteAppHTTPProbers": "true"
-  - name: mt-broker-filter
-    annotations:
-      "sidecar.istio.io/inject": "true"
-      "sidecar.istio.io/rewriteAppHTTPProbers": "true"</code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Enables Eventing Istio controller to create a <code>DestinationRule</code> for each InMemoryChannel or KafkaChannel service.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Enables sidecar injection for Knative Eventing pods.</td>
-</tr>
-</table>
-</div>
-</li>
-<li>
-<p>Apply the <code>KnativeEventing</code> resource:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ oc apply -f &lt;filename&gt;</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Install Knative Kafka by creating the following <code>KnativeKafka</code> custom resource, which also enables the Istio integration:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: operator.serverless.openshift.io/v1alpha1
-kind: KnativeKafka
-metadata:
-  name: knative-kafka
-  namespace: knative-eventing
-spec:
-  channel:
-    enabled: true
-    bootstrapServers: &lt;bootstrap_servers&gt; <i class="conum" data-value="1"></i><b>(1)</b>
-  source:
-    enabled: true
-  broker:
-    enabled: true
-    defaultConfig:
-      bootstrapServers: &lt;bootstrap_servers&gt; <i class="conum" data-value="1"></i><b>(1)</b>
-      numPartitions: &lt;num_partitions&gt;
-      replicationFactor: &lt;replication_factor&gt;
-    sink:
-      enabled: true
-  workloads: <i class="conum" data-value="2"></i><b>(2)</b>
-  - name: kafka-controller
-    annotations:
-      "sidecar.istio.io/inject": "true"
-      "sidecar.istio.io/rewriteAppHTTPProbers": "true"
-  - name: kafka-broker-receiver
-    annotations:
-      "sidecar.istio.io/inject": "true"
-      "sidecar.istio.io/rewriteAppHTTPProbers": "true"
-  - name: kafka-broker-dispatcher
-    annotations:
-      "sidecar.istio.io/inject": "true"
-      "sidecar.istio.io/rewriteAppHTTPProbers": "true"
-  - name: kafka-channel-receiver
-    annotations:
-      "sidecar.istio.io/inject": "true"
-      "sidecar.istio.io/rewriteAppHTTPProbers": "true"
-  - name: kafka-channel-dispatcher
-    annotations:
-      "sidecar.istio.io/inject": "true"
-      "sidecar.istio.io/rewriteAppHTTPProbers": "true"
-  - name: kafka-source-dispatcher
-    annotations:
-      "sidecar.istio.io/inject": "true"
-      "sidecar.istio.io/rewriteAppHTTPProbers": "true"
-  - name: kafka-sink-receiver
-    annotations:
-      "sidecar.istio.io/inject": "true"
-      "sidecar.istio.io/rewriteAppHTTPProbers": "true"</code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>The Apache Kafka cluster URL, for example: <code>my-cluster-kafka-bootstrap.kafka:9092</code>.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Enables sidecar injection for Knative Kafka pods.</td>
-</tr>
-</table>
-</div>
-</li>
-<li>
-<p>Apply the <code>KnativeKafka</code> resource:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ oc apply -f &lt;filename&gt;</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Install <code>ServiceEntry</code> to make OpenShift Service Mesh aware of the communication between <code>KnativeKafka</code> components and an Apache Kafka cluster:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: networking.istio.io/v1alpha3
-kind: ServiceEntry
-metadata:
-  name: kafka-cluster
-  namespace: knative-eventing
-spec:
-  hosts: <i class="conum" data-value="1"></i><b>(1)</b>
-    - &lt;bootstrap_servers_without_port&gt;
-  exportTo:
-    - "."
-  ports: <i class="conum" data-value="2"></i><b>(2)</b>
-    - number: 9092
-      name: tcp-plain
-      protocol: TCP
-    - number: 9093
-      name: tcp-tls
-      protocol: TCP
-    - number: 9094
-      name: tcp-sasl-tls
-      protocol: TCP
-    - number: 9095
-      name: tcp-sasl-tls
-      protocol: TCP
-    - number: 9096
-      name: tcp-tls
-      protocol: TCP
-  location: MESH_EXTERNAL
-  resolution: NONE</code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>The list of Apache Kafka cluster hosts, for example: <code>my-cluster-kafka-bootstrap.kafka</code>.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Apache Kafka cluster listeners ports.</td>
-</tr>
-</table>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -971,61 +486,442 @@ spec:
 </td>
 <td class="content">
 <div class="paragraph">
-<p>The listed ports in <code>spec.ports</code> are example TPC ports and depend on how the Apache Kafka cluster is configured.</p>
+<p>Please note, that the tests are continuously run on our continuous integration system to compare performance data
+between releases of OpenShift Serverless.</p>
 </div>
 </td>
 </tr>
 </table>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_overhead_of_openshift_serverless_serving"><a class="anchor" href="#_overhead_of_openshift_serverless_serving"></a>Overhead of OpenShift Serverless Serving</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>As components of OpenShift Serverless Serving are part of the data-plane, requests from clients are routed through:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The ingress-gateway (Kourier or Service Mesh)</p>
 </li>
 <li>
-<p>Apply the <code>ServiceEntry</code> resource:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ oc apply -f &lt;filename&gt;</code></pre>
-</div>
-</div>
+<p>The <code>activator</code> component</p>
 </li>
-</ol>
-</div>
-<div class="olist arabic">
-<div class="title">Verification</div>
-<ol class="arabic">
 <li>
-<p>Create a Knative Service that has sidecar injection enabled and uses a pass-through route:</p>
+<p>The <code>queue-proxy</code> sidecar container in each Knative Service</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>As these components introduce an additional hop in networking and do some additional work (like for example adding observability and request queuing),
+they come with some overhead. The following latency overheads have been measured:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Each additional network hop <strong>adds 0.5-1ms</strong> latency to a request. Note that the <code>activator</code> component is not always part of the data-plane depending on the current load of the Knative Service and if the Knative Service was scaled to zero before the request or not.</p>
+</li>
+<li>
+<p>Depending on the payload size, each of those component consumes up to 1 vCPU of CPU for handling 2500 requests per second.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_known_limitations_of_openshift_serverless_serving"><a class="anchor" href="#_known_limitations_of_openshift_serverless_serving"></a>Known limitations of OpenShift Serverless Serving</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The maximum number of Knative Services that can be created using this configuration is <strong>3,000</strong>.
+This corresponds to the OpenShift Container Platform Kubernetes services limit of 10,000, since 1 Knative Service creates 3 Kubernetes services.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_scalability_and_performance_of_openshift_serverless_serving"><a class="anchor" href="#_scalability_and_performance_of_openshift_serverless_serving"></a>Scalability and performance of OpenShift Serverless Serving</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>OpenShift Serverless Serving has to be scaled and configured based on the following parameters:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Number of Knative Services</p>
+</li>
+<li>
+<p>Number of Revisions</p>
+</li>
+<li>
+<p>Amount of concurrent requests in the system</p>
+</li>
+<li>
+<p>Size of payloads of the requests</p>
+</li>
+<li>
+<p>The startup-latency and response latency of the Knative Service added by the user&#8217;s web application</p>
+</li>
+<li>
+<p>Number of changes of the KnativeService <code>CustomResources</code> over time</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Scaling of OpenShift Serverless Serving is configured using the <code>KnativeServing</code> <code>CustomResource</code>.</p>
+</div>
+<div class="sect2">
+<h3 id="_knativeserving_defaults"><a class="anchor" href="#_knativeserving_defaults"></a><code>KnativeServing</code> defaults</h3>
+<div class="paragraph">
+<p>Per default, OpenShift Serverless Serving is configured to run all components with high availability and with medium-sized CPU and memory requests/limits.
+This also means, that the <code>high-available</code> field in <code>KnativeServing</code> is automatically set to a value of 2 and all system components are scaled to two relicas.
+This set-up is suitable for medium-sized workload scenarios. These defaults have been tested with</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>170 Knative Services</p>
+</li>
+<li>
+<p>1-2 Revisions per Knative Service</p>
+</li>
+<li>
+<p>89 test scenarios mainly focussed on testing the control-plane</p>
+</li>
+<li>
+<p>48 re-creating scenarios where Knative Services are deleted and re-created</p>
+</li>
+<li>
+<p>41 stable scenarios, in which requests are slowly but continuously sent to the system</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>During these test cases, the system components effectively consumed:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Component</th>
+<th class="tableblock halign-left valign-top">Measured resources</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Operator in project <code>openshift-serverless</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1 GB Memory, 0.2 Cores of CPU</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Serving components in project <code>knative-serving</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">5 GB Memory, 2.5 Cores of CPU</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>While the default set-up is suitable for medium-sized workloads, this might be over-sized for smaller set-ups or under-sized for high-workload scenarios.
+Please see the next sections for possible tuning options.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_minimal_requirements"><a class="anchor" href="#_minimal_requirements"></a>Minimal requirements</h3>
+<div class="paragraph">
+<p>To configure OpenShift Serverless Serving for a minimal workload scenario, it is important to know the idle consumption of the system components.</p>
+</div>
+<div class="sect3">
+<h4 id="_idle_consumption"><a class="anchor" href="#_idle_consumption"></a>Idle consumption</h4>
+<div class="paragraph">
+<p>The idle consumption is dependent on the number of Knative Services.
+Please note, that for the idle consumption, only Memory is important.
+Relevant cycles of CPU are only used when Knative Services are changed or requests are sent to/from them.
+The following memory consumptions have been measured for the components in the <code>knative-serving</code> and <code>knative-serving-ingress</code> OpenShift projects:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Component</th>
+<th class="tableblock halign-left valign-top">0 Services</th>
+<th class="tableblock halign-left valign-top">100 Services</th>
+<th class="tableblock halign-left valign-top">500 Service</th>
+<th class="tableblock halign-left valign-top">1000 Services</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">activator</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">55Mi</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">86Mi</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">150Mi</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">200Mi</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">autoscaler</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">52Mi</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">102Mi</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">225Mi</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">350Mi</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">controller</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">100Mi</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">135Mi</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">250Mi</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">400Mi</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">webhook</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">60Mi</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">60Mi</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">60Mi</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">60Mi</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3scale-kourier-gateway (1)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">20Mi</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">60Mi</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">190Mi</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">330Mi</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">net-kourier-controller (1)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">90Mi</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">170Mi</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">340Mi</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">430Mi</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">istio-ingressgateway (1)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">57Mi</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">107Mi</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">307Mi</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">446Mi</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">net-istio-controller (1)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">60Mi</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">152Mi</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">350Mi</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">504Mi</p></td>
+</tr>
+</tbody>
+</table>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Note: either <code>3scale-kourier-gateway</code> + <code>net-kourier-controller</code> or <code>istio-ingressgateway</code> + <code>net-istio-controller</code> are installed</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_configuring_openshift_serverless_serving_for_minimal_workloads"><a class="anchor" href="#_configuring_openshift_serverless_serving_for_minimal_workloads"></a>Configuring OpenShift Serverless Serving for minimal workloads</h4>
+<div class="paragraph">
+<p>To configure OpenShift Serverless Serving for minimal workloads, you can tune the <code>KnativeServing</code> <code>CustomResource</code>:</p>
+</div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: serving.knative.dev/v1
-kind: Service
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: operator.knative.dev/v1beta1
+kind: KnativeServing
 metadata:
-  name: &lt;service_name&gt;
-  namespace: &lt;namespace&gt; <i class="conum" data-value="1"></i><b>(1)</b>
-  annotations:
-    serving.knative.openshift.io/enablePassthrough: "true" <i class="conum" data-value="2"></i><b>(2)</b>
+  name: knative-serving
+  namespace: knative-serving
 spec:
-  template:
-    metadata:
-      annotations:
-        sidecar.istio.io/inject: "true" <i class="conum" data-value="3"></i><b>(3)</b>
-        sidecar.istio.io/rewriteAppHTTPProbers: "true"
-    spec:
-      containers:
-      - image: &lt;image_url&gt;</code></pre>
+  high-availability:
+    replicas: 1 <i class="conum" data-value="1"></i><b>(1)</b>
+
+  workloads:
+    - name: activator
+      replicas: 2 <i class="conum" data-value="2"></i><b>(2)</b>
+      resources:
+        - container: activator
+          requests:
+            cpu: 250m <i class="conum" data-value="3"></i><b>(3)</b>
+            memory: 60Mi <i class="conum" data-value="4"></i><b>(4)</b>
+          limits:
+            cpu: 1000m
+            memory: 600Mi
+
+    - name: controller
+      replicas: 1 <i class="conum" data-value="6"></i><b>(6)</b>
+      resources:
+        - container: controller
+          requests:
+            cpu: 10m
+            memory: 100Mi <i class="conum" data-value="4"></i><b>(4)</b>
+          limits: <i class="conum" data-value="5"></i><b>(5)</b>
+            cpu: 200m
+            memory: 300Mi
+
+    - name: webhook
+      replicas: 1 <i class="conum" data-value="6"></i><b>(6)</b>
+      resources:
+        - container: webhook
+          requests:
+            cpu: 100m <i class="conum" data-value="7"></i><b>(7)</b>
+            memory: 20Mi <i class="conum" data-value="4"></i><b>(4)</b>
+          limits:
+            cpu: 200m
+            memory: 200Mi
+
+  podDisruptionBudgets: <i class="conum" data-value="8"></i><b>(8)</b>
+    - name: activator-pdb
+      minAvailable: 1
+    - name: webhook-pdb
+      minAvailable: 1</code></pre>
 </div>
 </div>
 <div class="colist arabic">
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>A namespace that is part of the Service mesh member roll.</td>
+<td>Setting this to 1 will scale all system components to one replica.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Instructs Knative Serving to generate an OpenShift pass-through enabled route, so that the certificates you have generated are served through the ingress gateway directly.</td>
+<td>Activator should always be scaled to a minimum of two instances to avoid downtime.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>Injects Service Mesh sidecars into the Knative service pods.</td>
+<td>Activator CPU requests should not be set lower than 250m, as a <code>HorizontalPodAutoscaler</code> will use this as a reference to scale up and down.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Adjust memory requests to the idle values from above. Also adjust memory limits according to your expected load (this might need custom testing to find the best values).</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>These limits are sufficient for a minimal-workload scenario, but they also might need adjustments depending on your concrete workload.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td>One webhook and one controller are sufficient for a minimal-workload scenario</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="7"></i><b>7</b></td>
+<td>Webhook CPU requests should not be set lower than 100m, as a <code>HorizontalPodAutoscaler</code> will use this as a reference to scale up and down.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="8"></i><b>8</b></td>
+<td>Adjust the <code>PodDistruptionBudgets</code> to a value lower or equal to the <code>replicas</code>, to avoid problems during node maintenance.</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_high_workload_configuration"><a class="anchor" href="#_high_workload_configuration"></a>High-workload configuration</h3>
+<div class="paragraph">
+<p>To configure OpenShift Serverless Serving for a high-workload scenario the following findings are relevant:</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>These findings have been tested with requests with a payload size of 0-32kb.
+The Knative Service backends used in those tests had a startup-latency between 0-10 seconds and response times between 0-5 seconds.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>All data-plane components are mostly increasing CPU usage on higher requests and/or payload scenarios, so the CPU requests and limits have to be tested and potentially increased.</p>
+</li>
+<li>
+<p>The <code>activator</code> component also might need more memory, when it has to buffer more or bigger request payloads, so the memory requests and limits might need to be increased as well.</p>
+</li>
+<li>
+<p>One <code>activator</code> pod can handle <strong>approximately 2500 requests per second</strong> before it starts to increase latency and, at some point, leads to errors.</p>
+</li>
+<li>
+<p>One <code>3scale-kourier-gateway</code> or <code>istio-ingressgateway</code> pod can also handle <strong>approximately 2500 requests per second</strong> before it starts to increase latency and, at some point, leads to errors.</p>
+</li>
+<li>
+<p>Each of the data-plane components consumes up to 1 vCPU of CPU for handling 2500 requests per second, please note that this highly depends on the payload size and the response times of the Knative Service backend.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Please note, that <strong>fast startup</strong> and <strong>fast response-times</strong> of your Knative Service user workloads are <strong>critical</strong> for good performance of the overall system.
+As OpenShift Serverless Serving components are buffering incoming requests when the Knative Service user backend is scaling-up or request concurrency has reached its capacity.
+If your Knative Service user workload introduce long startup- or request-latency, at some point this will either overload the <code>activator</code> component (only if the CPU + memory configuration is too low) or leads to errors for the calling clients.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>To fine-tune your OpenShift Serverless installation, use the above findings combined with your own test results to configure the <code>KnativeServing</code> <code>CustomResource</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: operator.knative.dev/v1beta1
+kind: KnativeServing
+metadata:
+  name: knative-serving
+  namespace: knative-serving
+spec:
+  high-availability:
+    replicas: 2 <i class="conum" data-value="1"></i><b>(1)</b>
+
+  workloads:
+    - name: component-name <i class="conum" data-value="2"></i><b>(2)</b>
+      replicas: 2 <i class="conum" data-value="2"></i><b>(2)</b>
+      resources:
+        - container: container-name
+          requests:
+            cpu: <i class="conum" data-value="3"></i><b>(3)</b>
+            memory: <i class="conum" data-value="3"></i><b>(3)</b>
+          limits:
+            cpu: <i class="conum" data-value="3"></i><b>(3)</b>
+            memory: <i class="conum" data-value="3"></i><b>(3)</b>
+
+  podDisruptionBudgets: <i class="conum" data-value="4"></i><b>(4)</b>
+    - name: name-of-pod-disruption-budget
+      minAvailable: 1</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Set this to at least 2, to make sure you have always at least two instances of every component running. You can also use <code>workloads</code> to override the replicas for certain components.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Use the <code>workloads</code> list to configure specific components. Use the <code>deployment</code> name of the component (like <code>activator</code>, <code>autoscaler</code>, <code>autoscaler-hpa</code>, <code>controller</code>, <code>webhook</code>, <code>net-kourier-controller</code>, <code>3scale-kourier-gateway</code>, <code>net-istio-controller</code>) and set the <code>replicas</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Set the requested and limited CPU + Memory according to at least the idle consumption (see above) while also taking the above findings and your own test results into consideration.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Adjust the <code>PodDistruptionBudgets</code> to a value lower or equal to the <code>replicas</code>, to avoid problems during node maintenance. The default <code>minAvailable</code> is set to <code>1</code>, so if you increase the desired replicas, make sure to also increase <code>minAvailable</code>.</td>
 </tr>
 </table>
 </div>
@@ -1037,42 +933,19 @@ spec:
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Please note, that you have to always add the annotation from the example above to all your Knative <code>Service</code> to make them work with Service Mesh.</p>
+<p>As each environment is highly specific, it is essential to test and find your own ideal configuration.
+Please use the monitoring and alerting functionality of OpenShift to continuously monitor your actual resource consumption and make adjustments if needed.</p>
+</div>
+<div class="paragraph">
+<p>Also keep in mind, that if you are using the OpenShift Serverless and Service Mesh integration, additional CPU overhead is added by the <code>istio-proxy</code> sidecar containers.
+For more information on this, see the Service Mesh documentation.</p>
 </div>
 </td>
 </tr>
 </table>
 </div>
-</li>
-<li>
-<p>Apply the <code>Service</code> resource:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ oc apply -f &lt;filename&gt;</code></pre>
 </div>
 </div>
-</li>
-<li>
-<p>Access your serverless application by using a secure connection that is now trusted by the CA:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ curl --cacert root.crt &lt;service_url&gt;</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Example command</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ curl --cacert root.crt https://hello-default.apps.openshift.example.com</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Example output</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">Hello Openshift!</code></pre>
-</div>
-</div>
-</li>
-</ol>
 </div>
 </article>
         </main>
