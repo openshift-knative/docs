@@ -11,6 +11,21 @@ All of these components are horizontally and vertically scalable, but their reso
 
 Thus, the following paragraphs are outlining a few relevant things to consider while scaling the system to handle increased usage.
 
+== Test context
+
+The following metrics and findings were recorded using the following test setup:
+
+* A cluster running {product-title} version 4.13
+* The cluster running *4 worker nodes* in AWS with a machine type of `m6.xlarge`
+* {serverlessproductname} version 1.30
+
+[NOTE]
+====
+Please note, that the tests are continuously run on our continuous integration system to compare performance data
+between releases of {serverlessproductname}.
+====
+
+
 == Overhead of {serverlessproductname} Serving
 
 As components of {serverlessproductname} Serving are part of the data-plane, requests from clients are routed through:
