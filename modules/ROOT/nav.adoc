@@ -7,6 +7,7 @@
 *** xref:serverless:service-mesh/eventing-service-mesh-sinkbinding.adoc[Eventing: Using SinkBinding with OpenShift Service Mesh]
 ** Serving
 *** xref:serverless:serving/serving-with-ingress-sharding.adoc[Use Serving with OpenShift ingress sharding]
+*** xref:serverless:serving/scaleability-and-performance-of-serving.adoc[Scalability and performance of {serverlessproductname} Serving]
 * Serverless Logic
 ** xref:serverless-logic:about.adoc[About OpenShift Serverless Logic]
 ** User Guides
