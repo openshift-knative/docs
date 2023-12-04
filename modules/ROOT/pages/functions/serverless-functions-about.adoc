@@ -1,8 +1,13 @@
 = About buildpacks for OpenShift Serverless Functions
 
-To improve the process of deployment of your application code, you can use OpenShift Serverless to deploy stateless, event-driven functions as a Knative service on OpenShift Container Platform. If you want to develop functions, you must complete the set up steps.
+[IMPORTANT]
+====
+Buildpacks for {serverlessproductname} Functions is a Developer Preview feature only. {serverlessproductname} - Developer Preview releases contain features and functionalities that might not be fully tested. Customers are encouraged to provide feedback on Developer Preview releases. Developer Preview releases are not production-ready, and customers are recommended to avoid using the project for production or business-critical workloads.
+====
 
-Function lifecycle management includes creating, building, and deploying a function. Optionally, you can also test a deployed function by invoking it. You can do all of these operations on OpenShift Serverless using the kn func tool.
+To improve the process of deployment of your application code, you can use {serverlessproductname} to deploy stateless, event-driven functions as a Knative service on OpenShift Container Platform. If you want to develop functions, you must complete the set up steps.
+
+Function lifecycle management includes creating, building, and deploying a function. Optionally, you can also test a deployed function by invoking it. You can do all of these operations on {serverlessproductname} using the kn func tool.
 
 
 See link:https://docs.openshift.com/container-platform/4.11/serverless/functions/serverless-functions-getting-started.html#serverless-functions-getting-started[Getting started with OpenShift Serverless Functions].
