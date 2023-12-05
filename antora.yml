@@ -9,6 +9,7 @@ asciidoc:
     smproductshortname: Service Mesh
     smproductname: OpenShift Service Mesh
     product-title: OpenShift
+    ocp: OpenShift Container Platform
     serverlessoperatorname: OpenShift Serverless Operator
     serverlessproductname: OpenShift Serverless
     product_name: OpenShift Serverless Logic

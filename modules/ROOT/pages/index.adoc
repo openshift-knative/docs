@@ -6,7 +6,7 @@
 
 Technology and Developer Preview releases are not production-ready, and customers are recommended to avoid using the project for production or business-critical workloads.
 
-{serverlessproductname} provides information about additional, advanced use cases and integrations that are possible using OpenShift Container Platform and OpenShift Serverless, but are for technology and development purposes and are not officially supported by Red Hat.
+{serverlessproductname} provides information about additional, advanced use cases and integrations that are possible using {ocp} and {serverlessproductname}, but are for technology and development purposes and are not officially supported by Red Hat.
 
 For more information about the support scope of Red Hat Technology Preview features, see https://access.redhat.com/support/offerings/techpreview
 
