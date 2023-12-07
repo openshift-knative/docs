@@ -1,4 +1,4 @@
-= CNCF Serverless Workflow specification
+= Serverless Workflow Specification
 :compat-mode!:
 // Metadata:
 :description: CNCF Serverless Workflow Specification Support
@@ -88,6 +88,8 @@ specification.
 
 The link:{spec_doc_url}#parallel-state[Parallel State] of the workflow states feature works in a single thread. This means that a Parallel State does not create one thread per branch, simulating an actual parallel behavior.
 
+ If an exclusive property is set to `false`, you should not use the link:{spec_doc_url}#event-state[Event State] of the workflow states feature as the starting state. In case, if it is specified that way, then it will behave as if an exclusive property was set to `true`. 
+
 [NOTE]
 ====
 {product_name} does not support the link:{spec_doc_url}#sleep-state[Sleep State] feature. However, this feature will be supported in a future release.
@@ -101,7 +103,7 @@ The following table shows all the workflow states that {product_name} supports i
 | State | Status | Reference
 
 | Event
-| emoji:full_moon[]
+| emoji:last_quarter_moon[]
 | link:{spec_doc_url}#Event-State[Event State]
 
 | Operation
@@ -172,15 +174,15 @@ The following table shows the status of the workflow functions that {product_nam
 | link:{spec_doc_url}#defining-custom-function-types[Defining custom function types]
 |===
 
-For additional functions, the Serverless Workflow specification support the `custom` function type, such as `sysout` and `java`. For more information about these custom function types, see xref:serverless-logic:core/custom-functions-support.adoc[Custom functions for your {product_name} service].
+For additional functions, the Serverless Workflow specification support the `custom` function type, such as `sysout` and `java`. For more information about these custom function types, see xref:core/custom-functions-support.adoc[Custom functions for your {product_name} service].
 
 [[events]]
 == Events
 
 {product_name} supports events of the workflow model as defined in the link:{spec_doc_url}#Event-Definition[Serverless Workflow specification definition], except the following:
 
-* `resultEventRef` property in link:{spec_doc_url}#eventref-definition[`EventRefDefinition`] is not implemented and, if specified, this property is ignored. Same functionality can be achieved by using xref:serverless-logic:eventing/working-with-callbacks.adoc[Callback] state.
-* link:{spec_doc_url}#correlation-definition[Correlation] has limited support, that evaluates correlation rules matching a single event consumed per time with a workflow instance. The correlation among `N` different events to be consumed and matched with a workflow instance is not supported in {product_name}. For more information about event correlation, see xref:serverless-logic:eventing/event-correlation-with-workflows.adoc[Event correlation in {product_name}].
+* `resultEventRef` property in link:{spec_doc_url}#eventref-definition[`EventRefDefinition`] is not implemented and, if specified, this property is ignored. The same functionality can be achieved by using xref:core/working-with-callbacks.adoc[Callback] state.
+* link:{spec_doc_url}#correlation-definition[Correlation] has limited support, that evaluates correlation rules matching a single event consumed per time with a workflow instance. The correlation among `N` different events to be consumed and matched with a workflow instance is not supported in {product_name}. For more information about event correlation, see xref:eventing/event-correlation-with-workflows.adoc[Event correlation in {product_name}].
 
 [[workflow_data]]
 == Serverless Workflow data
@@ -219,14 +221,14 @@ For additional functions, the Serverless Workflow specification support the `cus
 
 {product_name} supports the error handling feature as described in the link:{spec_doc_url}#workflow-error-handling[Serverless Workflow specification definition].
 
-For more information about error handling, see xref:serverless-logic:core/understanding-workflow-error-handling.adoc[Error handling in {product_name}].
+For more information about error handling, see xref:core/understanding-workflow-error-handling.adoc[Error handling in {product_name}].
 
 [[retries]]
 == Retries
 
 {product_name} does not support Retries feature, however, it will be implemented in a future release.
 
-Alternatively, you can use xref:serverless-logic:core/understanding-workflow-error-handling.adoc[Error handling in {product_name}].
+Alternatively, you can use xref:core/understanding-workflow-error-handling.adoc[Error handling in {product_name}].
 
 [[timeouts]]
 == Timeouts
@@ -235,14 +237,14 @@ Alternatively, you can use xref:serverless-logic:core/understanding-workflow-err
 
 For start event state the `exclusive` property is not supported if set to `false`, therefore the timeout is not supported for the event state when starting a workflow.
 
-For more information about timeouts, see xref:serverless-logic:core/timeouts-support.adoc[Timeouts on events for {product_name}].
+For more information about timeouts, see xref:core/timeouts-support.adoc[Timeouts on events for {product_name}].
 
 [[compensation]]
 == Compensation
 
 {product_name} supports workflow compensation as described in the link:{spec_doc_url}#Workflow-Compensation[Serverless Workflow specification definition].
 
-For more information about compensations, see xref:serverless-logic:use-cases/orchestration-based-saga-pattern.adoc[Saga orchestration example in {product_name}].
+For more information about compensations, see xref:use-cases/orchestration-based-saga-pattern.adoc[Saga orchestration example in {product_name}].
 
 [[constants]]
 == Constants
@@ -260,11 +262,11 @@ Secrets are associated with the link:{quarkus_config_guide_url}[Quarkus Configur
 ====
 
 //Guide not available currently (DP1)
-//For more information, see xref:serverless-logic:core/accessing-workflow-metainformation-in-runtime.adoc[Accessing Serverless Workflow Metainformation].
+//For more information, see xref:core/accessing-workflow-metainformation-in-runtime.adoc[Accessing Serverless Workflow Metainformation].
 
 == Additional resources
 
-* xref:serverless-logic:getting-started/create-your-first-workflow-service.adoc[Creating your first workflow service]
-* xref:serverless-logic:getting-started/getting-familiar-with-our-tooling.adoc[Getting familiar with {product_name} tooling]
+* xref:getting-started/create-your-first-workflow-service.adoc[Creating your first workflow service]
+* xref:getting-started/getting-familiar-with-our-tooling.adoc[Getting familiar with {product_name} tooling]
 
 include::../../pages/_common-content/report-issue.adoc[]

@@ -8,7 +8,7 @@
 :java_regex_url: https://docs.oracle.com/javase/tutorial/essential/regex/index.html
 :java_regex_pattern_url: https://docs.oracle.com/javase/tutorial/essential/regex/pattern.html
 
-This document describes how you can handle the errors that might occur in {product_name}.
+This document describes how you can handle the errors that might occur in {product_name}. 
 
 The Serverless Workflow specification provides an link:{spec_doc_url}#workflow-error-handling[error handling] mechanism, enabling you to handle the errors that might happen during the interactions between the workflow and external systems. 
 
@@ -185,7 +185,7 @@ The `finish` state in the `serverless-workflow-error-quarkus` example applicatio
 
 == Additional resources
 
-* xref:serverless-logic:getting-started/create-your-first-workflow-service.adoc[Creating your first workflow service]
+* xref:getting-started/create-your-first-workflow-service.adoc[Creating your first workflow service]
 
 include::../../pages/_common-content/report-issue.adoc[]
 

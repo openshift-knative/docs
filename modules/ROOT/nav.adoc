@@ -14,17 +14,18 @@
 *** Getting Started
 **** xref:serverless-logic:getting-started/create-your-first-workflow-service-with-kn-cli-and-vscode.adoc[Creating your first workflow service with KN CLI and VS Code]
 **** xref:serverless-logic:getting-started/create-your-first-workflow-service.adoc[Creating your first workflow service]
-**** xref:serverless-logic:getting-started/cncf-serverless-workflow-specification-support.adoc[CNCF Serverless Workflow specification]
 **** xref:serverless-logic:getting-started/getting-familiar-with-our-tooling.adoc[Getting familiar with tooling]
 *** Core
+**** xref:serverless-logic:core/cncf-serverless-workflow-specification-support.adoc[CNCF Serverless Workflow specification]
+**** xref:serverless-logic:core/handling-events-on-workflows.adoc[Events]
+**** xref:serverless-logic:core/working-with-callbacks.adoc[Callbacks]
 **** xref:serverless-logic:core/understanding-jq-expressions.adoc[jq expressions]
 **** xref:serverless-logic:core/understanding-workflow-error-handling.adoc[Error handling]
-**** xref:serverless-logic:core/working-with-parallelism.adoc[Parallelism]
 **** xref:serverless-logic:core/configuration-properties.adoc[Configuration properties]
-//**** xref:serverless-logic:core/accessing-workflow-metainformation-in-runtime.adoc[Accessing workflow metainformation in runtime]
 **** xref:serverless-logic:core/defining-an-input-schema-for-workflows.adoc[Defining an input schema for your workflows]
 **** xref:serverless-logic:core/custom-functions-support.adoc[Custom functions for your service]
 **** xref:serverless-logic:core/timeouts-support.adoc[Timeouts]
+**** xref:serverless-logic:core/working-with-parallelism.adoc[Parallelism]
 *** Tooling
 **** xref:serverless-logic:tooling/serverless-workflow-editor/swf-editor-overview.adoc[Serverless Workflow editor]
 ***** xref:serverless-logic:tooling/serverless-workflow-editor/swf-editor-vscode-extension.adoc[VS Code extension for Serverless Workflow editor]
