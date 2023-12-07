@@ -1,14 +1,14 @@
-= Orchestration of third-party services using OAuth 2.0 authentication in {product_name}
+= Orchestration of third-party services using OAuth 2.0 authentication
 
 :compat-mode!:
 // Metadata:
 :description: Orchestration of third-party services using OAuth 2.0 authentication
 :keywords: kogito, workflow, serverless, authentication, oauth2
 // Referenced documentation pages.
-:orchestration-of-openapi-based-services: xref:serverless-logic:service-orchestration/orchestration-of-openapi-based-services.adoc
-:configuring-openapi-services-endpoints: xref:serverless-logic:service-orchestration/configuring-openapi-services-endpoints.adoc
-:authentication-support-for-openapi-services: xref:serverless-logic:security/authention-support-for-openapi-services.adoc
-:authentication-support-for-openapi-services-oauth-example: xref:serverless-logic:security/authention-support-for-openapi-services.adoc#ref-example-oauth-authentication
+:orchestration-of-openapi-based-services: xref:service-orchestration/orchestration-of-openapi-based-services.adoc
+:configuring-openapi-services-endpoints: xref:service-orchestration/configuring-openapi-services-endpoints.adoc
+:authentication-support-for-openapi-services: xref:security/authention-support-for-openapi-services.adoc
+:authentication-support-for-openapi-services-oauth-example: xref:security/authention-support-for-openapi-services.adoc#ref-example-oauth-authentication
 // Other links
 :kogito_sw_examples_serverless_workflow_oauth2_orchestration_url: {kogito_sw_examples_url}/serverless-workflow-oauth2-orchestration-quarkus
 :kogito_sw_examples_serverless_workflow_oauth2_orchestration_workflow_definition_url: {kogito_sw_examples_url}/serverless-workflow-oauth2-orchestration-quarkus/currency-exchange-workflow/src/main/resources/currency-exchange-workflow.sw.json
@@ -664,6 +664,6 @@ In this example the error indicates that it was not possible to contact the `acm
 
 == Additional resources
 
-* xref:serverless-logic:service-orchestration/orchestration-of-openapi-based-services.adoc[Orchestrating the OpenAPI services]
+* xref:service-orchestration/orchestration-of-openapi-based-services.adoc[Orchestrating the OpenAPI services]
 
 include::../../pages/_common-content/report-issue.adoc[]
