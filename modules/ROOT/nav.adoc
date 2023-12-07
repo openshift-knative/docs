@@ -77,7 +77,6 @@
 ***** xref:serverless-logic:cloud/operator/build-and-deploy-workflows.adoc[Building and Deploying Workflows]
 ***** xref:serverless-logic:cloud/operator/workflow-status-conditions.adoc[Custom Resource Status]
 ***** xref:serverless-logic:cloud/operator/known-issues.adoc[Known Issues]
-***** xref:cloud/operator/migration-guide.adoc[]
 **** Quarkus
 ***** xref:serverless-logic:cloud/quarkus/build-workflow-image-with-quarkus-cli.adoc[Building workflow images]
 ***** xref:serverless-logic:cloud/quarkus/deploying-on-minikube.adoc[Deploying Workflows on Minikube]
