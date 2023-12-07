@@ -4,11 +4,11 @@
 :description: Mocking HTTP CloudEvents sink with WireMock
 :keywords: kogito, workflow, quarkus, serverless, test, integration, wiremock, cloudevents
 // Referenced documentation pages
-:basic_integration_test_with_restassured_guide: xref:serverless-logic:testing-and-troubleshooting/basic-integration-tests-with-restassured.adoc
-:mocking_openapi_services_with_wiremock_guide: xref:serverless-logic:testing-and-troubleshooting/mocking-openapi-services-with-wiremock.adoc
-:getting_started_create_first_workflow_guide: xref:serverless-logic:getting-started/create-your-first-workflow-service.adoc
-:consume-produce-events-with-knative-eventing_guide: xref:serverless-logic:eventing/consume-produce-events-with-knative-eventing.adoc
-:mocking_http_cloudevents_with_wiremock_test_class: xref:serverless-logic:testing-and-troubleshooting/mocking-http-cloudevents-with-wiremock.adoc#ref-create_test_class
+:basic_integration_test_with_restassured_guide: xref:testing-and-troubleshooting/basic-integration-tests-with-restassured.adoc
+:mocking_openapi_services_with_wiremock_guide: xref:testing-and-troubleshooting/mocking-openapi-services-with-wiremock.adoc
+:getting_started_create_first_workflow_guide: xref:getting-started/create-your-first-workflow-service.adoc
+:consume-produce-events-with-knative-eventing_guide: xref:eventing/consume-produce-events-with-knative-eventing.adoc
+:mocking_http_cloudevents_with_wiremock_test_class: xref:testing-and-troubleshooting/mocking-http-cloudevents-with-wiremock.adoc#ref-create_test_class
 // External pages
 :knative_sink_binding_overview_url: https://knative.dev/docs/eventing/sinks/
 :knative_sink_binding_impl_url: https://knative.dev/docs/eventing/custom-event-source/sinkbinding/

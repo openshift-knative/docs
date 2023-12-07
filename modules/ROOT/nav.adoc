@@ -50,13 +50,18 @@
 *** Security
 **** xref:serverless-logic:security/authention-support-for-openapi-services.adoc[Authentication for OpenAPI services]
 **** xref:serverless-logic:security/orchestrating-third-party-services-with-oauth2.adoc[Orchestration of third-party services using OAuth 2.0 authentication]
-*** Testing and Troubleshooting
-**** xref:serverless-logic:testing-and-troubleshooting/mocking-http-cloudevents-with-wiremock.adoc[Mocking HTTP CloudEvents sink using WireMock]
-**** xref:serverless-logic:testing-and-troubleshooting/mocking-openapi-services-with-wiremock.adoc[Mocking OpenAPI services using WireMock]
-**** xref:serverless-logic:testing-and-troubleshooting/basic-integration-tests-with-restassured.adoc[Testing using REST Assured]
-//**** xref:serverless-logic:testing-and-troubleshooting/debugging-workflow-execution-runtime.adoc[Debugging the workflow execution in runtime]
-**** xref:serverless-logic:testing-and-troubleshooting/integration-tests-with-postgresql.adoc[Integration tests using PostgreSQL]
-//**** xref:serverless-logic:testing-and-troubleshooting/development-tools-for-troubleshooting.adoc[Development tools for troubleshooting]
+*** Executing, Testing and Troubleshooting
+**** Executing and Testing Workflows
+***** xref:testing-and-troubleshooting/quarkus-dev-ui-extension/quarkus-dev-ui-overview.adoc[Developer UI]
+****** xref:testing-and-troubleshooting/quarkus-dev-ui-extension/quarkus-dev-ui-workflow-instances-page.adoc[Workflow Instances]
+****** xref:testing-and-troubleshooting/quarkus-dev-ui-extension/quarkus-dev-ui-workflow-definition-page.adoc[Workflow Definitions]
+****** xref:testing-and-troubleshooting/quarkus-dev-ui-extension/quarkus-dev-ui-monitoring-page.adoc[Monitoring]
+****** xref:testing-and-troubleshooting/quarkus-dev-ui-extension/quarkus-dev-ui-custom-dashboard-page.adoc[Dashboards]
+***** xref:testing-and-troubleshooting/kn-plugin-workflow-overview.adoc[Command Line]
+**** Quarkus
+***** xref:serverless-logic:testing-and-troubleshooting/mocking-http-cloudevents-with-wiremock.adoc[Mocking HTTP CloudEvents sink using WireMock]
+***** xref:serverless-logic:testing-and-troubleshooting/mocking-openapi-services-with-wiremock.adoc[Mocking OpenAPI services using WireMock]
+***** xref:serverless-logic:testing-and-troubleshooting/basic-integration-tests-with-restassured.adoc[Testing using REST Assured]
 *** Persistence
 **** xref:serverless-logic:persistence/persistence-with-postgresql.adoc[Running a workflow service using PostgreSQL]
 **** xref:serverless-logic:persistence/postgresql-flyway-migration.adoc[Migrate your PostgreSQL database]
