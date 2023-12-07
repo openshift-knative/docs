@@ -62,6 +62,7 @@
 ***** xref:serverless-logic:testing-and-troubleshooting/mocking-http-cloudevents-with-wiremock.adoc[Mocking HTTP CloudEvents sink using WireMock]
 ***** xref:serverless-logic:testing-and-troubleshooting/mocking-openapi-services-with-wiremock.adoc[Mocking OpenAPI services using WireMock]
 ***** xref:serverless-logic:testing-and-troubleshooting/basic-integration-tests-with-restassured.adoc[Testing using REST Assured]
+
 *** Persistence
 **** Quarkus
 ***** xref:serverless-logic:persistence/persistence-with-postgresql.adoc[Running a workflow service using PostgreSQL]
@@ -83,14 +84,22 @@
 ***** xref:serverless-logic:cloud/quarkus/deploying-on-kubernetes.adoc[Deploying Workflows on Kubernetes]
 ***** xref:serverless-logic:cloud/deploying-on-openshift.adoc[Deploying Workflows on Openshift]
 ***** xref:serverless-logic:cloud/quarkus/kubernetes-service-discovery.adoc[Kubernetes service discovery]
+
 *** Integrations
 **** xref:serverless-logic:integrations/camel-routes-integration.adoc[Integrating with Camel Routes]
 **** xref:serverless-logic:integrations/custom-functions-knative.adoc[Invoking Knative services]
 **** xref:serverless-logic:integrations/expose-metrics-to-prometheus.adoc[Exposing the workflow base metrics to Prometheus]
 // **** xref:serverless-logic:integrations/camel-k-integration.adoc[Integrating with Camel-K]
 **** xref:serverless-logic:integrations/serverless-dashboard-with-runtime-data.adoc[Displaying workflow data in dashboards]
+
 *** Supporting Services
-**** xref:serverless-logic:supporting-services/jobs-service.adoc[Job Service]
+**** Data Index
+***** xref:serverless-logic:supporting-services/data-index/data-index-concepts.adoc[Data Index Core Concepts]
+***** xref:serverless-logic:supporting-services/data-index/data-index-service.adoc[Data Index Standalone Service]
+***** xref:serverless-logic:supporting-services/data-index/data-index-quarkus-extensions.adoc[Data Index Quarkus Extensions]
+**** Job Service
+***** xref:serverless-logic:supporting-services/jobs-service/core-concepts.adoc[Job Service Introduction]
+***** xref:serverless-logic:supporting-services/jobs-service/quarkus-extensions.adoc[Job Service Quarkus Extensions]
 
 *** Use Cases
 **** xref:serverless-logic:use-cases/orchestration-based-saga-pattern.adoc[Saga Orchestration Example]
