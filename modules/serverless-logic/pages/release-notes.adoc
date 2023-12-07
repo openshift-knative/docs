@@ -1,11 +1,16 @@
-= New features on OpenShift Serverless - Developer Preview Releases
+= New features on OpenShift Serverless Logic - Tehcnology Preview 2 Release
 :compat-mode!:
 
 == Notable changes
 
-* link:https://issues.redhat.com/browse/SRVLOGIC-136[SRVLOGIC-136] - Recollection of DP6 small features
-* link:https://issues.redhat.com/browse/SRVLOGIC-68[SRVLOGIC-68] - YAML Serverless Workflow parsing on Stunner
-* link:https://issues.redhat.com/browse/SRVLOGIC-133[SRVLOGIC-133] - Support validation of output schema
-* link:https://issues.redhat.com/browse/SRVLOGIC-145[SRVLOGIC-145] - Serverless Workflow Visualization Improvements - DP6
+* link:https://issues.redhat.com/browse/SRVLOGIC-160[SRVLOGIC-160] - [operator use case] Multiple Workflows pushing to a single Data Index
+* link:https://issues.redhat.com/browse/SRVLOGIC-163[SRVLOGIC-163] - [operator use case] Singleton Data Index per Namespace
+* link:https://issues.redhat.com/browse/SRVLOGIC-144[SRVLOGIC-144] - Productize OpenShift Serverless Logic Operator
+* link:https://issues.redhat.com/browse/SRVLOGIC-156[SRVLOGIC-156] - Example to showcase the operator dev mode use case with timers
+* link:https://issues.redhat.com/browse/SRVLOGIC-84[SRVLOGIC-84]   - Create addons to persist audit data at runtimes and a common graphql query service
 
 == Other changes and Bug fixes
+
+* link:https://issues.redhat.com/browse/SRVLOGIC-158[SRVLOGIC-158] - Dynamic resources script is reading wrong container sys files on cgroupsv2
+* link:https://issues.redhat.com/browse/SRVLOGIC-168[SRVLOGIC-168] - Missing commonmark and hibernate-types sources JARs in the maven repository
+* link:https://issues.redhat.com/browse/SRVLOGIC-198[SRVLOGIC-198] - SonataFlow builder image is not preserving resources path
