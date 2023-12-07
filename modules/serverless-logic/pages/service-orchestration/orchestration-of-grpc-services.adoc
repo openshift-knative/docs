@@ -1,4 +1,4 @@
-= Orchestrating the gRPC based services
+= Orchestrating gRPC based Services
 :compat-mode!:
 // Metadata:
 :description: Understanding JQ expressions
@@ -161,7 +161,7 @@ If, for any reason, your default value is semantically valid and you want the va
 mvn compile exec:java -Dexec.mainClass="org.kie.kogito.examples.sw.greeting.GreeterService"
 ----
 
-. Once the server is running, you must navigate to the `serverless-workflow-greeting-client-rpc-quarkus` directory in a separate command terminal and run the workflow application by entering the following command:
+. Once the server is running, you must navigate to the `serverless-workflow-greeting-client-rpc-quarkus` directory in a separate command terminal and run the workflow application by entering the following command: 
 +
 [source,shell]
 ----
