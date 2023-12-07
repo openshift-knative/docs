@@ -24,7 +24,7 @@ For developers that are looking for a native Kubernetes approach where you can m
 [.card]
 --
 [.card-title]
-xref:cloud/operator/install-serverless-operator.adoc[]
+xref:serverless-logic:cloud/operator/install-serverless-operator.adoc[]
 [.card-description]
 Learn how to install the {operator_name} in a Kubernetes cluster
 --
@@ -32,7 +32,7 @@ Learn how to install the {operator_name} in a Kubernetes cluster
 [.card]
 --
 [.card-title]
-xref:cloud/operator/developing-workflows.adoc[]
+xref:serverless-logic:cloud/operator/developing-workflows.adoc[]
 [.card-description]
 Learn how to deploy a workflow for development purposes
 --
@@ -40,7 +40,7 @@ Learn how to deploy a workflow for development purposes
 [.card]
 --
 [.card-title]
-xref:cloud/operator/referencing-resource-files.adoc[]
+xref:serverless-logic:cloud/operator/referencing-resource-files.adoc[]
 [.card-description]
 Learn how to reference resource files to the workflow application
 --
@@ -48,7 +48,7 @@ Learn how to reference resource files to the workflow application
 [.card]
 --
 [.card-title]
-xref:cloud/operator/configuring-workflows.adoc[]
+xref:serverless-logic:cloud/operator/configuring-workflows.adoc[]
 [.card-description]
 Learn how to configure workflows deployed with {operator_name}
 --
@@ -56,7 +56,7 @@ Learn how to configure workflows deployed with {operator_name}
 [.card]
 --
 [.card-title]
-xref:cloud/operator/workflow-status-conditions.adoc[]
+xref:serverless-logic:cloud/operator/workflow-status-conditions.adoc[]
 [.card-description]
 Learn to interpret the workflow resource status conditions
 --
@@ -64,7 +64,7 @@ Learn to interpret the workflow resource status conditions
 [.card]
 --
 [.card-title]
-xref:cloud/operator/build-and-deploy-workflows.adoc[]
+xref:serverless-logic:cloud/operator/build-and-deploy-workflows.adoc[]
 [.card-description]
 Learn how to build and deploy workflow services with {operator_name}
 --
@@ -72,7 +72,7 @@ Learn how to build and deploy workflow services with {operator_name}
 [.card]
 --
 [.card-title]
-xref:cloud/operator/known-issues.adoc[]
+xref:serverless-logic:cloud/operator/known-issues.adoc[]
 [.card-description]
 Learn about the known issues and feature roadmap of the {operator_name}
 --
@@ -80,7 +80,7 @@ Learn about the known issues and feature roadmap of the {operator_name}
 [.card]
 --
 [.card-title]
-xref:cloud/operator/migration-guide.adoc[]
+xref:serverless-logic:cloud/operator/migration-guide.adoc[]
 [.card-description]
 Migration guides
 --
@@ -125,7 +125,7 @@ Learn how to deploy your workflow application on Minikube for local tests and de
 [.card]
 --
 [.card-title]
-xref:cloud/quarkus/deploying-on-kubernetes.adoc[Deploying your {product_name} application on Kubernetes]
+xref:serverless-logic:cloud/quarkus/deploying-on-kubernetes.adoc[Deploying your {product_name} application on Kubernetes]
 [.card-description]
 Learn how to deploy your workflow application on Kubernetes
 --

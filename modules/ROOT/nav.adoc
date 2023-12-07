@@ -52,12 +52,12 @@
 **** xref:serverless-logic:security/orchestrating-third-party-services-with-oauth2.adoc[Orchestration of third-party services using OAuth 2.0 authentication]
 *** Executing, Testing and Troubleshooting
 **** Executing and Testing Workflows
-***** xref:testing-and-troubleshooting/quarkus-dev-ui-extension/quarkus-dev-ui-overview.adoc[Developer UI]
-****** xref:testing-and-troubleshooting/quarkus-dev-ui-extension/quarkus-dev-ui-workflow-instances-page.adoc[Workflow Instances]
-****** xref:testing-and-troubleshooting/quarkus-dev-ui-extension/quarkus-dev-ui-workflow-definition-page.adoc[Workflow Definitions]
-****** xref:testing-and-troubleshooting/quarkus-dev-ui-extension/quarkus-dev-ui-monitoring-page.adoc[Monitoring]
-****** xref:testing-and-troubleshooting/quarkus-dev-ui-extension/quarkus-dev-ui-custom-dashboard-page.adoc[Dashboards]
-***** xref:testing-and-troubleshooting/kn-plugin-workflow-overview.adoc[Command Line]
+***** xref:serverless-logic:testing-and-troubleshooting/quarkus-dev-ui-extension/quarkus-dev-ui-overview.adoc[Developer UI]
+****** xref:serverless-logic:testing-and-troubleshooting/quarkus-dev-ui-extension/quarkus-dev-ui-workflow-instances-page.adoc[Workflow Instances]
+****** xref:serverless-logic:testing-and-troubleshooting/quarkus-dev-ui-extension/quarkus-dev-ui-workflow-definition-page.adoc[Workflow Definitions]
+****** xref:serverless-logic:testing-and-troubleshooting/quarkus-dev-ui-extension/quarkus-dev-ui-monitoring-page.adoc[Monitoring]
+****** xref:serverless-logic:testing-and-troubleshooting/quarkus-dev-ui-extension/quarkus-dev-ui-custom-dashboard-page.adoc[Dashboards]
+***** xref:serverless-logic:testing-and-troubleshooting/kn-plugin-workflow-overview.adoc[Command Line]
 **** Quarkus
 ***** xref:serverless-logic:testing-and-troubleshooting/mocking-http-cloudevents-with-wiremock.adoc[Mocking HTTP CloudEvents sink using WireMock]
 ***** xref:serverless-logic:testing-and-troubleshooting/mocking-openapi-services-with-wiremock.adoc[Mocking OpenAPI services using WireMock]
@@ -72,7 +72,7 @@
 **** Operator
 ***** xref:serverless-logic:cloud/operator/install-serverless-operator.adoc[Installation]
 ***** xref:serverless-logic:cloud/operator/developing-workflows.adoc[Development Mode]
-***** xref:cloud/operator/referencing-resource-files.adoc[Referencing Workflow Resources]
+***** xref:serverless-logic:cloud/operator/referencing-resource-files.adoc[Referencing Workflow Resources]
 ***** xref:serverless-logic:cloud/operator/configuring-workflows.adoc[Configuration]
 ***** xref:serverless-logic:cloud/operator/build-and-deploy-workflows.adoc[Building and Deploying Workflows]
 ***** xref:serverless-logic:cloud/operator/workflow-status-conditions.adoc[Custom Resource Status]

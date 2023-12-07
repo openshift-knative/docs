@@ -14,7 +14,7 @@ When you upgrade your {product_name} version, by default it **won't** pick up th
 
 === Migrate using Flyway Config
 
-* Kogito provides a mechanism for migrating your database while updating the Kogito version using the following `Flyway` properties (default value is `false`, not upgrade):
+* { product_name } to provides a mechanism for migrating your database while updating the { product_name } version using the following `Flyway` properties (default value is `false`, not upgrade):
 +
 --
 [source,properties]
