@@ -27,18 +27,6 @@ When searching for the operator in the *Filter by keyword* field, use the word `
 
 To remove the operator on OpenShift refer to the "link:{openshift_operator_uninstall_url}[Deleting Operators from a cluster]" from the OpenShift's documentation.
 
-== {product_name} Operator Kubernetes installation
-
-To install the operator on Kubernetes refer to the  "link:{kubernetes_operator_install_url}[How to install an Operator from OperatorHub.io]" from the OperatorHub's documentation.
-
-When link:{operatorhub_url}[searching for the operator in the *Search OperatorHub* field], use the word `{operator_k8s_keyword}`.
-
-=== Uninstall
-
-To remove the operator on Kubernetes follow the document "link:{kubernetes_operator_uninstall_url}[Uninstall your operator]" from the OLM's documentation.
-
-When searching for the subscription to remove, use the word `{operator_k8s_subscription}`.
-
 == {product_name} Operator Manual Installation
 
 [WARNING]
