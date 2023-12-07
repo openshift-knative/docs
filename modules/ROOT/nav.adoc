@@ -63,10 +63,10 @@
 ***** xref:serverless-logic:testing-and-troubleshooting/mocking-openapi-services-with-wiremock.adoc[Mocking OpenAPI services using WireMock]
 ***** xref:serverless-logic:testing-and-troubleshooting/basic-integration-tests-with-restassured.adoc[Testing using REST Assured]
 *** Persistence
-**** xref:serverless-logic:persistence/persistence-with-postgresql.adoc[Running a workflow service using PostgreSQL]
-**** xref:serverless-logic:persistence/postgresql-flyway-migration.adoc[Migrate your PostgreSQL database]
-//**** xref:serverless-logic:persistence/workflow-database-for-db-admins.adoc[Workflows database for DB admins]
-// **** xref:serverless-logic:persistence/data-consistency.adoc[Data consistency]
+**** Quarkus
+***** xref:serverless-logic:persistence/persistence-with-postgresql.adoc[Running a workflow service using PostgreSQL]
+***** xref:serverless-logic:persistence/postgresql-flyway-migration.adoc[Migrate your PostgreSQL database]
+***** xref:serverless-logic:persistence/integration-tests-with-postgresql.adoc[Integration Tests with PostgreSQL]
 *** xref:serverless-logic:cloud/index.adoc[Cloud]
 **** Operator
 ***** xref:serverless-logic:cloud/operator/install-serverless-operator.adoc[Installation]
