@@ -12,6 +12,7 @@
 ** xref:serverless-logic:about.adoc[About OpenShift Serverless Logic]
 ** User Guides
 *** Getting Started
+**** xref:serverless-logic:getting-started/create-your-first-workflow-service-with-kn-cli-and-vscode.adoc[Creating your first workflow service with KN CLI and VS Code]
 **** xref:serverless-logic:getting-started/create-your-first-workflow-service.adoc[Creating your first workflow service]
 **** xref:serverless-logic:getting-started/cncf-serverless-workflow-specification-support.adoc[CNCF Serverless Workflow specification]
 **** xref:serverless-logic:getting-started/getting-familiar-with-our-tooling.adoc[Getting familiar with tooling]
