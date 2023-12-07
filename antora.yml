@@ -79,5 +79,5 @@ asciidoc:
     kaoto_url: https://marketplace.visualstudio.com/items?itemName=redhat.vscode-kaoto
 
     minikube_url: https://minikube.sigs.k8s.io
-    kogito_serverless_operator_url: https://github.com/kiegroup/kogito-serverless-operator/
+    kogito_serverless_operator_url: https://github.com/apache/incubator-kie-kogito-serverless-operator/
     docs_issues_url: https://github.com/kiegroup/kogito-docs/issues/new
