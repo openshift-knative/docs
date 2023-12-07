@@ -70,21 +70,19 @@
 *** xref:serverless-logic:cloud/index.adoc[Cloud]
 **** Operator
 ***** xref:serverless-logic:cloud/operator/install-serverless-operator.adoc[Installation]
-***** xref:serverless-logic:cloud/operator/developing-workflows.adoc[Developing Workflows]
-***** xref:serverless-logic:cloud/operator/configuring-workflows.adoc[Configuring Workflows]
-***** xref:serverless-logic:cloud/operator/workflow-status-conditions.adoc[Workflows Status]
+***** xref:serverless-logic:cloud/operator/developing-workflows.adoc[Development Mode]
+***** xref:cloud/operator/referencing-resource-files.adoc[Referencing Workflow Resources]
+***** xref:serverless-logic:cloud/operator/configuring-workflows.adoc[Configuration]
 ***** xref:serverless-logic:cloud/operator/build-and-deploy-workflows.adoc[Building and Deploying Workflows]
+***** xref:serverless-logic:cloud/operator/workflow-status-conditions.adoc[Custom Resource Status]
 ***** xref:serverless-logic:cloud/operator/known-issues.adoc[Known Issues]
+***** xref:cloud/operator/migration-guide.adoc[]
 **** Quarkus
-***** xref:serverless-logic:cloud/quarkus/build-workflow-image-with-quarkus-cli.adoc[Building workflow images using Quarkus CLI]
-// *** xref:serverless-logic:cloud/build-workflow-images-with-tekton.adoc[Building Workflow Images with Tekton Pipelines]
+***** xref:serverless-logic:cloud/quarkus/build-workflow-image-with-quarkus-cli.adoc[Building workflow images]
 ***** xref:serverless-logic:cloud/quarkus/deploying-on-minikube.adoc[Deploying Workflows on Minikube]
 ***** xref:serverless-logic:cloud/quarkus/deploying-on-kubernetes.adoc[Deploying Workflows on Kubernetes]
-// *** xref:serverless-logic:cloud/versioning-workflows-in-knative.adoc[Versioning workflows in Knative]
+***** xref:serverless-logic:cloud/deploying-on-openshift.adoc[Deploying Workflows on Openshift]
 ***** xref:serverless-logic:cloud/quarkus/kubernetes-service-discovery.adoc[Kubernetes service discovery]
-//**** xref:serverless-logic:cloud/build-and-deploy-with-serverless-operator-on-kubernetes.adoc[Buiding and deploying a  {product_name} application on Kubernetes using the {product_name} Serverless Operator]
-
-
 *** Integrations
 **** xref:serverless-logic:integrations/camel-routes-integration.adoc[Integrating with Camel Routes]
 **** xref:serverless-logic:integrations/custom-functions-knative.adoc[Invoking Knative services]
