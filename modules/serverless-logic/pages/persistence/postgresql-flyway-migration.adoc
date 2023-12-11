@@ -49,7 +49,7 @@ flyway.password=bar
 $ flyway migrate -url=jdbc:postgresql://localhost:5432/foobardb -user=foo -password=bar
 ----
 --
-* Download the Kogito DDL zip from link:{kogito_ddl_script_url}[this link], choose the correct version,  extract the files and use the scripts from the `postgresql` folder.
+* Download the { product_name } DDL zip from link:{kogito_ddl_script_url}[this link], choose the correct version,  extract the files and use the scripts from the `postgresql` folder.
 * You can specify the location of the SQL files that need to be migrated using the `flyway.locations` option. For example,
 +
 --
@@ -63,8 +63,8 @@ flyway.locations=classpath:com.mycomp.migration,database/migrations,filesystem:/
 === Manually executing scripts
 You can use the provided SQL scripts in the zip file to migrate the database by executing them one by one.
 
-* You can find the Kogito DDL scripts by visiting link:{kogito_ddl_script_url}[this link].
-* Download the zip file of the scripts from the needed version for the Kogito upgrade.
+* You can find the { product_name } DDL scripts by visiting link:{kogito_ddl_script_url}[this link].
+* Download the zip file of the scripts from the needed version for the { product_name } upgrade.
 * Extract the files.
 * Execute the `sql` files from `postgresql` folder.
 +

@@ -11,9 +11,9 @@
 . Add the Quarkus extensions to deploy the `knative` service.
 +
 --
-You can add the {platform} and the Kogito Knative extensions to your project with the Quarkus CLI:
+You can add the {platform} and the { product_name } Knative extensions to your project with the Quarkus CLI:
 
-.Add {platform} and Kogito Knative extensions to the project with Quarkus CLI
+.Add {platform} and { product_name } Knative extensions to the project with Quarkus CLI
 [source,shell,subs="attributes+"]
 ----
 quarkus ext add {quarkus-k8s-plugin} kogito-addons-quarkus-knative-eventing
