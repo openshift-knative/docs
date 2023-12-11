@@ -1,7 +1,7 @@
 .Prerequisites
 * Minikube installed with `registry` addon enabled
 * `kubectl` {kubectl_prereq}
-* { product_name } operator installed if workflows are deployed. To install the operator you can see xref:serverless-logic:cloud/operator/install-serverless-operator.adoc[].
+* {product_name} operator installed if workflows are deployed. To install the operator you can see xref:serverless-logic:cloud/operator/install-serverless-operator.adoc[].
 
 [NOTE]
 ====

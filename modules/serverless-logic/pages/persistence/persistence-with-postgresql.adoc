@@ -167,6 +167,6 @@ The following table serves as a quick reference of commonly used persistence con
 == Additional resources
 
 * xref:persistence/integration-tests-with-postgresql.adoc[{product_name} integration test using PostgreSQL]
-* xref:persistence/postgresql-flyway-migration.adoc[Migrating Your PostgreSQL Database with a { product_name } upgrade]
+* xref:persistence/postgresql-flyway-migration.adoc[Migrating Your PostgreSQL Database with a {product_name} upgrade]
 
 include::../../pages/_common-content/report-issue.adoc[]

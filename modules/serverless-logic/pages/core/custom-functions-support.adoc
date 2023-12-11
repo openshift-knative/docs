@@ -164,7 +164,7 @@ If your method returns Java collections, it is converted to a JSON array and add
 
 === Function accessing contextual data
 
-If you need access to process contextual information (for example, { product_name } workflow instance ID) inside your Java service, you can add a `KogitoProcessContext` parameter as the last one in the method signature.
+If you need access to process contextual information (for example, {product_name} workflow instance ID) inside your Java service, you can add a `KogitoProcessContext` parameter as the last one in the method signature.
 
 Therefore, if you need to do so, you can update the signature of methods from previous sections.
 
@@ -181,7 +181,7 @@ public JsonNode myMethod(JsonNode workflowData, KogitoProcessContext context ) {
 }
 ----
 
-.Example of a function accessing { product_name } context
+.Example of a function accessing {product_name} context
 [source,java]
 ----
 public class MyInterfaceOrClass {
@@ -204,7 +204,7 @@ Avoid using `java` functions to call the external services, instead, you can use
 [[con-func-camel]]
 == Camel custom function
 
-{ product_name } supports the link:{camel_url}[Camel Routes] functions within an Apache Maven project, in which you define your workflow service.
+{product_name} supports the link:{camel_url}[Camel Routes] functions within an Apache Maven project, in which you define your workflow service.
 
 [NOTE]
 ====
@@ -533,9 +533,9 @@ kogito.sw.functions.greet.timeout=5000 <1>
 
 == Custom function types
 
-You can add your custom types by using the { product_name } add-on mechanism. As predefined custom types like xref:core/custom-functions-support.adoc#con-func-sysout[`sysout`] or xref:core/custom-functions-support.adoc#con-func-java[`java`], the custom type identifier is the prefix of the operation field of the function definition.
+You can add your custom types by using the {product_name} add-on mechanism. As predefined custom types like xref:core/custom-functions-support.adoc#con-func-sysout[`sysout`] or xref:core/custom-functions-support.adoc#con-func-java[`java`], the custom type identifier is the prefix of the operation field of the function definition.
 
-{ product_name } add-ons relies on the link:{quarkus_guides_base_url}/writing-extensions[Quarkus extensions] mechanism. And the add-on consists of at least two Maven projects:
+{product_name} add-ons relies on the link:{quarkus_guides_base_url}/writing-extensions[Quarkus extensions] mechanism. And the add-on consists of at least two Maven projects:
 
 - The deployment module, which is responsible for generating the code required for the extension to work.
 - The runtime module, which includes the non-generated classes that are required for the extension to work.
@@ -545,13 +545,13 @@ In the case of a Serverless Workflow custom type, following are the roles of the
 - *The deployment project*
 +
 The deployment project is expected to configure the work item handler used during runtime to perform the logic associated with the custom type.
-It must contain a Java class that inherits from `WorkItemTypeHandler`. Its responsibilities are to indicate the custom type identifier (the operation prefix, as indicated earlier) and to set up the `WorkItemNodeFactory` instance passed as a parameter of the `fillWorkItemHandler` method. That instance is included in the { product_name } process definition for that Workflow. As a part of this setup, you must indicate the name of the  `WorkItemNodeFactory`. You might also provide any relevant metadata for that handler if needed.
+It must contain a Java class that inherits from `WorkItemTypeHandler`. Its responsibilities are to indicate the custom type identifier (the operation prefix, as indicated earlier) and to set up the `WorkItemNodeFactory` instance passed as a parameter of the `fillWorkItemHandler` method. That instance is included in the {product_name} process definition for that Workflow. As a part of this setup, you must indicate the name of the  `WorkItemNodeFactory`. You might also provide any relevant metadata for that handler if needed.
 
 - *The runtime project*
 +
 The runtime project consists of a `WorkflowWorkItemHandler` implementation, which name must match with the one provided to `WorkItemNodeFactory` during the deployment phase, and a `WorkItemHandlerConfig` bean that registers that handler with that name.
 +
-When a Serverless Workflow function is called, { product_name } identifies the proper `WorkflowWorkItemHandler` instance to be used for that function type (using the handler name associated with that type by the deployment project) and then invokes the `internalExecute` method. The `Map` parameter contains the function arguments defined in the workflow, and the `WorkItem` parameter contains the metadata information added to the handler by the deployment project. Hence, the `executeWorkItem` implementation has an access to all the information needed to perform the computational logic intended for that custom type.
+When a Serverless Workflow function is called, {product_name} identifies the proper `WorkflowWorkItemHandler` instance to be used for that function type (using the handler name associated with that type by the deployment project) and then invokes the `internalExecute` method. The `Map` parameter contains the function arguments defined in the workflow, and the `WorkItem` parameter contains the metadata information added to the handler by the deployment project. Hence, the `executeWorkItem` implementation has an access to all the information needed to perform the computational logic intended for that custom type.
 
 === Custom function type example
 
@@ -576,7 +576,7 @@ Using the recent approach, you can write a link:{kogito_sw_examples_url}/serverl
 
 The `operation` starts with `rpc`, which is the custom type identifier, and continues with `division`, which denotes the operation that will be executed in the legacy server.
 
-A { product_name } addon that defines the `rpc` custom type must be developed for this function definition to be identified. It is consist of a link:{kogito_sw_examples_url}/serverless-workflow-custom-type/serverless-workflow-custom-rpc-deployment[deployment project] and a link:{kogito_sw_examples_url}/serverless-workflow-custom-type/serverless-workflow-custom-rpc[runtime project].
+A {product_name} addon that defines the `rpc` custom type must be developed for this function definition to be identified. It is consist of a link:{kogito_sw_examples_url}/serverless-workflow-custom-type/serverless-workflow-custom-rpc-deployment[deployment project] and a link:{kogito_sw_examples_url}/serverless-workflow-custom-type/serverless-workflow-custom-rpc[runtime project].
 
 The deployment project is responsible for extending the link:{kogito_sw_examples_url}/serverless-workflow-custom-type/serverless-workflow-custom-rpc-deployment/src/main/java/org/kie/kogito/examples/sw/services/RPCCustomTypeHandler.java[`WorkItemTypeHandler`] and setup the `WorkItemNodeFactory` as follows:
 

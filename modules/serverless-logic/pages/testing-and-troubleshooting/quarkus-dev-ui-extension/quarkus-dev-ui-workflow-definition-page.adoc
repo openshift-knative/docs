@@ -5,7 +5,7 @@
 :keywords: kogito, workflow, serverless, Quarkus, Dev UI, definitions
 
 In the {product_name} Dev UI extension, the *Workflow Definitions* page displays the list of available workflows in
-the { product_name } project and helps you to start new workflow instances either via REST or by triggering cloud events.
+the {product_name} project and helps you to start new workflow instances either via REST or by triggering cloud events.
 
 .Workflow Definitions page
 image::testing-and-troubleshooting/quarkus-dev-ui-extension/kogito-swf-tools-workflow-definitions.png[]

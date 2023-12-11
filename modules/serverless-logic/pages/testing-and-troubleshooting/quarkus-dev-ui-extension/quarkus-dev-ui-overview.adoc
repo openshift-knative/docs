@@ -43,7 +43,7 @@ Executing the previous command adds the following dependency to `pom.xml` file o
 . Enter the following command to add the `kogito-addons-quarkus-source-files` extension that provides the source code to generate the Serverless Workflow diagram in the consoles:
 +
 --
-.Install { product_name } source files add-on extension
+.Install {product_name} source files add-on extension
 [source,shell]
 ----
 quarkus ext add org.kie.kogito:kogito-addons-quarkus-source-files
