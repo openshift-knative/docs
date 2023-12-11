@@ -96,6 +96,9 @@
 ***** xref:serverless-logic:supporting-services/data-index/data-index-concepts.adoc[Data Index Core Concepts]
 ***** xref:serverless-logic:supporting-services/data-index/data-index-service.adoc[Data Index Standalone Service]
 ***** xref:serverless-logic:supporting-services/data-index/data-index-quarkus-extensions.adoc[Data Index Quarkus Extensions]
+***** Operator
+****** xref:serverless-logic:supporting-services/data-index/operator/data-index-usecase-singleton.adoc[Deploying Data Index and {product_name} application]
+****** xref:serverless-logic:supporting-services/data-index/operator/data-index-usecase-multi.adoc[Deploying Data Index and multiple {product_name} application]
 **** Job Service
 ***** xref:serverless-logic:supporting-services/jobs-service/core-concepts.adoc[Job Service Introduction]
 ***** xref:serverless-logic:supporting-services/jobs-service/quarkus-extensions.adoc[Job Service Quarkus Extensions]
