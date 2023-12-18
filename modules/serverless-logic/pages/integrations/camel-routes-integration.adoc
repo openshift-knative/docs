@@ -1,6 +1,6 @@
 = Integrating with Camel routes
 
-{product_name} can integrate with link:{camel_url}[Apache Camel Routes] by adding the Kogito Quarkus Camel Add-on to your project. It enables the workflow engine to identify and call Camel routes declared in YAML or XML in the same workflow project context.
+{product_name} can integrate with link:{camel_url}[Apache Camel Routes] by adding the {product_name} Quarkus Camel Add-on to your project. It enables the workflow engine to identify and call Camel routes declared in YAML or XML in the same workflow project context.
 
 [[proc-enable-quarkus-camel]]
 == Enabling Quarkus Camel in {product_name}

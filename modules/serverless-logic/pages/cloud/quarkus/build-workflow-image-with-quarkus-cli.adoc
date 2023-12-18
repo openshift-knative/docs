@@ -18,7 +18,7 @@ include::../../../pages/_common-content/getting-started-requirement.adoc[]
 
 Quarkus provides a few extensions to build container images, such as `Jib`, `docker`, `s2i`, and `buildpacks`. For more information about the Quarkus extensions, see the link:{quarkus_container_images_url}[Quarkus documentation].
 
-The examples in this document assume that you have the Quarkus tooling installed. For more information about the tooling, see xref:serverless-logic:getting-started/getting-familiar-with-our-tooling.adoc[Getting familiar with {product_name} tooling].
+The examples in this document assume that you have the Quarkus tooling installed. For more information about the tooling, see xref:getting-started/getting-familiar-with-our-tooling.adoc[Getting familiar with {product_name} tooling].
 
 [[proc-using-example-application]]
 == Using an example application
@@ -33,16 +33,23 @@ NOTE: You can skip the following procedure if you already have a workflow applic
 .Clone an example application
 [source,shell,subs="attributes+"]
 ----
-git clone --branch main {kogito_sw_examples_git_repo_url}
+git clone --branch main {kogito_sw_examples_git_repo_url} 
 cd kogito-examples/serverless-workflow-examples/serverless-workflow-greeting-quarkus
 ----
 
-. To run the example application, follow the instructions in xref:serverless-logic:getting-started/create-your-first-workflow-service.adoc[Creating your first workflow service].
+. To run the example application, follow the instructions in xref:getting-started/create-your-first-workflow-service.adoc[Creating your first workflow service].
 . Install the Quarkus command line interface (CLI). For more information, see link:{quarkus_cli_url}[Installing the Quarkus CLI].
 . Add the required Quarkus extension using Quarkus CLI:
 +
 --
 .Add the Jib extension
+
+[NOTE]
+====
+The `kogito-examples` already have this extension added by default, and can be activated with the `container` Maven profile.
+====
+
+The steps to add the extension in your Serverless Workflow application are:
 [source,shell]
 ----
 quarkus extension add 'container-image-jib'
@@ -67,7 +74,7 @@ After installing the required tooling, you can start building your workflow appl
 
 .Prerequisites
 * You have created a Quarkus project.
-* Quarkus CLI is installed.
+* Quarkus CLI is installed. 
 For more information about installing the Quarkus CLI, see link:{quarkus_cli_url}#installing-the-cli[Installing the Quarkus CLI].
 
 .Procedure
@@ -85,7 +92,7 @@ The previous command builds your image with name: `\{system_username\}/\{project
 
 Optionally, you can set the following properties to specify the image:
 
-* `quarkus.container-image.registry`: To define the registry address of the image, such as `quay.io`.
+* `quarkus.container-image.registry`: To define the registry address of the image, such as `quay.io`. When using OpenShift use the provided registry.
 * `quarkus.container-image.group`: To define the registry namespace of the image. For example, `context/namespace` or in case of Kubernetes or OpenShift `namespace/project`.
 * `quarkus.container-image.name`: To override the image name. By default, this property uses artifact ID.
 
@@ -104,7 +111,6 @@ quarkus build -Dquarkus.container-image.build=true \
 The added Jib extension caches the `target/lib` directory. Based on the size of your project, Jib speeds up the rebuilds.
 ====
 --
-
 . You can also push your workflow application to the defined registry. You need to set the `quarkus.container-image.push` property value to `true` (default value is `false`).
 +
 .Example of pushing the built workflow application to a registry
@@ -157,7 +163,7 @@ When it comes to workflows, a small startup footprint is expected, which can be 
 
 .Prerequisites
 * You have created a Quarkus project.
-* Quarkus CLI is installed.
+* Quarkus CLI is installed. 
 For more information about installing the Quarkus CLI, see link:{quarkus_cli_url}[Installing the Quarkus CLI].
 
 .Procedure
@@ -262,9 +268,8 @@ Example response::
 
 == Additional resources
 
-* xref:serverless-logic:cloud/quarkus/deploying-on-minikube.adoc[Deploying your {product_name} application on Minikube]
-//* xref:serverless-logic:cloud/deploying-on-kubernetes-cluster.adoc[Deploying your Serverless Workflow application on Kubernetes] Guide not available in DP1
+* xref:cloud/quarkus/deploying-on-minikube.adoc[Deploying your {product_name} application on Minikube]
 * xref:cloud/quarkus/deploying-on-kubernetes.adoc[Deploying your {product_name} application on Kubernetes]
-
+* xref:cloud/quarkus/deploying-on-openshift.adoc[Deploying your {product_name} application on OpenShift]
 
 include::../../../pages/_common-content/report-issue.adoc[]

@@ -1,4 +1,5 @@
-= Migrating Your PostgreSQL Database with a {product_name} upgrade
+= PostgreSQL Database Migration
+
 :flyway_install_url: https://flywaydb.org/download/community
 :flyway_migrate_existing_url: https://flywaydb.org/documentation/learnmore/existing
 :kogito_ddl_script_url: https://repo1.maven.org/maven2/org/kie/kogito/kogito-ddl
@@ -13,7 +14,7 @@ When you upgrade your {product_name} version, by default it **won't** pick up th
 
 === Migrate using Flyway Config
 
-* {product_name} provides a mechanism for migrating your database while updating the {product_name} version using the following `Flyway` properties (default value is `false`, not upgrade):
+* {product_name} to provides a mechanism for migrating your database while updating the {product_name} version using the following `Flyway` properties (default value is `false`, not upgrade):
 +
 --
 [source,properties]
@@ -75,7 +76,7 @@ You can use the provided SQL scripts in the zip file to migrate the database by 
 --
 
 == Baseline migration
-In order to apply migrations to an existing schema. It is necessary to establish the baseline from where Flyway should start executing new migrations. That means, in case your schema already contains a structure and from now on, new changes provided by {product_name} should be applied via Flyway integration. In Flyway terms, only migrations above `baselineVersion` will then be applied.
+In order to apply migrations to an existing schema. It is necessary to establish the baseline from where Flyway should start executing new migrations. That means, in case your schema already contains a structure and from now on, new changes provided by {product_name}  should be applied via Flyway integration. In Flyway terms, only migrations above `baselineVersion` will then be applied.
 Using below properties you can initialize flyway schema table.
 
 === Baseline using Quarkus Configuration:

@@ -17,6 +17,75 @@ Eventually these two options will converge, the {operator_name} will also be abl
 ====
 
 [.card-section]
+== Kubernetes with the Operator
+
+For developers that are looking for a native Kubernetes approach where you can model workflows using YAML definitions and directly deploy them, you can use the {operator_name}. The operator registers a new Kubernetes resource in the cluster to manage your workflow development iteration cycle and composition of services and events. The application is managed by the operator.
+
+[.card]
+--
+[.card-title]
+xref:serverless-logic:cloud/operator/install-serverless-operator.adoc[]
+[.card-description]
+Learn how to install the {operator_name} in a Kubernetes cluster
+--
+
+[.card]
+--
+[.card-title]
+xref:serverless-logic:cloud/operator/developing-workflows.adoc[]
+[.card-description]
+Learn how to deploy a workflow for development purposes
+--
+
+[.card]
+--
+[.card-title]
+xref:serverless-logic:cloud/operator/referencing-resource-files.adoc[]
+[.card-description]
+Learn how to reference resource files to the workflow application
+--
+
+[.card]
+--
+[.card-title]
+xref:serverless-logic:cloud/operator/configuring-workflows.adoc[]
+[.card-description]
+Learn how to configure workflows deployed with {operator_name}
+--
+
+[.card]
+--
+[.card-title]
+xref:serverless-logic:cloud/operator/workflow-status-conditions.adoc[]
+[.card-description]
+Learn to interpret the workflow resource status conditions
+--
+
+[.card]
+--
+[.card-title]
+xref:serverless-logic:cloud/operator/build-and-deploy-workflows.adoc[]
+[.card-description]
+Learn how to build and deploy workflow services with {operator_name}
+--
+
+[.card]
+--
+[.card-title]
+xref:serverless-logic:cloud/operator/known-issues.adoc[]
+[.card-description]
+Learn about the known issues and feature roadmap of the {operator_name}
+--
+
+[.card]
+--
+[.card-title]
+xref:serverless-logic:cloud/operator/migration-guide.adoc[]
+[.card-description]
+Migration guides
+--
+
+[.card-section]
 == Kubernetes with Quarkus
 
 For Java developers, you can use Quarkus and a few add-ons to help you build and deploy the application in a Kubernetes cluster. {product_name} also generates basic Kubernetes objects YAML files to help you getting started. The application should be managed by a Kubernetes administrator.
@@ -40,6 +109,14 @@ Learn what is and how the Kubernetes service discovery for workflow application 
 [.card]
 --
 [.card-title]
+xref:cloud/quarkus/deploying-on-openshift.adoc[Deploying your {product_name} application on OpenShift]
+[.card-description]
+Learn how to deploy your workflow application on OpenShift cluster
+--
+
+[.card]
+--
+[.card-title]
 xref:cloud/quarkus/deploying-on-minikube.adoc[Deploying your {product_name} application on Minikube]
 [.card-description]
 Learn how to deploy your workflow application on Minikube for local tests and development
@@ -48,60 +125,7 @@ Learn how to deploy your workflow application on Minikube for local tests and de
 [.card]
 --
 [.card-title]
-xref:cloud/quarkus/deploying-on-kubernetes.adoc[Deploying your {product_name} application on Kubernetes]
+xref:serverless-logic:cloud/quarkus/deploying-on-kubernetes.adoc[Deploying your {product_name} application on Kubernetes]
 [.card-description]
 Learn how to deploy your workflow application on Kubernetes
---
-
-[.card-section]
-== Kubernetes with the Operator
-
-For developers that are looking for a native Kubernetes approach where you can model workflows using YAML definitions and directly deploy them, you can use the {operator_name}. The operator registers a new Kubernetes resource in the cluster to manage your workflow development iteration cycle and composition of services and events. The application is managed by the operator.
-
-[.card]
---
-[.card-title]
-xref:cloud/operator/install-serverless-operator.adoc[]
-[.card-description]
-Learn how to install the {operator_name} in a Kubernetes cluster
---
-
-[.card]
---
-[.card-title]
-xref:cloud/operator/developing-workflows.adoc[]
-[.card-description]
-Learn how to deploy a workflow for development purposes
---
-
-[.card]
---
-[.card-title]
-xref:cloud/operator/configuring-workflows.adoc[]
-[.card-description]
-Learn how to configure workflows deployed with {operator_name}
---
-
-[.card]
---
-[.card-title]
-xref:cloud/operator/workflow-status-conditions.adoc[]
-[.card-description]
-Learn to interpret the workflow resource status conditions
---
-
-[.card]
---
-[.card-title]
-xref:cloud/operator/build-and-deploy-workflows.adoc[]
-[.card-description]
-Learn how to build and deploy workflow services with {operator_name}
---
-
-[.card]
---
-[.card-title]
-xref:cloud/operator/known-issues.adoc[]
-[.card-description]
-Learn about the known issues and feature roadmap of the {operator_name}
 --

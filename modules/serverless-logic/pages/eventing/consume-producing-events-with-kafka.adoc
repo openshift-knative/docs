@@ -1,4 +1,4 @@
-= Consuming and producing events using Apache Kafka
+= Consuming and producing events using Apache Kafka in Quarkus
 :compat-mode!:
 // Metadata:
 :description: Consuming and producing events with Kafka
@@ -115,7 +115,7 @@ mp.messaging.outgoing.kogito_outgoing_stream.value.serializer=org.apache.kafka.c
 
 Smallrye provide means to link:{overflow_management_url}[manage emitter overflow] through link:{overflow_annotation_url}[OnOverflow] annotation
 
-Kogito will annotate generated smallrye `emitters` for a particular channel using the information provided by a property of the form `kogito.addon.messaging.emitter.<channel_name>.overflow-strategy`. The possible values are `BUFFER`, `NONE`, `UNBOUNDED`, `FAIL`, and `DROP`. If the value of the strategy is `BUFFER`, then you must specify the buffer size by using the property of the form `kogito.addon.messaging.emitter.<channel_name>.buffer-size` 
+{product_name} will annotate generated smallrye `emitters` for a particular channel using the information provided by a property of the form `kogito.addon.messaging.emitter.<channel_name>.overflow-strategy`. The possible values are `BUFFER`, `NONE`, `UNBOUNDED`, `FAIL`, and `DROP`. If the value of the strategy is `BUFFER`, then you must specify the buffer size by using the property of the form `kogito.addon.messaging.emitter.<channel_name>.buffer-size` 
 
 Therefore, for the `wait` channel, in the previous example, if we want to buffer as many as 100 events we will add these two properties
 
@@ -131,9 +131,9 @@ If all your channels use the same strategy and this strategy differs from the `B
 
 == Additional resources
 
-* xref:serverless-logic:eventing/consume-produce-events-with-knative-eventing.adoc[Consuming and producing events on Knative Eventing]
-* xref:serverless-logic:eventing/event-correlation-with-workflows.adoc[Event correlation in {product_name}]
-* xref:serverless-logic:eventing/working-with-callbacks.adoc[Callback state in {product_name}]
+* xref:eventing/consume-produce-events-with-knative-eventing.adoc[Consuming and producing events on Knative Eventing]
+* xref:eventing/event-correlation-with-workflows.adoc[Event correlation in {product_name}]
+* xref:core/working-with-callbacks.adoc[Callback state in {product_name}]
 
 include::../../pages/_common-content/report-issue.adoc[]
 

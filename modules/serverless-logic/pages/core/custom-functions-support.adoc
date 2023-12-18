@@ -164,11 +164,11 @@ If your method returns Java collections, it is converted to a JSON array and add
 
 === Function accessing contextual data
 
-If you need access to process contextual information (for example, Kogito process instance ID) inside your Java service, you can add a `KogitoProcessContext` parameter as the last one in the method signature.
+If you need access to process contextual information (for example, {product_name} workflow instance ID) inside your Java service, you can add a `KogitoProcessContext` parameter as the last one in the method signature.
 
 Therefore, if you need to do so, you can update the signature of methods from previous sections.
 
-.Example of a function accessing contextual data
+.Example of a function accessing { product_name} context
 [source,java]
 ----
 public class MyInterfaceOrClass {
@@ -181,7 +181,7 @@ public JsonNode myMethod(JsonNode workflowData, KogitoProcessContext context ) {
 }
 ----
 
-.Example of a function accessing contextual data
+.Example of a function accessing {product_name} context
 [source,java]
 ----
 public class MyInterfaceOrClass {
@@ -204,7 +204,7 @@ Avoid using `java` functions to call the external services, instead, you can use
 [[con-func-camel]]
 == Camel custom function
 
-Kogito supports the link:{camel_url}[Camel Routes] functions within an Apache Maven project, in which you define your workflow service.
+{product_name} supports the link:{camel_url}[Camel Routes] functions within an Apache Maven project, in which you define your workflow service.
 
 [NOTE]
 ====
@@ -329,21 +329,35 @@ You can declare a {product_name} custom function using the Knative service name,
     {
       "name": "greet", <1>
       "type": "custom", <2>
-      "operation": "knative:custom-function-knative-service" <3>
+      "operation": "knative:services.v1.serving.knative.dev/custom-function-knative-service?path=/plainJsonFunction", <3>
     }
   ]
 ----
 
 <1> `greet` is the function name
 <2> `custom` is the function type
-<3> `knative:custom-function-knative-service` is the custom operation definition. In this definition, `knative` is the reserved keyword followed by the `custom-function-knative-service` Knative service.
+<3> In `operation` you set the coordinates of the Knative service
 
-The above function will send a `POST` request to the http://custom-function-knative-service.default.10.109.169.193.sslip.io URL.
+The above function will send a `POST` request to the http://custom-function-knative-service.default.10.109.169.193.sslip.io/plainJsonFunction URL. If you don't specify a path, {product_name} will use the root path (/).
 
 [NOTE]
 ====
-`GET` requests are not yet supported.
+You can also send `GET` requests by setting `method=GET` in `operation`. In this case, the arguments are forwarded over a query string.
 ====
+
+.Example of a `GET` request
+[source,json]
+----
+  "functions": [
+    {
+      "name": "greet",
+      "type": "custom",
+      "operation": "knative:services.v1.serving.knative.dev/custom-function-knative-service?path=/plainJsonFunction&method=GET", <1>
+    }
+  ]
+----
+
+<1> `GET` request
 
 [[about-namespaces]]
 ==== About namespaces
@@ -358,63 +372,12 @@ In case you need to call a Knative service in a different namespace, you can dec
     {
       "name": "greet",
       "type": "custom",
-      "operation": "knative:my_different_namespace/custom-function-knative-service"
+      "operation": "knative:services.v1.serving.knative.dev/my_different_namespace/custom-function-knative-service?path=/plainJsonFunction"
     }
   ]
 ----
 
 In the above example, {product_name} will look for the `custom-function-knative-service` in the `my_different_namespace` namespace.
-
-=== Function metadata
-
-==== HTTP resource path
-
-You can specify the HTTP resource path by adding the `path` property to the function's metadata.
-
-For instance, given the `/path/to/my/resource` HTTP resource path, you can define your function as:
-
-[source,json]
-----
-  "functions": [
-    {
-      "name": "greet",
-      "type": "custom",
-      "operation": "knative:custom-function-knative-service",
-      "metadata": {
-        "path": "/path/to/my/resource"
-      }
-    }
-  ]
-----
-
-In case you don't specify any path, the root path will be used. For instance, the following function:
-
-[source,json]
-----
-  "functions": [
-    {
-      "name": "greet",
-      "type": "custom",
-      "operation": "knative:custom-function-knative-service"
-    }
-  ]
-----
-
-Is exactly the same as:
-
-[source,json]
-----
-  "functions": [
-    {
-      "name": "greet",
-      "type": "custom",
-      "operation": "knative:custom-function-knative-service",
-      "metadata": {
-        "path": "/"
-      }
-    }
-  ]
-----
 
 === Function arguments
 
@@ -470,11 +433,7 @@ To tell {product_name} you want to send the payload as a CloudEvent, you must de
     {
       "name": "greet",
       "type": "custom",
-      "operation": "knative:custom-function-knative-service",
-      "metadata": {
-        "path": "/",
-        "asCloudEvent": true <1>
-      }
+      "operation": "knative:services.v1.serving.knative.dev/custom-function-knative-service?path=/plainJsonFunction&asCloudEvent=true" <1>
     }
   ]
 ----
@@ -537,28 +496,46 @@ You must declare a `functionRef` like the following: (Do not forget to set `asCl
 
 [NOTE]
 ====
-{product_name} generates a CloudEvent ID based on the `source` and the workflow instance ID. In case an ID is set, {product_name} will ignore it and use a generated one.
+{product_name} generates a CloudEvent ID based on the `source` and the workflow instance ID. In case you decide to set an ID, {product_name} will use it and you must ensure it's unique. Refer to the following example on how to set a CloudEvent ID:
 ====
+
+.Setting a CloudEvent ID
+[source,json]
+----
+"arguments": {
+    "specversion" : "1.0",
+    "id": "a_unique_id_42", <1>
+    "type" : "com.github.pull_request.opened",
+    "source" : "https://github.com/cloudevents/spec/pull",
+    "subject" : "123",
+    "time" : "2018-04-05T17:31:00Z",
+    "comexampleextension1" : "value",
+    "comexampleothervalue" : 5,
+    "datacontenttype" : "text/xml",
+    "data" : "<much wow=\"xml\"/>"
+}
+----
+<1> The CloudEvent ID.
 
 === Configurations
 
 ==== Request timeout
 
-By default, the Knative service must respond within 10 seconds. You can use the `kogito.addon.knative-serving.request-timeout` property to configure this value.
+By default, the Knative service must respond within 10 seconds. You can use the `kogito.sw.functions.<function_name>.timeout` property to configure this value.
 
 For instance, if you want to reduce the request timeout to 5 seconds, you must add the following to your `application.properties` file:
 
 [source,properties]
 ----
-kogito.addon.knative-serving.request-timeout=5000 <1>
+kogito.sw.functions.greet.timeout=5000 <1>
 ----
 <1> Time in milliseconds
 
 == Custom function types
 
-You can add your custom types by using the Kogito add-on mechanism. As predefined custom types like xref:core/custom-functions-support.adoc#con-func-sysout[`sysout`] or xref:core/custom-functions-support.adoc#con-func-java[`java`], the custom type identifier is the prefix of the operation field of the function definition.
+You can add your custom types by using the {product_name} add-on mechanism. As predefined custom types like xref:core/custom-functions-support.adoc#con-func-sysout[`sysout`] or xref:core/custom-functions-support.adoc#con-func-java[`java`], the custom type identifier is the prefix of the operation field of the function definition.
 
-Kogito add-ons relies on the link:{quarkus_guides_base_url}/writing-extensions[Quarkus extensions] mechanism. And the add-on consists of at least two Maven projects:
+{product_name} add-ons relies on the link:{quarkus_guides_base_url}/writing-extensions[Quarkus extensions] mechanism. And the add-on consists of at least two Maven projects:
 
 - The deployment module, which is responsible for generating the code required for the extension to work.
 - The runtime module, which includes the non-generated classes that are required for the extension to work.
@@ -568,7 +545,7 @@ In the case of a Serverless Workflow custom type, following are the roles of the
 - *The deployment project*
 +
 The deployment project is expected to configure the work item handler used during runtime to perform the logic associated with the custom type.
-It must contain a Java class that inherits from `WorkItemTypeHandler`. Its responsibilities are to indicate the custom type identifier (the operation prefix, as indicated earlier) and to set up the `WorkItemNodeFactory` instance passed as a parameter of the `fillWorkItemHandler` method. That instance is included in the Kogito process definition for that Workflow. As a part of this setup, you must indicate the name of the  `WorkItemNodeFactory`. You might also provide any relevant metadata for that handler if needed.
+It must contain a Java class that inherits from `WorkItemTypeHandler`. Its responsibilities are to indicate the custom type identifier (the operation prefix, as indicated earlier) and to set up the `WorkItemNodeFactory` instance passed as a parameter of the `fillWorkItemHandler` method. That instance is included in the {product_name} process definition for that Workflow. As a part of this setup, you must indicate the name of the  `WorkItemNodeFactory`. You might also provide any relevant metadata for that handler if needed.
 
 - *The runtime project*
 +
@@ -599,7 +576,7 @@ Using the recent approach, you can write a link:{kogito_sw_examples_url}/serverl
 
 The `operation` starts with `rpc`, which is the custom type identifier, and continues with `division`, which denotes the operation that will be executed in the legacy server.
 
-A Kogito addon that defines the `rpc` custom type must be developed for this function definition to be identified. It is consist of a link:{kogito_sw_examples_url}/serverless-workflow-custom-type/serverless-workflow-custom-rpc-deployment[deployment project] and a link:{kogito_sw_examples_url}/serverless-workflow-custom-type/serverless-workflow-custom-rpc[runtime project].
+A {product_name} addon that defines the `rpc` custom type must be developed for this function definition to be identified. It is consist of a link:{kogito_sw_examples_url}/serverless-workflow-custom-type/serverless-workflow-custom-rpc-deployment[deployment project] and a link:{kogito_sw_examples_url}/serverless-workflow-custom-type/serverless-workflow-custom-rpc[runtime project].
 
 The deployment project is responsible for extending the link:{kogito_sw_examples_url}/serverless-workflow-custom-type/serverless-workflow-custom-rpc-deployment/src/main/java/org/kie/kogito/examples/sw/services/RPCCustomTypeHandler.java[`WorkItemTypeHandler`] and setup the `WorkItemNodeFactory` as follows:
 
@@ -695,7 +672,7 @@ void init () {
 
 == Additional resources
 
-* xref:getting-started/cncf-serverless-workflow-specification-support.adoc[CNCF Serverless Workflow specification]
+* xref:core/cncf-serverless-workflow-specification-support.adoc[CNCF Serverless Workflow specification]
 * xref:core/understanding-jq-expressions.adoc[jq expressions in {product_name}]
 
 include::../../pages/_common-content/report-issue.adoc[]

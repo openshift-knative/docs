@@ -18,7 +18,7 @@ The `serverless-workflow-service-calls-quarkus` example application is a workflo
 [[proc-parallel-creating-the-workflow]]
 == Creating a parallel workflow
 
-You can create a workflow, which performs a series of parallel tasks.
+You can create a workflow, which performs a series of parallel tasks. 
 
 .Prerequisites
 
@@ -114,7 +114,7 @@ After you create a workflow that performs a series of parallel tasks, you can ru
 
 .Prerequisites
 
-* A parallel workflow is created.
+* A parallel workflow is created. 
 +
 For more information, see <<proc-parallel-creating-the-workflow, Creating a parallel workflow>>.
 
@@ -163,7 +163,7 @@ You can define the `"completionType": "atLeast"` to run only some branches in pa
 
 .Prerequisites
 
-* A parallel workflow is created.
+* A parallel workflow is created. 
 +
 For more information, see <<proc-parallel-creating-the-workflow, Creating a parallel workflow>>.
 
@@ -270,6 +270,6 @@ The parallel workflow data shows the concatenated string as result, but in this 
 
 == Additional resources
 
-* xref:serverless-logic:getting-started/create-your-first-workflow-service.adoc[Creating your first workflow service]
+* xref:getting-started/create-your-first-workflow-service.adoc[Creating your first workflow service]
 
 include::../../pages/_common-content/report-issue.adoc[]
