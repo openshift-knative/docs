@@ -117,10 +117,10 @@
     <span class="nav-text">Getting Started</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../serverless-logic/getting-started/create-your-first-workflow-service.html">Creating your first workflow service</a>
+    <a class="nav-link" href="../../serverless-logic/getting-started/create-your-first-workflow-service-with-kn-cli-and-vscode.html">Creating your first workflow service with KN CLI and VS Code</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../serverless-logic/getting-started/cncf-serverless-workflow-specification-support.html">CNCF Serverless Workflow specification</a>
+    <a class="nav-link" href="../../serverless-logic/getting-started/create-your-first-workflow-service.html">Creating your first workflow service</a>
   </li>
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="../../serverless-logic/getting-started/getting-familiar-with-our-tooling.html">Getting familiar with tooling</a>
@@ -132,13 +132,19 @@
     <span class="nav-text">Core</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../serverless-logic/core/cncf-serverless-workflow-specification-support.html">CNCF Serverless Workflow specification</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../serverless-logic/core/handling-events-on-workflows.html">Events</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../serverless-logic/core/working-with-callbacks.html">Callbacks</a>
+  </li>
+  <li class="nav-item" data-depth="4">
     <a class="nav-link" href="../../serverless-logic/core/understanding-jq-expressions.html">jq expressions</a>
   </li>
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="../../serverless-logic/core/understanding-workflow-error-handling.html">Error handling</a>
-  </li>
-  <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../serverless-logic/core/working-with-parallelism.html">Parallelism</a>
   </li>
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="../../serverless-logic/core/configuration-properties.html">Configuration properties</a>
@@ -151,6 +157,9 @@
   </li>
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="../../serverless-logic/core/timeouts-support.html">Timeouts</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../serverless-logic/core/working-with-parallelism.html">Parallelism</a>
   </li>
 </ul>
   </li>
@@ -169,24 +178,6 @@
     <a class="nav-link" href="../../serverless-logic/tooling/serverless-workflow-editor/swf-editor-chrome-extension.html">Chrome GitHub extension for Serverless Workflow editor</a>
   </li>
 </ul>
-  </li>
-  <li class="nav-item" data-depth="4">
-    <button class="nav-toggle"></button>
-    <a class="nav-link" href="../../serverless-logic/tooling/quarkus-dev-ui-extension/quarkus-dev-ui-overview.html">Kogito Serverless Workflow Tools extension in Quarkus Dev UI</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../../serverless-logic/tooling/quarkus-dev-ui-extension/quarkus-dev-ui-workflow-instances-page.html">Workflow Instances in Kogito Serverless Workflow Tools extension</a>
-  </li>
-  <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../../serverless-logic/tooling/quarkus-dev-ui-extension/quarkus-dev-ui-workflow-definition-page.html">Workflow Definitions in Kogito Serverless Workflow Tools extension</a>
-  </li>
-  <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../../serverless-logic/tooling/quarkus-dev-ui-extension/quarkus-dev-ui-custom-dashboard-page.html">Dashboards in Kogito Serverless Workflow Tools extension</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../serverless-logic/tooling/kn-plugin-workflow-overview.html">OpenShift Serverless Logic plug-in for Knative CLI</a>
   </li>
   <li class="nav-item" data-depth="4">
     <button class="nav-toggle"></button>
@@ -216,13 +207,16 @@
     <span class="nav-text">Service Orchestration</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
+    <button class="nav-toggle"></button>
     <a class="nav-link" href="../../serverless-logic/service-orchestration/orchestration-of-openapi-based-services.html">Orchestrating the OpenAPI services</a>
-  </li>
-  <li class="nav-item" data-depth="4">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
     <a class="nav-link" href="../../serverless-logic/service-orchestration/configuring-openapi-services-endpoints.html">Configuring the OpenAPI services endpoints</a>
   </li>
-  <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../serverless-logic/service-orchestration/orchestration-of-asyncapi-based-services.html">Orchestrating the AsyncAPI services</a>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="#serverless-logic:service-orchestration/working-with-openapi-callbacks.adoc.adoc">OpenAPI callback  in OpenShift Serverless Logic</a>
+  </li>
+</ul>
   </li>
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="../../serverless-logic/service-orchestration/orchestration-of-grpc-services.html">Orchestration of gRPC based services</a>
@@ -231,25 +225,25 @@
   </li>
   <li class="nav-item" data-depth="3">
     <button class="nav-toggle"></button>
-    <span class="nav-text">Eventing</span>
+    <span class="nav-text">Event Orchestration</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../serverless-logic/eventing/handling-events-on-workflows.html">Event State</a>
-  </li>
-  <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../serverless-logic/eventing/consume-producing-events-with-kafka.html">Consuming and producing events using Apache Kafka</a>
-  </li>
-  <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../serverless-logic/eventing/consume-produce-events-with-knative-eventing.html">Consuming and producing events on Knative Eventing</a>
+    <a class="nav-link" href="#serverless-logic:eventing/orchestration-of-asyncapi-callbacks.adoc">Orchestrating AsyncAPI Services</a>
   </li>
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="../../serverless-logic/eventing/event-correlation-with-workflows.html">Event Correlation</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../serverless-logic/eventing/working-with-callbacks.html">Callback State</a>
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Quarkus</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../serverless-logic/eventing/consume-producing-events-with-kafka.html">Consuming and producing events using Apache Kafka</a>
+  </li>
+</ul>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../serverless-logic/eventing/working-with-openapi-callbacks.html">OpenAPI Callback</a>
+    <a class="nav-link" href="../../serverless-logic/eventing/consume-produce-events-with-knative-eventing.html">Consuming and producing events on Knative Eventing</a>
   </li>
 </ul>
   </li>
@@ -267,19 +261,49 @@
   </li>
   <li class="nav-item" data-depth="3">
     <button class="nav-toggle"></button>
-    <span class="nav-text">Testing and Troubleshooting</span>
+    <span class="nav-text">Executing, Testing and Troubleshooting</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Executing and Testing Workflows</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../../serverless-logic/testing-and-troubleshooting/quarkus-dev-ui-extension/quarkus-dev-ui-overview.html">Developer UI</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../../serverless-logic/testing-and-troubleshooting/quarkus-dev-ui-extension/quarkus-dev-ui-workflow-instances-page.html">Workflow Instances</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../../serverless-logic/testing-and-troubleshooting/quarkus-dev-ui-extension/quarkus-dev-ui-workflow-definition-page.html">Workflow Definitions</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../../serverless-logic/testing-and-troubleshooting/quarkus-dev-ui-extension/quarkus-dev-ui-monitoring-page.html">Monitoring</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../../serverless-logic/testing-and-troubleshooting/quarkus-dev-ui-extension/quarkus-dev-ui-custom-dashboard-page.html">Dashboards</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../serverless-logic/testing-and-troubleshooting/kn-plugin-workflow-overview.html">Command Line</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Quarkus</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
     <a class="nav-link" href="../../serverless-logic/testing-and-troubleshooting/mocking-http-cloudevents-with-wiremock.html">Mocking HTTP CloudEvents sink using WireMock</a>
   </li>
-  <li class="nav-item" data-depth="4">
+  <li class="nav-item" data-depth="5">
     <a class="nav-link" href="../../serverless-logic/testing-and-troubleshooting/mocking-openapi-services-with-wiremock.html">Mocking OpenAPI services using WireMock</a>
   </li>
-  <li class="nav-item" data-depth="4">
+  <li class="nav-item" data-depth="5">
     <a class="nav-link" href="../../serverless-logic/testing-and-troubleshooting/basic-integration-tests-with-restassured.html">Testing using REST Assured</a>
   </li>
-  <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../serverless-logic/testing-and-troubleshooting/integration-tests-with-postgresql.html">Integration tests using PostgreSQL</a>
+</ul>
   </li>
 </ul>
   </li>
@@ -288,10 +312,19 @@
     <span class="nav-text">Persistence</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Quarkus</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
     <a class="nav-link" href="../../serverless-logic/persistence/persistence-with-postgresql.html">Running a workflow service using PostgreSQL</a>
   </li>
-  <li class="nav-item" data-depth="4">
+  <li class="nav-item" data-depth="5">
     <a class="nav-link" href="../../serverless-logic/persistence/postgresql-flyway-migration.html">Migrate your PostgreSQL database</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../serverless-logic/persistence/integration-tests-with-postgresql.html">Integration Tests with PostgreSQL</a>
+  </li>
+</ul>
   </li>
 </ul>
   </li>
@@ -307,16 +340,19 @@
     <a class="nav-link" href="../../serverless-logic/cloud/operator/install-serverless-operator.html">Installation</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../../serverless-logic/cloud/operator/developing-workflows.html">Developing Workflows</a>
+    <a class="nav-link" href="../../serverless-logic/cloud/operator/developing-workflows.html">Development Mode</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../../serverless-logic/cloud/operator/configuring-workflows.html">Configuring Workflows</a>
+    <a class="nav-link" href="../../serverless-logic/cloud/operator/referencing-resource-files.html">Referencing Workflow Resources</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../../serverless-logic/cloud/operator/workflow-status-conditions.html">Workflows Status</a>
+    <a class="nav-link" href="../../serverless-logic/cloud/operator/configuring-workflows.html">Configuration</a>
   </li>
   <li class="nav-item" data-depth="5">
     <a class="nav-link" href="../../serverless-logic/cloud/operator/build-and-deploy-workflows.html">Building and Deploying Workflows</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../serverless-logic/cloud/operator/workflow-status-conditions.html">Custom Resource Status</a>
   </li>
   <li class="nav-item" data-depth="5">
     <a class="nav-link" href="../../serverless-logic/cloud/operator/known-issues.html">Known Issues</a>
@@ -328,13 +364,16 @@
     <span class="nav-text">Quarkus</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../../serverless-logic/cloud/quarkus/build-workflow-image-with-quarkus-cli.html">Building workflow images using Quarkus CLI</a>
+    <a class="nav-link" href="../../serverless-logic/cloud/quarkus/build-workflow-image-with-quarkus-cli.html">Building workflow images</a>
   </li>
   <li class="nav-item" data-depth="5">
     <a class="nav-link" href="../../serverless-logic/cloud/quarkus/deploying-on-minikube.html">Deploying Workflows on Minikube</a>
   </li>
   <li class="nav-item" data-depth="5">
     <a class="nav-link" href="../../serverless-logic/cloud/quarkus/deploying-on-kubernetes.html">Deploying Workflows on Kubernetes</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="#serverless-logic:cloud/deploying-on-openshift.adoc">Deploying Workflows on Openshift</a>
   </li>
   <li class="nav-item" data-depth="5">
     <a class="nav-link" href="../../serverless-logic/cloud/quarkus/kubernetes-service-discovery.html">Kubernetes service discovery</a>
@@ -366,7 +405,43 @@
     <span class="nav-text">Supporting Services</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../serverless-logic/supporting-services/jobs-service.html">Job Service</a>
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Data Index</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="#serverless-logic:supporting-services/data-index/data-index-concepts.adoc">Data Index Core Concepts</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../serverless-logic/supporting-services/data-index/data-index-service.html">Data Index Standalone Service</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="#serverless-logic:supporting-services/data-index/data-index-quarkus-extensions.adoc">Data Index Quarkus Extensions</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Operator</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="#serverless-logic:supporting-services/data-index/operator/data-index-usecase-singleton.adoc">Deploying Data Index and OpenShift Serverless Logic application</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="#serverless-logic:supporting-services/data-index/operator/data-index-usecase-multi.adoc">Deploying Data Index and multiple OpenShift Serverless Logic application</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Job Service</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="#serverless-logic:supporting-services/jobs-service/core-concepts.adoc">Job Service Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="#serverless-logic:supporting-services/jobs-service/quarkus-extensions.adoc">Job Service Quarkus Extensions</a>
+  </li>
+</ul>
   </li>
 </ul>
   </li>
@@ -398,9 +473,6 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../../functions/serverless-functions-buildpacks.html">Building and deploying functions on the cluster</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../functions/serverless-developing-go-functions.html">Developing Go functions</a>
   </li>
 </ul>
   </li>

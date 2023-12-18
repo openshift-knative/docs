@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OpenShift Serverless Logic plug-in for Knative CLI :: Red Hat OpenShift Serverless previews</title>
-    <link rel="canonical" href="https://openshift-knative.github.io/docs/docs/latest/serverless-logic/tooling/kn-plugin-workflow-overview.html">
+    <link rel="canonical" href="https://openshift-knative.github.io/docs/docs/latest/serverless-logic/testing-and-troubleshooting/kn-plugin-workflow-overview.html">
     <meta name="generator" content="Antora 3.0.3">
     <link rel="stylesheet" href="../../../../_/css/site.css">
 <link rel="stylesheet" href="../../../../_/css/extra.css">
@@ -116,10 +116,10 @@
     <span class="nav-text">Getting Started</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../getting-started/create-your-first-workflow-service.html">Creating your first workflow service</a>
+    <a class="nav-link" href="../getting-started/create-your-first-workflow-service-with-kn-cli-and-vscode.html">Creating your first workflow service with KN CLI and VS Code</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../getting-started/cncf-serverless-workflow-specification-support.html">CNCF Serverless Workflow specification</a>
+    <a class="nav-link" href="../getting-started/create-your-first-workflow-service.html">Creating your first workflow service</a>
   </li>
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="../getting-started/getting-familiar-with-our-tooling.html">Getting familiar with tooling</a>
@@ -131,13 +131,19 @@
     <span class="nav-text">Core</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../core/cncf-serverless-workflow-specification-support.html">CNCF Serverless Workflow specification</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../core/handling-events-on-workflows.html">Events</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../core/working-with-callbacks.html">Callbacks</a>
+  </li>
+  <li class="nav-item" data-depth="4">
     <a class="nav-link" href="../core/understanding-jq-expressions.html">jq expressions</a>
   </li>
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="../core/understanding-workflow-error-handling.html">Error handling</a>
-  </li>
-  <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../core/working-with-parallelism.html">Parallelism</a>
   </li>
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="../core/configuration-properties.html">Configuration properties</a>
@@ -151,6 +157,9 @@
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="../core/timeouts-support.html">Timeouts</a>
   </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../core/working-with-parallelism.html">Parallelism</a>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="3">
@@ -159,52 +168,34 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="serverless-workflow-editor/swf-editor-overview.html">Serverless Workflow editor</a>
+    <a class="nav-link" href="../tooling/serverless-workflow-editor/swf-editor-overview.html">Serverless Workflow editor</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="serverless-workflow-editor/swf-editor-vscode-extension.html">VS Code extension for Serverless Workflow editor</a>
+    <a class="nav-link" href="../tooling/serverless-workflow-editor/swf-editor-vscode-extension.html">VS Code extension for Serverless Workflow editor</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="serverless-workflow-editor/swf-editor-chrome-extension.html">Chrome GitHub extension for Serverless Workflow editor</a>
+    <a class="nav-link" href="../tooling/serverless-workflow-editor/swf-editor-chrome-extension.html">Chrome GitHub extension for Serverless Workflow editor</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="4">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="quarkus-dev-ui-extension/quarkus-dev-ui-overview.html">Kogito Serverless Workflow Tools extension in Quarkus Dev UI</a>
+    <a class="nav-link" href="../tooling/serverless-logic-web-tools/serverless-logic-web-tools-overview.html">Serverless Logic Web Tools</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="quarkus-dev-ui-extension/quarkus-dev-ui-workflow-instances-page.html">Workflow Instances in Kogito Serverless Workflow Tools extension</a>
+    <a class="nav-link" href="../tooling/serverless-logic-web-tools/serverless-logic-web-tools-github-integration.html">GitHub integration</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="quarkus-dev-ui-extension/quarkus-dev-ui-workflow-definition-page.html">Workflow Definitions in Kogito Serverless Workflow Tools extension</a>
+    <a class="nav-link" href="../tooling/serverless-logic-web-tools/serverless-logic-web-tools-openshift-integration.html">OpenShift integration</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="quarkus-dev-ui-extension/quarkus-dev-ui-custom-dashboard-page.html">Dashboards in Kogito Serverless Workflow Tools extension</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item is-current-page" data-depth="4">
-    <a class="nav-link" href="kn-plugin-workflow-overview.html">OpenShift Serverless Logic plug-in for Knative CLI</a>
-  </li>
-  <li class="nav-item" data-depth="4">
-    <button class="nav-toggle"></button>
-    <a class="nav-link" href="serverless-logic-web-tools/serverless-logic-web-tools-overview.html">Serverless Logic Web Tools</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="serverless-logic-web-tools/serverless-logic-web-tools-github-integration.html">GitHub integration</a>
+    <a class="nav-link" href="../tooling/serverless-logic-web-tools/serverless-logic-web-tools-redhat-application-services-integration.html">Red Hat OpenShift Application and Data Services integration</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="serverless-logic-web-tools/serverless-logic-web-tools-openshift-integration.html">OpenShift integration</a>
+    <a class="nav-link" href="../tooling/serverless-logic-web-tools/serverless-logic-web-tools-deploy-projects.html">Deploying projects</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="serverless-logic-web-tools/serverless-logic-web-tools-redhat-application-services-integration.html">Red Hat OpenShift Application and Data Services integration</a>
-  </li>
-  <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="serverless-logic-web-tools/serverless-logic-web-tools-deploy-projects.html">Deploying projects</a>
-  </li>
-  <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="serverless-logic-web-tools/serverless-logic-web-tools-enable-kogito-swf-visualization.html">Kogito Serverless Workflow Visualization</a>
+    <a class="nav-link" href="../tooling/serverless-logic-web-tools/serverless-logic-web-tools-enable-kogito-swf-visualization.html">Kogito Serverless Workflow Visualization</a>
   </li>
 </ul>
   </li>
@@ -215,13 +206,16 @@
     <span class="nav-text">Service Orchestration</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
+    <button class="nav-toggle"></button>
     <a class="nav-link" href="../service-orchestration/orchestration-of-openapi-based-services.html">Orchestrating the OpenAPI services</a>
-  </li>
-  <li class="nav-item" data-depth="4">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
     <a class="nav-link" href="../service-orchestration/configuring-openapi-services-endpoints.html">Configuring the OpenAPI services endpoints</a>
   </li>
-  <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../service-orchestration/orchestration-of-asyncapi-based-services.html">Orchestrating the AsyncAPI services</a>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="#serverless-logic:service-orchestration/working-with-openapi-callbacks.adoc.adoc">OpenAPI callback  in OpenShift Serverless Logic</a>
+  </li>
+</ul>
   </li>
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="../service-orchestration/orchestration-of-grpc-services.html">Orchestration of gRPC based services</a>
@@ -230,25 +224,25 @@
   </li>
   <li class="nav-item" data-depth="3">
     <button class="nav-toggle"></button>
-    <span class="nav-text">Eventing</span>
+    <span class="nav-text">Event Orchestration</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../eventing/handling-events-on-workflows.html">Event State</a>
-  </li>
-  <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../eventing/consume-producing-events-with-kafka.html">Consuming and producing events using Apache Kafka</a>
-  </li>
-  <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../eventing/consume-produce-events-with-knative-eventing.html">Consuming and producing events on Knative Eventing</a>
+    <a class="nav-link" href="#serverless-logic:eventing/orchestration-of-asyncapi-callbacks.adoc">Orchestrating AsyncAPI Services</a>
   </li>
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="../eventing/event-correlation-with-workflows.html">Event Correlation</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../eventing/working-with-callbacks.html">Callback State</a>
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Quarkus</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../eventing/consume-producing-events-with-kafka.html">Consuming and producing events using Apache Kafka</a>
+  </li>
+</ul>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../eventing/working-with-openapi-callbacks.html">OpenAPI Callback</a>
+    <a class="nav-link" href="../eventing/consume-produce-events-with-knative-eventing.html">Consuming and producing events on Knative Eventing</a>
   </li>
 </ul>
   </li>
@@ -266,19 +260,49 @@
   </li>
   <li class="nav-item" data-depth="3">
     <button class="nav-toggle"></button>
-    <span class="nav-text">Testing and Troubleshooting</span>
+    <span class="nav-text">Executing, Testing and Troubleshooting</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../testing-and-troubleshooting/mocking-http-cloudevents-with-wiremock.html">Mocking HTTP CloudEvents sink using WireMock</a>
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Executing and Testing Workflows</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="quarkus-dev-ui-extension/quarkus-dev-ui-overview.html">Developer UI</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="quarkus-dev-ui-extension/quarkus-dev-ui-workflow-instances-page.html">Workflow Instances</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="quarkus-dev-ui-extension/quarkus-dev-ui-workflow-definition-page.html">Workflow Definitions</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="quarkus-dev-ui-extension/quarkus-dev-ui-monitoring-page.html">Monitoring</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="quarkus-dev-ui-extension/quarkus-dev-ui-custom-dashboard-page.html">Dashboards</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item is-current-page" data-depth="5">
+    <a class="nav-link" href="kn-plugin-workflow-overview.html">Command Line</a>
+  </li>
+</ul>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../testing-and-troubleshooting/mocking-openapi-services-with-wiremock.html">Mocking OpenAPI services using WireMock</a>
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Quarkus</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="mocking-http-cloudevents-with-wiremock.html">Mocking HTTP CloudEvents sink using WireMock</a>
   </li>
-  <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../testing-and-troubleshooting/basic-integration-tests-with-restassured.html">Testing using REST Assured</a>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="mocking-openapi-services-with-wiremock.html">Mocking OpenAPI services using WireMock</a>
   </li>
-  <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../testing-and-troubleshooting/integration-tests-with-postgresql.html">Integration tests using PostgreSQL</a>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="basic-integration-tests-with-restassured.html">Testing using REST Assured</a>
+  </li>
+</ul>
   </li>
 </ul>
   </li>
@@ -287,10 +311,19 @@
     <span class="nav-text">Persistence</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Quarkus</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
     <a class="nav-link" href="../persistence/persistence-with-postgresql.html">Running a workflow service using PostgreSQL</a>
   </li>
-  <li class="nav-item" data-depth="4">
+  <li class="nav-item" data-depth="5">
     <a class="nav-link" href="../persistence/postgresql-flyway-migration.html">Migrate your PostgreSQL database</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../persistence/integration-tests-with-postgresql.html">Integration Tests with PostgreSQL</a>
+  </li>
+</ul>
   </li>
 </ul>
   </li>
@@ -306,16 +339,19 @@
     <a class="nav-link" href="../cloud/operator/install-serverless-operator.html">Installation</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../cloud/operator/developing-workflows.html">Developing Workflows</a>
+    <a class="nav-link" href="../cloud/operator/developing-workflows.html">Development Mode</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../cloud/operator/configuring-workflows.html">Configuring Workflows</a>
+    <a class="nav-link" href="../cloud/operator/referencing-resource-files.html">Referencing Workflow Resources</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../cloud/operator/workflow-status-conditions.html">Workflows Status</a>
+    <a class="nav-link" href="../cloud/operator/configuring-workflows.html">Configuration</a>
   </li>
   <li class="nav-item" data-depth="5">
     <a class="nav-link" href="../cloud/operator/build-and-deploy-workflows.html">Building and Deploying Workflows</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../cloud/operator/workflow-status-conditions.html">Custom Resource Status</a>
   </li>
   <li class="nav-item" data-depth="5">
     <a class="nav-link" href="../cloud/operator/known-issues.html">Known Issues</a>
@@ -327,13 +363,16 @@
     <span class="nav-text">Quarkus</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../cloud/quarkus/build-workflow-image-with-quarkus-cli.html">Building workflow images using Quarkus CLI</a>
+    <a class="nav-link" href="../cloud/quarkus/build-workflow-image-with-quarkus-cli.html">Building workflow images</a>
   </li>
   <li class="nav-item" data-depth="5">
     <a class="nav-link" href="../cloud/quarkus/deploying-on-minikube.html">Deploying Workflows on Minikube</a>
   </li>
   <li class="nav-item" data-depth="5">
     <a class="nav-link" href="../cloud/quarkus/deploying-on-kubernetes.html">Deploying Workflows on Kubernetes</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="#serverless-logic:cloud/deploying-on-openshift.adoc">Deploying Workflows on Openshift</a>
   </li>
   <li class="nav-item" data-depth="5">
     <a class="nav-link" href="../cloud/quarkus/kubernetes-service-discovery.html">Kubernetes service discovery</a>
@@ -365,7 +404,43 @@
     <span class="nav-text">Supporting Services</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../supporting-services/jobs-service.html">Job Service</a>
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Data Index</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="#serverless-logic:supporting-services/data-index/data-index-concepts.adoc">Data Index Core Concepts</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../supporting-services/data-index/data-index-service.html">Data Index Standalone Service</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="#serverless-logic:supporting-services/data-index/data-index-quarkus-extensions.adoc">Data Index Quarkus Extensions</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Operator</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="#serverless-logic:supporting-services/data-index/operator/data-index-usecase-singleton.adoc">Deploying Data Index and OpenShift Serverless Logic application</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="#serverless-logic:supporting-services/data-index/operator/data-index-usecase-multi.adoc">Deploying Data Index and multiple OpenShift Serverless Logic application</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Job Service</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="#serverless-logic:supporting-services/jobs-service/core-concepts.adoc">Job Service Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="#serverless-logic:supporting-services/jobs-service/quarkus-extensions.adoc">Job Service Quarkus Extensions</a>
+  </li>
+</ul>
   </li>
 </ul>
   </li>
@@ -397,9 +472,6 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../../functions/serverless-functions-buildpacks.html">Building and deploying functions on the cluster</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../functions/serverless-developing-go-functions.html">Developing Go functions</a>
   </li>
 </ul>
   </li>
@@ -436,8 +508,9 @@
     <li class="crumb"><a href="../../index.html">Documentation</a></li>
     <li class="crumb">Serverless Logic</li>
     <li class="crumb">User Guides</li>
-    <li class="crumb">Tooling</li>
-    <li class="crumb"><a href="kn-plugin-workflow-overview.html">OpenShift Serverless Logic plug-in for Knative CLI</a></li>
+    <li class="crumb">Executing, Testing and Troubleshooting</li>
+    <li class="crumb">Executing and Testing Workflows</li>
+    <li class="crumb"><a href="kn-plugin-workflow-overview.html">Command Line</a></li>
   </ul>
 </nav>
 </div>
@@ -459,12 +532,15 @@
 <ul class="sectlevel1">
 <li><a href="#proc-install-sw-plugin-kn-cli">Installing the OpenShift Serverless Logic plug-in for Knative CLI</a></li>
 <li><a href="#proc-create-sw-project-kn-cli">Creating a workflow project using Knative CLI</a></li>
-<li><a href="#proc-build-sw-project-kn-cli">Building a workflow project using Knative CLI</a>
+<li><a href="#proc-build-sw-project-kn-cli">Running a workflow project using Knative CLI</a></li>
+<li><a href="#proc-deploy-sw-project-kn-cli">Deploying a workflow project using Knative CLI</a></li>
+<li><a href="#proc-create-quarkus-sw-project-kn-cli">Creating a Quarkus Workflow project using Knative CLI</a></li>
+<li><a href="#proc-build-quarkus-sw-project-kn-cli">Building a Quarkus workflow project using Knative CLI</a>
 <ul class="sectlevel2">
-<li><a href="#con-build-strategy-kn-cli">Strategy for building a workflow project</a></li>
+<li><a href="#con-build-strategy-kn-cli">Strategy for building a Quarkus workflow project</a></li>
 </ul>
 </li>
-<li><a href="#proc-deploy-sw-project-kn-cli">Deploying a workflow project using Knative CLI</a></li>
+<li><a href="#proc-deploy-quarkus-sw-project-kn-cli">Deploying a Quarkus workflow project using Knative CLI</a></li>
 <li><a href="#_additional_resources">Additional resources</a></li>
 <li><a href="#_found_an_issue"><em><strong>Found an issue?</strong></em></a></li>
 </ul>
@@ -516,7 +592,7 @@
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>Install the Knative CLI. For installation instructions, see <a href="https://github.com/knative/client/blob/main/docs/README.md#installing-kn">Installing kn</a> documentation in GitHub.</p>
+<p>Install the Knative CLI. For installation instructions, see <a href="https://github.com/knative/client/blob/main/docs/README.md#installing-kn">Installing kn</a> documentation.</p>
 </li>
 <li>
 <p>Copy the <code>kn-workflow</code> binary to a directory in your <code>PATH</code>, such as <code>/usr/local/bin</code> and ensure that the file name is <code>kn-workflow</code>.</p>
@@ -572,23 +648,26 @@ kn-workflow</code></pre>
 <div class="listingblock">
 <div class="title">Example output</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">Manage Kogito Serverless Workflow projects
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">Manage SonataFlow projects
 
 Usage:
   kn workflow [command]
 
 Available Commands:
-  build       Build a Kogito Serverless Workflow project and generate a container image
   completion  Generate the autocompletion script for the specified shell
-  create      Create a Kogito Serverless Workflow project
-  deploy      Deploy a Kogito Serverless Workflow project
+  create      Creates a new SonataFlow project
+  deploy      Deploy a SonataFlow project on Kubernetes via SonataFlow Operator
   help        Help about any command
+  quarkus     Manage SonataFlow projects built in Quarkus
+  run         Run a SonataFlow project in development mode
+  undeploy    Undeploy a SonataFlow project on Kubernetes via SonataFlow Operator
+  version     Show the version
 
 Flags:
-  -h, --help      help for kn-workflow
-  -v, --verbose   Print verbose logs
+  -h, --help      help for kn
+  -v, --version   version for kn
 
-Use "kn workflow [command] --help" for more information about a command.</code></pre>
+Use "kn [command] --help" for more information about a command.</code></pre>
 </div>
 </div>
 </div>
@@ -602,10 +681,10 @@ Use "kn workflow [command] --help" for more information about a command.</code><
 <h2 id="proc-create-sw-project-kn-cli"><a class="anchor" href="#proc-create-sw-project-kn-cli"></a>Creating a workflow project using Knative CLI</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>After installing the OpenShift Serverless Logic plug-in, you can use the <code>create</code> command with <code>kn workflow</code> to scaffold a new workflow project in your current directory.</p>
+<p>After installing the OpenShift Serverless Logic plug-in, you can use the <code>create</code> command with <code>kn workflow</code> to scaffold a new OpenShift Serverless Logic project in your current directory.</p>
 </div>
 <div class="paragraph">
-<p>The <code>create</code> command sets up Quarkus project containing minimal extensions to build a workflow project. Also, the generated workflow project contains a "hello world" <code>workflow.sw.json</code> file in your <code>./&lt;project-name&gt;/src/main/resources</code> directory.</p>
+<p>The <code>create</code> command sets up OpenShift Serverless Logic project containing a minimal "hello world" <code>workflow.sw.json</code> file in your <code>./&lt;project-name&gt;</code> directory.</p>
 </div>
 <div class="ulist">
 <div class="title">Prerequisites</div>
@@ -646,14 +725,180 @@ Use "kn workflow [command] --help" for more information about a command.</code><
 </div>
 </div>
 </li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="proc-build-sw-project-kn-cli"><a class="anchor" href="#proc-build-sw-project-kn-cli"></a>Running a workflow project using Knative CLI</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>After creating your workflow project, you can use the <code>run</code> command with <code>kn workflow</code> to build &amp; run your workflow project in your current directory.</p>
+</div>
+<div class="paragraph">
+<p>This will start a OpenShift Serverless Logic docker image and map your local folder to this image.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>OpenShift Serverless Logic plug-in for Knative CLI is installed.</p>
+<div class="paragraph">
+<p>For more information about installing the plug-in, see <a href="#proc-install-sw-plugin-kn-cli">Installing the OpenShift Serverless Logic plug-in for Knative CLI</a>.</p>
+</div>
+</li>
+<li>
+<p>A workflow project is created.</p>
+<div class="paragraph">
+<p>For more information about creating a workflow project, see <a href="#proc-create-sw-project-kn-cli">Creating workflow project using Knative CLI</a>.</p>
+</div>
+</li>
+<li>
+<p>Minikube cluster is running locally.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>In Knative CLI, enter the following command to build and run your workflow project:</p>
+<div class="openblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Run the project and start a local development image.</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kn workflow run</code></pre>
+</div>
+</div>
+</div>
+</div>
+</li>
+<li>
+<p>Once the project is ready, the Development UI will be opened up in a browser automatically (on <code>localhost:8080/q/dev</code>).</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="proc-deploy-sw-project-kn-cli"><a class="anchor" href="#proc-deploy-sw-project-kn-cli"></a>Deploying a workflow project using Knative CLI</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You can use the <code>deploy</code> command combined with <code>kn workflow</code> to deploy your workflow project in your current directory.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>OpenShift Serverless Logic plug-in for Knative CLI is installed.</p>
+<div class="paragraph">
+<p>For more information about installing the plug-in, see <a href="#proc-install-sw-plugin-kn-cli">Installing the OpenShift Serverless Logic plug-in for Knative CLI</a>.</p>
+</div>
+</li>
+<li>
+<p>A workflow project is created.</p>
+<div class="paragraph">
+<p>For more information about creating a workflow project, see <a href="#proc-create-sw-project-kn-cli">Creating workflow project using Knative CLI</a>.</p>
+</div>
+</li>
+<li>
+<p>A minikube cluster is running locally.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>In Knative CLI, enter the following command to deploy your workflow project:</p>
+<div class="openblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Deploy a workflow project</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kn workflow deploy</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Also, ensure that you have access to your cluster and your cluster can access the generated container image.
+For more options with <code>deploy</code> command use <code>[-h|--help]</code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>You can use the <code>kubectl</code> command line if you want to use a complex deployment setup for your workflow project.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="proc-create-quarkus-sw-project-kn-cli"><a class="anchor" href="#proc-create-quarkus-sw-project-kn-cli"></a>Creating a Quarkus Workflow project using Knative CLI</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>After installing the OpenShift Serverless Logic plug-in, you can use the <code>quarkus create</code> command with <code>kn workflow</code> to scaffold a new Quarkus Workflow project in your current directory.</p>
+</div>
+<div class="paragraph">
+<p>The <code>quarkus create</code> command sets up a OpenShift Serverless Logic Quarkus project containing minimal extensions to build a workflow project. Also, the generated workflow project contains a "hello world" <code>workflow.sw.json</code> file in your <code>./&lt;project-name&gt;/src/main/resources</code> directory.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>OpenShift Serverless Logic plug-in for Knative CLI is installed.
+For more information about installing the plug-in, see <a href="#proc-install-sw-plugin-kn-cli">Installing the OpenShift Serverless Logic plug-in for Knative CLI</a>.</p>
+</li>
+<li>
+<p>You followed the steps in <a href="../getting-started/create-your-first-workflow-service.html#proc-configuring-maven-rhbq" class="xref page">Configuring your Maven project to Red Hat build of Quarkus and OpenShift Serverless Logic</a></p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>In Knative CLI, enter the following command to create a new project:</p>
+<div class="openblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Creates a project named <code>new-project</code></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kn workflow quarkus create</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>By default, the generated project is named as <code>new-project</code>. You can overwrite the project name by using the <code>[-n|--name]</code> flag as follows:</p>
+</div>
+<div class="listingblock">
+<div class="title">Create a project named <code>my-project</code></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kn workflow quarkus create --name my-project</code></pre>
+</div>
+</div>
+</div>
+</div>
+</li>
 <li>
 <p>Add more extensions to the Quarkus project during its creation by using the <code>[-e|--extension]</code> flag as follows:</p>
 <div class="openblock">
 <div class="content">
 <div class="listingblock">
-<div class="title">Create a project with <code>quarkus-jsonp</code> and <code>quarkus-smallrye-openapi</code> extensions</div>
+<div class="title">Create a project with <code>quarkus-jsonp and quarkus-smallrye-openapi</code> extensions</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kn workflow create --extension quarkus-jsonp,quarkus-smallrye-openapi</code></pre>
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kn workflow quarkus create --extension quarkus-jsonp,quarkus-smallrye-openapi</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -681,10 +926,10 @@ Use "kn workflow [command] --help" for more information about a command.</code><
 </div>
 </div>
 <div class="sect1">
-<h2 id="proc-build-sw-project-kn-cli"><a class="anchor" href="#proc-build-sw-project-kn-cli"></a>Building a workflow project using Knative CLI</h2>
+<h2 id="proc-build-quarkus-sw-project-kn-cli"><a class="anchor" href="#proc-build-quarkus-sw-project-kn-cli"></a>Building a Quarkus workflow project using Knative CLI</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>After creating your workflow project, you can use the <code>build</code> command with <code>kn workflow</code> to build your workflow project in your current directory and to generate a container image.</p>
+<p>After creating your workflow project, you can use the <code>quarkus build</code> command with <code>kn workflow</code> to build your workflow project in your current directory and to generate a container image.</p>
 </div>
 <div class="paragraph">
 <p>The process of building your workflow project produces a <code>knative.yml</code> file in the <code>./target/kubernetes</code> folder. If your workflow contains events, then the building process also generates a <code>kogito.yml</code> file.</p>
@@ -716,7 +961,7 @@ Use "kn workflow [command] --help" for more information about a command.</code><
 <div class="listingblock">
 <div class="title">Build the project and generate a local image named <code>dev.local/my-project</code></div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kn workflow build --image dev.local/my-project</code></pre>
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kn workflow quarkus build --image dev.local/my-project</code></pre>
 </div>
 </div>
 <div class="admonitionblock note">
@@ -734,7 +979,7 @@ Use "kn workflow [command] --help" for more information about a command.</code><
 </table>
 </div>
 <div class="paragraph">
-<p>To use the <code>build</code> command, you need to provide either <code>--image</code> or <code>--image-name</code> flag. In the previous command, you can use the <code>[-i|--image]</code> in several ways, such as:</p>
+<p>To use the <code>quarkus build</code> command, you need to provide either the <code>--image</code> or <code>--image-name</code> flag. In the previous command, you can use the <code>[-i|--image]</code> in several ways, such as:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -797,7 +1042,7 @@ Use "kn workflow [command] --help" for more information about a command.</code><
 <div class="listingblock">
 <div class="title">Build the project and generate a local image named <code>quay.io/other-user/my-project:1.0.1</code></div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kn workflow build --image my-user/my-project:1.0.0 --image-repository other-user --image-tag 1.0.1</code></pre>
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kn workflow quarkus build --image my-user/my-project:1.0.0 --image-repository other-user --image-tag 1.0.1</code></pre>
 </div>
 </div>
 </div>
@@ -806,7 +1051,7 @@ Use "kn workflow [command] --help" for more information about a command.</code><
 </ol>
 </div>
 <div class="sect2">
-<h3 id="con-build-strategy-kn-cli"><a class="anchor" href="#con-build-strategy-kn-cli"></a>Strategy for building a workflow project</h3>
+<h3 id="con-build-strategy-kn-cli"><a class="anchor" href="#con-build-strategy-kn-cli"></a>Strategy for building a Quarkus workflow project</h3>
 <div class="paragraph">
 <p>You can use the following strategies to build a workflow project and to generate the container image:</p>
 </div>
@@ -825,7 +1070,7 @@ Use "kn workflow [command] --help" for more information about a command.</code><
 <div class="listingblock">
 <div class="title">Build a project and generate a local image using Jib</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kn workflow build --image dev.local/my-project --jib</code></pre>
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kn workflow quarkus build --image dev.local/my-project --jib</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -834,7 +1079,7 @@ Use "kn workflow [command] --help" for more information about a command.</code><
 <div class="listingblock">
 <div class="title">Build a project and generate a local image using Jib</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kn workflow build --image dev.local/my-project --jib-podman</code></pre>
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kn workflow quarkus build --image dev.local/my-project --jib-podman</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -846,7 +1091,7 @@ Use "kn workflow [command] --help" for more information about a command.</code><
 <div class="listingblock">
 <div class="title">Build a project and push the image using Jib</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kn workflow build --image my-project --jib --push</code></pre>
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kn workflow quarkus build --image my-project --jib --push</code></pre>
 </div>
 </div>
 <div class="admonitionblock important">
@@ -879,7 +1124,7 @@ Use "kn workflow [command] --help" for more information about a command.</code><
 <div class="listingblock">
 <div class="title">Build a project and push the image using Docker</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kn workflow build --image my-project --push</code></pre>
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kn workflow quarkus build --image my-project --push</code></pre>
 </div>
 </div>
 </div>
@@ -891,10 +1136,10 @@ Use "kn workflow [command] --help" for more information about a command.</code><
 </div>
 </div>
 <div class="sect1">
-<h2 id="proc-deploy-sw-project-kn-cli"><a class="anchor" href="#proc-deploy-sw-project-kn-cli"></a>Deploying a workflow project using Knative CLI</h2>
+<h2 id="proc-deploy-quarkus-sw-project-kn-cli"><a class="anchor" href="#proc-deploy-quarkus-sw-project-kn-cli"></a>Deploying a Quarkus workflow project using Knative CLI</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>You can use the <code>deploy</code> command combined with <code>kn workflow</code> to deploy your workflow project in your current directory. However, before deploying the project, you must build your workflow project as the build process produces deployment files, such as <code>knative.yml</code> and <code>kogito.yml</code> (In case of events) in the <code>./target/kubernetes</code> folder.</p>
+<p>You can use the <code>quarkus deploy</code> command combined with <code>kn workflow</code> to deploy your workflow project in your current directory. However, before deploying the project, you must build your workflow project as the build process produces deployment files, such as <code>knative.yml</code> and <code>kogito.yml</code> (In case of events) in the <code>./target/kubernetes</code> folder.</p>
 </div>
 <div class="ulist">
 <div class="title">Prerequisites</div>
@@ -929,7 +1174,7 @@ Use "kn workflow [command] --help" for more information about a command.</code><
 <div class="listingblock">
 <div class="title">Deploy a workflow project</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kn workflow deploy</code></pre>
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kn workflow quarkus deploy</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -938,7 +1183,7 @@ Use "kn workflow [command] --help" for more information about a command.</code><
 <div class="listingblock">
 <div class="title">Deploy a workflow project using <code>--path</code></div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kn workflow deploy --path other-path</code></pre>
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kn workflow quarkus deploy --path other-path</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -971,7 +1216,10 @@ Use "kn workflow [command] --help" for more information about a command.</code><
 <div class="ulist">
 <ul>
 <li>
-<p><a href="../getting-started/create-your-first-workflow-service.html" class="xref page">Creating your first workflow service</a></p>
+<p><a href="../getting-started/create-your-first-workflow-service.html" class="xref page">Creating your first Quarkus Workflow project</a></p>
+</li>
+<li>
+<p><a href="../getting-started/create-your-first-workflow-service-with-kn-cli-and-vscode.html" class="xref page">Creating your first SonataFlow project</a></p>
 </li>
 </ul>
 </div>

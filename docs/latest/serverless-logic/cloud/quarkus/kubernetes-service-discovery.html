@@ -118,10 +118,10 @@
     <span class="nav-text">Getting Started</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../getting-started/create-your-first-workflow-service.html">Creating your first workflow service</a>
+    <a class="nav-link" href="../../getting-started/create-your-first-workflow-service-with-kn-cli-and-vscode.html">Creating your first workflow service with KN CLI and VS Code</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../getting-started/cncf-serverless-workflow-specification-support.html">CNCF Serverless Workflow specification</a>
+    <a class="nav-link" href="../../getting-started/create-your-first-workflow-service.html">Creating your first workflow service</a>
   </li>
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="../../getting-started/getting-familiar-with-our-tooling.html">Getting familiar with tooling</a>
@@ -133,13 +133,19 @@
     <span class="nav-text">Core</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../core/cncf-serverless-workflow-specification-support.html">CNCF Serverless Workflow specification</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../core/handling-events-on-workflows.html">Events</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../core/working-with-callbacks.html">Callbacks</a>
+  </li>
+  <li class="nav-item" data-depth="4">
     <a class="nav-link" href="../../core/understanding-jq-expressions.html">jq expressions</a>
   </li>
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="../../core/understanding-workflow-error-handling.html">Error handling</a>
-  </li>
-  <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../core/working-with-parallelism.html">Parallelism</a>
   </li>
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="../../core/configuration-properties.html">Configuration properties</a>
@@ -152,6 +158,9 @@
   </li>
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="../../core/timeouts-support.html">Timeouts</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../core/working-with-parallelism.html">Parallelism</a>
   </li>
 </ul>
   </li>
@@ -170,24 +179,6 @@
     <a class="nav-link" href="../../tooling/serverless-workflow-editor/swf-editor-chrome-extension.html">Chrome GitHub extension for Serverless Workflow editor</a>
   </li>
 </ul>
-  </li>
-  <li class="nav-item" data-depth="4">
-    <button class="nav-toggle"></button>
-    <a class="nav-link" href="../../tooling/quarkus-dev-ui-extension/quarkus-dev-ui-overview.html">Kogito Serverless Workflow Tools extension in Quarkus Dev UI</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../../tooling/quarkus-dev-ui-extension/quarkus-dev-ui-workflow-instances-page.html">Workflow Instances in Kogito Serverless Workflow Tools extension</a>
-  </li>
-  <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../../tooling/quarkus-dev-ui-extension/quarkus-dev-ui-workflow-definition-page.html">Workflow Definitions in Kogito Serverless Workflow Tools extension</a>
-  </li>
-  <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../../tooling/quarkus-dev-ui-extension/quarkus-dev-ui-custom-dashboard-page.html">Dashboards in Kogito Serverless Workflow Tools extension</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../tooling/kn-plugin-workflow-overview.html">OpenShift Serverless Logic plug-in for Knative CLI</a>
   </li>
   <li class="nav-item" data-depth="4">
     <button class="nav-toggle"></button>
@@ -217,13 +208,16 @@
     <span class="nav-text">Service Orchestration</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
+    <button class="nav-toggle"></button>
     <a class="nav-link" href="../../service-orchestration/orchestration-of-openapi-based-services.html">Orchestrating the OpenAPI services</a>
-  </li>
-  <li class="nav-item" data-depth="4">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
     <a class="nav-link" href="../../service-orchestration/configuring-openapi-services-endpoints.html">Configuring the OpenAPI services endpoints</a>
   </li>
-  <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../service-orchestration/orchestration-of-asyncapi-based-services.html">Orchestrating the AsyncAPI services</a>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="#serverless-logic:service-orchestration/working-with-openapi-callbacks.adoc.adoc">OpenAPI callback  in OpenShift Serverless Logic</a>
+  </li>
+</ul>
   </li>
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="../../service-orchestration/orchestration-of-grpc-services.html">Orchestration of gRPC based services</a>
@@ -232,25 +226,25 @@
   </li>
   <li class="nav-item" data-depth="3">
     <button class="nav-toggle"></button>
-    <span class="nav-text">Eventing</span>
+    <span class="nav-text">Event Orchestration</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../eventing/handling-events-on-workflows.html">Event State</a>
-  </li>
-  <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../eventing/consume-producing-events-with-kafka.html">Consuming and producing events using Apache Kafka</a>
-  </li>
-  <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../eventing/consume-produce-events-with-knative-eventing.html">Consuming and producing events on Knative Eventing</a>
+    <a class="nav-link" href="#serverless-logic:eventing/orchestration-of-asyncapi-callbacks.adoc">Orchestrating AsyncAPI Services</a>
   </li>
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="../../eventing/event-correlation-with-workflows.html">Event Correlation</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../eventing/working-with-callbacks.html">Callback State</a>
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Quarkus</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../eventing/consume-producing-events-with-kafka.html">Consuming and producing events using Apache Kafka</a>
+  </li>
+</ul>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../eventing/working-with-openapi-callbacks.html">OpenAPI Callback</a>
+    <a class="nav-link" href="../../eventing/consume-produce-events-with-knative-eventing.html">Consuming and producing events on Knative Eventing</a>
   </li>
 </ul>
   </li>
@@ -268,19 +262,49 @@
   </li>
   <li class="nav-item" data-depth="3">
     <button class="nav-toggle"></button>
-    <span class="nav-text">Testing and Troubleshooting</span>
+    <span class="nav-text">Executing, Testing and Troubleshooting</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Executing and Testing Workflows</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../../testing-and-troubleshooting/quarkus-dev-ui-extension/quarkus-dev-ui-overview.html">Developer UI</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../../testing-and-troubleshooting/quarkus-dev-ui-extension/quarkus-dev-ui-workflow-instances-page.html">Workflow Instances</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../../testing-and-troubleshooting/quarkus-dev-ui-extension/quarkus-dev-ui-workflow-definition-page.html">Workflow Definitions</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../../testing-and-troubleshooting/quarkus-dev-ui-extension/quarkus-dev-ui-monitoring-page.html">Monitoring</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../../testing-and-troubleshooting/quarkus-dev-ui-extension/quarkus-dev-ui-custom-dashboard-page.html">Dashboards</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../testing-and-troubleshooting/kn-plugin-workflow-overview.html">Command Line</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Quarkus</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
     <a class="nav-link" href="../../testing-and-troubleshooting/mocking-http-cloudevents-with-wiremock.html">Mocking HTTP CloudEvents sink using WireMock</a>
   </li>
-  <li class="nav-item" data-depth="4">
+  <li class="nav-item" data-depth="5">
     <a class="nav-link" href="../../testing-and-troubleshooting/mocking-openapi-services-with-wiremock.html">Mocking OpenAPI services using WireMock</a>
   </li>
-  <li class="nav-item" data-depth="4">
+  <li class="nav-item" data-depth="5">
     <a class="nav-link" href="../../testing-and-troubleshooting/basic-integration-tests-with-restassured.html">Testing using REST Assured</a>
   </li>
-  <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../testing-and-troubleshooting/integration-tests-with-postgresql.html">Integration tests using PostgreSQL</a>
+</ul>
   </li>
 </ul>
   </li>
@@ -289,10 +313,19 @@
     <span class="nav-text">Persistence</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Quarkus</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
     <a class="nav-link" href="../../persistence/persistence-with-postgresql.html">Running a workflow service using PostgreSQL</a>
   </li>
-  <li class="nav-item" data-depth="4">
+  <li class="nav-item" data-depth="5">
     <a class="nav-link" href="../../persistence/postgresql-flyway-migration.html">Migrate your PostgreSQL database</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../persistence/integration-tests-with-postgresql.html">Integration Tests with PostgreSQL</a>
+  </li>
+</ul>
   </li>
 </ul>
   </li>
@@ -308,16 +341,19 @@
     <a class="nav-link" href="../operator/install-serverless-operator.html">Installation</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../operator/developing-workflows.html">Developing Workflows</a>
+    <a class="nav-link" href="../operator/developing-workflows.html">Development Mode</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../operator/configuring-workflows.html">Configuring Workflows</a>
+    <a class="nav-link" href="../operator/referencing-resource-files.html">Referencing Workflow Resources</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../operator/workflow-status-conditions.html">Workflows Status</a>
+    <a class="nav-link" href="../operator/configuring-workflows.html">Configuration</a>
   </li>
   <li class="nav-item" data-depth="5">
     <a class="nav-link" href="../operator/build-and-deploy-workflows.html">Building and Deploying Workflows</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../operator/workflow-status-conditions.html">Custom Resource Status</a>
   </li>
   <li class="nav-item" data-depth="5">
     <a class="nav-link" href="../operator/known-issues.html">Known Issues</a>
@@ -329,13 +365,16 @@
     <span class="nav-text">Quarkus</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="build-workflow-image-with-quarkus-cli.html">Building workflow images using Quarkus CLI</a>
+    <a class="nav-link" href="build-workflow-image-with-quarkus-cli.html">Building workflow images</a>
   </li>
   <li class="nav-item" data-depth="5">
     <a class="nav-link" href="deploying-on-minikube.html">Deploying Workflows on Minikube</a>
   </li>
   <li class="nav-item" data-depth="5">
     <a class="nav-link" href="deploying-on-kubernetes.html">Deploying Workflows on Kubernetes</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="#serverless-logic:cloud/deploying-on-openshift.adoc">Deploying Workflows on Openshift</a>
   </li>
   <li class="nav-item is-current-page" data-depth="5">
     <a class="nav-link" href="kubernetes-service-discovery.html">Kubernetes service discovery</a>
@@ -367,7 +406,43 @@
     <span class="nav-text">Supporting Services</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../supporting-services/jobs-service.html">Job Service</a>
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Data Index</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="#serverless-logic:supporting-services/data-index/data-index-concepts.adoc">Data Index Core Concepts</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../supporting-services/data-index/data-index-service.html">Data Index Standalone Service</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="#serverless-logic:supporting-services/data-index/data-index-quarkus-extensions.adoc">Data Index Quarkus Extensions</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Operator</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="#serverless-logic:supporting-services/data-index/operator/data-index-usecase-singleton.adoc">Deploying Data Index and OpenShift Serverless Logic application</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="#serverless-logic:supporting-services/data-index/operator/data-index-usecase-multi.adoc">Deploying Data Index and multiple OpenShift Serverless Logic application</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Job Service</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="#serverless-logic:supporting-services/jobs-service/core-concepts.adoc">Job Service Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="#serverless-logic:supporting-services/jobs-service/quarkus-extensions.adoc">Job Service Quarkus Extensions</a>
+  </li>
+</ul>
   </li>
 </ul>
   </li>
@@ -399,9 +474,6 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../../../functions/serverless-functions-buildpacks.html">Building and deploying functions on the cluster</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../../functions/serverless-developing-go-functions.html">Developing Go functions</a>
   </li>
 </ul>
   </li>
@@ -451,20 +523,20 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>The Kubernetes service discovery allows you to have a static URI, defining a Kubernetes resource, which is used to perform HTTP requests. The Kubernetes resource defined in the URI is queried in the current Kubernetes cluster and translated in a valid URL.</p>
+<p>The Kubernetes service discovery allows you to describe the Kubernetes resource you want to perform HTTP requests on using a custom URI. Under the hood, it will discover the network endpoint (URL) to where to make the request.</p>
 </div>
 <div class="paragraph">
-<p>The Kubernetes service discovery feature works during the workflow application startup, in which this feature scans all the Quarkus configuration in search of the URI pattern. Therefore, you must keep in mind that if application startup time matters, then consider to use a static URL instead.</p>
+<p>The Kubernetes service discovery feature works during the workflow application startup, in which this feature scans all the Quarkus configurations in search of the URI pattern. Therefore, you must remember that if the application startup time matters, consider using a known static URL instead.</p>
 </div>
 <div class="paragraph">
-<p>Following is the URI pattern in Kubernetes service discovery:</p>
+<p>Following is the custom URI pattern in Kubernetes service discovery:</p>
 </div>
 <div class="listingblock">
 <div class="title">URI pattern in Kubernetes service discovery</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kubernetes:&lt;group&gt;/&lt;version&gt;/&lt;kind&gt;/&lt;namespace&gt;/&lt;resourceName&gt;?&lt;attributeName&gt;=&lt;attributeValue&gt;
-\________/ \_____/ \_______/ \____/ \_________/ \____________/ \______________________________/
-  scheme    group   version   kind   namespace   resourceName   additional resource attributes
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kubernetes:&lt;kind&gt;.&lt;version&gt;.&lt;group&gt;/&lt;namespace&gt;/&lt;resourceName&gt;?&lt;attributeName&gt;=&lt;attributeValue&gt;
+\________/ \____/ \_______/ \_____/ \_________/ \____________/ \______________________________/
+  scheme    kind   version   group   namespace   resourceName   additional resource attributes
             \____________________/                               \__________________________/
                      GVK                                           Supported values:
                                                                    - port-name={PORT_NAME}
@@ -493,28 +565,28 @@
 <div class="ulist">
 <ul>
 <li>
-<p><code>v1/service</code></p>
+<p><code>services.v1</code></p>
 </li>
 <li>
-<p><code>serving.knative.dev/v1/service</code></p>
+<p><code>services.v1.serving.knative.dev</code></p>
 </li>
 <li>
-<p><code>v1/pod</code></p>
+<p><code>pods.v1</code></p>
 </li>
 <li>
-<p><code>apps/v1/deployment</code></p>
+<p><code>deployments.v1.apps</code></p>
 </li>
 <li>
-<p><code>apps.openshift.io/v1/deploymentconfig</code></p>
+<p><code>deploymentconfigs.v1.apps.openshift.io</code></p>
 </li>
 <li>
-<p><code>apps/v1/statefulset</code></p>
+<p><code>statefulsets.v1.apps</code></p>
 </li>
 <li>
-<p><code>route.openshift.io/v1/route</code></p>
+<p><code>routes.v1.route.openshift.io</code></p>
 </li>
 <li>
-<p><code>networking.k8s.io/v1/ingress</code></p>
+<p><code>ingresses.v1.networking.k8s.io</code></p>
 </li>
 </ul>
 </div>
@@ -534,7 +606,7 @@
 </div>
 </div>
 <div class="paragraph">
-<p>The above URI looks directly for serving.knative.dev/v1/service resource.</p>
+<p>The above URI looks directly for services.v1.serving.knative.dev resource.</p>
 </div>
 </td>
 </tr>
@@ -579,7 +651,7 @@
 <div class="listingblock">
 <div class="title">Example label definition in URI</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kubernetes:v1/pod/&lt;namespace&gt;/&lt;pod-name&gt;?labels=label-name=test-label</code></pre>
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kubernetes:pods.v1/&lt;namespace&gt;/&lt;pod-name&gt;?labels=label-name=test-label</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -603,12 +675,132 @@
 <div id="toc" class="toc">
 <div id="toctitle"></div>
 <ul class="sectlevel1">
+<li><a href="#required-kubernetes-roles">Required Kubernetes roles</a></li>
 <li><a href="#con-kubernetes-service-doscovery-configuration">Configuration in Kubernetes service discovery</a></li>
 <li><a href="#con-precedence-kubernetes-service-discovery">Precedence in Kubernetes service discovery</a></li>
 <li><a href="#ref-example-kubernetes-service-discovery">Example of Kubernetes service discovery in OpenShift Serverless Logic</a></li>
+<li><a href="#ref-enabling-kubernetes-service-discovery">Enabling Kubernetes service discovery</a>
+<ul class="sectlevel2">
+<li><a href="#_available_service_discovery_implementations">Available service discovery implementations</a></li>
+</ul>
+</li>
 <li><a href="#_additional_resources">Additional resources</a></li>
 <li><a href="#_found_an_issue"><em><strong>Found an issue?</strong></em></a></li>
 </ul>
+</div>
+</div>
+<div class="sect1">
+<h2 id="required-kubernetes-roles"><a class="anchor" href="#required-kubernetes-roles"></a>Required Kubernetes roles</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The service discovery engine requires that the <a href="https://kubernetes.io/docs/concepts/security/service-accounts/">Kubernetes Service Account</a> running the application has read permissions for the discovered objects.</p>
+</div>
+<div class="paragraph">
+<p>The following Kubernetes Role resource has all the required permissions for the service discovery to work:</p>
+</div>
+<div class="listingblock">
+<div class="title">Required permissions for the Service Discovery on Kubernetes</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: service-discovery-role
+rules:
+  - apiGroups:
+      - ""
+    resources:
+      - pods
+      - services
+    verbs:
+      - get
+      - list
+  - apiGroups:
+      - apps
+    resources:
+      - deployments
+      - statefulsets
+    verbs:
+      - get
+      - list
+  - apiGroups:
+      - networking.k8s.io
+    resources:
+      - ingresses
+    verbs:
+      - get
+      - list
+  # Knative
+  - apiGroups:
+      - serving.knative.dev
+    resources:
+      - services
+    verbs:
+      - get
+      - list</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If running on OpenShift, you must also add the following rules:</p>
+</div>
+<div class="listingblock">
+<div class="title">Additional rules to run on OpenShift</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">rules:
+  - apiGroups:
+      - route.openshift.io
+    resources:
+      - routes
+    verbs:
+      - get
+      - list
+  - apiGroups:
+      - apps.openshift.io
+    resources:
+      - deploymentconfigs
+    verbs:
+      - get
+      - list</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You must then bind the Service Account with the <code>Role</code> via a <code>RoleBinding</code>:</p>
+</div>
+<div class="listingblock">
+<div class="title">RoleBinding for the required service discovery role</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: service-discovery-rolebinding
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: service-discovery-role
+subjects:
+  - kind: ServiceAccount
+    name: default</code></pre>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Usually, pods run using the <code>default</code> Service Account. If your cluster has a different configuration, you should adapt this <code>RoleBinding</code> to your requirements.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>You must create these two objects in every namespace that you wish to deploy Quarkus Workflow applications with Service Discovery enabled.</p>
+</div>
+<div class="paragraph">
+<p>As an alternative, you can create a <code>ClusterRole</code> instead of a <code>Role</code> in every namespace. In this case, the role will reflect globally in your cluster. For security reasons, you should avoid this approach.</p>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -653,7 +845,16 @@
 <div class="listingblock">
 <div class="title">Example URI</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">org.kie.kogito.sw.knative.service=knative:v1/Service/serverless-workflow-greeting-quarkus/greeting-quarkus-cli</code></pre>
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">org.kie.kogito.sw.knative.service=${knative:services.v1/serverless-workflow-greeting-quarkus/greeting-quarkus-cli}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Or you can reference a specific endpoint of the Knative service using the following URI:</p>
+</div>
+<div class="listingblock">
+<div class="title">Example endpoint URI</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">org.kie.kogito.sw.knative.service=${knative:services.v1/serverless-workflow-greeting-quarkus/greeting-quarkus-cli}/endpoint</code></pre>
 </div>
 </div>
 <div class="admonitionblock note">
@@ -702,7 +903,7 @@ __  ____  __  _____   ___  __ ____  ______
 </td>
 <td class="content">
 <div class="paragraph">
-<p>In the previous example, the URI is translated to <code><a href="http://greeting-quarkus-cli.serverless-workflow-greeting-quarkus.10.99.154.147.sslip.io" class="bare">greeting-quarkus-cli.serverless-workflow-greeting-quarkus.10.99.154.147.sslip.io</a></code> when the application started. The translated URI is used at runtime, when needed.</p>
+<p>In the previous example, the URI is translated to <code><a href="http://greeting-quarkus-cli.serverless-workflow-greeting-quarkus.10.99.154.147.sslip.io" class="bare">greeting-quarkus-cli.serverless-workflow-greeting-quarkus.10.99.154.147.sslip.io</a></code> when the application started. The translated URL is used at runtime when needed.</p>
 </div>
 </td>
 </tr>
@@ -739,44 +940,63 @@ __  ____  __  _____   ___  __ ____  ______
 </div>
 </div>
 </div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
+</div>
+</div>
+<div class="sect1">
+<h2 id="ref-enabling-kubernetes-service-discovery"><a class="anchor" href="#ref-enabling-kubernetes-service-discovery"></a>Enabling Kubernetes service discovery</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>When using the Kubernetes service discovery feature, you need to balance if your application can afford the delayed startup time.</p>
 </div>
 <div class="paragraph">
 <p>If the URI pattern is not found in the application properties, then discovery is not triggered. However, the scanning is performed anyway. Therefore, a short time is required to go through the startup scan.</p>
 </div>
+<div class="sect2">
+<h3 id="_available_service_discovery_implementations"><a class="anchor" href="#_available_service_discovery_implementations"></a>Available service discovery implementations</h3>
 <div class="paragraph">
-<p>You can disable the Kubernetes service discovery by removing the <code>kogito-addons-quarkus-kubernetes</code> library from the application&#8217;s dependencies as shown in the following Maven exclusions:</p>
+<p>Currently, there are two implementations available.</p>
+</div>
+<div class="paragraph">
+<p>You can enable the Kubernetes service discovery by adding a service discovery implementation to the application&#8217;s dependencies as shown in the following Maven dependencies:</p>
+</div>
+<div class="sect3">
+<h4 id="_fabric8_kubernetes_service_catalog"><a class="anchor" href="#_fabric8_kubernetes_service_catalog"></a>Fabric8 Kubernetes Service Catalog</h4>
+<div class="paragraph">
+<p>When activated, it leverages the Kubernetes Java API for service discovery, making it ideally suited for self-managed scenarios where users independently construct and deploy workflows.</p>
 </div>
 <div class="listingblock">
-<div class="title">Example Maven exclusions</div>
+<div class="title">Example Maven dependencies</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">&lt;dependency&gt;
-  &lt;groupId&gt;org.kie.kogito&lt;/groupId&gt;
-  &lt;artifactId&gt;kogito-quarkus-serverless-workflow&lt;/artifactId&gt;
-  &lt;exclusions&gt;
-    &lt;exclusion&gt;
-      &lt;groupId&gt;org.kie.kogito&lt;/groupId&gt;
-      &lt;artifactId&gt;kogito-addons-quarkus-kubernetes&lt;/artifactId&gt;
-    &lt;/exclusion&gt;
-    &lt;exclusion&gt;
-      &lt;groupId&gt;org.kie.kogito&lt;/groupId&gt;
-      &lt;artifactId&gt;kogito-addons-quarkus-kubernetes-deployment&lt;/artifactId&gt;
-    &lt;/exclusion&gt;
-  &lt;/exclusions&gt;
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;dependency&gt;
+    &lt;groupId&gt;org.kie.kogito&lt;/groupId&gt;
+    &lt;artifactId&gt;kogito-addons-quarkus-kubernetes&lt;/artifactId&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.kie.kogito&lt;/groupId&gt;
+    &lt;artifactId&gt;kogito-addons-quarkus-fabric8-kubernetes-service-catalog&lt;/artifactId&gt;
 &lt;/dependency&gt;</code></pre>
 </div>
 </div>
-</td>
-</tr>
-</table>
+</div>
+<div class="sect3">
+<h4 id="_microprofile_config_kubernetes_service_catalog"><a class="anchor" href="#_microprofile_config_kubernetes_service_catalog"></a>MicroProfile Config Kubernetes Service Catalog</h4>
+<div class="paragraph">
+<p>This implementation retrieves information from the application&#8217;s configuration, making it valuable in scenarios where users rely on the operator to provide the necessary information from the hosting platform.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example Maven dependencies</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;dependency&gt;
+    &lt;groupId&gt;org.kie.kogito&lt;/groupId&gt;
+    &lt;artifactId&gt;kogito-addons-quarkus-kubernetes&lt;/artifactId&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.kie.kogito&lt;/groupId&gt;
+    &lt;artifactId&gt;kogito-addons-quarkus-microprofile-config-service-catalog&lt;/artifactId&gt;
+&lt;/dependency&gt;</code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
