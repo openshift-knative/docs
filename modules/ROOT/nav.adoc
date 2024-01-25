@@ -5,6 +5,8 @@
 *** xref:serverless:service-mesh/common-service-mesh-network-isolation.adoc[Use Service Mesh to isolate network-traffic]
 *** xref:serverless:service-mesh/eventing-service-mesh-containersource.adoc[Eventing: Using ContainerSource with OpenShift Service Mesh]
 *** xref:serverless:service-mesh/eventing-service-mesh-sinkbinding.adoc[Eventing: Using SinkBinding with OpenShift Service Mesh]
+** Features
+*** xref:serverless:features/transport-encryption/transport-encryption-setup.adoc[Setup transport encryption in Eventing]
 ** Serving
 *** xref:serverless:serving/serving-with-ingress-sharding.adoc[Use Serving with OpenShift ingress sharding]
 *** xref:serverless:serving/scaleability-and-performance-of-serving.adoc[Scalability and performance of {serverlessproductname} Serving]

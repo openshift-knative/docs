@@ -1,0 +1,226 @@
+= Setup transport encryption in Eventing
+:compat-mode!:
+// Metadata:
+:description: Setup {serverlessproductname} transport encryption for Eventing
+
+This page describes the transport encryption feature which allows transporting data and events over secured and encrypted HTTPS connections using TLS.
+
+[IMPORTANT]
+====
+{serverlessproductname} transport encryption for Eventing is a Developer Preview feature only.
+Developer Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete.
+Red Hat does not recommend using them in production.
+These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.
+
+For more information about the support scope of Red Hat Developer Preview features, see https://access.redhat.com/support/offerings/devpreview/.
+====
+
+== Prerequisites
+
+* You have access to an {product-title} account with cluster administrator access.
+
+* Install the OpenShift CLI (`oc`).
+
+* Install the {serverlessoperatorname}.
+
+* Install the {certmanageroperatorname}.
+
+== Setup a `SelfSigned` `ClusterIssuer`
+
+> `ClusterIssuers`, are Kubernetes resources that represent certificate authorities (CAs) that are able to generate signed certificates by honoring certificate signing requests.
+All cert-manager certificates require a referenced issuer that is in a ready condition to attempt to honor the request. +
+Reference: https://cert-manager.io/docs/concepts/issuer/
+
+[IMPORTANT]
+====
+For the simplicity of this guide, we will use a `SelfSigned` issuer as root certificate, however, be aware of the implications and limitations as documented at https://cert-manager.io/docs/configuration/selfsigned/ of this method.
+====
+
+. Create a `SelfSigned` `ClusterIssuer`:
++
+[source,yaml]
+----
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: knative-eventing-selfsigned-issuer
+spec:
+  selfSigned: {}
+----
++
+. Apply the `ClusterIssuer` resource:
++
+[source,terminal]
+----
+$ oc apply -f <filename>
+----
+
+. Create a root certificate using the previously created `SelfSigned` `ClusterIssuer`:
++
+[source,yaml]
+----
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: knative-eventing-selfsigned-ca
+  namespace: cert-manager <1>
+spec:
+  secretName: knative-eventing-ca <2>
+
+  isCA: true
+  commonName: selfsigned-ca
+  privateKey:
+    algorithm: ECDSA
+    size: 256
+
+  issuerRef:
+    name: knative-eventing-selfsigned-issuer
+    kind: ClusterIssuer
+    group: cert-manager.io
+
+----
++
+<1> The {certmanageroperatorname} namespace, `cert-manager` by default.
+<2> Secret name that will be later used for the `ClusterIssuer` for Eventing
++
+. Apply the `Certificate` resource:
++
+[source,terminal]
+----
+$ oc apply -f <filename>
+----
+
+== Setup `ClusterIssuer` for Eventing
+
+. Create the `knative-eventing-ca-issuer` `ClusterIssuer` for Eventing:
++
+[source,yaml]
+----
+# This is the issuer that every Eventing component should use to issue their server's certs.
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: knative-eventing-ca-issuer
+spec:
+  ca:
+    secretName: knative-eventing-ca <1>
+----
++
+<1> Secret name in the {certmanageroperatorname} namespace (`cert-manager` by default) containing the certificate that can then be used by Knative Eventing components for new certificates.
++
+[IMPORTANT]
+====
+The name of the `ClusterIssuer` must be `knative-eventing-ca-issuer`.
+====
++
+. Apply the `ClusterIssuer` resource:
++
+[source,terminal]
+----
+$ oc apply -f <filename>
+----
+
+== Understanding the transport encryption configuration
+
+The transport-encryption feature flag is an enum configuration that configures how Addressables (Broker, Channel, Sink) should or must accept events.
+
+The possible values for `transport-encryption` are:
+
+* *disabled* (this is equivalent to the current behavior)
+** Addressables may accept events to HTTPS endpoints
+** Producers may send events to HTTPS endpoints
+* *permissive*
+** Addressables should accept events on both HTTP and HTTPS endpoints
+** Addressables should advertise both HTTP and HTTPS endpoints
+** Producers should prefer sending events to HTTPS endpoints, if available
+* *strict*
+** Addressables must not accept events to non-HTTPS endpoints
+** Addressables must only advertise HTTPS endpoints
+
+== Setup transport encryption in `KnativeEventing`
+
+. Enabling transport-encryption in `KnativeEventing`:
++
+[source,yaml]
+----
+apiVersion: operator.knative.dev/v1beta1
+kind: KnativeEventing
+metadata:
+  name: knative-eventing
+  namespace: knative-eventing
+spec:
+
+  # Other spec fields omitted ...
+  # ...
+
+  config:
+    features:
+      transport-encryption: strict <1>
+----
++
+<1> Configure `transport-encryption` to `strict`.
+
+. Apply the `KnativeEventing` resource:
++
+[source,terminal]
+----
+$ oc apply -f <filename>
+----
+
+== Configure additional CA bundles
+
+By default, Eventing clients trusts the OpenShift CA bundle that you have configured when using a custom PKI for OpenShift, as documented at https://docs.openshift.com/container-platform/4.14/networking/configuring-a-custom-pki.html.
+
+If you need to add additional CA bundles for Eventing, you can do so by creating `ConfigMaps` in the `knative-eventing` namespace with label `networking.knative.dev/trust-bundle: true`:
+
+. Create a CA bundle for Eventing:
+
+[source,yaml]
+----
+kind: ConfigMap
+metadata:
+  name: my-org-eventing-bundle <1>
+  namespace: knative-eventing
+  labels:
+    networking.knative.dev/trust-bundle: "true"
+data: <2>
+  ca.crt: ...
+  ca1.crt: ...
+  tls.crt: ...
+----
+
+<1> Use a name that is unlikely to conflict with existing or future Eventing `ConfigMap`.
+<2> All keys containing valid PEM-encoded CA bundles will be trusted by Eventing clients.
+
+== Verification
+
+. Create an `InMemoryChannel`:
++
+[source,yaml]
+----
+apiVersion: messaging.knative.dev/v1
+kind: InMemoryChannel
+metadata:
+ name: transport-encryption-test
+----
+
+. Apply the `InMemoryChannel` resource:
++
+[source,terminal]
+----
+$ oc apply -f <filename>
+----
+
+. View the `InMemoryChannel` address:
++
+[source,terminal]
+----
+$ oc get inmemorychannels.messaging.knative.dev transport-encryption-test
+----
++
+.Example output
+[source,terminal]
+----
+NAME                        URL                                                                                           AGE   READY   REASON
+transport-encryption-test   https://imc-dispatcher.knative-eventing.svc.cluster.local/default/transport-encryption-test   17s   True
+----
