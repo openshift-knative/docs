@@ -37,7 +37,6 @@ Reference: https://cert-manager.io/docs/concepts/issuer/
 [IMPORTANT]
 ====
 For the simplicity of this guide, we will use a `SelfSigned` issuer as root certificate, however, be aware of the implications and limitations as documented at https://cert-manager.io/docs/configuration/selfsigned/ of this method. +
- +
 If you're running your company specific Private Key Infrastructure (PKI), we recommend the CA issuer.
 Refer to the cert-manager documentation for more details: https://cert-manager.io/docs/configuration/ca/, however, you can use any other issuer that is usable for cluster-local services.
 ====
@@ -87,7 +86,7 @@ spec:
 ----
 +
 <1> The {certmanageroperatorname} namespace, `cert-manager` by default.
-<2> Secret name that will be later used for the `ClusterIssuer` for Eventing
+<2> Secret name later used for the `ClusterIssuer` for Eventing
 +
 . Apply the `Certificate` resource:
 +
@@ -173,11 +172,16 @@ spec:
 $ oc apply -f <filename>
 ----
 
-== Configure additional CA bundles
+== Configure additional CA trust bundles [[configure_addition_ca_trust_bundles]]
 
 By default, Eventing clients trusts the OpenShift CA bundle that you have configured when using a custom PKI for OpenShift, as documented at https://docs.openshift.com/container-platform/4.14/networking/configuring-a-custom-pki.html.
 
 If you need to add additional CA bundles for Eventing, you can do so by creating `ConfigMaps` in the `knative-eventing` namespace with label `networking.knative.dev/trust-bundle: true`:
+
+[IMPORTANT]
+====
+Whenever CA bundles `ConfigMaps` are updated, the Eventing clients will automatically add them to their trusted CA bundles when a new connection is established.
+====
 
 . Create a CA bundle for Eventing:
 
@@ -197,6 +201,17 @@ data: <2>
 
 <1> Use a name that is unlikely to conflict with existing or future Eventing `ConfigMap`.
 <2> All keys containing valid PEM-encoded CA bundles will be trusted by Eventing clients.
+
+== Ensure seamless CA rotation
+
+Ensuring seamless CA rotation is essential to avoid service downtime, or to deal with an emergency.
+The following procedure explains how you can seamlessly rotate a CA.
+
+1. Create a CA certificate.
+2. Add the public key to the CA trust bundles as described in the <<configure_addition_ca_trust_bundles>> section.
+3. Ensure that all clients have downloaded the latest set of CA trust bundles.
+4. Update the `knative-eventing-ca-issuer` `ClusterIssuer` to reference the secret containing the CA certificate created at step 1.
+5. Force cert-manager to renew certificates in the `knative-eventing` namespace. Refer to the cert-manager documentation for more details: https://cert-manager.io/docs/usage/certificate/#reissuance-triggered-by-user-actions.
 
 == Verification
 
