@@ -27,9 +27,12 @@ For more information about the support scope of Red Hat Developer Preview featur
 
 == Setup a `SelfSigned` `ClusterIssuer`
 
-> `ClusterIssuers`, are Kubernetes resources that represent certificate authorities (CAs) that are able to generate signed certificates by honoring certificate signing requests.
+[INFO]
+====
+`ClusterIssuers`, are Kubernetes resources that represent certificate authorities (CAs) that are able to generate signed certificates by honoring certificate signing requests.
 All cert-manager certificates require a referenced issuer that is in a ready condition to attempt to honor the request. +
 Reference: https://cert-manager.io/docs/concepts/issuer/
+====
 
 [IMPORTANT]
 ====
