@@ -36,7 +36,10 @@ Reference: https://cert-manager.io/docs/concepts/issuer/
 
 [IMPORTANT]
 ====
-For the simplicity of this guide, we will use a `SelfSigned` issuer as root certificate, however, be aware of the implications and limitations as documented at https://cert-manager.io/docs/configuration/selfsigned/ of this method.
+For the simplicity of this guide, we will use a `SelfSigned` issuer as root certificate, however, be aware of the implications and limitations as documented at https://cert-manager.io/docs/configuration/selfsigned/ of this method. +
+ +
+If you're running your company specific Private Key Infrastructure (PKI), we recommend the CA issuer.
+Refer to the cert-manager documentation for more details: https://cert-manager.io/docs/configuration/ca/, however, you can use any other issuer that is usable for cluster-local services.
 ====
 
 . Create a `SelfSigned` `ClusterIssuer`:
