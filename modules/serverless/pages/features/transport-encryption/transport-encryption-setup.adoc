@@ -25,7 +25,7 @@ For more information about the support scope of Red Hat Developer Preview featur
 
 * Install the {certmanageroperatorname}.
 
-== Setup a `SelfSigned` `ClusterIssuer`
+== Setup a `SelfSigned` `ClusterIssuer` [[setup_selfsigned_clusterissuer]]
 
 [INFO]
 ====
@@ -202,6 +202,29 @@ data: <2>
 <1> Use a name that is unlikely to conflict with existing or future Eventing `ConfigMap`.
 <2> All keys containing valid PEM-encoded CA bundles will be trusted by Eventing clients.
 
+== Adding `SelfSigned` `ClusterIssuer` to CA trust bundles
+
+In case you are using a `SelfSigned` `ClusterIssuer` as described in the <<setup_selfsigned_clusterissuer>> section, you can add the CA to the Eventing CA trust bundles by running the following commands:
+
+. Export the CA from the `knative-eventing-ca` secret in the {certmanageroperatorname} namespace, `cert-manager` by default:
++
+[source,terminal]
+----
+$ oc get secret -n cert-manager knative-eventing-ca -o=jsonpath='{.data.ca\.crt}' | base64 -d > ca.crt
+----
+. Create a CA trust bundle in the `knative-eventing` namespace:
++
+[source,terminal]
+----
+$ oc create configmap -n knative-eventing my-org-selfsigned-ca-bundle --from-file=ca.crt
+----
+. Label the `ConfigMap` with `networking.knative.dev/trust-bundle: "true"` label:
++
+[source,terminal]
+----
+$ oc label configmap -n knative-eventing my-org-selfsigned-ca-bundle networking.knative.dev/trust-bundle=true
+----
+
 == Ensure seamless CA rotation
 
 Ensuring seamless CA rotation is essential to avoid service downtime, or to deal with an emergency.
@@ -211,7 +234,8 @@ The following procedure explains how you can seamlessly rotate a CA.
 2. Add the public key to the CA trust bundles as described in the <<configure_addition_ca_trust_bundles>> section.
 3. Ensure that all clients have downloaded the latest set of CA trust bundles.
 4. Update the `knative-eventing-ca-issuer` `ClusterIssuer` to reference the secret containing the CA certificate created at step 1.
-5. Force cert-manager to renew certificates in the `knative-eventing` namespace. Refer to the cert-manager documentation for more details: https://cert-manager.io/docs/usage/certificate/#reissuance-triggered-by-user-actions.
+5. Force cert-manager to renew certificates in the `knative-eventing` namespace. +
+Refer to the cert-manager documentation for more details: https://cert-manager.io/docs/usage/certificate/#reissuance-triggered-by-user-actions.
 
 == Verification
 
