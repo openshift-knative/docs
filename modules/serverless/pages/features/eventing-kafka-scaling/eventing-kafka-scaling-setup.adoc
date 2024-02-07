@@ -44,7 +44,7 @@ spec:
   # ...
 
   config:
-    features:
+    kafka-features:
 	  controller-autoscaling-keda: enabled <1>
 ----
 
