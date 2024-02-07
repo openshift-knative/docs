@@ -6,7 +6,7 @@
 *** xref:serverless:service-mesh/eventing-service-mesh-containersource.adoc[Eventing: Using ContainerSource with OpenShift Service Mesh]
 *** xref:serverless:service-mesh/eventing-service-mesh-sinkbinding.adoc[Eventing: Using SinkBinding with OpenShift Service Mesh]
 ** Features
-*** xref:serverless
+*** xref:serverless:features/eventing-kafka-scaling/eventing-kafka-scaling-setup.adoc[Setup Autoscaling For Eventing Kafka Components]
 ** Serving
 *** xref:serverless:serving/serving-with-ingress-sharding.adoc[Use Serving with OpenShift ingress sharding]
 *** xref:serverless:serving/scaleability-and-performance-of-serving.adoc[Scalability and performance of {serverlessproductname} Serving]
