@@ -131,14 +131,14 @@ The transport-encryption feature flag is an enum configuration that configures h
 
 The possible values for `transport-encryption` are:
 
-* *disabled* (this is equivalent to the current behavior)
+* *`disabled`* (this is equivalent to the current behavior)
 ** Addressables may accept events to HTTPS endpoints
 ** Producers may send events to HTTPS endpoints
-* *permissive*
+* *`permissive`*
 ** Addressables should accept events on both HTTP and HTTPS endpoints
 ** Addressables should advertise both HTTP and HTTPS endpoints
 ** Producers should prefer sending events to HTTPS endpoints, if available
-* *strict*
+* *`strict`*
 ** Addressables must not accept events to non-HTTPS endpoints
 ** Addressables must only advertise HTTPS endpoints
 
