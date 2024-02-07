@@ -202,6 +202,33 @@ data: <2>
 <1> Use a name that is unlikely to conflict with existing or future Eventing `ConfigMap`.
 <2> All keys containing valid PEM-encoded CA bundles will be trusted by Eventing clients.
 
+=== Configure custom event sources to trust the Eventing CA
+
+The recommended way of creating custom event sources is using a SinkBinding, SinkBinding will inject the configured CA trust bundles as projected volume into each container using the directory `/knative-custom-certs`.
+
+[INFO]
+====
+Some organizations might inject company specific CA trust bundles into base container images and automatically configure runtimes (openjdk, node, etc) to trust that CA bundle. +
+In that case, you might not need to configure your clients.
+====
+
+Using the previous example of the `my-org-eventing-bundle` `ConfigMap` with data keys being `ca.crt`, `ca1.crt` and `tls.crt`, you will have a `/knative-custom-certs` directory that will have the following layout:
+
+[source,terminal]
+----
+/knative-custom-certs/ca.crt
+/knative-custom-certs/ca1.crt
+/knative-custom-certs/tls.crt
+----
+
+Those files can then be used to add CA trust bundles to HTTP clients sending events to Eventing.
+
+[INFO]
+====
+Depending on the runtime, programming language or library that you're using, there are different ways of configuring custom CA certs files using command line flags, environment variables, or by reading the content of those files. +
+Refer to their documentation for more details.
+====
+
 == Adding `SelfSigned` `ClusterIssuer` to CA trust bundles
 
 In case you are using a `SelfSigned` `ClusterIssuer` as described in the <<setup_selfsigned_clusterissuer>> section, you can add the CA to the Eventing CA trust bundles by running the following commands:
@@ -230,12 +257,15 @@ $ oc label configmap -n knative-eventing my-org-selfsigned-ca-bundle networking.
 Ensuring seamless CA rotation is essential to avoid service downtime, or to deal with an emergency.
 The following procedure explains how you can seamlessly rotate a CA.
 
-1. Create a CA certificate.
-2. Add the public key to the CA trust bundles as described in the <<configure_addition_ca_trust_bundles>> section.
-3. Ensure that all clients have downloaded the latest set of CA trust bundles.
-4. Update the `knative-eventing-ca-issuer` `ClusterIssuer` to reference the secret containing the CA certificate created at step 1.
-5. Force cert-manager to renew certificates in the `knative-eventing` namespace. +
+. Create a CA certificate.
+. Add the public key to the CA trust bundles as described in the <<configure_addition_ca_trust_bundles>> section.
+. Ensure that all clients have consumed the latest set of CA trust bundles. +
+Knative Eventing components will automatically reload the changed CA trust bundles.
+If you have custom workload consuming trust bundles as well, make sure to reload/restart them accordingly.
+. Update the `knative-eventing-ca-issuer` `ClusterIssuer` to reference the secret containing the CA certificate created at step 1.
+. Force cert-manager to renew certificates in the `knative-eventing` namespace. +
 Refer to the cert-manager documentation for more details: https://cert-manager.io/docs/usage/certificate/#reissuance-triggered-by-user-actions.
+. As soon as the CA rotation is fully completed, you can remove the public key of the old CA from the trust bundle `ConfigMap`.
 
 == Verification
 
