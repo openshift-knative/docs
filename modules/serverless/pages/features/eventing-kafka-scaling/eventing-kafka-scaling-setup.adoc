@@ -1,0 +1,96 @@
+= Setup Autoscaling For Eventing Kafka Components
+:compat-mode!:
+// Metadata:
+:description: Setup Autoscaling for Eventing Kafka components in {serverlessproductname}
+
+This page describes how to set up the Autoscaling feature for Eventing Kafka, which allows
+for the Eventing Kafka components to autoscale based on the lag in the Kafka topic.
+Note: this is only currently for the KafkaSource.
+
+[IMPORTANT]
+====
+{serverlessproductname} autoscaling for Eventing Kafka components is a Developer Preview feature only.
+Developer Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete.
+Red Hat does not recommend using them in production.
+These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.
+
+For more information about the support scope of Red Hat Developer Preview features, see https://access.redhat.com/support/offerings/devpreview/.
+====
+
+== Prerequisites
+
+* You have access to an {product-title} account with clsuter administrator acccess.
+
+* Install the OpenShift CLI (`oc`).
+
+* Install the {serverlessoperatorname}.
+
+* Install the {custommetricsautoscaleroperatorname}.
+
+== Enable Autoscaling of KafkaSources in `EventingKafka`
+
+Enabling controller-autoscaling-keda in `KnativeKafka`
+
+[source,yaml]
+----
+apiVersion: operator.knative.dev/v1
+kind: KnativeKafka
+metadata:
+  name: knative-kafka
+  namespace: knative-eventing
+spec:
+  
+  # Other spec fields omitted ...
+  # ...
+
+  config:
+    features:
+	  controller-autoscaling-keda: enabled <1>
+----
+
+<1> Configure `controller-autoscaling-keda` to `enabled`.
+
+Apply the `KnativeKafka` resource:
+
+[source,terminal]
+----
+$ oc apply -f <filename>
+----
+
+All of your KafkaSources will now automatically scale based on the consumer lag in Kafka!
+
+== Customizing the Scaling
+
+If you want to customize how the Custom Metrics Autoscaler scales a KafkaSource, you can set annotations on the source:
+
+[source,yaml]
+----
+apiVersion: sources.knative.dev/v1
+kind: KafkaSource
+metadata:
+  annotations:
+    # The minimum number of replicas to scale down to
+	autoscaling.eventing.knative.dev/min-scale: 0
+    # The maximum number of replicas to scale up to
+	autoscaling.eventing.knative.dev/max-scale: 50
+    # The interval in seconds the autoscaler uses to poll metrics in order to inform its scaling decisions
+	autoscaling.eventing.knative.dev/polling-interval: 10
+    # The period in seconds the autoscaler waits until it scales down
+	autoscaling.eventing.knative.dev/cooldown-period: 30
+	# The lag that is used for scaling (1<->N)
+	autoscaling.eventing.knative.dev/lag-threshold: 100
+	# The lag that is used for activation (0<->1)
+	autoscaling.eventing.knative.dev: 0
+  # more metadata ....
+spec:
+  # spec fields ...
+----
+
+You can then apply the file to modify the kafka source (or create a new one with the given configuration).
+
+[source,terminal]
+----
+$ oc apply -f <filename>
+----
+
+Note: you do not need to set any of these annotations yourself if you do not want to modify the default scaling behaviour.
