@@ -5,7 +5,12 @@
 
 This page describes how to set up the Autoscaling feature for Eventing Kafka, which allows
 for the Eventing Kafka components to autoscale based on the lag in the Kafka topic.
-Note: this is only currently for the KafkaSource.
+
+[INFO]
+====
+This is only currently for the KafkaSource.
+====
+
 
 [IMPORTANT]
 ====
@@ -29,7 +34,11 @@ For more information about the support scope of Red Hat Developer Preview featur
 
 == Enable Autoscaling of KafkaSources in `EventingKafka`
 
-Enabling controller-autoscaling-keda in `KnativeKafka`
+Enabling `controller-autoscaling-keda` in `KnativeKafka` enables autoscaling on all `KafkaSources` by default, based on the consumer group lag in Kafka. 
+If you would like to modify this default behaviour, you can <<Disable Autoscaling for a KafkaSource>>, or <<Customize Autoscaling for a KafkaSource>>.
+To enable autoscaling, you need to:
+
+<1> Configure `controller-autoscaling-keda` to `enabled`.
 
 [source,yaml]
 ----
@@ -48,18 +57,31 @@ spec:
 	  controller-autoscaling-keda: enabled <1>
 ----
 
-<1> Configure `controller-autoscaling-keda` to `enabled`.
-
-Apply the `KnativeKafka` resource:
+<2> Apply the `KnativeKafka` resource:
 
 [source,terminal]
 ----
 $ oc apply -f <filename>
 ----
 
-All of your KafkaSources will now automatically scale based on the consumer lag in Kafka!
+== Disable Autoscaling for a KafkaSource
 
-== Customizing the Scaling
+If you want to disable autoscaling for a KafkaSource, you need to set an annotation on the source:
+
+[source,yaml]
+----
+apiVersion: source.knative.dev/v1
+kind: KafkaSource
+metadata:
+  annotations:
+    autoscaling.eventing.knative.dev/class: disabled
+  # more metadata ...
+spec:
+  # spec fields ...
+----
+
+
+== Customize Autoscaling for a KafkaSource
 
 If you want to customize how the Custom Metrics Autoscaler scales a KafkaSource, you can set annotations on the source:
 
@@ -85,12 +107,3 @@ metadata:
 spec:
   # spec fields ...
 ----
-
-You can then apply the file to modify the kafka source (or create a new one with the given configuration).
-
-[source,terminal]
-----
-$ oc apply -f <filename>
-----
-
-Note: you do not need to set any of these annotations yourself if you do not want to modify the default scaling behaviour.
