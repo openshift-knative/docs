@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Setup transport encryption in Eventing :: Red Hat OpenShift Serverless previews</title>
+    <link rel="canonical" href="https://openshift-knative.github.io/docs/docs/latest/serverless/features/transport-encryption/transport-encryption-setup.html">
+    <meta name="description" content="Setup OpenShift Serverless transport encryption for Eventing">
+    <meta name="generator" content="Antora 3.0.3">
+    <link rel="stylesheet" href="../../../../../_/css/site.css">
+<link rel="stylesheet" href="../../../../../_/css/extra.css">
+<link rel="stylesheet" href="../../../../../_/css/custom.css">
+<link rel="stylesheet" href="../../../../../_/css/tabs.css">
+<link rel="stylesheet" href="../../../../../_/font-awesome-4.7.0/css/font-awesome.min.css">
+<link rel="icon" href="../../../../../_/img/favicon.ico" type="image/x-icon">
+  </head>
+  <body class="article">
+<header class="header" role="banner">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <div class="navbar-item">
+        <button class="navbar-burger" data-target="topbar-nav">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <img src="../../../../../_/img/serverless-icon.png" class="navbar-logo" alt="OpenShift Serverless icon">
+        <a href="">OpenShift Serverless - Technology and Developer Preview Releases</a>
+      </div>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <!-- search broken
+        <div class="navbar-item hide-for-print">
+          <script async src="https://cse.google.com/cse.js?cx=002898025167115630151:gnr5edrg2eo"></script>
+          <div class="gcse-searchbox" enableAutoComplete="true"></div>
+        </div>
+      -->
+        <a class="navbar-item" href="https://openshift-knative.github.io/docs">Home</a>
+        <a class="navbar-item" href="https://developers.redhat.com/topics/serverless-architecture">Blog</a>
+          <div class="navbar-item has-dropdown is-hoverable">
+              <a class="navbar-link" href="#">Upstream Projects</a>
+              <div class="navbar-dropdown">
+                  <a class="navbar-item" href="https://kogito.kie.org/">Kogito</a>
+                  <a class="navbar-item" href="https://knative.dev/docs/functions/">Knative Functions</a>
+                  <a class="navbar-item" href="https://knative.dev/docs/eventing/">Knative Eventing</a>
+              </div>
+          </div>
+      </div>
+    </div>
+  </nav>
+<!-- need alt search type-->
+<!--<div class="gcse-searchresults"></div>-->
+</header>
+<div class="main-wrapper">
+  <div class="navigation-container" data-component="docs" data-version="main">
+  <aside class="navigation">
+    <div class="panels">
+<div class="navigation-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../../../index.html">Documentation</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../../index.html">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Serverless</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Using OpenShift Serverless with OpenShift Service Mesh</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../service-mesh/common-service-mesh-setup.html">Setup Serverless with OpenShift Service Mesh</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../service-mesh/common-service-mesh-network-isolation.html">Use Service Mesh to isolate network-traffic</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../service-mesh/eventing-service-mesh-containersource.html">Eventing: Using ContainerSource with OpenShift Service Mesh</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../service-mesh/eventing-service-mesh-sinkbinding.html">Eventing: Using SinkBinding with OpenShift Service Mesh</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Features</span>
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="transport-encryption-setup.html">Setup transport encryption in Eventing</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Serving</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../serving/serving-with-ingress-sharding.html">Use Serving with OpenShift ingress sharding</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../serving/scaleability-and-performance-of-serving.html">Scalability and performance of OpenShift Serverless Serving</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Serverless Logic</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../serverless-logic/about.html">About OpenShift Serverless Logic</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">User Guides</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Getting Started</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../../serverless-logic/getting-started/create-your-first-workflow-service-with-kn-cli-and-vscode.html">Creating your first workflow service with KN CLI and VS Code</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../../serverless-logic/getting-started/create-your-first-workflow-service.html">Creating your first workflow service</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../../serverless-logic/getting-started/getting-familiar-with-our-tooling.html">Getting familiar with tooling</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Core</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../../serverless-logic/core/cncf-serverless-workflow-specification-support.html">CNCF Serverless Workflow specification</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../../serverless-logic/core/handling-events-on-workflows.html">Events</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../../serverless-logic/core/working-with-callbacks.html">Callbacks</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../../serverless-logic/core/understanding-jq-expressions.html">jq expressions</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../../serverless-logic/core/understanding-workflow-error-handling.html">Error handling</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../../serverless-logic/core/configuration-properties.html">Configuration properties</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../../serverless-logic/core/defining-an-input-schema-for-workflows.html">Defining an input schema for your workflows</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../../serverless-logic/core/custom-functions-support.html">Custom functions for your service</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../../serverless-logic/core/timeouts-support.html">Timeouts</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../../serverless-logic/core/working-with-parallelism.html">Parallelism</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Tooling</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../../../serverless-logic/tooling/serverless-workflow-editor/swf-editor-overview.html">Serverless Workflow editor</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../../serverless-logic/tooling/serverless-workflow-editor/swf-editor-vscode-extension.html">VS Code extension for Serverless Workflow editor</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../../serverless-logic/tooling/serverless-workflow-editor/swf-editor-chrome-extension.html">Chrome GitHub extension for Serverless Workflow editor</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../../../serverless-logic/tooling/serverless-logic-web-tools/serverless-logic-web-tools-overview.html">Serverless Logic Web Tools</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../../serverless-logic/tooling/serverless-logic-web-tools/serverless-logic-web-tools-github-integration.html">GitHub integration</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../../serverless-logic/tooling/serverless-logic-web-tools/serverless-logic-web-tools-openshift-integration.html">OpenShift integration</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../../serverless-logic/tooling/serverless-logic-web-tools/serverless-logic-web-tools-redhat-application-services-integration.html">Red Hat OpenShift Application and Data Services integration</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../../serverless-logic/tooling/serverless-logic-web-tools/serverless-logic-web-tools-deploy-projects.html">Deploying projects</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../../serverless-logic/tooling/serverless-logic-web-tools/serverless-logic-web-tools-enable-kogito-swf-visualization.html">Kogito Serverless Workflow Visualization</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Service Orchestration</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../../../serverless-logic/service-orchestration/orchestration-of-openapi-based-services.html">Orchestrating the OpenAPI services</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../../serverless-logic/service-orchestration/configuring-openapi-services-endpoints.html">Configuring the OpenAPI services endpoints</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="#serverless-logic:service-orchestration/working-with-openapi-callbacks.adoc.adoc">OpenAPI callback  in OpenShift Serverless Logic</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../../serverless-logic/service-orchestration/orchestration-of-grpc-services.html">Orchestration of gRPC based services</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Event Orchestration</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="#serverless-logic:eventing/orchestration-of-asyncapi-callbacks.adoc">Orchestrating AsyncAPI Services</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../../serverless-logic/eventing/event-correlation-with-workflows.html">Event Correlation</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Quarkus</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../../serverless-logic/eventing/consume-producing-events-with-kafka.html">Consuming and producing events using Apache Kafka</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../../serverless-logic/eventing/consume-produce-events-with-knative-eventing.html">Consuming and producing events on Knative Eventing</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Security</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../../serverless-logic/security/authention-support-for-openapi-services.html">Authentication for OpenAPI services</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../../serverless-logic/security/orchestrating-third-party-services-with-oauth2.html">Orchestration of third-party services using OAuth 2.0 authentication</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Executing, Testing and Troubleshooting</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Executing and Testing Workflows</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../../../serverless-logic/testing-and-troubleshooting/quarkus-dev-ui-extension/quarkus-dev-ui-overview.html">Developer UI</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../../../serverless-logic/testing-and-troubleshooting/quarkus-dev-ui-extension/quarkus-dev-ui-workflow-instances-page.html">Workflow Instances</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../../../serverless-logic/testing-and-troubleshooting/quarkus-dev-ui-extension/quarkus-dev-ui-workflow-definition-page.html">Workflow Definitions</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../../../serverless-logic/testing-and-troubleshooting/quarkus-dev-ui-extension/quarkus-dev-ui-monitoring-page.html">Monitoring</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../../../serverless-logic/testing-and-troubleshooting/quarkus-dev-ui-extension/quarkus-dev-ui-custom-dashboard-page.html">Dashboards</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../../serverless-logic/testing-and-troubleshooting/kn-plugin-workflow-overview.html">Command Line</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Quarkus</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../../serverless-logic/testing-and-troubleshooting/mocking-http-cloudevents-with-wiremock.html">Mocking HTTP CloudEvents sink using WireMock</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../../serverless-logic/testing-and-troubleshooting/mocking-openapi-services-with-wiremock.html">Mocking OpenAPI services using WireMock</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../../serverless-logic/testing-and-troubleshooting/basic-integration-tests-with-restassured.html">Testing using REST Assured</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Persistence</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Quarkus</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../../serverless-logic/persistence/persistence-with-postgresql.html">Running a workflow service using PostgreSQL</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../../serverless-logic/persistence/postgresql-flyway-migration.html">Migrate your PostgreSQL database</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../../serverless-logic/persistence/integration-tests-with-postgresql.html">Integration Tests with PostgreSQL</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../../../serverless-logic/cloud/index.html">Cloud</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Operator</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../../serverless-logic/cloud/operator/install-serverless-operator.html">Installation</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../../serverless-logic/cloud/operator/developing-workflows.html">Development Mode</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../../serverless-logic/cloud/operator/referencing-resource-files.html">Referencing Workflow Resources</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../../serverless-logic/cloud/operator/configuring-workflows.html">Configuration</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../../serverless-logic/cloud/operator/build-and-deploy-workflows.html">Building and Deploying Workflows</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../../serverless-logic/cloud/operator/workflow-status-conditions.html">Custom Resource Status</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../../serverless-logic/cloud/operator/known-issues.html">Known Issues</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Quarkus</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../../serverless-logic/cloud/quarkus/build-workflow-image-with-quarkus-cli.html">Building workflow images</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../../serverless-logic/cloud/quarkus/deploying-on-minikube.html">Deploying Workflows on Minikube</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../../serverless-logic/cloud/quarkus/deploying-on-kubernetes.html">Deploying Workflows on Kubernetes</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="#serverless-logic:cloud/deploying-on-openshift.adoc">Deploying Workflows on Openshift</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../../serverless-logic/cloud/quarkus/kubernetes-service-discovery.html">Kubernetes service discovery</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Integrations</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../../serverless-logic/integrations/camel-routes-integration.html">Integrating with Camel Routes</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../../serverless-logic/integrations/custom-functions-knative.html">Invoking Knative services</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../../serverless-logic/integrations/expose-metrics-to-prometheus.html">Exposing the workflow base metrics to Prometheus</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../../serverless-logic/integrations/serverless-dashboard-with-runtime-data.html">Displaying workflow data in dashboards</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Supporting Services</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Data Index</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="#serverless-logic:supporting-services/data-index/data-index-concepts.adoc">Data Index Core Concepts</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../../serverless-logic/supporting-services/data-index/data-index-service.html">Data Index Standalone Service</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="#serverless-logic:supporting-services/data-index/data-index-quarkus-extensions.adoc">Data Index Quarkus Extensions</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Operator</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="#serverless-logic:supporting-services/data-index/operator/data-index-usecase-singleton.adoc">Deploying Data Index and OpenShift Serverless Logic application</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="#serverless-logic:supporting-services/data-index/operator/data-index-usecase-multi.adoc">Deploying Data Index and multiple OpenShift Serverless Logic application</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Job Service</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="#serverless-logic:supporting-services/jobs-service/core-concepts.adoc">Job Service Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="#serverless-logic:supporting-services/jobs-service/quarkus-extensions.adoc">Job Service Quarkus Extensions</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Use Cases</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../../serverless-logic/use-cases/orchestration-based-saga-pattern.html">Saga Orchestration Example</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../../serverless-logic/use-cases/timeout-showcase-example.html">Timeout Example</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../serverless-logic/release-notes.html">Release notes for Serverless Logic</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Buildpacks for Serverless Functions</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../functions/serverless-functions-about.html">About buildpacks for OpenShift Serverless Functions</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../functions/serverless-functions-buildpacks.html">Building and deploying functions on the cluster</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="navigation-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Documentation</span>
+    <span class="version">main</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">Documentation</span>
+      <ul class="versions">
+        <li class="version is-current">
+          <a href="../../../index.html">main</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+  <div class="main-view-and-toolbar">
+    <div class="toolbar" role="navigation">
+  <button class="navigation-toggle"></button>
+  <a href="../../../index.html" class="home-link"></a>
+<nav class="crumbs" aria-label="breadcrumbs">
+  <ul>
+    <li class="crumb"><a href="../../../index.html">Documentation</a></li>
+    <li class="crumb">Serverless</li>
+    <li class="crumb">Features</li>
+    <li class="crumb"><a href="transport-encryption-setup.html">Setup transport encryption in Eventing</a></li>
+  </ul>
+</nav>
+</div>
+    <div class="main-view-and-toc">
+        <main class="main">
+          <article class="doc">
+<h1>Setup transport encryption in Eventing</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>This page describes the transport encryption feature which allows transporting data and events over secured and encrypted HTTPS connections using TLS.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>OpenShift Serverless transport encryption for Eventing is a Developer Preview feature only.
+Developer Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete.
+Red Hat does not recommend using them in production.
+These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.</p>
+</div>
+<div class="paragraph">
+<p>For more information about the support scope of Red Hat Developer Preview features, see <a href="https://access.redhat.com/support/offerings/devpreview/" class="bare">access.redhat.com/support/offerings/devpreview/</a>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div id="toc" class="toc">
+<div id="toctitle"></div>
+<ul class="sectlevel1">
+<li><a href="#_prerequisites">Prerequisites</a></li>
+<li><a href="#setup_selfsigned_clusterissuer">Setup a <code>SelfSigned</code> <code>ClusterIssuer</code></a></li>
+<li><a href="#_setup_clusterissuer_for_eventing">Setup <code>ClusterIssuer</code> for Eventing</a></li>
+<li><a href="#_understanding_the_transport_encryption_configuration">Understanding the transport encryption configuration</a></li>
+<li><a href="#_setup_transport_encryption_in_knativeeventing">Setup transport encryption in <code>KnativeEventing</code></a></li>
+<li><a href="#configure_addition_ca_trust_bundles">Configure additional CA trust bundles</a>
+<ul class="sectlevel2">
+<li><a href="#_configure_custom_event_sources_to_trust_the_eventing_ca">Configure custom event sources to trust the Eventing CA</a></li>
+</ul>
+</li>
+<li><a href="#_adding_selfsigned_clusterissuer_to_ca_trust_bundles">Adding <code>SelfSigned</code> <code>ClusterIssuer</code> to CA trust bundles</a></li>
+<li><a href="#_ensure_seamless_ca_rotation">Ensure seamless CA rotation</a></li>
+<li><a href="#_verification">Verification</a></li>
+</ul>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_prerequisites"><a class="anchor" href="#_prerequisites"></a>Prerequisites</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>You have access to an OpenShift account with cluster administrator access.</p>
+</li>
+<li>
+<p>Install the OpenShift CLI (<code>oc</code>).</p>
+</li>
+<li>
+<p>Install the OpenShift Serverless Operator.</p>
+</li>
+<li>
+<p>Install the OpenShift Cert-Manager Operator.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="setup_selfsigned_clusterissuer"><a class="anchor" href="#setup_selfsigned_clusterissuer"></a>Setup a <code>SelfSigned</code> <code>ClusterIssuer</code></h2>
+<div class="sectionbody">
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p><code>ClusterIssuers</code>, are Kubernetes resources that represent certificate authorities (CAs) that are able to generate signed certificates by honoring certificate signing requests.
+All cert-manager certificates require a referenced issuer that is in a ready condition to attempt to honor the request.<br>
+Reference: <a href="https://cert-manager.io/docs/concepts/issuer/" class="bare">cert-manager.io/docs/concepts/issuer/</a></p>
+</div>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>For the simplicity of this guide, we will use a <code>SelfSigned</code> issuer as root certificate, however, be aware of the implications and limitations as documented at <a href="https://cert-manager.io/docs/configuration/selfsigned/" class="bare">cert-manager.io/docs/configuration/selfsigned/</a> of this method.<br>
+If you&#8217;re running your company specific Private Key Infrastructure (PKI), we recommend the CA issuer.
+Refer to the cert-manager documentation for more details: <a href="https://cert-manager.io/docs/configuration/ca/" class="bare">cert-manager.io/docs/configuration/ca/</a>, however, you can use any other issuer that is usable for cluster-local services.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create a <code>SelfSigned</code> <code>ClusterIssuer</code>:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: knative-eventing-selfsigned-issuer
+spec:
+  selfSigned: {}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Apply the <code>ClusterIssuer</code> resource:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ oc apply -f &lt;filename&gt;</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Create a root certificate using the previously created <code>SelfSigned</code> <code>ClusterIssuer</code>:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: knative-eventing-selfsigned-ca
+  namespace: cert-manager <i class="conum" data-value="1"></i><b>(1)</b>
+spec:
+  secretName: knative-eventing-ca <i class="conum" data-value="2"></i><b>(2)</b>
+
+  isCA: true
+  commonName: selfsigned-ca
+  privateKey:
+    algorithm: ECDSA
+    size: 256
+
+  issuerRef:
+    name: knative-eventing-selfsigned-issuer
+    kind: ClusterIssuer
+    group: cert-manager.io</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The OpenShift Cert-Manager Operator namespace, <code>cert-manager</code> by default.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Secret name later used for the <code>ClusterIssuer</code> for Eventing</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Apply the <code>Certificate</code> resource:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ oc apply -f &lt;filename&gt;</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_setup_clusterissuer_for_eventing"><a class="anchor" href="#_setup_clusterissuer_for_eventing"></a>Setup <code>ClusterIssuer</code> for Eventing</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create the <code>knative-eventing-ca-issuer</code> <code>ClusterIssuer</code> for Eventing:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml"># This is the issuer that every Eventing component should use to issue their server's certs.
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: knative-eventing-ca-issuer
+spec:
+  ca:
+    secretName: knative-eventing-ca <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Secret name in the OpenShift Cert-Manager Operator namespace (<code>cert-manager</code> by default) containing the certificate that can then be used by Knative Eventing components for new certificates.</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The name of the <code>ClusterIssuer</code> must be <code>knative-eventing-ca-issuer</code>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Apply the <code>ClusterIssuer</code> resource:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ oc apply -f &lt;filename&gt;</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_understanding_the_transport_encryption_configuration"><a class="anchor" href="#_understanding_the_transport_encryption_configuration"></a>Understanding the transport encryption configuration</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The transport-encryption feature flag is an enum configuration that configures how Addressables (Broker, Channel, Sink) should or must accept events.</p>
+</div>
+<div class="paragraph">
+<p>The possible values for <code>transport-encryption</code> are:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong><code>disabled</code></strong> (this is equivalent to the current behavior)</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Addressables may accept events to HTTPS endpoints</p>
+</li>
+<li>
+<p>Producers may send events to HTTPS endpoints</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong><code>permissive</code></strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Addressables should accept events on both HTTP and HTTPS endpoints</p>
+</li>
+<li>
+<p>Addressables should advertise both HTTP and HTTPS endpoints</p>
+</li>
+<li>
+<p>Producers should prefer sending events to HTTPS endpoints, if available</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong><code>strict</code></strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Addressables must not accept events to non-HTTPS endpoints</p>
+</li>
+<li>
+<p>Addressables must only advertise HTTPS endpoints</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_setup_transport_encryption_in_knativeeventing"><a class="anchor" href="#_setup_transport_encryption_in_knativeeventing"></a>Setup transport encryption in <code>KnativeEventing</code></h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Enabling transport-encryption in <code>KnativeEventing</code>:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: operator.knative.dev/v1beta1
+kind: KnativeEventing
+metadata:
+  name: knative-eventing
+  namespace: knative-eventing
+spec:
+
+  # Other spec fields omitted ...
+  # ...
+
+  config:
+    features:
+      transport-encryption: strict <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Configure <code>transport-encryption</code> to <code>strict</code>.</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Apply the <code>KnativeEventing</code> resource:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ oc apply -f &lt;filename&gt;</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="configure_addition_ca_trust_bundles"><a class="anchor" href="#configure_addition_ca_trust_bundles"></a>Configure additional CA trust bundles</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>By default, Eventing clients trusts the OpenShift CA bundle that you have configured when using a custom PKI for OpenShift, as documented at <a href="https://docs.openshift.com/container-platform/4.14/networking/configuring-a-custom-pki.html" class="bare">docs.openshift.com/container-platform/4.14/networking/configuring-a-custom-pki.html</a>.</p>
+</div>
+<div class="paragraph">
+<p>If you need to add additional CA bundles for Eventing, you can do so by creating <code>ConfigMaps</code> in the <code>knative-eventing</code> namespace with label <code>networking.knative.dev/trust-bundle: true</code>:</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Whenever CA bundles <code>ConfigMaps</code> are updated, the Eventing clients will automatically add them to their trusted CA bundles when a new connection is established.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create a CA bundle for Eventing:</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">kind: ConfigMap
+metadata:
+  name: my-org-eventing-bundle <i class="conum" data-value="1"></i><b>(1)</b>
+  namespace: knative-eventing
+  labels:
+    networking.knative.dev/trust-bundle: "true"
+data: <i class="conum" data-value="2"></i><b>(2)</b>
+  ca.crt: ...
+  ca1.crt: ...
+  tls.crt: ...</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Use a name that is unlikely to conflict with existing or future Eventing <code>ConfigMap</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>All keys containing valid PEM-encoded CA bundles will be trusted by Eventing clients.</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_configure_custom_event_sources_to_trust_the_eventing_ca"><a class="anchor" href="#_configure_custom_event_sources_to_trust_the_eventing_ca"></a>Configure custom event sources to trust the Eventing CA</h3>
+<div class="paragraph">
+<p>The recommended way of creating custom event sources is using a SinkBinding, SinkBinding will inject the configured CA trust bundles as projected volume into each container using the directory <code>/knative-custom-certs</code>.</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p>Some organizations might inject company specific CA trust bundles into base container images and automatically configure runtimes (openjdk, node, etc) to trust that CA bundle.<br>
+In that case, you might not need to configure your clients.</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Using the previous example of the <code>my-org-eventing-bundle</code> <code>ConfigMap</code> with data keys being <code>ca.crt</code>, <code>ca1.crt</code> and <code>tls.crt</code>, you will have a <code>/knative-custom-certs</code> directory that will have the following layout:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">/knative-custom-certs/ca.crt
+/knative-custom-certs/ca1.crt
+/knative-custom-certs/tls.crt</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Those files can then be used to add CA trust bundles to HTTP clients sending events to Eventing.</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p>Depending on the runtime, programming language or library that you&#8217;re using, there are different ways of configuring custom CA certs files using command line flags, environment variables, or by reading the content of those files.<br>
+Refer to their documentation for more details.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_adding_selfsigned_clusterissuer_to_ca_trust_bundles"><a class="anchor" href="#_adding_selfsigned_clusterissuer_to_ca_trust_bundles"></a>Adding <code>SelfSigned</code> <code>ClusterIssuer</code> to CA trust bundles</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In case you are using a <code>SelfSigned</code> <code>ClusterIssuer</code> as described in the <a href="#setup_selfsigned_clusterissuer">Setup a <code>SelfSigned</code> <code>ClusterIssuer</code></a> section, you can add the CA to the Eventing CA trust bundles by running the following commands:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Export the CA from the <code>knative-eventing-ca</code> secret in the OpenShift Cert-Manager Operator namespace, <code>cert-manager</code> by default:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ oc get secret -n cert-manager knative-eventing-ca -o=jsonpath='{.data.ca\.crt}' | base64 -d &gt; ca.crt</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Create a CA trust bundle in the <code>knative-eventing</code> namespace:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ oc create configmap -n knative-eventing my-org-selfsigned-ca-bundle --from-file=ca.crt</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Label the <code>ConfigMap</code> with <code>networking.knative.dev/trust-bundle: "true"</code> label:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ oc label configmap -n knative-eventing my-org-selfsigned-ca-bundle networking.knative.dev/trust-bundle=true</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_ensure_seamless_ca_rotation"><a class="anchor" href="#_ensure_seamless_ca_rotation"></a>Ensure seamless CA rotation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Ensuring seamless CA rotation is essential to avoid service downtime, or to deal with an emergency.
+The following procedure explains how you can seamlessly rotate a CA.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create a new CA certificate.</p>
+</li>
+<li>
+<p>Add the public key of the new CA certificate to the CA trust bundles as described in the <a href="#configure_addition_ca_trust_bundles">Configure additional CA trust bundles</a> section.<br>
+Make sure to also keep the public key of the existing CA.</p>
+</li>
+<li>
+<p>Ensure that all clients have consumed the latest set of CA trust bundles.<br>
+Knative Eventing components will automatically reload the changed CA trust bundles.
+If you have custom workload consuming trust bundles as well, make sure to reload/restart them accordingly.</p>
+</li>
+<li>
+<p>Update the <code>knative-eventing-ca-issuer</code> <code>ClusterIssuer</code> to reference the secret containing the CA certificate created at step 1.</p>
+</li>
+<li>
+<p>Force cert-manager to renew certificates in the <code>knative-eventing</code> namespace.<br>
+Refer to the cert-manager documentation for more details: <a href="https://cert-manager.io/docs/usage/certificate/#reissuance-triggered-by-user-actions" class="bare">cert-manager.io/docs/usage/certificate/#reissuance-triggered-by-user-actions</a>.</p>
+</li>
+<li>
+<p>As soon as the CA rotation is fully completed, you can remove the public key of the old CA from the trust bundle <code>ConfigMap</code>.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_verification"><a class="anchor" href="#_verification"></a>Verification</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create an <code>InMemoryChannel</code>:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: messaging.knative.dev/v1
+kind: InMemoryChannel
+metadata:
+ name: transport-encryption-test</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Apply the <code>InMemoryChannel</code> resource:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ oc apply -f &lt;filename&gt;</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>View the <code>InMemoryChannel</code> address:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ oc get inmemorychannels.messaging.knative.dev transport-encryption-test</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">NAME                        URL                                                                                           AGE   READY   REASON
+transport-encryption-test   https://imc-dispatcher.knative-eventing.svc.cluster.local/default/transport-encryption-test   17s   True</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</article>
+        </main>
+            </div>
+  </div>
+</div><footer class="footer">
+  <p>Adapted from Antora default UI, (c) 2019</p>
+</footer>
+<script src="../../../../../_/js/site.js"></script>
+<script src="../../../../../_/js/vendor/highlight.js"></script>
+<script src="../../../../../_/js/tabsBehavior.js"></script>
+<script>hljs.initHighlighting()</script>
+  </body>
+</html>
