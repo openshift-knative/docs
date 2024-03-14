@@ -22,7 +22,7 @@ For more information about the support scope of Red Hat Developer Preview featur
 
 == Prerequisites
 
-* You have access to an {product-title} account with clsuter administrator acccess.
+* You have access to an {product-title} account with cluster administrator access.
 
 * Install the OpenShift CLI (`oc`).
 
