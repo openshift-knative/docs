@@ -3,14 +3,12 @@
 // Metadata:
 :description: Setup Autoscaling for Eventing Kafka components in {serverlessproductname}
 
-This page describes how to set up the Autoscaling feature for Eventing Kafka, which allows
-for the Eventing Kafka components to autoscale based on the lag in the Kafka topic.
+This page describes how to set up the Autoscaling feature for Eventing Kafka, which allows for the Eventing Kafka components to autoscale based on the consumer group lag.
 
 [INFO]
 ====
 This is only currently for the KafkaSource.
 ====
-
 
 [IMPORTANT]
 ====
@@ -34,7 +32,7 @@ For more information about the support scope of Red Hat Developer Preview featur
 
 == Enable Autoscaling of KafkaSources in `EventingKafka`
 
-Enabling `controller-autoscaling-keda` in `KnativeKafka` enables autoscaling on all `KafkaSources` by default, based on the consumer group lag in Kafka. 
+Enabling `controller-autoscaling-keda` in `KnativeKafka` enables autoscaling on all `KafkaSources` by default, based on the consumer group lag in Kafka.
 If you would like to modify this default behaviour, you can <<Disable Autoscaling for a KafkaSource>>, or <<Customize Autoscaling for a KafkaSource>>.
 To enable autoscaling, you need to:
 
@@ -79,7 +77,6 @@ metadata:
 spec:
   # spec fields ...
 ----
-
 
 == Customize Autoscaling for a KafkaSource
 
