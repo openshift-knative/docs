@@ -13,6 +13,7 @@ asciidoc:
     custommetricsautoscaleroperatername: Custom Metrics Autoscaler Operator
     serverlessoperatorname: OpenShift Serverless Operator
     custommetricsautoscaleroperatorname: OpenShift Custom Metrics Autoscaler Operator
+    certmanageroperatorname: OpenShift Cert-Manager Operator
     serverlessproductname: OpenShift Serverless
     product_name: OpenShift Serverless Logic
     kogito_version_redhat: 1.44.0.Final-redhat-00005
