@@ -11,6 +11,7 @@ asciidoc:
     product-title: OpenShift
     ocp: OpenShift Container Platform
     serverlessoperatorname: OpenShift Serverless Operator
+    certmanageroperatorname: OpenShift Cert-Manager Operator
     serverlessproductname: OpenShift Serverless
     product_name: OpenShift Serverless Logic
     kogito_version_redhat: 1.44.0.Final-redhat-00005
