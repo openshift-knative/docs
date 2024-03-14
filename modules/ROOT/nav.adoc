@@ -7,6 +7,7 @@
 *** xref:serverless:service-mesh/eventing-service-mesh-sinkbinding.adoc[Eventing: Using SinkBinding with OpenShift Service Mesh]
 ** Features
 *** xref:serverless:features/transport-encryption/transport-encryption-setup.adoc[Setup transport encryption in Eventing]
+*** xref:serverless:features/eventing-kafka-scaling/eventing-kafka-scaling-setup.adoc[Setup Autoscaling For Eventing Kafka Components]
 ** Serving
 *** xref:serverless:serving/serving-with-ingress-sharding.adoc[Use Serving with OpenShift ingress sharding]
 *** xref:serverless:serving/scaleability-and-performance-of-serving.adoc[Scalability and performance of {serverlessproductname} Serving]
