@@ -30,14 +30,16 @@ For more information about the support scope of Red Hat Developer Preview featur
 
 * Install the {custommetricsautoscaleroperatorname}.
 
-== Enable Autoscaling of KafkaSources in `EventingKafka`
+== Enable Autoscaling of KafkaSources in `KnativeKafka`
 
-Enabling `controller-autoscaling-keda` in `KnativeKafka` enables autoscaling on all `KafkaSources` by default, based on the consumer group lag in Kafka.
-If you would like to modify this default behaviour, you can <<Disable Autoscaling for a KafkaSource>>, or <<Customize Autoscaling for a KafkaSource>>.
-To enable autoscaling, you need to:
+[IMPORTANT]
+====
+Enabling autoscaling of KafkaSources enables autoscaling on all `KafkaSources` by default. +
+You can disable autoscaling for a specific `KafkaSource` as described in the <<disable_autoscaling_for_specific_KafkaSource>> section.
+====
 
-<1> Configure `controller-autoscaling-keda` to `enabled`.
-
+. Configure `controller-autoscaling-keda` feature flag to `enabled`:
++
 [source,yaml]
 ----
 apiVersion: operator.knative.dev/v1
@@ -51,18 +53,45 @@ spec:
   # ...
 
   config:
-    kafka-features:
-	  controller-autoscaling-keda: enabled <1>
+    config-kafka-features:
+      controller-autoscaling-keda: enabled <1>
 ----
+<1> Enables autoscaling for all KafkaSources.
 
-<2> Apply the `KnativeKafka` resource:
-
+. Apply the `KnativeKafka` resource:
++
 [source,terminal]
 ----
 $ oc apply -f <filename>
 ----
 
-== Disable Autoscaling for a KafkaSource
+== Customize Autoscaling for a KafkaSource [[customize_autoscaling_configuration]]
+
+If you want to customize how the Custom Metrics Autoscaler scales a KafkaSource, you can set annotations on the source:
+
+[source,yaml]
+----
+apiVersion: sources.knative.dev/v1
+kind: KafkaSource
+metadata:
+  annotations:
+    # The minimum number of replicas to scale down to
+    autoscaling.eventing.knative.dev/min-scale: "0"
+    # The maximum number of replicas to scale up to
+    autoscaling.eventing.knative.dev/max-scale: "50"
+    # The interval in seconds the autoscaler uses to poll metrics in order to inform its scaling decisions
+    autoscaling.eventing.knative.dev/polling-interval: "10"
+    # The period in seconds the autoscaler waits until it scales down
+    autoscaling.eventing.knative.dev/cooldown-period: "30"
+    # The lag that is used for scaling (1<->N)
+    autoscaling.eventing.knative.dev/lag-threshold: "100"
+    # The lag that is used for activation (0<->1)
+    autoscaling.eventing.knative.dev: "0"
+spec:
+  # KafkaSource spec fields ...
+----
+
+== Disable Autoscaling for a specific KafkaSource [[disable_autoscaling_for_specific_KafkaSource]]
 
 If you want to disable autoscaling for a KafkaSource, you need to set an annotation on the source:
 
@@ -74,33 +103,6 @@ metadata:
   annotations:
     autoscaling.eventing.knative.dev/class: disabled
   # more metadata ...
-spec:
-  # spec fields ...
-----
-
-== Customize Autoscaling for a KafkaSource
-
-If you want to customize how the Custom Metrics Autoscaler scales a KafkaSource, you can set annotations on the source:
-
-[source,yaml]
-----
-apiVersion: sources.knative.dev/v1
-kind: KafkaSource
-metadata:
-  annotations:
-    # The minimum number of replicas to scale down to
-	autoscaling.eventing.knative.dev/min-scale: 0
-    # The maximum number of replicas to scale up to
-	autoscaling.eventing.knative.dev/max-scale: 50
-    # The interval in seconds the autoscaler uses to poll metrics in order to inform its scaling decisions
-	autoscaling.eventing.knative.dev/polling-interval: 10
-    # The period in seconds the autoscaler waits until it scales down
-	autoscaling.eventing.knative.dev/cooldown-period: 30
-	# The lag that is used for scaling (1<->N)
-	autoscaling.eventing.knative.dev/lag-threshold: 100
-	# The lag that is used for activation (0<->1)
-	autoscaling.eventing.knative.dev: 0
-  # more metadata ....
 spec:
   # spec fields ...
 ----
