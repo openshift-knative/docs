@@ -10,9 +10,8 @@ asciidoc:
     smproductname: OpenShift Service Mesh
     product-title: OpenShift
     ocp: OpenShift Container Platform
-    custommetricsautoscaleroperatername: Custom Metrics Autoscaler Operator
-    serverlessoperatorname: OpenShift Serverless Operator
     custommetricsautoscaleroperatorname: OpenShift Custom Metrics Autoscaler Operator
+    serverlessoperatorname: OpenShift Serverless Operator
     certmanageroperatorname: OpenShift Cert-Manager Operator
     serverlessproductname: OpenShift Serverless
     product_name: OpenShift Serverless Logic
