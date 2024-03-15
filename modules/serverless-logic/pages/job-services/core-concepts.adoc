@@ -91,7 +91,7 @@ To configure the image by using environment variables you must pass one environm
 .Job Service image configuration for docker execution example
 [source, bash]
 ----
-docker run -it -e JOBS_SERVICE_PERSISTENCE=postgresql -e VARIABLE_NAME=value quay.io/kiegroup/kogito-jobs-service-allinone:latest
+docker run -it -e JOBS_SERVICE_PERSISTENCE=postgresql -e VARIABLE_NAME=value quay.io/kiegroup/kogito-jobs-service-allinone-nightly:{sonataflow_non_productized_image_tag}
 ----
 
 .Job Service image configuration for Kubernetes execution example
@@ -100,7 +100,7 @@ docker run -it -e JOBS_SERVICE_PERSISTENCE=postgresql -e VARIABLE_NAME=value qua
 spec:
   containers:
     - name: jobs-service-postgresql
-      image: quay.io/kiegroup/kogito-jobs-service-allinone-nightly:latest
+      image: quay.io/kiegroup/kogito-jobs-service-allinone-nightly:{sonataflow_non_productized_image_tag}
       imagePullPolicy: Always
       ports:
         - containerPort: 8080
@@ -139,7 +139,7 @@ To configure the image by using system properties you must pass one property per
 [source, bash]
 ----
 docker run -it -e JOBS_SERVICE_PERSISTENCE=postgresql -e JAVA_OPTIONS='-Dmy.sys.prop1=value1 -Dmy.sys.prop2=value2' \
-quay.io/kiegroup/kogito-jobs-service-allinone:latest
+quay.io/kiegroup/kogito-jobs-service-allinone-nightly:{sonataflow_non_productized_image_tag}
 ----
 
 [NOTE]

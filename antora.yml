@@ -30,6 +30,8 @@ asciidoc:
     kn_cli_version: v1.32.1
     docker_min_version: 20.10.7
     docker_compose_min_version: 1.27.2
+    # Tag to use with community-only images
+    sonataflow_non_productized_image_tag: main-2024-02-09
     operator_version: 1.32.0
     operator_openshift_keyword: 'Serverless Logic'
     operator_openshift_catalog: logic-rhel8-operator
@@ -37,7 +39,8 @@ asciidoc:
     operator_community_prod_root: https://raw.githubusercontent.com/kiegroup/kogito-serverless-operator/9.99.x-prod
     operator_k8s_keyword: sonataflow
     operator_k8s_subscription: my-sonataflow-operator
-    kogito_devservices_imagename: registry.redhat.io/openshift-serverless-1-tech-preview/logic-data-index-ephemeral-rhel8
+    kogito_devservices_imagename: egistry.redhat.io/openshift-serverless-1-tech-preview/logic-data-index-ephemeral-rhel8
+    sonataflow_builder_imagename: registry.redhat.io/openshift-serverless-1-tech-preview/logic-swf-builder-rhel8
     sonataflow_devmode_imagename: registry.redhat.io/openshift-serverless-1-tech-preview/logic-swf-devmode-rhel8
     sonataflow_operator_imagename: registry.redhat.io/openshift-serverless-1-tech-preview/logic-rhel8-operator
     kogito_examples_repository_url: 'https://github.com/kiegroup/kogito-examples/tree/9.99.x-prod'
