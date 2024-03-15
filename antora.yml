@@ -33,10 +33,12 @@ asciidoc:
     operator_version: 1.32.0
     operator_openshift_keyword: 'Serverless Logic'
     operator_openshift_catalog: logic-rhel8-operator
+    operator_community_prod_yaml: https://raw.githubusercontent.com/kiegroup/kogito-serverless-operator/9.99.x-prod/operator.yaml
     operator_k8s_keyword: sonataflow
     operator_k8s_subscription: my-sonataflow-operator
     kogito_devservices_imagename: registry.redhat.io/openshift-serverless-1-tech-preview/logic-data-index-ephemeral-rhel8
     sonataflow_devmode_imagename: registry.redhat.io/openshift-serverless-1-tech-preview/logic-swf-devmode-rhel8
+    sonataflow_operator_imagename: registry.redhat.io/openshift-serverless-1-tech-preview/logic-rhel8-operator
     kogito_examples_repository_url: 'https://github.com/kiegroup/kogito-examples/tree/9.99.x-prod'
     kogito_sw_operator_examples_url: https://github.com/kiegroup/kogito-examples/tree/9.99.x-prod/serverless-operator-examples
     kogito_sw_examples_url: https://github.com/kiegroup/kogito-examples/tree/9.99.x-prod/serverless-workflow-examples

@@ -84,13 +84,13 @@ To install the {product_name} Operator, you can use the following command:
 .Install {product_name} Operator on Kubernetes
 [source,shell,subs="attributes+"]
 ----
-kubectl create -f https://raw.githubusercontent.com/apache/incubator-kie-kogito-serverless-operator/{operator_version}/operator.yaml
+kubectl create -f ${operator_community_prod_yaml}
 ----
 You can also specify a version:
 ----
-kubectl create -f https://raw.githubusercontent.com/kiegroup/kogito-serverless-operator/v<version>/operator.yaml
+kubectl create -f https://raw.githubusercontent.com/kiegroup/kogito-serverless-operator/<version>/operator.yaml
 ----
-`<version>` could be `1.43.0` for instance.
+`<version>` should be `9.99.x-prod`.
 
 You can follow the deployment of the {product_name} Operator:
 
@@ -144,21 +144,14 @@ To uninstall the correct version of the operator, first you must get the current
 ----
 kubectl get deployment sonataflow-operator-controller-manager -n sonataflow-operator-system -o jsonpath="{.spec.template.spec.containers[?(@.name=='manager')].image}"
 
-quay.io/kiegroup/kogito-serverless-operator-nightly:1.41.0
+${sonataflow_operator_imagename}:${operator_version}
 ----
 
 .Uninstalling the operator
 [source,shell,subs="attributes+"]
 ----
-kubectl delete -f https://raw.githubusercontent.com/apache/incubator-kie-kogito-serverless-operator/<version>.x/operator.yaml
+kubectl delete -f ${operator_community_prod_yaml}
 ----
-
-[TIP]
-====
-If you're running a snapshot version, use this URL instead `https://raw.githubusercontent.com/apache/incubator-kie-kogito-serverless-operator/main/operator.yaml`.
-
-The URL should be the same used when installing the operator.
-====
 
 == Additional resources
 
