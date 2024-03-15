@@ -1,0 +1,29 @@
+= New features on {page-component-display-version}
+:compat-mode!:
+
+== Known issues
+
+* link:https://issues.redhat.com/browse/SRVLOGIC-185[SRVLOGIC-185] - Serverless logic operator builder is not able to find builder config ConfigMap.
+** Workaround - In the operator's namespace create a copy of 'logic-operator-rhel8-builder-config' configMap with name 'sonataflow-operator-builder-config`.
+* link:https://issues.redhat.com/browse/SRVLOGIC-220[SRVLOGIC-220] - Monitoring tab or workflow list: Duration negative and timezone incorrect
+* link:https://issues.redhat.com/browse/SRVLOGIC-244[SRVLOGIC-244] - Example serverless-workflow-loanbroker-example service discovery misconfiguration
+* link:https://issues.redhat.com/browse/SRVLOGIC-250[SRVLOGIC-250] - DevUI Different UI results with dev and prod scenarios
+
+== Notable changes
+
+* link:https://issues.redhat.com/browse/SRVLOGIC-179[SRVLOGIC-179] - Provide the option to specify workflow properties at several levels
+* link:https://issues.redhat.com/browse/SRVLOGIC-196[SRVLOGIC-196] - Rollout operator's deployment when custom configuration changes
+
+
+== Other changes and Bug fixes
+
+* link:https://issues.redhat.com/browse/SRVLOGIC-221[SRVLOGIC-221] - Pod instances keep spawning and terminating when deploying the workflow 
+* link:https://issues.redhat.com/browse/SRVLOGIC-223[SRVLOGIC-223] - Kn CLI: Build of the sample project fails with NoSuchFileException
+* link:https://issues.redhat.com/browse/SRVLOGIC-224[SRVLOGIC-224] - Multiple pods are started with a simple project
+* link:https://issues.redhat.com/browse/SRVLOGIC-225[SRVLOGIC-225] - Incosistent versions of Quarkus core and platform across deliverables
+* link:https://issues.redhat.com/browse/SRVLOGIC-230[SRVLOGIC-230] - SonataFlow Quarkus Dev UI is not loaded
+* link:https://issues.redhat.com/browse/SRVLOGIC-231[SRVLOGIC-231] - Disable question about collecting Quarkus analytics
+* link:https://issues.redhat.com/browse/SRVLOGIC-235[SRVLOGIC-235] - SonataFlow builder image is failing with java.lang.NoSuchMethodError
+* link:https://issues.redhat.com/browse/SRVLOGIC-238[SRVLOGIC-238] - SonataFlow examples are missing quarkus 3 upgrade
+* link:https://issues.redhat.com/browse/SRVLOGIC-239[SRVLOGIC-239] - SonataFlow examples are downloading logic-data-index-ephemeral-rhel8 with version 1.32
+* link:https://issues.redhat.com/browse/SRVLOGIC-251[SRVLOGIC-251] - Missing installation/prepare environment guide in documentation

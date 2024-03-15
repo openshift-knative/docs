@@ -11,7 +11,7 @@
 :kubernetes_operator_uninstall_url: https://olm.operatorframework.io/docs/tasks/uninstall-operator/
 :operatorhub_url: https://operatorhub.io/
 
-This guide describes how to install the {operator_name} in a Kubernetes or OpenShift cluster. The operator is in an xref:/cloud/operator/known-issues.adoc[early development stage] (community only) and has been tested on OpenShift 4.11+, Kubernetes 1.22+, and link:{minikube_url}[Minikube].
+This guide describes how to install the {operator_name} in a Kubernetes or OpenShift cluster. The operator is in an xref:/cloud/operator/known-issues.adoc[early development stage] (community only) and has been tested on OpenShift {openshift_version_min}+, Kubernetes {kubernetes_version}+, and link:{minikube_url}[Minikube].
 
 .Prerequisites
 * A Kubernetes or OpenShift cluster with admin privileges. Alternatively, you can use Minikube or KIND.
@@ -39,9 +39,131 @@ To remove the operator on Kubernetes follow the document "link:{kubernetes_opera
 
 When searching for the subscription to remove, use the word `{operator_k8s_subscription}`.
 
+== {product_name} Operator Manual Installation
+
+[WARNING]
+====
+If you're running on Kubernetes or OpenShift, it is highly recommended to install the operator from the OperatorHub or OpenShift Console instead since the installation is managed by OLM. Use this method only if you need a snapshot version or you're running locally on Minikube or KIND.
+====
+
+=== Prepare a Minikube instance
+
+[NOTE]
+====
+You can safely skip this section if you're not using Minikube.
+====
+
+.Prerequisites
+* A machine with at least 8GB memory and a link:https://en.wikipedia.org/wiki/Multi-core_processor[CPU with 8 cores]
+* Docker or Podman installed
+
+Run the following command to create a new instance capable of installing the operator and deploy workflows:
+
+[source,shell,subs="attributes+"]
+----
+minikube start --cpus 4 --memory 4096 --addons registry --addons metrics-server --insecure-registry "10.0.0.0/24" --insecure-registry "localhost:5000"
+----
+
+[NOTE]
+====
+To speed up the build time, you can increase the CPUs and memory options so that your Minikube instance will have more resources. For example, use `--cpus 12 --memory 16384`. If you have already created your Minikube instance, you will need to recreate it for these changes to apply.
+====
+
+If Minikube does not work with the default driver, also known as `docker`, you can try to start with the `podman` driver as follows:
+
+.Start Minikube with the Podman driver
+[source,shell,subs="attributes+"]
+----
+minikube start [...] --driver podman
+----
+
+=== Install
+
+To install the {product_name} Operator, you can use the following command:
+
+.Install {product_name} Operator on Kubernetes
+[source,shell,subs="attributes+"]
+----
+kubectl create -f https://raw.githubusercontent.com/apache/incubator-kie-kogito-serverless-operator/{operator_version}/operator.yaml
+----
+You can also specify a version:
+----
+kubectl create -f https://raw.githubusercontent.com/kiegroup/kogito-serverless-operator/v<version>/operator.yaml
+----
+`<version>` could be `1.43.0` for instance.
+
+You can follow the deployment of the {product_name} Operator:
+
+.Watch the {product_name} Operator pod
+[source,shell,subs="attributes+"]
+----
+kubectl get pod -n sonataflow-operator-system --watch
+----
+
+A successful installation should have an output like this:
+
+.Successful Installation Output
+[source]
+----
+NAME                                                     READY   STATUS              RESTARTS   AGE
+sonataflow-operator-controller-manager-948547ffd-sr2j2   0/2     ContainerCreating   0          6s
+sonataflow-operator-controller-manager-948547ffd-sr2j2   1/2     Running             0          7s
+sonataflow-operator-controller-manager-948547ffd-sr2j2   2/2     Running             0          20s
+----
+
+You can also follow the operator’s log:
+
+.Watch the {product_name} Operator pod logs
+[source,shell,subs="attributes+"]
+----
+kubectl logs deployment/sonataflow-operator-controller-manager -n sonataflow-operator-system -f
+----
+
+Once the operator is running, it will watch for instances of the {product_name} Custom Resources (CR). Using CRs, you can configure your {product_name} environment and define Workflows and builds to be handled by the operator.
+
+=== Uninstall
+
+To uninstall the {operator_name}, first, you must delete all the {product_name} Custom Resources (CR) instances managed by it. Once the CRs are deleted, you can then delete all resources created during the operator installation.
+
+To delete every CR managed by the operator in your cluster, you can run these series of commands:
+
+.Delete all {product_name} CR instances
+[source,shell,subs="attributes+"]
+----
+kubectl delete --all workflow --all-namespaces
+kubectl delete --all sonataflowbuild --all-namespaces
+kubectl delete --all sonataflowplatform --all-namespaces
+----
+
+Alternatively, if you created everything under the same Namespace, deleting the given namespace has the same outcome.
+
+To uninstall the correct version of the operator, first you must get the current version by running:
+
+.Getting the operator version
+[source,shell,subs="attributes+"]
+----
+kubectl get deployment sonataflow-operator-controller-manager -n sonataflow-operator-system -o jsonpath="{.spec.template.spec.containers[?(@.name=='manager')].image}"
+
+quay.io/kiegroup/kogito-serverless-operator-nightly:1.41.0
+----
+
+.Uninstalling the operator
+[source,shell,subs="attributes+"]
+----
+kubectl delete -f https://raw.githubusercontent.com/apache/incubator-kie-kogito-serverless-operator/<version>.x/operator.yaml
+----
+
+[TIP]
+====
+If you're running a snapshot version, use this URL instead `https://raw.githubusercontent.com/apache/incubator-kie-kogito-serverless-operator/main/operator.yaml`.
+
+The URL should be the same used when installing the operator.
+====
+
 == Additional resources
 
 * xref:cloud/operator/known-issues.adoc[]
 * xref:cloud/operator/developing-workflows.adoc[]
+* xref:cloud/operator/enabling-jobs-service.adoc[]
 
 include::../../../pages/_common-content/report-issue.adoc[]

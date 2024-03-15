@@ -15,27 +15,33 @@ asciidoc:
     certmanageroperatorname: OpenShift Cert-Manager Operator
     serverlessproductname: OpenShift Serverless
     product_name: OpenShift Serverless Logic
-    kogito_version_redhat: 1.44.0.Final-redhat-00005
+    kogito_version_redhat: 9.99.0.redhat-00007
     operator_name: Serverless Logic Operator
     quarkus_platform: com.redhat.quarkus.platform
     kogito_sw_ga: >-
       org.kie.kogito:kogito-quarkus-serverless-workflow
-    quarkus_version: 2.13.8.SP3-redhat-00001
-    quarkus_platform_version: 2.13.8.SP3-redhat-00001
-    java_min_version: 11+
-    maven_min_version: 3.8.6
+    quarkus_version: 3.2.9.Final-redhat-00003
+    quarkus_platform_version: 3.2.9.Final-redhat-00004
+    java_min_version: 17+
+    maven_min_version: 3.9.6
     graalvm_min_version: 22.3.0
     spec_version: 0.8
     vscode_version: 1.84.0
-    kn_cli_version: 0.32.0
+    kn_cli_version: v1.32.1
     docker_min_version: 20.10.7
     docker_compose_min_version: 1.27.2
-    operator_version: 1.31
-    kogito_examples_repository_url: 'https://github.com/kiegroup/kogito-examples'
-    kogito_sw_operator_examples_url: https://github.com/apache/incubator-kie-kogito-examples/tree/1.44.x/serverless-operator-examples
-    kogito_sw_examples_url: https://github.com/kiegroup/kogito-examples/tree/1.44.x/serverless-workflow-examples
+    operator_version: 1.32.0
+    operator_openshift_keyword: 'Serverless Logic'
+    operator_openshift_catalog: logic-rhel8-operator
+    operator_k8s_keyword: sonataflow
+    operator_k8s_subscription: my-sonataflow-operator
+    kogito_devservices_imagename: registry.redhat.io/openshift-serverless-1-tech-preview/logic-data-index-ephemeral-rhel8
+    sonataflow_devmode_imagename: registry.redhat.io/openshift-serverless-1-tech-preview/logic-swf-devmode-rhel8
+    kogito_examples_repository_url: 'https://github.com/kiegroup/kogito-examples/tree/9.99.x-prod'
+    kogito_sw_operator_examples_url: https://github.com/kiegroup/kogito-examples/tree/9.99.x-prod/serverless-operator-examples
+    kogito_sw_examples_url: https://github.com/kiegroup/kogito-examples/tree/9.99.x-prod/serverless-workflow-examples
     kogito_examples_url: 'https://github.com/kiegroup/kogito-examples.git'
-    kogito_apps_url: https://github.com/kiegroup/kogito-apps/tree/main
+    kogito_apps_url: https://github.com/kiegroup/kogito-apps/tree/9.99.x-prod
     quarkus_cli_url: 'https://quarkus.io/guides/cli-tooling'
     spec_website_url: 'https://serverlessworkflow.io/'
     spec_doc_url: >-
@@ -44,10 +50,17 @@ asciidoc:
     cloud_events_sdk_url: 'https://github.com/cloudevents/sdk-java'
     cloud_events_git_url: https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents
     open_api_spec_url: 'https://spec.openapis.org/oas/v3.1.0.html'
+    open_api_swagger_spec_url: https://swagger.io/docs/specification
     quarkus_openapi_gen_url: 'https://github.com/quarkiverse/quarkus-openapi-generator'
     kie_tools_releases_page_url: 'https://github.com/kiegroup/kie-tools/releases'
-    quarkus_guides_base_url: 'https://quarkus.io/guides'
+    quarkus_guides_base_url: https://quarkus.io/guides
+    quarkus_guides_kafka_url: https://quarkus.io/guides/kafka
+    quarkus_guides_config_reference_url: https://quarkus.io/guides/config-reference
+    quarkus_guides_infinispan_client_reference_url: https://quarkus.io/guides/infinispan-client-reference
+    quarkus_guides_profiles_url: https://quarkus.io/guides/config-reference#profiles
     quarkus_url: https://quarkus.io/
+    dev_services_url: https://quarkus.io/guides/dev-services
+    test_containers_url: https://www.testcontainers.org/
     smallrye_messaging_url: >-
       https://smallrye.io/smallrye-reactive-messaging/smallrye-reactive-messaging/3.3
     quarkus_config_url: 'https://quarkus.io/guides/config'
@@ -56,7 +69,6 @@ asciidoc:
     maven_install: 'https://maven.apache.org/install.html'
     docker_install: 'https://docs.docker.com/engine/install/'
     podman_install: 'https://docs.podman.io/en/latest/'
-    open_api_swagger_spec_url: https://swagger.io/docs/specification
     kubectl_install: 'https://kubernetes.io/docs/tasks/tools/install-kubectl'
     java_install_url: 'https://www.java.com/en/download/help/download_options.html'
     maven_install_url: 'https://maven.apache.org/install.html'
@@ -78,9 +90,20 @@ asciidoc:
     openshift_application_data_services_apache_kafka_url: https://console.redhat.com/application-services/streams/kafkas
     camel_url: https://camel.apache.org/
     # must align this version
-    camel_extensions_url: https://camel.apache.org/camel-quarkus/2.14.x/reference/extensions
+    camel_extensions_url: https://camel.apache.org/camel-quarkus/3.2.x/reference/extensions
     kaoto_url: https://marketplace.visualstudio.com/items?itemName=redhat.vscode-kaoto
-
     minikube_url: https://minikube.sigs.k8s.io
-    kogito_serverless_operator_url: https://github.com/apache/incubator-kie-kogito-serverless-operator/
-    docs_issues_url: https://github.com/kiegroup/kogito-docs/issues/new
+    kogito_serverless_operator_url: https://github.com/kiegroup/kogito-serverless-operator/tree/9.99.x-prod
+    docs_issues_url: https://github.com/apache/incubator-kie-kogito-docs/issues/new
+    # xreferences to documents within the serverless-logic documentation
+    data_index_xref: xref:data-index/data-index-core-concepts.adoc
+    job_service_xref: xref:job-services/core-concepts.adoc
+    # string unication references withing serverless logic documentation
+    data_index_ref: Data Index
+    workflow_instance: workflow instance
+    workflow_instances: workflow instances
+    sonataflow_devmode_devui_url: /q/dev/org.kie.kogito.kogito-quarkus-serverless-workflow-devui/
+    # OCP KN urls
+    ocp_knative_serving_url: https://docs.openshift.com/container-platform/4.12/serverless/install/installing-knative-serving.html
+    ocp_knative_eventing_url: https://docs.openshift.com/container-platform/4.12/serverless/install/installing-knative-eventing.html
+    ocp_kn_cli_url: https://docs.openshift.com/container-platform/4.12/serverless/install/installing-kn.html
