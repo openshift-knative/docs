@@ -13,10 +13,14 @@
 *** xref:serverless:serving/scaleability-and-performance-of-serving.adoc[Scalability and performance of {serverlessproductname} Serving]
 * Serverless Logic
 ** xref:serverless-logic:about.adoc[About OpenShift Serverless Logic]
+** xref:serverless-logic:release-notes.adoc[Release notes]
 ** User Guides
+*** Setup
+**** xref:serverless-logic:getting-started/learning-environment.adoc[]
+**** xref:serverless-logic:getting-started/preparing-environment.adoc[]
+**** xref:serverless-logic:getting-started/production-environment.adoc[]
 *** Getting Started
 **** xref:serverless-logic:getting-started/create-your-first-workflow-service-with-kn-cli-and-vscode.adoc[Creating your first workflow service with KN CLI and VS Code]
-**** xref:serverless-logic:getting-started/create-your-first-workflow-service.adoc[Creating your first workflow service]
 **** xref:serverless-logic:getting-started/getting-familiar-with-our-tooling.adoc[Getting familiar with tooling]
 *** Core
 **** xref:serverless-logic:core/cncf-serverless-workflow-specification-support.adoc[CNCF Serverless Workflow specification]
@@ -38,18 +42,14 @@
 ***** xref:serverless-logic:tooling/serverless-logic-web-tools/serverless-logic-web-tools-openshift-integration.adoc[OpenShift integration]
 ***** xref:serverless-logic:tooling/serverless-logic-web-tools/serverless-logic-web-tools-redhat-application-services-integration.adoc[Red Hat OpenShift Application and Data Services integration]
 ***** xref:serverless-logic:tooling/serverless-logic-web-tools/serverless-logic-web-tools-deploy-projects.adoc[Deploying projects]
-***** xref:serverless-logic:tooling/serverless-logic-web-tools/serverless-logic-web-tools-enable-kogito-swf-visualization.adoc[Kogito Serverless Workflow Visualization]
 *** Service Orchestration
 **** xref:serverless-logic:service-orchestration/orchestration-of-openapi-based-services.adoc[Orchestrating the OpenAPI services]
 ***** xref:serverless-logic:service-orchestration/configuring-openapi-services-endpoints.adoc[Configuring the OpenAPI services endpoints]
-***** xref:serverless-logic:service-orchestration/working-with-openapi-callbacks.adoc.adoc[OpenAPI callback  in {product_name}]
-**** xref:serverless-logic:service-orchestration/orchestration-of-grpc-services.adoc[Orchestration of gRPC based services]
+***** xref:serverless-logic:service-orchestration/working-with-openapi-callbacks.adoc[OpenAPI callback  in {product_name}]
+**** xref:serverless-logic:service-orchestration/troubleshooting.adoc[Troubleshooting]
 *** Event Orchestration
 **** xref:serverless-logic:eventing/orchestration-of-asyncapi-callbacks.adoc[Orchestrating AsyncAPI Services]
 **** xref:serverless-logic:eventing/event-correlation-with-workflows.adoc[Event Correlation]
-**** Quarkus
-***** xref:serverless-logic:eventing/consume-producing-events-with-kafka.adoc[Consuming and producing events using Apache Kafka]
-**** xref:serverless-logic:eventing/consume-produce-events-with-knative-eventing.adoc[Consuming and producing events on Knative Eventing]
 *** Security
 **** xref:serverless-logic:security/authention-support-for-openapi-services.adoc[Authentication for OpenAPI services]
 **** xref:serverless-logic:security/orchestrating-third-party-services-with-oauth2.adoc[Orchestration of third-party services using OAuth 2.0 authentication]
@@ -61,16 +61,8 @@
 ****** xref:serverless-logic:testing-and-troubleshooting/quarkus-dev-ui-extension/quarkus-dev-ui-monitoring-page.adoc[Monitoring]
 ****** xref:serverless-logic:testing-and-troubleshooting/quarkus-dev-ui-extension/quarkus-dev-ui-custom-dashboard-page.adoc[Dashboards]
 ***** xref:serverless-logic:testing-and-troubleshooting/kn-plugin-workflow-overview.adoc[Command Line]
-**** Quarkus
-***** xref:serverless-logic:testing-and-troubleshooting/mocking-http-cloudevents-with-wiremock.adoc[Mocking HTTP CloudEvents sink using WireMock]
-***** xref:serverless-logic:testing-and-troubleshooting/mocking-openapi-services-with-wiremock.adoc[Mocking OpenAPI services using WireMock]
-***** xref:serverless-logic:testing-and-troubleshooting/basic-integration-tests-with-restassured.adoc[Testing using REST Assured]
-
 *** Persistence
-**** Quarkus
-***** xref:serverless-logic:persistence/persistence-with-postgresql.adoc[Running a workflow service using PostgreSQL]
-***** xref:serverless-logic:persistence/postgresql-flyway-migration.adoc[Migrate your PostgreSQL database]
-***** xref:serverless-logic:persistence/integration-tests-with-postgresql.adoc[Integration Tests with PostgreSQL]
+**** xref:serverless-logic:persistence/core-concepts.adoc[Core concepts]
 *** xref:serverless-logic:cloud/index.adoc[Cloud]
 **** Operator
 ***** xref:serverless-logic:cloud/operator/install-serverless-operator.adoc[Installation]
@@ -78,39 +70,69 @@
 ***** xref:serverless-logic:cloud/operator/referencing-resource-files.adoc[Referencing Workflow Resources]
 ***** xref:serverless-logic:cloud/operator/configuring-workflows.adoc[Configuration]
 ***** xref:serverless-logic:cloud/operator/build-and-deploy-workflows.adoc[Building and Deploying Workflows]
+***** xref:serverless-logic:cloud/operator/supporting-services.adoc[Deploy Supporting Services]
 ***** xref:serverless-logic:cloud/operator/workflow-status-conditions.adoc[Custom Resource Status]
-***** xref:serverless-logic:cloud/operator/known-issues.adoc[Known Issues]
-**** Quarkus
-***** xref:serverless-logic:cloud/quarkus/build-workflow-image-with-quarkus-cli.adoc[Building workflow images]
-***** xref:serverless-logic:cloud/quarkus/deploying-on-minikube.adoc[Deploying Workflows on Minikube]
-***** xref:serverless-logic:cloud/quarkus/deploying-on-kubernetes.adoc[Deploying Workflows on Kubernetes]
-***** xref:serverless-logic:cloud/deploying-on-openshift.adoc[Deploying Workflows on Openshift]
-***** xref:serverless-logic:cloud/quarkus/kubernetes-service-discovery.adoc[Kubernetes service discovery]
-
+***** xref:serverless-logic:cloud/operator/building-custom-images.adoc[Building Custom Images]
+***** xref:serverless-logic:cloud/operator/customize-podspec.adoc[Custom Workflow PodSpec]
+***** xref:serverless-logic:cloud/operator/service-discovery.adoc[Service Discovery]
+***** xref:serverless-logic:cloud/operator/configuring-knative-eventing-resources.adoc[Knative Eventing]
+***** xref:serverless-logic:cloud/operator/known-issues.adoc[Roadmap and Known Issues]
 *** Integrations
-**** xref:serverless-logic:integrations/camel-routes-integration.adoc[Integrating with Camel Routes]
-**** xref:serverless-logic:integrations/custom-functions-knative.adoc[Invoking Knative services]
-**** xref:serverless-logic:integrations/expose-metrics-to-prometheus.adoc[Exposing the workflow base metrics to Prometheus]
-// **** xref:serverless-logic:integrations/camel-k-integration.adoc[Integrating with Camel-K]
-**** xref:serverless-logic:integrations/serverless-dashboard-with-runtime-data.adoc[Displaying workflow data in dashboards]
-
+**** xref:serverless-logic:integrations/core-concepts.adoc[]
 *** Supporting Services
 **** Data Index
-***** xref:serverless-logic:supporting-services/data-index/data-index-concepts.adoc[Data Index Core Concepts]
+***** xref:serverless-logic:supporting-services/data-index/data-index-concepts.adoc[Core Concepts]
 ***** xref:serverless-logic:supporting-services/data-index/data-index-service.adoc[Data Index Standalone Service]
-***** xref:serverless-logic:supporting-services/data-index/data-index-quarkus-extensions.adoc[Data Index Quarkus Extensions]
-***** Operator
-****** xref:serverless-logic:supporting-services/data-index/operator/data-index-usecase-singleton.adoc[Deploying Data Index and {product_name} application]
-****** xref:serverless-logic:supporting-services/data-index/operator/data-index-usecase-multi.adoc[Deploying Data Index and multiple {product_name} application]
 **** Job Service
 ***** xref:serverless-logic:supporting-services/jobs-service/core-concepts.adoc[Job Service Introduction]
-***** xref:serverless-logic:supporting-services/jobs-service/quarkus-extensions.adoc[Job Service Quarkus Extensions]
 
 *** Use Cases
-**** xref:serverless-logic:use-cases/orchestration-based-saga-pattern.adoc[Saga Orchestration Example]
-**** xref:serverless-logic:use-cases/timeout-showcase-example.adoc[Timeout Example]
-
-** xref:serverless-logic:release-notes.adoc[Release notes for Serverless Logic]
+**** xref:serverless-logic:serverless-logic:use-cases/advanced-developer-use-cases/index.adoc[Developmentof {product_name} applications using Quarkus and Java]
+***** Getting Started
+****** xref:serverless-logic:serverless-logic:use-cases/advanced-developer-use-cases/getting-started/create-your-first-workflow-service.adoc[Creating your first workflow service]
+****** xref:serverless-logic:serverless-logic:use-cases/advanced-developer-use-cases/getting-started/build-workflow-image-with-quarkus-cli.adoc[]
+****** xref:serverless-logic:serverless-logic:use-cases/advanced-developer-use-cases/getting-started/working-with-serverless-workflow-quarkus-examples.adoc[]
+****** xref:serverless-logic:serverless-logic:use-cases/advanced-developer-use-cases/getting-started/test-serverless-workflow-quarkus-examples.adoc[]
+***** Deployment
+****** xref:serverless-logic:serverless-logic:use-cases/advanced-developer-use-cases/deployments/deploying-on-minikube.adoc[Deploying on Minikube]
+****** xref:serverless-logic:use-cases/advanced-developer-use-cases/deployments/deploying-on-kubernetes.adoc[Deploying on Kubernetes]
+****** xref:serverless-logic:use-cases/advanced-developer-use-cases/deployments/deploying-on-openshift.adoc[Deploying on OpenShift]
+***** Persistence
+****** xref:serverless-logic:use-cases/advanced-developer-use-cases/persistence/persistence-core-concepts.adoc[]
+****** xref:serverless-logic:use-cases/advanced-developer-use-cases/persistence/persistence-with-postgresql.adoc[]
+****** xref:serverless-logic:use-cases/advanced-developer-use-cases/persistence/postgresql-advanced-concepts.adoc[]
+****** xref:serverless-logic:use-cases/advanced-developer-use-cases/persistence/postgresql-flyway-migration.adoc[]
+****** xref:serverless-logic:use-cases/advanced-developer-use-cases/persistence/integration-tests-with-postgresql.adoc[]
+***** Job Service
+****** xref:serverless-logic:use-cases/advanced-developer-use-cases/job-service/quarkus-extensions.adoc[]
+***** Data Index
+****** xref:serverless-logic:use-cases/advanced-developer-use-cases/data-index/data-index-as-quarkus-dev-service.adoc[]
+****** xref:serverless-logic:use-cases/advanced-developer-use-cases/data-index/data-index-usecase-singleton.adoc[]
+****** xref:serverless-logic:use-cases/advanced-developer-use-cases/data-index/data-index-usecase-multi.adoc[]
+****** xref:serverless-logic:use-cases/advanced-developer-use-cases/data-index/data-index-quarkus-extension.adoc[]
+***** Service Orchestration
+****** xref:serverless-logic:use-cases/advanced-developer-use-cases/service-orchestration/configuring-openapi-services-endpoints-with-quarkus.adoc[]
+****** xref:serverless-logic:use-cases/advanced-developer-use-cases/service-orchestration/orchestration-of-grpc-services.adoc[]
+***** Service Discovery
+****** xref:serverless-logic:use-cases/advanced-developer-use-cases/service-discovery/kubernetes-service-discovery.adoc[Service Discovery]
+***** Event Orchestration
+****** xref:serverless-logic:use-cases/advanced-developer-use-cases/event-orchestration/consume-produce-events-with-knative-eventing.adoc[]
+****** xref:serverless-logic:use-cases/advanced-developer-use-cases/event-orchestration/consume-producing-events-with-kafka.adoc[]
+****** xref:serverless-logic:use-cases/advanced-developer-use-cases/event-orchestration/orchestration-based-saga-pattern.adoc[]
+****** xref:serverless-logic:use-cases/advanced-developer-use-cases/event-orchestration/newsletter-subscription-example.adoc[]
+***** Timeouts
+****** xref:serverless-logic:use-cases/advanced-developer-use-cases/timeouts/timeout-showcase-example.adoc[]
+***** Callbacks
+****** xref:serverless-logic:use-cases/advanced-developer-use-cases/callbacks/callback-state-example.adoc[]
+***** Integrations of external services 
+****** xref:serverless-logic:use-cases/advanced-developer-use-cases/integrations/camel-routes-integration.adoc[]
+****** xref:serverless-logic:use-cases/advanced-developer-use-cases/integrations/custom-functions-knative.adoc[]
+****** xref:serverless-logic:use-cases/advanced-developer-use-cases/integrations/expose-metrics-to-prometheus.adoc[]
+****** xref:serverless-logic:use-cases/advanced-developer-use-cases/integrations/serverless-dashboard-with-runtime-data.adoc[]
+***** Testing
+****** xref:serverless-logic:use-cases/advanced-developer-use-cases/testing/basic-integration-tests-with-restassured.adoc[]
+****** xref:serverless-logic:use-cases/advanced-developer-use-cases/testing/mocking-http-cloudevents-with-wiremock.adoc[]
+****** xref:serverless-logic:use-cases/advanced-developer-use-cases/testing/mocking-openapi-services-with-wiremock.adoc[]
 
 * Buildpacks for Serverless Functions
 ** xref:functions/serverless-functions-about.adoc[About buildpacks for OpenShift Serverless Functions]
