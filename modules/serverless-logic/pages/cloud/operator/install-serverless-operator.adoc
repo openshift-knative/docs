@@ -84,7 +84,7 @@ To install the {product_name} Operator, you can use the following command:
 .Install {product_name} Operator on Kubernetes
 [source,shell,subs="attributes+"]
 ----
-kubectl create -f ${operator_community_prod_yaml}
+kubectl create -f {operator_community_prod_yaml}
 ----
 You can also specify a version:
 ----

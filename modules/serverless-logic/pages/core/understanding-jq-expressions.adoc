@@ -290,7 +290,7 @@ This feature was used to add quarkus security identity support, you can check so
 
 == Additional resources
 
-* link:{jq_play} [JQ Play offline]
+* link:{jq_play}[JQ Play offline]
 * xref:service-orchestration/configuring-openapi-services-endpoints.adoc[Configuring the OpenAPI services endpoints]
 
 include::../../pages/_common-content/report-issue.adoc[]

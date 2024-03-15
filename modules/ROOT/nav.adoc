@@ -81,10 +81,10 @@
 **** xref:serverless-logic:integrations/core-concepts.adoc[]
 *** Supporting Services
 **** Data Index
-***** xref:serverless-logic:supporting-services/data-index/data-index-concepts.adoc[Core Concepts]
-***** xref:serverless-logic:supporting-services/data-index/data-index-service.adoc[Data Index Standalone Service]
+***** xref:serverless-logic:data-index/data-index-concepts.adoc[Core Concepts]
+***** xref:serverless-logic:data-index/data-index-service.adoc[Data Index Standalone Service]
 **** Job Service
-***** xref:serverless-logic:supporting-services/jobs-service/core-concepts.adoc[Job Service Introduction]
+***** xref:serverless-logic:jobs-services/core-concepts.adoc[Job Service Introduction]
 
 *** Use Cases
 **** xref:serverless-logic:use-cases/advanced-developer-use-cases/index.adoc[Developmentof {product_name} applications using Quarkus and Java]

@@ -34,6 +34,7 @@ asciidoc:
     operator_openshift_keyword: 'Serverless Logic'
     operator_openshift_catalog: logic-rhel8-operator
     operator_community_prod_yaml: https://raw.githubusercontent.com/kiegroup/kogito-serverless-operator/9.99.x-prod/operator.yaml
+    operator_community_prod_root: https://raw.githubusercontent.com/kiegroup/kogito-serverless-operator/9.99.x-prod
     operator_k8s_keyword: sonataflow
     operator_k8s_subscription: my-sonataflow-operator
     kogito_devservices_imagename: registry.redhat.io/openshift-serverless-1-tech-preview/logic-data-index-ephemeral-rhel8
