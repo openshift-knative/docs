@@ -79,6 +79,7 @@
 ***** xref:serverless-logic:cloud/operator/known-issues.adoc[Roadmap and Known Issues]
 *** Integrations
 **** xref:serverless-logic:integrations/core-concepts.adoc[]
+**** xref:serverless-logic:cloud/operator/using-persistence.adoc[]
 *** Supporting Services
 **** Data Index
 ***** xref:serverless-logic:data-index/data-index-core-concepts.adoc[Core Concepts]
