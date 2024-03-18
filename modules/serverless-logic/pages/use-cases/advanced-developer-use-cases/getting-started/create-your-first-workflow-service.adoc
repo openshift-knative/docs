@@ -23,7 +23,7 @@ image::getting-started/hello-world-workflow.png[]
 For more information about the tooling and the required dependencies, see xref:getting-started/getting-familiar-with-our-tooling.adoc[Getting familiar with {product_name} tooling].
 
 ifeval::["{kogito_version_redhat}" != ""]
-include::../../pages/_common-content/downstream-project-setup-instructions.adoc[]
+include::../../../../pages/_common-content/downstream-project-setup-instructions.adoc[]
 endif::[]
 
 [[proc-boostrapping-the-project]]
