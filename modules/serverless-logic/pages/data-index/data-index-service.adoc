@@ -63,7 +63,7 @@ Here you can see in example, how the {data_index_ref} resource definition can be
 ----
   data-index:
     container_name: data-index
-    image: quay.io/kiegroup/kogito-data-index-postgresql-nightly:{sonataflow_non_productized_image_tag} <1>
+    image: quay.io/kiegroup/kogito-data-index-postgresql-nightly:main-2024-02-09 <1>
     ports:
       - "8180:8080"
     depends_on:
@@ -116,7 +116,7 @@ More details about customizing Quarkus generated images can be found in {quarkus
 This deployment definition resource shows how the {data_index_ref} service configured and deployed can connect with an existing PostgreSQL database and to consume Knative events.
 
 .Example `DataIndex` resource with PostgreSQL persistence and Knative eventing in a kubernetes environment :
-[source,yaml,subs="attributes"]
+[source,yaml]
 ----
 apiVersion: v1
 kind: Service
@@ -156,7 +156,7 @@ spec:
     spec:
       containers:
         - name: data-index-service-postgresql
-          image: quay.io/kiegroup/kogito-data-index-postgresql-nightly:{sonataflow_non_productized_image_tag} <1>
+          image: quay.io/kiegroup/kogito-data-index-postgresql-nightly:main-2024-02-09 <1>
           imagePullPolicy: Always
           ports:
             - containerPort: 8080

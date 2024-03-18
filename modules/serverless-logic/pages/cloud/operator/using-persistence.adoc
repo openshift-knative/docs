@@ -1,4 +1,4 @@
-= Using persistence in the {product_name} Workflow CR
+= Using persistence in the SonataFlow Workflow CR
 :compat-mode!:
 // Metadata:
 :description: Using persistence in the workflow instance to store its context
@@ -7,7 +7,7 @@
 
 This document describes how to configure a SonataFlow instance to use persistence to store the flow's context in a relational database.
 
-== Configuring the {product_name} CR to use persistence
+== Configuring the SonataFlow CR to use persistence
 
 Kubernetes's pods are stateless by definition. In some scenarios, this can be a challenge for workloads that require maintaining the status of 
 the application regardless of the pod's lifecycle. In the case of {product_name}, the context of the workflow is lost when the pod restarts.
@@ -43,7 +43,7 @@ spec:
         KanikoBuildCacheEnabled: "true"
 ---
 
-The values of `POSTGRES_USER` and `POSTGRES_PASSWORD` are the keys in the [Kubernetes secret](https://kubernetes.io/docs/concepts/configuration/secret/) that contains the credentials to connect to the postgreSQL instance. 
+The values of `POSTGRES_USER` and `POSTGRES_PASSWORD` are the keys in the https://kubernetes.io/docs/concepts/configuration/secret/[Kubernetes secret] that contains the credentials to connect to the postgreSQL instance. 
 The SonataFlow Workflow CR 
 is defined with its `Persistence` field defined as empty.
 

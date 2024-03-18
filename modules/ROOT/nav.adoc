@@ -75,11 +75,11 @@
 ***** xref:serverless-logic:cloud/operator/building-custom-images.adoc[Building Custom Images]
 ***** xref:serverless-logic:cloud/operator/customize-podspec.adoc[Custom Workflow PodSpec]
 ***** xref:serverless-logic:cloud/operator/service-discovery.adoc[Service Discovery]
+***** xref:serverless-logic:cloud/operator/using-persistence.adoc[Using persistence]
 ***** xref:serverless-logic:cloud/operator/configuring-knative-eventing-resources.adoc[Knative Eventing]
 ***** xref:serverless-logic:cloud/operator/known-issues.adoc[Roadmap and Known Issues]
 *** Integrations
 **** xref:serverless-logic:integrations/core-concepts.adoc[]
-**** xref:serverless-logic:cloud/operator/using-persistence.adoc[]
 *** Supporting Services
 **** Data Index
 ***** xref:serverless-logic:data-index/data-index-core-concepts.adoc[Core Concepts]
