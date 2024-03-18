@@ -48,7 +48,7 @@
 ***** xref:serverless-logic:service-orchestration/working-with-openapi-callbacks.adoc[OpenAPI callback  in {product_name}]
 **** xref:serverless-logic:service-orchestration/troubleshooting.adoc[Troubleshooting]
 *** Event Orchestration
-**** xref:serverless-logic:eventing/orchestration-of-asyncapi-callbacks.adoc[Orchestrating AsyncAPI Services]
+**** xref:serverless-logic:eventing/orchestration-of-asyncapi-based-services.adoc[Orchestrating AsyncAPI Services]
 **** xref:serverless-logic:eventing/event-correlation-with-workflows.adoc[Event Correlation]
 *** Security
 **** xref:serverless-logic:security/authention-support-for-openapi-services.adoc[Authentication for OpenAPI services]
