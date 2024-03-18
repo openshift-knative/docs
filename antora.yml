@@ -39,7 +39,7 @@ asciidoc:
     operator_community_prod_root: https://raw.githubusercontent.com/kiegroup/kogito-serverless-operator/9.99.x-prod
     operator_k8s_keyword: sonataflow
     operator_k8s_subscription: my-sonataflow-operator
-    kogito_devservices_imagename: egistry.redhat.io/openshift-serverless-1-tech-preview/logic-data-index-ephemeral-rhel8
+    kogito_devservices_imagename: registry.redhat.io/openshift-serverless-1-tech-preview/logic-data-index-ephemeral-rhel8
     sonataflow_builder_imagename: registry.redhat.io/openshift-serverless-1-tech-preview/logic-swf-builder-rhel8
     sonataflow_devmode_imagename: registry.redhat.io/openshift-serverless-1-tech-preview/logic-swf-devmode-rhel8
     sonataflow_operator_imagename: registry.redhat.io/openshift-serverless-1-tech-preview/logic-rhel8-operator
