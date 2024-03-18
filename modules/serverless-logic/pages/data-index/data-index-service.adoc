@@ -116,7 +116,7 @@ More details about customizing Quarkus generated images can be found in {quarkus
 This deployment definition resource shows how the {data_index_ref} service configured and deployed can connect with an existing PostgreSQL database and to consume Knative events.
 
 .Example `DataIndex` resource with PostgreSQL persistence and Knative eventing in a kubernetes environment :
-[source,yaml]
+[source,yaml,subs="attributes"]
 ----
 apiVersion: v1
 kind: Service
