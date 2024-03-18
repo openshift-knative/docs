@@ -28,6 +28,7 @@ asciidoc:
     spec_version: 0.8
     vscode_version: 1.84.0
     kn_cli_version: v1.32.1
+    openshift_version_min: 4.12
     docker_min_version: 20.10.7
     docker_compose_min_version: 1.27.2
     # Tag to use with community-only images
