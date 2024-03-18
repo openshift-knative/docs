@@ -37,8 +37,11 @@ spec:
   services:
     dataIndex: {}
 ----
-
+  
 If you require Data Index persistence, this can be done with a `postgresql` database.
+ifeval::["{kogito_version_redhat}" != ""]
+include::../../../../pages/_common-content/downstream-project-setup-instructions.adoc[]
+endif::[]
 
 Following is a services configuration with the persistence option enabled. You'll first need to create a secret with your database credentials.
 

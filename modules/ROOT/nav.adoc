@@ -83,8 +83,6 @@
 **** Data Index
 ***** xref:serverless-logic:data-index/data-index-core-concepts.adoc[Core Concepts]
 ***** xref:serverless-logic:data-index/data-index-service.adoc[Data Index Standalone Service]
-**** Job Service
-***** xref:serverless-logic:job-services/core-concepts.adoc[Core Concepts]
 
 *** Use Cases
 **** xref:serverless-logic:use-cases/advanced-developer-use-cases/index.adoc[Development of {product_name} applications using Quarkus and Java]
@@ -103,8 +101,6 @@
 ****** xref:serverless-logic:use-cases/advanced-developer-use-cases/persistence/postgresql-advanced-concepts.adoc[]
 ****** xref:serverless-logic:use-cases/advanced-developer-use-cases/persistence/postgresql-flyway-migration.adoc[]
 ****** xref:serverless-logic:use-cases/advanced-developer-use-cases/persistence/integration-tests-with-postgresql.adoc[]
-***** Job Service
-****** xref:serverless-logic:use-cases/advanced-developer-use-cases/job-service/quarkus-extensions.adoc[]
 ***** Data Index
 ****** xref:serverless-logic:use-cases/advanced-developer-use-cases/data-index/data-index-as-quarkus-dev-service.adoc[]
 ****** xref:serverless-logic:use-cases/advanced-developer-use-cases/data-index/data-index-usecase-singleton.adoc[]
