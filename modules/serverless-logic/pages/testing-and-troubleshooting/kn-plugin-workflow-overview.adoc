@@ -92,7 +92,6 @@ Flags:
 Use "kn workflow [command] --help" for more information about a command.
 
 ----
---
 
 
 [[proc-create-sw-project-kn-cli]]
