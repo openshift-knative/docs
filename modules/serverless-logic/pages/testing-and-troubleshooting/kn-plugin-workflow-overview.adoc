@@ -51,7 +51,6 @@ kn workflow
 [source,shell]
 ----
 Manage SonataFlow projects
-	==========================
 
 	Currently, SonataFlow targets use cases with a single Serverless Workflow main
 	file definition (i.e. workflow.sw.{json|yaml|yml}).
@@ -68,8 +67,6 @@ Manage SonataFlow projects
 		/schemas (optional)
 		/subflows (optional)
 		workflow.sw.{json|yaml|yml} (mandatory)
-
-	
 
 Usage:
   kn workflow [command]
