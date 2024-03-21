@@ -74,13 +74,13 @@ If you are interested in our Java and Quarkus development path, consider complet
 . Install https://quarkus.io/guides/cli-tooling[Quarkus CLI] corresponding to currently supported version by {product_name}. Currently it is {quarkus_version}.
 
 [[proc-additional-options-for-local-environment]]
-== Additional options for local environment setup
+== Additional options for environment setup
 
 Points listed in this section provide extra posibilties when working with our guides and are considered optional.
 
 * Install https://www.graalvm.org/[GraalVM] {graalvm_min_version}. This will allow you to create https://www.graalvm.org/22.0/reference-manual/native-image/[native image] of your {product_name} application.
-* Install https://docs.openshift.com/serverless/1.32/install/installing-knative-serving.html[Knative Serving] for advanced customizations or in cases where the quickstart procedure fails.
-* Install https://docs.openshift.com/serverless/1.32/install/installing-knative-eventing.html[Knative Eventing] for advanced customizations or in cases where the quickstart procedure fails.
+* Install https://docs.openshift.com/serverless/1.32/install/installing-knative-serving.html[Knative Serving] for advanced customizations or in cases where you are working with Openshift.
+* Install https://docs.openshift.com/serverless/1.32/install/installing-knative-eventing.html[Knative Eventing] for advanced customizations or in cases where you are working with Openshift.
 
 == Additional resources
 
