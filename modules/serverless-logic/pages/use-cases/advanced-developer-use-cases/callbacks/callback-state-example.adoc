@@ -107,7 +107,6 @@ Apache Kafka uses topics to publish or consume messages. In the `serverless-work
 
 For more information about using Apache Kafka with events, see link:xref:use-cases/advanced-developer-use-cases/event-orchestration/consume-producing-events-with-kafka.adoc[Consuming and producing events using Apache Kafka].
 --
-+
 
 == Additional resources
 

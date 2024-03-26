@@ -34,9 +34,9 @@
 **** xref:serverless-logic:core/timeouts-support.adoc[Timeouts]
 **** xref:serverless-logic:core/working-with-parallelism.adoc[Parallelism]
 *** Tooling
-**** xref:serverless-logic:tooling/serverless-workflow-editor/swf-editor-overview.adoc[Serverless Workflow editor]
-***** xref:serverless-logic:tooling/serverless-workflow-editor/swf-editor-vscode-extension.adoc[VS Code extension for Serverless Workflow editor]
-***** xref:serverless-logic:tooling/serverless-workflow-editor/swf-editor-chrome-extension.adoc[Chrome GitHub extension for Serverless Workflow editor]
+**** xref:serverless-logic:tooling/serverless-workflow-editor/swf-editor-overview.adoc[Editor]
+***** xref:serverless-logic:tooling/serverless-workflow-editor/swf-editor-vscode-extension.adoc[VS Code extension]
+***** xref:serverless-logic:tooling/serverless-workflow-editor/swf-editor-chrome-extension.adoc[Chrome extension for GitHub]
 **** xref:serverless-logic:tooling/serverless-logic-web-tools/serverless-logic-web-tools-overview.adoc[{serverless_logic_web_tools_name}]
 ***** xref:serverless-logic:tooling/serverless-logic-web-tools/serverless-logic-web-tools-github-integration.adoc[GitHub integration]
 ***** xref:serverless-logic:tooling/serverless-logic-web-tools/serverless-logic-web-tools-openshift-integration.adoc[OpenShift integration]
@@ -111,7 +111,7 @@
 ****** xref:serverless-logic:use-cases/advanced-developer-use-cases/service-orchestration/configuring-openapi-services-endpoints-with-quarkus.adoc[]
 ****** xref:serverless-logic:use-cases/advanced-developer-use-cases/service-orchestration/orchestration-of-grpc-services.adoc[]
 ***** Service Discovery
-****** xref:serverless-logic:use-cases/advanced-developer-use-cases/service-discovery/kubernetes-service-discovery.adoc[Service Discovery]
+****** xref:serverless-logic:use-cases/advanced-developer-use-cases/service-discovery/kubernetes-service-discovery.adoc[]
 ***** Event Orchestration
 ****** xref:serverless-logic:use-cases/advanced-developer-use-cases/event-orchestration/consume-produce-events-with-knative-eventing.adoc[]
 ****** xref:serverless-logic:use-cases/advanced-developer-use-cases/event-orchestration/consume-producing-events-with-kafka.adoc[]
