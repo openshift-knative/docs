@@ -1,0 +1,1097 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation :: Red Hat OpenShift Serverless previews</title>
+    <link rel="canonical" href="https://openshift-knative.github.io/docs/docs/latest/serverless-logic/index.html">
+    <meta name="generator" content="Antora 3.0.3">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+<link rel="stylesheet" href="../../../_/css/extra.css">
+<link rel="stylesheet" href="../../../_/css/custom.css">
+<link rel="stylesheet" href="../../../_/css/tabs.css">
+<link rel="stylesheet" href="../../../_/font-awesome-4.7.0/css/font-awesome.min.css">
+<link rel="icon" href="../../../_/img/favicon.ico" type="image/x-icon">
+  </head>
+  <body class="article">
+<header class="header" role="banner">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <div class="navbar-item">
+        <button class="navbar-burger" data-target="topbar-nav">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <img src="../../../_/img/serverless-icon.png" class="navbar-logo" alt="OpenShift Serverless icon">
+        <a href="">OpenShift Serverless - Technology and Developer Preview Releases</a>
+      </div>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <!-- search broken
+        <div class="navbar-item hide-for-print">
+          <script async src="https://cse.google.com/cse.js?cx=002898025167115630151:gnr5edrg2eo"></script>
+          <div class="gcse-searchbox" enableAutoComplete="true"></div>
+        </div>
+      -->
+        <a class="navbar-item" href="https://openshift-knative.github.io/docs">Home</a>
+        <a class="navbar-item" href="https://developers.redhat.com/topics/serverless-architecture">Blog</a>
+          <div class="navbar-item has-dropdown is-hoverable">
+              <a class="navbar-link" href="#">Upstream Projects</a>
+              <div class="navbar-dropdown">
+                  <a class="navbar-item" href="https://kogito.kie.org/">Kogito</a>
+                  <a class="navbar-item" href="https://knative.dev/docs/functions/">Knative Functions</a>
+                  <a class="navbar-item" href="https://knative.dev/docs/eventing/">Knative Eventing</a>
+              </div>
+          </div>
+      </div>
+    </div>
+  </nav>
+<!-- need alt search type-->
+<!--<div class="gcse-searchresults"></div>-->
+</header>
+<div class="main-wrapper">
+  <div class="navigation-container" data-component="docs" data-version="main">
+  <aside class="navigation">
+    <div class="panels">
+<div class="navigation-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">Documentation</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../index.html">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Serverless</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Using OpenShift Serverless with OpenShift Service Mesh</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../serverless/service-mesh/common-service-mesh-setup.html">Setup Serverless with OpenShift Service Mesh</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../serverless/service-mesh/common-service-mesh-network-isolation.html">Use Service Mesh to isolate network-traffic</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../serverless/service-mesh/eventing-service-mesh-containersource.html">Eventing: Using ContainerSource with OpenShift Service Mesh</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../serverless/service-mesh/eventing-service-mesh-sinkbinding.html">Eventing: Using SinkBinding with OpenShift Service Mesh</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Features</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../serverless/features/transport-encryption/transport-encryption-setup.html">Setup transport encryption in Eventing</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../serverless/features/eventing-kafka-scaling/eventing-kafka-scaling-setup.html">Setup Autoscaling For Eventing Kafka Components</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Serving</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../serverless/serving/serving-with-ingress-sharding.html">Use Serving with OpenShift ingress sharding</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../serverless/serving/scaleability-and-performance-of-serving.html">Scalability and performance of OpenShift Serverless Serving</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Serverless Logic</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="about.html">About OpenShift Serverless Logic</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="release-notes.html">Release notes</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">User Guides</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Setup</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="getting-started/learning-environment.html">Learning environment</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="getting-started/preparing-environment.html">Environment setup</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="getting-started/production-environment.html">Production environment</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Getting Started</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="getting-started/create-your-first-workflow-service-with-kn-cli-and-vscode.html">Creating your first workflow service with KN CLI and VS Code</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="getting-started/getting-familiar-with-our-tooling.html">Getting familiar with tooling</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Core</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="core/cncf-serverless-workflow-specification-support.html">CNCF Serverless Workflow specification</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="core/handling-events-on-workflows.html">Events</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="core/working-with-callbacks.html">Callbacks</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="core/understanding-jq-expressions.html">jq expressions</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="core/understanding-workflow-error-handling.html">Error handling</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="core/configuration-properties.html">Configuration properties</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="core/defining-an-input-schema-for-workflows.html">Defining an input schema for your workflows</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="core/custom-functions-support.html">Custom functions for your service</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="core/timeouts-support.html">Timeouts</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="core/working-with-parallelism.html">Parallelism</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Tooling</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="tooling/serverless-workflow-editor/swf-editor-overview.html">Editor</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="tooling/serverless-workflow-editor/swf-editor-vscode-extension.html">VS Code extension</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="tooling/serverless-workflow-editor/swf-editor-chrome-extension.html">Chrome extension for GitHub</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="tooling/serverless-logic-web-tools/serverless-logic-web-tools-overview.html">Serverless Logic Web Tools</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="tooling/serverless-logic-web-tools/serverless-logic-web-tools-github-integration.html">GitHub integration</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="tooling/serverless-logic-web-tools/serverless-logic-web-tools-openshift-integration.html">OpenShift integration</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="tooling/serverless-logic-web-tools/serverless-logic-web-tools-redhat-application-services-integration.html">Red Hat OpenShift Application and Data Services integration</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="tooling/serverless-logic-web-tools/serverless-logic-web-tools-deploy-projects.html">Deploying projects</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Service Orchestration</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="service-orchestration/orchestration-of-openapi-based-services.html">Orchestrating the OpenAPI services</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="service-orchestration/configuring-openapi-services-endpoints.html">Configuring the OpenAPI services endpoints</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="service-orchestration/working-with-openapi-callbacks.html">OpenAPI callback  in OpenShift Serverless Logic</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="service-orchestration/troubleshooting.html">Troubleshooting</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Event Orchestration</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="eventing/orchestration-of-asyncapi-based-services.html">Orchestrating AsyncAPI Services</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="eventing/event-correlation-with-workflows.html">Event Correlation</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Security</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="security/authention-support-for-openapi-services.html">Authentication for OpenAPI services</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="security/orchestrating-third-party-services-with-oauth2.html">Orchestration of third-party services using OAuth 2.0 authentication</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Executing, Testing and Troubleshooting</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Executing and Testing Workflows</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="testing-and-troubleshooting/quarkus-dev-ui-extension/quarkus-dev-ui-overview.html">Developer UI</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="testing-and-troubleshooting/quarkus-dev-ui-extension/quarkus-dev-ui-workflow-instances-page.html">Workflow Instances</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="testing-and-troubleshooting/quarkus-dev-ui-extension/quarkus-dev-ui-workflow-definition-page.html">Workflow Definitions</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="testing-and-troubleshooting/quarkus-dev-ui-extension/quarkus-dev-ui-monitoring-page.html">Monitoring</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="testing-and-troubleshooting/quarkus-dev-ui-extension/quarkus-dev-ui-custom-dashboard-page.html">Dashboards</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="testing-and-troubleshooting/kn-plugin-workflow-overview.html">Command Line</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Persistence</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="persistence/core-concepts.html">Core concepts</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="cloud/index.html">Cloud</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Operator</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="cloud/operator/install-serverless-operator.html">Installation</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="cloud/operator/developing-workflows.html">Development Mode</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="cloud/operator/referencing-resource-files.html">Referencing Workflow Resources</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="cloud/operator/configuring-workflows.html">Configuration</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="cloud/operator/build-and-deploy-workflows.html">Building and Deploying Workflows</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="cloud/operator/supporting-services.html">Deploy Supporting Services</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="cloud/operator/workflow-status-conditions.html">Custom Resource Status</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="cloud/operator/building-custom-images.html">Building Custom Images</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="cloud/operator/customize-podspec.html">Custom Workflow PodSpec</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="cloud/operator/service-discovery.html">Service Discovery</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="cloud/operator/using-persistence.html">Using persistence</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="cloud/operator/configuring-knative-eventing-resources.html">Knative Eventing</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="cloud/operator/known-issues.html">Roadmap and Known Issues</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Integrations</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="integrations/core-concepts.html">Introduction</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Supporting Services</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Data Index</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="data-index/data-index-core-concepts.html">Core Concepts</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="data-index/data-index-service.html">Data Index Standalone Service</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Use Cases</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="use-cases/advanced-developer-use-cases/index.html">Development of OpenShift Serverless Logic applications using Quarkus and Java</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Getting Started</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="use-cases/advanced-developer-use-cases/getting-started/create-your-first-workflow-service.html">Creating your first workflow service</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="use-cases/advanced-developer-use-cases/getting-started/build-workflow-image-with-quarkus-cli.html">Building workflow images using Quarkus CLI</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="use-cases/advanced-developer-use-cases/getting-started/working-with-serverless-workflow-quarkus-examples.html">Working with OpenShift Serverless Logic example applications</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="use-cases/advanced-developer-use-cases/getting-started/test-serverless-workflow-quarkus-examples.html">Testing images of OpenShift Serverless Logic example applications using Quarkus CLI</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Deployment</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="use-cases/advanced-developer-use-cases/deployments/deploying-on-minikube.html">Deploying on Minikube</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="use-cases/advanced-developer-use-cases/deployments/deploying-on-kubernetes.html">Deploying on Kubernetes</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="use-cases/advanced-developer-use-cases/deployments/deploying-on-openshift.html">Deploying on OpenShift</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Persistence</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="use-cases/advanced-developer-use-cases/persistence/persistence-core-concepts.html">Core Concepts</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="use-cases/advanced-developer-use-cases/persistence/persistence-with-postgresql.html">Running a Quarkus Workflow Application using PostgreSQL</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="use-cases/advanced-developer-use-cases/persistence/postgresql-advanced-concepts.html">Postgresql Advanced Concepts</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="use-cases/advanced-developer-use-cases/persistence/postgresql-flyway-migration.html">PostgreSQL Database Migration</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="use-cases/advanced-developer-use-cases/persistence/integration-tests-with-postgresql.html">OpenShift Serverless Logic integration test using PostgreSQL</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Data Index</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="use-cases/advanced-developer-use-cases/data-index/data-index-as-quarkus-dev-service.html">Data Index as a Quarkus Development service</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="use-cases/advanced-developer-use-cases/data-index/data-index-usecase-singleton.html">Deploying Data Index and OpenShift Serverless Logic application on Minikube</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="use-cases/advanced-developer-use-cases/data-index/data-index-usecase-multi.html">Deploying Data Index and multiple OpenShift Serverless Logic applications on Minikube</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="use-cases/advanced-developer-use-cases/data-index/data-index-quarkus-extension.html">Data Index Quarkus extensions</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Service Orchestration</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="use-cases/advanced-developer-use-cases/service-orchestration/configuring-openapi-services-endpoints-with-quarkus.html">Configuring the OpenAPI services endpoints in different environments</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="use-cases/advanced-developer-use-cases/service-orchestration/orchestration-of-grpc-services.html">Orchestrating gRPC based Services</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Service Discovery</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="use-cases/advanced-developer-use-cases/service-discovery/kubernetes-service-discovery.html">Kubernetes service discovery in OpenShift Serverless Logic</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Event Orchestration</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="use-cases/advanced-developer-use-cases/event-orchestration/consume-produce-events-with-knative-eventing.html">Consuming and producing events on Knative Eventing in Quarkus</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="use-cases/advanced-developer-use-cases/event-orchestration/consume-producing-events-with-kafka.html">Consuming and producing events using Apache Kafka in Quarkus</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="use-cases/advanced-developer-use-cases/event-orchestration/orchestration-based-saga-pattern.html">Saga orchestration example in OpenShift Serverless Logic</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="use-cases/advanced-developer-use-cases/event-orchestration/newsletter-subscription-example.html">Newsletter subscription example in OpenShift Serverless Logic</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Timeouts</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="use-cases/advanced-developer-use-cases/timeouts/timeout-showcase-example.html">Timeouts Showcase in OpenShift Serverless Logic</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Callbacks</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="use-cases/advanced-developer-use-cases/callbacks/callback-state-example.html">Example of OpenShift Serverless Logic application using callback state with Quarkus</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Integrations of external services</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="use-cases/advanced-developer-use-cases/integrations/camel-routes-integration.html">Integrating with Camel routes</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="use-cases/advanced-developer-use-cases/integrations/custom-functions-knative.html">Invoking Knative services from OpenShift Serverless Logic</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="use-cases/advanced-developer-use-cases/integrations/expose-metrics-to-prometheus.html">Exposing Workflow base metrics to Prometheus</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="use-cases/advanced-developer-use-cases/integrations/serverless-dashboard-with-runtime-data.html">Displaying Workflow Data in Dashboards</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Testing</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="use-cases/advanced-developer-use-cases/testing/basic-integration-tests-with-restassured.html">Testing your Quarkus Workflow Application using REST Assured</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="use-cases/advanced-developer-use-cases/testing/mocking-http-cloudevents-with-wiremock.html">Mocking HTTP CloudEvents sink using WireMock</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="use-cases/advanced-developer-use-cases/testing/mocking-openapi-services-with-wiremock.html">Mocking OpenAPI services using WireMock</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Buildpacks for Serverless Functions</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../functions/serverless-functions-about.html">About buildpacks for OpenShift Serverless Functions</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../functions/serverless-functions-buildpacks.html">Building and deploying functions on the cluster</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="navigation-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Documentation</span>
+    <span class="version">main</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">Documentation</span>
+      <ul class="versions">
+        <li class="version is-current">
+          <a href="../index.html">main</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+  <div class="main-view-and-toolbar">
+    <div class="toolbar" role="navigation">
+  <button class="navigation-toggle"></button>
+  <a href="../index.html" class="home-link"></a>
+<nav class="crumbs" aria-label="breadcrumbs">
+  <ul>
+    <li class="crumb"><a href="index.html">Documentation</a></li>
+  </ul>
+</nav>
+</div>
+    <div class="main-view-and-toc">
+        <main class="main">
+          <article class="doc">
+<h1>Documentation</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>OpenShift Serverless Logic is a tool for building cloud-native workflow applications. You can use it to do the services and events orchestration and choreography. Currently, with OpenShift Serverless Logic you can integrate with services and events in your architecture using:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>CloudEvents</strong>. Ideal for an Event-Driven architecture where the services are ready to consume and produce events working in a more reactive way.</p>
+</li>
+<li>
+<p><strong>Sync or Async REST services invocations via OpenAPI/Async API</strong>. There are options even to directly call a REST service in the architecture or ecosystem. Either async or sync methods are supported depending on your requirements.</p>
+</li>
+<li>
+<p><strong>Internal Service execution or invocation</strong>. OpenShift Serverless Logic is also a workflow framework to build applications. You can use it to create custom services in the same thread to run a lightweight workflow-based application within the same instance.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>You can learn how to create, manage, and deploy your workflow applications with the following guides.</p>
+</div>
+</div>
+<div id="toc" class="toc">
+<div id="toctitle"></div>
+<ul class="sectlevel1">
+<li><a href="#_setup">Setup</a></li>
+<li><a href="#_getting_started">Getting started</a></li>
+<li><a href="#_core_concepts">Core Concepts</a></li>
+<li><a href="#_tooling">Tooling</a></li>
+<li><a href="#_service_orchestration">Service Orchestration</a></li>
+<li><a href="#_event_orchestration">Event Orchestration</a></li>
+<li><a href="#_security">Security</a></li>
+<li><a href="#_executing_testing_and_troubleshooting">Executing, Testing and Troubleshooting</a></li>
+<li><a href="#_persistence">Persistence</a></li>
+<li><a href="#_cloud">Cloud</a></li>
+<li><a href="#_integrations">Integrations</a></li>
+<li><a href="#_job_service">Job Service</a></li>
+<li><a href="#_data_index_service">Data Index service</a></li>
+<li><a href="#_use_cases">Use Cases</a></li>
+<li><a href="#_advanced_developer_use_cases">Advanced Developer Use Cases</a></li>
+</ul>
+</div>
+</div>
+<div class="sect1 card-section">
+<h2 id="_setup"><a class="anchor" href="#_setup"></a>Setup</h2>
+<div class="sectionbody">
+<div class="openblock card">
+<div class="content">
+<div class="paragraph card-title">
+<p><a href="getting-started/learning-environment.html" class="xref page">Learning environment</a></p>
+</div>
+<div class="paragraph card-description">
+<p>Learn about the recommended environment to start your journey with OpenShift Serverless Logic applications</p>
+</div>
+</div>
+</div>
+<div class="openblock card">
+<div class="content">
+<div class="paragraph card-title">
+<p><a href="getting-started/preparing-environment.html" class="xref page">Environment setup</a></p>
+</div>
+<div class="paragraph card-description">
+<p>An all-in-one guide to prepare you environment for you to be uncover the full potential of OpenShift Serverless Logic guides on your local environment.</p>
+</div>
+</div>
+</div>
+<div class="openblock card">
+<div class="content">
+<div class="paragraph card-title">
+<p><a href="getting-started/production-environment.html" class="xref page">Production environment</a></p>
+</div>
+<div class="paragraph card-description">
+<p>Learn about the best practices and recommendations for production environments.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1 card-section">
+<h2 id="_getting_started"><a class="anchor" href="#_getting_started"></a>Getting started</h2>
+<div class="sectionbody">
+<div class="openblock card">
+<div class="content">
+<div class="paragraph card-title">
+<p><a href="getting-started/getting-familiar-with-our-tooling.html" class="xref page">Getting familiar with OpenShift Serverless Logic tooling</a></p>
+</div>
+<div class="paragraph card-description">
+<p>Learn about the tools we provide you with, on your journey to create OpenShift Serverless Logic applications</p>
+</div>
+</div>
+</div>
+<div class="openblock card">
+<div class="content">
+<div class="paragraph card-title">
+<p><a href="getting-started/create-your-first-workflow-service-with-kn-cli-and-vscode.html" class="xref page">Creating and running workflow projects using KN CLI and Visual Studio Code</a></p>
+</div>
+<div class="paragraph card-description">
+<p>An all-in-one starting guide. Learn how to create, run &amp; deploy your first OpenShift Serverless Logic project on your local environment.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1 card-section">
+<h2 id="_core_concepts"><a class="anchor" href="#_core_concepts"></a>Core Concepts</h2>
+<div class="sectionbody">
+<div class="openblock card">
+<div class="content">
+<div class="paragraph card-title">
+<p><a href="core/cncf-serverless-workflow-specification-support.html" class="xref page">Serverless Workflow Specification</a></p>
+</div>
+<div class="paragraph card-description">
+<p>Learn about the CNCF Serverless Workflow Specification implementation</p>
+</div>
+</div>
+</div>
+<div class="openblock card">
+<div class="content">
+<div class="paragraph card-title">
+<p><a href="core/handling-events-on-workflows.html" class="xref page">Events in OpenShift Serverless Logic</a></p>
+</div>
+<div class="paragraph card-description">
+<p>Learn how to use the Event state in your workflow application</p>
+</div>
+</div>
+</div>
+<div class="openblock card">
+<div class="content">
+<div class="paragraph card-title">
+<p><a href="core/working-with-callbacks.html" class="xref page">Callbacks in OpenShift Serverless Logic</a></p>
+</div>
+<div class="paragraph card-description">
+<p>Learn how to use the Callback state in your workflow application</p>
+</div>
+</div>
+</div>
+<div class="openblock card">
+<div class="content">
+<div class="paragraph card-title">
+<p><a href="core/understanding-jq-expressions.html" class="xref page">jq Expressions</a></p>
+</div>
+<div class="paragraph card-description">
+<p>Learn how to create jq expressions to manipulate data within a workflow execution</p>
+</div>
+</div>
+</div>
+<div class="openblock card">
+<div class="content">
+<div class="paragraph card-title">
+<p><a href="core/understanding-workflow-error-handling.html" class="xref page">Error handling in OpenShift Serverless Logic</a></p>
+</div>
+<div class="paragraph card-description">
+<p>Learn how to handle errors in your workflow application</p>
+</div>
+</div>
+</div>
+<div class="openblock card">
+<div class="content">
+<div class="paragraph card-title">
+<p><a href="core/configuration-properties.html" class="xref page">Configuration properties in OpenShift Serverless Logic</a></p>
+</div>
+<div class="paragraph card-description">
+<p>Quick reference of configuration properties in workflow</p>
+</div>
+</div>
+</div>
+<div class="openblock card">
+<div class="content">
+<div class="paragraph card-title">
+<p><a href="core/defining-an-input-schema-for-workflows.html" class="xref page">Input and Output schema definition for OpenShift Serverless Logic</a></p>
+</div>
+<div class="paragraph card-description">
+<p>Learn about the input schema definition used to validate the workflow data input against a defined JSON Schema</p>
+</div>
+</div>
+</div>
+<div class="openblock card">
+<div class="content">
+<div class="paragraph card-title">
+<p><a href="core/custom-functions-support.html" class="xref page">Custom functions for your OpenShift Serverless Logic service</a></p>
+</div>
+<div class="paragraph card-description">
+<p>Learn about the custom functions supported by Serverless Workflow</p>
+</div>
+</div>
+</div>
+<div class="openblock card">
+<div class="content">
+<div class="paragraph card-title">
+<p><a href="core/timeouts-support.html" class="xref page">Timeouts in OpenShift Serverless Logic</a></p>
+</div>
+<div class="paragraph card-description">
+<p>Learn how to configure timeouts in the workflow</p>
+</div>
+</div>
+</div>
+<div class="openblock card">
+<div class="content">
+<div class="paragraph card-title">
+<p><a href="core/working-with-parallelism.html" class="xref page">Parallelism in OpenShift Serverless Logic</a></p>
+</div>
+<div class="paragraph card-description">
+<p>Working with parallelism in your workflow project</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1 card-section">
+<h2 id="_tooling"><a class="anchor" href="#_tooling"></a>Tooling</h2>
+<div class="sectionbody">
+<div class="openblock card">
+<div class="content">
+<div class="paragraph card-title">
+<p><a href="tooling/serverless-workflow-editor/swf-editor-overview.html" class="xref page">Serverless Workflow editor</a></p>
+</div>
+<div class="paragraph card-description">
+<p>Learn how to install and use the Serverless Workflow editor</p>
+</div>
+</div>
+</div>
+<div class="openblock card">
+<div class="content">
+<div class="paragraph card-title">
+<p><a href="tooling/serverless-workflow-editor/swf-editor-vscode-extension.html" class="xref page">VS Code extension for Serverless Workflow editor</a></p>
+</div>
+<div class="paragraph card-description">
+<p>Learn how to install and use the VS Code extension for Serverless Workflow editor for creating workflows.</p>
+</div>
+</div>
+</div>
+<div class="openblock card">
+<div class="content">
+<div class="paragraph card-title">
+<p><a href="tooling/serverless-logic-web-tools/serverless-logic-web-tools-overview.html" class="xref page">Serverless Logic Web Tools</a></p>
+</div>
+<div class="paragraph card-description">
+<p>Learn how to use Serverless Logic Web Tools for creating and managing workflows, decisions, and dashboards.</p>
+</div>
+</div>
+</div>
+<div class="openblock card">
+<div class="content">
+<div class="paragraph card-title">
+<p><a href="tooling/serverless-workflow-editor/swf-editor-chrome-extension.html" class="xref page">Chrome extension for Serverless Workflow editor on GitHub</a></p>
+</div>
+<div class="paragraph card-description">
+<p>Learn how to install and use the Chrome extension for Serverless Workflow editor to view and edit workflows directly in Github.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1 card-section">
+<h2 id="_service_orchestration"><a class="anchor" href="#_service_orchestration"></a>Service Orchestration</h2>
+<div class="sectionbody">
+<div class="openblock card">
+<div class="content">
+<div class="paragraph card-title">
+<p><a href="service-orchestration/orchestration-of-openapi-based-services.html" class="xref page">Orchestrating OpenAPI Services</a></p>
+</div>
+<div class="paragraph card-description">
+<p>Learn how to orchestrate REST services using OpenAPI specification descriptors</p>
+</div>
+</div>
+</div>
+<div class="openblock card">
+<div class="content">
+<div class="paragraph card-title">
+<p><a href="service-orchestration/working-with-openapi-callbacks.html" class="xref page">OpenAPI Callback in OpenShift Serverless Logic</a></p>
+</div>
+<div class="paragraph card-description">
+<p>Learn how to use the OpenAPI Callback in your workflow application</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1 card-section">
+<h2 id="_event_orchestration"><a class="anchor" href="#_event_orchestration"></a>Event Orchestration</h2>
+<div class="sectionbody">
+<div class="openblock card">
+<div class="content">
+<div class="paragraph card-title">
+<p><a href="eventing/orchestration-of-asyncapi-based-services.html" class="xref page">Orchestrating AsyncAPI Services</a></p>
+</div>
+<div class="paragraph card-description">
+<p>Learn how to trigger and consume events using AsyncAPI specification descriptors</p>
+</div>
+</div>
+</div>
+<div class="openblock card">
+<div class="content">
+<div class="paragraph card-title">
+<p><a href="eventing/event-correlation-with-workflows.html" class="xref page">Event correlation in OpenShift Serverless Logic</a></p>
+</div>
+<div class="paragraph card-description">
+<p>Learn how to configure event correlation in your workflow application</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1 card-section">
+<h2 id="_security"><a class="anchor" href="#_security"></a>Security</h2>
+<div class="sectionbody">
+<div class="openblock card">
+<div class="content">
+<div class="paragraph card-title">
+<p><a href="security/authention-support-for-openapi-services.html" class="xref page">Authentication for OpenAPI services in OpenShift Serverless Logic</a></p>
+</div>
+<div class="paragraph card-description">
+<p>Learn how to use authentication methods when calling REST services using OpenAPI specification</p>
+</div>
+</div>
+</div>
+<div class="openblock card">
+<div class="content">
+<div class="paragraph card-title">
+<p><a href="security/orchestrating-third-party-services-with-oauth2.html" class="xref page">Orchestration of third-party services using OAuth 2.0 authentication</a></p>
+</div>
+<div class="paragraph card-description">
+<p>Learn about the OAuth2 method support when orchestrating REST services using your workflow application</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1 card-section">
+<h2 id="_executing_testing_and_troubleshooting"><a class="anchor" href="#_executing_testing_and_troubleshooting"></a>Executing, Testing and Troubleshooting</h2>
+<div class="sectionbody">
+<div class="openblock card">
+<div class="content">
+<div class="paragraph card-title">
+<p><a href="testing-and-troubleshooting/quarkus-dev-ui-extension/quarkus-dev-ui-overview.html" class="xref page">Kogito Serverless Workflow Tools extension in Quarkus Dev UI</a></p>
+</div>
+<div class="paragraph card-description">
+<p>Learn how to use the Serverless Workflow extension in Quarkus Dev UI</p>
+</div>
+</div>
+</div>
+<div class="openblock card">
+<div class="content">
+<div class="paragraph card-title">
+<p><a href="testing-and-troubleshooting/kn-plugin-workflow-overview.html" class="xref page">OpenShift Serverless Logic plug-in for Knative CLI</a></p>
+</div>
+<div class="paragraph card-description">
+<p>Learn how to install the OpenShift Serverless Logic plug-in for Knative CLI</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1 card-section">
+<h2 id="_persistence"><a class="anchor" href="#_persistence"></a>Persistence</h2>
+<div class="sectionbody">
+<div class="openblock card">
+<div class="content">
+<div class="paragraph card-title">
+<p><a href="persistence/core-concepts.html" class="xref page">Persistence in OpenShift Serverless Logic</a></p>
+</div>
+<div class="paragraph card-description">
+<p>Learn about the core concepts of persistence inf OpenShift Serverless Logic</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1 card-section">
+<h2 id="_cloud"><a class="anchor" href="#_cloud"></a>Cloud</h2>
+<div class="sectionbody">
+<div class="openblock card">
+<div class="content">
+<div class="paragraph card-title">
+<p><a href="cloud/index.html" class="xref page">OpenShift Serverless Logic in the Cloud</a></p>
+</div>
+<div class="paragraph card-description">
+<p>Learn about the options to deploy workflow applications in Kubernetes</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1 card-section">
+<h2 id="_integrations"><a class="anchor" href="#_integrations"></a>Integrations</h2>
+<div class="sectionbody">
+<div class="openblock card">
+<div class="content">
+<div class="paragraph card-title">
+<p><a href="integrations/core-concepts.html" class="xref page">Introduction</a></p>
+</div>
+<div class="paragraph card-description">
+<p>Learn how to handle integrations of external services in OpenShift Serverless Logic application</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1 card-section">
+<h2 id="_job_service"><a class="anchor" href="#_job_service"></a>Job Service</h2>
+<div class="sectionbody">
+<div class="openblock card">
+<div class="content">
+<div class="paragraph card-title">
+<p><a href="#job-services/core-concepts.adoc" class="xref unresolved">job-services/core-concepts.adoc</a></p>
+</div>
+<div class="paragraph card-description">
+<p>Details about Job Service to control timers in OpenShift Serverless Logic</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1 card-section">
+<h2 id="_data_index_service"><a class="anchor" href="#_data_index_service"></a>Data Index service</h2>
+<div class="sectionbody">
+<div class="openblock card">
+<div class="content">
+<div class="paragraph card-title">
+<p><a href="data-index/data-index-core-concepts.html" class="xref page">Data Index Core Concepts</a></p>
+</div>
+<div class="paragraph card-description">
+<p>Learn Data Index core concepts, allowing to understand the purpose and the different deployment options that are provided.</p>
+</div>
+</div>
+</div>
+<div class="openblock card">
+<div class="content">
+<div class="paragraph card-title">
+<p><a href="data-index/data-index-service.html" class="xref page">Data Index standalone service</a></p>
+</div>
+<div class="paragraph card-description">
+<p>Go deeper in details about Data Index as standalone service deployment.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_use_cases"><a class="anchor" href="#_use_cases"></a>Use Cases</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Collection of guides showcasing core concepts of OpenShift Serverless Logic or providing a solution to specific problem in our domain.</p>
+</div>
+<div class="paragraph">
+<p>In the <code>Advanced Developer Use Cases</code> section, you can find guides that use Java and Quarkus to create OpenShift Serverless Logic applications. These guides allow users to vastly customize their applications depending on their use case. Good undertsanding and knowledge of these technologies is expected.</p>
+</div>
+</div>
+</div>
+<div class="sect1 card-section">
+<h2 id="_advanced_developer_use_cases"><a class="anchor" href="#_advanced_developer_use_cases"></a>Advanced Developer Use Cases</h2>
+<div class="sectionbody">
+<div class="openblock card">
+<div class="content">
+<div class="paragraph card-title">
+<p><a href="use-cases/advanced-developer-use-cases/index.html" class="xref page">OpenShift Serverless Logic with Quarkus</a></p>
+</div>
+<div class="paragraph card-description">
+<p>Learn how to develop &amp; customize OpenShift Serverless Logic applications with Quarkus</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</article>
+        </main>
+            </div>
+  </div>
+</div><footer class="footer">
+  <p>Adapted from Antora default UI, (c) 2019</p>
+</footer>
+<script src="../../../_/js/site.js"></script>
+<script src="../../../_/js/vendor/highlight.js"></script>
+<script src="../../../_/js/tabsBehavior.js"></script>
+<script>hljs.initHighlighting()</script>
+  </body>
+</html>

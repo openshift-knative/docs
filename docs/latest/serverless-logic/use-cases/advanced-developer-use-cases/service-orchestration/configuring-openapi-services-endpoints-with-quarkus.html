@@ -1,0 +1,1160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configuring the OpenAPI services endpoints in different environments :: Red Hat OpenShift Serverless previews</title>
+    <link rel="canonical" href="https://openshift-knative.github.io/docs/docs/latest/serverless-logic/use-cases/advanced-developer-use-cases/service-orchestration/configuring-openapi-services-endpoints-with-quarkus.html">
+    <meta name="generator" content="Antora 3.0.3">
+    <link rel="stylesheet" href="../../../../../../_/css/site.css">
+<link rel="stylesheet" href="../../../../../../_/css/extra.css">
+<link rel="stylesheet" href="../../../../../../_/css/custom.css">
+<link rel="stylesheet" href="../../../../../../_/css/tabs.css">
+<link rel="stylesheet" href="../../../../../../_/font-awesome-4.7.0/css/font-awesome.min.css">
+<link rel="icon" href="../../../../../../_/img/favicon.ico" type="image/x-icon">
+  </head>
+  <body class="article">
+<header class="header" role="banner">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <div class="navbar-item">
+        <button class="navbar-burger" data-target="topbar-nav">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <img src="../../../../../../_/img/serverless-icon.png" class="navbar-logo" alt="OpenShift Serverless icon">
+        <a href="">OpenShift Serverless - Technology and Developer Preview Releases</a>
+      </div>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <!-- search broken
+        <div class="navbar-item hide-for-print">
+          <script async src="https://cse.google.com/cse.js?cx=002898025167115630151:gnr5edrg2eo"></script>
+          <div class="gcse-searchbox" enableAutoComplete="true"></div>
+        </div>
+      -->
+        <a class="navbar-item" href="https://openshift-knative.github.io/docs">Home</a>
+        <a class="navbar-item" href="https://developers.redhat.com/topics/serverless-architecture">Blog</a>
+          <div class="navbar-item has-dropdown is-hoverable">
+              <a class="navbar-link" href="#">Upstream Projects</a>
+              <div class="navbar-dropdown">
+                  <a class="navbar-item" href="https://kogito.kie.org/">Kogito</a>
+                  <a class="navbar-item" href="https://knative.dev/docs/functions/">Knative Functions</a>
+                  <a class="navbar-item" href="https://knative.dev/docs/eventing/">Knative Eventing</a>
+              </div>
+          </div>
+      </div>
+    </div>
+  </nav>
+<!-- need alt search type-->
+<!--<div class="gcse-searchresults"></div>-->
+</header>
+<div class="main-wrapper">
+  <div class="navigation-container" data-component="docs" data-version="main">
+  <aside class="navigation">
+    <div class="panels">
+<div class="navigation-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../../../../index.html">Documentation</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../../../index.html">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Serverless</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Using OpenShift Serverless with OpenShift Service Mesh</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../../../serverless/service-mesh/common-service-mesh-setup.html">Setup Serverless with OpenShift Service Mesh</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../../../serverless/service-mesh/common-service-mesh-network-isolation.html">Use Service Mesh to isolate network-traffic</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../../../serverless/service-mesh/eventing-service-mesh-containersource.html">Eventing: Using ContainerSource with OpenShift Service Mesh</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../../../serverless/service-mesh/eventing-service-mesh-sinkbinding.html">Eventing: Using SinkBinding with OpenShift Service Mesh</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Features</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../../../serverless/features/transport-encryption/transport-encryption-setup.html">Setup transport encryption in Eventing</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../../../serverless/features/eventing-kafka-scaling/eventing-kafka-scaling-setup.html">Setup Autoscaling For Eventing Kafka Components</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Serving</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../../../serverless/serving/serving-with-ingress-sharding.html">Use Serving with OpenShift ingress sharding</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../../../serverless/serving/scaleability-and-performance-of-serving.html">Scalability and performance of OpenShift Serverless Serving</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Serverless Logic</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../about.html">About OpenShift Serverless Logic</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../release-notes.html">Release notes</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">User Guides</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Setup</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../../getting-started/learning-environment.html">Learning environment</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../../getting-started/preparing-environment.html">Environment setup</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../../getting-started/production-environment.html">Production environment</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Getting Started</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../../getting-started/create-your-first-workflow-service-with-kn-cli-and-vscode.html">Creating your first workflow service with KN CLI and VS Code</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../../getting-started/getting-familiar-with-our-tooling.html">Getting familiar with tooling</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Core</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../../core/cncf-serverless-workflow-specification-support.html">CNCF Serverless Workflow specification</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../../core/handling-events-on-workflows.html">Events</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../../core/working-with-callbacks.html">Callbacks</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../../core/understanding-jq-expressions.html">jq expressions</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../../core/understanding-workflow-error-handling.html">Error handling</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../../core/configuration-properties.html">Configuration properties</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../../core/defining-an-input-schema-for-workflows.html">Defining an input schema for your workflows</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../../core/custom-functions-support.html">Custom functions for your service</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../../core/timeouts-support.html">Timeouts</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../../core/working-with-parallelism.html">Parallelism</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Tooling</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../../../tooling/serverless-workflow-editor/swf-editor-overview.html">Editor</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../../tooling/serverless-workflow-editor/swf-editor-vscode-extension.html">VS Code extension</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../../tooling/serverless-workflow-editor/swf-editor-chrome-extension.html">Chrome extension for GitHub</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../../../tooling/serverless-logic-web-tools/serverless-logic-web-tools-overview.html">Serverless Logic Web Tools</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../../tooling/serverless-logic-web-tools/serverless-logic-web-tools-github-integration.html">GitHub integration</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../../tooling/serverless-logic-web-tools/serverless-logic-web-tools-openshift-integration.html">OpenShift integration</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../../tooling/serverless-logic-web-tools/serverless-logic-web-tools-redhat-application-services-integration.html">Red Hat OpenShift Application and Data Services integration</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../../tooling/serverless-logic-web-tools/serverless-logic-web-tools-deploy-projects.html">Deploying projects</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Service Orchestration</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../../../service-orchestration/orchestration-of-openapi-based-services.html">Orchestrating the OpenAPI services</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../../service-orchestration/configuring-openapi-services-endpoints.html">Configuring the OpenAPI services endpoints</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../../service-orchestration/working-with-openapi-callbacks.html">OpenAPI callback  in OpenShift Serverless Logic</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../../service-orchestration/troubleshooting.html">Troubleshooting</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Event Orchestration</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../../eventing/orchestration-of-asyncapi-based-services.html">Orchestrating AsyncAPI Services</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../../eventing/event-correlation-with-workflows.html">Event Correlation</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Security</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../../security/authention-support-for-openapi-services.html">Authentication for OpenAPI services</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../../security/orchestrating-third-party-services-with-oauth2.html">Orchestration of third-party services using OAuth 2.0 authentication</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Executing, Testing and Troubleshooting</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Executing and Testing Workflows</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../../../testing-and-troubleshooting/quarkus-dev-ui-extension/quarkus-dev-ui-overview.html">Developer UI</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../../../testing-and-troubleshooting/quarkus-dev-ui-extension/quarkus-dev-ui-workflow-instances-page.html">Workflow Instances</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../../../testing-and-troubleshooting/quarkus-dev-ui-extension/quarkus-dev-ui-workflow-definition-page.html">Workflow Definitions</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../../../testing-and-troubleshooting/quarkus-dev-ui-extension/quarkus-dev-ui-monitoring-page.html">Monitoring</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../../../testing-and-troubleshooting/quarkus-dev-ui-extension/quarkus-dev-ui-custom-dashboard-page.html">Dashboards</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../../testing-and-troubleshooting/kn-plugin-workflow-overview.html">Command Line</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Persistence</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../../persistence/core-concepts.html">Core concepts</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../../../cloud/index.html">Cloud</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Operator</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../../cloud/operator/install-serverless-operator.html">Installation</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../../cloud/operator/developing-workflows.html">Development Mode</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../../cloud/operator/referencing-resource-files.html">Referencing Workflow Resources</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../../cloud/operator/configuring-workflows.html">Configuration</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../../cloud/operator/build-and-deploy-workflows.html">Building and Deploying Workflows</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../../cloud/operator/supporting-services.html">Deploy Supporting Services</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../../cloud/operator/workflow-status-conditions.html">Custom Resource Status</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../../cloud/operator/building-custom-images.html">Building Custom Images</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../../cloud/operator/customize-podspec.html">Custom Workflow PodSpec</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../../cloud/operator/service-discovery.html">Service Discovery</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../../cloud/operator/using-persistence.html">Using persistence</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../../cloud/operator/configuring-knative-eventing-resources.html">Knative Eventing</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../../cloud/operator/known-issues.html">Roadmap and Known Issues</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Integrations</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../../integrations/core-concepts.html">Introduction</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Supporting Services</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Data Index</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../../data-index/data-index-core-concepts.html">Core Concepts</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../../data-index/data-index-service.html">Data Index Standalone Service</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Use Cases</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../index.html">Development of OpenShift Serverless Logic applications using Quarkus and Java</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Getting Started</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../getting-started/create-your-first-workflow-service.html">Creating your first workflow service</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../getting-started/build-workflow-image-with-quarkus-cli.html">Building workflow images using Quarkus CLI</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../getting-started/working-with-serverless-workflow-quarkus-examples.html">Working with OpenShift Serverless Logic example applications</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../getting-started/test-serverless-workflow-quarkus-examples.html">Testing images of OpenShift Serverless Logic example applications using Quarkus CLI</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Deployment</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../deployments/deploying-on-minikube.html">Deploying on Minikube</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../deployments/deploying-on-kubernetes.html">Deploying on Kubernetes</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../deployments/deploying-on-openshift.html">Deploying on OpenShift</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Persistence</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../persistence/persistence-core-concepts.html">Core Concepts</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../persistence/persistence-with-postgresql.html">Running a Quarkus Workflow Application using PostgreSQL</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../persistence/postgresql-advanced-concepts.html">Postgresql Advanced Concepts</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../persistence/postgresql-flyway-migration.html">PostgreSQL Database Migration</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../persistence/integration-tests-with-postgresql.html">OpenShift Serverless Logic integration test using PostgreSQL</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Data Index</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../data-index/data-index-as-quarkus-dev-service.html">Data Index as a Quarkus Development service</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../data-index/data-index-usecase-singleton.html">Deploying Data Index and OpenShift Serverless Logic application on Minikube</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../data-index/data-index-usecase-multi.html">Deploying Data Index and multiple OpenShift Serverless Logic applications on Minikube</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../data-index/data-index-quarkus-extension.html">Data Index Quarkus extensions</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Service Orchestration</span>
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="6">
+    <a class="nav-link" href="configuring-openapi-services-endpoints-with-quarkus.html">Configuring the OpenAPI services endpoints in different environments</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="orchestration-of-grpc-services.html">Orchestrating gRPC based Services</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Service Discovery</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../service-discovery/kubernetes-service-discovery.html">Kubernetes service discovery in OpenShift Serverless Logic</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Event Orchestration</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../event-orchestration/consume-produce-events-with-knative-eventing.html">Consuming and producing events on Knative Eventing in Quarkus</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../event-orchestration/consume-producing-events-with-kafka.html">Consuming and producing events using Apache Kafka in Quarkus</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../event-orchestration/orchestration-based-saga-pattern.html">Saga orchestration example in OpenShift Serverless Logic</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../event-orchestration/newsletter-subscription-example.html">Newsletter subscription example in OpenShift Serverless Logic</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Timeouts</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../timeouts/timeout-showcase-example.html">Timeouts Showcase in OpenShift Serverless Logic</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Callbacks</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../callbacks/callback-state-example.html">Example of OpenShift Serverless Logic application using callback state with Quarkus</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Integrations of external services</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../integrations/camel-routes-integration.html">Integrating with Camel routes</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../integrations/custom-functions-knative.html">Invoking Knative services from OpenShift Serverless Logic</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../integrations/expose-metrics-to-prometheus.html">Exposing Workflow base metrics to Prometheus</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../integrations/serverless-dashboard-with-runtime-data.html">Displaying Workflow Data in Dashboards</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Testing</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../testing/basic-integration-tests-with-restassured.html">Testing your Quarkus Workflow Application using REST Assured</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../testing/mocking-http-cloudevents-with-wiremock.html">Mocking HTTP CloudEvents sink using WireMock</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../testing/mocking-openapi-services-with-wiremock.html">Mocking OpenAPI services using WireMock</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Buildpacks for Serverless Functions</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../../functions/serverless-functions-about.html">About buildpacks for OpenShift Serverless Functions</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../../functions/serverless-functions-buildpacks.html">Building and deploying functions on the cluster</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="navigation-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Documentation</span>
+    <span class="version">main</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">Documentation</span>
+      <ul class="versions">
+        <li class="version is-current">
+          <a href="../../../../index.html">main</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+  <div class="main-view-and-toolbar">
+    <div class="toolbar" role="navigation">
+  <button class="navigation-toggle"></button>
+  <a href="../../../../index.html" class="home-link"></a>
+<nav class="crumbs" aria-label="breadcrumbs">
+  <ul>
+    <li class="crumb"><a href="../../../../index.html">Documentation</a></li>
+    <li class="crumb">Serverless Logic</li>
+    <li class="crumb">User Guides</li>
+    <li class="crumb">Use Cases</li>
+    <li class="crumb"><a href="../index.html">Development of OpenShift Serverless Logic applications using Quarkus and Java</a></li>
+    <li class="crumb">Service Orchestration</li>
+    <li class="crumb"><a href="configuring-openapi-services-endpoints-with-quarkus.html">Configuring the OpenAPI services endpoints in different environments</a></li>
+  </ul>
+</nav>
+</div>
+    <div class="main-view-and-toc">
+        <main class="main">
+          <article class="doc">
+<h1>Configuring the OpenAPI services endpoints in different environments</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>You can use different MicroProfile ConfigSources, such as environment variables and Kubernetes ConfigMaps, and MicroProfile Config profiles to configure the OpenAPI services in different environments. For more information about MicoProfile ConfigSources, see <a href="https://download.eclipse.org/microprofile/microprofile-config-2.0/microprofile-config-spec-2.0.html#configsource">ConfigSources</a>.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Some operating systems allow only alphabetic characters or an underscore (_), in environment variables. Other characters such as <code>.</code> and <code>/</code> are not allowed. You must use the <a href="https://download.eclipse.org/microprofile/microprofile-config-2.0/microprofile-config-spec-2.0.html#default_configsources.env.mapping">Environment Variables Mapping Rules</a>, to set the value of a configuration property that contains a name with such characters.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The testing procedure described in this document is based on the <code>serverless-workflow-stock-profit</code> example application in <a href="https://github.com/kiegroup/kogito-examples/tree/9.99.x-prod/serverless-workflow-examples/serverless-workflow-stock-profit">GitHub repository</a>. The <code>serverless-workflow-stock-profit</code> example application is a workflow that computes the profit for a given stock based on an existing stock portfolio.</p>
+</div>
+<div class="paragraph">
+<p>The <code>serverless-workflow-stock-profit</code> example application sends request to the following services:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>stock-portfolio-service</code>: Calculates the stock portfolio profit for a given stock based on the current stock price.</p>
+</li>
+<li>
+<p><code>stock-service</code>: Retrieves the current stock price.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Developing an application using a service that returns different results every time can be difficult, therefore the <code>stock-service</code> uses the following implementations depending on the environment.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>real-stock-service</code> (default implementation): Returns the real stock price. This service returns a random price every time to simulate a real stock service. This implementation is used in normal or production environment.</p>
+</li>
+<li>
+<p><code>fake-stock-service</code>: Returns the same price every time. This implementation is used in the development environment.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The <code>stock-profit</code> service contains the following workflow definition:</p>
+</div>
+<div class="listingblock">
+<div class="title">Workflow definition in <code>stock-profit</code> service</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "id": "stockprofit",
+  "specVersion": "0.8",
+  "version": "2.0.0-SNAPSHOT",
+  "name": "Stock profit Workflow",
+  "start": "GetStockPrice",
+  "functions": [
+    {
+      "name": "getStockPriceFunction",
+      "operation": "openapi/stock-svc.yaml#getStockPrice" <i class="conum" data-value="1"></i><b>(1)</b>
+    },
+    {
+      "name": "getProfitFunction",
+      "operation": "openapi/stock-portfolio-svc.yaml#getStockProfit" <i class="conum" data-value="2"></i><b>(2)</b>
+    }
+  ],
+  "states": [
+    {
+      "name": "GetStockPrice",
+      "type": "operation",
+      "actionMode": "sequential",
+      "actions": [
+        {
+          "name": "getStockPrice",
+          "functionRef": {
+            "refName": "getStockPriceFunction",
+            "arguments": {
+              "symbol": ".symbol"
+            }
+          }
+        }
+      ],
+      "transition": "ComputeProfit"
+    },
+    {
+      "name": "ComputeProfit",
+      "type": "operation",
+      "actionMode": "sequential",
+      "actions": [
+        {
+          "name": "getStockProfit",
+          "functionRef": {
+            "refName": "getProfitFunction",
+            "arguments": {
+              "symbol": ".symbol",
+              "currentPrice": ".currentPrice"
+            }
+          }
+        }
+      ],
+      "end": true
+    }
+  ]
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Defines the <code>stock-service</code> service operation</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Defines the <code>stock-portfolio-service</code> service operation</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>OpenShift Serverless Logic leverages Quarkus profiles to configure the workflow application depending on the target environment.</p>
+</div>
+<div class="paragraph">
+<p>To set properties for different profiles, each property needs to be prefixed with a percentage (%) followed by the profile name and a period (.) in the syntax as <code>%&lt;profile-name&gt;.config.name</code>. By default, Quarkus provides the following profiles that activate automatically in certain conditions:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>dev</code>: Activates in development mode, such as <code>quarkus:dev</code></p>
+</li>
+<li>
+<p><code>test</code>: Activates when tests are running</p>
+</li>
+<li>
+<p><code>prod</code> (default profile): Activates when not running in development or test mode</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>You can also create additional profiles and activate them using the <code>quarkus.profile</code> configuration property. For more information about Quarkus profiles, see <a href="https://quarkus.io/guides/config-reference#profiles">Profiles</a> in the Quarkus Configuration reference guide.</p>
+</div>
+</div>
+<div id="toc" class="toc">
+<div id="toctitle"></div>
+<ul class="sectlevel1">
+<li><a href="#proc-config-openapi-services-defining-urls">Defining URLs of the services in different environments</a></li>
+<li><a href="#proc-config-openapi-services-running-the-services">Running the services</a></li>
+<li><a href="#proc-config-openapi-services-running-sw-application-in-development-mode">Running workflow application in development mode</a>
+<ul class="sectlevel2">
+<li><a href="#proc-config-openapi-services-running-sw-application-in-production-mode">Running workflow application in production mode</a></li>
+<li><a href="#proc-define-urls-using-environment-variables">Defining URLs of services in different environments using environment variables</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect1">
+<h2 id="proc-config-openapi-services-defining-urls"><a class="anchor" href="#proc-config-openapi-services-defining-urls"></a>Defining URLs of the services in different environments</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You can define the URLs of the services in different environments by using profiles.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Create a file named <code>application.properties</code> in the <code>src/main/resources</code> directory of the workflow project, if the file does not exist.</p>
+</li>
+<li>
+<p>In the <code>application.properties</code> file, add the OpenAPI configuration for the default environment:</p>
+<div class="openblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Example properties in <code>application.properties</code> file</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">quarkus.rest-client.stock_svc_yaml.url=http://localhost:8383/ <i class="conum" data-value="1"></i><b>(1)</b>
+quarkus.rest-client.stock_portfolio_svc_yaml.url=http://localhost:8282/</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>URL of the <code>real-stock-service</code> service</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</li>
+<li>
+<p>In the <code>application.properties</code> file, add the OpenAPI configuration for the <code>dev</code> environment:</p>
+<div class="openblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Example properties for development environment</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">%dev.quarkus.rest-client.stock_svc_yaml.url=http://localhost:8181/ <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>URL of the <code>fake-stock-service</code> service</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The <code>%dev.</code> prefix indicates the <code>dev</code> profile configuration, which is used when you run <code>mvn quarkus:dev</code> or <code>quarkus dev</code>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="proc-config-openapi-services-running-the-services"><a class="anchor" href="#proc-config-openapi-services-running-the-services"></a>Running the services</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>After defining the URLs of the services, you can run the services that the workflow sends request to.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>URLs of the services in the different environments are defined.</p>
+<div class="paragraph">
+<p>For more information, see <a href="#proc-config-openapi-services-defining-urls">Defining the URLs of the services in different environments</a>.</p>
+</div>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>In a separate command terminal window, run the <code>stock-portfolio-service</code> service:</p>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Run the <code>stock-portfolio-service</code> service</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">cd stock-portfolio-service
+mvn quarkus:dev -Ddebug=false</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can access the <code>stock-portfolio-service</code> service at <code><a href="http://localhost:8282/" class="bare">localhost:8282/</a></code>.</p>
+</div>
+</div>
+</div>
+</li>
+<li>
+<p>In a separate command terminal window, run the <code>real-stock-service</code> service:</p>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Run <code>real-stock-service</code> service</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">cd real-stock-service
+mvn quarkus:dev -Ddebug=false</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can access the <code>real-stock-service</code> service at <code><a href="http://localhost:8383/" class="bare">localhost:8383/</a></code>.</p>
+</div>
+</div>
+</div>
+</li>
+<li>
+<p>In a separate command terminal window, run the <code>fake-stock-service</code> service:</p>
+<div class="openblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Run <code>fake-stock-service</code> service</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">cd fake-stock-service
+mvn quarkus:dev -Ddebug=false</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can access the <code>fake-stock-service</code> service at <code><a href="http://localhost:8181/" class="bare">localhost:8181/</a></code>.</p>
+</div>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="proc-config-openapi-services-running-sw-application-in-development-mode"><a class="anchor" href="#proc-config-openapi-services-running-sw-application-in-development-mode"></a>Running workflow application in development mode</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>When you define <code>%dev.quarkus.rest-client.stock_svc_yaml.url=http://localhost:8181/</code>, the <code>fake-stock-service</code> service is used in the development mode and you get the same result every time you run the workflow. Using this example, you can run the workflow application in development mode.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>Services that the workflow application sends requests to are started.</p>
+<div class="paragraph">
+<p>For more information, see <a href="#proc-config-openapi-services-running-the-services">Running the services</a>.</p>
+</div>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>In a separate command terminal window, run the workflow application in development mode:</p>
+<div class="openblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Run workflow application in development mode</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">cd stock-profit
+mvn quarkus:dev -Ddebug=false</code></pre>
+</div>
+</div>
+</div>
+</div>
+</li>
+<li>
+<p>In a separate command terminal window, send a request to the workflow application:</p>
+<div class="openblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Example request</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">curl -X 'POST' \
+  'http://localhost:8080/stockprofit' \
+  -H 'accept: */*' \
+  -H 'Content-Type: application/json' \
+  -d '{ "symbol": "KGTO" }'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example response</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{"id":"5ab5dcb8-5952-4730-b526-cace363774bb","workflowdata":{"symbol":"KGTO","currentPrice":75,"profit":"50%"}}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Note that, in the previous example <code>fake-stock-service</code> is used, therefore, the computed <code>profit</code> property is same no matter how many times you run the workflow.</p>
+</div>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="sect2">
+<h3 id="proc-config-openapi-services-running-sw-application-in-production-mode"><a class="anchor" href="#proc-config-openapi-services-running-sw-application-in-production-mode"></a>Running workflow application in production mode</h3>
+<div class="paragraph">
+<p>When you define <code>quarkus.rest-client.stock_svc_yaml.url=http://localhost:8383/</code>, the <code>real-stock-service</code> service is used in the normal or production mode and you get different results every time you run the workflow. Using this example, you can run the workflow application in normal or production mode.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>Services that the workflow application sends requests to are started.</p>
+<div class="paragraph">
+<p>For more information, see <a href="#proc-config-openapi-services-running-the-services">Running the services</a>.</p>
+</div>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>In a separate command terminal window, package the workflow application to be run as fat JAR:</p>
+<div class="openblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Package workflow application</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">cd stock-profit
+mvn package</code></pre>
+</div>
+</div>
+</div>
+</div>
+</li>
+<li>
+<p>In a separate command terminal window, run the workflow application in normal or production mode:</p>
+<div class="openblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Run workflow application in normal or production mode</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">java -jar target/quarkus-app/quarkus-run.jar</code></pre>
+</div>
+</div>
+</div>
+</div>
+</li>
+<li>
+<p>In a separate command terminal window, send a request to the workflow application:</p>
+<div class="openblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Example request</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">curl -X 'POST' \
+  'http://localhost:8080/stockprofit' \
+  -H 'accept: */*' \
+  -H 'Content-Type: application/json' \
+  -d '{ "symbol": "KGTO" }'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example response</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{"id":"a80c95d6-51fd-4ca9-b689-f779929c9937","workflowdata":{"symbol":"KGTO","currentPrice":59.36,"profit":"19%"}}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Note that, in the previous example, the <code>real-stock-service</code> is used, therefore, the computed <code>profit</code> property is different every time you run the workflow.</p>
+</div>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="proc-define-urls-using-environment-variables"><a class="anchor" href="#proc-define-urls-using-environment-variables"></a>Defining URLs of services in different environments using environment variables</h3>
+<div class="paragraph">
+<p>You can define the URLs of the services in different environments using profiles and environment variables.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>Services that the workflow application sends requests to are started.</p>
+<div class="paragraph">
+<p>For more information, see <a href="#proc-config-openapi-services-running-the-services">Running the services</a>.</p>
+</div>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>In a separate command terminal window, run the workflow application in development mode, overwriting the property defined in the <code>application.properties</code> file using an environment variable:</p>
+<div class="openblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Run the workflow application in development mode</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">cd stock-profit
+export _DEV_QUARKUS_REST_CLIENT_STOCK_SVC_YAML_URL=http://localhost:8383/ <i class="conum" data-value="1"></i><b>(1)</b>
+mvn quarkus:dev -Ddebug=false</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Overwrite the <code>%dev.quarkus.rest-client.stock_svc_yaml.url=http://localhost:8181/</code> defined in the <code>application.properties</code> file using an environment variable, which is pointing to <code>real-stock-service</code>.</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</li>
+<li>
+<p>In a separate command terminal window, send a request to the workflow application:</p>
+<div class="openblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Example request</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">curl -X 'POST' \
+  'http://localhost:8080/stockprofit' \
+  -H 'accept: */*' \
+  -H 'Content-Type: application/json' \
+  -d '{ "symbol": "KGTO" }'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example response</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{"id":"5ab5dcb8-5952-4730-b526-cace363774bb","workflowdata":{"symbol":"KGTO","currentPrice":56.35,"profit":"13%"}}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Note that, in the previous example, you overwrote the property defined in the <code>application.properties</code> file to point to <code>real-stock-service</code>, therefore, the computed <code>profit</code> property is different every time you run the workflow.</p>
+</div>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+</article>
+        </main>
+            </div>
+  </div>
+</div><footer class="footer">
+  <p>Adapted from Antora default UI, (c) 2019</p>
+</footer>
+<script src="../../../../../../_/js/site.js"></script>
+<script src="../../../../../../_/js/vendor/highlight.js"></script>
+<script src="../../../../../../_/js/tabsBehavior.js"></script>
+<script>hljs.initHighlighting()</script>
+  </body>
+</html>

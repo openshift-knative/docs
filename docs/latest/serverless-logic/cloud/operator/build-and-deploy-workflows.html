@@ -122,18 +122,33 @@
     <a class="nav-link" href="../../about.html">About OpenShift Serverless Logic</a>
   </li>
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../release-notes.html">Release notes</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <button class="nav-toggle"></button>
     <span class="nav-text">User Guides</span>
 <ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Setup</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../getting-started/learning-environment.html">Learning environment</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../getting-started/preparing-environment.html">Environment setup</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../getting-started/production-environment.html">Production environment</a>
+  </li>
+</ul>
+  </li>
   <li class="nav-item" data-depth="3">
     <button class="nav-toggle"></button>
     <span class="nav-text">Getting Started</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="../../getting-started/create-your-first-workflow-service-with-kn-cli-and-vscode.html">Creating your first workflow service with KN CLI and VS Code</a>
-  </li>
-  <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../getting-started/create-your-first-workflow-service.html">Creating your first workflow service</a>
   </li>
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="../../getting-started/getting-familiar-with-our-tooling.html">Getting familiar with tooling</a>
@@ -182,13 +197,13 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="../../tooling/serverless-workflow-editor/swf-editor-overview.html">Serverless Workflow editor</a>
+    <a class="nav-link" href="../../tooling/serverless-workflow-editor/swf-editor-overview.html">Editor</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../../tooling/serverless-workflow-editor/swf-editor-vscode-extension.html">VS Code extension for Serverless Workflow editor</a>
+    <a class="nav-link" href="../../tooling/serverless-workflow-editor/swf-editor-vscode-extension.html">VS Code extension</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../../tooling/serverless-workflow-editor/swf-editor-chrome-extension.html">Chrome GitHub extension for Serverless Workflow editor</a>
+    <a class="nav-link" href="../../tooling/serverless-workflow-editor/swf-editor-chrome-extension.html">Chrome extension for GitHub</a>
   </li>
 </ul>
   </li>
@@ -208,9 +223,6 @@
   <li class="nav-item" data-depth="5">
     <a class="nav-link" href="../../tooling/serverless-logic-web-tools/serverless-logic-web-tools-deploy-projects.html">Deploying projects</a>
   </li>
-  <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../../tooling/serverless-logic-web-tools/serverless-logic-web-tools-enable-kogito-swf-visualization.html">Kogito Serverless Workflow Visualization</a>
-  </li>
 </ul>
   </li>
 </ul>
@@ -227,12 +239,12 @@
     <a class="nav-link" href="../../service-orchestration/configuring-openapi-services-endpoints.html">Configuring the OpenAPI services endpoints</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="#serverless-logic:service-orchestration/working-with-openapi-callbacks.adoc.adoc">OpenAPI callback  in OpenShift Serverless Logic</a>
+    <a class="nav-link" href="../../service-orchestration/working-with-openapi-callbacks.html">OpenAPI callback  in OpenShift Serverless Logic</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../service-orchestration/orchestration-of-grpc-services.html">Orchestration of gRPC based services</a>
+    <a class="nav-link" href="../../service-orchestration/troubleshooting.html">Troubleshooting</a>
   </li>
 </ul>
   </li>
@@ -241,22 +253,10 @@
     <span class="nav-text">Event Orchestration</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="#serverless-logic:eventing/orchestration-of-asyncapi-callbacks.adoc">Orchestrating AsyncAPI Services</a>
+    <a class="nav-link" href="../../eventing/orchestration-of-asyncapi-based-services.html">Orchestrating AsyncAPI Services</a>
   </li>
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="../../eventing/event-correlation-with-workflows.html">Event Correlation</a>
-  </li>
-  <li class="nav-item" data-depth="4">
-    <button class="nav-toggle"></button>
-    <span class="nav-text">Quarkus</span>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../../eventing/consume-producing-events-with-kafka.html">Consuming and producing events using Apache Kafka</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../eventing/consume-produce-events-with-knative-eventing.html">Consuming and producing events on Knative Eventing</a>
   </li>
 </ul>
   </li>
@@ -303,21 +303,6 @@
   </li>
 </ul>
   </li>
-  <li class="nav-item" data-depth="4">
-    <button class="nav-toggle"></button>
-    <span class="nav-text">Quarkus</span>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../../testing-and-troubleshooting/mocking-http-cloudevents-with-wiremock.html">Mocking HTTP CloudEvents sink using WireMock</a>
-  </li>
-  <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../../testing-and-troubleshooting/mocking-openapi-services-with-wiremock.html">Mocking OpenAPI services using WireMock</a>
-  </li>
-  <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../../testing-and-troubleshooting/basic-integration-tests-with-restassured.html">Testing using REST Assured</a>
-  </li>
-</ul>
-  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="3">
@@ -325,19 +310,7 @@
     <span class="nav-text">Persistence</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
-    <button class="nav-toggle"></button>
-    <span class="nav-text">Quarkus</span>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../../persistence/persistence-with-postgresql.html">Running a workflow service using PostgreSQL</a>
-  </li>
-  <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../../persistence/postgresql-flyway-migration.html">Migrate your PostgreSQL database</a>
-  </li>
-  <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../../persistence/integration-tests-with-postgresql.html">Integration Tests with PostgreSQL</a>
-  </li>
-</ul>
+    <a class="nav-link" href="../../persistence/core-concepts.html">Core concepts</a>
   </li>
 </ul>
   </li>
@@ -365,31 +338,28 @@
     <a class="nav-link" href="build-and-deploy-workflows.html">Building and Deploying Workflows</a>
   </li>
   <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="supporting-services.html">Deploy Supporting Services</a>
+  </li>
+  <li class="nav-item" data-depth="5">
     <a class="nav-link" href="workflow-status-conditions.html">Custom Resource Status</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="known-issues.html">Known Issues</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="4">
-    <button class="nav-toggle"></button>
-    <span class="nav-text">Quarkus</span>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../quarkus/build-workflow-image-with-quarkus-cli.html">Building workflow images</a>
+    <a class="nav-link" href="building-custom-images.html">Building Custom Images</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../quarkus/deploying-on-minikube.html">Deploying Workflows on Minikube</a>
+    <a class="nav-link" href="customize-podspec.html">Custom Workflow PodSpec</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../quarkus/deploying-on-kubernetes.html">Deploying Workflows on Kubernetes</a>
+    <a class="nav-link" href="service-discovery.html">Service Discovery</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="#serverless-logic:cloud/deploying-on-openshift.adoc">Deploying Workflows on Openshift</a>
+    <a class="nav-link" href="using-persistence.html">Using persistence</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../quarkus/kubernetes-service-discovery.html">Kubernetes service discovery</a>
+    <a class="nav-link" href="configuring-knative-eventing-resources.html">Knative Eventing</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="known-issues.html">Roadmap and Known Issues</a>
   </li>
 </ul>
   </li>
@@ -400,16 +370,7 @@
     <span class="nav-text">Integrations</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../integrations/camel-routes-integration.html">Integrating with Camel Routes</a>
-  </li>
-  <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../integrations/custom-functions-knative.html">Invoking Knative services</a>
-  </li>
-  <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../integrations/expose-metrics-to-prometheus.html">Exposing the workflow base metrics to Prometheus</a>
-  </li>
-  <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../integrations/serverless-dashboard-with-runtime-data.html">Displaying workflow data in dashboards</a>
+    <a class="nav-link" href="../../integrations/core-concepts.html">Introduction</a>
   </li>
 </ul>
   </li>
@@ -422,37 +383,10 @@
     <span class="nav-text">Data Index</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="#serverless-logic:supporting-services/data-index/data-index-concepts.adoc">Data Index Core Concepts</a>
+    <a class="nav-link" href="../../data-index/data-index-core-concepts.html">Core Concepts</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../../supporting-services/data-index/data-index-service.html">Data Index Standalone Service</a>
-  </li>
-  <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="#serverless-logic:supporting-services/data-index/data-index-quarkus-extensions.adoc">Data Index Quarkus Extensions</a>
-  </li>
-  <li class="nav-item" data-depth="5">
-    <button class="nav-toggle"></button>
-    <span class="nav-text">Operator</span>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="6">
-    <a class="nav-link" href="#serverless-logic:supporting-services/data-index/operator/data-index-usecase-singleton.adoc">Deploying Data Index and OpenShift Serverless Logic application</a>
-  </li>
-  <li class="nav-item" data-depth="6">
-    <a class="nav-link" href="#serverless-logic:supporting-services/data-index/operator/data-index-usecase-multi.adoc">Deploying Data Index and multiple OpenShift Serverless Logic application</a>
-  </li>
-</ul>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="4">
-    <button class="nav-toggle"></button>
-    <span class="nav-text">Job Service</span>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="#serverless-logic:supporting-services/jobs-service/core-concepts.adoc">Job Service Introduction</a>
-  </li>
-  <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="#serverless-logic:supporting-services/jobs-service/quarkus-extensions.adoc">Job Service Quarkus Extensions</a>
+    <a class="nav-link" href="../../data-index/data-index-service.html">Data Index Standalone Service</a>
   </li>
 </ul>
   </li>
@@ -463,17 +397,176 @@
     <span class="nav-text">Use Cases</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../use-cases/orchestration-based-saga-pattern.html">Saga Orchestration Example</a>
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../../use-cases/advanced-developer-use-cases/index.html">Development of OpenShift Serverless Logic applications using Quarkus and Java</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Getting Started</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../../use-cases/advanced-developer-use-cases/getting-started/create-your-first-workflow-service.html">Creating your first workflow service</a>
   </li>
-  <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../use-cases/timeout-showcase-example.html">Timeout Example</a>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../../use-cases/advanced-developer-use-cases/getting-started/build-workflow-image-with-quarkus-cli.html">Building workflow images using Quarkus CLI</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../../use-cases/advanced-developer-use-cases/getting-started/working-with-serverless-workflow-quarkus-examples.html">Working with OpenShift Serverless Logic example applications</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../../use-cases/advanced-developer-use-cases/getting-started/test-serverless-workflow-quarkus-examples.html">Testing images of OpenShift Serverless Logic example applications using Quarkus CLI</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Deployment</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../../use-cases/advanced-developer-use-cases/deployments/deploying-on-minikube.html">Deploying on Minikube</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../../use-cases/advanced-developer-use-cases/deployments/deploying-on-kubernetes.html">Deploying on Kubernetes</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../../use-cases/advanced-developer-use-cases/deployments/deploying-on-openshift.html">Deploying on OpenShift</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Persistence</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../../use-cases/advanced-developer-use-cases/persistence/persistence-core-concepts.html">Core Concepts</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../../use-cases/advanced-developer-use-cases/persistence/persistence-with-postgresql.html">Running a Quarkus Workflow Application using PostgreSQL</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../../use-cases/advanced-developer-use-cases/persistence/postgresql-advanced-concepts.html">Postgresql Advanced Concepts</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../../use-cases/advanced-developer-use-cases/persistence/postgresql-flyway-migration.html">PostgreSQL Database Migration</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../../use-cases/advanced-developer-use-cases/persistence/integration-tests-with-postgresql.html">OpenShift Serverless Logic integration test using PostgreSQL</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Data Index</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../../use-cases/advanced-developer-use-cases/data-index/data-index-as-quarkus-dev-service.html">Data Index as a Quarkus Development service</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../../use-cases/advanced-developer-use-cases/data-index/data-index-usecase-singleton.html">Deploying Data Index and OpenShift Serverless Logic application on Minikube</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../../use-cases/advanced-developer-use-cases/data-index/data-index-usecase-multi.html">Deploying Data Index and multiple OpenShift Serverless Logic applications on Minikube</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../../use-cases/advanced-developer-use-cases/data-index/data-index-quarkus-extension.html">Data Index Quarkus extensions</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Service Orchestration</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../../use-cases/advanced-developer-use-cases/service-orchestration/configuring-openapi-services-endpoints-with-quarkus.html">Configuring the OpenAPI services endpoints in different environments</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../../use-cases/advanced-developer-use-cases/service-orchestration/orchestration-of-grpc-services.html">Orchestrating gRPC based Services</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Service Discovery</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../../use-cases/advanced-developer-use-cases/service-discovery/kubernetes-service-discovery.html">Kubernetes service discovery in OpenShift Serverless Logic</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Event Orchestration</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../../use-cases/advanced-developer-use-cases/event-orchestration/consume-produce-events-with-knative-eventing.html">Consuming and producing events on Knative Eventing in Quarkus</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../../use-cases/advanced-developer-use-cases/event-orchestration/consume-producing-events-with-kafka.html">Consuming and producing events using Apache Kafka in Quarkus</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../../use-cases/advanced-developer-use-cases/event-orchestration/orchestration-based-saga-pattern.html">Saga orchestration example in OpenShift Serverless Logic</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../../use-cases/advanced-developer-use-cases/event-orchestration/newsletter-subscription-example.html">Newsletter subscription example in OpenShift Serverless Logic</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Timeouts</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../../use-cases/advanced-developer-use-cases/timeouts/timeout-showcase-example.html">Timeouts Showcase in OpenShift Serverless Logic</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Callbacks</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../../use-cases/advanced-developer-use-cases/callbacks/callback-state-example.html">Example of OpenShift Serverless Logic application using callback state with Quarkus</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Integrations of external services</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../../use-cases/advanced-developer-use-cases/integrations/camel-routes-integration.html">Integrating with Camel routes</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../../use-cases/advanced-developer-use-cases/integrations/custom-functions-knative.html">Invoking Knative services from OpenShift Serverless Logic</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../../use-cases/advanced-developer-use-cases/integrations/expose-metrics-to-prometheus.html">Exposing Workflow base metrics to Prometheus</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../../use-cases/advanced-developer-use-cases/integrations/serverless-dashboard-with-runtime-data.html">Displaying Workflow Data in Dashboards</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Testing</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../../use-cases/advanced-developer-use-cases/testing/basic-integration-tests-with-restassured.html">Testing your Quarkus Workflow Application using REST Assured</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../../use-cases/advanced-developer-use-cases/testing/mocking-http-cloudevents-with-wiremock.html">Mocking HTTP CloudEvents sink using WireMock</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../../use-cases/advanced-developer-use-cases/testing/mocking-openapi-services-with-wiremock.html">Mocking OpenAPI services using WireMock</a>
   </li>
 </ul>
   </li>
 </ul>
   </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../release-notes.html">Release notes for Serverless Logic</a>
+</ul>
+  </li>
+</ul>
   </li>
 </ul>
   </li>
@@ -535,13 +628,10 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>This document describes how to build and deploy your workflow on a cluster using the <a href="https://github.com/apache/incubator-kie-kogito-serverless-operator/">Serverless Logic Operator</a> only by having a <code>SonataFlow</code> custom resource.</p>
+<p>This document describes how to build and deploy your workflow on a cluster using the <a href="https://github.com/kiegroup/kogito-serverless-operator/tree/9.99.x-prod">Serverless Logic Operator</a> only by having a <code>SonataFlow</code> custom resource.</p>
 </div>
 <div class="paragraph">
-<p>Every time you need to change the workflow definition the system will (re)build a new immutable version of the workflow. If you&#8217;re still in development phase, please see the <a href="developing-workflows.html" class="xref page">Developing Workflow with the Operator</a> guide.</p>
-</div>
-<div class="paragraph">
-<p>Follow the <a href="#building-kubernetes">Kubernetes</a> or <a href="#building-openshift">OpenShift</a> sections of this document based on the cluster you wish to build your workflows on.</p>
+<p>Every time you need to change the workflow definition the system will (re)build a new immutable version of the workflow. If you&#8217;re still in development phase, please see the <a href="developing-workflows.html" class="xref page">Developing Workflows with the Operator</a> guide.</p>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -551,11 +641,14 @@
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Serverless Logic Operator is under active development with features yet to be implemented. Please see <a href="known-issues.html" class="xref page">Serverless Logic Operator Known Issues, Limitations and Roadmap</a>.</p>
+<p>The build system implemented by the Serverless Logic Operator is not suitable for complex production use cases. Consider using an external tool to build your application such as Tekton and ArgoCD. The resulting image can then be deployed with <code>SonataFlow</code> custom resource. See more at <a href="customize-podspec.html#custom-image-default-container" class="xref page">Setting a custom image in the default container</a> section in the <a href="customize-podspec.html#custom-image-default-container" class="xref page">cloud/operator/customize-podspec.adoc#custom-image-default-container</a> guide.</p>
 </div>
 </td>
 </tr>
 </table>
+</div>
+<div class="paragraph">
+<p>Follow the <a href="#building-kubernetes">Kubernetes</a> or <a href="#building-openshift">OpenShift</a> sections of this document based on the cluster you wish to build your workflows on.</p>
 </div>
 <div class="ulist">
 <div class="title">Prerequisites</div>
@@ -595,6 +688,7 @@
 </li>
 <li><a href="#build-deploy-workflow">Build and deploy your workflow</a></li>
 <li><a href="#_check_if_the_workflow_is_running">Check if the Workflow is running</a></li>
+<li><a href="#_restarting_a_build">Restarting a build</a></li>
 <li><a href="#_additional_resources">Additional resources</a></li>
 <li><a href="#_found_an_issue"><em><strong>Found an issue?</strong></em></a></li>
 </ul>
@@ -604,7 +698,7 @@
 <h2 id="configure-build-system"><a class="anchor" href="#configure-build-system"></a>Configuring the build system</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The operator can build workflows on Kubernetes or OpenShift. On Kubernetes, it uses <a href="https://github.com/GoogleContainerTools/kaniko">Kaniko</a> and on OpenShift a <a href="https://docs.openshift.com/container-platform/4.13/cicd/builds/understanding-image-builds.html">standard BuildConfig</a>. The operator build system is not tailored for advanced use cases and you can do only a few customizations.</p>
+<p>The operator can build workflows on Kubernetes or OpenShift. On Kubernetes, it uses <a href="https://github.com/GoogleContainerTools/kaniko">Kaniko</a> and on OpenShift a <a href="https://docs.openshift.com/container-platform/4.13/cicd/builds/understanding-image-builds.html">standard BuildConfig</a>. The operator build system is not tailored for advanced production use cases and you can do only a few customizations.</p>
 </div>
 <div class="sect2">
 <h3 id="_using_another_workflow_base_builder_image"><a class="anchor" href="#_using_another_workflow_base_builder_image"></a>Using another Workflow base builder image</h3>
@@ -612,7 +706,7 @@
 <p>If your scenario has strict policies for image usage, such as security or hardening constraints, you can replace the default image used by the operator to build the final workflow container image. Alternatively, you might want to test a nightly build with a bug fix or a custom image containing your customizations.</p>
 </div>
 <div class="paragraph">
-<p>By default, the operator will use the image distributed upstream to run the workflows in the development profile. You can change this image by editing the <code>SonataFlowPlatform</code> custom resource in the namespace where you deployed your workflows:</p>
+<p>By default, the operator will use the image distributed upstream to build workflows. You can change this image by editing the <code>SonataFlowPlatform</code> custom resource in the namespace where you deployed your workflows:</p>
 </div>
 <div class="listingblock">
 <div class="title">Patching the current SonataFlowPlatform with the new builder image</div>
@@ -625,7 +719,7 @@ kubectl patch sonataflowplatform &lt;name&gt; --patch  'spec:\n    build:\n    c
 <div class="sect2">
 <h3 id="_customize_the_base_build_dockerfile"><a class="anchor" href="#_customize_the_base_build_dockerfile"></a>Customize the base build Dockerfile</h3>
 <div class="paragraph">
-<p>The operator uses the sonataflow-operator-builder-config <code>ConfigMap</code> in the operator&#8217;s installation namespace ({operator_installation_namespace}) to configure and run the workflow build process.
+<p>The operator uses the sonataflow-operator-builder-config <code>ConfigMap</code> in the operator&#8217;s installation namespace (sonataflow-operator-system) to configure and run the workflow build process.
 You can change the <code>Dockerfile</code> entry in this <code>ConfigMap</code> to tailor the Dockerfile to your needs. Just be aware that this can break the build process.</p>
 </div>
 <div class="listingblock">
@@ -635,21 +729,25 @@ You can change the <code>Dockerfile</code> entry in this <code>ConfigMap</code> 
 data:
   DEFAULT_BUILDER_RESOURCE_NAME: Dockerfile
   DEFAULT_WORKFLOW_EXTENSION: .sw.json
-  Dockerfile: "FROM quay.io/kiegroup/kogito-swf-builder-nightly:latest AS builder\n
-    \ \n  # Copy from build context to skeleton resources project\nCOPY * ./resources/\n\nRUN
-    /home/kogito/launch/build-app.sh ./resources\n  \n  #=============================\n
-    \ # Runtime Run\n  #=============================\nFROM registry.access.redhat.com/ubi8/openjdk-11:latest\n\nENV
-    LANG='en_US.UTF-8' LANGUAGE='en_US:en'\n  \n  # We make four distinct layers so
-    if there are application changes the library layers can be re-used\nCOPY --from=builder
-    --chown=185 /home/kogito/serverless-workflow-project/target/quarkus-app/lib/ /deployments/lib/\nCOPY
-    --from=builder --chown=185 /home/kogito/serverless-workflow-project/target/quarkus-app/*.jar
+  Dockerfile: "FROM registry.redhat.io/openshift-serverless-1-tech-preview/logic-data-index-ephemeral-rhel8:latest AS builder\n\n#
+    variables that can be overridden by the builder\n# To add a Quarkus extension
+    to your application\nARG QUARKUS_EXTENSIONS\n# Args to pass to the Quarkus CLI
+    add extension command\nARG QUARKUS_ADD_EXTENSION_ARGS\n# Additional java/mvn arguments
+    to pass to the builder\nARG MAVEN_ARGS_APPEND\n\n# Copy from build context to
+    skeleton resources project\nCOPY --chown=1001 . ./resources\n\nRUN /home/kogito/launch/build-app.sh
+    ./resources\n  \n#=============================\n# Runtime Run\n#=============================\nFROM
+    registry.access.redhat.com/ubi9/openjdk-17:latest\n\nENV LANG='en_US.UTF-8' LANGUAGE='en_US:en'\n
+    \ \n# We make four distinct layers so if there are application changes the library
+    layers can be re-used\nCOPY --from=builder --chown=185 /home/kogito/serverless-workflow-project/target/quarkus-app/lib/
+    /deployments/lib/\nCOPY --from=builder --chown=185 /home/kogito/serverless-workflow-project/target/quarkus-app/*.jar
     /deployments/\nCOPY --from=builder --chown=185 /home/kogito/serverless-workflow-project/target/quarkus-app/app/
     /deployments/app/\nCOPY --from=builder --chown=185 /home/kogito/serverless-workflow-project/target/quarkus-app/quarkus/
     /deployments/quarkus/\n\nEXPOSE 8080\nUSER 185\nENV AB_JOLOKIA_OFF=\"\"\nENV JAVA_OPTS=\"-Dquarkus.http.host=0.0.0.0
     -Djava.util.logging.manager=org.jboss.logmanager.LogManager\"\nENV JAVA_APP_JAR=\"/deployments/quarkus-run.jar\"\n"
 kind: ConfigMap
 metadata:
-  name: sonataflow-operator-builder-config</code></pre>
+  name: sonataflow-operator-builder-config
+  namespace: sonataflow-operator-system</code></pre>
 </div>
 </div>
 <div class="admonitionblock warning">
@@ -831,12 +929,17 @@ spec:
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">QUARKUS_EXTENSIONS</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">List of <a href="https://quarkus.io/extensions/">Quarkus Extensions</a> separated by comma that the builder should add to the workflow.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">org.kie.kogito:kogito-addons-quarkus-persistence-infinispan:2.0.0-SNAPSHOT</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">org.kie.kogito:kogito-addons-quarkus-persistence-jdbc:999-SNAPSHOT</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">QUARKUS_ADD_EXTENSION_ARGS</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Arguments passed to the Quarkus CLI when adding extensions. Enabled only when <code>QUARKUS_EXTENSIONS</code> is not empty.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">See the <a href="https://quarkus.io/guides/cli-tooling#using-the-cli">Quarkus CLI documentation</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MAVEN_ARGS_APPEND</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Arguments passed to the maven build when the workflow build is produced.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-Dkogito.persistence.type=jdbc -Dquarkus.datasource.db-kind=postgresql</p></td>
 </tr>
 </tbody>
 </table>
@@ -1091,6 +1194,36 @@ spec:
 </tr>
 </table>
 </div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The minikube registry addon must be enabled as follows.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">minikube addons enable registry</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To verify that the addon was property enabled:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">minikube addons list |grep registry
+| registry                    | minikube | enabled ✅   | minikube                       |
+| registry-aliases            | minikube | disabled     | 3rd party (unknown)            |
+| registry-creds              | minikube | disabled     | 3rd party (UPMC Enterprises)   |</code></pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
 <p>You can save this file locally and run the following command:</p>
 </div>
@@ -1128,11 +1261,11 @@ spec:
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc edit cm/sonataflow-operator-builder-config -n {operator_installation_namespace}</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc edit cm/sonataflow-operator-builder-config -n sonataflow-operator-system</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>In your editor, change the first line in the <code>Dockerfile</code> entry where it reads <code>FROM quay.io/kiegroup/kogito-swf-builder-nightly:latest</code> to the desired image.</p>
+<p>In your editor, change the first line in the <code>Dockerfile</code> entry where it reads <code>FROM registry.redhat.io/openshift-serverless-1-tech-preview/logic-data-index-ephemeral-rhel8:1.32.0</code> to the desired image.</p>
 </div>
 <div class="paragraph">
 <p>This image must be compatible with your operator&#8217;s installation.</p>
@@ -1274,6 +1407,37 @@ GREETING_SVC=$(oc get route/greeting --template='{{.spec.host}}')</code></pre>
 </div>
 </div>
 <div class="sect1">
+<h2 id="_restarting_a_build"><a class="anchor" href="#_restarting_a_build"></a>Restarting a build</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>If you require to restart the build for some reason, you can add or edit the annotation <code>sonataflow.org/restartBuild: true</code> in the <code>SonataFlowBuild</code> instance.</p>
+</div>
+<div class="paragraph">
+<p>For example:</p>
+</div>
+<div class="listingblock">
+<div class="title">Example of a SonataFlowBuild marked to restart</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">apiVersion: sonataflow.org/v1alpha08
+kind: SonataFlowBuild
+metadata:
+  name: greeting
+  annotations:
+    sonataflow.org/restartBuild: true</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>After editing the resource, the operator will start a new build of the workflow. Once this is finished, the workflow will be notified and updated accordingly.</p>
+</div>
+<div class="paragraph">
+<p>If the build fails, but the workflow has a working deployment, the operator won&#8217;t rollout a new deployment.</p>
+</div>
+<div class="paragraph">
+<p>Ideally you should use this feature if there&#8217;s a problem with your workflow or the initial build revision.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="_additional_resources"><a class="anchor" href="#_additional_resources"></a>Additional resources</h2>
 <div class="sectionbody">
 <div class="ulist">
@@ -1282,7 +1446,7 @@ GREETING_SVC=$(oc get route/greeting --template='{{.spec.host}}')</code></pre>
 <p><a href="known-issues.html" class="xref page">Serverless Logic Operator Known Issues, Limitations and Roadmap</a></p>
 </li>
 <li>
-<p><a href="developing-workflows.html" class="xref page">Developing Workflow with the Operator</a></p>
+<p><a href="developing-workflows.html" class="xref page">Developing Workflows with the Operator</a></p>
 </li>
 </ul>
 </div>
@@ -1292,7 +1456,7 @@ GREETING_SVC=$(oc get route/greeting --template='{{.spec.host}}')</code></pre>
 <h2 id="_found_an_issue"><a class="anchor" href="#_found_an_issue"></a><em><strong>Found an issue?</strong></em></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>If you find an issue or any misleading information, please feel free to report it <a href="https://github.com/kiegroup/kogito-docs/issues/new">here</a>.
+<p>If you find an issue or any misleading information, please feel free to report it <a href="https://github.com/apache/incubator-kie-kogito-docs/issues/new">here</a>.
 We really appreciate it!</p>
 </div>
 </div>

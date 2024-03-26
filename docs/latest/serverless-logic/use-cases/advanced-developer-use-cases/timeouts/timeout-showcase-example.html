@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timeouts Showcase in OpenShift Serverless Logic :: Red Hat OpenShift Serverless previews</title>
+    <link rel="canonical" href="https://openshift-knative.github.io/docs/docs/latest/serverless-logic/use-cases/advanced-developer-use-cases/timeouts/timeout-showcase-example.html">
+    <meta name="description" content="Timeouts showcase in Serverless Workflow">
+    <meta name="keywords" content="kogito, workflow, serverless, timer, timeout">
+    <meta name="generator" content="Antora 3.0.3">
+    <link rel="stylesheet" href="../../../../../../_/css/site.css">
+<link rel="stylesheet" href="../../../../../../_/css/extra.css">
+<link rel="stylesheet" href="../../../../../../_/css/custom.css">
+<link rel="stylesheet" href="../../../../../../_/css/tabs.css">
+<link rel="stylesheet" href="../../../../../../_/font-awesome-4.7.0/css/font-awesome.min.css">
+<link rel="icon" href="../../../../../../_/img/favicon.ico" type="image/x-icon">
+  </head>
+  <body class="article">
+<header class="header" role="banner">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <div class="navbar-item">
+        <button class="navbar-burger" data-target="topbar-nav">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <img src="../../../../../../_/img/serverless-icon.png" class="navbar-logo" alt="OpenShift Serverless icon">
+        <a href="">OpenShift Serverless - Technology and Developer Preview Releases</a>
+      </div>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <!-- search broken
+        <div class="navbar-item hide-for-print">
+          <script async src="https://cse.google.com/cse.js?cx=002898025167115630151:gnr5edrg2eo"></script>
+          <div class="gcse-searchbox" enableAutoComplete="true"></div>
+        </div>
+      -->
+        <a class="navbar-item" href="https://openshift-knative.github.io/docs">Home</a>
+        <a class="navbar-item" href="https://developers.redhat.com/topics/serverless-architecture">Blog</a>
+          <div class="navbar-item has-dropdown is-hoverable">
+              <a class="navbar-link" href="#">Upstream Projects</a>
+              <div class="navbar-dropdown">
+                  <a class="navbar-item" href="https://kogito.kie.org/">Kogito</a>
+                  <a class="navbar-item" href="https://knative.dev/docs/functions/">Knative Functions</a>
+                  <a class="navbar-item" href="https://knative.dev/docs/eventing/">Knative Eventing</a>
+              </div>
+          </div>
+      </div>
+    </div>
+  </nav>
+<!-- need alt search type-->
+<!--<div class="gcse-searchresults"></div>-->
+</header>
+<div class="main-wrapper">
+  <div class="navigation-container" data-component="docs" data-version="main">
+  <aside class="navigation">
+    <div class="panels">
+<div class="navigation-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../../../../index.html">Documentation</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../../../index.html">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Serverless</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Using OpenShift Serverless with OpenShift Service Mesh</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../../../serverless/service-mesh/common-service-mesh-setup.html">Setup Serverless with OpenShift Service Mesh</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../../../serverless/service-mesh/common-service-mesh-network-isolation.html">Use Service Mesh to isolate network-traffic</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../../../serverless/service-mesh/eventing-service-mesh-containersource.html">Eventing: Using ContainerSource with OpenShift Service Mesh</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../../../serverless/service-mesh/eventing-service-mesh-sinkbinding.html">Eventing: Using SinkBinding with OpenShift Service Mesh</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Features</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../../../serverless/features/transport-encryption/transport-encryption-setup.html">Setup transport encryption in Eventing</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../../../serverless/features/eventing-kafka-scaling/eventing-kafka-scaling-setup.html">Setup Autoscaling For Eventing Kafka Components</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Serving</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../../../serverless/serving/serving-with-ingress-sharding.html">Use Serving with OpenShift ingress sharding</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../../../serverless/serving/scaleability-and-performance-of-serving.html">Scalability and performance of OpenShift Serverless Serving</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Serverless Logic</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../about.html">About OpenShift Serverless Logic</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../release-notes.html">Release notes</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">User Guides</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Setup</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../../getting-started/learning-environment.html">Learning environment</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../../getting-started/preparing-environment.html">Environment setup</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../../getting-started/production-environment.html">Production environment</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Getting Started</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../../getting-started/create-your-first-workflow-service-with-kn-cli-and-vscode.html">Creating your first workflow service with KN CLI and VS Code</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../../getting-started/getting-familiar-with-our-tooling.html">Getting familiar with tooling</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Core</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../../core/cncf-serverless-workflow-specification-support.html">CNCF Serverless Workflow specification</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../../core/handling-events-on-workflows.html">Events</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../../core/working-with-callbacks.html">Callbacks</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../../core/understanding-jq-expressions.html">jq expressions</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../../core/understanding-workflow-error-handling.html">Error handling</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../../core/configuration-properties.html">Configuration properties</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../../core/defining-an-input-schema-for-workflows.html">Defining an input schema for your workflows</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../../core/custom-functions-support.html">Custom functions for your service</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../../core/timeouts-support.html">Timeouts</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../../core/working-with-parallelism.html">Parallelism</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Tooling</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../../../tooling/serverless-workflow-editor/swf-editor-overview.html">Editor</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../../tooling/serverless-workflow-editor/swf-editor-vscode-extension.html">VS Code extension</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../../tooling/serverless-workflow-editor/swf-editor-chrome-extension.html">Chrome extension for GitHub</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../../../tooling/serverless-logic-web-tools/serverless-logic-web-tools-overview.html">Serverless Logic Web Tools</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../../tooling/serverless-logic-web-tools/serverless-logic-web-tools-github-integration.html">GitHub integration</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../../tooling/serverless-logic-web-tools/serverless-logic-web-tools-openshift-integration.html">OpenShift integration</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../../tooling/serverless-logic-web-tools/serverless-logic-web-tools-redhat-application-services-integration.html">Red Hat OpenShift Application and Data Services integration</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../../tooling/serverless-logic-web-tools/serverless-logic-web-tools-deploy-projects.html">Deploying projects</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Service Orchestration</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../../../service-orchestration/orchestration-of-openapi-based-services.html">Orchestrating the OpenAPI services</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../../service-orchestration/configuring-openapi-services-endpoints.html">Configuring the OpenAPI services endpoints</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../../service-orchestration/working-with-openapi-callbacks.html">OpenAPI callback  in OpenShift Serverless Logic</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../../service-orchestration/troubleshooting.html">Troubleshooting</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Event Orchestration</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../../eventing/orchestration-of-asyncapi-based-services.html">Orchestrating AsyncAPI Services</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../../eventing/event-correlation-with-workflows.html">Event Correlation</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Security</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../../security/authention-support-for-openapi-services.html">Authentication for OpenAPI services</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../../security/orchestrating-third-party-services-with-oauth2.html">Orchestration of third-party services using OAuth 2.0 authentication</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Executing, Testing and Troubleshooting</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Executing and Testing Workflows</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../../../testing-and-troubleshooting/quarkus-dev-ui-extension/quarkus-dev-ui-overview.html">Developer UI</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../../../testing-and-troubleshooting/quarkus-dev-ui-extension/quarkus-dev-ui-workflow-instances-page.html">Workflow Instances</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../../../testing-and-troubleshooting/quarkus-dev-ui-extension/quarkus-dev-ui-workflow-definition-page.html">Workflow Definitions</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../../../testing-and-troubleshooting/quarkus-dev-ui-extension/quarkus-dev-ui-monitoring-page.html">Monitoring</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../../../testing-and-troubleshooting/quarkus-dev-ui-extension/quarkus-dev-ui-custom-dashboard-page.html">Dashboards</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../../testing-and-troubleshooting/kn-plugin-workflow-overview.html">Command Line</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Persistence</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../../persistence/core-concepts.html">Core concepts</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../../../cloud/index.html">Cloud</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Operator</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../../cloud/operator/install-serverless-operator.html">Installation</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../../cloud/operator/developing-workflows.html">Development Mode</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../../cloud/operator/referencing-resource-files.html">Referencing Workflow Resources</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../../cloud/operator/configuring-workflows.html">Configuration</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../../cloud/operator/build-and-deploy-workflows.html">Building and Deploying Workflows</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../../cloud/operator/supporting-services.html">Deploy Supporting Services</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../../cloud/operator/workflow-status-conditions.html">Custom Resource Status</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../../cloud/operator/building-custom-images.html">Building Custom Images</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../../cloud/operator/customize-podspec.html">Custom Workflow PodSpec</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../../cloud/operator/service-discovery.html">Service Discovery</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../../cloud/operator/using-persistence.html">Using persistence</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../../cloud/operator/configuring-knative-eventing-resources.html">Knative Eventing</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../../cloud/operator/known-issues.html">Roadmap and Known Issues</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Integrations</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../../integrations/core-concepts.html">Introduction</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Supporting Services</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Data Index</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../../data-index/data-index-core-concepts.html">Core Concepts</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../../data-index/data-index-service.html">Data Index Standalone Service</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Use Cases</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../index.html">Development of OpenShift Serverless Logic applications using Quarkus and Java</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Getting Started</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../getting-started/create-your-first-workflow-service.html">Creating your first workflow service</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../getting-started/build-workflow-image-with-quarkus-cli.html">Building workflow images using Quarkus CLI</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../getting-started/working-with-serverless-workflow-quarkus-examples.html">Working with OpenShift Serverless Logic example applications</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../getting-started/test-serverless-workflow-quarkus-examples.html">Testing images of OpenShift Serverless Logic example applications using Quarkus CLI</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Deployment</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../deployments/deploying-on-minikube.html">Deploying on Minikube</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../deployments/deploying-on-kubernetes.html">Deploying on Kubernetes</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../deployments/deploying-on-openshift.html">Deploying on OpenShift</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Persistence</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../persistence/persistence-core-concepts.html">Core Concepts</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../persistence/persistence-with-postgresql.html">Running a Quarkus Workflow Application using PostgreSQL</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../persistence/postgresql-advanced-concepts.html">Postgresql Advanced Concepts</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../persistence/postgresql-flyway-migration.html">PostgreSQL Database Migration</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../persistence/integration-tests-with-postgresql.html">OpenShift Serverless Logic integration test using PostgreSQL</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Data Index</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../data-index/data-index-as-quarkus-dev-service.html">Data Index as a Quarkus Development service</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../data-index/data-index-usecase-singleton.html">Deploying Data Index and OpenShift Serverless Logic application on Minikube</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../data-index/data-index-usecase-multi.html">Deploying Data Index and multiple OpenShift Serverless Logic applications on Minikube</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../data-index/data-index-quarkus-extension.html">Data Index Quarkus extensions</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Service Orchestration</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../service-orchestration/configuring-openapi-services-endpoints-with-quarkus.html">Configuring the OpenAPI services endpoints in different environments</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../service-orchestration/orchestration-of-grpc-services.html">Orchestrating gRPC based Services</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Service Discovery</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../service-discovery/kubernetes-service-discovery.html">Kubernetes service discovery in OpenShift Serverless Logic</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Event Orchestration</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../event-orchestration/consume-produce-events-with-knative-eventing.html">Consuming and producing events on Knative Eventing in Quarkus</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../event-orchestration/consume-producing-events-with-kafka.html">Consuming and producing events using Apache Kafka in Quarkus</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../event-orchestration/orchestration-based-saga-pattern.html">Saga orchestration example in OpenShift Serverless Logic</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../event-orchestration/newsletter-subscription-example.html">Newsletter subscription example in OpenShift Serverless Logic</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Timeouts</span>
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="6">
+    <a class="nav-link" href="timeout-showcase-example.html">Timeouts Showcase in OpenShift Serverless Logic</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Callbacks</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../callbacks/callback-state-example.html">Example of OpenShift Serverless Logic application using callback state with Quarkus</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Integrations of external services</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../integrations/camel-routes-integration.html">Integrating with Camel routes</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../integrations/custom-functions-knative.html">Invoking Knative services from OpenShift Serverless Logic</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../integrations/expose-metrics-to-prometheus.html">Exposing Workflow base metrics to Prometheus</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../integrations/serverless-dashboard-with-runtime-data.html">Displaying Workflow Data in Dashboards</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Testing</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../testing/basic-integration-tests-with-restassured.html">Testing your Quarkus Workflow Application using REST Assured</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../testing/mocking-http-cloudevents-with-wiremock.html">Mocking HTTP CloudEvents sink using WireMock</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../testing/mocking-openapi-services-with-wiremock.html">Mocking OpenAPI services using WireMock</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Buildpacks for Serverless Functions</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../../functions/serverless-functions-about.html">About buildpacks for OpenShift Serverless Functions</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../../functions/serverless-functions-buildpacks.html">Building and deploying functions on the cluster</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="navigation-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Documentation</span>
+    <span class="version">main</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">Documentation</span>
+      <ul class="versions">
+        <li class="version is-current">
+          <a href="../../../../index.html">main</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+  <div class="main-view-and-toolbar">
+    <div class="toolbar" role="navigation">
+  <button class="navigation-toggle"></button>
+  <a href="../../../../index.html" class="home-link"></a>
+<nav class="crumbs" aria-label="breadcrumbs">
+  <ul>
+    <li class="crumb"><a href="../../../../index.html">Documentation</a></li>
+    <li class="crumb">Serverless Logic</li>
+    <li class="crumb">User Guides</li>
+    <li class="crumb">Use Cases</li>
+    <li class="crumb"><a href="../index.html">Development of OpenShift Serverless Logic applications using Quarkus and Java</a></li>
+    <li class="crumb">Timeouts</li>
+    <li class="crumb"><a href="timeout-showcase-example.html">Timeouts Showcase in OpenShift Serverless Logic</a></li>
+  </ul>
+</nav>
+</div>
+    <div class="main-view-and-toc">
+        <main class="main">
+          <article class="doc">
+<h1>Timeouts Showcase in OpenShift Serverless Logic</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>The timeouts showcase is designed to show how to configure and execute workflows that use timeouts, according to different deployment scenarios.
+While all the scenarios contain the same set of workflows, they are provided as independent example projects, to facilitate the execution and understanding of each case.</p>
+</div>
+<div class="paragraph">
+<p>The following workflows are provided:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#workflow_timeouts_workflow"><code>workflow_timeouts</code></a></p>
+</li>
+<li>
+<p><a href="#callback_state_timeouts_workflow"><code>callback_state_timeouts</code></a></p>
+</li>
+<li>
+<p><a href="#switch_state_timeouts_workflow"><code>switch_state_timeouts</code></a></p>
+</li>
+<li>
+<p><a href="#event_state_timeouts_workflow"><code>event_state_timeouts</code></a></p>
+</li>
+</ul>
+</div>
+</div>
+<div id="toc" class="toc">
+<div id="toctitle"></div>
+<ul class="sectlevel1">
+<li><a href="#workflow_timeouts_workflow"><code>workflow_timeouts</code> workflow</a></li>
+<li><a href="#callback_state_timeouts_workflow"><code>callback_state_timeouts</code> workflow</a></li>
+<li><a href="#switch_state_timeouts_workflow"><code>switch_state_timeouts</code> workflow</a></li>
+<li><a href="#event_state_timeouts_workflow"><code>event_state_timeouts</code> workflow</a></li>
+<li><a href="#_executing_the_workflows">Executing the workflows</a>
+<ul class="sectlevel2">
+<li><a href="#execute-operator-dev-profile">OpenShift Serverless Logic Operator Dev Profile</a></li>
+<li><a href="#execute-quarkus-project-embedded-services">Quarkus Workflow Project with embedded services</a></li>
+<li><a href="#execute-quarkus-project-standalone-services">Quarkus Workflow Project with standalone services</a></li>
+</ul>
+</li>
+<li><a href="#_additional_resources">Additional resources</a></li>
+<li><a href="#_found_an_issue"><em><strong>Found an issue?</strong></em></a></li>
+</ul>
+</div>
+</div>
+<div class="sect1">
+<h2 id="workflow_timeouts_workflow"><a class="anchor" href="#workflow_timeouts_workflow"></a><code>workflow_timeouts</code> workflow</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>It is a simple workflow that, rather than configuring a timeout for a particular state, is configured for the whole execution of the workflow.
+This can be done by using the <code>workflowExecTimeout</code> property, which defines the maximum workflow execution time. If this time is surpassed and the workflow has not finished, it will be automatically canceled.</p>
+</div>
+<div class="paragraph">
+<p>See the <a href="../../../core/timeouts-support.html#workflow-timeout" class="xref page">workflow timeout definition</a> for more information.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../../../_images/use-cases/timeouts-showcase/workflow-timeouts-decorated.svg" alt="workflow timeouts decorated">
+</div>
+<div class="title">Figure 1. workflow_timeouts workflow</div>
+</div>
+<div class="listingblock">
+<div class="title">Workflow execution timeout definition</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "id": "workflow_timeouts",
+  "version": "1.0",
+  "name": "Workflow Timeouts",
+  "description": "Simple workflow to show the workflowExecTimeout working",
+  "start": "PrintStartMessage",
+  "timeouts": {
+    "workflowExecTimeout": "PT1H"
+  }
+...
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="callback_state_timeouts_workflow"><a class="anchor" href="#callback_state_timeouts_workflow"></a><code>callback_state_timeouts</code> workflow</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>It is a simple workflow that, when the execution reaches the state <code>CallbackState</code>, an action is executed, and it waits for the event <code>callbackEvent</code> to arrive in order to continue the execution.
+However, a timeout is configured to set the maximum waiting time for that event.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../../../_images/use-cases/timeouts-showcase/callback-state-timeouts-decorated.svg" alt="callback state timeouts decorated">
+</div>
+<div class="title">Figure 2. callback_state_timeouts workflow</div>
+</div>
+<div class="listingblock">
+<div class="title">Callback event definition</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+"name": "callbackEvent",
+"source": "",
+"type": "callback_event_type"
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">CallbackState definition</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+ "name": "CallbackState",
+ "type": "callback",
+ "action": {
+   "name": "callbackAction",
+   "functionRef": {
+     "refName": "callbackFunction",
+     "arguments": {
+       "input": "${\"callback-state-timeouts: \" + $WORKFLOW.instanceId + \" has executed the callbackFunction.\"}"
+     }
+   }
+ },
+ "eventRef": "callbackEvent",
+ "transition": "CheckEventArrival",
+ "onErrors": [
+   {
+     "errorRef": "callbackError",
+     "transition": "FinalizeWithError"
+   }
+ ],
+ "timeouts": {
+   "eventTimeout": "PT30S"
+ }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The timeout is configured with a duration of 30 seconds, and if no event arrives during this time, the flow execution moves to the next state, and the workflow&#8217;s data remains unchanged.</p>
+</div>
+<div class="paragraph">
+<p>On the other hand, if the event arrive, the event payload is merged into the workflow&#8217;s data, and thus, the <code>eventData</code> property of the workflow&#8217;s data, will contain the information carried by the event payload.
+Using this simple configuration strategy, the workflow can collect the event information, and use it for example to determine the path to go in the next state.</p>
+</div>
+<div class="paragraph">
+<p>See the <a href="../../../core/timeouts-support.html#callback-state-timeout" class="xref page">callback state definition</a> for more information.</p>
+</div>
+<div class="paragraph">
+<p>For more information about how the incoming event information can be merged into the workflow&#8217;s data you can see <a href="https://github.com/serverlessworkflow/specification/blob/0.8.x/specification.md#Event-data-filters">Event data filters</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="switch_state_timeouts_workflow"><a class="anchor" href="#switch_state_timeouts_workflow"></a><code>switch_state_timeouts</code> workflow</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This workflow is similar to the <code>callback_state_timeouts</code>, but when the execution reaches the state <code>ChooseOneEvent</code>, it waits for one of the two configured events, <code>visaDeniedEvent</code> or <code>visaApprovedEvent</code> to arrive.</p>
+</div>
+<div class="paragraph">
+<p>If any of the configured events arrives before the timeout is overdue, the workflow execution moves to the next state defined in the corresponding <code>transition</code>.</p>
+</div>
+<div class="paragraph">
+<p>If none of the events arrives before the timeout is overdue, the workflow execution moves to the state defined in the <code>defaultCondition</code> transition.</p>
+</div>
+<div class="paragraph">
+<p>See the <a href="../../../core/timeouts-support.html#switch-state-timeout" class="xref page">switch state definition</a> for more information.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../../../_images/use-cases/timeouts-showcase/switch-state-timeouts-decorated.svg" alt="switch state timeouts decorated">
+</div>
+<div class="title">Figure 3. switch_state_timeouts workflow</div>
+</div>
+<div class="listingblock">
+<div class="title">ChooseOneEvent definition</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">    {
+      "name": "ChooseOnEvent",
+      "type": "switch",
+      "eventConditions": [
+        {
+          "eventRef": "visaApprovedEvent",
+          "transition": "ApprovedVisa"
+        },
+        {
+          "eventRef": "visaDeniedEvent",
+          "transition": "DeniedVisa"
+        }
+      ],
+      "defaultCondition": {
+        "transition": "HandleNoVisaDecision"
+      },
+      "timeouts": {
+        "eventTimeout": "PT30S"
+      }
+    }</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="event_state_timeouts_workflow"><a class="anchor" href="#event_state_timeouts_workflow"></a><code>event_state_timeouts</code> workflow</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This workflow is similar to the <code>switch_state_timeouts</code>, but when the execution reaches the state <code>WaitForEvent</code>, it waits for one of the configured events, <code>event1</code> or <code>event2</code>, to arrive.
+Each event has a number of configured actions to execute, but unlike the switch state, only one possible <code>transition</code> exists.</p>
+</div>
+<div class="paragraph">
+<p>If none of the configured events arrives before the timeout is overdue, the workflow execution moves to the next state defined in the <code>transition</code> property, skipping the events that were not received in time together with actions configured for them.</p>
+</div>
+<div class="paragraph">
+<p>If one of the events arrives before the timeout is overdue, the workflow executes the corresponding actions, and finally moves to the state defined in <code>transition</code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The semantic of this state might vary depending on the <code>exclusive</code> flag, in the example the default value of <code>true</code> will be applied, and thus, the workflow will transition as soon as the first event arrives.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>See the <a href="../../../core/timeouts-support.html#event-state-timeout" class="xref page">event state definition</a> for more information.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../../../_images/use-cases/timeouts-showcase/event-state-timeouts-decorated.svg" alt="event state timeouts decorated">
+</div>
+<div class="title">Figure 4. event_state_timeouts workflow</div>
+</div>
+<div class="listingblock">
+<div class="title">WaitForEvent definition</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">    {
+      "name": "WaitForEvent",
+      "type": "event",
+      "onEvents": [
+        {
+          "eventRefs": [
+            "event1"
+          ],
+          "eventDataFilter": {
+            "data": "${ \"The event1 was received.\" }",
+            "toStateData": "${ .exitMessage }"
+          },
+          "actions": [
+            {
+              "name": "printAfterEvent1",
+              "functionRef": {
+                "refName": "systemOut",
+                "arguments": {
+                  "message": "${\"event-state-timeouts: \" + $WORKFLOW.instanceId + \" executing actions for event1.\"}"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "eventRefs": [
+            "event2"
+          ],
+          "eventDataFilter": {
+            "data": "${ \"The event2 was received.\" }",
+            "toStateData": "${ .exitMessage }"
+          },
+          "actions": [
+            {
+              "name": "printAfterEvent2",
+              "functionRef": {
+                "refName": "systemOut",
+                "arguments": {
+                  "message": "${\"event-state-timeouts: \" + $WORKFLOW.instanceId + \" executing actions for event2.\"}"
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "timeouts": {
+        "eventTimeout": "PT30S"
+      },
+      "transition": "PrintExitMessage"
+    }</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_executing_the_workflows"><a class="anchor" href="#_executing_the_workflows"></a>Executing the workflows</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To execute the workflows you can use any of the available deployment scenarios:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#execute-operator-dev-profile">OpenShift Serverless Logic Operator Dev Profile</a></p>
+</li>
+<li>
+<p><a href="#execute-quarkus-project-embedded-services">Quarkus Workflow Project with embedded services</a></p>
+</li>
+<li>
+<p><a href="#execute-quarkus-project-standalone-services">Quarkus Workflow Project with standalone services</a></p>
+</li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="execute-operator-dev-profile"><a class="anchor" href="#execute-operator-dev-profile"></a>OpenShift Serverless Logic Operator Dev Profile</h3>
+<div class="paragraph">
+<p>When you work with the <a href="../../../cloud/operator/developing-workflows.html" class="xref page">Serverless Logic Operator Dev Profile</a>, the operator will automatically provision an execution environment that contains an embedded <a href="#job-services/core-concepts.adoc" class="xref unresolved">job service</a> instance, as well as an instance of the <a href="../../../data-index/data-index-core-concepts.html" class="xref page">data index service</a>.
+And thus, there is no need for additional configurations when you use timeouts.</p>
+</div>
+<div class="paragraph">
+<p>To execute the workflows you must:</p>
+</div>
+<div class="paragraph">
+<p>In a command terminal, clone the <code>kogito-examples</code> repository, navigate to the cloned directory, and follow <a href="https://github.com/apache/incubator-kie-kogito-examples/tree/main/serverless-workflow-examples/serverless-workflow-timeouts-showcase-operator-devprofile/README.md">these steps</a>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">git clone https://github.com/apache/incubator-kie-kogito-examples.git
+
+cd kogito-examples/serverless-workflow-examples/serverless-workflow-timeouts-showcase-operator-devprofile</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="execute-quarkus-project-embedded-services"><a class="anchor" href="#execute-quarkus-project-embedded-services"></a>Quarkus Workflow Project with embedded services</h3>
+<div class="paragraph">
+<p>Similar to the <a href="#execute-operator-dev-profile">Serverless Logic Operator Dev Profile</a>, this scenario shows how to configure the embedded <a href="#job-services/core-concepts.adoc" class="xref unresolved">job service</a> and <a href="../../../data-index/data-index-core-concepts.html" class="xref page">data index service</a>, when you work with a Quarkus Workflow project and it is also intended for development purposes.</p>
+</div>
+<div class="paragraph">
+<p>In a command terminal, clone the <code>kogito-examples</code> repository, navigate to the cloned directory, and follow <a href="https://github.com/kiegroup/kogito-examples/tree/9.99.x-prod/serverless-workflow-examples/serverless-workflow-timeouts-showcase-embedded/README.md">these steps</a>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">git clone https://github.com/apache/incubator-kie-kogito-examples.git
+
+cd kogito-examples/serverless-workflow-examples/serverless-workflow-timeouts-showcase-embedded</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="execute-quarkus-project-standalone-services"><a class="anchor" href="#execute-quarkus-project-standalone-services"></a>Quarkus Workflow Project with standalone services</h3>
+<div class="paragraph">
+<p>This is the most complex and close to a production scenario. In this case, the workflows, the <a href="#job-services/core-concepts.adoc" class="xref unresolved">job service</a>, the <a href="../../../data-index/data-index-core-concepts.html" class="xref page">data index service</a>, and the database are deployed as standalone services in the kubernetes or knative cluster.
+Additionally, the communications from the workflows to the <a href="#job-services/core-concepts.adoc" class="xref unresolved">job service</a>, and from the <a href="#job-services/core-concepts.adoc" class="xref unresolved">job service</a> to the <a href="../../../data-index/data-index-core-concepts.html" class="xref page">data index service</a>, are resolved via the knative eventing system.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>By using the knative eventing system the underlying low level communication system is transparent to the integration.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_architecture"><a class="anchor" href="#_architecture"></a>Architecture</h4>
+<div class="paragraph">
+<p>The following diagram shows the architecture for this use case:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Every time a workflow needs to program a timer for a given timeout, a cloud event is sent to the <a href="#job-services/core-concepts.adoc#integration-with-the-workflows" class="xref unresolved">job service</a> for that purpose.</p>
+</li>
+<li>
+<p>When a timer is overdue, a rest call is executed to notify the workflow, which then must execute accordingly to the given state semantic.</p>
+</li>
+<li>
+<p>Workflow and job status changes are propagated to the <a href="../../../data-index/data-index-core-concepts.html" class="xref page">data index service</a> via cloud events.</p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../../../_images/use-cases/timeouts-showcase/timeouts-showcase-extended-architecture.png" alt="timeouts showcase extended architecture">
+</div>
+<div class="title">Figure 5. Knative Workflow with Job Service architecture</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>timeouts-showcase-extended:</strong> Is the Quarkus Workflow Project that contains the workflows, that must be maven build, and deployed into the kubernetes cluster.</p>
+</li>
+<li>
+<p><strong>jobs-service-postresql:</strong> Is the job service that will be deployed into the kubernetes cluster.</p>
+</li>
+<li>
+<p><strong>data-index-service-postgresql:</strong> Is the data index service that will be deployed into the kubernetes cluster.</p>
+</li>
+<li>
+<p><strong>timeouts-showcase-database:</strong> Is the PostgreSQL instance that will be deployed into the kubernetes cluster.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>For simplification purposes, a single database instance is used for both services to store the information about the workflow instances, and the timers.  However, in a production environment is recommended to have independent database instances.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_running_the_example"><a class="anchor" href="#_running_the_example"></a>Running the example</h4>
+<div class="paragraph">
+<p>To execute the workflows you must:</p>
+</div>
+<div class="paragraph">
+<p>In a command terminal, clone the <code>kogito-examples</code> repository, navigate to the cloned directory, and follow <a href="https://github.com/kiegroup/kogito-examples/tree/9.99.x-prod/serverless-workflow-examples/serverless-workflow-timeouts-showcase-extended/README.md">these steps</a>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">git clone https://github.com/apache/incubator-kie-kogito-examples.git
+
+cd kogito-examples/serverless-workflow-examples/serverless-workflow-timeouts-showcase-extended</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_additional_resources"><a class="anchor" href="#_additional_resources"></a>Additional resources</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><a href="../../../core/timeouts-support.html" class="xref page">Timeouts support in OpenShift Serverless Logic</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_found_an_issue"><a class="anchor" href="#_found_an_issue"></a><em><strong>Found an issue?</strong></em></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>If you find an issue or any misleading information, please feel free to report it <a href="https://github.com/apache/incubator-kie-kogito-docs/issues/new">here</a>.
+We really appreciate it!</p>
+</div>
+</div>
+</div>
+</article>
+        </main>
+            </div>
+  </div>
+</div><footer class="footer">
+  <p>Adapted from Antora default UI, (c) 2019</p>
+</footer>
+<script src="../../../../../../_/js/site.js"></script>
+<script src="../../../../../../_/js/vendor/highlight.js"></script>
+<script src="../../../../../../_/js/tabsBehavior.js"></script>
+<script>hljs.initHighlighting()</script>
+  </body>
+</html>
