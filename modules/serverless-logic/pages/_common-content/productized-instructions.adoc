@@ -1,7 +1,7 @@
 :page-partial:
 
-:rhbq_config_registry_url: https://access.redhat.com/documentation/en-us/red_hat_build_of_quarkus/quarkus-2-7/guide/f93c45bd-4feb-4f74-a70a-022e9fb41957#_9064727c-4b8a-4068-a9ba-8de6b258a14a
-:rhbq_config_maven_url: https://access.redhat.com/documentation/en-us/red_hat_build_of_quarkus/quarkus-2-7/guide/f93c45bd-4feb-4f74-a70a-022e9fb41957#proc_online-maven_quarkus-getting-started
+:rhbq_config_registry_url: https://access.redhat.com/documentation/en-us/red_hat_build_of_quarkus/3.2/html/getting_started_with_red_hat_build_of_quarkus/assembly_quarkus-getting-started_quarkus-getting-started#proc_configuring-quarkus-extension-registry-client_quarkus-getting-started
+:rhbq_config_maven_url: https://access.redhat.com/documentation/en-us/red_hat_build_of_quarkus/3.2/html/getting_started_with_red_hat_build_of_quarkus/assembly_quarkus-getting-started_quarkus-getting-started
 :redhat_registry_auth_url: https://access.redhat.com/RegistryAuthentication
 
 [[proc-configuring-maven-rhbq]]
@@ -48,7 +48,7 @@ To use the Red Hat Build of Quarkus (RHBQ) libraries, you need to configure your
             <dependency>
                 <groupId>io.quarkus.platform</groupId>
                 <artifactId>quarkus-kogito-bom</artifactId>
-                <version>2.7.6.Final</version>
+                <version>3.2.9.Final</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>

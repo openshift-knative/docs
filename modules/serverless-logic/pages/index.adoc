@@ -1,0 +1,328 @@
+= {page-component-title}
+
+{product_name} is a tool for building cloud-native workflow applications. You can use it to do the services and events orchestration and choreography. Currently, with {product_name} you can integrate with services and events in your architecture using:
+
+1. **CloudEvents**. Ideal for an Event-Driven architecture where the services are ready to consume and produce events working in a more reactive way.
+2. **Sync or Async REST services invocations via OpenAPI/Async API**. There are options even to directly call a REST service in the architecture or ecosystem. Either async or sync methods are supported depending on your requirements.
+3. **Internal Service execution or invocation**. {product_name} is also a workflow framework to build applications. You can use it to create custom services in the same thread to run a lightweight workflow-based application within the same instance.
+
+You can learn how to create, manage, and deploy your workflow applications with the following guides.
+
+[.card-section]
+== Setup
+
+[.card]
+--
+[.card-title]
+xref:getting-started/learning-environment.adoc[]
+[.card-description]
+Learn about the recommended environment to start your journey with {product_name} applications
+--
+
+[.card]
+--
+[.card-title]
+xref:getting-started/preparing-environment.adoc[]
+[.card-description]
+An all-in-one guide to prepare you environment for you to be uncover the full potential of {product_name} guides on your local environment.
+--
+
+[.card]
+--
+[.card-title]
+xref:getting-started/production-environment.adoc[]
+[.card-description]
+Learn about the best practices and recommendations for production environments.
+--
+
+[.card-section]
+== Getting started
+
+[.card]
+--
+[.card-title]
+xref:getting-started/getting-familiar-with-our-tooling.adoc[]
+[.card-description]
+Learn about the tools we provide you with, on your journey to create {product_name} applications
+--
+
+[.card]
+--
+[.card-title]
+xref:getting-started/create-your-first-workflow-service-with-kn-cli-and-vscode.adoc[]
+[.card-description]
+An all-in-one starting guide. Learn how to create, run & deploy your first {product_name} project on your local environment.
+--
+
+[.card-section]
+== Core Concepts
+
+[.card]
+--
+[.card-title]
+xref:core/cncf-serverless-workflow-specification-support.adoc[]
+[.card-description]
+Learn about the CNCF Serverless Workflow Specification implementation
+--
+
+[.card]
+--
+[.card-title]
+xref:core/handling-events-on-workflows.adoc[]
+[.card-description]
+Learn how to use the Event state in your workflow application
+--
+
+[.card]
+--
+[.card-title]
+xref:core/working-with-callbacks.adoc[]
+[.card-description]
+Learn how to use the Callback state in your workflow application
+--
+
+[.card]
+--
+[.card-title]
+xref:core/understanding-jq-expressions.adoc[]
+[.card-description]
+Learn how to create jq expressions to manipulate data within a workflow execution
+--
+
+[.card]
+--
+[.card-title]
+xref:core/understanding-workflow-error-handling.adoc[]
+[.card-description]
+Learn how to handle errors in your workflow application
+--
+
+[.card]
+--
+[.card-title]
+xref:core/configuration-properties.adoc[]
+[.card-description]
+Quick reference of configuration properties in workflow
+--
+
+[.card]
+--
+[.card-title]
+xref:core/defining-an-input-schema-for-workflows.adoc[]
+[.card-description]
+Learn about the input schema definition used to validate the workflow data input against a defined JSON Schema
+--
+
+[.card]
+--
+[.card-title]
+xref:core/custom-functions-support.adoc[]
+[.card-description]
+Learn about the custom functions supported by Serverless Workflow
+--
+
+[.card]
+--
+[.card-title]
+xref:core/timeouts-support.adoc[]
+[.card-description]
+Learn how to configure timeouts in the workflow
+--
+
+[.card]
+--
+[.card-title]
+xref:core/working-with-parallelism.adoc[]
+[.card-description]
+Working with parallelism in your workflow project
+--
+
+[.card-section]
+== Tooling
+
+[.card]
+--
+[.card-title]
+xref:tooling/serverless-workflow-editor/swf-editor-overview.adoc[Serverless Workflow editor]
+[.card-description]
+Learn how to install and use the Serverless Workflow editor
+--
+
+[.card]
+--
+[.card-title]
+xref:tooling/serverless-workflow-editor/swf-editor-vscode-extension.adoc[VS Code extension for Serverless Workflow editor]
+[.card-description]
+Learn how to install and use the VS Code extension for Serverless Workflow editor for creating workflows.
+--
+
+[.card]
+--
+[.card-title]
+xref:tooling/serverless-logic-web-tools/serverless-logic-web-tools-overview.adoc[{serverless_logic_web_tools_name}]
+[.card-description]
+Learn how to use {serverless_logic_web_tools_name} for creating and managing workflows, decisions, and dashboards.
+--
+
+[.card]
+--
+[.card-title]
+xref:tooling/serverless-workflow-editor/swf-editor-chrome-extension.adoc[Chrome extension for Serverless Workflow editor on GitHub]
+[.card-description]
+Learn how to install and use the Chrome extension for Serverless Workflow editor to view and edit workflows directly in Github.
+--
+
+[.card-section]
+== Service Orchestration
+
+[.card]
+--
+[.card-title]
+xref:service-orchestration/orchestration-of-openapi-based-services.adoc[]
+[.card-description]
+Learn how to orchestrate REST services using OpenAPI specification descriptors
+--
+
+[.card]
+--
+[.card-title]
+xref:service-orchestration/working-with-openapi-callbacks.adoc[]
+[.card-description]
+Learn how to use the OpenAPI Callback in your workflow application
+--
+
+[.card-section]
+== Event Orchestration
+
+[.card]
+--
+[.card-title]
+xref:eventing/orchestration-of-asyncapi-based-services.adoc[]
+[.card-description]
+Learn how to trigger and consume events using AsyncAPI specification descriptors
+--
+
+[.card]
+--
+[.card-title]
+xref:eventing/event-correlation-with-workflows.adoc[]
+[.card-description]
+Learn how to configure event correlation in your workflow application
+--
+
+[.card-section]
+== Security
+
+[.card]
+--
+[.card-title]
+xref:security/authention-support-for-openapi-services.adoc[]
+[.card-description]
+Learn how to use authentication methods when calling REST services using OpenAPI specification
+--
+
+[.card]
+--
+[.card-title]
+xref:security/orchestrating-third-party-services-with-oauth2.adoc[]
+[.card-description]
+Learn about the OAuth2 method support when orchestrating REST services using your workflow application
+--
+
+[.card-section]
+== Executing, Testing and Troubleshooting
+
+[.card]
+--
+[.card-title]
+xref:testing-and-troubleshooting/quarkus-dev-ui-extension/quarkus-dev-ui-overview.adoc[Kogito Serverless Workflow Tools extension in Quarkus Dev UI]
+[.card-description]
+Learn how to use the Serverless Workflow extension in Quarkus Dev UI
+--
+
+[.card]
+--
+[.card-title]
+xref:testing-and-troubleshooting/kn-plugin-workflow-overview.adoc[{product_name} plug-in for Knative CLI]
+[.card-description]
+Learn how to install the {product_name} plug-in for Knative CLI
+--
+
+[.card-section]
+== Persistence
+
+[.card]
+--
+[.card-title]
+xref:persistence/core-concepts.adoc[]
+[.card-description]
+Learn about the core concepts of persistence inf {product_name}
+--
+
+[.card-section]
+== Cloud
+
+[.card]
+--
+[.card-title]
+xref:cloud/index.adoc[{product_name} in the Cloud]
+[.card-description]
+Learn about the options to deploy workflow applications in Kubernetes
+--
+
+[.card-section]
+== Integrations
+
+[.card]
+--
+[.card-title]
+xref:integrations/core-concepts.adoc[]
+[.card-description]
+Learn how to handle integrations of external services in {product_name} application
+--
+
+[.card-section]
+== Job Service
+
+[.card]
+--
+[.card-title]
+xref:job-services/core-concepts.adoc[]
+[.card-description]
+Details about Job Service to control timers in {PRODUCT_NAME}
+--
+
+[.card-section]
+== Data Index service
+
+[.card]
+--
+[.card-title]
+xref:data-index/data-index-core-concepts.adoc[]
+[.card-description]
+Learn Data Index core concepts, allowing to understand the purpose and the different deployment options that are provided.
+--
+
+[.card]
+--
+[.card-title]
+xref:data-index/data-index-service.adoc[]
+[.card-description]
+Go deeper in details about Data Index as standalone service deployment.
+--
+
+== Use Cases
+Collection of guides showcasing core concepts of {product_name} or providing a solution to specific problem in our domain.
+
+In the `Advanced Developer Use Cases` section, you can find guides that use Java and Quarkus to create {product_name} applications. These guides allow users to vastly customize their applications depending on their use case. Good undertsanding and knowledge of these technologies is expected.
+
+[.card-section]
+== Advanced Developer Use Cases
+
+[.card]
+--
+[.card-title]
+xref:use-cases/advanced-developer-use-cases/index.adoc[{product_name} with Quarkus]
+[.card-description]
+Learn how to develop & customize {product_name} applications with Quarkus
+--

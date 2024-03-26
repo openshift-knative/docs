@@ -4,8 +4,8 @@
 :description: Build and deploy with {operator_name}
 :keywords: kogito, sonataflow, workflow, serverless, operator, kubernetes, minikube, openshift, containers
 // links
-:kogito_serverless_operator_url: https://github.com/kiegroup/kogito-serverless-operator/
-:kogito_greeting_example_url: https://github.com/kiegroup/kogito-examples/tree/stable/serverless-workflow-examples/serverless-workflow-greeting-quarkus
+:kogito_serverless_operator_url: https://github.com/apache/incubator-kie-kogito-serverless-operator/
+:kogito_greeting_example_url: https://github.com/apache/incubator-kie-kogito-examples/tree/stable/serverless-workflow-examples/serverless-workflow-greeting-quarkus
 :kaniko_issue_url: https://github.com/GoogleContainerTools/kaniko/issues/2201
 :kaniko_url: https://github.com/GoogleContainerTools/kaniko
 :openshift_build_url: https://docs.openshift.com/container-platform/4.13/cicd/builds/understanding-image-builds.html
@@ -20,12 +20,12 @@ This document describes how to build and deploy your workflow on a cluster using
 
 Every time you need to change the workflow definition the system will (re)build a new immutable version of the workflow. If you're still in development phase, please see the xref:cloud/operator/developing-workflows.adoc[] guide.
 
-Follow the <<building-kubernetes, Kubernetes>> or <<building-openshift, OpenShift>> sections of this document based on the cluster you wish to build your workflows on.
-
 [IMPORTANT]
 ====
-{operator_name} is under active development with features yet to be implemented. Please see xref:cloud/operator/known-issues.adoc[].
+The build system implemented by the {operator_name} is not suitable for complex production use cases. Consider using an external tool to build your application such as Tekton and ArgoCD. The resulting image can then be deployed with `SonataFlow` custom resource. See more at xref:cloud/operator/customize-podspec.adoc#custom-image-default-container[Setting a custom image in the default container] section in the xref:cloud/operator/customize-podspec.adoc#custom-image-default-container[] guide.
 ====
+
+Follow the <<building-kubernetes, Kubernetes>> or <<building-openshift, OpenShift>> sections of this document based on the cluster you wish to build your workflows on.
 
 .Prerequisites
 * A Workflow definition.
@@ -34,13 +34,13 @@ Follow the <<building-kubernetes, Kubernetes>> or <<building-openshift, OpenShif
 [#configure-build-system]
 == Configuring the build system
 
-The operator can build workflows on Kubernetes or OpenShift. On Kubernetes, it uses link:{kaniko_url}[Kaniko] and on OpenShift a link:{openshift_build_url}[standard BuildConfig]. The operator build system is not tailored for advanced use cases and you can do only a few customizations.
+The operator can build workflows on Kubernetes or OpenShift. On Kubernetes, it uses link:{kaniko_url}[Kaniko] and on OpenShift a link:{openshift_build_url}[standard BuildConfig]. The operator build system is not tailored for advanced production use cases and you can do only a few customizations.
 
 === Using another Workflow base builder image
 
 If your scenario has strict policies for image usage, such as security or hardening constraints, you can replace the default image used by the operator to build the final workflow container image. Alternatively, you might want to test a nightly build with a bug fix or a custom image containing your customizations.
 
-By default, the operator will use the image distributed upstream to run the workflows in the development profile. You can change this image by editing the `SonataFlowPlatform` custom resource in the namespace where you deployed your workflows:
+By default, the operator will use the image distributed upstream to build workflows. You can change this image by editing the `SonataFlowPlatform` custom resource in the namespace where you deployed your workflows:
 
 .Patching the current SonataFlowPlatform with the new builder image
 [source,bash,subs="attributes+"]
@@ -61,14 +61,17 @@ apiVersion: v1
 data:
   DEFAULT_BUILDER_RESOURCE_NAME: Dockerfile
   DEFAULT_WORKFLOW_EXTENSION: .sw.json
-  Dockerfile: "FROM quay.io/kiegroup/kogito-swf-builder-nightly:latest AS builder\n
-    \ \n  # Copy from build context to skeleton resources project\nCOPY * ./resources/\n\nRUN
-    /home/kogito/launch/build-app.sh ./resources\n  \n  #=============================\n
-    \ # Runtime Run\n  #=============================\nFROM registry.access.redhat.com/ubi8/openjdk-11:latest\n\nENV
-    LANG='en_US.UTF-8' LANGUAGE='en_US:en'\n  \n  # We make four distinct layers so
-    if there are application changes the library layers can be re-used\nCOPY --from=builder
-    --chown=185 /home/kogito/serverless-workflow-project/target/quarkus-app/lib/ /deployments/lib/\nCOPY
-    --from=builder --chown=185 /home/kogito/serverless-workflow-project/target/quarkus-app/*.jar
+  Dockerfile: "FROM {kogito_devservices_imagename}:latest AS builder\n\n#
+    variables that can be overridden by the builder\n# To add a Quarkus extension
+    to your application\nARG QUARKUS_EXTENSIONS\n# Args to pass to the Quarkus CLI
+    add extension command\nARG QUARKUS_ADD_EXTENSION_ARGS\n# Additional java/mvn arguments
+    to pass to the builder\nARG MAVEN_ARGS_APPEND\n\n# Copy from build context to
+    skeleton resources project\nCOPY --chown=1001 . ./resources\n\nRUN /home/kogito/launch/build-app.sh
+    ./resources\n  \n#=============================\n# Runtime Run\n#=============================\nFROM
+    registry.access.redhat.com/ubi9/openjdk-17:latest\n\nENV LANG='en_US.UTF-8' LANGUAGE='en_US:en'\n
+    \ \n# We make four distinct layers so if there are application changes the library
+    layers can be re-used\nCOPY --from=builder --chown=185 /home/kogito/serverless-workflow-project/target/quarkus-app/lib/
+    /deployments/lib/\nCOPY --from=builder --chown=185 /home/kogito/serverless-workflow-project/target/quarkus-app/*.jar
     /deployments/\nCOPY --from=builder --chown=185 /home/kogito/serverless-workflow-project/target/quarkus-app/app/
     /deployments/app/\nCOPY --from=builder --chown=185 /home/kogito/serverless-workflow-project/target/quarkus-app/quarkus/
     /deployments/quarkus/\n\nEXPOSE 8080\nUSER 185\nENV AB_JOLOKIA_OFF=\"\"\nENV JAVA_OPTS=\"-Dquarkus.http.host=0.0.0.0
@@ -76,6 +79,7 @@ data:
 kind: ConfigMap
 metadata:
   name: sonataflow-operator-builder-config
+  namespace: sonataflow-operator-system
 ----
 
 [WARNING]
@@ -201,8 +205,9 @@ The table below lists the Dockerfile arguments available in the default {operato
 |===
 | Argument | Description | Example
 
-|QUARKUS_EXTENSIONS | List of link:{quarkus_extensions_url}[Quarkus Extensions] separated by comma that the builder should add to the workflow. | org.kie.kogito:kogito-addons-quarkus-persistence-infinispan:2.0.0-SNAPSHOT
+|QUARKUS_EXTENSIONS | List of link:{quarkus_extensions_url}[Quarkus Extensions] separated by comma that the builder should add to the workflow. | org.kie.kogito:kogito-addons-quarkus-persistence-jdbc:999-SNAPSHOT
 |QUARKUS_ADD_EXTENSION_ARGS | Arguments passed to the Quarkus CLI when adding extensions. Enabled only when `QUARKUS_EXTENSIONS` is not empty. | See the link:{quarkus_cli_url}#using-the-cli[Quarkus CLI documentation]
+|MAVEN_ARGS_APPEND | Arguments passed to the maven build when the workflow build is produced. | -Dkogito.persistence.type=jdbc -Dquarkus.datasource.db-kind=postgresql
 |===
 
 === Setting environment variables in the internal builder
@@ -369,6 +374,22 @@ spec:
 ====
 The `spec.build.config.strategyOptions.KanikoBuildCacheEnabled` enables the internal Kaniko process to cache builder images to try to speed up the building execution.
 ====
+[TIP]
+====
+The minikube registry addon must be enabled as follows.
+[source,bash,subs="attributes+"]
+----
+minikube addons enable registry 
+----
+To verify that the addon was property enabled:
+[source,bash,subs="attributes+"]
+----
+minikube addons list |grep registry
+| registry                    | minikube | enabled ✅   | minikube                       |
+| registry-aliases            | minikube | disabled     | 3rd party (unknown)            |
+| registry-creds              | minikube | disabled     | 3rd party (UPMC Enterprises)   |
+----
+====
 
 You can save this file locally and run the following command:
 
@@ -401,8 +422,7 @@ If you are running on OpenShift, you have access to the Red Hat's supported regi
 ----
 oc edit cm/sonataflow-operator-builder-config -n {operator_installation_namespace}
 ----
-
-In your editor, change the first line in the `Dockerfile` entry where it reads `FROM quay.io/kiegroup/kogito-swf-builder-nightly:latest` to the desired image.
+In your editor, change the first line in the `Dockerfile` entry where it reads `FROM {kogito_devservices_imagename}:{operator_version}` to the desired image.
 
 This image must be compatible with your operator's installation.
 
@@ -521,6 +541,29 @@ If everything is working, you should receive a response like this:
 ----
 {"id":"b5fbfaa3-b125-4e6c-9311-fe5a3577efdd","workflowdata":{"name":"John","language":"English","greeting":"Hello from JSON Workflow, "}}
 ----
+
+== Restarting a build
+
+If you require to restart the build for some reason, you can add or edit the annotation `sonataflow.org/restartBuild: true` in the `SonataFlowBuild` instance.
+
+For example:
+
+.Example of a SonataFlowBuild marked to restart
+[source,json,subs="attributes+"]
+----
+apiVersion: sonataflow.org/v1alpha08
+kind: SonataFlowBuild
+metadata:
+  name: greeting
+  annotations:
+    sonataflow.org/restartBuild: true
+----
+
+After editing the resource, the operator will start a new build of the workflow. Once this is finished, the workflow will be notified and updated accordingly.
+
+If the build fails, but the workflow has a working deployment, the operator won't rollout a new deployment. 
+
+Ideally you should use this feature if there's a problem with your workflow or the initial build revision.
 
 // TODO: add a troubleshooting guide - https://issues.redhat.com/browse/KOGITO-8864
 

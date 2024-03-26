@@ -13,7 +13,7 @@ The cards below list all features included in the platform to deploy workflow ap
 
 [NOTE]
 ====
-Eventually these two options will converge, the {operator_name} will also be able to handle full Quarkus projects. So if you opt in to use Quarkus now and manually deploy your workflows, bear in mind that it's on the project's roadmap to integrate the Quarkus experience with the Operator.
+Eventually, these two options will converge, and the {operator_name} will also be able to handle full Quarkus projects. So if you opt-in to use Quarkus now and manually deploy your workflows, bear in mind that it's on the project's roadmap to integrate the Quarkus experience with the Operator.
 ====
 
 [.card-section]
@@ -24,7 +24,7 @@ For developers that are looking for a native Kubernetes approach where you can m
 [.card]
 --
 [.card-title]
-xref:serverless-logic:cloud/operator/install-serverless-operator.adoc[]
+xref:cloud/operator/install-serverless-operator.adoc[]
 [.card-description]
 Learn how to install the {operator_name} in a Kubernetes cluster
 --
@@ -32,7 +32,15 @@ Learn how to install the {operator_name} in a Kubernetes cluster
 [.card]
 --
 [.card-title]
-xref:serverless-logic:cloud/operator/developing-workflows.adoc[]
+xref:cloud/operator/enabling-jobs-service.adoc[]
+[.card-description]
+Learn how to deploy the Jobs Service using {operator_name} in a Kubernetes cluster
+--
+
+[.card]
+--
+[.card-title]
+xref:cloud/operator/developing-workflows.adoc[]
 [.card-description]
 Learn how to deploy a workflow for development purposes
 --
@@ -40,7 +48,7 @@ Learn how to deploy a workflow for development purposes
 [.card]
 --
 [.card-title]
-xref:serverless-logic:cloud/operator/referencing-resource-files.adoc[]
+xref:cloud/operator/referencing-resource-files.adoc[]
 [.card-description]
 Learn how to reference resource files to the workflow application
 --
@@ -48,7 +56,7 @@ Learn how to reference resource files to the workflow application
 [.card]
 --
 [.card-title]
-xref:serverless-logic:cloud/operator/configuring-workflows.adoc[]
+xref:cloud/operator/configuring-workflows.adoc[]
 [.card-description]
 Learn how to configure workflows deployed with {operator_name}
 --
@@ -56,7 +64,7 @@ Learn how to configure workflows deployed with {operator_name}
 [.card]
 --
 [.card-title]
-xref:serverless-logic:cloud/operator/workflow-status-conditions.adoc[]
+xref:cloud/operator/workflow-status-conditions.adoc[]
 [.card-description]
 Learn to interpret the workflow resource status conditions
 --
@@ -64,7 +72,7 @@ Learn to interpret the workflow resource status conditions
 [.card]
 --
 [.card-title]
-xref:serverless-logic:cloud/operator/build-and-deploy-workflows.adoc[]
+xref:cloud/operator/build-and-deploy-workflows.adoc[]
 [.card-description]
 Learn how to build and deploy workflow services with {operator_name}
 --
@@ -72,17 +80,49 @@ Learn how to build and deploy workflow services with {operator_name}
 [.card]
 --
 [.card-title]
-xref:serverless-logic:cloud/operator/known-issues.adoc[]
+xref:cloud/operator/supporting-services.adoc[]
 [.card-description]
-Learn about the known issues and feature roadmap of the {operator_name}
+Learn how to deploy supporting services with {operator_name}
 --
 
 [.card]
 --
 [.card-title]
-xref:serverless-logic:cloud/operator/migration-guide.adoc[]
+xref:cloud/operator/building-custom-images.adoc[]
 [.card-description]
-Migration guides
+Learn how to build a custom development image to use with SonataFlow in devmode
+--
+
+[.card]
+--
+[.card-title]
+xref:cloud/operator/customize-podspec.adoc[]
+[.card-description]
+Learn how to customize the workflow `PodSpec` template to control the deployment details
+--
+
+[.card]
+--
+[.card-title]
+xref:cloud/operator/service-discovery.adoc[]
+[.card-description]
+Learn how to configure and use the {operator_name} Kubernetes service discovery
+--
+
+[.card]
+--
+[.card-title]
+xref:cloud/operator/using-persistence.adoc[]
+[.card-description]
+Learn how to define the workflow `Persistence` field to allow the workflow to store its context
+--
+
+[.card]
+--
+[.card-title]
+xref:cloud/operator/known-issues.adoc[]
+[.card-description]
+Learn about the known issues and feature Roadmap of the {operator_name}
 --
 
 [.card-section]
@@ -93,7 +133,7 @@ For Java developers, you can use Quarkus and a few add-ons to help you build and
 [.card]
 --
 [.card-title]
-xref:cloud/quarkus/build-workflow-image-with-quarkus-cli.adoc[Building workflow images using Quarkus CLI]
+xref:use-cases/advanced-developer-use-cases/getting-started/build-workflow-image-with-quarkus-cli.adoc[Building workflow images using Quarkus CLI]
 [.card-description]
 Learn how to build images for your workflow applications using Quarkus CLI
 --
@@ -101,7 +141,7 @@ Learn how to build images for your workflow applications using Quarkus CLI
 [.card]
 --
 [.card-title]
-xref:cloud/quarkus/kubernetes-service-discovery.adoc[Kubernetes service discovery in {product_name}]
+xref:use-cases/advanced-developer-use-cases/service-discovery/kubernetes-service-discovery.adoc[Kubernetes service discovery in {product_name}]
 [.card-description]
 Learn what is and how the Kubernetes service discovery for workflow application configuration works
 --
@@ -109,7 +149,7 @@ Learn what is and how the Kubernetes service discovery for workflow application 
 [.card]
 --
 [.card-title]
-xref:cloud/quarkus/deploying-on-openshift.adoc[Deploying your {product_name} application on OpenShift]
+xref:use-cases/advanced-developer-use-cases/deployments/deploying-on-openshift.adoc[Deploying your {product_name} application on OpenShift]
 [.card-description]
 Learn how to deploy your workflow application on OpenShift cluster
 --
@@ -117,7 +157,7 @@ Learn how to deploy your workflow application on OpenShift cluster
 [.card]
 --
 [.card-title]
-xref:cloud/quarkus/deploying-on-minikube.adoc[Deploying your {product_name} application on Minikube]
+xref:use-cases/advanced-developer-use-cases/deployments/deploying-on-minikube.adoc[Deploying your {product_name} application on Minikube]
 [.card-description]
 Learn how to deploy your workflow application on Minikube for local tests and development
 --
@@ -125,7 +165,7 @@ Learn how to deploy your workflow application on Minikube for local tests and de
 [.card]
 --
 [.card-title]
-xref:serverless-logic:cloud/quarkus/deploying-on-kubernetes.adoc[Deploying your {product_name} application on Kubernetes]
+xref:use-cases/advanced-developer-use-cases/deployments/deploying-on-kubernetes.adoc[Deploying your {product_name} application on Kubernetes]
 [.card-description]
 Learn how to deploy your workflow application on Kubernetes
 --
