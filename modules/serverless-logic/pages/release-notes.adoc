@@ -5,6 +5,8 @@
 
 * link:https://issues.redhat.com/browse/SRVLOGIC-185[SRVLOGIC-185] - Serverless logic operator builder is not able to find builder config ConfigMap.
 ** Workaround - In the operator's namespace create a copy of 'logic-operator-rhel8-builder-config' configMap with name 'sonataflow-operator-builder-config`.
+* link:https://issues.redhat.com/browse/SRVLOGIC-270[SRVLOGIC-270] - Servlerless Logic Operator is picking the wrong builder image
+** Workaround - Configure the builder to pick this image instead (which is really the latest):  `registry.redhat.io/openshift-serverless-1-tech-preview/logic-swf-builder-rhel8:1.32.0-5.`
 * link:https://issues.redhat.com/browse/SRVLOGIC-220[SRVLOGIC-220] - Monitoring tab or workflow list: Duration negative and timezone incorrect
 * link:https://issues.redhat.com/browse/SRVLOGIC-244[SRVLOGIC-244] - Example serverless-workflow-loanbroker-example service discovery misconfiguration
 * link:https://issues.redhat.com/browse/SRVLOGIC-250[SRVLOGIC-250] - DevUI Different UI results with dev and prod scenarios
