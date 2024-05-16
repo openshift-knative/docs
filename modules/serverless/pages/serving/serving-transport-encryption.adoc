@@ -29,18 +29,18 @@ image::serving-encryption/encryption-overview.drawio.svg[]
 
 [IMPORTANT]
 ====
-Currently, all control-plane traffic (including Kubernetes PreStopHooks and metadata like metrics) is not encrypted.
+Currently, all control-plane traffic (including Kubernetes PreStopHooks, metadata and metrics) is not encrypted.
 ====
 
 === The parts in detail
 
-The different parts are independent of each other and (can) use different Certificate Authorities (CAs) to sign certificates.
+The different parts are independent of each other and can be enabled/disabled individually. Also, they can use the same or different Certificate Authorities (CAs) to sign the necessary certificates.
 
 ==== External domain encryption
 
 The transport encryption for external domains is handled by the cluster's ingress layer.
 This is either {product-title} ingress or {smproductname}.
-Please refer to the according documentation for more information.
+Please refer to the relevant documentation for more information.
 
 ==== Cluster-local encryption
 
@@ -51,7 +51,7 @@ This part enables transport encryption for cluster-local domains. It has the fol
 * Certificate CN/SAN contains the cluster-local domains of a Knative Service, e.g. `myapp.namespace.svc.cluster.local`, `myapp.namespace.svc`, `myapp.namespace`.
 * The certificates are hosted using SNI by the cluster-local endpoint of the ingress-controller.
 * The caller has to trust the CA that signed the certificates (this is out of the scope of {ServerlessProductName}).
-* To create the certificates, Knative relies on cert-manager and our bridging component `net-certmanager`. cert-manager needs to be installed and configured for the feature to work.
+* To create the certificates, Knative relies on cert-manager. cert-manager needs to be installed and configured for the feature to work.
 
 ==== {ServerlessProductName} Serving system-internal encryption
 
@@ -59,7 +59,7 @@ image::serving-encryption/encryption-system-internal.drawio.svg[]
 
 This part enables transport encryption for system internal components (Ingress-Controller, Activator, Queue-Proxy). These components are hosting TLS endpoints when this configuration is used:
 
-* To get the certificates, {ServerlessProductName} relies on cert-manager and our bridging component `net-certmanager`. cert-manager needs to be installed and configured for the feature to work.
+* To get the certificates, {ServerlessProductName} relies on cert-manager. cert-manager needs to be installed and configured for the feature to work.
 * Specific SANs are used to verify each connection. Each component needs to trust the CA that signed the certificates. For this, {ServerlessProductName} system components will consume and trust a bundle of CAs. The CA bundle needs to be provided by the cluster administrator.
 
 
@@ -67,23 +67,23 @@ This part enables transport encryption for system internal components (Ingress-C
 
 [INFO]
 ====
-Issuers here are referring to cert-manager `Issuers` and `ClusterIssuers`. They represent certificate authorities (CAs) that are able to generate signed certificates by honoring certificate signing requests.
+Issuers here are referring to cert-manager `Issuers` and `ClusterIssuers`. They represent certificate authorities (CAs) that can generate signed certificates by honoring certificate signing requests.
 Reference: https://cert-manager.io/docs/concepts/issuer/
 ====
 
 In general, you can refer to the cert-manager documentation (https://cert-manager.io/docs/configuration/issuers/). There are examples available for:
 
-* CA based on a K8s secret
+* A custom CA stored in a K8s secret
 * HTTP-01 challenges, e.g. Let's encrypt
 * DNS-01 challenges
 * Self-signed issuers
 
 [IMPORTANT]
 ====
-Please note, that not all issuer types work for each Knative feature.
+Please note, that not all issuer types work for each Knative Serving encryption feature. See below for details.
 ====
 
-Depending on the feature you would like to use, {serverlessproductname} requires your certificate issuer to be capable of the signing the following certificates:
+Depending on the feature you would like to use, {serverlessproductname} requires your certificate issuer to be capable of signing the following certificates:
 
 For the `cluster-local-domain-tls` feature, the issuer needs to be able to sign certificates for cluster-local domains like:
 
@@ -91,15 +91,16 @@ For the `cluster-local-domain-tls` feature, the issuer needs to be able to sign 
 * `myapp.<namespace>.svc`
 * `myapp.<namespace>.svc.cluster.local`
 
-As the CA usually is not within the cluster, verification via ACME protocol (DNS01/HTTP01) is not possible. You can use an issuer that allows creating the these certificates (e.g. cert-manager's CA issuer).
+As the CA usually is not within the cluster, verification via ACME protocol (DNS01/HTTP01) is not possible. You can use an issuer that allows creating these certificates (e.g. cert-manager's CA issuer).
 
-For the `system-internal-tls` feature, signing certificates with a subject alternative name (SAN) of:
+For the `system-internal-tls` feature, the CA must be able to sign certificates with a subject alternative name (SAN) of:
 
 * `kn-routing`
 * `kn-user-<namespace>` (<namespace> is each namespace where Knative Services are/will be created)
 * `data-plane.knative.dev`
 
-As this is also not possible via ACME protocol (DNS01/HTTP01), you need to configure an issuer that allows creating the these certificates (e.g. cert-manager's CA issuer).
+These SANs are needed for Knative to verify connections between the internal components.
+As this is also not possible via ACME protocol (DNS01/HTTP01), you need to configure an issuer that allows creating these certificates (e.g. cert-manager's CA issuer).
 
 
 == Installing and configuring {ServerlessProductName} transport encryption
@@ -110,18 +111,25 @@ As this is also not possible via ACME protocol (DNS01/HTTP01), you need to confi
 
 * Install the OpenShift CLI (`oc`).
 
-* Install the {serverlessoperatorname}.
-
 * Install the {certmanageroperatorname}.
 
-=== Setup a `SelfSigned` `ClusterIssuer` [[setup_selfsigned_clusterissuer]]
+* Install the {serverlessoperatorname}.
 
+[IMPORTANT]
+====
+If you have installed the {serverlessoperatorname} before installing the {certmanageroperatorname}, you will have to restart the following components to enable the Knative Serving cert-manager integration. If this is not done, Knative will not create the necessary cert-manager resources, leading to pending Knative Services.
+
+* Controller deployment in the `knative-serving` namespace.
+* Activator deployment in the `knative-serving` namespace.
+====
+
+=== Setup a `SelfSigned` `ClusterIssuer` [[setup_selfsigned_clusterissuer]]
 
 [IMPORTANT]
 ====
 For the simplicity of this guide, we will use a `SelfSigned` issuer as root certificate, however, be aware of the implications and limitations as documented at https://cert-manager.io/docs/configuration/selfsigned/ of this method. +
-If you're running your company specific Private Key Infrastructure (PKI), we recommend the CA issuer.
-Refer to the cert-manager documentation for more details: https://cert-manager.io/docs/configuration/ca/, however, you can use any other issuer that is allows signing of certificates as described above.
+If you're running your company-specific Private Key Infrastructure (PKI), we recommend the CA issuer.
+Refer to the cert-manager documentation for more details: https://cert-manager.io/docs/configuration/ca/, however, you can use any other issuer that allows signing of certificates as described above.
 ====
 
 . Create a `SelfSigned` `ClusterIssuer`:
@@ -183,7 +191,6 @@ $ oc apply -f <filename>
 +
 [source,yaml]
 ----
-# This is the issuer that every Serving component should use to issue their server's certs.
 apiVersion: cert-manager.io/v1
 kind: ClusterIssuer
 metadata:
@@ -253,6 +260,18 @@ spec:
 $ oc apply -f <filename>
 ----
 
+. Restart the Controller component if you enabled `cluster-local-domain-tls` or `system-internal-tls`:
++
+[IMPORTANT]
+====
+When either the `cluster-local-domain-tls` or the `system-internal-tls` feature is enabled, the Controller component needs to be restarted to enable the Knative Serving cert-manager integration.
+====
++
+[source,terminal]
+----
+$ oc rollout restart deploy/controller -n knative-serving
+----
+
 . Restart the Activator component if you enabled `system-internal-tls`
 +
 [IMPORTANT]
@@ -272,24 +291,17 @@ When you enable any of the transport encryption features, you must make sure tha
 
 There are multiple places where trust needs to be ensured:
 
-* Cluster external client (Browser and/or other application): this is considered out of scope of {serverlessproductname}.
+* Cluster external client (Browser and/or other application): this is considered out of the scope of {serverlessproductname}.
 * {serverlessproductname} system components (e.g. Activator, Queue-Proxy, Ingress-Controller): see below.
 * Cluster internal client (e.g. a Knative Service or other workload): see below.
 
-=== Configuring trust for {serverlessproductname} Serving components and `Knative Services`  [[configuring_trust]]
+=== Configuring trust for {serverlessproductname} Serving components and Knative Services  [[configuring_trust]]
 
-[IMPORTANT]
-====
-It is important to note, that the CA trust bundle will be used in `Knative Services` by the `Queue-Proxy`. The trust is only established
-between the `Ingress Controller`, the `Activator` and the `Queue-Proxy`. Your own workload still needs to trust the same CA from your own code.
-See <<trust_custom_workload>> for more information.
-====
-
-For {serverlessproductname} Serving components and `Knative Services` you can do so by creating `ConfigMaps` in the following namespaces with the label `networking.knative.dev/trust-bundle: true`:
+For {serverlessproductname} Serving components and Knative Services to trust the CA that issues certificates, you can create a `ConfigMap` in the following namespaces with the label `networking.knative.dev/trust-bundle: true`:
 
 * `knative-serving`: for the system components of {serverlessproductname} Serving.
 * `knative-serving-ingress`: for the ingress layer of {serverlessproductname} Serving.
-* `istio-system` (or your own {smproductshortname} namespace): when the {smproductshortname} integration is enabled.
+* `istio-system` or your own {smproductshortname} namespace: when the {smproductshortname} integration is enabled.
 * `<workload namespaces>`: each namespace where a Knative Service is installed (or could be installed, to avoid initial downtime).
 
 Knative looks for ConfigMaps with this label and will read all data keys (regardless of the name).
@@ -332,39 +344,42 @@ metadata:
 
 [IMPORTANT]
 ====
-Whenever CA bundles `ConfigMaps` are updated, the Serving components will automatically add them to their trusted CA bundles when a new connection is established.
+Whenever a CA bundle `ConfigMap` is created or updated, the Serving components will automatically pick them up and add the CAs/Intermediate certificates to their CA trust store. The trust store is refreshed for every new HTTP connection.
 ====
 
-=== Configuring trust from your custom workload [[trust_custom_workload]]
+=== Configuring trust on your custom workload [[trust_custom_workload]]
 
-As {serverlessproductname} Serving does not control all workload and the settings to trust a CA are highly dependent on your runtime and/or language, this is out of scope of {serverlessproductname}.
-But here a few options how this could be achieved:
+As {serverlessproductname} Serving does not control all workloads and managing trust is highly dependent on your runtime and/or language, this area is out of the scope of {serverlessproductname}. But here are few options for how this could be achieved:
 
-* Adding the CA bundle to a Container image on build-time (be aware that this complicates CA rotation, you basically need to rebuild and redeploy every application).
-* Mounting a CA bundle to the filesystem (e.g. from a `Secret` or `ConfigMap`) and making sure your application uses it.
-* Reading it from environment variable and making sure your application uses it.
-* Accessing it from a `Secret`/`ConfigMap` via K8s API and making sure your application uses it.
-
+* Adding the CA bundle to a Container image on build-time (be aware that this complicates CA rotation, you will need to rebuild and redeploy every application when the CA rotates).
+* Mounting a CA bundle to the filesystem (e.g. from a `Secret` or `ConfigMap`) and making sure your application uses it to verify TLS connections.
+* Reading it from environment variable and making sure your application uses it to verify TLS connections.
+* Accessing it from a `Secret`/`ConfigMap` via K8s API and making sure your application uses it to verify TLS connections.
 
 
 == Ensure seamless CA rotation
 
 Ensuring seamless CA rotation is essential to avoid service downtime, or to deal with an emergency.
-The following procedure explains how you can seamlessly rotate a CA.
+The following procedure explains how you can seamlessly rotate a CA:
 
-* Create a new CA certificate.
-* Add the public key of the new CA certificate to the CA trust bundles as described in the <<configuring_trust>> section. Make sure to also keep the public key of the existing CA.
-* Ensure that all clients have consumed the latest set of CA trust bundles. {serverlessproductname} Serving components will automatically reload the changed CA trust bundles.
-* If you have custom workload consuming trust bundles as well, make sure to reload/restart them accordingly.
-* Update the `knative-serving-ca-issuer` `ClusterIssuer` to reference the secret containing the CA certificate created at step 1.
-* Force cert-manager to renew all the created certificates. Refer to the cert-manager documentation for more details: https://cert-manager.io/docs/usage/certificate/#reissuance-triggered-by-user-actions.
-* As soon as the CA rotation is fully completed (add some grace period to this to make sure all components did pick up the changes), you can remove the public key of the old CA from the trust bundle `ConfigMap`.
+1. Create a new CA certificate.
 
+2. Add the public key of the new CA certificate to the CA trust bundles as described in the <<configuring_trust>> section. Make sure to also keep the public key of the existing CA.
+
+3. Ensure that all clients have consumed the latest set of CA trust bundles. {serverlessproductname} Serving components will automatically reload the changed CA trust bundles.
+
+4. If you have custom workload consuming trust bundles as well, make sure to reload/restart them accordingly.
+
+5. Update the `knative-serving-ca-issuer` `ClusterIssuer` to reference the secret containing the CA certificate created in step 1.
+
+6. Either wait for cert-manager to renew all your certificates or enforce it to renew all the certificates. Refer to the cert-manager documentation for more details: https://cert-manager.io/docs/usage/certificate/#reissuance-triggered-by-user-actions.
+
+7. As soon as the CA rotation is fully completed (add some grace period to this to make sure all components did pick up the changes), you can remove the public key of the old CA from the trust bundle `ConfigMap`.
 
 
 == Verification
 
-. Create an `KnativeService`:
+. Create a `KnativeService`:
 +
 [source,yaml]
 ----
@@ -382,14 +397,14 @@ spec:
             - name: RESPONSE
               value: "Hello Serverless!"
 ----
-. Apply the `KnativeService` resource:
+. Apply the `KnativeService` YAML:
 +
 [source,terminal]
 ----
 $ oc apply -f <filename>
 ----
 
-. View the `KnativeService` YAML:
+. Examine the `KnativeService` status:
 +
 [source,terminal]
 ----
