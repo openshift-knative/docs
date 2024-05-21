@@ -25,11 +25,12 @@ image::serving-encryption/encryption-overview.drawio.svg[]
 
 1. Transport Encryption on the ingress layer external to the cluster (e.g. cluster external domain, like `myapp-<namespace>.example.com`).
 2. Transport Encryption on the ingress layer internal to the cluster (e.g. cluster local domains, like `myapp.<namespace>.svc.cluster.local`).
-3. Transport Encryption between Knative internal components (ingress-controller, activator, queue-proxy).
+3. Transport Encryption between Knative internal components (ingress-gateway, activator, queue-proxy).
 
 [IMPORTANT]
 ====
-Currently, all control-plane traffic (including Kubernetes PreStopHooks, metadata and metrics) is not encrypted.
+Currently, all control-plane traffic (including Kubernetes PreStopHooks, metadata and metrics) is not (yet) encrypted.
+As this contains no user data, it is considered to be implemented in a future release.
 ====
 
 === The parts in detail
@@ -57,7 +58,7 @@ This part enables transport encryption for cluster-local domains. It has the fol
 
 image::serving-encryption/encryption-system-internal.drawio.svg[]
 
-This part enables transport encryption for system internal components (Ingress-Controller, Activator, Queue-Proxy). These components are hosting TLS endpoints when this configuration is used:
+This part enables transport encryption for system internal components (Ingress-Gateway, Activator, Queue-Proxy). These components are hosting TLS endpoints when this configuration is used:
 
 * To get the certificates, {ServerlessProductName} relies on cert-manager. cert-manager needs to be installed and configured for the feature to work.
 * Specific SANs are used to verify each connection. Each component needs to trust the CA that signed the certificates. For this, {ServerlessProductName} system components will consume and trust a bundle of CAs. The CA bundle needs to be provided by the cluster administrator.
@@ -302,7 +303,6 @@ For {serverlessproductname} Serving components and Knative Services to trust the
 * `knative-serving`: for the system components of {serverlessproductname} Serving.
 * `knative-serving-ingress`: for the ingress layer of {serverlessproductname} Serving.
 * `istio-system` or your own {smproductshortname} namespace: when the {smproductshortname} integration is enabled.
-* `<workload namespaces>`: each namespace where a Knative Service is installed (or could be installed, to avoid initial downtime).
 
 Knative looks for ConfigMaps with this label and will read all data keys (regardless of the name).
 One key can contain one or multiple CAs/Intermediates. If they are valid, they will be added to the trust store of the Knative components.
