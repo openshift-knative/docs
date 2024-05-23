@@ -3,9 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Scalability and performance of OpenShift Serverless Serving :: Red Hat OpenShift Serverless previews</title>
-    <link rel="canonical" href="https://openshift-knative.github.io/docs/docs/latest/serverless/serving/scaleability-and-performance-of-serving.html">
-    <meta name="description" content="Scalability and performance of OpenShift Serverless Serving">
+    <title>OpenShift Serverless Serving Transport Encryption :: Red Hat OpenShift Serverless previews</title>
+    <link rel="canonical" href="https://openshift-knative.github.io/docs/docs/latest/serverless/serving/serving-transport-encryption.html">
+    <meta name="description" content="OpenShift Serverless Serving Transport Encryption">
     <meta name="generator" content="Antora 3.0.3">
     <link rel="stylesheet" href="../../../../_/css/site.css">
 <link rel="stylesheet" href="../../../../_/css/extra.css">
@@ -106,10 +106,10 @@
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="serving-with-ingress-sharding.html">Use Serving with OpenShift ingress sharding</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="3">
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="scaleability-and-performance-of-serving.html">Scalability and performance of OpenShift Serverless Serving</a>
   </li>
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item is-current-page" data-depth="3">
     <a class="nav-link" href="serving-transport-encryption.html">Serving Transport Encryption</a>
   </li>
 </ul>
@@ -617,424 +617,197 @@
     <li class="crumb"><a href="../../index.html">Documentation</a></li>
     <li class="crumb">Serverless</li>
     <li class="crumb">Serving</li>
-    <li class="crumb"><a href="scaleability-and-performance-of-serving.html">Scalability and performance of OpenShift Serverless Serving</a></li>
+    <li class="crumb"><a href="serving-transport-encryption.html">Serving Transport Encryption</a></li>
   </ul>
 </nav>
 </div>
     <div class="main-view-and-toc">
         <main class="main">
           <article class="doc">
-<h1>Scalability and performance of OpenShift Serverless Serving</h1>
-<div class="sect1">
-<h2 id="_introduction"><a class="anchor" href="#_introduction"></a>Introduction</h2>
+<h1>OpenShift Serverless Serving Transport Encryption</h1>
+<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>OpenShift Serverless consists of several different components which have different resource requirements and scaling behaviours.
-As some components, like the <code>controller</code> pods, are responsible to watch and react to <code>CustomResources</code> and continuously reconfigure the system, these components are called control-plane.
-Other components, like OpenShift Serverless Servings <code>activator</code> component, are directly involved in requests and response handling. These components are called data-plane.
-All of these components are horizontally and vertically scalable, but their resource requirements and configuration highly depends on the actual use-case.</p>
+<p>OpenShift Serverless Serving transport encryption feature allows transporting data over secured and encrypted HTTPS connections using TLS.</p>
 </div>
-<div class="paragraph">
-<p>Thus, the following paragraphs are outlining a few relevant things to consider while scaling the system to handle increased usage.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_test_context"><a class="anchor" href="#_test_context"></a>Test context</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>The following metrics and findings were recorded using the following test setup:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>A cluster running OpenShift version 4.13</p>
-</li>
-<li>
-<p>The cluster running <strong>4 worker nodes</strong> in AWS with a machine type of <code>m6.xlarge</code></p>
-</li>
-<li>
-<p>OpenShift Serverless version 1.30</p>
-</li>
-</ul>
-</div>
-<div class="admonitionblock note">
+<div class="admonitionblock important">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-note" title="Note"></i>
+<i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Please note, that the tests are continuously run on our continuous integration system to compare performance data
-between releases of OpenShift Serverless.</p>
+<p>OpenShift Serverless transport encryption for Serving is a Developer Preview feature only.
+Developer Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete.
+Red Hat does not recommend using them in production.
+These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.</p>
+</div>
+<div class="paragraph">
+<p>For more information about the support scope of Red Hat Developer Preview features, see <a href="https://access.redhat.com/support/offerings/devpreview/" class="bare">access.redhat.com/support/offerings/devpreview/</a>.</p>
 </div>
 </td>
 </tr>
 </table>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_overhead_of_openshift_serverless_serving"><a class="anchor" href="#_overhead_of_openshift_serverless_serving"></a>Overhead of OpenShift Serverless Serving</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>As components of OpenShift Serverless Serving are part of the data-plane, requests from clients are routed through:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>The ingress-gateway (Kourier or Service Mesh)</p>
-</li>
-<li>
-<p>The <code>activator</code> component</p>
-</li>
-<li>
-<p>The <code>queue-proxy</code> sidecar container in each Knative Service</p>
-</li>
+<div id="toc" class="toc">
+<div id="toctitle"></div>
+<ul class="sectlevel1">
+<li><a href="#_overview">Overview</a>
+<ul class="sectlevel2">
+<li><a href="#external-domain-encryption">External domain encryption</a></li>
+<li><a href="#cluster-local-encryption">Cluster-local encryption</a></li>
+<li><a href="#system-internal-encryption">OpenShift Serverless Serving system-internal encryption</a></li>
 </ul>
-</div>
-<div class="paragraph">
-<p>As these components introduce an additional hop in networking and do some additional work (like for example adding observability and request queuing),
-they come with some overhead. The following latency overheads have been measured:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Each additional network hop <strong>adds 0.5-1ms</strong> latency to a request. Note that the <code>activator</code> component is not always part of the data-plane depending on the current load of the Knative Service and if the Knative Service was scaled to zero before the request or not.</p>
 </li>
-<li>
-<p>Depending on the payload size, each of those component consumes up to 1 vCPU of CPU for handling 2500 requests per second.</p>
-</li>
+<li><a href="#issuer_selection">Selecting a certificate issuer</a></li>
+<li><a href="#_setting_up_openshift_serverless_transport_encryption">Setting up OpenShift Serverless transport encryption</a>
+<ul class="sectlevel2">
+<li><a href="#_prerequisites">Prerequisites</a></li>
+<li><a href="#setup_selfsigned_clusterissuer">Setup a <code>SelfSigned</code> <code>ClusterIssuer</code></a></li>
+<li><a href="#_creating_a_clusterissuer_to_be_used_by_serving">Creating a <code>ClusterIssuer</code> to be used by Serving</a></li>
+<li><a href="#_understanding_and_configuring_the_transport_encryption_configuration">Understanding and configuring the transport encryption configuration</a></li>
 </ul>
-</div>
+</li>
+<li><a href="#_configure_trust">Configure trust</a>
+<ul class="sectlevel2">
+<li><a href="#configuring_trust">Configuring trust for OpenShift Serverless Serving components and Knative Services </a></li>
+<li><a href="#trust_custom_workload">Configuring trust on your custom workload</a></li>
+</ul>
+</li>
+<li><a href="#_ensure_seamless_ca_rotation">Ensure seamless CA rotation</a></li>
+<li><a href="#_verification">Verification</a></li>
+</ul>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_known_limitations_of_openshift_serverless_serving"><a class="anchor" href="#_known_limitations_of_openshift_serverless_serving"></a>Known limitations of OpenShift Serverless Serving</h2>
+<h2 id="_overview"><a class="anchor" href="#_overview"></a>Overview</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The maximum number of Knative Services that can be created using this configuration is <strong>3,000</strong>.
-This corresponds to the OpenShift Container Platform Kubernetes services limit of 10,000, since 1 Knative Service creates 3 Kubernetes services.</p>
+<p>There are three parts to OpenShift Serverless Serving Transport Encryption:</p>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_scalability_and_performance_of_openshift_serverless_serving"><a class="anchor" href="#_scalability_and_performance_of_openshift_serverless_serving"></a>Scalability and performance of OpenShift Serverless Serving</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>OpenShift Serverless Serving has to be scaled and configured based on the following parameters:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Number of Knative Services</p>
-</li>
-<li>
-<p>Number of Revisions</p>
-</li>
-<li>
-<p>Amount of concurrent requests in the system</p>
-</li>
-<li>
-<p>Size of payloads of the requests</p>
-</li>
-<li>
-<p>The startup-latency and response latency of the Knative Service added by the user&#8217;s web application</p>
-</li>
-<li>
-<p>Number of changes of the KnativeService <code>CustomResources</code> over time</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Scaling of OpenShift Serverless Serving is configured using the <code>KnativeServing</code> <code>CustomResource</code>.</p>
-</div>
-<div class="sect2">
-<h3 id="_knativeserving_defaults"><a class="anchor" href="#_knativeserving_defaults"></a><code>KnativeServing</code> defaults</h3>
-<div class="paragraph">
-<p>Per default, OpenShift Serverless Serving is configured to run all components with high availability and with medium-sized CPU and memory requests/limits.
-This also means, that the <code>high-available</code> field in <code>KnativeServing</code> is automatically set to a value of 2 and all system components are scaled to two relicas.
-This set-up is suitable for medium-sized workload scenarios. These defaults have been tested with</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>170 Knative Services</p>
-</li>
-<li>
-<p>1-2 Revisions per Knative Service</p>
-</li>
-<li>
-<p>89 test scenarios mainly focussed on testing the control-plane</p>
-</li>
-<li>
-<p>48 re-creating scenarios where Knative Services are deleted and re-created</p>
-</li>
-<li>
-<p>41 stable scenarios, in which requests are slowly but continuously sent to the system</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>During these test cases, the system components effectively consumed:</p>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Component</th>
-<th class="tableblock halign-left valign-top">Measured resources</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Operator in project <code>openshift-serverless</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1 GB Memory, 0.2 Cores of CPU</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Serving components in project <code>knative-serving</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">5 GB Memory, 2.5 Cores of CPU</p></td>
-</tr>
-</tbody>
-</table>
-<div class="paragraph">
-<p>While the default set-up is suitable for medium-sized workloads, this might be over-sized for smaller set-ups or under-sized for high-workload scenarios.
-Please see the next sections for possible tuning options.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_minimal_requirements"><a class="anchor" href="#_minimal_requirements"></a>Minimal requirements</h3>
-<div class="paragraph">
-<p>To configure OpenShift Serverless Serving for a minimal workload scenario, it is important to know the idle consumption of the system components.</p>
-</div>
-<div class="sect3">
-<h4 id="_idle_consumption"><a class="anchor" href="#_idle_consumption"></a>Idle consumption</h4>
-<div class="paragraph">
-<p>The idle consumption is dependent on the number of Knative Services.
-Please note, that for the idle consumption, only Memory is important.
-Relevant cycles of CPU are only used when Knative Services are changed or requests are sent to/from them.
-The following memory consumptions have been measured for the components in the <code>knative-serving</code> and <code>knative-serving-ingress</code> OpenShift projects:</p>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 20%;">
-<col style="width: 20%;">
-<col style="width: 20%;">
-<col style="width: 20%;">
-<col style="width: 20%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Component</th>
-<th class="tableblock halign-left valign-top">0 Services</th>
-<th class="tableblock halign-left valign-top">100 Services</th>
-<th class="tableblock halign-left valign-top">500 Service</th>
-<th class="tableblock halign-left valign-top">1000 Services</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">activator</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">55Mi</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">86Mi</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">150Mi</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">200Mi</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">autoscaler</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">52Mi</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">102Mi</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">225Mi</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">350Mi</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">controller</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">100Mi</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">135Mi</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">250Mi</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">400Mi</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">webhook</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">60Mi</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">60Mi</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">60Mi</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">60Mi</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">3scale-kourier-gateway (1)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">20Mi</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">60Mi</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">190Mi</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">330Mi</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">net-kourier-controller (1)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">90Mi</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">170Mi</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">340Mi</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">430Mi</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">istio-ingressgateway (1)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">57Mi</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">107Mi</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">307Mi</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">446Mi</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">net-istio-controller (1)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">60Mi</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">152Mi</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">350Mi</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">504Mi</p></td>
-</tr>
-</tbody>
-</table>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Note: either <code>3scale-kourier-gateway</code> + <code>net-kourier-controller</code> or <code>istio-ingressgateway</code> + <code>net-istio-controller</code> are installed</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_configuring_openshift_serverless_serving_for_minimal_workloads"><a class="anchor" href="#_configuring_openshift_serverless_serving_for_minimal_workloads"></a>Configuring OpenShift Serverless Serving for minimal workloads</h4>
-<div class="paragraph">
-<p>To configure OpenShift Serverless Serving for minimal workloads, you can tune the <code>KnativeServing</code> <code>CustomResource</code>:</p>
-</div>
-<div class="listingblock">
+<div class="imageblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: operator.knative.dev/v1beta1
-kind: KnativeServing
-metadata:
-  name: knative-serving
-  namespace: knative-serving
-spec:
-  high-availability:
-    replicas: 1 <i class="conum" data-value="1"></i><b>(1)</b>
-
-  workloads:
-    - name: activator
-      replicas: 2 <i class="conum" data-value="2"></i><b>(2)</b>
-      resources:
-        - container: activator
-          requests:
-            cpu: 250m <i class="conum" data-value="3"></i><b>(3)</b>
-            memory: 60Mi <i class="conum" data-value="4"></i><b>(4)</b>
-          limits:
-            cpu: 1000m
-            memory: 600Mi
-
-    - name: controller
-      replicas: 1 <i class="conum" data-value="6"></i><b>(6)</b>
-      resources:
-        - container: controller
-          requests:
-            cpu: 10m
-            memory: 100Mi <i class="conum" data-value="4"></i><b>(4)</b>
-          limits: <i class="conum" data-value="5"></i><b>(5)</b>
-            cpu: 200m
-            memory: 300Mi
-
-    - name: webhook
-      replicas: 1 <i class="conum" data-value="6"></i><b>(6)</b>
-      resources:
-        - container: webhook
-          requests:
-            cpu: 100m <i class="conum" data-value="7"></i><b>(7)</b>
-            memory: 20Mi <i class="conum" data-value="4"></i><b>(4)</b>
-          limits:
-            cpu: 200m
-            memory: 200Mi
-
-  podDisruptionBudgets: <i class="conum" data-value="8"></i><b>(8)</b>
-    - name: activator-pdb
-      minAvailable: 1
-    - name: webhook-pdb
-      minAvailable: 1</code></pre>
+<img src="../_images/serving-encryption/encryption-overview.drawio.svg" alt="encryption overview.drawio">
 </div>
 </div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Setting this to 1 will scale all system components to one replica.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Activator should always be scaled to a minimum of two instances to avoid downtime.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>Activator CPU requests should not be set lower than 250m, as a <code>HorizontalPodAutoscaler</code> will use this as a reference to scale up and down.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>Adjust memory requests to the idle values from above. Also adjust memory limits according to your expected load (this might need custom testing to find the best values).</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="5"></i><b>5</b></td>
-<td>These limits are sufficient for a minimal-workload scenario, but they also might need adjustments depending on your concrete workload.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="6"></i><b>6</b></td>
-<td>One webhook and one controller are sufficient for a minimal-workload scenario</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="7"></i><b>7</b></td>
-<td>Webhook CPU requests should not be set lower than 100m, as a <code>HorizontalPodAutoscaler</code> will use this as a reference to scale up and down.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="8"></i><b>8</b></td>
-<td>Adjust the <code>PodDistruptionBudgets</code> to a value lower or equal to the <code>replicas</code>, to avoid problems during node maintenance.</td>
-</tr>
-</table>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><a href="#external-domain-encryption">External domain encryption</a>: Transport Encryption on the ingress layer external to the cluster (e.g. cluster external domain, like <code>myapp-&lt;namespace&gt;.example.com</code>).</p>
+</li>
+<li>
+<p><a href="#cluster-local-encryption">Cluster-local encryption</a>: Transport Encryption on the ingress layer internal to the cluster (e.g. cluster local domains, like <code>myapp.&lt;namespace&gt;.svc.cluster.local</code>).</p>
+</li>
+<li>
+<p><a href="#system-internal-encryption">System-internal encryption</a>: Transport Encryption between Knative internal components (ingress-gateway, activator, queue-proxy).</p>
+</li>
+</ol>
 </div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_high_workload_configuration"><a class="anchor" href="#_high_workload_configuration"></a>High-workload configuration</h3>
-<div class="paragraph">
-<p>To configure OpenShift Serverless Serving for a high-workload scenario the following findings are relevant:</p>
-</div>
-<div class="admonitionblock note">
+<div class="admonitionblock important">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-note" title="Note"></i>
+<i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>These findings have been tested with requests with a payload size of 0-32kb.
-The Knative Service backends used in those tests had a startup-latency between 0-10 seconds and response times between 0-5 seconds.</p>
+<p>Currently, all control-plane traffic (including Kubernetes PreStopHooks, metadata and metrics) is not (yet) encrypted.
+As this contains no user data, it is considered to be implemented in a future release.</p>
 </div>
 </td>
 </tr>
 </table>
+</div>
+<div class="paragraph">
+<p>The different parts are independent of each other and can be enabled/disabled individually. Also, they can use the same or different Certificate Authorities (CAs) to sign the necessary certificates.</p>
+</div>
+<div class="sect2">
+<h3 id="external-domain-encryption"><a class="anchor" href="#external-domain-encryption"></a>External domain encryption</h3>
+<div class="paragraph">
+<p>The transport encryption for external domains is handled by the cluster&#8217;s ingress layer.
+This is either OpenShift ingress or OpenShift Service Mesh.
+Please refer to the relevant documentation for more information.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="cluster-local-encryption"><a class="anchor" href="#cluster-local-encryption"></a>Cluster-local encryption</h3>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/serving-encryption/encryption-cluster-local-domain.drawio.svg" alt="encryption cluster local domain.drawio">
+</div>
+</div>
+<div class="paragraph">
+<p>This part enables transport encryption for cluster-local domains. It has the following properties:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>All data-plane components are mostly increasing CPU usage on higher requests and/or payload scenarios, so the CPU requests and limits have to be tested and potentially increased.</p>
+<p>Certificate CN/Subject Alternative Name (SAN) contains the cluster-local domains of a Knative Service, e.g. <code>myapp.namespace.svc.cluster.local</code>, <code>myapp.namespace.svc</code>, <code>myapp.namespace</code>.</p>
 </li>
 <li>
-<p>The <code>activator</code> component also might need more memory, when it has to buffer more or bigger request payloads, so the memory requests and limits might need to be increased as well.</p>
+<p>The certificates are selected using SNI by the cluster-local endpoint of the ingress-controller.</p>
 </li>
 <li>
-<p>One <code>activator</code> pod can handle <strong>approximately 2500 requests per second</strong> before it starts to increase latency and, at some point, leads to errors.</p>
+<p>The caller has to trust the CA that signed the cluster-local certificates (this is out of the scope of OpenShift Serverless).</p>
 </li>
 <li>
-<p>One <code>3scale-kourier-gateway</code> or <code>istio-ingressgateway</code> pod can also handle <strong>approximately 2500 requests per second</strong> before it starts to increase latency and, at some point, leads to errors.</p>
+<p>To create the certificates, Knative relies on cert-manager. <a href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.15/html/security_and_compliance/cert-manager-operator-for-red-hat-openshift#installing-the-cert-manager-operator-for-red-hat-openshift">cert-manager needs to be installed</a> and configured for the feature to work.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="system-internal-encryption"><a class="anchor" href="#system-internal-encryption"></a>OpenShift Serverless Serving system-internal encryption</h3>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/serving-encryption/encryption-system-internal.drawio.svg" alt="encryption system internal.drawio">
+</div>
+</div>
+<div class="paragraph">
+<p>This part enables transport encryption for system internal components (Ingress-Gateway, Activator, Queue-Proxy). These components are hosting TLS endpoints when this configuration is used:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>To get the certificates, OpenShift Serverless relies on cert-manager. <a href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.15/html/security_and_compliance/cert-manager-operator-for-red-hat-openshift#installing-the-cert-manager-operator-for-red-hat-openshift">cert-manager needs to be installed</a> and configured for the feature to work.</p>
 </li>
 <li>
-<p>Each of the data-plane components consumes up to 1 vCPU of CPU for handling 2500 requests per second, please note that this highly depends on the payload size and the response times of the Knative Service backend.</p>
+<p>Specific SANs are used to verify each connection. Each component needs to trust the CA that signed the certificates. For this, OpenShift Serverless system components will consume and trust a bundle of CAs. The CA bundle needs to be provided by the cluster administrator.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="issuer_selection"><a class="anchor" href="#issuer_selection"></a>Selecting a certificate issuer</h2>
+<div class="sectionbody">
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p>Issuers here are referring to cert-manager <code>Issuers</code> and <code>ClusterIssuers</code>. They represent certificate authorities (CAs) that can generate signed certificates by honoring certificate signing requests.
+Reference: <a href="https://cert-manager.io/docs/concepts/issuer/" class="bare">cert-manager.io/docs/concepts/issuer/</a></p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>For identifying your certificate issuer, you can refer to the cert-manager documentation (<a href="https://cert-manager.io/docs/configuration/issuers/" class="bare">cert-manager.io/docs/configuration/issuers/</a>). There are examples available for:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A custom CA stored in a K8s secret</p>
+</li>
+<li>
+<p>HTTP-01 challenges, e.g. Let&#8217;s encrypt</p>
+</li>
+<li>
+<p>DNS-01 challenges</p>
+</li>
+<li>
+<p>Self-signed issuers</p>
 </li>
 </ul>
 </div>
@@ -1046,17 +819,266 @@ The Knative Service backends used in those tests had a startup-latency between 0
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Please note, that <strong>fast startup</strong> and <strong>fast response-times</strong> of your Knative Service user workloads are <strong>critical</strong> for good performance of the overall system.
-As OpenShift Serverless Serving components are buffering incoming requests when the Knative Service user backend is scaling-up or request concurrency has reached its capacity.
-If your Knative Service user workload introduce long startup- or request-latency, at some point this will either overload the <code>activator</code> component (only if the CPU + memory configuration is too low) or leads to errors for the calling clients.</p>
+<p>Please note, that not all issuer types work for each Knative Serving encryption feature.</p>
 </div>
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>To fine-tune your OpenShift Serverless installation, use the above findings combined with your own test results to configure the <code>KnativeServing</code> <code>CustomResource</code>:</p>
+<p>Depending on the part you would like to use, OpenShift Serverless requires your certificate issuer to be capable of signing the following certificates:</p>
 </div>
+<div class="paragraph">
+<p>For cluster-local encryption, the issuer needs to be able to sign certificates for cluster-local domains like:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>myapp.&lt;namespace&gt;</code></p>
+</li>
+<li>
+<p><code>myapp.&lt;namespace&gt;.svc</code></p>
+</li>
+<li>
+<p><code>myapp.&lt;namespace&gt;.svc.cluster.local</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>As the CA usually is not within the cluster, verification via the ACME protocol (DNS01/HTTP01) is not possible. You can use an issuer that allows creating these certificates (e.g. cert-manager&#8217;s CA issuer).</p>
+</div>
+<div class="paragraph">
+<p>For system-internal encryption, the issuer must be able to sign certificates with the following SANs:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>kn-routing</code></p>
+</li>
+<li>
+<p><code>kn-user-&lt;namespace&gt;</code> (&lt;namespace&gt; is each namespace where Knative Services are/will be created)</p>
+</li>
+<li>
+<p><code>data-plane.knative.dev</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>These SANs are needed for Knative to verify connections between the internal components.
+As this is also not possible via ACME protocol (DNS01/HTTP01), you need to configure an issuer that allows creating these certificates (e.g. cert-manager&#8217;s CA issuer).</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_setting_up_openshift_serverless_transport_encryption"><a class="anchor" href="#_setting_up_openshift_serverless_transport_encryption"></a>Setting up OpenShift Serverless transport encryption</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The setup is required for any of the transport encryption parts.</p>
+</div>
+<div class="sect2">
+<h3 id="_prerequisites"><a class="anchor" href="#_prerequisites"></a>Prerequisites</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>You have access to an OpenShift account with cluster administrator access.</p>
+</li>
+<li>
+<p>Install the OpenShift CLI (<code>oc</code>).</p>
+</li>
+<li>
+<p><a href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.15/html/security_and_compliance/cert-manager-operator-for-red-hat-openshift#installing-the-cert-manager-operator-for-red-hat-openshift">Install the OpenShift Cert-Manager Operator</a>.</p>
+</li>
+<li>
+<p>Install the OpenShift Serverless Operator.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>If you have installed the OpenShift Serverless Operator before installing the OpenShift Cert-Manager Operator, you will have to restart the following components to enable the Knative Serving cert-manager integration. If this is not done, Knative will not create the necessary cert-manager resources, leading to pending Knative Services.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Controller deployment in the <code>knative-serving</code> namespace.</p>
+</li>
+<li>
+<p>Activator deployment in the <code>knative-serving</code> namespace.</p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="setup_selfsigned_clusterissuer"><a class="anchor" href="#setup_selfsigned_clusterissuer"></a>Setup a <code>SelfSigned</code> <code>ClusterIssuer</code></h3>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>For the simplicity of this guide, we will use a <code>SelfSigned</code> issuer as root certificate, however, be aware of the implications and limitations as documented at <a href="https://cert-manager.io/docs/configuration/selfsigned/" class="bare">cert-manager.io/docs/configuration/selfsigned/</a> of this method.<br>
+If you&#8217;re running your company-specific Private Key Infrastructure (PKI), we recommend the CA issuer.
+Refer to the cert-manager documentation for more details: <a href="https://cert-manager.io/docs/configuration/ca/" class="bare">cert-manager.io/docs/configuration/ca/</a>, however, you can use any other issuer that allows signing of certificates as described above.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create a <code>SelfSigned</code> <code>ClusterIssuer</code>:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: knative-serving-selfsigned-issuer
+spec:
+  selfSigned: {}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Apply the <code>ClusterIssuer</code> resource:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ oc apply -f &lt;filename&gt;</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Create a root certificate using the previously created <code>SelfSigned</code> <code>ClusterIssuer</code>:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: knative-serving-selfsigned-ca
+  namespace: cert-manager <i class="conum" data-value="1"></i><b>(1)</b>
+spec:
+  secretName: knative-serving-ca <i class="conum" data-value="2"></i><b>(2)</b>
+
+  isCA: true
+  commonName: selfsigned-ca
+  privateKey:
+    algorithm: ECDSA
+    size: 256
+
+  issuerRef:
+    name: knative-serving-selfsigned-issuer
+    kind: ClusterIssuer
+    group: cert-manager.io</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The OpenShift Cert-Manager Operator namespace, cert-manager by default.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Secret name later used for the <code>ClusterIssuer</code> for Serving</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Apply the <code>Certificate</code> resource:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ oc apply -f &lt;filename&gt;</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_creating_a_clusterissuer_to_be_used_by_serving"><a class="anchor" href="#_creating_a_clusterissuer_to_be_used_by_serving"></a>Creating a <code>ClusterIssuer</code> to be used by Serving</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create the <code>knative-serving-ca-issuer</code> <code>ClusterIssuer</code> for Serving:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: knative-serving-ca-issuer
+spec:
+  ca:
+    secretName: knative-serving-ca <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Secret name in the OpenShift Cert-Manager Operator namespace (cert-manager by default) containing the certificate that can then be used by OpenShift Serverless Serving components for new certificates.</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Apply the <code>ClusterIssuer</code> resource:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ oc apply -f &lt;filename&gt;</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_understanding_and_configuring_the_transport_encryption_configuration"><a class="anchor" href="#_understanding_and_configuring_the_transport_encryption_configuration"></a>Understanding and configuring the transport encryption configuration</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The transport encryption configuration consists of two configurations:</p>
+<div class="paragraph">
+<p>The configuration of which <code>ClusterIssuer</code> to use:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>clusterLocalIssuerRef</code>: issuer for cluster-local-domain certificates used for ingress.</p>
+</li>
+<li>
+<p><code>systemInternalIssuerRef</code>: issuer for certificates for system-internal-tls certificates used by Knative internal components.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The configuration on which transport encryption features to use:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>cluster-local-domain-tls</code>: Enables the transport encryption feature for cluster-local domains</p>
+</li>
+<li>
+<p><code>system-internal-tls</code>: Enables the transport encryption feature for OpenShift Serverless Serving internal components.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Enabling transport-encryption in <code>KnativeServing</code>:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: operator.knative.dev/v1beta1
@@ -1065,43 +1087,182 @@ metadata:
   name: knative-serving
   namespace: knative-serving
 spec:
-  high-availability:
-    replicas: 2 <i class="conum" data-value="1"></i><b>(1)</b>
-
-  workloads:
-    - name: component-name <i class="conum" data-value="2"></i><b>(2)</b>
-      replicas: 2 <i class="conum" data-value="2"></i><b>(2)</b>
-      resources:
-        - container: container-name
-          requests:
-            cpu: <i class="conum" data-value="3"></i><b>(3)</b>
-            memory: <i class="conum" data-value="3"></i><b>(3)</b>
-          limits:
-            cpu: <i class="conum" data-value="3"></i><b>(3)</b>
-            memory: <i class="conum" data-value="3"></i><b>(3)</b>
-
-  podDisruptionBudgets: <i class="conum" data-value="4"></i><b>(4)</b>
-    - name: name-of-pod-disruption-budget
-      minAvailable: 1</code></pre>
+  # Other spec fields omitted ...
+  config:
+    certmanager:
+      clusterLocalIssuerRef: |
+        kind: ClusterIssuer
+        name: knative-serving-ca-issuer <i class="conum" data-value="1"></i><b>(1)</b>
+      systemInternalIssuerRef: |
+        kind: ClusterIssuer
+        name: knative-serving-ca-issuer <i class="conum" data-value="1"></i><b>(1)</b>
+    network:
+      cluster-local-domain-tls: Enabled <i class="conum" data-value="2"></i><b>(2)</b>
+      system-internal-tls: Enabled      <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Set this to at least 2, to make sure you have always at least two instances of every component running. You can also use <code>workloads</code> to override the replicas for certain components.</td>
+<td>Define the <code>ClusterIssuer</code> for each feature. The same or individual <code>ClusterIssuers</code> can be used.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Use the <code>workloads</code> list to configure specific components. Use the <code>deployment</code> name of the component (like <code>activator</code>, <code>autoscaler</code>, <code>autoscaler-hpa</code>, <code>controller</code>, <code>webhook</code>, <code>net-kourier-controller</code>, <code>3scale-kourier-gateway</code>, <code>net-istio-controller</code>) and set the <code>replicas</code>.</td>
+<td>Enabling the <code>cluster-local-domain-tls</code> feature. They can be enabled/disabled individually.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>Set the requested and limited CPU + Memory according to at least the idle consumption (see above) while also taking the above findings and your own test results into consideration.</td>
+<td>Enabling the <code>system-internal-tls</code> feature. They can be enabled/disabled individually.</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Apply the <code>KnativeServing</code> resource:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ oc apply -f &lt;filename&gt;</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Restart the Controller component if you enabled <code>cluster-local-domain-tls</code> or <code>system-internal-tls</code>:</p>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>When either the <code>cluster-local-domain-tls</code> or the <code>system-internal-tls</code> feature is enabled, the Controller component needs to be restarted to enable the Knative Serving cert-manager integration.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ oc rollout restart deploy/controller -n knative-serving</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Restart the Activator component if you enabled <code>system-internal-tls</code></p>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>When the <code>system-internal-tls</code> feature is activated, the Activator component needs to be restarted to reconfigure its internal web server, as this is not possible during runtime.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ oc rollout restart deploy/activator -n knative-serving</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_configure_trust"><a class="anchor" href="#_configure_trust"></a>Configure trust</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>When you enable any of the transport encryption features, you must make sure that all clients calling do trust the Certificate Authority (CA) that issues the certificates used for the transport encryption.</p>
+</div>
+<div class="paragraph">
+<p>There are multiple places where trust needs to be ensured:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Cluster external client (Browser and/or other application): this is considered out of the scope of OpenShift Serverless.</p>
+</li>
+<li>
+<p>OpenShift Serverless system components (e.g. Activator, Queue-Proxy, Ingress-Controller): see below.</p>
+</li>
+<li>
+<p>Cluster internal client (e.g. a Knative Service or other workload): see below.</p>
+</li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="configuring_trust"><a class="anchor" href="#configuring_trust"></a>Configuring trust for OpenShift Serverless Serving components and Knative Services </h3>
+<div class="paragraph">
+<p>For OpenShift Serverless Serving components and Knative Services to trust the CA that issues certificates, you can create a <code>ConfigMap</code> in the following namespaces with the label <code>networking.knative.dev/trust-bundle: true</code>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>knative-serving</code>: for the system components of OpenShift Serverless Serving.</p>
+</li>
+<li>
+<p><code>knative-serving-ingress</code>: for the ingress layer of OpenShift Serverless Serving.</p>
+</li>
+<li>
+<p><code>istio-system</code> or your own Service Mesh namespace: when the Service Mesh integration is enabled.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Knative looks for ConfigMaps with this label and will read all data keys (regardless of the name).
+One key can contain one or multiple CAs/Intermediates. If they are valid, they will be added to the trust store of the Knative components.</p>
+</div>
+<div class="paragraph">
+<p>Here is an example of how ConfigMap could look like:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: v1
+data:
+  cacerts.pem: | <i class="conum" data-value="1"></i><b>(1)</b>
+    -----BEGIN CERTIFICATE-----
+    MIIDDTCCAfWgAwIBAgIQMQuip05h7NLQq2TB+j9ZmTANBgkqhkiG9w0BAQsFADAW
+    MRQwEgYDVQQDEwtrbmF0aXZlLmRldjAeFw0yMzExMjIwOTAwNDhaFw0yNDAyMjAw
+    OTAwNDhaMBYxFDASBgNVBAMTC2tuYXRpdmUuZGV2MIIBIjANBgkqhkiG9w0BAQEF
+    AAOCAQ8AMIIBCgKCAQEA3clC3CV7sy0TpUKNuTku6QmP9z8JUCbLCPCLACCUc1zG
+    FEokqOva6TakgvAntXLkB3TEsbdCJlNm6qFbbko6DBfX6rEggqZs40x3/T+KH66u
+    4PvMT3fzEtaMJDK/KQOBIvVHrKmPkvccUYK/qWY7rgBjVjjLVSJrCn4dKaEZ2JNr
+    Fd0KNnaaW/dP9/FvviLqVJvHnTMHH5qyRRr1kUGTrc8njRKwpHcnUdauiDoWRKxo
+    Zlyy+MhQfdbbyapX984WsDjCvrDXzkdGgbRNAf+erl6yUm6pHpQhyFFo/zndx6Uq
+    QXA7jYvM2M3qCnXmaFowidoLDsDyhwoxD7WT8zur/QIDAQABo1cwVTAOBgNVHQ8B
+    Af8EBAMCAgQwEwYDVR0lBAwwCgYIKwYBBQUHAwEwDwYDVR0TAQH/BAUwAwEB/zAd
+    BgNVHQ4EFgQU7p4VuECNOcnrP9ulOjc4J37Q2VUwDQYJKoZIhvcNAQELBQADggEB
+    AAv26Vnk+ptQrppouF7yHV8fZbfnehpm07HIZkmnXO2vAP+MZJDNrHjy8JAVzXjt
+    +OlzqAL0cRQLsUptB0btoJuw23eq8RXgJo05OLOPQ2iGNbAATQh2kLwBWd/CMg+V
+    KJ4EIEpF4dmwOohsNR6xa/JoArIYH0D7gh2CwjrdGZr/tq1eMSL+uZcuX5OiE44A
+    2oXF9/jsqerOcH7QUMejSnB8N7X0LmUvH4jAesQgr7jo1JTOBs7GF6wb+U76NzFa
+    8ms2iAWhoplQ+EHR52wffWb0k6trXspq4O6v/J+nq9Ky3vC36so+G1ZFkMhCdTVJ
+    ZmrBsSMWeT2l07qeei2UFRU=
+    -----END CERTIFICATE-----
+kind: ConfigMap
+metadata:
+  labels:
+    networking.knative.dev/trust-bundle: "true"
+  name: knative-bundle <i class="conum" data-value="2"></i><b>(2)</b>
+  namespace: knative-serving</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>All keys containing valid PEM-encoded CA bundles will be trusted by Serving components.</td>
 </tr>
 <tr>
-<td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>Adjust the <code>PodDistruptionBudgets</code> to a value lower or equal to the <code>replicas</code>, to avoid problems during node maintenance. The default <code>minAvailable</code> is set to <code>1</code>, so if you increase the desired replicas, make sure to also increase <code>minAvailable</code>.</td>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>You can define your own name.</td>
 </tr>
 </table>
 </div>
@@ -1113,17 +1274,156 @@ spec:
 </td>
 <td class="content">
 <div class="paragraph">
-<p>As each environment is highly specific, it is essential to test and find your own ideal configuration.
-Please use the monitoring and alerting functionality of OpenShift to continuously monitor your actual resource consumption and make adjustments if needed.</p>
-</div>
-<div class="paragraph">
-<p>Also keep in mind, that if you are using the OpenShift Serverless and Service Mesh integration, additional CPU overhead is added by the <code>istio-proxy</code> sidecar containers.
-For more information on this, see the Service Mesh documentation.</p>
+<p>Whenever a CA bundle <code>ConfigMap</code> is created or updated, the Serving components will automatically pick them up and add the CAs/Intermediate certificates to their CA trust store. The trust store is refreshed for every new HTTP connection.</p>
 </div>
 </td>
 </tr>
 </table>
 </div>
+</div>
+<div class="sect2">
+<h3 id="trust_custom_workload"><a class="anchor" href="#trust_custom_workload"></a>Configuring trust on your custom workload</h3>
+<div class="paragraph">
+<p>As OpenShift Serverless Serving does not control all workloads and managing trust is highly dependent on your runtime and/or language, this area is out of the scope of OpenShift Serverless. But here are few options for how this could be achieved:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Adding the CA bundle to a Container image on build-time (be aware that this complicates CA rotation, you will need to rebuild and redeploy every application when the CA rotates).</p>
+</li>
+<li>
+<p>Mounting a CA bundle to the filesystem (e.g. from a <code>Secret</code> or <code>ConfigMap</code>) and making sure your application uses it to verify TLS connections.</p>
+</li>
+<li>
+<p>Reading it from environment variable and making sure your application uses it to verify TLS connections.</p>
+</li>
+<li>
+<p>Accessing it from a <code>Secret</code>/<code>ConfigMap</code> via K8s API and making sure your application uses it to verify TLS connections.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_ensure_seamless_ca_rotation"><a class="anchor" href="#_ensure_seamless_ca_rotation"></a>Ensure seamless CA rotation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Ensuring seamless CA rotation is essential to avoid service downtime, or to deal with an emergency.
+The following procedure explains how you can seamlessly rotate a CA:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create a new CA certificate.</p>
+</li>
+<li>
+<p>Add the public key of the new CA certificate to the CA trust bundles as described in the <a href="#configuring_trust">Configuring trust for OpenShift Serverless Serving components and Knative Services </a> section. Make sure to also keep the public key of the existing CA.</p>
+</li>
+<li>
+<p>Ensure that all clients have consumed the latest set of CA trust bundles. OpenShift Serverless Serving components will automatically reload the changed CA trust bundles.</p>
+</li>
+<li>
+<p>If you have custom workload consuming trust bundles as well, make sure to reload/restart them accordingly.</p>
+</li>
+<li>
+<p>Update the <code>knative-serving-ca-issuer</code> <code>ClusterIssuer</code> to reference the secret containing the CA certificate created in step 1.</p>
+</li>
+<li>
+<p>Either wait for cert-manager to renew all your certificates or enforce it to renew all the certificates. Refer to the cert-manager documentation for more details: <a href="https://cert-manager.io/docs/usage/certificate/#reissuance-triggered-by-user-actions" class="bare">cert-manager.io/docs/usage/certificate/#reissuance-triggered-by-user-actions</a>.</p>
+</li>
+<li>
+<p>As soon as the CA rotation is fully completed (add some grace period to this to make sure all components did pick up the changes), you can remove the public key of the old CA from the trust bundle <code>ConfigMap</code>.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_verification"><a class="anchor" href="#_verification"></a>Verification</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create a <code>KnativeService</code>:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: test-webapp
+  namespace: test-namespace
+spec:
+  template:
+    spec:
+      containers:
+        - image: docker.io/openshift/hello-openshift
+          env:
+            - name: RESPONSE
+              value: "Hello Serverless!"</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Apply the <code>KnativeService</code> YAML:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ oc apply -f &lt;filename&gt;</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Examine the <code>KnativeService</code> status:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ oc get ksvc -n test-namespace -o yaml</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: test-webapp
+  namespace: test-namespace
+# spec:
+# ...
+status:
+  address:
+    # cluster-local-domain:
+    url: https://helloworld.test.svc.cluster.local <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>If you have enabled <code>cluster-local-domain-tls</code> you will now see HTTPS url.</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>To verify if <code>system-internal-tls</code> is enabled, you can check the output of <code>Queue-Proxy</code> logs:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ oc logs your-pod -n test-namespace -c queue-proxy | grep -E 'certDir|Certificate|tls'</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Check the log output and look for lines similar to these:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">{"severity":"INFO","timestamp":"2024-01-03T07:07:32.892810888Z","logger":"queueproxy","caller":"certificate/watcher.go:62","message":"Starting to watch the following directories for changes{certDir 15 0 /var/lib/knative/certs &lt;nil&gt;} {keyDir 15 0 /var/lib/knative/certs &lt;nil&gt;}","commit":"86420f2-dirty","knative.dev/key":"first/helloworld-00001","knative.dev/pod":"helloworld-00001-deployment-75fbb7d488-qgmxx"}
+{"severity":"INFO","timestamp":"2024-01-03T07:07:32.89397512Z","logger":"queueproxy","caller":"certificate/watcher.go:131","message":"Certificate and/or key have changed on disk and were reloaded.","commit":"86420f2-dirty","knative.dev/key":"first/helloworld-00001","knative.dev/pod":"helloworld-00001-deployment-75fbb7d488-qgmxx"}
+{"severity":"INFO","timestamp":"2024-01-03T07:07:32.894232939Z","logger":"queueproxy","caller":"sharedmain/main.go:282","message":"Starting tls server admin:8022","commit":"86420f2-dirty","knative.dev/key":"first/helloworld-00001","knative.dev/pod":"helloworld-00001-deployment-75fbb7d488-qgmxx"}
+{"severity":"INFO","timestamp":"2024-01-03T07:07:32.894268548Z","logger":"queueproxy","caller":"sharedmain/main.go:282","message":"Starting tls server main:8112","commit":"86420f2-dirty","knative.dev/key":"first/helloworld-00001","knative.dev/pod":"helloworld-00001-deployment-75fbb7d488-qgmxx"}</code></pre>
+</div>
+</div>
+</li>
+</ol>
 </div>
 </div>
 </div>
