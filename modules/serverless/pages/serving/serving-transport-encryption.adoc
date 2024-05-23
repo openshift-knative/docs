@@ -2,6 +2,7 @@
 :compat-mode!:
 // Metadata:
 :description: {serverlessproductname} Serving Transport Encryption
+:certmanagerlink: https://docs.redhat.com/en/documentation/openshift_container_platform/4.15/html/security_and_compliance/cert-manager-operator-for-red-hat-openshift#installing-the-cert-manager-operator-for-red-hat-openshift
 
 {serverlessproductname} Serving transport encryption feature allows transporting data over secured and encrypted HTTPS connections using TLS.
 
@@ -23,9 +24,9 @@ There are three parts to {serverlessproductname} Serving Transport Encryption:
 
 image::serving-encryption/encryption-overview.drawio.svg[]
 
-1. Transport Encryption on the ingress layer external to the cluster (e.g. cluster external domain, like `myapp-<namespace>.example.com`).
-2. Transport Encryption on the ingress layer internal to the cluster (e.g. cluster local domains, like `myapp.<namespace>.svc.cluster.local`).
-3. Transport Encryption between Knative internal components (ingress-gateway, activator, queue-proxy).
+1. <<external-domain-encryption>>: Transport Encryption on the ingress layer external to the cluster (e.g. cluster external domain, like `myapp-<namespace>.example.com`).
+2. <<cluster-local-encryption>>: Transport Encryption on the ingress layer internal to the cluster (e.g. cluster local domains, like `myapp.<namespace>.svc.cluster.local`).
+3. <<system-internal-encryption,System-internal encryption>>: Transport Encryption between Knative internal components (ingress-gateway, activator, queue-proxy).
 
 [IMPORTANT]
 ====
@@ -33,38 +34,39 @@ Currently, all control-plane traffic (including Kubernetes PreStopHooks, metadat
 As this contains no user data, it is considered to be implemented in a future release.
 ====
 
-=== The parts in detail
-
 The different parts are independent of each other and can be enabled/disabled individually. Also, they can use the same or different Certificate Authorities (CAs) to sign the necessary certificates.
 
-==== External domain encryption
+[[external-domain-encryption]]
+=== External domain encryption
 
 The transport encryption for external domains is handled by the cluster's ingress layer.
 This is either {product-title} ingress or {smproductname}.
 Please refer to the relevant documentation for more information.
 
-==== Cluster-local encryption
+[[cluster-local-encryption]]
+=== Cluster-local encryption
 
 image::serving-encryption/encryption-cluster-local-domain.drawio.svg[]
 
 This part enables transport encryption for cluster-local domains. It has the following properties:
 
-* Certificate CN/SAN contains the cluster-local domains of a Knative Service, e.g. `myapp.namespace.svc.cluster.local`, `myapp.namespace.svc`, `myapp.namespace`.
-* The certificates are hosted using SNI by the cluster-local endpoint of the ingress-controller.
-* The caller has to trust the CA that signed the certificates (this is out of the scope of {ServerlessProductName}).
-* To create the certificates, Knative relies on cert-manager. cert-manager needs to be installed and configured for the feature to work.
+* Certificate CN/Subject Alternative Name (SAN) contains the cluster-local domains of a Knative Service, e.g. `myapp.namespace.svc.cluster.local`, `myapp.namespace.svc`, `myapp.namespace`.
+* The certificates are selected using SNI by the cluster-local endpoint of the ingress-controller.
+* The caller has to trust the CA that signed the cluster-local certificates (this is out of the scope of {ServerlessProductName}).
+* To create the certificates, Knative relies on cert-manager. {certmanagerlink}[cert-manager needs to be installed] and configured for the feature to work.
 
-==== {ServerlessProductName} Serving system-internal encryption
+[[system-internal-encryption]]
+=== {ServerlessProductName} Serving system-internal encryption
 
 image::serving-encryption/encryption-system-internal.drawio.svg[]
 
 This part enables transport encryption for system internal components (Ingress-Gateway, Activator, Queue-Proxy). These components are hosting TLS endpoints when this configuration is used:
 
-* To get the certificates, {ServerlessProductName} relies on cert-manager. cert-manager needs to be installed and configured for the feature to work.
+* To get the certificates, {ServerlessProductName} relies on cert-manager. {certmanagerlink}[cert-manager needs to be installed] and configured for the feature to work.
 * Specific SANs are used to verify each connection. Each component needs to trust the CA that signed the certificates. For this, {ServerlessProductName} system components will consume and trust a bundle of CAs. The CA bundle needs to be provided by the cluster administrator.
 
 
-== Identify and select an appropriate certificate issuer [[issuer_selection]]
+== Selecting a certificate issuer [[issuer_selection]]
 
 [INFO]
 ====
@@ -72,7 +74,7 @@ Issuers here are referring to cert-manager `Issuers` and `ClusterIssuers`. They 
 Reference: https://cert-manager.io/docs/concepts/issuer/
 ====
 
-In general, you can refer to the cert-manager documentation (https://cert-manager.io/docs/configuration/issuers/). There are examples available for:
+For identifying your certificate issuer, you can refer to the cert-manager documentation (https://cert-manager.io/docs/configuration/issuers/). There are examples available for:
 
 * A custom CA stored in a K8s secret
 * HTTP-01 challenges, e.g. Let's encrypt
@@ -81,20 +83,20 @@ In general, you can refer to the cert-manager documentation (https://cert-manage
 
 [IMPORTANT]
 ====
-Please note, that not all issuer types work for each Knative Serving encryption feature. See below for details.
+Please note, that not all issuer types work for each Knative Serving encryption feature.
 ====
 
-Depending on the feature you would like to use, {serverlessproductname} requires your certificate issuer to be capable of signing the following certificates:
+Depending on the part you would like to use, {serverlessproductname} requires your certificate issuer to be capable of signing the following certificates:
 
-For the `cluster-local-domain-tls` feature, the issuer needs to be able to sign certificates for cluster-local domains like:
+For cluster-local encryption, the issuer needs to be able to sign certificates for cluster-local domains like:
 
 * `myapp.<namespace>`
 * `myapp.<namespace>.svc`
 * `myapp.<namespace>.svc.cluster.local`
 
-As the CA usually is not within the cluster, verification via ACME protocol (DNS01/HTTP01) is not possible. You can use an issuer that allows creating these certificates (e.g. cert-manager's CA issuer).
+As the CA usually is not within the cluster, verification via the ACME protocol (DNS01/HTTP01) is not possible. You can use an issuer that allows creating these certificates (e.g. cert-manager's CA issuer).
 
-For the `system-internal-tls` feature, the CA must be able to sign certificates with a subject alternative name (SAN) of:
+For system-internal encryption, the issuer must be able to sign certificates with the following SANs:
 
 * `kn-routing`
 * `kn-user-<namespace>` (<namespace> is each namespace where Knative Services are/will be created)
@@ -104,7 +106,9 @@ These SANs are needed for Knative to verify connections between the internal com
 As this is also not possible via ACME protocol (DNS01/HTTP01), you need to configure an issuer that allows creating these certificates (e.g. cert-manager's CA issuer).
 
 
-== Installing and configuring {ServerlessProductName} transport encryption
+== Setting up {ServerlessProductName} transport encryption
+
+The setup is required for any of the transport encryption parts.
 
 === Prerequisites
 
@@ -112,7 +116,7 @@ As this is also not possible via ACME protocol (DNS01/HTTP01), you need to confi
 
 * Install the OpenShift CLI (`oc`).
 
-* Install the {certmanageroperatorname}.
+* {certmanagerlink}[Install the {certmanageroperatorname}].
 
 * Install the {serverlessoperatorname}.
 
