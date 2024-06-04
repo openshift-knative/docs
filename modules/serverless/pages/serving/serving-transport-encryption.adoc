@@ -15,7 +15,11 @@ These features provide early access to upcoming product features, enabling custo
 
 For more information about the support scope of Red Hat Developer Preview features, see https://access.redhat.com/support/offerings/devpreview/.
 ====
-
+[IMPORTANT]
+====
+Serving Transport Encryption is only available for Kourier as an ingress layer.
+For {smproductname}, please use the service meshs mTLS capabilities to ensure encrypted traffic.
+====
 
 
 == Overview
