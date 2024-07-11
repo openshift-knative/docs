@@ -20,17 +20,17 @@
 **** xref:serverless-logic:getting-started/preparing-environment.adoc[]
 **** xref:serverless-logic:getting-started/production-environment.adoc[]
 *** Getting Started
-**** xref:serverless-logic:getting-started/create-your-first-workflow-service-with-kn-cli-and-vscode.adoc[Creating your first workflow service with KN CLI and VS Code]
-**** xref:serverless-logic:getting-started/getting-familiar-with-our-tooling.adoc[Getting familiar with tooling]
+**** xref:serverless-logic:getting-started/create-your-first-workflow-service-with-kn-cli-and-vscode.adoc[]
+**** xref:serverless-logic:getting-started/getting-familiar-with-our-tooling.adoc[]
 *** Core
-**** xref:serverless-logic:core/cncf-serverless-workflow-specification-support.adoc[CNCF Serverless Workflow specification]
+**** xref:serverless-logic:core/cncf-serverless-workflow-specification-support.adoc[]
 **** xref:serverless-logic:core/handling-events-on-workflows.adoc[Events]
 **** xref:serverless-logic:core/working-with-callbacks.adoc[Callbacks]
-**** xref:serverless-logic:core/understanding-jq-expressions.adoc[jq expressions]
+**** xref:serverless-logic:core/understanding-jq-expressions.adoc[]
 **** xref:serverless-logic:core/understanding-workflow-error-handling.adoc[Error handling]
-**** xref:serverless-logic:core/configuration-properties.adoc[Configuration properties]
-**** xref:serverless-logic:core/defining-an-input-schema-for-workflows.adoc[Defining an input schema for your workflows]
-**** xref:serverless-logic:core/custom-functions-support.adoc[Custom functions for your service]
+**** xref:serverless-logic:core/configuration-properties.adoc[Configuration]
+**** xref:serverless-logic:core/defining-an-input-schema-for-workflows.adoc[Input Schema]
+**** xref:serverless-logic:core/custom-functions-support.adoc[Custom functions]
 **** xref:serverless-logic:core/timeouts-support.adoc[Timeouts]
 **** xref:serverless-logic:core/working-with-parallelism.adoc[Parallelism]
 *** Tooling
@@ -38,14 +38,14 @@
 ***** xref:serverless-logic:tooling/serverless-workflow-editor/swf-editor-vscode-extension.adoc[VS Code extension]
 ***** xref:serverless-logic:tooling/serverless-workflow-editor/swf-editor-chrome-extension.adoc[Chrome extension for GitHub]
 **** xref:serverless-logic:tooling/serverless-logic-web-tools/serverless-logic-web-tools-overview.adoc[{serverless_logic_web_tools_name}]
-***** xref:serverless-logic:tooling/serverless-logic-web-tools/serverless-logic-web-tools-github-integration.adoc[GitHub integration]
-***** xref:serverless-logic:tooling/serverless-logic-web-tools/serverless-logic-web-tools-openshift-integration.adoc[OpenShift integration]
+***** xref:serverless-logic:tooling/serverless-logic-web-tools/serverless-logic-web-tools-github-integration.adoc[Integration with GitHub]
+***** xref:serverless-logic:tooling/serverless-logic-web-tools/serverless-logic-web-tools-openshift-integration.adoc[Integration with OpenShift]
 ***** xref:serverless-logic:tooling/serverless-logic-web-tools/serverless-logic-web-tools-redhat-application-services-integration.adoc[Red Hat OpenShift Application and Data Services integration]
-***** xref:serverless-logic:tooling/serverless-logic-web-tools/serverless-logic-web-tools-deploy-projects.adoc[Deploying projects]
+***** xref:serverless-logic:tooling/serverless-logic-web-tools/serverless-logic-web-tools-deploy-projects.adoc[Deployment]
 *** Service Orchestration
 **** xref:serverless-logic:service-orchestration/orchestration-of-openapi-based-services.adoc[Orchestrating the OpenAPI services]
 ***** xref:serverless-logic:service-orchestration/configuring-openapi-services-endpoints.adoc[Configuring the OpenAPI services endpoints]
-***** xref:serverless-logic:service-orchestration/working-with-openapi-callbacks.adoc[OpenAPI callback  in {product_name}]
+***** xref:serverless-logic:service-orchestration/working-with-openapi-callbacks.adoc[OpenAPI callbacks in {product_name}]
 **** xref:serverless-logic:service-orchestration/troubleshooting.adoc[Troubleshooting]
 *** Event Orchestration
 **** xref:serverless-logic:eventing/orchestration-of-asyncapi-based-services.adoc[Orchestrating AsyncAPI Services]
@@ -64,12 +64,14 @@
 *** Persistence
 **** xref:serverless-logic:persistence/core-concepts.adoc[Core concepts]
 *** xref:serverless-logic:cloud/index.adoc[Cloud]
+*** xref:serverless-logic:cloud/custom-ingress-authz.adoc[Securing Workflows]
 **** Operator
 ***** xref:serverless-logic:cloud/operator/install-serverless-operator.adoc[Installation]
+***** xref:serverless-logic:cloud/operator/global-configuration.adoc[Admin Configuration]
 ***** xref:serverless-logic:cloud/operator/developing-workflows.adoc[Development Mode]
 ***** xref:serverless-logic:cloud/operator/referencing-resource-files.adoc[Referencing Workflow Resources]
-***** xref:serverless-logic:cloud/operator/configuring-workflows.adoc[Configuration]
-***** xref:serverless-logic:cloud/operator/build-and-deploy-workflows.adoc[Building and Deploying Workflows]
+***** xref:serverless-logic:cloud/operator/configuring-workflows.adoc[Workflow Configuration]
+***** xref:serverless-logic:cloud/operator/build-and-deploy-workflows.adoc[Building and Deploying Workflow Images]
 ***** xref:serverless-logic:cloud/operator/supporting-services.adoc[Deploy Supporting Services]
 ***** xref:serverless-logic:cloud/operator/workflow-status-conditions.adoc[Custom Resource Status]
 ***** xref:serverless-logic:cloud/operator/building-custom-images.adoc[Building Custom Images]
@@ -77,12 +79,15 @@
 ***** xref:serverless-logic:cloud/operator/service-discovery.adoc[Service Discovery]
 ***** xref:serverless-logic:cloud/operator/using-persistence.adoc[Using persistence]
 ***** xref:serverless-logic:cloud/operator/configuring-knative-eventing-resources.adoc[Knative Eventing]
+***** xref:cloud/operator/add-custom-ca-to-a-workflow-pod.adoc[Add Custom CA to Workflow Pod]
 ***** xref:serverless-logic:cloud/operator/known-issues.adoc[Roadmap and Known Issues]
 *** Integrations
 **** xref:serverless-logic:integrations/core-concepts.adoc[]
 *** Supporting Services
+**** Jobs Service
+***** xref:job-services/core-concepts.adoc[Core Concepts]
 **** Data Index
-***** xref:serverless-logic:data-index/data-index-core-concepts.adoc[Core Concepts]
+***** xref:serverless-logic:data-index/data-index-core-concepts.adoc[Core Concepts]***
 ***** xref:serverless-logic:data-index/data-index-service.adoc[Data Index Standalone Service]
 
 *** Use Cases
