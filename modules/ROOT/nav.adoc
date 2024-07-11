@@ -93,7 +93,8 @@
 *** Use Cases
 **** xref:serverless-logic:use-cases/advanced-developer-use-cases/index.adoc[Development of {product_name} applications using Quarkus and Java]
 ***** Getting Started
-****** xref:serverless-logic:use-cases/advanced-developer-use-cases/getting-started/create-your-first-workflow-service.adoc[Creating your first workflow service]
+****** xref:serverless-logic:use-cases/advanced-developer-use-cases/getting-started/create-your-first-workflow-service.adoc[]
+****** xref:serverless-logic:use-cases/advanced-developer-use-cases/getting-started/create-your-first-workflow-project.adoc[]
 ****** xref:serverless-logic:use-cases/advanced-developer-use-cases/getting-started/build-workflow-image-with-quarkus-cli.adoc[]
 ****** xref:serverless-logic:use-cases/advanced-developer-use-cases/getting-started/working-with-serverless-workflow-quarkus-examples.adoc[]
 ****** xref:serverless-logic:use-cases/advanced-developer-use-cases/getting-started/test-serverless-workflow-quarkus-examples.adoc[]
