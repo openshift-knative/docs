@@ -4,51 +4,18 @@
 :description: Building custom development images for SonataFlow
 :keywords: sonataflow, workflow, serverless, operator, kubernetes, minikube, devmode
 // Links:
-:rh_ubi8_url: https://catalog.redhat.com/software/containers/ubi8/ubi-minimal/5c359a62bed8bd75a2c3fba8
+:rh_jdk17_url: https://catalog.redhat.com/software/containers/ubi9/openjdk-17/61ee7c26ed74b2ffb22b07f6
 
 // NOTE: this guide can be expanded in the future to include prod images, hence the file name
 //       please change the title section and rearrange the others once it's done
 
-This document describes how to build a custom development image to use in SonataFlow.
+This document describes how to build a custom development image to use in {product_name}.
 
 == The development mode image structure
 
-The development image is based on the link:{rh_ubi8_url}[Red Hat UBI 8 minimal] container image. You can read its documentation for more detailed information about that image's architecture.
+The development image is based on the link:{rh_jdk17_url}[Red Hat OpenJDK 17 UBI 9] container image. You can read its documentation for more detailed information about that image's architecture.
 
-The table below lists the additional packages installed in the development mode container image.
-
-.List of packages
-[cols="1,2"]
-|===
-|Package | Description
-
-|shadow-utils
-|The shadow-utils package includes the necessary programs for converting UNIX password files to the shadow password format.
-
-|tar
-|
-
-|gzip
-|
-
-|unzip
-|
-
-|zip
-|
-
-|tzdata-java
-|
-
-|java-17-openjdk-devel
-|OpenJDK 17
-
-|apache-maven-3.9.3-bin.tar.gz
-|Apache Maven
-
-|===
-
-The next table lists the important paths in the container image's file system.
+The table bellow lists the important paths in the container image's file system.
 
 .Important file system paths
 [cols="1,1"]
@@ -100,7 +67,7 @@ CMD ["/home/kogito/launch/run-app-devmode.sh"] <8>
 ----
 
 <1> The dev mode image as the base image
-<2> Change to super user to run privileged actions
+<2> Change to superuser to run privileged actions
 <3> Install additional packages
 <4> Change back to the default user without admin privileges
 <5> Add a new binary path to the `PATH`
@@ -128,7 +95,7 @@ The container exposes port 8080 by default. When running the container locally, 
 
 Next, we mount a local volume to the container's application path. Any local workflow definitions, specification files, or properties should be mounted to `src/main/resources`. Alternatively, you can also mount custom Java files to `src/main/java`.
 
-Finally, to use the new generated image with the dev profile you can see: xref:cloud/operator/developing-workflows.adoc#_using_another_workflow_base_image[Using another Workflow base image].
+Finally, to use the new generated image with the dev profile follow the procedure at xref:cloud/operator/developing-workflows.adoc#_using_another_workflow_base_image[Using another Workflow base image] guide.
 
 == Additional resources
 

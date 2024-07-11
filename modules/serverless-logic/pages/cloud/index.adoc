@@ -13,10 +13,20 @@ The cards below list all features included in the platform to deploy workflow ap
 
 [NOTE]
 ====
-Eventually, these two options will converge, and the {operator_name} will also be able to handle full Quarkus projects. So if you opt-in to use Quarkus now and manually deploy your workflows, bear in mind that it's on the project's roadmap to integrate the Quarkus experience with the Operator.
+Eventually, these two options will converge, and the {operator_name} will also be able to handle full Quarkus projects. So if you opt in to use Quarkus now and manually deploy your workflows, bear in mind that it's on the project's roadmap to integrate the Quarkus experience with the Operator.
 ====
 
 [.card-section]
+== Common Kubernetes Guides
+
+[.card]
+--
+[.card-title]
+xref:cloud/custom-ingress-authz.adoc[]
+[.card-description]
+Learn how to secure a {product_name} workflow with OIDC
+--
+
 == Kubernetes with the Operator
 
 For developers that are looking for a native Kubernetes approach where you can model workflows using YAML definitions and directly deploy them, you can use the {operator_name}. The operator registers a new Kubernetes resource in the cluster to manage your workflow development iteration cycle and composition of services and events. The application is managed by the operator.
@@ -27,14 +37,6 @@ For developers that are looking for a native Kubernetes approach where you can m
 xref:cloud/operator/install-serverless-operator.adoc[]
 [.card-description]
 Learn how to install the {operator_name} in a Kubernetes cluster
---
-
-[.card]
---
-[.card-title]
-xref:cloud/operator/enabling-jobs-service.adoc[]
-[.card-description]
-Learn how to deploy the Jobs Service using {operator_name} in a Kubernetes cluster
 --
 
 [.card]
@@ -75,6 +77,15 @@ Learn to interpret the workflow resource status conditions
 xref:cloud/operator/build-and-deploy-workflows.adoc[]
 [.card-description]
 Learn how to build and deploy workflow services with {operator_name}
+--
+
+
+[.card]
+--
+[.card-title]
+xref:cloud/operator/global-configuration.adoc[]
+[.card-description]
+Learn how to change global configuration options for the {operator_name}
 --
 
 [.card]
@@ -128,7 +139,7 @@ Learn about the known issues and feature Roadmap of the {operator_name}
 [.card-section]
 == Kubernetes with Quarkus
 
-For Java developers, you can use Quarkus and a few add-ons to help you build and deploy the application in a Kubernetes cluster. {product_name} also generates basic Kubernetes objects YAML files to help you getting started. The application should be managed by a Kubernetes administrator.
+For Java developers, you can use Quarkus and a few add-ons to help you build and deploy the application in a Kubernetes cluster. {product_name} also generates basic Kubernetes objects YAML files to help you to get started. The application should be managed by a Kubernetes administrator.
 
 [.card]
 --
