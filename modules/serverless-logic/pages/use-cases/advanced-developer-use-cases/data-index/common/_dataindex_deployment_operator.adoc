@@ -129,7 +129,7 @@ spec:
     spec:
       containers:
         - name: data-index-service-postgresql
-          image: quay.io/kiegroup/kogito-data-index-postgresql-nightly:{sonataflow_non_productized_image_tag}
+          image: quay.io/kiegroup/kogito-data-index-postgresql:latest
           imagePullPolicy: Always
           resources:
             limits:
