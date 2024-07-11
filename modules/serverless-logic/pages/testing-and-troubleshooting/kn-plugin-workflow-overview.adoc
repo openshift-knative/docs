@@ -38,33 +38,27 @@ You can use the {product_name} plug-in to set up your local workflow project qui
 +
 . Copy the binary of KN workflow plugin
 +
-docker cp $KN_CONTAINER_ID:/usr/share/kn/linux_amd64/kn-workflow-linux-amd64.tar.gz kn-workflow-linux-amd64.tar.gz
+`docker cp $KN_CONTAINER_ID:/usr/share/kn/linux_amd64/kn-workflow-linux-amd64.tar.gz kn-workflow-linux-amd64.tar.gz`
 +
 . Stop the container:
 +
-docker stop $KN_CONTAINER_ID
+`docker stop $KN_CONTAINER_ID`
 +
 . Unzip the archive:
 +
-tar -xf kn-workflow-linux-amd64.tar.gz
+`tar -xf kn-workflow-linux-amd64.tar.gz`
 +
 . Rename the archive to `kn-workflow`:
 +
-mv kn-workflow-linux-amd64.tar.gz kn-workflow
+`mv kn-workflow-linux-amd64.tar.gz kn-workflow`
 +
 . Copy the `kn-workflow` binary file to a directory in your `PATH`, such as `/usr/local/bin`
-
-[WARNING]
-==== 
-On Mac, some systems might block the application to run due to Apple enforcing policies. To fix this problem, check the *Security & Privacy* section in the *System Preferences* -> *General* tab to approve the application to run. For more information, see link:{apple_support_url}[Apple support article: Open a Mac app from an unidentified developer].
-====
 . Run the following command to verify that `kn-workflow` plug-in is installed successfully:
 +
 `kn workflow help`
 
-After installing the plug-in, you can use `kn workflow` to run the related subcommands.
+. After installing the plug-in, you can use `kn workflow` to run the related subcommands.
 --
-
 . Use the `kn workflow` as follows:
 +
 --
@@ -74,6 +68,11 @@ After installing the plug-in, you can use `kn workflow` to run the related subco
 kn workflow
 kn-workflow
 ----
+
+[WARNING]
+==== 
+On Mac, some systems might block the application to run due to Apple enforcing policies. To fix this problem, check the *Security & Privacy* section in the *System Preferences* -> *General* tab to approve the application to run. For more information, see link:{apple_support_url}[Apple support article: Open a Mac app from an unidentified developer].
+====
 
 .Example output
 [source,text]
