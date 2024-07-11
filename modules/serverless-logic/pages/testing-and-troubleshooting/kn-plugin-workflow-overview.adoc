@@ -56,12 +56,9 @@ You can use the {product_name} plug-in to set up your local workflow project qui
 . Run the following command to verify that `kn-workflow` plug-in is installed successfully:
 +
 `kn workflow help`
-
-. After installing the plug-in, you can use `kn workflow` to run the related subcommands.
---
-. Use the `kn workflow` as follows:
 +
---
+. After installing the plug-in, you can use `kn workflow` to run the related subcommands as follows:
+
 .Aliases to use workflow subcommand
 [source,shell]
 ----
@@ -103,18 +100,19 @@ Aliases:
   kn workflow, kn-workflow
 
 Available Commands:
-  completion  Generate the autocompletion script for the specified shell
-  create      Creates a new SonataFlow project
-  deploy      Deploy a SonataFlow project on Kubernetes via SonataFlow Operator
-  help        Help about any command
-  quarkus     Manage SonataFlow projects built in Quarkus
-  run         Run a SonataFlow project in development mode
-  undeploy    Undeploy a SonataFlow project on Kubernetes via SonataFlow Operator
-  version     Show the version
+  completion   Generate the autocompletion script for the specified shell
+  create       Creates a new SonataFlow project
+  deploy       Deploy a SonataFlow project on Kubernetes via SonataFlow Operator
+  gen-manifest GenerateOperator manifests
+  help         Help about any command
+  quarkus      Manage SonataFlow projects built in Quarkus
+  run          Run a SonataFlow project in development mode
+  undeploy     Undeploy a SonataFlow project on Kubernetes via SonataFlow Operator
+  version      Show the version
 
 Flags:
-  -h, --help      help for kn
-  -v, --version   version for kn
+  -h, --help      help for kn workflow
+  -v, --version   version for kn workflow
 
 Use "kn [command] --help" for more information about a command.
 ----
