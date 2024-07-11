@@ -172,7 +172,7 @@ xref:core/cncf-serverless-workflow-specification-support.adoc[CNCF Serverless Wo
 == Building your workflow application
 
 ifeval::["{kogito_version_redhat}" != ""]
-include::../../pages/_common-content/downstream-post-create-project.adoc[]
+include::../../../../pages/_common-content/downstream-post-create-project.adoc[]
 endif::[]
 
 . To verify that project is created, compile the project using the following command:
