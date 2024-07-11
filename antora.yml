@@ -33,6 +33,7 @@ asciidoc:
     operator_openshift_catalog: logic-rhel8-operator
     operator_k8s_keyword: sonataflow
     operator_k8s_subscription: my-sonataflow-operator
+    osl_kn_cli_imagename: registry.redhat.io/openshift-serverless-1/kn-workflow-cli-artifacts-rhel8
     kogito_devservices_imagename: registry.redhat.io/openshift-serverless-1/logic-data-index-ephemeral-rhel8
     sonataflow_devmode_imagename: registry.redhat.io/openshift-serverless-1/logic-swf-devmode-rhel8
     sonataflow_builder_imagename: registry.redhat.io/openshift-serverless-1/logic-swf-builder-rhel8

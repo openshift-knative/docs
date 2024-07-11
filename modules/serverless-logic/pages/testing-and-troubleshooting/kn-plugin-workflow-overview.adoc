@@ -12,7 +12,7 @@
 This document describes how you can install and use the `kn-plugin-workflow` plug-in in {product_name}.
 
 [[proc-install-sw-plugin-kn-cli]]
-== Installing the {product_name} plug-in for Knative CLI
+== Installing the {product_name} Workflow CLI
 
 You can use the {product_name} plug-in to set up your local workflow project quickly using Knative CLI. 
 
@@ -22,30 +22,50 @@ You can use the {product_name} plug-in to set up your local workflow project qui
 * (Optional) link:{docker_install_url}[Docker] is installed.
 * (Optional) link:{podman_install_url}[Podman] is installed.
 * link:{kubectl_install_url}[Kubernetes CLI] is installed.
-* link:{kn_cli_install_url}[Knative CLI] is installed.
 
 .Procedure
-. Download the latest binary file from the link:{kie_tools_releases_page_url}[KIE Tooling Releases] page.
-. Install the `kn workflow` command as a plug-in of the Knative CLI using the following steps:
+. Create a variable which references the KN workflow plugin container image:
 +
---
-.. Copy the `kn-workflow` binary file to a directory in your `PATH`, such as `/usr/local/bin` and ensure that the file name is `kn-workflow`.
-.. Make the binary file executable as follows:
+`export IMAGE_SWF_KN_TAG={osl_kn_cli_imagename}:{operator_version}`
 +
-`chmod +x /usr/local/bin/kn-workflow`
+. Pull the image using Docker or Podman
 +
+`podman pull $IMAGE_SWF_KN`
++
+. Start the container image and get the ID of running container:
++
+`export KN_CONTAINER_ID=$(docker run -di $IMAGE_SWF_KN)`
++
+. Copy the binary of KN workflow plugin
++
+docker cp $KN_CONTAINER_ID:/usr/share/kn/linux_amd64/kn-workflow-linux-amd64.tar.gz kn-workflow-linux-amd64.tar.gz
++
+. Stop the container:
++
+docker stop $KN_CONTAINER_ID
++
+. Unzip the archive:
++
+tar -xf kn-workflow-linux-amd64.tar.gz
++
+. Rename the archive to `kn-workflow`:
++
+mv kn-workflow-linux-amd64.tar.gz kn-workflow
++
+. Copy the `kn-workflow` binary file to a directory in your `PATH`, such as `/usr/local/bin`
+
 [WARNING]
 ==== 
 On Mac, some systems might block the application to run due to Apple enforcing policies. To fix this problem, check the *Security & Privacy* section in the *System Preferences* -> *General* tab to approve the application to run. For more information, see link:{apple_support_url}[Apple support article: Open a Mac app from an unidentified developer].
 ====
-.. Run the following command to verify that `kn-workflow` plug-in is installed successfully:
+. Run the following command to verify that `kn-workflow` plug-in is installed successfully:
 +
-`kn plugin list`
+`kn workflow help`
 
 After installing the plug-in, you can use `kn workflow` to run the related subcommands.
 --
 
-. Use the `workflow` subcommand in Knative CLI as follows:
+. Use the `kn workflow` as follows:
 +
 --
 .Aliases to use workflow subcommand
@@ -59,6 +79,23 @@ kn-workflow
 [source,text]
 ----
 Manage SonataFlow projects
+
+Currently, SonataFlow targets use cases with a single Serverless Workflow main
+file definition (i.e. workflow.sw.{json|yaml|yml}).
+
+Additionally, you can define the configurable parameters of your application in the
+"application.properties" file (inside the root project directory).
+You can also store your spec files (i.e., Open API files) inside the "specs" folder,
+  schemas file inside "schemas" folder and also subflows inside "subflows" folder.
+
+A SonataFlow project, as the following structure by default:
+
+Workflow project root
+  /specs (optional)
+  /schemas (optional)
+  /subflows (optional)
+  workflow.sw.{json|yaml|yml} (mandatory)
+
 
 Usage:
   kn workflow [command]
