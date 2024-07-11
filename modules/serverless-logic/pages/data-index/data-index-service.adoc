@@ -13,7 +13,7 @@
 [#data-index-service]
 == {data_index_ref} service deployment
 
-{data_index_ref} service can be deployed referencing directly a distributed {data_index_ref} image. There are different images provided that take into account what persistence layer is required in each case.
+{data_index_ref} service can be deployed by referencing a distributed {data_index_ref} image directly. There are different images provided that take into account what persistence layer is required in each case.
 In each distribution, there are some properties to configure things like the connection with the database or the communication with other services.
 The goal is to configure the container to allow to process ProcessInstances and Jobs *events* that incorporate their related data, to index and store that in the database and finally, to provide the xref:data-index/data-index-core-concepts.adoc#data-index-graphql[{data_index_ref} GraphQL] endpoint to consume it.
 
@@ -29,7 +29,7 @@ There are several ways to deploy the {data_index_ref} service. But there are som
 
 . Reference the right {data_index_ref} image to match with the type of Database that will store the indexed data.
 . Provide the database connection properties, to allow data index store the indexed data. {data_index_ref} service does not initialize its database schema automatically. To initialize the database schema, you need to enable Flyway migration by setting QUARKUS_FLYWAY_MIGRATE_AT_START=true.
-. Define the `KOGITO_DATA_INDEX_QUARKUS_PROFILE` to set the way that the events will be connected (by default: `kafka-event-support`).
+. Define the `KOGITO_DATA_INDEX_QUARKUS_PROFILE` to set the way that the events will be connected (by default: `kafka-events-support` but could be also `http-events-support`).
 
 [NOTE]
 ====
@@ -40,12 +40,12 @@ For this purpose, it is important to make sure the following addons are included
 [source,xml]
 ----
 <dependency>
-  <groupId>org.kie.kogito</groupId>
-  <artifactId>kogito-addons-quarkus-events-process</artifactId> <1>
+  <groupId>org.kie</groupId>
+  <artifactId>kie-addons-quarkus-events-process</artifactId> <1>
 </dependency>
 <dependency>
-  <groupId>org.kie.kogito</groupId>
-  <artifactId>kogito-addons-quarkus-process-management</artifactId> <2>
+  <groupId>org.kie</groupId>
+  <artifactId>kie-addons-quarkus-process-management</artifactId> <2>
 </dependency>
 ----
 
@@ -63,7 +63,7 @@ Here you can see in example, how the {data_index_ref} resource definition can be
 ----
   data-index:
     container_name: data-index
-    image: quay.io/kiegroup/kogito-data-index-postgresql-nightly:main-2024-02-09 <1>
+    image: quay.io/kiegroup/kogito-data-index-postgresql:latest <1>
     ports:
       - "8180:8080"
     depends_on:
@@ -80,7 +80,8 @@ Here you can see in example, how the {data_index_ref} resource definition can be
       QUARKUS_FLYWAY_MIGRATE_AT_START: "true" <4>
       QUARKUS_HIBERNATE_ORM_DATABASE_GENERATION: update
 ----
-<1> Reference the right {data_index_ref} image to match with the type of Database, in this case `quay.io/kiegroup/kogito-data-index-postgresql-nightly:{sonataflow_non_productized_image_tag}`
+
+<1> Reference the right {data_index_ref} image to match with the type of Database, in this case `quay.io/kiegroup/kogito-data-index-postgresql:latest`
 <2> Provide the database connection properties.
 <3> When `KOGITO_DATA_INDEX_QUARKUS_PROFILE` is not present, the {data_index_ref} is configured to use Kafka eventing.
 <4> To initialize the database schema at start using flyway.
@@ -156,7 +157,7 @@ spec:
     spec:
       containers:
         - name: data-index-service-postgresql
-          image: quay.io/kiegroup/kogito-data-index-postgresql-nightly:main-2024-02-09 <1>
+          image: quay.io/kiegroup/kogito-data-index-postgresql:latest <1>
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
@@ -186,7 +187,7 @@ spec:
             - name: QUARKUS_FLYWAY_MIGRATE_AT_START <4>
               value: "true"
             - name: KOGITO_DATA_INDEX_QUARKUS_PROFILE <3>
-              value: "http-events-support"
+              value: http-events-support
             - name: QUARKUS_HTTP_PORT
               value: "8080"
 ---
@@ -222,7 +223,7 @@ spec:
       name: data-index-service-postgresql
     uri: /jobs <7>
 ----
-<1> Reference the right {data_index_ref} image to match with the type of Database, in this case `quay.io/kiegroup/kogito-data-index-postgresql-nightly:{sonataflow_non_productized_image_tag}`
+<1> Reference the right {data_index_ref} image to match with the type of Database, in this case `quay.io/kiegroup/kogito-data-index-postgresql:latest`
 <2> Provide the database connection properties
 <3> KOGITO_DATA_INDEX_QUARKUS_PROFILE: http-events-support to use the http-connector with Knative eventing.
 <4> To initialize the database schema at start using flyway

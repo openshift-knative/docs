@@ -1,0 +1,489 @@
+= Introduction
+:compat-mode!:
+// Metadata:
+:description: Job Service to control timeouts in {product_name}
+:keywords: sonataflow, workflow, serverless, timeout, timer, expiration, job service
+
+The Job Service facilitates the scheduled execution of tasks in a cloud environment. These tasks are implemented by independent services, and can be started by using any of the Job Service supported interaction modes, based on Http calls or Knative Events delivery.
+
+To schedule task execution, you must create a Job configured with the following information:
+
+* `Schedule`: the job triggering periodicity.
+* `Recipient`: the entity that is called on the job execution for the given interaction mode, and  receives the execution parameters.
+
+image::job-services/Job-Service-Generic-Diagram.png[]
+
+[#integration-with-the-workflows]
+== Integration with the Workflows
+
+In the context of the {product_name}, the Job Service is responsible for controlling the execution of the time-triggered actions. And thus, all the time-based states that you can use in a workflow, are handled by the interaction between the workflow and the Job Service.
+
+For example, every time the workflow execution reaches a state with a configured timeout, a corresponding job is created in the Job Service, and when the timeout is met, a http callback is executed to notify the workflow.
+
+image::job-services/Time-Based-States-And-Job-Service-Interaction.png[]
+
+To set up this integration you can use different xref:use-cases/advanced-developer-use-cases/job-service/quarkus-extensions.adoc#job-service-quarkus-extensions[communication alternatives], that must be configured by combining the Job Service and the Quarkus Workflow Project configurations.
+Alternatively, when you work with {operator_name} workflow deployments, the operator can manage all these configurations.
+
+[NOTE]
+====
+If the project is not configured to use the Job Service, all time-based actions will use an in-memory implementation of that service.
+However, this setup must not be used in production, since every time the application is restarted, all the timers are lost, making it unsuitable for serverless architectures where applications might scale to zero at any time, etc.
+====
+
+[IMPORTANT]
+====
+If you are working with the {operator_name} be sure that you read this section <<_sonataflow_operator_managed_deployment, {operator_name} managed deployments>>.
+====
+
+== Jobs life-span
+
+Since the main goal of the Job Service is to work with the active jobs, such as the scheduled jobs that needs to be executed, when a job reaches a final state, it is removed from the Job Service.
+However, in some cases where you want to keep the information about the jobs in a permanent repository, you can configure the Job Service to produce status change events, that can be collected by the {data_index_xref}[Data Index Service], where they can be indexed and made available by GraphQL queries.
+
+== {operator_name} managed deployment
+
+When you work with the {operator_name} to deploy your workflows, there's no need to do any manual Job Service installation or configuration, the operator already has the ability to do that.
+Additionally, it can manage all the required configurations for every workflow to connect with it.
+
+To learn how to install and configure the Job Service in this case, you must read the xref:cloud/operator/supporting-services.adoc[Operator Supporting Services] section.
+
+[#executing]
+== Custom Execution
+
+To execute the Job Service in your docker or Kubernetes environment, you must use any of the following images, depending on the persistence mechanism to use <<job-service-postgresql, PostgreSQL>> or <<job-service-ephemeral, Ephemeral>>.
+
+* `{jobs_service_image_postgresql}`
+* `{jobs_service_image_ephemeral}`
+
+In the next topics you can see how to configure them.
+
+[NOTE]
+====
+The <<job-service-global-configurations, common configurations>> and the <<job-service-eventing-api, eventing API configurations>> are the same for both images.
+====
+
+We recommend that you follow this procedure:
+
+1. Identify the image to use depending on the persistence mechanism, and see the required configuration parameters specific for that image.
+2. Identify if the <<job-service-eventing-api, Eventing API>> is required for your needs and see the required configuration parameters.
+3. Identify if the project containing your workflows is configured with the appropriate xref:use-cases/advanced-developer-use-cases/job-service/quarkus-extensions.adoc#job-service-quarkus-extensions[Job Service Quarkus Extension].
+
+Finally, when you run the image, you must pass these configurations using <<using-environent-variables, environment variables>> or using <<using-java-like-system-properties, system properties with java like names>>.
+
+[#using-environent-variables]
+=== Using environment variables
+
+To configure the image by using environment variables you must pass one environment variable per each parameter.
+
+.Job Service image configuration for docker execution example
+[source, bash,subs="attributes+"]
+----
+docker run -it -e QUARKUS_DATASOURCE_USERNAME=postgres -e VARIABLE_NAME=value {jobs_service_image_postgresql}:latest
+----
+
+.Job Service image configuration for Kubernetes execution example
+[source, yaml,subs="attributes+"]
+----
+spec:
+  containers:
+    - name: jobs-service-postgresql
+      image: {jobs_service_image_postgresql}:latest
+      imagePullPolicy: Always
+      ports:
+        - containerPort: 8080
+          name: http
+          protocol: TCP
+      env:
+        # Set the image parameters as environment variables in the container definition.
+        - name: KUBERNETES_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        - name: QUARKUS_DATASOURCE_USERNAME
+          value: postgres
+        - name: QUARKUS_DATASOURCE_PASSWORD
+          value: pass
+        - name: QUARKUS_DATASOURCE_JDBC_URL
+          value: jdbc:postgresql://timeouts-showcase-database:5432/postgres?currentSchema=jobs-service
+        - name: QUARKUS_DATASOURCE_REACTIVE_URL
+          value: postgresql://timeouts-showcase-database:5432/postgres?search_path=jobs-service
+----
+
+[NOTE]
+====
+This is the recommended approach when you execute the Job Service in Kubernetes.
+The timeouts showcase example xref:use-cases/advanced-developer-use-cases/timeouts/timeout-showcase-example.adoc#execute-quarkus-project-standalone-services[Quarkus Workflow Project with standalone services] contains an example of this configuration, link:{kogito_sw_examples_url}/serverless-workflow-timeouts-showcase-extended/kubernetes/jobs-service-postgresql.yml#L65[see].
+On the other hand, when you work with the {operator_name}, it can automatically manage all these configurations, xref:cloud/operator/supporting-services.adoc[see].
+====
+
+[#using-java-like-system-properties]
+=== Using system properties with java like names
+
+To configure the image by using system properties you must pass one property per parameter, however, in this case, all these properties are passed as part of a single environment with the name `JAVA_OPTIONS`.
+
+.Job Service image configuration for docker execution example
+[source, bash,subs="attributes+"]
+----
+docker run -it -e JAVA_OPTIONS='-Dquarkus.datasource.username=postgres -Dmy.sys.prop1=value1 -Dmy.sys.prop2=value2' \
+{jobs_service_image_postgresql}:latest
+----
+
+[NOTE]
+====
+I case that you need to convert a java like property name, to the corresponding environment variable name, to use the environment variables configuration alternative, you must apply the naming convention defined in the link:{quarkus_guides_config_reference_url}#environment-variables[Quarkus Configuration Reference].
+For example, the name `quarkus.datasource.jdbc.url` must be converted to `QUARKUS_DATASOURCE_JDBC_URL`.
+====
+
+[#job-service-global-configurations]
+== Common configurations
+
+Common configurations that affect the job execution retries, startup procedure, etc.
+
+[tabs]
+====
+Using environment variables::
++
+
+[cols="2,1,1"]
+|===
+|Name |Description |Default
+
+|`KOGITO_JOBS_SERVICE_BACKOFFRETRYMILLIS`
+|A long value that defines the retry back-off time in milliseconds between job execution attempts, in case the execution fails.
+|`1000`
+
+|`KOGITO_JOBS_SERVICE_MAXINTERVALLIMITTORETRYMILLIS`
+|A long value that defines the maximum interval in milliseconds when retrying to execute jobs, in case the execution fails.
+|`60000`
+
+|===
+
+Using system properties with java like names::
++
+
+[cols="2,1,1"]
+|===
+|Name |Description |Default
+
+|`kogito.jobs-service.backoffRetryMillis`
+|A long value that defines the retry back-off time in milliseconds between job execution attempts, in case the execution fails.
+|`1000`
+
+|`kogito.jobs-service.maxIntervalLimitToRetryMillis`
+|A long value that defines the maximum interval in milliseconds when retrying to execute jobs, in case the execution fails.
+|`60000`
+
+|===
+
+====
+
+[#job-service-persistence]
+[#job-service-postgresql]
+== Job Service PostgreSQL Configuration
+
+PostgreSQL is the recommended database to use with the Job Service.
+Additionally, it provides an initialization procedure that integrates Flyway for the database initialization. Which automatically controls the database schema, in this way, the tables are created or updated by the service when required.
+
+In case you need to externally control the database schema, you can check and apply the DDL scripts for the Job Service in the same way as described in
+xref:use-cases/advanced-developer-use-cases/persistence/postgresql-flyway-migration.adoc#manually-executing-scripts[Manually executing scripts] guide.
+
+To configure the Job Service PostgreSQL you must provide these configurations:
+
+[tabs]
+====
+Using environment variables::
++
+
+[cols="2,1,1"]
+|===
+|Variable | Description| Example value
+
+|`QUARKUS_DATASOURCE_USERNAME`
+|Username to connect to the database.
+|`postgres`
+
+|`QUARKUS_DATASOURCE_PASSWORD`
+|Password to connect to the database
+|`pass`
+
+|`QUARKUS_DATASOURCE_JDBC_URL`
+| JDBC datasource url used by Flyway to connect to the database.
+|`jdbc:postgresql://timeouts-showcase-database:5432/postgres?currentSchema=jobs-service`
+
+|`QUARKUS_DATASOURCE_REACTIVE_URL`
+|Reactive datasource url used by the Job Service to connect to the database.
+|`postgresql://timeouts-showcase-database:5432/postgres?search_path=jobs-service`
+
+|===
+
+Using system properties with java like names::
++
+
+[cols="2,1,1"]
+|===
+|Variable | Description| Example value
+
+|`quarkus.datasource.username`
+|Username to connect to the database.
+|`postgres`
+
+|`quarkus.datasource.password`
+|Password to connect to the database
+|`pass`
+
+|`quarkus.datasource.jdbc.url`
+| JDBC datasource url used by Flyway to connect to the database.
+|`jdbc:postgresql://timeouts-showcase-database:5432/postgres?currentSchema=jobs-service`
+
+|`quarkus.datasource.reactive.url`
+|Reactive datasource url used by the Job Service to connect to the database.
+|`postgresql://timeouts-showcase-database:5432/postgres?search_path=jobs-service`
+
+|===
+====
+
+The timeouts showcase example xref:use-cases/advanced-developer-use-cases/timeouts/timeout-showcase-example.adoc#execute-quarkus-project-standalone-services[Quarkus Workflow Project with standalone services], shows how to run a PostgreSQL based Job Service as a Kubernetes deployment.
+In your local environment you might have to change some of these values to point to your own PostgreSQL database.
+
+[#job-service-ephemeral]
+== Job Service Ephemeral Configuration
+
+The Ephemeral persistence mechanism is based on an embedded PostgreSQL database and does not require any specific configuration other thant the <<job-service-global-configurations, common configurations>> and the <<job-service-eventing-api, Eventing API>>.
+
+[NOTE]
+====
+The database is recreated on each service restart, and thus, it must be used only for testing purposes.
+====
+
+[#job-service-eventing-api]
+== Eventing API
+
+The Job Service provides a Cloud Event based API that can be used to create and delete jobs.
+This API is useful in deployment scenarios where you want to use an event based communication from the workflow runtime to the Job Service. For the transport of these events you can use the <<knative-eventing, Knative eventing>> system or the <<kafka-messaging, kafka messaging>> system.
+
+[#knative-eventing]
+=== Knative eventing
+
+By default, the Job Service Eventing API is prepared to work in a link:{knative_eventing_url}[Knative eventing] system. This means that by adding no additional configurations parameters, it'll be able to receive cloud events via the link:{knative_eventing_url}[Knative eventing] system to manage the jobs.
+However, you must still prepare your link:{knative_eventing_url}[Knative eventing] environment to ensure these events are properly delivered to the Job Service, see <<knative-eventing-supporting-resources, Knative eventing supporting resources>>.
+
+Finally, the only configuration parameter that you must set, when needed, is to enable the propagation of the Job Status Change events, for example, if you want to register these events in the {data_index_xref}[Data Index Service].
+
+[tabs]
+====
+Using environment variables::
++
+
+[cols="2,1,1"]
+|===
+|Variable | Description| Default value
+
+|`KOGITO_JOBS_SERVICE_HTTP_JOB_STATUS_CHANGE_EVENTS`
+| `true` to establish if the Job Status Change events must be propagated. If you set this value to `true` you must be sure that the <<knative-eventing-supporting-resources-sink-binding, sink binding>> was created.
+| `false`
+
+|===
+
+Using system properties with java like names::
++
+
+[cols="2,1,1"]
+|===
+|Variable | Description| Default value
+
+|`kogito.jobs-service.http.job-status-change-events`
+| `true` to establish if the Job Status Change events must be propagated. If you set this value to `true` you must be sure that the <<knative-eventing-supporting-resources-sink-binding, sink binding>> was created.
+| `false`
+
+|===
+
+====
+
+
+[#knative-eventing-supporting-resources]
+==== Knative eventing supporting resources
+
+To ensure the Job Service receives the Knative events to manage the jobs, you must create the <<knative-eventing-supporting-resources-trigger-create, create job events>> and <<knative-eventing-supporting-resources-trigger-delete, delete job events>> triggers shown in the diagram below.
+Additionally, if you have enabled the Job Status Change events propagation you must create the <<knative-eventing-supporting-resources-sink-binding, sink binding>>.
+
+.Knative eventing supporting resources
+image::job-services/Knative-Eventing-API-Resources.png[]
+
+The following snippets shows an example on how you can configure these resources. Consider that these configurations might need to be adjusted to your local kubernetes cluster.
+
+[NOTE]
+====
+We recommend that you visit this example xref:use-cases/advanced-developer-use-cases/timeouts/timeout-showcase-example.adoc#execute-quarkus-project-standalone-services[Quarkus Workflow Project with standalone services] to see a full setup of all these configurations.
+====
+
+[#knative-eventing-supporting-resources-trigger-create]
+.Create Job event trigger configuration example
+[source,yaml]
+----
+apiVersion: eventing.knative.dev/v1
+kind: Trigger
+metadata:
+  name: jobs-service-postgresql-create-job-trigger
+spec:
+  broker: default
+  filter:
+    attributes:
+      type: job.create
+  subscriber:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: jobs-service-postgresql
+    uri: /v2/jobs/events
+----
+
+[#knative-eventing-supporting-resources-trigger-delete]
+.Delete Job event trigger configuration example
+[source,yaml]
+----
+apiVersion: eventing.knative.dev/v1
+kind: Trigger
+metadata:
+  name: jobs-service-postgresql-delete-job-trigger
+spec:
+  broker: default
+  filter:
+    attributes:
+      type: job.delete
+  subscriber:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: jobs-service-postgresql
+    uri: /v2/jobs/events
+----
+
+For more information about triggers, see link:{knative_eventing_trigger_url}[Knative Triggers].
+
+[#knative-eventing-supporting-resources-sink-binding]
+.Job Service sink binding configuration example
+[source, yaml]
+----
+apiVersion: sources.knative.dev/v1
+kind: SinkBinding
+metadata:
+  name: jobs-service-postgresql-sb
+spec:
+  sink:
+    ref:
+      apiVersion: eventing.knative.dev/v1
+      kind: Broker
+      name: default
+  subject:
+    apiVersion: apps/v1
+    kind: Deployment
+    selector:
+      matchLabels:
+        app.kubernetes.io/name: jobs-service-postgresql
+        app.kubernetes.io/version: 2.0.0-SNAPSHOT
+----
+
+For more information about sink bindings, see link:{knative_eventing_sink_binding_url}[Knative Sink Bindings].
+
+[#kafka-messaging]
+=== Kafka messaging
+
+To enable the Job Service Eventing API via the Kafka messaging system you must provide these configurations:
+
+[tabs]
+====
+Using environment variables::
++
+
+[cols="2,1,1"]
+|===
+|Variable | Description| Default value
+
+|`QUARKUS_PROFILE`
+|Set the quarkus profile with the value `kafka-events-support` to enable the kafka messaging based Job Service Eventing API.
+|By default, the kafka eventing api is disabled.
+
+|`KOGITO_JOBS_SERVICE_KAFKA_JOB_STATUS_CHANGE_EVENTS`
+|`true` to establish if the Job Status Change events must be propagated.
+|`true` when the `kafka-events-support` profile is set.
+
+|`KAFKA_BOOTSTRAP_SERVERS`
+|A comma-separated list of host:port to use for establishing the initial connection to the Kafka cluster.
+|`localhost:9092` when the `kafka-events-support` profile is set.
+
+|`MP_MESSAGING_INCOMING_KOGITO_JOB_SERVICE_JOB_REQUEST_EVENTS_V2_TOPIC`
+|Kafka topic for events API incoming events. In general you don't need to change this value.
+|`kogito-job-service-job-request-events-v2` when the `kafka-events-support` profile is set.
+
+|`MP_MESSAGING_OUTGOING_KOGITO_JOB_SERVICE_JOB_STATUS_EVENTS_TOPIC`
+|Kafka topic for job status change outgoing events. In general you don't need to change this value.
+|`kogito-jobs-events` when the `kafka-events-support` profile is set.
+
+|===
+
+Using system properties with java like names::
++
+
+[cols="2,1,1"]
+|===
+|Variable | Description| Default value
+
+|quarkus.profile
+|Set the quarkus profile with the value `kafka-events-support` to enable the kafka messaging based Job Service Eventing API.
+|By default, the kafka eventing api is disabled.
+
+|`kogito.jobs-service.kafka.job-status-change-events`
+|`true` to establish if the Job Status Change events must be propagated.
+|`true` when the `kafka-events-support` profile is set.
+
+|`kafka.bootstrap.servers`
+|A comma-separated list of host:port to use for establishing the initial connection to the Kafka cluster.
+|`localhost:9092` when the `kafka-events-support` profile is set.
+
+|`mp.messaging.incoming.kogito-job-service-job-request-events-v2.topic`
+|Kafka topic for events API incoming events. In general you don't need to change this value.
+|`kogito-job-service-job-request-events-v2` when the `kafka-events-support` profile is set.
+
+|`mp.messaging.outgoing.kogito-job-service-job-status-events.topic`
+|Kafka topic for job status change outgoing events. In general you don't need to change this value.
+|`kogito-jobs-events` when the `kafka-events-support` profile is set.
+
+|===
+
+====
+
+[NOTE]
+====
+Depending on your Kafka messaging system configuration you might need to apply additional Kafka configurations to connect to the Kafka broker, etc.
+To see the list of all the supported configurations you must read the link:{quarkus_guides_kafka_url}[Quarkus Apache Kafka Reference Guide].
+====
+
+
+
+== Leader election
+
+Currently, the Job Service is a singleton service, and thus, just one active instance of the service can be scheduling and executing the jobs.
+
+To avoid issues when it is deployed in the cloud, where it is common to eventually have more than one instance deployed, the Job Service supports a leader instance election process.
+Only the instance that becomes the leader activates the external communication to receive and schedule jobs.
+
+All the instances that are not leaders, stay inactive in a wait state and try to become the leader continuously.
+
+When a new instance of the service is started, it is not set as a leader at startup time but instead, it starts the process to become one.
+
+When an instance that is the leader for any issue stays unresponsive or is shut down, one of the other running instances becomes the leader.
+
+.Job Service leader election
+image::job-services/job-service-leader.png[]
+
+[NOTE]
+====
+This leader election mechanism uses the underlying persistence backend, which currently is only supported in the PostgreSQL implementation.
+====
+
+There is no need for any configuration to support this feature, the only requirement is to have the supported database with the data schema up-to-date as described in the <<job-service-postgresql>> section.
+
+In case the underlying persistence does not support this feature, you must guarantee that just one single instance of the Job Service is running at the same time.
+
+include::../../pages/_common-content/report-issue.adoc[]
