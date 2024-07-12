@@ -11,7 +11,7 @@
 :kubernetes_operator_uninstall_url: https://olm.operatorframework.io/docs/tasks/uninstall-operator/
 :operatorhub_url: https://operatorhub.io/
 
-This guide describes how to install the {operator_name} in a Kubernetes or OpenShift cluster. The operator is in an xref:cloud/operator/known-issues.adoc[early development stage] (community only) and has been tested on OpenShift {openshift_version_min}+, Kubernetes {kubernetes_version}+, and link:{minikube_url}[Minikube].
+This guide describes how to install the {operator_name} in a Kubernetes or OpenShift cluster. The operator  has been tested on OpenShift {openshift_version_min}+, Kubernetes {kubernetes_version}+, and link:{minikube_url}[Minikube].
 
 .Prerequisites
 * A Kubernetes or OpenShift cluster with admin privileges and `kubectl` installed. 
@@ -62,13 +62,13 @@ To install the {product_name} Operator, you can use the following command:
 .Install {product_name} Operator on Kubernetes
 [source,shell,subs="attributes+"]
 ----
-kubectl create -f https://raw.githubusercontent.com/apache/incubator-kie-kogito-serverless-operator/{operator_version}/operator.yaml
+kubectl create -f https://raw.githubusercontent.com/kiegroup/kogito-serverless-operator/{kogito_branch}/operator.yaml
 ----
-Replace `main` with specific version if needed:
+Replace with specific version if needed:
 ----
 kubectl create -f https://raw.githubusercontent.com/kiegroup/kogito-serverless-operator/<version>/operator.yaml
 ----
-`<version>` could be `1.44.1` for instance.
+`<version>` could be `10.0.0` for instance.
 
 You can follow the deployment of the {product_name} Operator:
 
@@ -122,13 +122,13 @@ To uninstall the correct version of the operator, first you must get the current
 ----
 kubectl get deployment sonataflow-operator-controller-manager -n sonataflow-operator-system -o jsonpath="{.spec.template.spec.containers[?(@.name=='manager')].image}"
 
-quay.io/kiegroup/kogito-serverless-operator-nightly:latest
+{sonataflow_operator_imagename}:{operator_version}
 ----
 
 .Uninstalling the operator
 [source,shell,subs="attributes+"]
 ----
-kubectl delete -f https://raw.githubusercontent.com/apache/incubator-kie-kogito-serverless-operator/<version>.x/operator.yaml
+kubectl delete -f https://raw.githubusercontent.com/kogito-serverless-operator/<version>.x/operator.yaml
 ----
 
 [TIP]

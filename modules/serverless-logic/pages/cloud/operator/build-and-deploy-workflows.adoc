@@ -66,7 +66,7 @@ You can change the `Dockerfile` entry in this `ConfigMap` to tailor the Dockerfi
 apiVersion: v1
 data:
   DEFAULT_WORKFLOW_EXTENSION: .sw.json
-  Dockerfile: "FROM quay.io/kiegroup/kogito-swf-builder-nightly:latest AS builder\n\n#
+  Dockerfile: "FROM {sonataflow_builder_imagename}:{operator_version} AS builder\n\n#
     variables that can be overridden by the builder\n# To add a Quarkus extension
     to your application\nARG QUARKUS_EXTENSIONS\n# Args to pass to the Quarkus CLI
     add extension command\nARG QUARKUS_ADD_EXTENSION_ARGS\n# Additional java/mvn arguments
@@ -355,7 +355,7 @@ spec:
       strategyOptions:
         KanikoBuildCacheEnabled: "true"
       registry:
-        address: quay.io/kiegroup <1>
+        address: registry.redhat.io/openshift-serverless-1 <1>
         secret: regcred <2>
 ----
 
@@ -432,7 +432,7 @@ If you are running on OpenShift, you have access to the Red Hat's supported regi
 kubectl edit cm/sonataflow-operator-builder-config -n {operator_installation_namespace}
 ----
 
-In your editor, change the first line in the `Dockerfile` entry where it reads `FROM quay.io/kiegroup/kogito-swf-builder-nightly:latest` to the desired image.
+In your editor, change the first line in the `Dockerfile` entry where it reads `FROM {sonataflow_builder_imagename}:{operator_version}` to the desired image.
 
 This image must be compatible with your operator's installation.
 
