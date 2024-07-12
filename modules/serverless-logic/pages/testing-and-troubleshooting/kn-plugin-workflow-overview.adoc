@@ -9,12 +9,7 @@
 
 {product_name} provides a plug-in named `kn-plugin-workflow` for Knative CLI, which enables you to set up a local workflow project quickly using the command line.
 
-This document describes how you can install and use the `kn-plugin-workflow` plug-in in {product_name}.
-
-[[proc-install-sw-plugin-kn-cli]]
-== Installing the {product_name} Workflow CLI
-
-You can use the {product_name} plug-in to set up your local workflow project quickly using Knative CLI. 
+This document describes fatures of the workflow plugin for KN CLI. See xref:cloud/operator/install-kn-workflow-cli.adoc[] for currently supported installation procedure.
 
 .Prerequisites
 * link:{java_install_url}[Java] {java_min_version} is installed.
@@ -23,40 +18,6 @@ You can use the {product_name} plug-in to set up your local workflow project qui
 * (Optional) link:{podman_install_url}[Podman] is installed.
 * link:{kubectl_install_url}[Kubernetes CLI] is installed.
 
-.Procedure
-. Create a variable which references the KN workflow plugin container image:
-+
-`export IMAGE_SWF_KN_TAG={osl_kn_cli_imagename}:{operator_version}`
-+
-. Pull the image using Docker or Podman
-+
-`podman pull $IMAGE_SWF_KN`
-+
-. Start the container image and get the ID of running container:
-+
-`export KN_CONTAINER_ID=$(docker run -di $IMAGE_SWF_KN)`
-+
-. Copy the binary of KN workflow plugin
-+
-`docker cp $KN_CONTAINER_ID:/usr/share/kn/linux_amd64/kn-workflow-linux-amd64.tar.gz kn-workflow-linux-amd64.tar.gz`
-+
-. Stop the container:
-+
-`docker stop $KN_CONTAINER_ID`
-+
-. Unzip the archive:
-+
-`tar -xf kn-workflow-linux-amd64.tar.gz`
-+
-. Rename the archive to `kn-workflow`:
-+
-`mv kn-workflow-linux-amd64.tar.gz kn-workflow`
-+
-. Copy the `kn-workflow` binary file to a directory in your `PATH`, such as `/usr/local/bin`
-. Run the following command to verify that `kn-workflow` plug-in is installed successfully:
-+
-`kn workflow help`
-+
 . After installing the plug-in, you can use `kn workflow` to run the related subcommands as follows:
 
 .Aliases to use workflow subcommand
@@ -116,7 +77,6 @@ Flags:
 
 Use "kn [command] --help" for more information about a command.
 ----
---
 
 [[proc-create-sw-project-kn-cli]]
 == Creating a workflow project using Knative CLI
