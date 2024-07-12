@@ -128,7 +128,7 @@ asciidoc:
     podman_install_url: https://docs.podman.io/en/latest/
     kubectl_install_url: https://kubernetes.io/docs/tasks/tools/install-kubectl
     docker_compose_install_url: https://docs.docker.com/compose/install/
-    kn_cli_install_url: https://knative.dev/docs/client/install-kn/
+    kn_cli_install_url: https://docs.openshift.com/serverless/1.33/install/installing-kn.html
     knative_eventing_url: https://docs.openshift.com/serverless/1.33/eventing/knative-eventing.html
     knative_eventing_broker_url: https://docs.openshift.com/serverless/1.33/eventing/brokers/serverless-brokers.html
     knative_eventing_kafka_broker_url: https://docs.openshift.com/serverless/1.33/eventing/brokers/serverless-broker-types.html
