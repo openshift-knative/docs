@@ -62,7 +62,7 @@ To install the {product_name} Operator, you can use the following command:
 .Install {product_name} Operator on Kubernetes
 [source,shell,subs="attributes+"]
 ----
-kubectl create -f https://raw.githubusercontent.com/kiegroup/kogito-serverless-operator/{kogito_branch}/operator.yaml
+kubectl create -f {operator_community_prod_yaml}
 ----
 Replace with specific version if needed:
 ----
@@ -128,7 +128,7 @@ kubectl get deployment sonataflow-operator-controller-manager -n sonataflow-oper
 .Uninstalling the operator
 [source,shell,subs="attributes+"]
 ----
-kubectl delete -f https://raw.githubusercontent.com/kogito-serverless-operator/<version>.x/operator.yaml
+kubectl delete -f {operator_community_prod_yaml}
 ----
 
 [TIP]

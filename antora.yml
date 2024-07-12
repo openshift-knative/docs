@@ -37,6 +37,8 @@ asciidoc:
     kogito_devservices_imagename: registry.redhat.io/openshift-serverless-1/logic-data-index-ephemeral-rhel8
     sonataflow_devmode_imagename: registry.redhat.io/openshift-serverless-1/logic-swf-devmode-rhel8
     sonataflow_builder_imagename: registry.redhat.io/openshift-serverless-1/logic-swf-builder-rhel8
+    sonataflow_dataindex_ephemeral_imagename: registry.redhat.io/openshift-serverless-1/logic-data-index-ephemeral-rhel8
+    sonataflow_dataindex_postgresql_imagename: registry.redhat.io/openshift-serverless-1/logic-data-index-postgresql-rhel8
     sonataflow_devmode_devui_url: /q/dev-ui/org.apache.kie.sonataflow.sonataflow-quarkus-devui/
     serverless_logic_web_tools_name: Serverless Logic Web Tools
     serverless_workflow_vscode_extension_name: Openshift Serverless Logic Workflow Editor
