@@ -1,4 +1,4 @@
-= New features on {page-component-display-version}
+= New features on {operator_version}
 :compat-mode!:
 
 == Known issues
