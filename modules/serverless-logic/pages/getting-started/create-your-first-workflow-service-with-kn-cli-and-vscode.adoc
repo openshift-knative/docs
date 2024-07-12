@@ -23,7 +23,7 @@ cd ./my-sonataflow-project
 ----
 * Open the folder in Visual Studio Code and examine the created `workflow.sw.json` using our extension.
 
-Now you can run the project and execute the workflow.
+Once you are done you can run the project and execute the workflow.
 
 [[proc-running-app-with-kn-cli]]
 == Running a Workflow project with Visual Studio Code and KN CLI
@@ -39,6 +39,8 @@ kn workflow run
 * You can now work on your project. Any changes will be picked up by the hot reload feature.
 * See xref:testing-and-troubleshooting/quarkus-dev-ui-extension/quarkus-dev-ui-workflow-instances-page.adoc[Workflow instances] guide on how to run workflows via Development UI.
 * Once you are done developing your project navigate to the terminal that is running the `kn workflow run` command and hit `Ctlr+C` to stop the development environment.
+
+You can use any editor to develop your workflow to suit your use case. We recommend getting familiar with xref:../core/cncf-serverless-workflow-specification-support.adoc[] and guides in `Core` chapter first. 
 
 To deploy the finished project to a local cluster, proceed to the next section.
 

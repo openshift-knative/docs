@@ -18,7 +18,7 @@ This document describes fatures of the workflow plugin for KN CLI. See xref:clou
 * (Optional) link:{podman_install_url}[Podman] is installed.
 * link:{kubectl_install_url}[Kubernetes CLI] is installed.
 
-. After installing the plug-in, you can use `kn workflow` to run the related subcommands as follows:
+After installing the plug-in, you can use `kn workflow` to run the related subcommands as follows:
 
 .Aliases to use workflow subcommand
 [source,shell]
