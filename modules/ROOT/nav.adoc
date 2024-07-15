@@ -85,7 +85,7 @@
 **** xref:serverless-logic:integrations/core-concepts.adoc[]
 *** Supporting Services
 **** Jobs Service
-***** xref:job-services/core-concepts.adoc[Core Concepts]
+***** xref:serverless-logic:job-services/core-concepts.adoc[Core Concepts]
 **** Data Index
 ***** xref:serverless-logic:data-index/data-index-core-concepts.adoc[Core Concepts]***
 ***** xref:serverless-logic:data-index/data-index-service.adoc[Data Index Standalone Service]

@@ -25,7 +25,7 @@ asciidoc:
     operator_installation_namespace: openshift-serverless-logic
     operator_controller_config: sonataflow-operator-controllers-config
     quarkus_platform: com.redhat.quarkus.platform
-    kogito_sw_ga: kogito-quarkus-serverless-workflow
+    kogito_sw_ga: org.apache.kie.sonataflow:sonataflow-quarkus 
     data_index_ref: Data Index
     workflow_instance: workflow instance
     workflow_instances: workflow instances
