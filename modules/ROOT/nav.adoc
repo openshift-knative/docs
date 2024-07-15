@@ -64,7 +64,7 @@
 *** Persistence
 **** xref:serverless-logic:persistence/core-concepts.adoc[Core concepts]
 *** xref:serverless-logic:cloud/index.adoc[Cloud]
-*** xref:serverless-logic:cloud/custom-ingress-authz.adoc[Securing Workflows]
+**** xref:serverless-logic:cloud/custom-ingress-authz.adoc[Securing Workflows]
 **** Operator
 ***** xref:serverless-logic:cloud/operator/install-serverless-operator.adoc[Installation]
 ***** xref:serverless-logic:cloud/operator/global-configuration.adoc[Admin Configuration]
