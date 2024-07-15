@@ -47,10 +47,10 @@ asciidoc:
     # Jobs service image and links
     jobs_service_image_ephemeral: registry.redhat.io/openshift-serverless-1/logic-jobs-service-ephemeral-rhel8
     jobs_service_image_ephemeral_name: logic-jobs-service-ephemeral-rhel8
-    jobs_service_image_ephemeral_url: https:registry.redhat.io/openshift-serverless-1/logic-jobs-service-ephemeral-rhel8
+    jobs_service_image_ephemeral_url: https://catalog.redhat.com/software/containers/openshift-serverless-1/logic-jobs-service-ephemeral-rhel8/6614eddaaeb155f6aae45380
     jobs_service_image_postgresql_name: logic-jobs-service-postgresql-rhel8
     jobs_service_image_postgresql: registry.redhat.io/openshift-serverless-1/logic-jobs-service-postgresql-rhel8
-    jobs_service_image_postgresql_url: https://registry.redhat.io/openshift-serverless-1/logic-jobs-service-ephemeral-rhel8
+    jobs_service_image_postgresql_url: https://catalog.redhat.com/software/containers/openshift-serverless-1/logic-jobs-service-postgresql-rhel8/6614eddbaeb155f6aae45385
     jobs_service_image_usage_url: https://github.com/kiegroup/kogito-images/tree/9.100.x-prod#jobs-services-all-in-one
 
     #
