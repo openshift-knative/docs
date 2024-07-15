@@ -57,7 +57,7 @@ kubectl patch sonataflowplatform <name> --patch  'spec:\n    build:\n    config:
 [#customize-base-build]
 === Customize the base build Dockerfile
 
-The operator uses the `ConfigMap` named `sonataflow-operator-builder-config` in the operator's installation namespace ({operator_installation_namespace}) to configure and run the workflow build process. 
+The operator uses the `ConfigMap` named `logic-operator-builder-config` in the operator's installation namespace ({operator_installation_namespace}) to configure and run the workflow build process. 
 You can change the `Dockerfile` entry in this `ConfigMap` to tailor the Dockerfile to your needs. Just be aware that this can break the build process.
 
 .Example of the sonataflow-operator-builder-config `ConfigMap`
