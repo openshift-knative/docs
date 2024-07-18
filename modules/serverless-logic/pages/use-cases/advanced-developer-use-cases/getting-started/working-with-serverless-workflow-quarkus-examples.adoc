@@ -26,6 +26,7 @@ However, same procedure can be applied to any example located in link:{kogito_sw
 [source,shell,subs="attributes+"]
 ----
 git clone --branch main {kogito_examples_url}
+git checkout {kogit_branch}
 cd {kie_kogito_examples_repo_name}/serverless-workflow-examples/serverless-workflow-greeting-quarkus
 ----
 

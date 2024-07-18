@@ -187,7 +187,6 @@ asciidoc:
     job_service_xref: xref:job-services/core-concepts.adoc
 
     # Tag to use with community-only images
-    sonataflow_non_productized_image_tag: NO_TAG
     operator_community_prod_yaml: https://raw.githubusercontent.com/kiegroup/kogito-serverless-operator/9.100.x-prod/operator.yaml
     operator_community_prod_root: https://raw.githubusercontent.com/kiegroup/kogito-serverless-operator/9.100.x-prod
     sonataflow_operator_imagename: registry.redhat.io/openshift-serverless-1/logic-rhel8-operator
