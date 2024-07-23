@@ -142,6 +142,45 @@ kn workflow run
 --
 . Once the project is ready, the Development UI will be opened up in a browser automatically (on `localhost:8080/q/dev`).
 
+[[proc-gen-manifests-sw-project-kn-cli]]
+== Generating a list of Operator manifests using Knative CLI
+
+After creating your workflow project, you can use the `gen-manifest` command with `kn workflow` to generate operator manifest files for your workflow project in your current directory. 
+
+This will screate a new file in `./manifests` directory in your project.
+
+.Prerequisites
+* {product_name} plug-in for Knative CLI is installed.
++
+For more information about installing the plug-in, see <<proc-install-sw-plugin-kn-cli, Installing the {product_name} plug-in for Knative CLI>>.
+
+* A workflow project is created.
++
+For more information about creating a workflow project, see <<proc-create-sw-project-kn-cli, Creating workflow project using Knative CLI>>.
+* Minikube cluster is running locally.
+
+
+.Procedure
+. In Knative CLI, enter the following command to generates operator manifests for your workflow project:
++
+--
+.Generate the operator manifest files for your project.
+[source,shell]
+----
+kn workflow gen-manifest
+----
+--
+. Apply the generated operator manifest to your cluster:
++
+--
+.Apply the manifest file.
+[source,shell]
+----
+kubectl apply -f manifests/01-sonataflow_hello.yaml -n <namespace>
+----
+--
+
+
 [[proc-deploy-sw-project-kn-cli]]
 == Deploying a workflow project using Knative CLI
 
