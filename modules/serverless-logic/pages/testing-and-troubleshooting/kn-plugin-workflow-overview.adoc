@@ -147,7 +147,7 @@ kn workflow run
 
 After creating your workflow project, you can use the `gen-manifest` command with `kn workflow` to generate operator manifest files for your workflow project in your current directory. 
 
-This will screate a new file in `./manifests` directory in your project.
+This will create a new file in `./manifests` directory in your project.
 
 .Prerequisites
 * {product_name} plug-in for Knative CLI is installed.
@@ -161,7 +161,7 @@ For more information about creating a workflow project, see <<proc-create-sw-pro
 
 
 .Procedure
-. In Knative CLI, enter the following command to generates operator manifests for your workflow project:
+. In Knative CLI, enter the following command to generate operator manifests for your workflow project:
 +
 --
 .Generate the operator manifest files for your project.
