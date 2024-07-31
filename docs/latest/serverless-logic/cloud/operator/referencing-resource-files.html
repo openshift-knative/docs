@@ -151,10 +151,10 @@
     <span class="nav-text">Getting Started</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../getting-started/create-your-first-workflow-service-with-kn-cli-and-vscode.html">Creating your first workflow service with KN CLI and VS Code</a>
+    <a class="nav-link" href="../../getting-started/create-your-first-workflow-service-with-kn-cli-and-vscode.html">Creating and running workflow projects using KN CLI and Visual Studio Code</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../getting-started/getting-familiar-with-our-tooling.html">Getting familiar with tooling</a>
+    <a class="nav-link" href="../../getting-started/getting-familiar-with-our-tooling.html">Getting familiar with OpenShift Serverless Logic tooling</a>
   </li>
 </ul>
   </li>
@@ -163,7 +163,7 @@
     <span class="nav-text">Core</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../core/cncf-serverless-workflow-specification-support.html">CNCF Serverless Workflow specification</a>
+    <a class="nav-link" href="../../core/cncf-serverless-workflow-specification-support.html">Serverless Workflow Specification</a>
   </li>
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="../../core/handling-events-on-workflows.html">Events</a>
@@ -172,19 +172,19 @@
     <a class="nav-link" href="../../core/working-with-callbacks.html">Callbacks</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../core/understanding-jq-expressions.html">jq expressions</a>
+    <a class="nav-link" href="../../core/understanding-jq-expressions.html">jq Expressions</a>
   </li>
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="../../core/understanding-workflow-error-handling.html">Error handling</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../core/configuration-properties.html">Configuration properties</a>
+    <a class="nav-link" href="../../core/configuration-properties.html">Configuration</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../core/defining-an-input-schema-for-workflows.html">Defining an input schema for your workflows</a>
+    <a class="nav-link" href="../../core/defining-an-input-schema-for-workflows.html">Input Schema</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../core/custom-functions-support.html">Custom functions for your service</a>
+    <a class="nav-link" href="../../core/custom-functions-support.html">Custom functions</a>
   </li>
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="../../core/timeouts-support.html">Timeouts</a>
@@ -215,16 +215,16 @@
     <a class="nav-link" href="../../tooling/serverless-logic-web-tools/serverless-logic-web-tools-overview.html">Serverless Logic Web Tools</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../../tooling/serverless-logic-web-tools/serverless-logic-web-tools-github-integration.html">GitHub integration</a>
+    <a class="nav-link" href="../../tooling/serverless-logic-web-tools/serverless-logic-web-tools-github-integration.html">Integration with GitHub</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../../tooling/serverless-logic-web-tools/serverless-logic-web-tools-openshift-integration.html">OpenShift integration</a>
+    <a class="nav-link" href="../../tooling/serverless-logic-web-tools/serverless-logic-web-tools-openshift-integration.html">Integration with OpenShift</a>
   </li>
   <li class="nav-item" data-depth="5">
     <a class="nav-link" href="../../tooling/serverless-logic-web-tools/serverless-logic-web-tools-redhat-application-services-integration.html">Red Hat OpenShift Application and Data Services integration</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../../tooling/serverless-logic-web-tools/serverless-logic-web-tools-deploy-projects.html">Deploying projects</a>
+    <a class="nav-link" href="../../tooling/serverless-logic-web-tools/serverless-logic-web-tools-deploy-projects.html">Deployment</a>
   </li>
 </ul>
   </li>
@@ -242,7 +242,7 @@
     <a class="nav-link" href="../../service-orchestration/configuring-openapi-services-endpoints.html">Configuring the OpenAPI services endpoints</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../../service-orchestration/working-with-openapi-callbacks.html">OpenAPI callback  in OpenShift Serverless Logic</a>
+    <a class="nav-link" href="../../service-orchestration/working-with-openapi-callbacks.html">OpenAPI callbacks in OpenShift Serverless Logic</a>
   </li>
 </ul>
   </li>
@@ -322,11 +322,17 @@
     <a class="nav-link" href="../index.html">Cloud</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../custom-ingress-authz.html">Securing Workflows</a>
+  </li>
+  <li class="nav-item" data-depth="4">
     <button class="nav-toggle"></button>
     <span class="nav-text">Operator</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="5">
     <a class="nav-link" href="install-serverless-operator.html">Installation</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="global-configuration.html">Admin Configuration</a>
   </li>
   <li class="nav-item" data-depth="5">
     <a class="nav-link" href="developing-workflows.html">Development Mode</a>
@@ -335,10 +341,10 @@
     <a class="nav-link" href="referencing-resource-files.html">Referencing Workflow Resources</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="configuring-workflows.html">Configuration</a>
+    <a class="nav-link" href="configuring-workflows.html">Workflow Configuration</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="build-and-deploy-workflows.html">Building and Deploying Workflows</a>
+    <a class="nav-link" href="build-and-deploy-workflows.html">Building and Deploying Workflow Images</a>
   </li>
   <li class="nav-item" data-depth="5">
     <a class="nav-link" href="supporting-services.html">Deploy Supporting Services</a>
@@ -362,6 +368,9 @@
     <a class="nav-link" href="configuring-knative-eventing-resources.html">Knative Eventing</a>
   </li>
   <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="#cloud/operator/add-custom-ca-to-a-workflow-pod.adoc">Add Custom CA to Workflow Pod</a>
+  </li>
+  <li class="nav-item" data-depth="5">
     <a class="nav-link" href="known-issues.html">Roadmap and Known Issues</a>
   </li>
 </ul>
@@ -381,6 +390,15 @@
     <button class="nav-toggle"></button>
     <span class="nav-text">Supporting Services</span>
 <ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Jobs Service</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../job-services/core-concepts.html">Core Concepts</a>
+  </li>
+</ul>
+  </li>
   <li class="nav-item" data-depth="4">
     <button class="nav-toggle"></button>
     <span class="nav-text">Data Index</span>
@@ -408,7 +426,10 @@
     <span class="nav-text">Getting Started</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="6">
-    <a class="nav-link" href="../../use-cases/advanced-developer-use-cases/getting-started/create-your-first-workflow-service.html">Creating your first workflow service</a>
+    <a class="nav-link" href="../../use-cases/advanced-developer-use-cases/getting-started/create-your-first-workflow-service.html">Creating a Quarkus Workflow service</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../../use-cases/advanced-developer-use-cases/getting-started/create-your-first-workflow-project.html">Creating a Quarkus Workflow project</a>
   </li>
   <li class="nav-item" data-depth="6">
     <a class="nav-link" href="../../use-cases/advanced-developer-use-cases/getting-started/build-workflow-image-with-quarkus-cli.html">Building workflow images using Quarkus CLI</a>
@@ -644,7 +665,7 @@ For example, when doing <a href="../../service-orchestration/orchestration-of-op
 <div id="toc" class="toc">
 <div id="toctitle"></div>
 <ul class="sectlevel1">
-<li><a href="#_creating_configmaps_with_workflow_additional_files">Creating ConfigMaps with Workflow Additional Files</a></li>
+<li><a href="#_creating_configmaps_with_workflow_referencing_additional_files">Creating ConfigMaps with Workflow referencing additional files</a></li>
 <li><a href="#_creating_a_static_service_registry">Creating a Static Service Registry</a></li>
 <li><a href="#_additional_resources">Additional resources</a></li>
 <li><a href="#_found_an_issue"><em><strong>Found an issue?</strong></em></a></li>
@@ -652,24 +673,30 @@ For example, when doing <a href="../../service-orchestration/orchestration-of-op
 </div>
 </div>
 <div class="sect1">
-<h2 id="_creating_configmaps_with_workflow_additional_files"><a class="anchor" href="#_creating_configmaps_with_workflow_additional_files"></a>Creating ConfigMaps with Workflow Additional Files</h2>
+<h2 id="_creating_configmaps_with_workflow_referencing_additional_files"><a class="anchor" href="#_creating_configmaps_with_workflow_referencing_additional_files"></a>Creating ConfigMaps with Workflow referencing additional files</h2>
 <div class="sectionbody">
 <div class="ulist">
 <div class="title">Prerequisites</div>
 <ul>
 <li>
-<p>You have the files available in your file system</p>
+<p>You have set up your environment according to the <a href="../../getting-started/preparing-environment.html#proc-minimal-local-environment-setup" class="xref page">minimal environment setup</a> guide.</p>
 </li>
 <li>
-<p>You have permissions to create <code>ConfigMaps</code> in the target namespace</p>
+<p>You have the cluster instance up and running. See <a href="../../getting-started/preparing-environment.html#proc-starting-cluster-fo-local-development" class="xref page">starting the cluster for local development</a> guide.</p>
+</li>
+<li>
+<p>You have permissions to create <code>ConfigMaps</code> in the target namespace of your cluster.</p>
+</li>
+<li>
+<p>(Optional) You have the files that you want to reference in your workflow definition ready.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>Given that you already have the file you want to add to your workflow definition, you <a href="https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#create-a-configmap">can create a <code>ConfigMap</code></a> as you normally would with the contents of the file.</p>
+<p>If you already have the files referenced in your workflow definition, you <a href="https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#create-a-configmap">can create a <code>ConfigMap</code></a> in your target namespace with the contents of the file.</p>
 </div>
 <div class="paragraph">
-<p>For example, given the following workflow:</p>
+<p>In the example below, you need to use the contents of the <code>specs/workflow-service-schema.json</code> file and <code>specs/workflow-service-openapi.json</code> file to create the <code>ConfigMap</code>:</p>
 </div>
 <div class="listingblock">
 <div class="title">Example of a workflow referencing additional files</div>
@@ -713,13 +740,13 @@ spec:
 </table>
 </div>
 <div class="paragraph">
-<p>For this example, you have two options. You can either create two <code>ConfigMaps</code> to have a clear separation of concerns or only one with both files.</p>
+<p>The <code>Hello Service</code> workflow in the example offers two options. You can either create two <code>ConfigMaps</code>, each for one file, to have a clear separation of concerns or group them into one.</p>
 </div>
 <div class="paragraph">
 <p>From the operator perspective, it won&#8217;t make any difference since both files will be available for the workflow application at runtime.</p>
 </div>
 <div class="paragraph">
-<p>To make it simple, you can create only one <code>ConfigMap</code>. Given that the files are available in the current directory:</p>
+<p>To make it simple, you can create only one <code>ConfigMap</code>. Navigate into the directory where your resource files are available and create the config map using following command:</p>
 </div>
 <div class="listingblock">
 <div class="title">Creating a ConfigMap from the current directory</div>
@@ -753,11 +780,13 @@ metadata:
   name: service-files
 data:
   workflow-service-schema.json: # data was removed to save space
-  workflow-service-openapi.json: # data was removed to save space</code></pre>
+                                # &lt;CONTENT OF THE FILE&gt;
+  workflow-service-openapi.json: # data was removed to save space
+                                 # &lt;CONTENT OF THE FILE&gt;</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Now you can reference this <code>ConfigMap</code> to your <code>SonataFlow</code> CR:</p>
+<p>Now you can add reference to this <code>ConfigMap</code> into your <code>SonataFlow</code> CR:</p>
 </div>
 <div class="listingblock">
 <div class="title">SonataFlow CR referencing a ConfigMap resource</div>
@@ -870,7 +899,7 @@ spec:
 <h2 id="_found_an_issue"><a class="anchor" href="#_found_an_issue"></a><em><strong>Found an issue?</strong></em></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>If you find an issue or any misleading information, please feel free to report it <a href="https://github.com/apache/incubator-kie-kogito-docs/issues/new">here</a>.
+<p>If you find an issue or any misleading information, please feel free to report it <a href="https://github.com/kiegroup/kogito-docs/issues/new">here</a>.
 We really appreciate it!</p>
 </div>
 </div>

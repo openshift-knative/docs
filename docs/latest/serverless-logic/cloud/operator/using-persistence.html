@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Using persistence in the SonataFlow Workflow CR :: Red Hat OpenShift Serverless previews</title>
+    <title>Using persistence in OpenShift Serverless Logic workflows :: Red Hat OpenShift Serverless previews</title>
     <link rel="canonical" href="https://openshift-knative.github.io/docs/docs/latest/serverless-logic/cloud/operator/using-persistence.html">
     <meta name="description" content="Using persistence in the workflow instance to store its context">
     <meta name="keywords" content="sonataflow, workflow, serverless, operator, kubernetes, persistence">
@@ -151,10 +151,10 @@
     <span class="nav-text">Getting Started</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../getting-started/create-your-first-workflow-service-with-kn-cli-and-vscode.html">Creating your first workflow service with KN CLI and VS Code</a>
+    <a class="nav-link" href="../../getting-started/create-your-first-workflow-service-with-kn-cli-and-vscode.html">Creating and running workflow projects using KN CLI and Visual Studio Code</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../getting-started/getting-familiar-with-our-tooling.html">Getting familiar with tooling</a>
+    <a class="nav-link" href="../../getting-started/getting-familiar-with-our-tooling.html">Getting familiar with OpenShift Serverless Logic tooling</a>
   </li>
 </ul>
   </li>
@@ -163,7 +163,7 @@
     <span class="nav-text">Core</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../core/cncf-serverless-workflow-specification-support.html">CNCF Serverless Workflow specification</a>
+    <a class="nav-link" href="../../core/cncf-serverless-workflow-specification-support.html">Serverless Workflow Specification</a>
   </li>
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="../../core/handling-events-on-workflows.html">Events</a>
@@ -172,19 +172,19 @@
     <a class="nav-link" href="../../core/working-with-callbacks.html">Callbacks</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../core/understanding-jq-expressions.html">jq expressions</a>
+    <a class="nav-link" href="../../core/understanding-jq-expressions.html">jq Expressions</a>
   </li>
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="../../core/understanding-workflow-error-handling.html">Error handling</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../core/configuration-properties.html">Configuration properties</a>
+    <a class="nav-link" href="../../core/configuration-properties.html">Configuration</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../core/defining-an-input-schema-for-workflows.html">Defining an input schema for your workflows</a>
+    <a class="nav-link" href="../../core/defining-an-input-schema-for-workflows.html">Input Schema</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../core/custom-functions-support.html">Custom functions for your service</a>
+    <a class="nav-link" href="../../core/custom-functions-support.html">Custom functions</a>
   </li>
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="../../core/timeouts-support.html">Timeouts</a>
@@ -215,16 +215,16 @@
     <a class="nav-link" href="../../tooling/serverless-logic-web-tools/serverless-logic-web-tools-overview.html">Serverless Logic Web Tools</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../../tooling/serverless-logic-web-tools/serverless-logic-web-tools-github-integration.html">GitHub integration</a>
+    <a class="nav-link" href="../../tooling/serverless-logic-web-tools/serverless-logic-web-tools-github-integration.html">Integration with GitHub</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../../tooling/serverless-logic-web-tools/serverless-logic-web-tools-openshift-integration.html">OpenShift integration</a>
+    <a class="nav-link" href="../../tooling/serverless-logic-web-tools/serverless-logic-web-tools-openshift-integration.html">Integration with OpenShift</a>
   </li>
   <li class="nav-item" data-depth="5">
     <a class="nav-link" href="../../tooling/serverless-logic-web-tools/serverless-logic-web-tools-redhat-application-services-integration.html">Red Hat OpenShift Application and Data Services integration</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../../tooling/serverless-logic-web-tools/serverless-logic-web-tools-deploy-projects.html">Deploying projects</a>
+    <a class="nav-link" href="../../tooling/serverless-logic-web-tools/serverless-logic-web-tools-deploy-projects.html">Deployment</a>
   </li>
 </ul>
   </li>
@@ -242,7 +242,7 @@
     <a class="nav-link" href="../../service-orchestration/configuring-openapi-services-endpoints.html">Configuring the OpenAPI services endpoints</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../../service-orchestration/working-with-openapi-callbacks.html">OpenAPI callback  in OpenShift Serverless Logic</a>
+    <a class="nav-link" href="../../service-orchestration/working-with-openapi-callbacks.html">OpenAPI callbacks in OpenShift Serverless Logic</a>
   </li>
 </ul>
   </li>
@@ -322,11 +322,17 @@
     <a class="nav-link" href="../index.html">Cloud</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../custom-ingress-authz.html">Securing Workflows</a>
+  </li>
+  <li class="nav-item" data-depth="4">
     <button class="nav-toggle"></button>
     <span class="nav-text">Operator</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="5">
     <a class="nav-link" href="install-serverless-operator.html">Installation</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="global-configuration.html">Admin Configuration</a>
   </li>
   <li class="nav-item" data-depth="5">
     <a class="nav-link" href="developing-workflows.html">Development Mode</a>
@@ -335,10 +341,10 @@
     <a class="nav-link" href="referencing-resource-files.html">Referencing Workflow Resources</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="configuring-workflows.html">Configuration</a>
+    <a class="nav-link" href="configuring-workflows.html">Workflow Configuration</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="build-and-deploy-workflows.html">Building and Deploying Workflows</a>
+    <a class="nav-link" href="build-and-deploy-workflows.html">Building and Deploying Workflow Images</a>
   </li>
   <li class="nav-item" data-depth="5">
     <a class="nav-link" href="supporting-services.html">Deploy Supporting Services</a>
@@ -362,6 +368,9 @@
     <a class="nav-link" href="configuring-knative-eventing-resources.html">Knative Eventing</a>
   </li>
   <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="#cloud/operator/add-custom-ca-to-a-workflow-pod.adoc">Add Custom CA to Workflow Pod</a>
+  </li>
+  <li class="nav-item" data-depth="5">
     <a class="nav-link" href="known-issues.html">Roadmap and Known Issues</a>
   </li>
 </ul>
@@ -381,6 +390,15 @@
     <button class="nav-toggle"></button>
     <span class="nav-text">Supporting Services</span>
 <ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Jobs Service</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../job-services/core-concepts.html">Core Concepts</a>
+  </li>
+</ul>
+  </li>
   <li class="nav-item" data-depth="4">
     <button class="nav-toggle"></button>
     <span class="nav-text">Data Index</span>
@@ -408,7 +426,10 @@
     <span class="nav-text">Getting Started</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="6">
-    <a class="nav-link" href="../../use-cases/advanced-developer-use-cases/getting-started/create-your-first-workflow-service.html">Creating your first workflow service</a>
+    <a class="nav-link" href="../../use-cases/advanced-developer-use-cases/getting-started/create-your-first-workflow-service.html">Creating a Quarkus Workflow service</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../../use-cases/advanced-developer-use-cases/getting-started/create-your-first-workflow-project.html">Creating a Quarkus Workflow project</a>
   </li>
   <li class="nav-item" data-depth="6">
     <a class="nav-link" href="../../use-cases/advanced-developer-use-cases/getting-started/build-workflow-image-with-quarkus-cli.html">Building workflow images using Quarkus CLI</a>
@@ -627,17 +648,37 @@
     <div class="main-view-and-toc">
         <main class="main">
           <article class="doc">
-<h1>Using persistence in the SonataFlow Workflow CR</h1>
+<h1>Using persistence in OpenShift Serverless Logic workflows</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>This document describes how to configure a SonataFlow instance to use persistence to store the flow&#8217;s context in a relational database.</p>
+<p>This document describes how to configure a <code>SonataFlow</code> instance to use persistence and store the workflow context in a relational database.</p>
+</div>
+<div class="paragraph">
+<p>Kubernetes&#8217;s pods are stateless by definition. In some scenarios, this can be a challenge for workloads that require maintaining the status of
+the application regardless of the pod&#8217;s lifecycle. In the case of OpenShift Serverless Logic, by default, the context of the workflow is lost when the pod restarts.</p>
+</div>
+<div class="paragraph">
+<p>If your workflow requires recovery from such scenarios, you must provide additional configuration to enable the <a href="../../persistence/core-concepts.html#_workflow_runtime_persistence" class="xref page">Workflow Runtime Persistence</a>.
+That configuration must be provided by using the <a href="#configuring-persistence-using-the-sonataflowplatform-cr"><code>SonataFlowPlatform</code> CR</a> or the <a href="#_configuring_the_persistence_using_the_sonataflow_cr"><code>SonataFlow</code> CR</a>, and has different scopes depending on each case.</p>
 </div>
 </div>
 <div id="toc" class="toc">
 <div id="toctitle"></div>
 <ul class="sectlevel1">
-<li><a href="#_configuring_the_sonataflow_cr_to_use_persistence">Configuring the SonataFlow CR to use persistence</a></li>
+<li><a href="#configuring-persistence-using-the-sonataflowplatform-cr">Configuring the persistence using the SonataFlowPlatform CR</a></li>
+<li><a href="#_configuring_the_persistence_using_the_sonataflow_cr">Configuring the persistence using the SonataFlow CR</a></li>
+<li><a href="#_persistence_configuration_precedence_rules">Persistence configuration precedence rules</a></li>
+<li><a href="#_persistence_configuration_and_sonataflow_profiles">Persistence configuration and SonataFlow profiles</a></li>
+<li><a href="#_database_schema_initialization">Database schema initialization</a>
+<ul class="sectlevel2">
+<li><a href="#_flyway_managed_database_initialization">Flyway managed database initialization</a></li>
+<li><a href="#_flyway_configuration_by_using_the_workflow_configmap">Flyway configuration by using the workflow ConfigMap</a></li>
+<li><a href="#_flyway_configuration_by_using_the_workflow_container_env_vars">Flyway configuration by using the workflow container env vars</a></li>
+<li><a href="#_flyway_configuration_by_using_sonataflowplatform_properties">Flyway configuration by using SonataFlowPlatForm properties</a></li>
+<li><a href="#_manual_database_initialization_by_using_ddl">Manual database initialization by using DDL</a></li>
+</ul>
+</li>
 <li><a href="#_conclusion">Conclusion</a></li>
 <li><a href="#_additional_resources">Additional resources</a></li>
 <li><a href="#_found_an_issue"><em><strong>Found an issue?</strong></em></a></li>
@@ -645,74 +686,15 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="_configuring_the_sonataflow_cr_to_use_persistence"><a class="anchor" href="#_configuring_the_sonataflow_cr_to_use_persistence"></a>Configuring the SonataFlow CR to use persistence</h2>
+<h2 id="configuring-persistence-using-the-sonataflowplatform-cr"><a class="anchor" href="#configuring-persistence-using-the-sonataflowplatform-cr"></a>Configuring the persistence using the SonataFlowPlatform CR</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Kubernetes&#8217;s pods are stateless by definition. In some scenarios, this can be a challenge for workloads that require maintaining the status of
-the application regardless of the pod&#8217;s lifecycle. In the case of OpenShift Serverless Logic, the context of the workflow is lost when the pod restarts.
-If your workflow requires recovery from such scenarios, you must to make these additions to your workflow CR:
-Use the <code>persistence</code> field in the <code>SonataFlow</code> workflow spec to define the database service located in the same cluster.
-There are 2 ways to accomplish this:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Using the Platform CR&#8217;s defined persistence
-When the Platform CR is deployed with its persistence spec populated it enables workflows to leverage its configuration to populate the persistence
-properties in the workflows.</p>
-</li>
-</ul>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">---
-apiVersion: sonataflow.org/v1alpha08
-kind: SonataFlowPlatform
-metadata:
-  name: sonataflow-platform
-spec:
-  persistence:
-    postgresql:
-      secretRef:
-        name: postgres-secrets
-        userKey: POSTGRES_USER
-        passwordKey: POSTGRES_PASSWORD
-      serviceRef:
-        name: postgres
-        port: 5432
-        databaseName: sonataflow
-        databaseSchema: shared
-  build:
-    config:
-      strategyOptions:
-        KanikoBuildCacheEnabled: "true"
----</code></pre>
-</div>
+<p>The <code>SonataFlowPlatform</code> CR facilitates the configuration of the persistence with namespace scope. It means that it will be automatically applied to all the workflows deployed in
+that namespace. This can be useful to reduce the amount resources to configure, for example, in cases where the workflows deployed in that namespace belongs to the same application, etc.
+That decision is left to each particular use case, however, it&#8217;s important to know, that this configuration can be overridden by any workflow in that namespace by using the <a href="#_configuring_the_persistence_using_the_sonataflow_cr"><code>SonataFlow</code> CR</a>.</p>
 </div>
 <div class="paragraph">
-<p>The values of <code>POSTGRES_USER</code> and <code>POSTGRES_PASSWORD</code> are the keys in the <a href="https://kubernetes.io/docs/concepts/configuration/secret/">Kubernetes secret</a> that contains the credentials to connect to the postgreSQL instance.
-The SonataFlow Workflow CR
-is defined with its <code>Persistence</code> field defined as empty.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: sonataflow.org/v1alpha08
-kind: SonataFlow
-metadata:
-  name: callbackstatetimeouts
-  annotations:
-    sonataflow.org/description: Callback State Timeouts Example k8s
-    sonataflow.org/version: 0.0.1
-spec:
-  persistence: {}
-  ...
----</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>This configuration signals the operator that the workflow requires persistence and that it expects its configuration to be populated accordingly.
-The operator will add the relevant JDBC properties in the <code>application.properties</code>
-generated and as part of the pod´s environment so that it can connect to the persistence service defined in the <code>Platform</code> CR.</p>
+<p>Finally, the Serverless Logic Operator can also use this configuration to set the <a href="supporting-services.html#common-persistence-configuration" class="xref page">supporting service&#8217;s persistence</a>.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -722,50 +704,443 @@ generated and as part of the pod´s environment so that it can connect to the pe
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Currently, PostgreSQL is the only persistence supported.</p>
+<p>Persistence configurations are applied at workflow deployment time, and potential changes in the SonataFlowPlatform will not impact already deployed workflows.</p>
 </div>
 </td>
 </tr>
 </table>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p>Using the custom defined persistence in the <code>SonataFlow</code> CR</p>
-</li>
-</ul>
-</div>
 <div class="paragraph">
-<p>Alternatively, you can define a dedicated configuration in the <code>SonataFlow</code> CR instance using the same schema format found in the Platform CRD:</p>
+<p>To configure the persistence you must use the <code>persistence</code> field in the SonataFlowPlatform CR <code>spec</code>:</p>
 </div>
 <div class="listingblock">
+<div class="title">SonataFlowPlatform CR persistence configuration example</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: sonataflow.org/v1alpha08
+kind: SonataFlowPlatform
+metadata:
+  name: sonataflow-platform-example
+  namespace: example-namespace
+spec:
+  persistence:
+    postgresql:
+      serviceRef:
+        name: postgres-example <i class="conum" data-value="1"></i><b>(1)</b>
+        namespace: postgres-example-namespace <i class="conum" data-value="2"></i><b>(2)</b>
+        databaseName: example-database <i class="conum" data-value="3"></i><b>(3)</b>
+        port: 1234 <i class="conum" data-value="4"></i><b>(4)</b>
+      secretRef:
+        name: postgres-secrets-example <i class="conum" data-value="5"></i><b>(5)</b>
+        userKey: POSTGRESQL_USER <i class="conum" data-value="6"></i><b>(6)</b>
+        passwordKey: POSTGRESQL_PASSWORD <i class="conum" data-value="7"></i><b>(7)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Name of the Kubernetes Service to connect with the PostgreSQL database server.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>(Optional) Kubernetes namespace containing the PostgreSQL Service. Defaults to the <code>SonataFlowPlatform&#8217;s</code> local namespace.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Name of the PostgreSQL database to store the workflow&#8217;s data.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>(Optional) Port number to connect with the PostgreSQL Service. Defaults to 5432.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>Name of the <a href="https://kubernetes.io/docs/concepts/configuration/secret">Kubernetes Secret</a> containing the username and password to connect with the database.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td>Name of the <a href="https://kubernetes.io/docs/concepts/configuration/secret">Kubernetes Secret</a> <code>key</code> containing the username to connect with the database.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="7"></i><b>7</b></td>
+<td>Name of the <a href="https://kubernetes.io/docs/concepts/configuration/secret">Kubernetes Secret</a> <code>key</code> containing the password to connect with the database.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>This configuration signals the operator that every workflow deployed in the current <code>SonataFlowPlatform&#8217;s</code> namespace must be properly configured to connect with that PostgreSQL database server.
+And the operator will add the relevant JDBC connection parameters in the form of environment variables to the workflow container.</p>
+</div>
+<div class="paragraph">
+<p>Additionally, for <code>SonataFlow</code> CR deployments that use the <code>preview</code> profile, it will configure the OpenShift Serverless Logic build system to include specific Quarkus extensions required for persistence.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Currently, PostgreSQL is the only supported persistence.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Below you can see an example of the configurations produced for a workflow with the name <code>example-workflow</code>, that was deployed using the previous <code>SonataFlowPlatform</code>.
+For simplicity, only the <code>env</code> configurations related to the persistence has been included. These operator managed configurations are immutable.</p>
+</div>
+<div id="persistence_env_vars_config_example" class="listingblock">
+<div class="title">Generated persistence <code>env</code> configurations in the workflow container</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">      env:
+        - name: QUARKUS_DATASOURCE_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: postgres-secrets-example
+              key: POSTGRESQL_USER
+        - name: QUARKUS_DATASOURCE_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: postgres-secrets-example
+              key: POSTGRESQL_PASSWORD
+        - name: QUARKUS_DATASOURCE_DB_KIND
+          value: postgresql
+        - name: QUARKUS_DATASOURCE_JDBC_URL
+          value: &gt;-
+            jdbc:postgresql://postgres-example.postgres-example-namespace:1234/sonataflow?currentSchema=example-workflow
+        - name: KOGITO_PERSISTENCE_TYPE
+          value: jdbc</code></pre>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>When you use the <code>SonataFlowPlatform</code> persistence, every workflow is configured to use a PostgreSQL schema name equal to the workflow name.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>To learn how to initialize the database schema see: <a href="#_database_schema_initialization">Database schema initialization</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_configuring_the_persistence_using_the_sonataflow_cr"><a class="anchor" href="#_configuring_the_persistence_using_the_sonataflow_cr"></a>Configuring the persistence using the SonataFlow CR</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The <code>SonataFlow</code> CR facilitates the configuration of the persistence with workflow scope, and you can use it independently if the <code>SonataFlowPlatform</code> persistence was already configured in the current namespace, see: <a href="#_persistence_configuration_precedence_rules">Persistence configuration precedence rules</a>.</p>
+</div>
+<div class="paragraph">
+<p>To configure the persistence, you must use the <code>persistence</code> field in the <code>SonataFlow</code> CR <code>spec</code>:</p>
+</div>
+<div class="listingblock">
+<div class="title">SonataFlow CR persistence configuration example</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: sonataflow.org/v1alpha08
 kind: SonataFlow
 metadata:
-  name: callbackstatetimeouts
+  name: example-workflow
   annotations:
-    sonataflow.org/description: Callback State Timeouts
+    sonataflow.org/description: Example Workflow
     sonataflow.org/version: 0.0.1
 spec:
   persistence:
     postgresql:
-      secretRef:
-        name: postgres-secrets
-        userKey: POSTGRES_USER
-        passwordKey: POSTGRES_PASSWORD
       serviceRef:
-        name: postgres
-        port: 5432
-        databaseName: sonataflow
-        databaseSchema: callbackstatetimeouts
-  ...
----</code></pre>
+        name: postgres-example <i class="conum" data-value="1"></i><b>(1)</b>
+        namespace: postgres-example-namespace <i class="conum" data-value="2"></i><b>(2)</b>
+        databaseName: example-database <i class="conum" data-value="3"></i><b>(3)</b>
+        databaseSchema: example-schema <i class="conum" data-value="4"></i><b>(4)</b>
+        port: 1234 <i class="conum" data-value="5"></i><b>(5)</b>
+      secretRef:
+        name: postgres-secrets-example <i class="conum" data-value="6"></i><b>(6)</b>
+        userKey: POSTGRESQL_USER <i class="conum" data-value="7"></i><b>(7)</b>
+        passwordKey: POSTGRESQL_PASSWORD <i class="conum" data-value="8"></i><b>(8)</b>
+  flow:
+     ...</code></pre>
 </div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Name of the Kubernetes Service to connect with the PostgreSQL database server.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>(Optional) Kubernetes namespace containing the PostgreSQL Service. Defaults to the workflow&#8217;s local namespace.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Name of the PostgreSQL database to store the workflow&#8217;s data.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>(Optional) Name of the database schema to store workflow&#8217;s data. Defaults to the workflow&#8217;s name.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>(Optional) Port number to connect with the PostgreSQL Service. Defaults to 5432.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td>Name of the <a href="https://kubernetes.io/docs/concepts/configuration/secret">Kubernetes Secret</a> containing the username and password to connect with the database.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="7"></i><b>7</b></td>
+<td>Name of the <a href="https://kubernetes.io/docs/concepts/configuration/secret">Kubernetes Secret</a> <code>key</code> containing the username to connect with the database.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="8"></i><b>8</b></td>
+<td>Name of the <a href="https://kubernetes.io/docs/concepts/configuration/secret">Kubernetes Secret</a> <code>key</code> containing the password to connect with the database.</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
-<p>Like in the Platform CR case, the values of the <code>POSTGRES_USER</code> and <code>POSTGRES_PASSWORD</code> are the secret keys in the secret that contain the credentials to connect to
-the PostgreSQL instace.</p>
+<p>This configuration signals the operator that the current workflow must be properly configured to connect with that PostgreSQL database server when deployed.
+Similar to the <code>SonataFlowPlatform</code> persistence, the operator will add the relevant JDBC connection parameters in the form of <a href="#persistence_env_vars_config_example">environment variables</a> to the workflow container.</p>
+</div>
+<div class="paragraph">
+<p>Additionally, for <code>SonataFlow</code> CR deployments that use the <code>preview</code> profile, it can configure the OpenShift Serverless Logic build system to include specific Quarkus extensions required for persistence.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Currently, PostgreSQL is the only supported persistence.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>To learn how to initialize the database schema see: <a href="#_database_schema_initialization">Database schema initialization</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_persistence_configuration_precedence_rules"><a class="anchor" href="#_persistence_configuration_precedence_rules"></a>Persistence configuration precedence rules</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="#configuring-persistence-using-the-sonataflowplatform-cr"><code>SonataFlow</code> CR persistence</a> can be used with or without the <a href="#configuring-persistence-using-the-sonataflowplatform-cr"><code>SonataFlowPlatform</code> CR persistence</a>.</p>
+</div>
+<div class="paragraph">
+<p>And, if the current namespace has an already configured <a href="#configuring-persistence-using-the-sonataflowplatform-cr"><code>SonataFlowPlatform</code> CR persistence</a>, the following rules apply:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>If the <code>SonataFlow</code> CR has a configured persistence, that configuration will apply.</p>
+</li>
+<li>
+<p>If the <code>SonataFlow</code> CR has no configured persistence, i.e., the field <code>spec.persistence</code> is not present at all, the persistence configuration will be taken from the current platform.</p>
+</li>
+<li>
+<p>If you don&#8217;t want the current workflow to use <code>persistence</code>, you must use the following configuration in the SonataFlow CR: <code>spec.persistence : {}</code> to ignore the <code>SonataFlowPlatform</code> persistence configuration.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_persistence_configuration_and_sonataflow_profiles"><a class="anchor" href="#_persistence_configuration_and_sonataflow_profiles"></a>Persistence configuration and SonataFlow profiles</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>All the configurations shown for the <code>SonataFlowPlatform CR</code> and <code>SonataFlow CR</code>, apply exactly the same for both the <code>preview</code> and the <code>gitops</code> profiles.
+However, you must not use them in the <code>dev</code> profile, since this profile will simply ignore them.</p>
+</div>
+<div class="paragraph">
+<p>Finally, the only distinction between <code>preview</code> and <code>gitops</code> profiles is that, when you use the <code>gitops</code> profile, the following Quarkus extensions must be added when you build your workflow image. Since that build is accomplished outside the operator scope.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 40%;">
+<col style="width: 40%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">groupId</th>
+<th class="tableblock halign-left valign-top">artifactId</th>
+<th class="tableblock halign-left valign-top">version</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">io.quarkus</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">quarkus-agroal</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3.8.4.redhat-00002</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">io.quarkus</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">quarkus-jdbc-postgresql</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3.8.4.redhat-00002</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">org.kie</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">kie-addons-quarkus-persistence-jdbc</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">9.100.0.redhat-00004</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>If you generate your images by using the <code>kogito-swf-builder</code>, you can do it by passing it the following build argument:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">QUARKUS_EXTENSIONS=io.quarkus:quarkus-agroal:3.8.4.redhat-00002,io.quarkus:quarkus-jdbc-postgresql:3.8.4.redhat-00002,org.kie:kie-addons-quarkus-persistence-jdbc:9.100.0.redhat-00004</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_database_schema_initialization"><a class="anchor" href="#_database_schema_initialization"></a>Database schema initialization</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>When you use the <code>SonataFlow</code> PostgreSQL persistence, you can either opt to use Flyway to produce the database initialization, or manually upgrade your database via DDL scripts.</p>
+</div>
+<div class="sect2">
+<h3 id="_flyway_managed_database_initialization"><a class="anchor" href="#_flyway_managed_database_initialization"></a>Flyway managed database initialization</h3>
+<div class="paragraph">
+<p>To enable Flyway you must use any of the following configuration procedures:</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The Flyway schema initialization is disabled by default.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_flyway_configuration_by_using_the_workflow_configmap"><a class="anchor" href="#_flyway_configuration_by_using_the_workflow_configmap"></a>Flyway configuration by using the workflow ConfigMap</h3>
+<div class="paragraph">
+<p>Add the following property to your workflow ConfigMap.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example of enabling Flyway by using the workflow ConfigMap</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: v1
+kind: ConfigMap
+metadata:
+  labels:
+    app: example-workflow
+  name: example-workflow-props
+data:
+  application.properties: |
+    quarkus.flyway.migrate-at-start = true</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_flyway_configuration_by_using_the_workflow_container_env_vars"><a class="anchor" href="#_flyway_configuration_by_using_the_workflow_container_env_vars"></a>Flyway configuration by using the workflow container env vars</h3>
+<div class="paragraph">
+<p>Add the following <code>env</code> var in the  <code>spec.podTemplate.container</code> of the <code>SonataFlow</code> CR.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example of enabling Flyway by using the workflow container env vars</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: sonataflow.org/v1alpha08
+kind: SonataFlow
+metadata:
+  name: example-workflow
+  annotations:
+    sonataflow.org/description: Example Workflow
+    sonataflow.org/version: 0.0.1
+spec:
+  podTemplate:
+    container:
+      env:
+        - name: QUARKUS_FLYWAY_MIGRATE_AT_START
+          value: 'true'
+  flow: ...</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_flyway_configuration_by_using_sonataflowplatform_properties"><a class="anchor" href="#_flyway_configuration_by_using_sonataflowplatform_properties"></a>Flyway configuration by using SonataFlowPlatForm properties</h3>
+<div class="paragraph">
+<p>To apply a common Flyway configuration to all the workflows in a given namespace, you can use the <code>spec.properties.flow</code> of the <code>SonataFlowPlatform</code> in that namespace.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example of enabling Flyway by using the SonataFlowPlatform properties.</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: sonataflow.org/v1alpha08
+kind: SonataFlowPlatform
+metadata:
+  name: sonataflow-platform
+spec:
+  properties:
+    flow:
+       - name: quarkus.flyway.migrate-at-start
+         value: true</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The configuration above takes effect at workflow deployment time, so you must be sure that the property is configured before you deploy your workflows.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_manual_database_initialization_by_using_ddl"><a class="anchor" href="#_manual_database_initialization_by_using_ddl"></a>Manual database initialization by using DDL</h3>
+<div class="paragraph">
+<p>To initialize the database schema manually, you must be sure that the following application property <code>quarkus.flyway.migrate-at-start</code> is not configured, or is set to <code>false</code>, and follow this <a href="../../use-cases/advanced-developer-use-cases/persistence/postgresql-flyway-migration.html#manually-executing-scripts" class="xref page">procedure</a>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Remember that:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>By default, every workflow is configured use a schema name equal to the workflow name, and thus, that manual initialization must be applied for every workflow.</p>
+</li>
+<li>
+<p>When you use the <a href="#configuring-persistence-using-the-sonataflowplatform-cr"><code>SonataFlow</code> CR persistence configuration</a> it is possible to use the schema name of your choice.</p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
 </div>
 </div>
 </div>
@@ -773,9 +1148,8 @@ the PostgreSQL instace.</p>
 <h2 id="_conclusion"><a class="anchor" href="#_conclusion"></a>Conclusion</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>You can enable SQL persistence in your workflows by configuring each <code>SonataFlow</code> CR instance. And when the <code>SonataFlowPlatform</code> CR contains the persistence field configured,
-the operator uses this information to configure those <code>SonataFlow</code> CRs that request persistence. When both the <code>Platform CR</code> and the <code>SonataFlow CR</code> contain persistence
-configuration, the operator will use the <code>Persistence</code> values from the <code>SonataFlow</code> CR.</p>
+<p>By using the <code>SonataFlowPlatform</code> CR you can enable the persistence for all the workflows that you deploy in that namespace.
+And, by using the <code>SonataFlow</code> CR you can enable the persistence of a particular workflow. If both methods are present in the current namespace, the <code>SonataFlow</code> CR configuration has precedence over the <code>SonataFlowpPlatform</code> configuration.</p>
 </div>
 </div>
 </div>
@@ -787,6 +1161,9 @@ configuration, the operator will use the <code>Persistence</code> values from th
 <li>
 <p><a href="developing-workflows.html" class="xref page">Developing Workflows with the Operator</a></p>
 </li>
+<li>
+<p><a href="../../persistence/core-concepts.html" class="xref page">Persistence in OpenShift Serverless Logic</a></p>
+</li>
 </ul>
 </div>
 </div>
@@ -795,7 +1172,7 @@ configuration, the operator will use the <code>Persistence</code> values from th
 <h2 id="_found_an_issue"><a class="anchor" href="#_found_an_issue"></a><em><strong>Found an issue?</strong></em></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>If you find an issue or any misleading information, please feel free to report it <a href="https://github.com/apache/incubator-kie-kogito-docs/issues/new">here</a>.
+<p>If you find an issue or any misleading information, please feel free to report it <a href="https://github.com/kiegroup/kogito-docs/issues/new">here</a>.
 We really appreciate it!</p>
 </div>
 </div>

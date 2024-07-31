@@ -151,10 +151,10 @@
     <span class="nav-text">Getting Started</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../getting-started/create-your-first-workflow-service-with-kn-cli-and-vscode.html">Creating your first workflow service with KN CLI and VS Code</a>
+    <a class="nav-link" href="../../getting-started/create-your-first-workflow-service-with-kn-cli-and-vscode.html">Creating and running workflow projects using KN CLI and Visual Studio Code</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../getting-started/getting-familiar-with-our-tooling.html">Getting familiar with tooling</a>
+    <a class="nav-link" href="../../getting-started/getting-familiar-with-our-tooling.html">Getting familiar with OpenShift Serverless Logic tooling</a>
   </li>
 </ul>
   </li>
@@ -163,7 +163,7 @@
     <span class="nav-text">Core</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../core/cncf-serverless-workflow-specification-support.html">CNCF Serverless Workflow specification</a>
+    <a class="nav-link" href="../../core/cncf-serverless-workflow-specification-support.html">Serverless Workflow Specification</a>
   </li>
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="../../core/handling-events-on-workflows.html">Events</a>
@@ -172,19 +172,19 @@
     <a class="nav-link" href="../../core/working-with-callbacks.html">Callbacks</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../core/understanding-jq-expressions.html">jq expressions</a>
+    <a class="nav-link" href="../../core/understanding-jq-expressions.html">jq Expressions</a>
   </li>
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="../../core/understanding-workflow-error-handling.html">Error handling</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../core/configuration-properties.html">Configuration properties</a>
+    <a class="nav-link" href="../../core/configuration-properties.html">Configuration</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../core/defining-an-input-schema-for-workflows.html">Defining an input schema for your workflows</a>
+    <a class="nav-link" href="../../core/defining-an-input-schema-for-workflows.html">Input Schema</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../core/custom-functions-support.html">Custom functions for your service</a>
+    <a class="nav-link" href="../../core/custom-functions-support.html">Custom functions</a>
   </li>
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="../../core/timeouts-support.html">Timeouts</a>
@@ -215,16 +215,16 @@
     <a class="nav-link" href="../../tooling/serverless-logic-web-tools/serverless-logic-web-tools-overview.html">Serverless Logic Web Tools</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../../tooling/serverless-logic-web-tools/serverless-logic-web-tools-github-integration.html">GitHub integration</a>
+    <a class="nav-link" href="../../tooling/serverless-logic-web-tools/serverless-logic-web-tools-github-integration.html">Integration with GitHub</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../../tooling/serverless-logic-web-tools/serverless-logic-web-tools-openshift-integration.html">OpenShift integration</a>
+    <a class="nav-link" href="../../tooling/serverless-logic-web-tools/serverless-logic-web-tools-openshift-integration.html">Integration with OpenShift</a>
   </li>
   <li class="nav-item" data-depth="5">
     <a class="nav-link" href="../../tooling/serverless-logic-web-tools/serverless-logic-web-tools-redhat-application-services-integration.html">Red Hat OpenShift Application and Data Services integration</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../../tooling/serverless-logic-web-tools/serverless-logic-web-tools-deploy-projects.html">Deploying projects</a>
+    <a class="nav-link" href="../../tooling/serverless-logic-web-tools/serverless-logic-web-tools-deploy-projects.html">Deployment</a>
   </li>
 </ul>
   </li>
@@ -242,7 +242,7 @@
     <a class="nav-link" href="../../service-orchestration/configuring-openapi-services-endpoints.html">Configuring the OpenAPI services endpoints</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../../service-orchestration/working-with-openapi-callbacks.html">OpenAPI callback  in OpenShift Serverless Logic</a>
+    <a class="nav-link" href="../../service-orchestration/working-with-openapi-callbacks.html">OpenAPI callbacks in OpenShift Serverless Logic</a>
   </li>
 </ul>
   </li>
@@ -322,11 +322,17 @@
     <a class="nav-link" href="../index.html">Cloud</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../custom-ingress-authz.html">Securing Workflows</a>
+  </li>
+  <li class="nav-item" data-depth="4">
     <button class="nav-toggle"></button>
     <span class="nav-text">Operator</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="5">
     <a class="nav-link" href="install-serverless-operator.html">Installation</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="global-configuration.html">Admin Configuration</a>
   </li>
   <li class="nav-item" data-depth="5">
     <a class="nav-link" href="developing-workflows.html">Development Mode</a>
@@ -335,10 +341,10 @@
     <a class="nav-link" href="referencing-resource-files.html">Referencing Workflow Resources</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="configuring-workflows.html">Configuration</a>
+    <a class="nav-link" href="configuring-workflows.html">Workflow Configuration</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="build-and-deploy-workflows.html">Building and Deploying Workflows</a>
+    <a class="nav-link" href="build-and-deploy-workflows.html">Building and Deploying Workflow Images</a>
   </li>
   <li class="nav-item" data-depth="5">
     <a class="nav-link" href="supporting-services.html">Deploy Supporting Services</a>
@@ -361,6 +367,9 @@
   <li class="nav-item" data-depth="5">
     <a class="nav-link" href="configuring-knative-eventing-resources.html">Knative Eventing</a>
   </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="#cloud/operator/add-custom-ca-to-a-workflow-pod.adoc">Add Custom CA to Workflow Pod</a>
+  </li>
   <li class="nav-item is-current-page" data-depth="5">
     <a class="nav-link" href="known-issues.html">Roadmap and Known Issues</a>
   </li>
@@ -381,6 +390,15 @@
     <button class="nav-toggle"></button>
     <span class="nav-text">Supporting Services</span>
 <ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Jobs Service</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../job-services/core-concepts.html">Core Concepts</a>
+  </li>
+</ul>
+  </li>
   <li class="nav-item" data-depth="4">
     <button class="nav-toggle"></button>
     <span class="nav-text">Data Index</span>
@@ -408,7 +426,10 @@
     <span class="nav-text">Getting Started</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="6">
-    <a class="nav-link" href="../../use-cases/advanced-developer-use-cases/getting-started/create-your-first-workflow-service.html">Creating your first workflow service</a>
+    <a class="nav-link" href="../../use-cases/advanced-developer-use-cases/getting-started/create-your-first-workflow-service.html">Creating a Quarkus Workflow service</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../../use-cases/advanced-developer-use-cases/getting-started/create-your-first-workflow-project.html">Creating a Quarkus Workflow project</a>
   </li>
   <li class="nav-item" data-depth="6">
     <a class="nav-link" href="../../use-cases/advanced-developer-use-cases/getting-started/build-workflow-image-with-quarkus-cli.html">Building workflow images using Quarkus CLI</a>
@@ -628,97 +649,7 @@
         <main class="main">
           <article class="doc">
 <h1>Serverless Logic Operator Known Issues, Limitations and Roadmap</h1>
-<div id="preamble">
-<div class="sectionbody">
-<div class="paragraph">
-<p>The <a href="https://github.com/kiegroup/kogito-serverless-operator/tree/9.99.x-prod">Serverless Logic Operator</a> is currently in Alpha version, is under active development.</p>
-</div>
-</div>
-<div id="toc" class="toc">
-<div id="toctitle"></div>
-<ul class="sectlevel1">
-<li><a href="#_roadmap">Roadmap</a>
-<ul class="sectlevel2">
-<li><a href="#_cncf_specification_v0_8_alignment">CNCF Specification v0.8 Alignment</a></li>
-<li><a href="#_workflow_productization_profile">Workflow Productization Profile</a></li>
-<li><a href="#_knative_integration">Knative Integration</a></li>
-<li><a href="#_gitops">GitOps</a></li>
-<li><a href="#_operator_sdk_olm_operatorhub">Operator SDK, OLM, OperatorHub</a></li>
-</ul>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_roadmap"><a class="anchor" href="#_roadmap"></a>Roadmap</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>The following issues are currently being prioritized:</p>
-</div>
-<div class="sect2">
-<h3 id="_cncf_specification_v0_8_alignment"><a class="anchor" href="#_cncf_specification_v0_8_alignment"></a>CNCF Specification v0.8 Alignment</h3>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="https://issues.redhat.com/browse/KOGITO-7840">Implement admission webhooks for workflow validation</a></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_workflow_productization_profile"><a class="anchor" href="#_workflow_productization_profile"></a>Workflow Productization Profile</h3>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="https://issues.redhat.com/browse/KOGITO-8524">Enable toggle Workflow CR from devmode to production mode and vice-versa</a></p>
-</li>
-<li>
-<p><a href="https://issues.redhat.com/browse/KOGITO-8792">Review build failures and signal the reasoning in the Events API</a></p>
-</li>
-<li>
-<p><a href="https://issues.redhat.com/browse/KOGITO-8806">Evaluate internal registry integration on OpenShift, Kubernetes and Minikube</a></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_knative_integration"><a class="anchor" href="#_knative_integration"></a>Knative Integration</h3>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="https://issues.redhat.com/browse/KOGITO-9812">SonataFlow Operator integration with Knative Eventing</a></p>
-</li>
-<li>
-<p><a href="https://issues.redhat.com/browse/KOGITO-8496">Knative Serving Extension for Serverless Workflow specification</a></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_gitops"><a class="anchor" href="#_gitops"></a>GitOps</h3>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="https://issues.redhat.com/browse/KOGITO-9527">Extend the SonataFlow Operator with Jib builder</a></p>
-</li>
-<li>
-<p><a href="https://issues.redhat.com/browse/KOGITO-9833">Add external built image integrity validation</a></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_operator_sdk_olm_operatorhub"><a class="anchor" href="#_operator_sdk_olm_operatorhub"></a>Operator SDK, OLM, OperatorHub</h3>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="https://issues.redhat.com/browse/KOGITO-8182">Enable SonataFlow Operator for level 2 - Seamless Upgrades</a></p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
+
 </article>
         </main>
             </div>

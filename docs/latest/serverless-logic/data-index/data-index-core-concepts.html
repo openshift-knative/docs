@@ -151,10 +151,10 @@
     <span class="nav-text">Getting Started</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../getting-started/create-your-first-workflow-service-with-kn-cli-and-vscode.html">Creating your first workflow service with KN CLI and VS Code</a>
+    <a class="nav-link" href="../getting-started/create-your-first-workflow-service-with-kn-cli-and-vscode.html">Creating and running workflow projects using KN CLI and Visual Studio Code</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../getting-started/getting-familiar-with-our-tooling.html">Getting familiar with tooling</a>
+    <a class="nav-link" href="../getting-started/getting-familiar-with-our-tooling.html">Getting familiar with OpenShift Serverless Logic tooling</a>
   </li>
 </ul>
   </li>
@@ -163,7 +163,7 @@
     <span class="nav-text">Core</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../core/cncf-serverless-workflow-specification-support.html">CNCF Serverless Workflow specification</a>
+    <a class="nav-link" href="../core/cncf-serverless-workflow-specification-support.html">Serverless Workflow Specification</a>
   </li>
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="../core/handling-events-on-workflows.html">Events</a>
@@ -172,19 +172,19 @@
     <a class="nav-link" href="../core/working-with-callbacks.html">Callbacks</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../core/understanding-jq-expressions.html">jq expressions</a>
+    <a class="nav-link" href="../core/understanding-jq-expressions.html">jq Expressions</a>
   </li>
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="../core/understanding-workflow-error-handling.html">Error handling</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../core/configuration-properties.html">Configuration properties</a>
+    <a class="nav-link" href="../core/configuration-properties.html">Configuration</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../core/defining-an-input-schema-for-workflows.html">Defining an input schema for your workflows</a>
+    <a class="nav-link" href="../core/defining-an-input-schema-for-workflows.html">Input Schema</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../core/custom-functions-support.html">Custom functions for your service</a>
+    <a class="nav-link" href="../core/custom-functions-support.html">Custom functions</a>
   </li>
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="../core/timeouts-support.html">Timeouts</a>
@@ -215,16 +215,16 @@
     <a class="nav-link" href="../tooling/serverless-logic-web-tools/serverless-logic-web-tools-overview.html">Serverless Logic Web Tools</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../tooling/serverless-logic-web-tools/serverless-logic-web-tools-github-integration.html">GitHub integration</a>
+    <a class="nav-link" href="../tooling/serverless-logic-web-tools/serverless-logic-web-tools-github-integration.html">Integration with GitHub</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../tooling/serverless-logic-web-tools/serverless-logic-web-tools-openshift-integration.html">OpenShift integration</a>
+    <a class="nav-link" href="../tooling/serverless-logic-web-tools/serverless-logic-web-tools-openshift-integration.html">Integration with OpenShift</a>
   </li>
   <li class="nav-item" data-depth="5">
     <a class="nav-link" href="../tooling/serverless-logic-web-tools/serverless-logic-web-tools-redhat-application-services-integration.html">Red Hat OpenShift Application and Data Services integration</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../tooling/serverless-logic-web-tools/serverless-logic-web-tools-deploy-projects.html">Deploying projects</a>
+    <a class="nav-link" href="../tooling/serverless-logic-web-tools/serverless-logic-web-tools-deploy-projects.html">Deployment</a>
   </li>
 </ul>
   </li>
@@ -242,7 +242,7 @@
     <a class="nav-link" href="../service-orchestration/configuring-openapi-services-endpoints.html">Configuring the OpenAPI services endpoints</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../service-orchestration/working-with-openapi-callbacks.html">OpenAPI callback  in OpenShift Serverless Logic</a>
+    <a class="nav-link" href="../service-orchestration/working-with-openapi-callbacks.html">OpenAPI callbacks in OpenShift Serverless Logic</a>
   </li>
 </ul>
   </li>
@@ -322,11 +322,17 @@
     <a class="nav-link" href="../cloud/index.html">Cloud</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../cloud/custom-ingress-authz.html">Securing Workflows</a>
+  </li>
+  <li class="nav-item" data-depth="4">
     <button class="nav-toggle"></button>
     <span class="nav-text">Operator</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="5">
     <a class="nav-link" href="../cloud/operator/install-serverless-operator.html">Installation</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../cloud/operator/global-configuration.html">Admin Configuration</a>
   </li>
   <li class="nav-item" data-depth="5">
     <a class="nav-link" href="../cloud/operator/developing-workflows.html">Development Mode</a>
@@ -335,10 +341,10 @@
     <a class="nav-link" href="../cloud/operator/referencing-resource-files.html">Referencing Workflow Resources</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../cloud/operator/configuring-workflows.html">Configuration</a>
+    <a class="nav-link" href="../cloud/operator/configuring-workflows.html">Workflow Configuration</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../cloud/operator/build-and-deploy-workflows.html">Building and Deploying Workflows</a>
+    <a class="nav-link" href="../cloud/operator/build-and-deploy-workflows.html">Building and Deploying Workflow Images</a>
   </li>
   <li class="nav-item" data-depth="5">
     <a class="nav-link" href="../cloud/operator/supporting-services.html">Deploy Supporting Services</a>
@@ -362,6 +368,9 @@
     <a class="nav-link" href="../cloud/operator/configuring-knative-eventing-resources.html">Knative Eventing</a>
   </li>
   <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="#cloud/operator/add-custom-ca-to-a-workflow-pod.adoc">Add Custom CA to Workflow Pod</a>
+  </li>
+  <li class="nav-item" data-depth="5">
     <a class="nav-link" href="../cloud/operator/known-issues.html">Roadmap and Known Issues</a>
   </li>
 </ul>
@@ -381,6 +390,15 @@
     <button class="nav-toggle"></button>
     <span class="nav-text">Supporting Services</span>
 <ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Jobs Service</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../job-services/core-concepts.html">Core Concepts</a>
+  </li>
+</ul>
+  </li>
   <li class="nav-item" data-depth="4">
     <button class="nav-toggle"></button>
     <span class="nav-text">Data Index</span>
@@ -408,7 +426,10 @@
     <span class="nav-text">Getting Started</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="6">
-    <a class="nav-link" href="../use-cases/advanced-developer-use-cases/getting-started/create-your-first-workflow-service.html">Creating your first workflow service</a>
+    <a class="nav-link" href="../use-cases/advanced-developer-use-cases/getting-started/create-your-first-workflow-service.html">Creating a Quarkus Workflow service</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../use-cases/advanced-developer-use-cases/getting-started/create-your-first-workflow-project.html">Creating a Quarkus Workflow project</a>
   </li>
   <li class="nav-item" data-depth="6">
     <a class="nav-link" href="../use-cases/advanced-developer-use-cases/getting-started/build-workflow-image-with-quarkus-cli.html">Building workflow images using Quarkus CLI</a>
@@ -630,17 +651,25 @@
 <h1>Data Index Core Concepts</h1>
 <div id="preamble">
 <div class="sectionbody">
-<div class="paragraph">
-<p>In OpenShift Serverless Logic platform there is a dedicated supporting service that stores the data related to the workflow instances and their associated jobs called <strong>Data Index</strong> service.
-This service also provides a GraphQL endpoint allowing users to query that data and perform operations, also known as mutations in GraphQL terms.</p>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>Basic understanding of <a href="https://graphql.org/learn/">GraphQL</a>.</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
-<p>The data processed by the Data Index service is usually received via events. The events consumed can be generated by any workflow or the <a href="#job-services/core-concepts.adoc" class="xref unresolved">Job service</a> itself.
+<p><strong>Data Index</strong> service is a dedicated supporting service that stores the data related to the workflow instances and their associated jobs.
+This service provides a GraphQL endpoint allowing users to query and modify that data.</p>
+</div>
+<div class="paragraph">
+<p>The data processed by the Data Index service are received via events. The events that Data Index consumes can be generated by any workflow or the <a href="../job-services/core-concepts.html" class="xref page">Job service</a> itself.
 This event communication can be configured in different ways as described in the <a href="#data-index-service-communication">Data Index communication configuration</a> section.</p>
 </div>
 <div class="paragraph">
 <p>The Data Index service uses Apache Kafka or Knative eventing to consume <a href="https://cloudevents.io/">CloudEvents</a> messages from workflows.
-The event data is indexed and stored in the database for querying via GraphQL. These events contain information about units of work executed for a workflow.
+The event data is indexed and stored in the database for access via GraphQL. These events contain information about units of work executed for a workflow.
 The Data Index service is at the core of all OpenShift Serverless Logic search, insight, and management capabilities.</p>
 </div>
 <div class="paragraph">
@@ -718,12 +747,6 @@ The Data Index service is at the core of all OpenShift Serverless Logic search, 
 <li>
 <p><a href="https://www.postgresql.org/">PostgreSQL</a></p>
 </li>
-<li>
-<p><a href="https://infinispan.org/">Infinispan</a></p>
-</li>
-<li>
-<p><a href="https://www.mongodb.com/">MongoDB</a></p>
-</li>
 </ul>
 </div>
 </td>
@@ -731,7 +754,7 @@ The Data Index service is at the core of all OpenShift Serverless Logic search, 
 </table>
 </div>
 <div class="paragraph">
-<p>The Data Index Service has been thought of as an application to store and query the existing workflow data. The data comes contained in events. The service allows multiple connection options as described in the <a href="#data-index-service-communication">Data Index service communication configuration</a> section.</p>
+<p>The Data Index Service has been designed as an application to store and query the existing workflow data. The data comes within events. The service allows multiple connection options as described in the <a href="#data-index-service-communication">Data Index service communication configuration</a> section.</p>
 </div>
 </div>
 </div>
@@ -761,8 +784,8 @@ The Data Index service is at the core of all OpenShift Serverless Logic search, 
 <div class="sect2">
 <h3 id="data-index-dev-service"><a class="anchor" href="#data-index-dev-service"></a>Data Index service as Quarkus Development service</h3>
 <div class="paragraph">
-<p>It also can be deployed, transparently as a <strong>Quarkus Development Service</strong> when the Quarkus Dev mode is used in the OpenShift Serverless Logic application.
-When you use the OpenShift Serverless Logic Process Quarkus extension, a temporary Data Index Service is automatically provisioned while the Quarkus application is running in development mode and the Dev Service is set up for immediate use.</p>
+<p>When the Quarkus Dev mode is used in the OpenShift Serverless Logic application, Data Index can be deployed transparently as a <strong>Quarkus Development Service</strong>.
+When the OpenShift Serverless Logic Process Quarkus extension is utilized, a temporary Data Index Service is automatically provisioned while the Quarkus application runs in development mode making the Quarkus Dev Service available for use.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -770,7 +793,7 @@ When you use the OpenShift Serverless Logic Process Quarkus extension, a tempora
 </div>
 </div>
 <div class="paragraph">
-<p>More details are provided in the <a href="data-index-service.html#data-index-dev-service-details" class="xref page">Data Index as a Quarkus Development service</a> section.</p>
+<p>More details are provided in the <a href="../use-cases/advanced-developer-use-cases/data-index/data-index-as-quarkus-dev-service.html" class="xref page">Data Index as a Quarkus Development service</a> section.</p>
 </div>
 <div class="paragraph">
 <p>The OpenShift Serverless Logic Process Quarkus extension sets up your Quarkus application to automatically replicate any OpenShift Serverless Logic messaging events related to workflow instances or jobs into the provisioned Data Index instance.</p>
@@ -782,7 +805,7 @@ When you use the OpenShift Serverless Logic Process Quarkus extension, a tempora
 <div class="sect2">
 <h3 id="_data_index_service_as_quarkus_extension"><a class="anchor" href="#_data_index_service_as_quarkus_extension"></a>Data Index service as Quarkus extension</h3>
 <div class="paragraph">
-<p>It can be included as part of the same OpenShift Serverless Logic application using the <strong>Data Index extension</strong>, through the provided addons.</p>
+<p>Data Index can be included as part of the same OpenShift Serverless Logic application using the <strong>Data Index extension</strong>, through the provided addons.</p>
 </div>
 <div class="paragraph">
 <p>This scenario is specific to add the Data Index data indexing features and the GraphQL endpoint exposure inside a workflow application.</p>
@@ -811,7 +834,7 @@ When you use the OpenShift Serverless Logic Process Quarkus extension, a tempora
 <p>In order to store the indexed data, Data Index needs some specific tables to be created. Data Index is ready to use <a href="https://quarkus.io/guides/flyway">Quarkus flyway</a> for that purpose.</p>
 </div>
 <div class="paragraph">
-<p>It&#8217;s necessary to activate the migrate-at-start option to migrate the Data Index schema automatically.</p>
+<p>Activating the 'migrate-at-start' option enables automatic migration of the Data Index schema.</p>
 </div>
 <div class="paragraph">
 <p>For more details about Flyway migrations, see <a href="../use-cases/advanced-developer-use-cases/persistence/postgresql-flyway-migration.html" class="xref page">PostgreSQL Database Migration</a> section.</p>
@@ -823,7 +846,7 @@ When you use the OpenShift Serverless Logic Process Quarkus extension, a tempora
 <div class="sectionbody">
 <div class="paragraph">
 <p>Data Index provides GraphQL endpoint that allows users to interact with the stored data.
-For more information about GraphQL see <a href="https://graphql.org">GraphQL</a></p>
+For more information about GraphQL see <a href="https://graphql.org">GraphQL documentation</a></p>
 </div>
 <div class="sect2">
 <h3 id="data-index-ext-queries"><a class="anchor" href="#data-index-ext-queries"></a>GraphQL queries for workflow instances and jobs</h3>
@@ -1326,13 +1349,13 @@ For more information about GraphQL see <a href="https://graphql.org">GraphQL</a>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>To enable described management operations on workflow instances, make sure your project is configured to have the <code>kogito-addons-quarkus-process-management</code> dependency on its <code>pom.xml</code> file to have this management operations enabled, like:</p>
+<p>To enable described management operations on workflow instances, make sure your project is configured to have the <code>kie-addons-quarkus-process-management</code> dependency on its <code>pom.xml</code> file to have this management operations enabled, like:</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;dependency&gt;
-  &lt;groupId&gt;org.kie.kogito&lt;/groupId&gt;
-  &lt;artifactId&gt;kogito-addons-quarkus-process-management&lt;/artifactId&gt;
+  &lt;groupId&gt;org.kie&lt;/groupId&gt;
+  &lt;artifactId&gt;kie-addons-quarkus-process-management&lt;/artifactId&gt;
 &lt;/dependency&gt;</code></pre>
 </div>
 </div>
@@ -1366,13 +1389,13 @@ For more information about GraphQL see <a href="https://graphql.org">GraphQL</a>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>The workflow instance source field only will be available when <code>kogito-addons-quarkus-source-files</code> dependency is added on OpenShift Serverless Logic runtime service <code>pom.xml</code> file.</p>
+<p>The workflow instance source field only will be available when <code>kie-addons-quarkus-source-files</code> dependency is added on OpenShift Serverless Logic runtime service <code>pom.xml</code> file.</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">    &lt;dependency&gt;
-      &lt;groupId&gt;org.kie.kogito&lt;/groupId&gt;
-      &lt;artifactId&gt;kogito-addons-quarkus-source-files&lt;/artifactId&gt;
+      &lt;groupId&gt;org.kie&lt;/groupId&gt;
+      &lt;artifactId&gt;kie-addons-quarkus-source-files&lt;/artifactId&gt;
     &lt;/dependency&gt;</code></pre>
 </div>
 </div>
@@ -1439,7 +1462,7 @@ For more information about GraphQL see <a href="https://graphql.org">GraphQL</a>
 <p>When the Data Index is deployed as a standalone service, this UI will be available at <code>/graphiql/</code> endpoint (i.e: at <a href="http://localhost:8180/graphiql/" class="bare">localhost:8180/graphiql/</a>)</p>
 </div>
 <div class="paragraph">
-<p>To have the GraphQL UI available when the Data Index extension is deployed the property <code>quarkus.kogito.data-index.graphql.ui.always-include</code> needs to be enabled.</p>
+<p>To enable the GraphQL UI when deploying the Data Index extension, the property <code>quarkus.kogito.data-index.graphql.ui.always-include</code> must be enabled.</p>
 </div>
 <div class="paragraph">
 <p>It will be accessible at: &lt;quarkus.http.root-path&gt;&lt;quarkus.http.non-application-root-path&gt;/graphql-ui/ (i.e: <a href="http://localhost:8080/q/graphql-ui/" class="bare">localhost:8080/q/graphql-ui/</a>)</p>
@@ -1544,7 +1567,7 @@ mp.messaging.outgoing.kogito-processinstances-events.method=POST</code></pre>
 </td>
 <td class="content">
 <div class="paragraph">
-<p><strong>Job service</strong> needs also to be configured to send the events to the Knative K_SINK to have them available for Data Index related triggers.</p>
+<p><strong>Job service</strong> needs to be configured to send the events to the Knative K_SINK to have them available for Data Index related triggers.</p>
 </div>
 </td>
 </tr>
@@ -1620,7 +1643,7 @@ In this case, the data indexation is done internally, and all interactions are t
 <h2 id="_found_an_issue"><a class="anchor" href="#_found_an_issue"></a><em><strong>Found an issue?</strong></em></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>If you find an issue or any misleading information, please feel free to report it <a href="https://github.com/apache/incubator-kie-kogito-docs/issues/new">here</a>.
+<p>If you find an issue or any misleading information, please feel free to report it <a href="https://github.com/kiegroup/kogito-docs/issues/new">here</a>.
 We really appreciate it!</p>
 </div>
 </div>

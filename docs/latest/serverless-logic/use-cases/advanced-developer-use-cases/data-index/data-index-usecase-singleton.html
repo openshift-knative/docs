@@ -151,10 +151,10 @@
     <span class="nav-text">Getting Started</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../../getting-started/create-your-first-workflow-service-with-kn-cli-and-vscode.html">Creating your first workflow service with KN CLI and VS Code</a>
+    <a class="nav-link" href="../../../getting-started/create-your-first-workflow-service-with-kn-cli-and-vscode.html">Creating and running workflow projects using KN CLI and Visual Studio Code</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../../getting-started/getting-familiar-with-our-tooling.html">Getting familiar with tooling</a>
+    <a class="nav-link" href="../../../getting-started/getting-familiar-with-our-tooling.html">Getting familiar with OpenShift Serverless Logic tooling</a>
   </li>
 </ul>
   </li>
@@ -163,7 +163,7 @@
     <span class="nav-text">Core</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../../core/cncf-serverless-workflow-specification-support.html">CNCF Serverless Workflow specification</a>
+    <a class="nav-link" href="../../../core/cncf-serverless-workflow-specification-support.html">Serverless Workflow Specification</a>
   </li>
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="../../../core/handling-events-on-workflows.html">Events</a>
@@ -172,19 +172,19 @@
     <a class="nav-link" href="../../../core/working-with-callbacks.html">Callbacks</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../../core/understanding-jq-expressions.html">jq expressions</a>
+    <a class="nav-link" href="../../../core/understanding-jq-expressions.html">jq Expressions</a>
   </li>
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="../../../core/understanding-workflow-error-handling.html">Error handling</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../../core/configuration-properties.html">Configuration properties</a>
+    <a class="nav-link" href="../../../core/configuration-properties.html">Configuration</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../../core/defining-an-input-schema-for-workflows.html">Defining an input schema for your workflows</a>
+    <a class="nav-link" href="../../../core/defining-an-input-schema-for-workflows.html">Input Schema</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../../core/custom-functions-support.html">Custom functions for your service</a>
+    <a class="nav-link" href="../../../core/custom-functions-support.html">Custom functions</a>
   </li>
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="../../../core/timeouts-support.html">Timeouts</a>
@@ -215,16 +215,16 @@
     <a class="nav-link" href="../../../tooling/serverless-logic-web-tools/serverless-logic-web-tools-overview.html">Serverless Logic Web Tools</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../../../tooling/serverless-logic-web-tools/serverless-logic-web-tools-github-integration.html">GitHub integration</a>
+    <a class="nav-link" href="../../../tooling/serverless-logic-web-tools/serverless-logic-web-tools-github-integration.html">Integration with GitHub</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../../../tooling/serverless-logic-web-tools/serverless-logic-web-tools-openshift-integration.html">OpenShift integration</a>
+    <a class="nav-link" href="../../../tooling/serverless-logic-web-tools/serverless-logic-web-tools-openshift-integration.html">Integration with OpenShift</a>
   </li>
   <li class="nav-item" data-depth="5">
     <a class="nav-link" href="../../../tooling/serverless-logic-web-tools/serverless-logic-web-tools-redhat-application-services-integration.html">Red Hat OpenShift Application and Data Services integration</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../../../tooling/serverless-logic-web-tools/serverless-logic-web-tools-deploy-projects.html">Deploying projects</a>
+    <a class="nav-link" href="../../../tooling/serverless-logic-web-tools/serverless-logic-web-tools-deploy-projects.html">Deployment</a>
   </li>
 </ul>
   </li>
@@ -242,7 +242,7 @@
     <a class="nav-link" href="../../../service-orchestration/configuring-openapi-services-endpoints.html">Configuring the OpenAPI services endpoints</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../../../service-orchestration/working-with-openapi-callbacks.html">OpenAPI callback  in OpenShift Serverless Logic</a>
+    <a class="nav-link" href="../../../service-orchestration/working-with-openapi-callbacks.html">OpenAPI callbacks in OpenShift Serverless Logic</a>
   </li>
 </ul>
   </li>
@@ -322,11 +322,17 @@
     <a class="nav-link" href="../../../cloud/index.html">Cloud</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../../cloud/custom-ingress-authz.html">Securing Workflows</a>
+  </li>
+  <li class="nav-item" data-depth="4">
     <button class="nav-toggle"></button>
     <span class="nav-text">Operator</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="5">
     <a class="nav-link" href="../../../cloud/operator/install-serverless-operator.html">Installation</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../../cloud/operator/global-configuration.html">Admin Configuration</a>
   </li>
   <li class="nav-item" data-depth="5">
     <a class="nav-link" href="../../../cloud/operator/developing-workflows.html">Development Mode</a>
@@ -335,10 +341,10 @@
     <a class="nav-link" href="../../../cloud/operator/referencing-resource-files.html">Referencing Workflow Resources</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../../../cloud/operator/configuring-workflows.html">Configuration</a>
+    <a class="nav-link" href="../../../cloud/operator/configuring-workflows.html">Workflow Configuration</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../../../cloud/operator/build-and-deploy-workflows.html">Building and Deploying Workflows</a>
+    <a class="nav-link" href="../../../cloud/operator/build-and-deploy-workflows.html">Building and Deploying Workflow Images</a>
   </li>
   <li class="nav-item" data-depth="5">
     <a class="nav-link" href="../../../cloud/operator/supporting-services.html">Deploy Supporting Services</a>
@@ -362,6 +368,9 @@
     <a class="nav-link" href="../../../cloud/operator/configuring-knative-eventing-resources.html">Knative Eventing</a>
   </li>
   <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="#cloud/operator/add-custom-ca-to-a-workflow-pod.adoc">Add Custom CA to Workflow Pod</a>
+  </li>
+  <li class="nav-item" data-depth="5">
     <a class="nav-link" href="../../../cloud/operator/known-issues.html">Roadmap and Known Issues</a>
   </li>
 </ul>
@@ -381,6 +390,15 @@
     <button class="nav-toggle"></button>
     <span class="nav-text">Supporting Services</span>
 <ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Jobs Service</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../../job-services/core-concepts.html">Core Concepts</a>
+  </li>
+</ul>
+  </li>
   <li class="nav-item" data-depth="4">
     <button class="nav-toggle"></button>
     <span class="nav-text">Data Index</span>
@@ -408,7 +426,10 @@
     <span class="nav-text">Getting Started</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="6">
-    <a class="nav-link" href="../getting-started/create-your-first-workflow-service.html">Creating your first workflow service</a>
+    <a class="nav-link" href="../getting-started/create-your-first-workflow-service.html">Creating a Quarkus Workflow service</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../getting-started/create-your-first-workflow-project.html">Creating a Quarkus Workflow project</a>
   </li>
   <li class="nav-item" data-depth="6">
     <a class="nav-link" href="../getting-started/build-workflow-image-with-quarkus-cli.html">Building workflow images using Quarkus CLI</a>
@@ -632,7 +653,7 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>This document describes how to deploy a workflow application and the Data Index service using a local Kubernetes cluster, such as <a href="https://minikube.sigs.k8s.io">Minikube</a>, using the <a href="https://github.com/kiegroup/kogito-serverless-operator/tree/9.99.x-prod">Serverless Logic Operator</a>.</p>
+<p>This document describes how to deploy a workflow application and the Data Index service using a local Kubernetes cluster, such as <a href="https://minikube.sigs.k8s.io">Minikube</a>, using the <a href="https://github.com/kiegroup/kogito-serverless-operator/">Serverless Logic Operator</a>.</p>
 </div>
 <div class="paragraph">
 <p>For more information about Minikube and related system requirements, see <a href="https://minikube.sigs.k8s.io/docs/start/">Getting started with Minikube</a> documentation.</p>
@@ -651,7 +672,7 @@
 </ul>
 </div>
 <div class="paragraph">
-<p>You can directly access the UseCase1 example application we are going to follow at <a href="https://github.com/kiegroup/kogito-examples/tree/9.99.x-prod/serverless-operator-examples/serverless-workflow-dataindex-use-cases">OpenShift Serverless Logic Data Index Use Cases with operator</a>.</p>
+<p>You can directly access the UseCase1 example application we are going to follow at <a href="https://github.com/kiegroup/kogito-examples/tree/9.100.x-prod/serverless-operator-examples/serverless-workflow-dataindex-use-cases">OpenShift Serverless Logic Data Index Use Cases with operator</a>.</p>
 </div>
 <div class="ulist">
 <div class="title">Prerequisites</div>
@@ -768,7 +789,248 @@
 <div class="openblock">
 <div class="content">
 <div class="paragraph">
-<p>include:common/_dataindex_deployment_operator.adoc[]</p>
+<p><a href="https://github.com/kiegroup/kogito-examples/tree/9.100.x-prod/serverless-operator-examples/serverless-workflow-dataindex-use-cases/tree/main/infra/dataindex">Here</a> you can find the infrastructure kustomization required to deploy Data Index service and a postgresql database explained in this use case.</p>
+</div>
+<div class="paragraph">
+<p>Thas folder contains four files:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>kustomization.yaml</p>
+</li>
+<li>
+<p>01-postgres.yaml</p>
+</li>
+<li>
+<p>02-dataindex.yaml</p>
+</li>
+<li>
+<p>application.properties</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title"><code>kustomization.yaml</code> resources that deploy Data Index deployment with persistence to a postgresql database</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">resources:
+- 01-postgres.yaml <i class="conum" data-value="1"></i><b>(1)</b>
+- 02-dataindex.yaml <i class="conum" data-value="2"></i><b>(2)</b>
+
+secretGenerator:
+  - name: postgres-secrets
+    literals:
+      - POSTGRES_USER=sonataflow
+      - POSTGRES_PASSWORD=sonataflow
+      - POSTGRES_DB=sonataflow
+      - PGDATA=/var/lib/postgresql/data/mydata
+
+configMapGenerator:
+  - name: dataindex-properties
+    files:
+      - application.properties</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Postgres database deployment</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Data Index deployment</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title"><code>01_postgres.yaml</code> that deploys Postgresql database</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  labels:
+    app.kubernetes.io/name: postgres
+  name: postgres-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app.kubernetes.io/name: postgres
+  name: postgres
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: postgres
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: postgres
+    spec:
+      containers:
+        - name: postgres
+          image: postgres:13.2-alpine
+          imagePullPolicy: 'IfNotPresent'
+          ports:
+            - containerPort: 5432
+          volumeMounts:
+            - name: storage
+              mountPath: /var/lib/postgresql/data
+          envFrom:
+            - secretRef:
+                name: postgres-secrets
+          readinessProbe:
+            exec:
+              command: ["pg_isready"]
+            initialDelaySeconds: 15
+            timeoutSeconds: 2
+          livenessProbe:
+            exec:
+              command: ["pg_isready"]
+            initialDelaySeconds: 15
+            timeoutSeconds: 2
+          resources:
+            limits:
+              memory: "256Mi"
+              cpu: "500m"
+      volumes:
+      - name: storage
+        persistentVolumeClaim:
+          claimName: postgres-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app.kubernetes.io/name: postgres
+  name: postgres
+spec:
+  selector:
+    app.kubernetes.io/name: postgres
+  ports:
+    - port: 5432</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title"><code>02-dataindex.yaml</code> that deploys Data Index with persistence to the previous defined postgresql database</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app.kubernetes.io/name: data-index-service-postgresql
+  name: data-index-service-postgresql
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: data-index-service-postgresql
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: data-index-service-postgresql
+    spec:
+      containers:
+        - name: data-index-service-postgresql
+          image: registry.redhat.io/openshift-serverless-1/logic-data-index-postgresql-rhel8:latest
+          imagePullPolicy: Always
+          resources:
+            limits:
+              memory: "256Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 8080
+              name: http
+              protocol: TCP
+          env:
+            - name: KOGITO_DATA_INDEX_QUARKUS_PROFILE
+              value: http-events-support
+            - name: KUBERNETES_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            - name: QUARKUS_DATASOURCE_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  key: POSTGRES_USER
+                  name: postgres-secrets
+            - name: QUARKUS_DATASOURCE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: POSTGRES_PASSWORD
+                  name: postgres-secrets
+          volumeMounts:
+            - name: application-config
+              mountPath: "/home/kogito/config"
+          livenessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /q/health/live
+              port: 8080
+              scheme: HTTP
+            initialDelaySeconds: 0
+            periodSeconds: 30
+            successThreshold: 1
+            timeoutSeconds: 10
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /q/health/ready
+              port: 8080
+              scheme: HTTP
+            initialDelaySeconds: 0
+            periodSeconds: 30
+            successThreshold: 1
+            timeoutSeconds: 10
+      volumes:
+        - name: application-config
+          configMap:
+            name: dataindex-properties
+      initContainers:
+        - name: init-postgres
+          image: registry.access.redhat.com/ubi9/ubi-minimal:latest
+          imagePullPolicy: IfNotPresent
+          command: ['sh', '-c', 'until (echo 1 &gt; /dev/tcp/postgres.$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace).svc.cluster.local/5432) &gt;/dev/null 2&gt;&amp;1; do echo "Waiting for postgres server"; sleep 3; done;']
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app.kubernetes.io/name: data-index-service-postgresql
+  name: data-index-service-postgresql
+spec:
+  ports:
+    - name: http
+      port: 80
+      targetPort: 8080
+  selector:
+    app.kubernetes.io/name: data-index-service-postgresql
+  type: NodePort</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title"><code>application.properties</code> referenced by <code>kustomization.yaml</code></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">quarkus.http.port=8080
+quarkus.http.cors=true
+quarkus.http.cors.origins=/.*/
+
+quarkus.datasource.jdbc.url=jdbc:postgresql://postgres:5432/sonataflow?currentSchema=data-index-service
+quarkus.hibernate-orm.database.generation=update
+quarkus.flyway.migrate-at-start=true
+
+# Disable kafka client health check since the quarkus-http connector is being used instead.
+quarkus.smallrye-health.check."io.quarkus.kafka.client.health.KafkaHealthCheck".enabled=false</code></pre>
+</div>
 </div>
 <div class="paragraph">
 <p>Perform the deployments executing</p>
@@ -812,7 +1074,7 @@ postgres-7f78499688-lc8n6                        1/1     Running   0            
 <div class="openblock">
 <div class="content">
 <div class="paragraph">
-<p><a href="https://github.com/kiegroup/kogito-examples/tree/9.99.x-prod/serverless-operator-examples/serverless-workflow-dataindex-use-cases/tree/main/usecases/usecase1">Here</a> you can find the use case kustomization required to deploy the workflow</p>
+<p><a href="https://github.com/kiegroup/kogito-examples/tree/9.100.x-prod/serverless-operator-examples/serverless-workflow-dataindex-use-cases/tree/main/usecases/usecase1">Here</a> you can find the use case kustomization required to deploy the workflow</p>
 </div>
 <div class="listingblock">
 <div class="title">Use case kustomization.yaml resources that deploys the workflow</div>
@@ -1075,7 +1337,7 @@ greeting             0.0.1           True</pre>
 <h2 id="_found_an_issue"><a class="anchor" href="#_found_an_issue"></a><em><strong>Found an issue?</strong></em></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>If you find an issue or any misleading information, please feel free to report it <a href="https://github.com/apache/incubator-kie-kogito-docs/issues/new">here</a>.
+<p>If you find an issue or any misleading information, please feel free to report it <a href="https://github.com/kiegroup/kogito-docs/issues/new">here</a>.
 We really appreciate it!</p>
 </div>
 </div>

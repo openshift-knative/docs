@@ -151,10 +151,10 @@
     <span class="nav-text">Getting Started</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../getting-started/create-your-first-workflow-service-with-kn-cli-and-vscode.html">Creating your first workflow service with KN CLI and VS Code</a>
+    <a class="nav-link" href="../../getting-started/create-your-first-workflow-service-with-kn-cli-and-vscode.html">Creating and running workflow projects using KN CLI and Visual Studio Code</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../getting-started/getting-familiar-with-our-tooling.html">Getting familiar with tooling</a>
+    <a class="nav-link" href="../../getting-started/getting-familiar-with-our-tooling.html">Getting familiar with OpenShift Serverless Logic tooling</a>
   </li>
 </ul>
   </li>
@@ -163,7 +163,7 @@
     <span class="nav-text">Core</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../core/cncf-serverless-workflow-specification-support.html">CNCF Serverless Workflow specification</a>
+    <a class="nav-link" href="../../core/cncf-serverless-workflow-specification-support.html">Serverless Workflow Specification</a>
   </li>
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="../../core/handling-events-on-workflows.html">Events</a>
@@ -172,19 +172,19 @@
     <a class="nav-link" href="../../core/working-with-callbacks.html">Callbacks</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../core/understanding-jq-expressions.html">jq expressions</a>
+    <a class="nav-link" href="../../core/understanding-jq-expressions.html">jq Expressions</a>
   </li>
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="../../core/understanding-workflow-error-handling.html">Error handling</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../core/configuration-properties.html">Configuration properties</a>
+    <a class="nav-link" href="../../core/configuration-properties.html">Configuration</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../core/defining-an-input-schema-for-workflows.html">Defining an input schema for your workflows</a>
+    <a class="nav-link" href="../../core/defining-an-input-schema-for-workflows.html">Input Schema</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../core/custom-functions-support.html">Custom functions for your service</a>
+    <a class="nav-link" href="../../core/custom-functions-support.html">Custom functions</a>
   </li>
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="../../core/timeouts-support.html">Timeouts</a>
@@ -215,16 +215,16 @@
     <a class="nav-link" href="../../tooling/serverless-logic-web-tools/serverless-logic-web-tools-overview.html">Serverless Logic Web Tools</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../../tooling/serverless-logic-web-tools/serverless-logic-web-tools-github-integration.html">GitHub integration</a>
+    <a class="nav-link" href="../../tooling/serverless-logic-web-tools/serverless-logic-web-tools-github-integration.html">Integration with GitHub</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../../tooling/serverless-logic-web-tools/serverless-logic-web-tools-openshift-integration.html">OpenShift integration</a>
+    <a class="nav-link" href="../../tooling/serverless-logic-web-tools/serverless-logic-web-tools-openshift-integration.html">Integration with OpenShift</a>
   </li>
   <li class="nav-item" data-depth="5">
     <a class="nav-link" href="../../tooling/serverless-logic-web-tools/serverless-logic-web-tools-redhat-application-services-integration.html">Red Hat OpenShift Application and Data Services integration</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../../tooling/serverless-logic-web-tools/serverless-logic-web-tools-deploy-projects.html">Deploying projects</a>
+    <a class="nav-link" href="../../tooling/serverless-logic-web-tools/serverless-logic-web-tools-deploy-projects.html">Deployment</a>
   </li>
 </ul>
   </li>
@@ -242,7 +242,7 @@
     <a class="nav-link" href="../../service-orchestration/configuring-openapi-services-endpoints.html">Configuring the OpenAPI services endpoints</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../../service-orchestration/working-with-openapi-callbacks.html">OpenAPI callback  in OpenShift Serverless Logic</a>
+    <a class="nav-link" href="../../service-orchestration/working-with-openapi-callbacks.html">OpenAPI callbacks in OpenShift Serverless Logic</a>
   </li>
 </ul>
   </li>
@@ -322,11 +322,17 @@
     <a class="nav-link" href="../index.html">Cloud</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../custom-ingress-authz.html">Securing Workflows</a>
+  </li>
+  <li class="nav-item" data-depth="4">
     <button class="nav-toggle"></button>
     <span class="nav-text">Operator</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="5">
     <a class="nav-link" href="install-serverless-operator.html">Installation</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="global-configuration.html">Admin Configuration</a>
   </li>
   <li class="nav-item is-current-page" data-depth="5">
     <a class="nav-link" href="developing-workflows.html">Development Mode</a>
@@ -335,10 +341,10 @@
     <a class="nav-link" href="referencing-resource-files.html">Referencing Workflow Resources</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="configuring-workflows.html">Configuration</a>
+    <a class="nav-link" href="configuring-workflows.html">Workflow Configuration</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="build-and-deploy-workflows.html">Building and Deploying Workflows</a>
+    <a class="nav-link" href="build-and-deploy-workflows.html">Building and Deploying Workflow Images</a>
   </li>
   <li class="nav-item" data-depth="5">
     <a class="nav-link" href="supporting-services.html">Deploy Supporting Services</a>
@@ -362,6 +368,9 @@
     <a class="nav-link" href="configuring-knative-eventing-resources.html">Knative Eventing</a>
   </li>
   <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="#cloud/operator/add-custom-ca-to-a-workflow-pod.adoc">Add Custom CA to Workflow Pod</a>
+  </li>
+  <li class="nav-item" data-depth="5">
     <a class="nav-link" href="known-issues.html">Roadmap and Known Issues</a>
   </li>
 </ul>
@@ -381,6 +390,15 @@
     <button class="nav-toggle"></button>
     <span class="nav-text">Supporting Services</span>
 <ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Jobs Service</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../job-services/core-concepts.html">Core Concepts</a>
+  </li>
+</ul>
+  </li>
   <li class="nav-item" data-depth="4">
     <button class="nav-toggle"></button>
     <span class="nav-text">Data Index</span>
@@ -408,7 +426,10 @@
     <span class="nav-text">Getting Started</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="6">
-    <a class="nav-link" href="../../use-cases/advanced-developer-use-cases/getting-started/create-your-first-workflow-service.html">Creating your first workflow service</a>
+    <a class="nav-link" href="../../use-cases/advanced-developer-use-cases/getting-started/create-your-first-workflow-service.html">Creating a Quarkus Workflow service</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../../use-cases/advanced-developer-use-cases/getting-started/create-your-first-workflow-project.html">Creating a Quarkus Workflow project</a>
   </li>
   <li class="nav-item" data-depth="6">
     <a class="nav-link" href="../../use-cases/advanced-developer-use-cases/getting-started/build-workflow-image-with-quarkus-cli.html">Building workflow images using Quarkus CLI</a>
@@ -650,13 +671,24 @@
 </tr>
 </table>
 </div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>You have set up your environment according to the <a href="../../getting-started/preparing-environment.html#proc-minimal-local-environment-setup" class="xref page">minimal environment setup</a> guide.</p>
+</li>
+<li>
+<p>You have the cluster instance up and running. See <a href="../../getting-started/preparing-environment.html#proc-starting-cluster-fo-local-development" class="xref page">starting the cluster for local development</a> guide.</p>
+</li>
+</ul>
+</div>
 </div>
 <div id="toc" class="toc">
 <div id="toctitle"></div>
 <ul class="sectlevel1">
-<li><a href="#_introduction_to_the_development_profile">Introduction to the Development Profile</a></li>
-<li><a href="#_deploying_a_new_workflow">Deploying a New Workflow</a></li>
-<li><a href="#_check_if_the_workflow_is_running">Check if the Workflow is running</a></li>
+<li><a href="#proc-introduction-to-development-profile">Introduction to the Development Profile</a></li>
+<li><a href="#proc-deploying-new-workflow">Deploying a New Workflow</a></li>
+<li><a href="#proc-check-if-workflow-is-running">Check if the Workflow is running</a></li>
 <li><a href="#_remove_the_workflow">Remove the Workflow</a></li>
 <li><a href="#_referencing_resources_in_the_workflow">Referencing resources in the Workflow</a></li>
 <li><a href="#_using_another_workflow_base_image">Using another Workflow base image</a></li>
@@ -672,7 +704,7 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="_introduction_to_the_development_profile"><a class="anchor" href="#_introduction_to_the_development_profile"></a>Introduction to the Development Profile</h2>
+<h2 id="proc-introduction-to-development-profile"><a class="anchor" href="#proc-introduction-to-development-profile"></a>Introduction to the Development Profile</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The development profile is the easiest way to start playing around with Workflows and the operator.</p>
@@ -743,21 +775,18 @@ spec:
 </div>
 </div>
 <div class="sect1">
-<h2 id="_deploying_a_new_workflow"><a class="anchor" href="#_deploying_a_new_workflow"></a>Deploying a New Workflow</h2>
+<h2 id="proc-deploying-new-workflow"><a class="anchor" href="#proc-deploying-new-workflow"></a>Deploying a New Workflow</h2>
 <div class="sectionbody">
 <div class="ulist">
 <div class="title">Prerequisites</div>
 <ul>
 <li>
-<p>You have <a href="install-serverless-operator.html" class="xref page">installed the Serverless Logic Operator</a></p>
-</li>
-<li>
-<p>You have created a new OpenShift Serverless Logic Kubernetes YAML file</p>
+<p>You have a new OpenShift Serverless Logic Kubernetes Workflow definition in YAML file. You can use the Greeting example in <a href="#proc-introduction-to-development-profile">introduction to development profile</a> section.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>Having a new Kubernetes Workflow definition in a YAML file (you can use the above example), you can deploy it in your cluster with the following command:</p>
+<p>Having a Kubernetes Workflow definition in a YAML file , you can deploy it in your cluster with the following command:</p>
 </div>
 <div class="listingblock">
 <div class="title">Deploying a new SonataFlow Custom Resource in Kubernetes</div>
@@ -771,7 +800,7 @@ spec:
 <div class="listingblock">
 <div class="title">Deploying the greeting Workflow example</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl apply -f https://raw.githubusercontent.com/kiegroup/kogito-serverless-operator/9.99.x-prod/test/testdata/sonataflow.org_v1alpha08_sonataflow_devmode.yaml -n &lt;your_namespace&gt;</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl apply -f https://raw.githubusercontent.com/apache/incubator-kie-kogito-serverless-operator/1.33.0/test/testdata/sonataflow.org_v1alpha08_sonataflow_devmode.yaml -n &lt;your_namespace&gt;</code></pre>
 </div>
 </div>
 <div class="admonitionblock tip">
@@ -837,11 +866,11 @@ greeting   dev       0.0.1               True</code></pre>
 <p>Alternatively, you can save the Custom Resource definition file and edit it with your desired editor and re-apply it.</p>
 </div>
 <div class="paragraph">
-<p>For example using VSCode, there are the commands needed:</p>
+<p>For example using VS Code, these are the commands needed:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -S https://raw.githubusercontent.com/kiegroup/kogito-serverless-operator/9.99.x-prod/test/testdata/sonataflow.org_v1alpha08_sonataflow_devmode.yaml &gt; workflow_devmode.yaml
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -S https://raw.githubusercontent.com/apache/incubator-kie-kogito-serverless-operator/1.33.0/test/testdata/sonataflow.org_v1alpha08_sonataflow_devmode.yaml &gt; workflow_devmode.yaml
 code workflow_devmode.yaml
 kubectl apply -f workflow_devmode.yaml -n &lt;your_namespace&gt;</code></pre>
 </div>
@@ -853,18 +882,74 @@ This way, you can include the Workflow in your development scenario and start ma
 </div>
 </div>
 <div class="sect1">
-<h2 id="_check_if_the_workflow_is_running"><a class="anchor" href="#_check_if_the_workflow_is_running"></a>Check if the Workflow is running</h2>
+<h2 id="proc-check-if-workflow-is-running"><a class="anchor" href="#proc-check-if-workflow-is-running"></a>Check if the Workflow is running</h2>
 <div class="sectionbody">
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>You have deployed a workflow to your cluster following the example in <a href="#proc-deploying-new-workflow">deploying new workflow</a> section.</p>
+</li>
+</ul>
+</div>
 <div class="paragraph">
 <p>In order to check that the OpenShift Serverless Logic Greeting workflow is up and running, you can try to perform a test HTTP call. First, you must get the service URL:</p>
 </div>
-<div class="listingblock">
-<div class="title">Exposing the Workflow</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Exposing the workflow</p>
+</li>
+</ol>
+</div>
+<div class="exampleblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">minikube service greeting -n &lt;your_namespace&gt; --url
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Minikube</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Expose the workflow on minikube</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell"># Input
+minikube service greeting -n &lt;your_namespace&gt; --url
+
+# Example output, use the URL as a base to acces the current workflow
 http://127.0.0.1:57053
 
-# use the above output to get the current Workflow URL in your environment</code></pre>
+# Your workflow is accessible at http://127.0.0.1:57053/greeting</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+<dt class="hdlist1">Kind</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Expose the workflow on kind</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell"># Find the service of your workflow
+kubectl get service -n &lt;namespace&gt;
+
+# Example output
+NAME            TYPE       CLUSTER-IP EXTERNAL-IP PORT(S)  AGE
+greetings    ClusterIP    10.96.0.1    &lt;none&gt;    31852/TCP  21h
+
+# Now forward the port and keep the terminal window open
+kubectl port-forward service/greeting 31852:80 -n &lt;namespace&gt;
+
+# Your workflow is accessible at localhost:31852/greetings</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
 </div>
 </div>
 <div class="admonitionblock tip">
@@ -874,8 +959,18 @@ http://127.0.0.1:57053
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-<div class="paragraph">
-<p>When running on Minikube, the service is already exposed for you via <code>NodePort</code>. On OpenShift, <a href="https://docs.openshift.com/container-platform/4.13/networking/routes/route-configuration.html">a Route is automatically created in devmode</a>. If you&#8217;re running on Kubernetes you can <a href="https://kubernetes.io/docs/concepts/services-networking/ingress/">expose your service using an Ingress</a>.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>When running on Minikube, the service is already exposed for you via <code>NodePort</code>.</p>
+</li>
+<li>
+<p>On OpenShift, <a href="https://docs.openshift.com/container-platform/4.13/networking/routes/route-configuration.html">a Route is automatically created in devmode</a>.</p>
+</li>
+<li>
+<p>If you&#8217;re running on Kubernetes you can <a href="https://kubernetes.io/docs/concepts/services-networking/ingress/">expose your service using an Ingress</a>.</p>
+</li>
+</ul>
 </div>
 </td>
 </tr>
@@ -1015,7 +1110,7 @@ If the changes you make to your Workflow cause the health checks to fail, the Po
 <div class="listingblock">
 <div class="title">Watch the workflow logs</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kubectl logs deployment/&lt;workflow-name&gt; -f</code></pre>
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kubectl logs deployment/&lt;workflow-name&gt; -f -n &lt;your_namespace&gt;</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1075,7 +1170,7 @@ As the operator is under active development, errors during the validation might 
 <p>You can identify such problems by looking at the deployed Workflow logs as explained <a href="#basic-troubleshooting">here</a>.</p>
 </div>
 <div class="paragraph">
-<p>If you find an issue with a cause is not listed in this section, please <a href="https://github.com/apache/incubator-kie-kogito-docs/issues/new">let us know</a>.</p>
+<p>If you find an issue with a cause is not listed in this section, please <a href="https://github.com/kiegroup/kogito-docs/issues/new">let us know</a>.</p>
 </div>
 </div>
 </div>
@@ -1103,7 +1198,7 @@ As the operator is under active development, errors during the validation might 
 <h2 id="_found_an_issue"><a class="anchor" href="#_found_an_issue"></a><em><strong>Found an issue?</strong></em></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>If you find an issue or any misleading information, please feel free to report it <a href="https://github.com/apache/incubator-kie-kogito-docs/issues/new">here</a>.
+<p>If you find an issue or any misleading information, please feel free to report it <a href="https://github.com/kiegroup/kogito-docs/issues/new">here</a>.
 We really appreciate it!</p>
 </div>
 </div>

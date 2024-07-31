@@ -151,10 +151,10 @@
     <span class="nav-text">Getting Started</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../getting-started/create-your-first-workflow-service-with-kn-cli-and-vscode.html">Creating your first workflow service with KN CLI and VS Code</a>
+    <a class="nav-link" href="../../getting-started/create-your-first-workflow-service-with-kn-cli-and-vscode.html">Creating and running workflow projects using KN CLI and Visual Studio Code</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../getting-started/getting-familiar-with-our-tooling.html">Getting familiar with tooling</a>
+    <a class="nav-link" href="../../getting-started/getting-familiar-with-our-tooling.html">Getting familiar with OpenShift Serverless Logic tooling</a>
   </li>
 </ul>
   </li>
@@ -163,7 +163,7 @@
     <span class="nav-text">Core</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../core/cncf-serverless-workflow-specification-support.html">CNCF Serverless Workflow specification</a>
+    <a class="nav-link" href="../../core/cncf-serverless-workflow-specification-support.html">Serverless Workflow Specification</a>
   </li>
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="../../core/handling-events-on-workflows.html">Events</a>
@@ -172,19 +172,19 @@
     <a class="nav-link" href="../../core/working-with-callbacks.html">Callbacks</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../core/understanding-jq-expressions.html">jq expressions</a>
+    <a class="nav-link" href="../../core/understanding-jq-expressions.html">jq Expressions</a>
   </li>
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="../../core/understanding-workflow-error-handling.html">Error handling</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../core/configuration-properties.html">Configuration properties</a>
+    <a class="nav-link" href="../../core/configuration-properties.html">Configuration</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../core/defining-an-input-schema-for-workflows.html">Defining an input schema for your workflows</a>
+    <a class="nav-link" href="../../core/defining-an-input-schema-for-workflows.html">Input Schema</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../core/custom-functions-support.html">Custom functions for your service</a>
+    <a class="nav-link" href="../../core/custom-functions-support.html">Custom functions</a>
   </li>
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="../../core/timeouts-support.html">Timeouts</a>
@@ -215,16 +215,16 @@
     <a class="nav-link" href="../../tooling/serverless-logic-web-tools/serverless-logic-web-tools-overview.html">Serverless Logic Web Tools</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../../tooling/serverless-logic-web-tools/serverless-logic-web-tools-github-integration.html">GitHub integration</a>
+    <a class="nav-link" href="../../tooling/serverless-logic-web-tools/serverless-logic-web-tools-github-integration.html">Integration with GitHub</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../../tooling/serverless-logic-web-tools/serverless-logic-web-tools-openshift-integration.html">OpenShift integration</a>
+    <a class="nav-link" href="../../tooling/serverless-logic-web-tools/serverless-logic-web-tools-openshift-integration.html">Integration with OpenShift</a>
   </li>
   <li class="nav-item" data-depth="5">
     <a class="nav-link" href="../../tooling/serverless-logic-web-tools/serverless-logic-web-tools-redhat-application-services-integration.html">Red Hat OpenShift Application and Data Services integration</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../../tooling/serverless-logic-web-tools/serverless-logic-web-tools-deploy-projects.html">Deploying projects</a>
+    <a class="nav-link" href="../../tooling/serverless-logic-web-tools/serverless-logic-web-tools-deploy-projects.html">Deployment</a>
   </li>
 </ul>
   </li>
@@ -242,7 +242,7 @@
     <a class="nav-link" href="../../service-orchestration/configuring-openapi-services-endpoints.html">Configuring the OpenAPI services endpoints</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../../service-orchestration/working-with-openapi-callbacks.html">OpenAPI callback  in OpenShift Serverless Logic</a>
+    <a class="nav-link" href="../../service-orchestration/working-with-openapi-callbacks.html">OpenAPI callbacks in OpenShift Serverless Logic</a>
   </li>
 </ul>
   </li>
@@ -322,11 +322,17 @@
     <a class="nav-link" href="../index.html">Cloud</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../custom-ingress-authz.html">Securing Workflows</a>
+  </li>
+  <li class="nav-item" data-depth="4">
     <button class="nav-toggle"></button>
     <span class="nav-text">Operator</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="5">
     <a class="nav-link" href="install-serverless-operator.html">Installation</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="global-configuration.html">Admin Configuration</a>
   </li>
   <li class="nav-item" data-depth="5">
     <a class="nav-link" href="developing-workflows.html">Development Mode</a>
@@ -335,10 +341,10 @@
     <a class="nav-link" href="referencing-resource-files.html">Referencing Workflow Resources</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="configuring-workflows.html">Configuration</a>
+    <a class="nav-link" href="configuring-workflows.html">Workflow Configuration</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="build-and-deploy-workflows.html">Building and Deploying Workflows</a>
+    <a class="nav-link" href="build-and-deploy-workflows.html">Building and Deploying Workflow Images</a>
   </li>
   <li class="nav-item" data-depth="5">
     <a class="nav-link" href="supporting-services.html">Deploy Supporting Services</a>
@@ -362,6 +368,9 @@
     <a class="nav-link" href="configuring-knative-eventing-resources.html">Knative Eventing</a>
   </li>
   <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="#cloud/operator/add-custom-ca-to-a-workflow-pod.adoc">Add Custom CA to Workflow Pod</a>
+  </li>
+  <li class="nav-item" data-depth="5">
     <a class="nav-link" href="known-issues.html">Roadmap and Known Issues</a>
   </li>
 </ul>
@@ -381,6 +390,15 @@
     <button class="nav-toggle"></button>
     <span class="nav-text">Supporting Services</span>
 <ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Jobs Service</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../job-services/core-concepts.html">Core Concepts</a>
+  </li>
+</ul>
+  </li>
   <li class="nav-item" data-depth="4">
     <button class="nav-toggle"></button>
     <span class="nav-text">Data Index</span>
@@ -408,7 +426,10 @@
     <span class="nav-text">Getting Started</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="6">
-    <a class="nav-link" href="../../use-cases/advanced-developer-use-cases/getting-started/create-your-first-workflow-service.html">Creating your first workflow service</a>
+    <a class="nav-link" href="../../use-cases/advanced-developer-use-cases/getting-started/create-your-first-workflow-service.html">Creating a Quarkus Workflow service</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../../use-cases/advanced-developer-use-cases/getting-started/create-your-first-workflow-project.html">Creating a Quarkus Workflow project</a>
   </li>
   <li class="nav-item" data-depth="6">
     <a class="nav-link" href="../../use-cases/advanced-developer-use-cases/getting-started/build-workflow-image-with-quarkus-cli.html">Building workflow images using Quarkus CLI</a>
@@ -631,7 +652,7 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>This document describes how to customize the pod specification definition in thew <code>SonataFlow</code> custom resource.</p>
+<p>This document describes how to customize the pod specification definition in the <code>SonataFlow</code> custom resource.</p>
 </div>
 <div class="paragraph">
 <p>Sometimes you may have a specific requirement to deploy containers on Kubernetes or OpenShift such as setting <a href="https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/">Resource Limits</a>.</p>
@@ -692,6 +713,7 @@ spec:
 <div id="toc" class="toc">
 <div id="toctitle"></div>
 <ul class="sectlevel1">
+<li><a href="#_deployment_model">Deployment Model</a></li>
 <li><a href="#_customization_exceptions">Customization Exceptions</a></li>
 <li><a href="#operator-profiles">About Serverless Logic Operator Profiles</a>
 <ul class="sectlevel2">
@@ -700,7 +722,78 @@ spec:
 <li><a href="#_setting_a_custom_image_in_preview">Setting a custom image in preview</a></li>
 </ul>
 </li>
+<li><a href="#_additional_resources">Additional resources</a></li>
+<li><a href="#_found_an_issue"><em><strong>Found an issue?</strong></em></a></li>
 </ul>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_deployment_model"><a class="anchor" href="#_deployment_model"></a>Deployment Model</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>By default, the Serverless Logic Operator deploys a <code>SonataFlow</code> instance in a regular Kubernetes Deployment object. Although it&#8217;s possible to change this behavior and deploy the workflow instance as a <a href="https://github.com/knative/specs/blob/main/specs/serving/knative-api-specification-1.0.md#service">Knative Serving Service</a> instead.</p>
+</div>
+<div class="paragraph">
+<p>To change the deployment to Knative, set the <code>.spec.podTemplate.deploymentModel</code> attribute to <code>knative</code>. For example:</p>
+</div>
+<div class="listingblock">
+<div class="title">Setting PodSpec Resources Limits example</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: sonataflow.org/v1alpha08
+kind: SonataFlow
+metadata:
+  name: simple
+  annotations:
+    sonataflow.org/description: Simple example on k8s!
+    sonataflow.org/version: 0.0.1
+    sonataflow.org/version: preview
+spec:
+  podTemplate:
+    deploymentModel: knative <i class="conum" data-value="1"></i><b>(1)</b>
+  flow:
+    start: HelloWorld
+    states:
+      - name: HelloWorld
+        type: inject
+        data:
+          message: Hello World
+        end: true</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The <code>deploymentModel</code> attribute</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>After changing the deployment model to <code>knative</code>, the <code>SonataFlow</code> instance will be deployed as a Knative Serving Service.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>It&#8217;s not possible to deploy a <code>SonataFlow</code> instance as a Knative Service in dev profile. In this profile, this attribute is ignored by the operator.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Note that not every use case leverage a Knative deployment. Long-running workflow instances, for example, that calls services that might take too long to respond, might not be an ideal deployment model. Opt to use Knative deployments for workflows that won&#8217;t take too long to run.</p>
+</div>
+<div class="paragraph">
+<p>The exception are workflows that have callback states. In this case, you must configure <a href="using-persistence.html" class="xref page">persistence</a>. This is required because once the workflow waits for the event to resume the execution, Knative will kill the pod. Since the workflow has persistence, it will resume the execution once it receives the callback event.</p>
+</div>
+<div class="paragraph">
+<p>Knative <strong>does not support</strong> <a href="https://kubernetes.io/docs/concepts/workloads/pods/init-containers/"><code>initContainers</code></a> by default. If your workflow requires it, you must first enable the extension in the Knative installation. See more information on the <a href="https://knative.dev/docs/serving/configuration/feature-flags/#kubernetes-init-containers">Knative documentation</a>.</p>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -870,7 +963,7 @@ spec:
 <div class="sect2">
 <h3 id="_setting_a_custom_image_in_devmode"><a class="anchor" href="#_setting_a_custom_image_in_devmode"></a>Setting a custom image in devmode</h3>
 <div class="paragraph">
-<p>In <a href="developing-workflows.html" class="xref page">development profile</a>, it&#8217;s expected that the image is based on the default <code>registry.redhat.io/openshift-serverless-1-tech-preview/logic-swf-devmode-rhel8:1.32.0</code>.</p>
+<p>In <a href="developing-workflows.html" class="xref page">development profile</a>, it&#8217;s expected that the image is based on the default <code>registry.redhat.io/openshift-serverless-1/logic-swf-devmode-rhel8:1.33.0</code>.</p>
 </div>
 </div>
 <div class="sect2">
@@ -896,7 +989,7 @@ spec:
 </table>
 </div>
 <div class="paragraph">
-<p>It&#8217;s advised that the SonataFlow <code>.spec.flow</code> definition and the workflow built within the image corresponds to the same workflow. If these definitions don&#8217;t match you may experience poorly management and configuration. The Serverless Logic Operator uses the <code>.spec.flow</code> attribute to configure the application, service discovery, and service binding with other deployments within the topology.</p>
+<p>It&#8217;s advised that the SonataFlow <code>.spec.flow</code> definition and the workflow built within the image corresponds to the same workflow. If these definitions don&#8217;t match you may experience poor management and configuration. The Serverless Logic Operator uses the <code>.spec.flow</code> attribute to configure the application, service discovery, and service binding with other deployments within the topology.</p>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -912,6 +1005,33 @@ spec:
 </tr>
 </table>
 </div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_additional_resources"><a class="anchor" href="#_additional_resources"></a>Additional resources</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><a href="developing-workflows.html" class="xref page">Developing Workflows with the Operator</a></p>
+</li>
+<li>
+<p><a href="build-and-deploy-workflows.html" class="xref page">Building and Deploying Workflows with the Operator</a></p>
+</li>
+<li>
+<p><a href="building-custom-images.html" class="xref page">Building a Custom Development Image</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_found_an_issue"><a class="anchor" href="#_found_an_issue"></a><em><strong>Found an issue?</strong></em></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>If you find an issue or any misleading information, please feel free to report it <a href="https://github.com/kiegroup/kogito-docs/issues/new">here</a>.
+We really appreciate it!</p>
 </div>
 </div>
 </div>

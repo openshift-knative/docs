@@ -5,8 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Knative Eventing :: Red Hat OpenShift Serverless previews</title>
     <link rel="canonical" href="https://openshift-knative.github.io/docs/docs/latest/serverless-logic/cloud/operator/configuring-knative-eventing-resources.html">
-    <meta name="description" content="Configuration of knatve eventing deployed by the operator">
-    <meta name="keywords" content="kogito, sonataflow, workflow, serverless, operator, kubernetes, knative, knative-eventing, events">
     <meta name="generator" content="Antora 3.0.3">
     <link rel="stylesheet" href="../../../../../_/css/site.css">
 <link rel="stylesheet" href="../../../../../_/css/extra.css">
@@ -151,10 +149,10 @@
     <span class="nav-text">Getting Started</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../getting-started/create-your-first-workflow-service-with-kn-cli-and-vscode.html">Creating your first workflow service with KN CLI and VS Code</a>
+    <a class="nav-link" href="../../getting-started/create-your-first-workflow-service-with-kn-cli-and-vscode.html">Creating and running workflow projects using KN CLI and Visual Studio Code</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../getting-started/getting-familiar-with-our-tooling.html">Getting familiar with tooling</a>
+    <a class="nav-link" href="../../getting-started/getting-familiar-with-our-tooling.html">Getting familiar with OpenShift Serverless Logic tooling</a>
   </li>
 </ul>
   </li>
@@ -163,7 +161,7 @@
     <span class="nav-text">Core</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../core/cncf-serverless-workflow-specification-support.html">CNCF Serverless Workflow specification</a>
+    <a class="nav-link" href="../../core/cncf-serverless-workflow-specification-support.html">Serverless Workflow Specification</a>
   </li>
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="../../core/handling-events-on-workflows.html">Events</a>
@@ -172,19 +170,19 @@
     <a class="nav-link" href="../../core/working-with-callbacks.html">Callbacks</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../core/understanding-jq-expressions.html">jq expressions</a>
+    <a class="nav-link" href="../../core/understanding-jq-expressions.html">jq Expressions</a>
   </li>
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="../../core/understanding-workflow-error-handling.html">Error handling</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../core/configuration-properties.html">Configuration properties</a>
+    <a class="nav-link" href="../../core/configuration-properties.html">Configuration</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../core/defining-an-input-schema-for-workflows.html">Defining an input schema for your workflows</a>
+    <a class="nav-link" href="../../core/defining-an-input-schema-for-workflows.html">Input Schema</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../core/custom-functions-support.html">Custom functions for your service</a>
+    <a class="nav-link" href="../../core/custom-functions-support.html">Custom functions</a>
   </li>
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="../../core/timeouts-support.html">Timeouts</a>
@@ -215,16 +213,16 @@
     <a class="nav-link" href="../../tooling/serverless-logic-web-tools/serverless-logic-web-tools-overview.html">Serverless Logic Web Tools</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../../tooling/serverless-logic-web-tools/serverless-logic-web-tools-github-integration.html">GitHub integration</a>
+    <a class="nav-link" href="../../tooling/serverless-logic-web-tools/serverless-logic-web-tools-github-integration.html">Integration with GitHub</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../../tooling/serverless-logic-web-tools/serverless-logic-web-tools-openshift-integration.html">OpenShift integration</a>
+    <a class="nav-link" href="../../tooling/serverless-logic-web-tools/serverless-logic-web-tools-openshift-integration.html">Integration with OpenShift</a>
   </li>
   <li class="nav-item" data-depth="5">
     <a class="nav-link" href="../../tooling/serverless-logic-web-tools/serverless-logic-web-tools-redhat-application-services-integration.html">Red Hat OpenShift Application and Data Services integration</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../../tooling/serverless-logic-web-tools/serverless-logic-web-tools-deploy-projects.html">Deploying projects</a>
+    <a class="nav-link" href="../../tooling/serverless-logic-web-tools/serverless-logic-web-tools-deploy-projects.html">Deployment</a>
   </li>
 </ul>
   </li>
@@ -242,7 +240,7 @@
     <a class="nav-link" href="../../service-orchestration/configuring-openapi-services-endpoints.html">Configuring the OpenAPI services endpoints</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../../service-orchestration/working-with-openapi-callbacks.html">OpenAPI callback  in OpenShift Serverless Logic</a>
+    <a class="nav-link" href="../../service-orchestration/working-with-openapi-callbacks.html">OpenAPI callbacks in OpenShift Serverless Logic</a>
   </li>
 </ul>
   </li>
@@ -322,11 +320,17 @@
     <a class="nav-link" href="../index.html">Cloud</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../custom-ingress-authz.html">Securing Workflows</a>
+  </li>
+  <li class="nav-item" data-depth="4">
     <button class="nav-toggle"></button>
     <span class="nav-text">Operator</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="5">
     <a class="nav-link" href="install-serverless-operator.html">Installation</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="global-configuration.html">Admin Configuration</a>
   </li>
   <li class="nav-item" data-depth="5">
     <a class="nav-link" href="developing-workflows.html">Development Mode</a>
@@ -335,10 +339,10 @@
     <a class="nav-link" href="referencing-resource-files.html">Referencing Workflow Resources</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="configuring-workflows.html">Configuration</a>
+    <a class="nav-link" href="configuring-workflows.html">Workflow Configuration</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="build-and-deploy-workflows.html">Building and Deploying Workflows</a>
+    <a class="nav-link" href="build-and-deploy-workflows.html">Building and Deploying Workflow Images</a>
   </li>
   <li class="nav-item" data-depth="5">
     <a class="nav-link" href="supporting-services.html">Deploy Supporting Services</a>
@@ -362,6 +366,9 @@
     <a class="nav-link" href="configuring-knative-eventing-resources.html">Knative Eventing</a>
   </li>
   <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="#cloud/operator/add-custom-ca-to-a-workflow-pod.adoc">Add Custom CA to Workflow Pod</a>
+  </li>
+  <li class="nav-item" data-depth="5">
     <a class="nav-link" href="known-issues.html">Roadmap and Known Issues</a>
   </li>
 </ul>
@@ -381,6 +388,15 @@
     <button class="nav-toggle"></button>
     <span class="nav-text">Supporting Services</span>
 <ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Jobs Service</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../job-services/core-concepts.html">Core Concepts</a>
+  </li>
+</ul>
+  </li>
   <li class="nav-item" data-depth="4">
     <button class="nav-toggle"></button>
     <span class="nav-text">Data Index</span>
@@ -408,7 +424,10 @@
     <span class="nav-text">Getting Started</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="6">
-    <a class="nav-link" href="../../use-cases/advanced-developer-use-cases/getting-started/create-your-first-workflow-service.html">Creating your first workflow service</a>
+    <a class="nav-link" href="../../use-cases/advanced-developer-use-cases/getting-started/create-your-first-workflow-service.html">Creating a Quarkus Workflow service</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../../use-cases/advanced-developer-use-cases/getting-started/create-your-first-workflow-project.html">Creating a Quarkus Workflow project</a>
   </li>
   <li class="nav-item" data-depth="6">
     <a class="nav-link" href="../../use-cases/advanced-developer-use-cases/getting-started/build-workflow-image-with-quarkus-cli.html">Building workflow images using Quarkus CLI</a>
@@ -631,80 +650,98 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>This document describes how you can configure the workflows to let operator create the knative eventing resources on Kubernetes.</p>
+<p>This document describes how to configure workflows, and the supporting services, to use <a href="https://docs.openshift.com/serverless/1.33/eventing/knative-eventing.html">Knative Eventing</a> as the preferred eventing system.</p>
 </div>
 <div class="paragraph">
-<p>Serverless Logic Operator can analyze the event definitions from the <code>spec.flow</code> and create <code>SinkBinding</code>/<code>Trigger</code> based on the type of the event. Then the workflow service can utilize them for event communications. The same purpose of this feature in quarkus extension can be found <a href="../../use-cases/advanced-developer-use-cases/event-orchestration/consume-produce-events-with-knative-eventing.html#ref-example-sw-event-definition-knative" class="xref page">here</a>.</p>
+<p>In general, the following events are produced in a OpenShift Serverless Logic installation:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Workflow outgoing and incoming business events.</p>
+</li>
+<li>
+<p>OpenShift Serverless Logic system events sent from the workflow to the Data Index and Job Service respectively.</p>
+</li>
+<li>
+<p>OpenShift Serverless Logic system events sent from the Jobs Service to the Data Index Service.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The content of this guide must be used only when you work with workflows using the <code>preview</code> and <code>gitops</code> profiles.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>To produce a successful configuration you must follow this procedure:</p>
 </div>
 </div>
 <div id="toc" class="toc">
 <div id="toctitle"></div>
 <ul class="sectlevel1">
-<li><a href="#_prerequisite">Prerequisite</a></li>
-<li><a href="#_configuring_the_workflow">Configuring the workflow</a></li>
+<li><a href="#_prerequisite">1. Prerequisite</a></li>
+<li><a href="#_configuring_the_knative_broker">2. Configuring the Knative Broker</a></li>
+<li><a href="#_configuring_the_data_index_knative_eventing_resources">3. Configuring the Data Index Knative Eventing Resources</a>
+<ul class="sectlevel2">
+<li><a href="#_workflows_to_dataindex_system_events">3.1. Workflows to DataIndex system events</a></li>
+<li><a href="#_job_service_to_data_index_system_events">3.2. Job Service to Data Index system events</a></li>
+</ul>
+</li>
+<li><a href="#_configuring_the_job_service_knative_eventing_resources">4. Configuring the Job Service Knative Eventing Resources</a></li>
+<li><a href="#_data_index_and_job_service_installation">5. Data Index and Job Service installation</a></li>
+<li><a href="#_workflow_configuration">6. Workflow configuration</a>
+<ul class="sectlevel2">
+<li><a href="#_sonataflow_cr_configuration">6.1. SonataFlow CR configuration</a></li>
+<li><a href="#_configuring_the_workflow_knative_eventing_resources">6.2. Configuring the Workflow Knative Eventing Resources</a></li>
+</ul>
+</li>
 <li><a href="#_additional_resources">Additional resources</a></li>
 <li><a href="#_found_an_issue"><em><strong>Found an issue?</strong></em></a></li>
 </ul>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_prerequisite"><a class="anchor" href="#_prerequisite"></a>Prerequisite</h2>
+<h2 id="_prerequisite"><a class="anchor" href="#_prerequisite"></a>1. Prerequisite</h2>
 <div class="sectionbody">
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Knative is installed on the cluster and Knative Eventing is initiated with a <code>KnativeEventing</code> CR.</p>
+<p>The Serverless Logic Operator is installed. See <a href="install-serverless-operator.html" class="xref page">Install the Serverless Logic Operator</a> guide.</p>
 </li>
 <li>
-<p>A broker named <code>default</code> is created. Currently all Triggers created by the Serverless Logic Operator will read events from <code>default</code></p>
+<p>The <a href="https://docs.openshift.com/serverless/1.33/eventing/knative-eventing.html">Knative Eventing</a> system is installed and property initiated in the cluster.</p>
 </li>
 </ol>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_configuring_the_workflow"><a class="anchor" href="#_configuring_the_workflow"></a>Configuring the workflow</h2>
+<h2 id="_configuring_the_knative_broker"><a class="anchor" href="#_configuring_the_knative_broker"></a>2. Configuring the Knative Broker</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>For the operator to create the <code>SinkBinding</code> resources, the workflow must provide the sink information in <code>spec.sink</code>.</p>
+<p>Create a Knative Broker to define the event mesh to collect the events with a resource like this:</p>
 </div>
 <div class="listingblock">
-<div class="title">Example of a workflow with events</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: sonataflow.org/v1alpha08
-kind: SonataFlow
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: eventing.knative.dev/v1
+kind: Broker
 metadata:
-...
-spec:
-  sink:
-    ref: <i class="conum" data-value="1"></i><b>(1)</b>
-      name: default
-      namespace: greeting
-      apiVersion: eventing.knative.dev/v1
-      kind: Broker
-  flow:
-    events: <i class="conum" data-value="2"></i><b>(2)</b>
-      - name: requestQuote
-        type: kogito.sw.request.quote
-        kind: produced
-      - name: aggregatedQuotesResponse,
-        type: kogito.loanbroker.aggregated.quotes.response,
-        kind: consumed,
-        source: /kogito/serverless/loanbroker/aggregator
-...</code></pre>
+  name: default
+  namespace: example-namespace</code></pre>
 </div>
 </div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td><code>spec.sink.ref</code> defines the sink that all created sinkBinding will use as the destination sink for producing events</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td><code>spec.flow.events</code> lists all the events referenced in the workflow. Events with <code>produced</code> kind will trigger the creation of <code>SinkBindings</code> by the Serverless Logic Operator, while those labeled as <code>consumed</code> will lead to the generation of <code>Triggers</code>.</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>For more information on Knative Brokers <a href="https://docs.openshift.com/serverless/1.33/eventing/brokers/serverless-brokers.html">see</a>.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -714,11 +751,476 @@ spec:
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Knative resources are not watched by the operator, indicating they will not undergo automatic reconciliation. This grants users the freedom to make updates at their preference.</p>
+<p>The example creates an in-memory broker for simplicity. In production environments, you must use a production-ready broker, like the <a href="https://docs.openshift.com/serverless/1.33/eventing/brokers/serverless-broker-types.html">Knative Kafka</a> broker.</p>
 </div>
 </td>
 </tr>
 </table>
+</div>
+<div id="querying_broker_url" class="paragraph">
+<p>Finally, to get the Broker URL that is needed in the next steps of the configuration, you can execute the following command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl get broker -n example-namespace
+
+NAME      URL                                                                     AGE     READY   REASON
+default   http://broker-ingress.knative-eventing.svc.cluster.local/example-namespace/default   4m50s   True</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For a <a href="https://docs.openshift.com/serverless/1.33/eventing/brokers/serverless-broker-types.html">Knative Kafka</a> broker that the URL will look like this instead.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">http://kafka-broker-ingress.knative-eventing.svc.cluster.local/example-namespace/default</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_configuring_the_data_index_knative_eventing_resources"><a class="anchor" href="#_configuring_the_data_index_knative_eventing_resources"></a>3. Configuring the Data Index Knative Eventing Resources</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_workflows_to_dataindex_system_events"><a class="anchor" href="#_workflows_to_dataindex_system_events"></a>3.1. Workflows to DataIndex system events</h3>
+<div class="paragraph">
+<p>Create the following Knative Triggers to deliver all the OpenShift Serverless Logic system events sent from the workflows to the Data Index Service:</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>In your installation you might have to adjust the <code>spec.broker</code>, the <code>spec.subscriber.ref.name</code>, and <code>spec.subscriber.ref.namespace</code> fields to use the correct names for every trigger.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>For more information on Knative Triggers <a href="https://docs.openshift.com/serverless/1.33/eventing/triggers/serverless-triggers.html">see</a>.</p>
+</div>
+<div class="listingblock">
+<div class="title">Process definition events trigger</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: eventing.knative.dev/v1
+kind: Trigger
+metadata:
+  name: sonataflow-platform-data-index-service-process-def-trigger
+spec:
+  broker: default
+  filter:
+    attributes:
+      type: ProcessDefinitionEvent
+  subscriber:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: sonataflow-platform-data-index-service
+      namespace: example-namespace
+    uri: /definitions</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Process instance state events trigger</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: eventing.knative.dev/v1
+kind: Trigger
+metadata:
+  name: sonataflow-platform-data-index-service-process-state-trigger
+spec:
+  broker: default
+  filter:
+    attributes:
+      type: ProcessInstanceStateDataEvent
+  subscriber:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: sonataflow-platform-data-index-service
+      namespace: example-namespace
+    uri: /processes</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Process instance node events trigger</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: eventing.knative.dev/v1
+kind: Trigger
+metadata:
+  name: sonataflow-platform-data-index-service-process-node-trigger
+spec:
+  broker: default
+  filter:
+    attributes:
+      type: ProcessInstanceNodeDataEvent
+  subscriber:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: sonataflow-platform-data-index-service
+      namespace: example-namespace
+    uri: /processes</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Process instance error events trigger</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: eventing.knative.dev/v1
+kind: Trigger
+metadata:
+  name: sonataflow-platform-data-index-service-process-error-trigger
+spec:
+  broker: default
+  filter:
+    attributes:
+      type: ProcessInstanceErrorDataEvent
+  subscriber:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: sonataflow-platform-data-index-service
+      namespace: example-namespace
+    uri: /processes</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Process instance SLA events trigger</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: eventing.knative.dev/v1
+kind: Trigger
+metadata:
+  name: sonataflow-platform-data-index-service-process-sla-trigger
+spec:
+  broker: default
+  filter:
+    attributes:
+      type: ProcessInstanceSLADataEvent
+  subscriber:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: sonataflow-platform-data-index-service
+      namespace: example-namespace
+    uri: /processes</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Process instance variable events trigger</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: eventing.knative.dev/v1
+kind: Trigger
+metadata:
+  name: sonataflow-platform-data-index-service-process-variable-trigger
+spec:
+  broker: default
+  filter:
+    attributes:
+      type: ProcessInstanceVariableDataEvent
+  subscriber:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: sonataflow-platform-data-index-service
+      namespace: example-namespace
+    uri: /processes</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_job_service_to_data_index_system_events"><a class="anchor" href="#_job_service_to_data_index_system_events"></a>3.2. Job Service to Data Index system events</h3>
+<div class="paragraph">
+<p>Create the following Knative Trigger to deliver all the OpenShift Serverless Logic system events sent from the Job Service to the Data Index Service:</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>In your installation you might have to adjust the <code>spec.broker</code>, the <code>spec.subscriber.ref.name</code>, and <code>spec.subscriber.ref.namespace</code> fields to use the correct names for every trigger.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>For more information on Knative Triggers <a href="https://docs.openshift.com/serverless/1.33/eventing/triggers/serverless-triggers.html">see</a>.</p>
+</div>
+<div class="listingblock">
+<div class="title">Job events trigger</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: eventing.knative.dev/v1
+kind: Trigger
+metadata:
+  name: sonataflow-platform-data-index-service-jobs-trigger
+spec:
+  broker: default
+  filter:
+    attributes:
+      type: JobEvent
+  subscriber:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: sonataflow-platform-data-index-service
+      namespace: example-namespace
+    uri: /jobs</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_configuring_the_job_service_knative_eventing_resources"><a class="anchor" href="#_configuring_the_job_service_knative_eventing_resources"></a>4. Configuring the Job Service Knative Eventing Resources</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Create the following Knative Triggers to deliver all the OpenShift Serverless Logic system events produced by the workflows to the Job Service:</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>In your installation you might have to adjust the <code>spec.broker</code>, the <code>spec.subscriber.ref.name</code>, and <code>spec.subscriber.ref.namespace</code> fields to use the correct names for every trigger.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">Create Job events trigger</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: eventing.knative.dev/v1
+kind: Trigger
+metadata:
+  name: sonataflow-platform-jobs-service-create-job-trigger
+spec:
+  broker: default
+  filter:
+    attributes:
+      type: job.create
+  subscriber:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: sonataflow-platform-jobs-service
+      namespace: example-namespace
+    uri: /v2/jobs/events</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Delete Job events trigger</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: eventing.knative.dev/v1
+kind: Trigger
+metadata:
+  name: jobs-service-postgresql-delete-job-trigger
+  namespace: example-namespace
+spec:
+  broker: default
+  filter:
+    attributes:
+      type: job.delete
+  subscriber:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: sonataflow-platform-jobs-service
+      namespace: example-namespace
+    uri: /v2/jobs/events</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_data_index_and_job_service_installation"><a class="anchor" href="#_data_index_and_job_service_installation"></a>5. Data Index and Job Service installation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To deploy these services you must use a <code>SonataFlowPlatform</code> CR and configure it according to the <a href="supporting-services.html" class="xref page">Supporting Services guide</a>.
+Finally, prior to deployment into the cluster, you must add the <code>env</code> variable shown below to the field <code>spec.jobService.podTemplate.container</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: sonataflow.org/v1alpha08
+kind: SonataFlowPlatform
+metadata:
+  name: sonataflow-platform
+  namespace: example-namespace
+spec:
+  services:
+    dataIndex:
+      # Data Index requires no additional configurations to use knative eventing.
+      # Use the configuration of your choice according to the Supporting Services guide.
+    jobService:
+      podTemplate:
+        container:
+          env:
+            - name: MP_MESSAGING_OUTGOING_KOGITO_JOB_SERVICE_JOB_STATUS_EVENTS_HTTP_URL <i class="conum" data-value="1"></i><b>(1)</b>
+              value: http://broker-ingress.knative-eventing.svc.cluster.local/example-namespace/default <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Fixed env variable name that contains the URL of the Broker created in <a href="#_configuring_the_knative_broker">Configuring the Knative Broker</a>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>To query the Broker URL <a href="#querying_broker_url">see</a>.</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_workflow_configuration"><a class="anchor" href="#_workflow_configuration"></a>6. Workflow configuration</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_sonataflow_cr_configuration"><a class="anchor" href="#_sonataflow_cr_configuration"></a>6.1. SonataFlow CR configuration</h3>
+<div class="paragraph">
+<p>To configure a workflow you must create a <code>SonataFlow</code> CR that fulfills your requirements.
+And finally, prior to deployment into the cluster, add the <code>env</code> variables shown below to the field <code>spec.podTemplate.container</code>.</p>
+</div>
+<div class="listingblock">
+<div class="title">Workflow configuration</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: sonataflow.org/v1alpha08
+kind: SonataFlow
+metadata:
+  name: example-workflow
+  namespace: example-namespace
+  annotations:
+    sonataflow.org/description: Example Workflow that show Knative Eventing configuration.
+    sonataflow.org/version: 0.0.1
+    sonataflow.org/profile: preview
+spec:
+  podTemplate:
+    container:
+      env:
+        - name: K_SINK <i class="conum" data-value="1"></i><b>(1)</b>
+          value: http://broker-ingress.knative-eventing.svc.cluster.local/example-namespace/default <i class="conum" data-value="2"></i><b>(2)</b>
+        - name: MP_MESSAGING_OUTGOING_KOGITO_JOB_SERVICE_JOB_REQUEST_EVENTS_URL
+          value: ${K_SINK}
+        - name: MP_MESSAGING_OUTGOING_KOGITO_PROCESSINSTANCES_EVENTS_URL
+          value: ${K_SINK}
+        - name: MP_MESSAGING_OUTGOING_KOGITO_PROCESSDEFINITIONS_EVENTS_URL
+          value: ${K_SINK}
+  flow:
+    start: ExampleState
+    events:
+      - name: exampleConsumedEvent1
+        source: ''
+        type: example_event_1 <i class="conum" data-value="3"></i><b>(3)</b>
+        kind: consumed
+      - name: exampleConsumedEvent2
+        source: ''
+        type: example_event_2 <i class="conum" data-value="4"></i><b>(4)</b>
+        kind: consumed</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Fixed env variable name that contains the URL of the broker created in <a href="#_configuring_the_knative_broker">Configuring the Knative Broker</a>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Must contain the broker URL. To get this value <a href="#querying_broker_url">see</a>. The remaining env variables are fixed configurations, and you must add them as is.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Every consumed event requires a trigger, <a href="#trigger-event-type1">see</a>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Every consumed event requires a trigger, <a href="#trigger-event-type2">see</a>.</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_configuring_the_workflow_knative_eventing_resources"><a class="anchor" href="#_configuring_the_workflow_knative_eventing_resources"></a>6.2. Configuring the Workflow Knative Eventing Resources</h3>
+<div class="paragraph">
+<p>For every event type consumed by the workflow you must create a corresponding trigger to deliver it from the broker.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Unlike the triggers related to the Data Index Service and the Jobs Service, these triggers must be created for every workflow that consume events.
+So it&#8217;s recommended that you use trigger names that are linked to the workflow name.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div id="trigger-event-type1" class="listingblock">
+<div class="title">Trigger to consume events of type example_event_1</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: eventing.knative.dev/v1
+kind: Trigger
+metadata:
+  name: example-workflow-example-event-1-trigger <i class="conum" data-value="1"></i><b>(1)</b>
+spec:
+  broker: default
+  filter:
+    attributes:
+      type: example_event_1 <i class="conum" data-value="2"></i><b>(2)</b>
+  subscriber:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: example-workflow
+      namespace: example-namespace</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Name for the trigger.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Event type consumed by the workflow <code>example-workflow</code>.</td>
+</tr>
+</table>
+</div>
+<div id="trigger-event-type2" class="listingblock">
+<div class="title">Trigger to consume events of type example_event_2</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: eventing.knative.dev/v1
+kind: Trigger
+metadata:
+  name: example-workflow-example-event-2-trigger <i class="conum" data-value="1"></i><b>(1)</b>
+spec:
+  broker: default
+  filter:
+    attributes:
+      type: example_event_2
+  subscriber:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: example-workflow
+      namespace: example-namespace</code></pre>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -731,13 +1233,13 @@ spec:
 <p><a href="https://knative.dev/docs/eventing/">Knative Eventing official site</a></p>
 </li>
 <li>
-<p><a href="../../use-cases/advanced-developer-use-cases/event-orchestration/consume-produce-events-with-knative-eventing.html" class="xref page">quarkus extension for knative eventing</a></p>
+<p><a href="../../use-cases/advanced-developer-use-cases/event-orchestration/consume-produce-events-with-knative-eventing.html" class="xref page">Quarkus extension for Knative eventing</a></p>
 </li>
 <li>
-<p><a href="#job-services/core-concepts.adoc#knative-eventing-supporting-resources" class="xref unresolved">knative eventing for Job service</a></p>
+<p><a href="../../job-services/core-concepts.html#knative-eventing-supporting-resources" class="xref page">Knative eventing for Job service</a></p>
 </li>
 <li>
-<p><a href="../../data-index/data-index-core-concepts.html#_knative_eventing" class="xref page">knative eventing for data index</a></p>
+<p><a href="../../data-index/data-index-core-concepts.html#_knative_eventing" class="xref page">Knative eventing for data index</a></p>
 </li>
 </ul>
 </div>
@@ -747,7 +1249,7 @@ spec:
 <h2 id="_found_an_issue"><a class="anchor" href="#_found_an_issue"></a><em><strong>Found an issue?</strong></em></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>If you find an issue or any misleading information, please feel free to report it <a href="https://github.com/apache/incubator-kie-kogito-docs/issues/new">here</a>.
+<p>If you find an issue or any misleading information, please feel free to report it <a href="https://github.com/kiegroup/kogito-docs/issues/new">here</a>.
 We really appreciate it!</p>
 </div>
 </div>

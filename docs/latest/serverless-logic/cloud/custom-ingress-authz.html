@@ -1,0 +1,1258 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Using an Ingress to add authentication and authorization to Workflow applications :: Red Hat OpenShift Serverless previews</title>
+    <link rel="canonical" href="https://openshift-knative.github.io/docs/docs/latest/serverless-logic/cloud/custom-ingress-authz.html">
+    <meta name="description" content="Securing workflow applications via a">
+    <meta name="keywords" content="cloud, kubernetes, docker, image, podman, openshift, oidc, keycloak, apisix">
+    <meta name="generator" content="Antora 3.0.3">
+    <link rel="stylesheet" href="../../../../_/css/site.css">
+<link rel="stylesheet" href="../../../../_/css/extra.css">
+<link rel="stylesheet" href="../../../../_/css/custom.css">
+<link rel="stylesheet" href="../../../../_/css/tabs.css">
+<link rel="stylesheet" href="../../../../_/font-awesome-4.7.0/css/font-awesome.min.css">
+<link rel="icon" href="../../../../_/img/favicon.ico" type="image/x-icon">
+  </head>
+  <body class="article">
+<header class="header" role="banner">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <div class="navbar-item">
+        <button class="navbar-burger" data-target="topbar-nav">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <img src="../../../../_/img/serverless-icon.png" class="navbar-logo" alt="OpenShift Serverless icon">
+        <a href="">OpenShift Serverless - Technology and Developer Preview Releases</a>
+      </div>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <!-- search broken
+        <div class="navbar-item hide-for-print">
+          <script async src="https://cse.google.com/cse.js?cx=002898025167115630151:gnr5edrg2eo"></script>
+          <div class="gcse-searchbox" enableAutoComplete="true"></div>
+        </div>
+      -->
+        <a class="navbar-item" href="https://openshift-knative.github.io/docs">Home</a>
+        <a class="navbar-item" href="https://developers.redhat.com/topics/serverless-architecture">Blog</a>
+          <div class="navbar-item has-dropdown is-hoverable">
+              <a class="navbar-link" href="#">Upstream Projects</a>
+              <div class="navbar-dropdown">
+                  <a class="navbar-item" href="https://kogito.kie.org/">Kogito</a>
+                  <a class="navbar-item" href="https://knative.dev/docs/functions/">Knative Functions</a>
+                  <a class="navbar-item" href="https://knative.dev/docs/eventing/">Knative Eventing</a>
+              </div>
+          </div>
+      </div>
+    </div>
+  </nav>
+<!-- need alt search type-->
+<!--<div class="gcse-searchresults"></div>-->
+</header>
+<div class="main-wrapper">
+  <div class="navigation-container" data-component="docs" data-version="main">
+  <aside class="navigation">
+    <div class="panels">
+<div class="navigation-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../../index.html">Documentation</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../index.html">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Serverless</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Using OpenShift Serverless with OpenShift Service Mesh</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../serverless/service-mesh/common-service-mesh-setup.html">Setup Serverless with OpenShift Service Mesh</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../serverless/service-mesh/common-service-mesh-network-isolation.html">Use Service Mesh to isolate network-traffic</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../serverless/service-mesh/eventing-service-mesh-containersource.html">Eventing: Using ContainerSource with OpenShift Service Mesh</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../serverless/service-mesh/eventing-service-mesh-sinkbinding.html">Eventing: Using SinkBinding with OpenShift Service Mesh</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Eventing</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../serverless/eventing/transport-encryption-setup.html">Setup transport encryption in Eventing</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../serverless/eventing/kafka-scaling-setup.html">Setup Autoscaling For Eventing Kafka Components</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Serving</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../serverless/serving/serving-with-ingress-sharding.html">Use Serving with OpenShift ingress sharding</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../serverless/serving/scaleability-and-performance-of-serving.html">Scalability and performance of OpenShift Serverless Serving</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../serverless/serving/serving-transport-encryption.html">Serving Transport Encryption</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Serverless Logic</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../about.html">About OpenShift Serverless Logic</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../release-notes.html">Release notes</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">User Guides</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Setup</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../getting-started/learning-environment.html">Learning environment</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../getting-started/preparing-environment.html">Environment setup</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../getting-started/production-environment.html">Production environment</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Getting Started</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../getting-started/create-your-first-workflow-service-with-kn-cli-and-vscode.html">Creating and running workflow projects using KN CLI and Visual Studio Code</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../getting-started/getting-familiar-with-our-tooling.html">Getting familiar with OpenShift Serverless Logic tooling</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Core</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../core/cncf-serverless-workflow-specification-support.html">Serverless Workflow Specification</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../core/handling-events-on-workflows.html">Events</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../core/working-with-callbacks.html">Callbacks</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../core/understanding-jq-expressions.html">jq Expressions</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../core/understanding-workflow-error-handling.html">Error handling</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../core/configuration-properties.html">Configuration</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../core/defining-an-input-schema-for-workflows.html">Input Schema</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../core/custom-functions-support.html">Custom functions</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../core/timeouts-support.html">Timeouts</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../core/working-with-parallelism.html">Parallelism</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Tooling</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../tooling/serverless-workflow-editor/swf-editor-overview.html">Editor</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../tooling/serverless-workflow-editor/swf-editor-vscode-extension.html">VS Code extension</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../tooling/serverless-workflow-editor/swf-editor-chrome-extension.html">Chrome extension for GitHub</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../tooling/serverless-logic-web-tools/serverless-logic-web-tools-overview.html">Serverless Logic Web Tools</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../tooling/serverless-logic-web-tools/serverless-logic-web-tools-github-integration.html">Integration with GitHub</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../tooling/serverless-logic-web-tools/serverless-logic-web-tools-openshift-integration.html">Integration with OpenShift</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../tooling/serverless-logic-web-tools/serverless-logic-web-tools-redhat-application-services-integration.html">Red Hat OpenShift Application and Data Services integration</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../tooling/serverless-logic-web-tools/serverless-logic-web-tools-deploy-projects.html">Deployment</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Service Orchestration</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../service-orchestration/orchestration-of-openapi-based-services.html">Orchestrating the OpenAPI services</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../service-orchestration/configuring-openapi-services-endpoints.html">Configuring the OpenAPI services endpoints</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../service-orchestration/working-with-openapi-callbacks.html">OpenAPI callbacks in OpenShift Serverless Logic</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../service-orchestration/troubleshooting.html">Troubleshooting</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Event Orchestration</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../eventing/orchestration-of-asyncapi-based-services.html">Orchestrating AsyncAPI Services</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../eventing/event-correlation-with-workflows.html">Event Correlation</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Security</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../security/authention-support-for-openapi-services.html">Authentication for OpenAPI services</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../security/orchestrating-third-party-services-with-oauth2.html">Orchestration of third-party services using OAuth 2.0 authentication</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Executing, Testing and Troubleshooting</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Executing and Testing Workflows</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../testing-and-troubleshooting/quarkus-dev-ui-extension/quarkus-dev-ui-overview.html">Developer UI</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../testing-and-troubleshooting/quarkus-dev-ui-extension/quarkus-dev-ui-workflow-instances-page.html">Workflow Instances</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../testing-and-troubleshooting/quarkus-dev-ui-extension/quarkus-dev-ui-workflow-definition-page.html">Workflow Definitions</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../testing-and-troubleshooting/quarkus-dev-ui-extension/quarkus-dev-ui-monitoring-page.html">Monitoring</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../testing-and-troubleshooting/quarkus-dev-ui-extension/quarkus-dev-ui-custom-dashboard-page.html">Dashboards</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../testing-and-troubleshooting/kn-plugin-workflow-overview.html">Command Line</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Persistence</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../persistence/core-concepts.html">Core concepts</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="index.html">Cloud</a>
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="4">
+    <a class="nav-link" href="custom-ingress-authz.html">Securing Workflows</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Operator</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="operator/install-serverless-operator.html">Installation</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="operator/global-configuration.html">Admin Configuration</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="operator/developing-workflows.html">Development Mode</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="operator/referencing-resource-files.html">Referencing Workflow Resources</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="operator/configuring-workflows.html">Workflow Configuration</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="operator/build-and-deploy-workflows.html">Building and Deploying Workflow Images</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="operator/supporting-services.html">Deploy Supporting Services</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="operator/workflow-status-conditions.html">Custom Resource Status</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="operator/building-custom-images.html">Building Custom Images</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="operator/customize-podspec.html">Custom Workflow PodSpec</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="operator/service-discovery.html">Service Discovery</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="operator/using-persistence.html">Using persistence</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="operator/configuring-knative-eventing-resources.html">Knative Eventing</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="#cloud/operator/add-custom-ca-to-a-workflow-pod.adoc">Add Custom CA to Workflow Pod</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="operator/known-issues.html">Roadmap and Known Issues</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Integrations</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../integrations/core-concepts.html">Introduction</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Supporting Services</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Jobs Service</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../job-services/core-concepts.html">Core Concepts</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Data Index</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../data-index/data-index-core-concepts.html">Core Concepts</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../data-index/data-index-service.html">Data Index Standalone Service</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Use Cases</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../use-cases/advanced-developer-use-cases/index.html">Development of OpenShift Serverless Logic applications using Quarkus and Java</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Getting Started</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../use-cases/advanced-developer-use-cases/getting-started/create-your-first-workflow-service.html">Creating a Quarkus Workflow service</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../use-cases/advanced-developer-use-cases/getting-started/create-your-first-workflow-project.html">Creating a Quarkus Workflow project</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../use-cases/advanced-developer-use-cases/getting-started/build-workflow-image-with-quarkus-cli.html">Building workflow images using Quarkus CLI</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../use-cases/advanced-developer-use-cases/getting-started/working-with-serverless-workflow-quarkus-examples.html">Working with OpenShift Serverless Logic example applications</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../use-cases/advanced-developer-use-cases/getting-started/test-serverless-workflow-quarkus-examples.html">Testing images of OpenShift Serverless Logic example applications using Quarkus CLI</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Deployment</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../use-cases/advanced-developer-use-cases/deployments/deploying-on-minikube.html">Deploying on Minikube</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../use-cases/advanced-developer-use-cases/deployments/deploying-on-kubernetes.html">Deploying on Kubernetes</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../use-cases/advanced-developer-use-cases/deployments/deploying-on-openshift.html">Deploying on OpenShift</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Persistence</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../use-cases/advanced-developer-use-cases/persistence/persistence-core-concepts.html">Core Concepts</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../use-cases/advanced-developer-use-cases/persistence/persistence-with-postgresql.html">Running a Quarkus Workflow Application using PostgreSQL</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../use-cases/advanced-developer-use-cases/persistence/postgresql-advanced-concepts.html">Postgresql Advanced Concepts</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../use-cases/advanced-developer-use-cases/persistence/postgresql-flyway-migration.html">PostgreSQL Database Migration</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../use-cases/advanced-developer-use-cases/persistence/integration-tests-with-postgresql.html">OpenShift Serverless Logic integration test using PostgreSQL</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Data Index</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../use-cases/advanced-developer-use-cases/data-index/data-index-as-quarkus-dev-service.html">Data Index as a Quarkus Development service</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../use-cases/advanced-developer-use-cases/data-index/data-index-usecase-singleton.html">Deploying Data Index and OpenShift Serverless Logic application on Minikube</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../use-cases/advanced-developer-use-cases/data-index/data-index-usecase-multi.html">Deploying Data Index and multiple OpenShift Serverless Logic applications on Minikube</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../use-cases/advanced-developer-use-cases/data-index/data-index-quarkus-extension.html">Data Index Quarkus extensions</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Service Orchestration</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../use-cases/advanced-developer-use-cases/service-orchestration/configuring-openapi-services-endpoints-with-quarkus.html">Configuring the OpenAPI services endpoints in different environments</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../use-cases/advanced-developer-use-cases/service-orchestration/orchestration-of-grpc-services.html">Orchestrating gRPC based Services</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Service Discovery</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../use-cases/advanced-developer-use-cases/service-discovery/kubernetes-service-discovery.html">Kubernetes service discovery in OpenShift Serverless Logic</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Event Orchestration</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../use-cases/advanced-developer-use-cases/event-orchestration/consume-produce-events-with-knative-eventing.html">Consuming and producing events on Knative Eventing in Quarkus</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../use-cases/advanced-developer-use-cases/event-orchestration/consume-producing-events-with-kafka.html">Consuming and producing events using Apache Kafka in Quarkus</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../use-cases/advanced-developer-use-cases/event-orchestration/orchestration-based-saga-pattern.html">Saga orchestration example in OpenShift Serverless Logic</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../use-cases/advanced-developer-use-cases/event-orchestration/newsletter-subscription-example.html">Newsletter subscription example in OpenShift Serverless Logic</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Timeouts</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../use-cases/advanced-developer-use-cases/timeouts/timeout-showcase-example.html">Timeouts Showcase in OpenShift Serverless Logic</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Callbacks</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../use-cases/advanced-developer-use-cases/callbacks/callback-state-example.html">Example of OpenShift Serverless Logic application using callback state with Quarkus</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Integrations of external services</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../use-cases/advanced-developer-use-cases/integrations/camel-routes-integration.html">Integrating with Camel routes</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../use-cases/advanced-developer-use-cases/integrations/custom-functions-knative.html">Invoking Knative services from OpenShift Serverless Logic</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../use-cases/advanced-developer-use-cases/integrations/expose-metrics-to-prometheus.html">Exposing Workflow base metrics to Prometheus</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../use-cases/advanced-developer-use-cases/integrations/serverless-dashboard-with-runtime-data.html">Displaying Workflow Data in Dashboards</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Testing</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../use-cases/advanced-developer-use-cases/testing/basic-integration-tests-with-restassured.html">Testing your Quarkus Workflow Application using REST Assured</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../use-cases/advanced-developer-use-cases/testing/mocking-http-cloudevents-with-wiremock.html">Mocking HTTP CloudEvents sink using WireMock</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../use-cases/advanced-developer-use-cases/testing/mocking-openapi-services-with-wiremock.html">Mocking OpenAPI services using WireMock</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Buildpacks for Serverless Functions</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../functions/serverless-functions-about.html">About buildpacks for OpenShift Serverless Functions</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../functions/serverless-functions-buildpacks.html">Building and deploying functions on the cluster</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="navigation-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Documentation</span>
+    <span class="version">main</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">Documentation</span>
+      <ul class="versions">
+        <li class="version is-current">
+          <a href="../../index.html">main</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+  <div class="main-view-and-toolbar">
+    <div class="toolbar" role="navigation">
+  <button class="navigation-toggle"></button>
+  <a href="../../index.html" class="home-link"></a>
+<nav class="crumbs" aria-label="breadcrumbs">
+  <ul>
+    <li class="crumb"><a href="../../index.html">Documentation</a></li>
+    <li class="crumb">Serverless Logic</li>
+    <li class="crumb">User Guides</li>
+    <li class="crumb"><a href="index.html">Cloud</a></li>
+    <li class="crumb"><a href="custom-ingress-authz.html">Securing Workflows</a></li>
+  </ul>
+</nav>
+</div>
+    <div class="main-view-and-toc">
+        <main class="main">
+          <article class="doc">
+<h1>Using an Ingress to add authentication and authorization to Workflow applications</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>This document describes how you add an Ingress to a OpenShift Serverless Logic workflow to handle authentication and authorization use cases.</p>
+</div>
+<div class="paragraph">
+<p>In the approach outlined in this guide, protect your workflows from anonymous access outside the cluster with the <a href="https://openid.net/specs/openid-connect-core-1_0.html">OpenID Connect</a> specification.</p>
+</div>
+<div class="paragraph">
+<p>Although the example demonstrated in this document is not meant to be used in production, you can use it as a reference to create your own architecture.</p>
+</div>
+</div>
+<div id="toc" class="toc">
+<div id="toctitle"></div>
+<ul class="sectlevel1">
+<li><a href="#_architecture">Architecture</a></li>
+<li><a href="#_how_to_deploy_the_example_architecture">How to deploy the example architecture</a>
+<ul class="sectlevel2">
+<li><a href="#_installing_keycloak">Installing Keycloak</a></li>
+<li><a href="#_installing_the_apisix_ingress">Installing the APISIX Ingress</a></li>
+</ul>
+</li>
+<li><a href="#_deploying_the_openshift_serverless_logic_sample_workflow">Deploying the OpenShift Serverless Logic sample workflow</a>
+<ul class="sectlevel2">
+<li><a href="#_configuring_the_ingress_route">Configuring the Ingress Route</a></li>
+<li><a href="#_accessing_the_workflow">Accessing the Workflow</a></li>
+</ul>
+</li>
+<li><a href="#_conclusion">Conclusion</a></li>
+<li><a href="#_additional_resources">Additional resources</a></li>
+<li><a href="#_found_an_issue"><em><strong>Found an issue?</strong></em></a></li>
+</ul>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_architecture"><a class="anchor" href="#_architecture"></a>Architecture</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The following image illustrates a simplified architecture view of the recommended approach for protecting OpenShift Serverless Logic workflow endpoints.</p>
+</div>
+<div class="imageblock unresolved">
+<div class="content">
+<img src="cloud/apisix-keycloak/ingress-apisix-keycloak.png" alt="ingress apisix keycloak">
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User makes a request with their credentials</p>
+</li>
+<li>
+<p>APISIX do the JWT token introspection in the OIDC Server (Keycloak)</p>
+</li>
+<li>
+<p>Keycloak validates the token</p>
+</li>
+<li>
+<p>APISIX forwards the request to the workflow application</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>This is a simplified approach for OIDC (OpenID Connect protocol) use cases. In production environments, you can tailor your gateway and OIDC server to meet your requirements and scope.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>This approach only protects the communication via Ingress. Direct calls to the workflow application <a href="https://kubernetes.io/docs/concepts/services-networking/service/">internal service</a> would be anonymous.
+For example, another microservice in the cluster making requests to the workflow internal service.
+Set <a href="https://kubernetes.io/docs/concepts/services-networking/network-policies/">Kuberbetes NetworkPolicies</a> to your workflow applications if this is not the desired behavior.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_how_to_deploy_the_example_architecture"><a class="anchor" href="#_how_to_deploy_the_example_architecture"></a>How to deploy the example architecture</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The following sections describe how to deploy the example architecture using APISIX and Keycloak to protect your OpenShift Serverless Logic workflows.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>Minikube is installed. You can use Kind or any other cluster if you have admin access. Just ensure to adapt the steps below to your environment.</p>
+</li>
+<li>
+<p><a href="https://github.com/apache/incubator-kie-kogito-examples/tree/stable/serverless-operator-examples/sonataflow-apisix-oidc">Clone the example SonataFlow APISIX with Keycloak in a local directory</a>.</p>
+</li>
+<li>
+<p>(Optional) <a href="operator/install-serverless-operator.html" class="xref page">Serverless Logic Operator is installed</a> if you are going to deploy via the operator.</p>
+</li>
+<li>
+<p>(Optional) <a href="../use-cases/advanced-developer-use-cases/deployments/deploying-on-minikube.html" class="xref page">Quarkus OpenShift Serverless Logic workflow is deployed</a> if you are not using the operator.</p>
+</li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="_installing_keycloak"><a class="anchor" href="#_installing_keycloak"></a>Installing Keycloak</h3>
+<div class="paragraph">
+<p>From the example&#8217;s cloned directory 'sonataflow-apisix-oidc', run the following command:</p>
+</div>
+<div class="listingblock">
+<div class="title">Running kustomize to install Keycloak</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kubectl create ns keycloak
+kubectl kustomize manifests/bases | kubectl apply -f - -n keycloak</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This command creates a namespace called <code>keycloak</code> and a Keycloak server deployment connected to a PostgreSQL database to persist your data across cluster restarts.</p>
+</div>
+<div class="sect3">
+<h4 id="_exposing_keycloak_locally"><a class="anchor" href="#_exposing_keycloak_locally"></a>Exposing Keycloak locally</h4>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>You can skip this section if you are running on OpenShift or any cluster that you can expose Keycloak via an Ingress DNS or Route.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Since Keycloak is running on Minikube, expose the service port to your local network by running the following command:</p>
+</div>
+<div class="listingblock">
+<div class="title">Exposing Keycloak to the local network</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kubectl port-forward $(kubectl get pods -l app=keycloak --output=jsonpath='{.items[*].metadata.name}' -n keycloak) 8080:8080 -n keycloak</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>From now on, every connection to the <code>8080</code> port is forwarded to the Keycloak service endpoint.</p>
+</div>
+<div class="paragraph">
+<p>The next step is to configure your local <code>/etc/hosts</code>. This step is needed because the token you are going to generate must come from the same URL that the APISIX server introspects once you access the workflow.</p>
+</div>
+<div class="paragraph">
+<p>Edit your local <code>/etc/hosts</code> file and add the following line:</p>
+</div>
+<div class="listingblock">
+<div class="title">Hosts file with the Keycloak address entry</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-txt hljs" data-lang="txt">127.0.0.1 keycloak.keycloak.svc.cluster.local</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can try accessing your Keycloak admin console in the address <a href="http://keycloak.keycloak.svc.cluster.local:8080" class="bare">keycloak.keycloak.svc.cluster.local:8080</a>. The default user and password are <code>admin</code>.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>In real-life environments, this step is not needed since Keycloak or any OIDC server is served by a load balancer with the correct address configured.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_configuring_the_keycloak_oidc_server"><a class="anchor" href="#_configuring_the_keycloak_oidc_server"></a>Configuring the Keycloak OIDC Server</h4>
+<div class="paragraph">
+<p>In the next step, log in to the Keycloak admin console in the address <a href="http://keycloak.keycloak.svc.cluster.local:8080" class="bare">keycloak.keycloak.svc.cluster.local:8080</a> using the default credentials.</p>
+</div>
+<div class="paragraph">
+<p>Once you are logged into the console, click <strong>Create realm</strong> in the top left menu. In this screen, create a new realm named <code>sonataflow</code>. See the image below for more details:</p>
+</div>
+<div class="imageblock unresolved">
+<div class="content">
+<img src="cloud/apisix-keycloak/01-create-realm.png" alt="01 create realm">
+</div>
+<div class="title">Figure 1. Creation of the new sonataflow realm</div>
+</div>
+<div class="paragraph">
+<p>Next, create a client for the APISIX Ingress to introspect the JWT tokens.</p>
+</div>
+<div class="paragraph">
+<p>In the left menu, make sure that you are in the <code>sonataflow</code> realm and click on <strong>Clients</strong>, then <strong>Create client</strong>. Give the name <code>apisix-ingress</code> and then click on <strong>Next</strong>.</p>
+</div>
+<div class="imageblock unresolved">
+<div class="content">
+<img src="cloud/apisix-keycloak/02-create-client.png" alt="02 create client">
+</div>
+<div class="title">Figure 2. Creation of the APISIX Ingress client</div>
+</div>
+<div class="paragraph">
+<p>Next, add the details about this client:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Turn the <strong>Client authentication</strong> option on.</p>
+</li>
+<li>
+<p>Leave <strong>Authorization</strong> off.</p>
+</li>
+<li>
+<p>Mark the options <strong>Standard flow</strong> and <strong>Direct access grants</strong> and leave the rest blank.</p>
+</li>
+</ol>
+</div>
+<div class="imageblock unresolved">
+<div class="content">
+<img src="cloud/apisix-keycloak/03-create-client.png" alt="03 create client">
+</div>
+<div class="title">Figure 3. APISIX Ingress client details</div>
+</div>
+<div class="paragraph">
+<p>Click on <strong>Next</strong>, leave everything blank in the next screen and click on <strong>Save</strong>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_creating_a_user"><a class="anchor" href="#_creating_a_user"></a>Creating a user</h4>
+<div class="paragraph">
+<p>In this example, create a user registered in the Keycloak server to access the workflow application.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>For simplicity, use the <a href="https://www.keycloak.org/docs/23.0.7/securing_apps/#_resource_owner_password_credentials_flow">Grant Type Resource Owner Password</a>. This flow is not recommended for production architectures. Consider using other mechanisms such as Authorization Code or Client Credentials.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>In the left menu, make sure that you are in the <code>sonataflow</code> realm and click on <strong>Users</strong> and then click <strong>Create new user</strong>.</p>
+</div>
+<div class="paragraph">
+<p>In this screen, fill in the details according to the figure below:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Switch <strong>Email verified</strong> option on.</p>
+</li>
+<li>
+<p>Set <strong>Username</strong> to <code>luke</code>.</p>
+</li>
+<li>
+<p>Set <strong>Email</strong> to <code>luke@republic.org</code></p>
+</li>
+<li>
+<p>Set <strong>First name</strong> to <code>Luke</code> and <strong>Last name</strong> to <code>Skywalker</code></p>
+</li>
+</ol>
+</div>
+<div class="imageblock unresolved">
+<div class="content">
+<img src="cloud/apisix-keycloak/05-create-user.png" alt="05 create user">
+</div>
+<div class="title">Figure 4. Creating a workflow user</div>
+</div>
+<div class="paragraph">
+<p>Click on <strong>Create</strong>.</p>
+</div>
+<div class="paragraph">
+<p>Next, set the credentials for this newly created user. Click on <strong>Users</strong> in the left menu and then in the name <code>luke</code>.</p>
+</div>
+<div class="paragraph">
+<p>In this screen, click on the tab <strong>Credentials</strong>, and then on <strong>Set password</strong>.</p>
+</div>
+<div class="imageblock unresolved">
+<div class="content">
+<img src="cloud/apisix-keycloak/06-user-set-password.png" alt="06 user set password">
+</div>
+<div class="title">Figure 5. Setting user&#8217;s password</div>
+</div>
+<div class="paragraph">
+<p>Set the password as <code>luke</code> (same as the username), leave the <strong>Temporary</strong> option off and click on <strong>Save</strong>.</p>
+</div>
+<div class="paragraph">
+<p>Use the credentials <code>luke</code>/<code>luke</code> later in this guide to acquire a JWT token to make requests to the workflow application.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_installing_the_apisix_ingress"><a class="anchor" href="#_installing_the_apisix_ingress"></a>Installing the APISIX Ingress</h3>
+<div class="paragraph">
+<p>Follow the documentation on <a href="https://apisix.apache.org/docs/ingress-controller/deployments/minikube/">APISIX Documentation website</a> and install the APISIX Ingress in your cluster (install the HELM client first).</p>
+</div>
+<div class="paragraph">
+<p>If you are running on Minikube, expose the APISIX Ingress server:</p>
+</div>
+<div class="listingblock">
+<div class="title">Exposing apisix-ingress service to the local network</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">minikube service apisix-gateway --url -n ingress-apisix</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The command outcome is the local URL which you can access the Ingress you create later in this guide. Leave the terminal open.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>If you are not running on Minikube, see the APISIX Ingress documentation for more information on how to expose the Ingress already in your cluster.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>After this step, Keycloak OIDC Server and APISIX Ingress Controller on your cluster are able to protect your OpenShift Serverless Logic workflow applications from external requests.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_deploying_the_openshift_serverless_logic_sample_workflow"><a class="anchor" href="#_deploying_the_openshift_serverless_logic_sample_workflow"></a>Deploying the OpenShift Serverless Logic sample workflow</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this section, learn how to deploy the Greeting workflow example and a custom APIXSIX Ingress to protect external requests to the application&#8217;s endpoints.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>You installed, configured, and exposed the Keycloak server</p>
+</li>
+<li>
+<p>You installed and exposed the APISIX Ingress server</p>
+</li>
+<li>
+<p>You installed the Serverless Logic Operator</p>
+</li>
+<li>
+<p>You <a href="https://github.com/apache/incubator-kie-kogito-examples/tree/stable/serverless-operator-examples/sonataflow-apisix-oidc">cloned the example application locally</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The first step is to deploy the OpenShift Serverless Logic workflow.</p>
+</div>
+<div class="paragraph">
+<p>Enter the example project directory that you cloned locally and run the command below:</p>
+</div>
+<div class="listingblock">
+<div class="title">Deploying the Greeting workflow</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kubectl create ns sonataflow
+kubectl apply -f workflow-app/01-sonataflow-greeting.yaml -n sonataflow</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can follow the workflow deployment by running</p>
+</div>
+<div class="listingblock">
+<div class="title">Follow the workflow deployment process</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kubectl -n sonataflow get workflow/greeting -w
+
+NAME       PROFILE   VERSION   URL   READY   REASON
+greeting             0.0.1           False   WaitingForBuild</code></pre>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_configuring_the_ingress_route"><a class="anchor" href="#_configuring_the_ingress_route"></a>Configuring the Ingress Route</h3>
+<div class="paragraph">
+<p>Once you deploy the OpenShift Serverless Logic workflow you can configure and deploy the APISIX Route.</p>
+</div>
+<div class="paragraph">
+<p>Open the file <code>workflow-app/02-sonataflow-route.yaml</code> in the example application you cloned earlier and change the credentials for the <code>apisix-ingress</code> client that you created in the Keycloak server:</p>
+</div>
+<div class="listingblock">
+<div class="title">Greeting workflow APISIX Route</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: apisix.apache.org/v2
+kind: ApisixRoute
+metadata:
+  name: sonataflow
+spec:
+  http:
+    - name: greeting
+      match:
+        hosts:
+          - local.greeting.sonataflow.org
+        paths:
+          - "/*"
+      backends:
+        - serviceName: greeting
+          servicePort: 80
+      plugins:
+        - name: openid-connect <i class="conum" data-value="1"></i><b>(1)</b>
+          enable: true
+          config:
+            client_id: apisix-ingress
+            client_secret: <i class="conum" data-value="2"></i><b>(2)</b>
+            discovery: http://keycloak.keycloak.svc.cluster.local:8080/realms/sonataflow/.well-known/openid-configuration
+            scope: profile email
+            bearer_only: true
+            realm: sonataflow
+            introspection_endpoint_auth_method: client_secret_post</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The <a href="{}">OpenID Connect plugin</a> to make the Ingress connect to Keycloak</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>The <code>apisix-ingress</code> client credential to be changed</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Open the Keycloak server (<a href="http://keycloak.keycloak.svc.cluster.local:8080" class="bare">keycloak.keycloak.svc.cluster.local:8080</a>) and in the realm <code>sonataflow</code> click on <strong>Clients</strong>, and then on <code>apisix-ingress</code>.</p>
+</div>
+<div class="paragraph">
+<p>Click on the tab <strong>Credentials</strong> and copy the <strong>Client Secret</strong>:</p>
+</div>
+<div class="imageblock unresolved">
+<div class="content">
+<img src="cloud/apisix-keycloak/04-client-credentials.png" alt="04 client credentials">
+</div>
+<div class="title">Figure 6. Creating the workflow user</div>
+</div>
+<div class="paragraph">
+<p>Paste the <strong>Client Secret</strong> into the <code>ApisixRoute</code> file <code>workflow-app/02-sonataflow-route.yaml</code> in the example application and run:</p>
+</div>
+<div class="listingblock">
+<div class="title">Deploy the <code>ApisixRoute</code></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kubectl apply -f workflow-app/02-sonataflow-route.yaml -n sonataflow</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To this point, you have installed in your cluster the Keycloak and APISIX Ingress server, and deployed the example Greeting workflow application.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_accessing_the_workflow"><a class="anchor" href="#_accessing_the_workflow"></a>Accessing the Workflow</h3>
+<div class="paragraph">
+<p>Access the workflow without a token to see a rejection:</p>
+</div>
+<div class="listingblock">
+<div class="title">Directly accessing the workflow without a token</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">INGRESS_URL= <i class="conum" data-value="1"></i><b>(1)</b>
+
+curl -v POST ${INGRESS_URL}/greeting -H "Content-type: application/json" -H "Host: local.greeting.sonataflow.org" --data '{ "name": "Luke" }'</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The ingress url is accessible via the Minikube service command. If you have not done it already, run <code>minikube service apisix-gateway --url -n ingress-apisix</code>.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>See a 401 HTTP Status message denying your access to the workflow.</p>
+</div>
+<div class="paragraph">
+<p>Next, access the application using an access token. First, you need to get the access token from the Keycloak server:</p>
+</div>
+<div class="listingblock">
+<div class="title">Requesting an access token to Keycloak server</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">CLIENT_SECRET="secret from apisix-ingress client" <i class="conum" data-value="1"></i><b>(1)</b>
+
+ACCESS_TOKEN=$(curl \
+  -d "client_id=apisix-ingress" \
+  -d "client_secret=${CLIENT_SECRET}" \
+  -d "username=luke" \
+  -d "password=luke" \
+  -d "grant_type=password" \
+  "http://keycloak.keycloak.svc.cluster.local:8080/realms/sonataflow/protocol/openid-connect/token" | jq -r .access_token) <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Copy the secret from the <code>apisix-ingress</code> client</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Request an access token from the Keycloak server using the user <code>luke</code> credentials</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The token returned with the command above has a default timeout of 5 minutes, which means that if you take too long to use it, or want to execute several requests, you might need to execute the command again and get a new token.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Having the access token set in an environment variable, access the application again:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">INGRESS_URL= <i class="conum" data-value="1"></i><b>(1)</b>
+
+curl -v POST ${INGRESS_URL}/greeting -H "Content-type: application/json" -H "Host: local.greeting.sonataflow.org" -H "Authorization: Bearer ${ACCESS_TOKEN}" --data '{ "name": "Luke" }'</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The ingress url is accessible via the Minikube service command. If you have not done it already, run <code>minikube service apisix-gateway --url -n ingress-apisix</code>.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>This request is passing through the APISIX Gateway, which is validating the token via the <code>Authorization: Bearer</code> header. Then the request is passed internally to the workflow application which process and return to the original client.</p>
+</div>
+<div class="paragraph">
+<p>Finally, this time, in the last part of the command output, you should see a JSON document similar to the excerpt below, which indicates that the workflow instance was created successfully.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{"id":"a9fc1a97-e274-4e40-80e5-4ff5ba203231","workflowdata":{"message":"Hello from YAML Workflow, anonymous"}}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_conclusion"><a class="anchor" href="#_conclusion"></a>Conclusion</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this guide you were able to deploy an architecture of services capable of authenticating a valid user using OIDC mechanisms. Now, everytime that someone needs access to the deployed workflow, it must first get a valid JWT token in the Keycloak OIDC Server.</p>
+</div>
+<div class="paragraph">
+<p>Next steps now, would be to tailor this architecture for your needs such as a cluster of Keycloak servers behind a TLS and valid domain. Also, APISIX Ingress offers many other capabilities and configurations that can be tuned to favor your use cases.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_additional_resources"><a class="anchor" href="#_additional_resources"></a>Additional resources</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><a href="operator/install-serverless-operator.html" class="xref page">Install the Serverless Logic Operator</a></p>
+</li>
+<li>
+<p><a href="operator/configuring-workflows.html" class="xref page">Configuring Workflow Services</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_found_an_issue"><a class="anchor" href="#_found_an_issue"></a><em><strong>Found an issue?</strong></em></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>If you find an issue or any misleading information, please feel free to report it <a href="https://github.com/kiegroup/kogito-docs/issues/new">here</a>.
+We really appreciate it!</p>
+</div>
+</div>
+</div>
+</article>
+        </main>
+            </div>
+  </div>
+</div><footer class="footer">
+  <p>Adapted from Antora default UI, (c) 2019</p>
+</footer>
+<script src="../../../../_/js/site.js"></script>
+<script src="../../../../_/js/vendor/highlight.js"></script>
+<script src="../../../../_/js/tabsBehavior.js"></script>
+<script>hljs.initHighlighting()</script>
+  </body>
+</html>

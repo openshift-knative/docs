@@ -151,10 +151,10 @@
     <span class="nav-text">Getting Started</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../getting-started/create-your-first-workflow-service-with-kn-cli-and-vscode.html">Creating your first workflow service with KN CLI and VS Code</a>
+    <a class="nav-link" href="../../getting-started/create-your-first-workflow-service-with-kn-cli-and-vscode.html">Creating and running workflow projects using KN CLI and Visual Studio Code</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../getting-started/getting-familiar-with-our-tooling.html">Getting familiar with tooling</a>
+    <a class="nav-link" href="../../getting-started/getting-familiar-with-our-tooling.html">Getting familiar with OpenShift Serverless Logic tooling</a>
   </li>
 </ul>
   </li>
@@ -163,7 +163,7 @@
     <span class="nav-text">Core</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../core/cncf-serverless-workflow-specification-support.html">CNCF Serverless Workflow specification</a>
+    <a class="nav-link" href="../../core/cncf-serverless-workflow-specification-support.html">Serverless Workflow Specification</a>
   </li>
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="../../core/handling-events-on-workflows.html">Events</a>
@@ -172,19 +172,19 @@
     <a class="nav-link" href="../../core/working-with-callbacks.html">Callbacks</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../core/understanding-jq-expressions.html">jq expressions</a>
+    <a class="nav-link" href="../../core/understanding-jq-expressions.html">jq Expressions</a>
   </li>
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="../../core/understanding-workflow-error-handling.html">Error handling</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../core/configuration-properties.html">Configuration properties</a>
+    <a class="nav-link" href="../../core/configuration-properties.html">Configuration</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../core/defining-an-input-schema-for-workflows.html">Defining an input schema for your workflows</a>
+    <a class="nav-link" href="../../core/defining-an-input-schema-for-workflows.html">Input Schema</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../core/custom-functions-support.html">Custom functions for your service</a>
+    <a class="nav-link" href="../../core/custom-functions-support.html">Custom functions</a>
   </li>
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="../../core/timeouts-support.html">Timeouts</a>
@@ -215,16 +215,16 @@
     <a class="nav-link" href="../../tooling/serverless-logic-web-tools/serverless-logic-web-tools-overview.html">Serverless Logic Web Tools</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../../tooling/serverless-logic-web-tools/serverless-logic-web-tools-github-integration.html">GitHub integration</a>
+    <a class="nav-link" href="../../tooling/serverless-logic-web-tools/serverless-logic-web-tools-github-integration.html">Integration with GitHub</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../../tooling/serverless-logic-web-tools/serverless-logic-web-tools-openshift-integration.html">OpenShift integration</a>
+    <a class="nav-link" href="../../tooling/serverless-logic-web-tools/serverless-logic-web-tools-openshift-integration.html">Integration with OpenShift</a>
   </li>
   <li class="nav-item" data-depth="5">
     <a class="nav-link" href="../../tooling/serverless-logic-web-tools/serverless-logic-web-tools-redhat-application-services-integration.html">Red Hat OpenShift Application and Data Services integration</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../../tooling/serverless-logic-web-tools/serverless-logic-web-tools-deploy-projects.html">Deploying projects</a>
+    <a class="nav-link" href="../../tooling/serverless-logic-web-tools/serverless-logic-web-tools-deploy-projects.html">Deployment</a>
   </li>
 </ul>
   </li>
@@ -242,7 +242,7 @@
     <a class="nav-link" href="../../service-orchestration/configuring-openapi-services-endpoints.html">Configuring the OpenAPI services endpoints</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../../service-orchestration/working-with-openapi-callbacks.html">OpenAPI callback  in OpenShift Serverless Logic</a>
+    <a class="nav-link" href="../../service-orchestration/working-with-openapi-callbacks.html">OpenAPI callbacks in OpenShift Serverless Logic</a>
   </li>
 </ul>
   </li>
@@ -322,11 +322,17 @@
     <a class="nav-link" href="../index.html">Cloud</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../custom-ingress-authz.html">Securing Workflows</a>
+  </li>
+  <li class="nav-item" data-depth="4">
     <button class="nav-toggle"></button>
     <span class="nav-text">Operator</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="5">
     <a class="nav-link" href="install-serverless-operator.html">Installation</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="global-configuration.html">Admin Configuration</a>
   </li>
   <li class="nav-item" data-depth="5">
     <a class="nav-link" href="developing-workflows.html">Development Mode</a>
@@ -335,10 +341,10 @@
     <a class="nav-link" href="referencing-resource-files.html">Referencing Workflow Resources</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="configuring-workflows.html">Configuration</a>
+    <a class="nav-link" href="configuring-workflows.html">Workflow Configuration</a>
   </li>
   <li class="nav-item is-current-page" data-depth="5">
-    <a class="nav-link" href="build-and-deploy-workflows.html">Building and Deploying Workflows</a>
+    <a class="nav-link" href="build-and-deploy-workflows.html">Building and Deploying Workflow Images</a>
   </li>
   <li class="nav-item" data-depth="5">
     <a class="nav-link" href="supporting-services.html">Deploy Supporting Services</a>
@@ -362,6 +368,9 @@
     <a class="nav-link" href="configuring-knative-eventing-resources.html">Knative Eventing</a>
   </li>
   <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="#cloud/operator/add-custom-ca-to-a-workflow-pod.adoc">Add Custom CA to Workflow Pod</a>
+  </li>
+  <li class="nav-item" data-depth="5">
     <a class="nav-link" href="known-issues.html">Roadmap and Known Issues</a>
   </li>
 </ul>
@@ -381,6 +390,15 @@
     <button class="nav-toggle"></button>
     <span class="nav-text">Supporting Services</span>
 <ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Jobs Service</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../job-services/core-concepts.html">Core Concepts</a>
+  </li>
+</ul>
+  </li>
   <li class="nav-item" data-depth="4">
     <button class="nav-toggle"></button>
     <span class="nav-text">Data Index</span>
@@ -408,7 +426,10 @@
     <span class="nav-text">Getting Started</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="6">
-    <a class="nav-link" href="../../use-cases/advanced-developer-use-cases/getting-started/create-your-first-workflow-service.html">Creating your first workflow service</a>
+    <a class="nav-link" href="../../use-cases/advanced-developer-use-cases/getting-started/create-your-first-workflow-service.html">Creating a Quarkus Workflow service</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../../use-cases/advanced-developer-use-cases/getting-started/create-your-first-workflow-project.html">Creating a Quarkus Workflow project</a>
   </li>
   <li class="nav-item" data-depth="6">
     <a class="nav-link" href="../../use-cases/advanced-developer-use-cases/getting-started/build-workflow-image-with-quarkus-cli.html">Building workflow images using Quarkus CLI</a>
@@ -620,7 +641,7 @@
     <li class="crumb">User Guides</li>
     <li class="crumb"><a href="../index.html">Cloud</a></li>
     <li class="crumb">Operator</li>
-    <li class="crumb"><a href="build-and-deploy-workflows.html">Building and Deploying Workflows</a></li>
+    <li class="crumb"><a href="build-and-deploy-workflows.html">Building and Deploying Workflow Images</a></li>
   </ul>
 </nav>
 </div>
@@ -631,7 +652,7 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>This document describes how to build and deploy your workflow on a cluster using the <a href="https://github.com/kiegroup/kogito-serverless-operator/tree/9.99.x-prod">Serverless Logic Operator</a> only by having a <code>SonataFlow</code> custom resource.</p>
+<p>This document describes how to build and deploy your workflow on a cluster using the <a href="https://github.com/kiegroup/kogito-serverless-operator/">Serverless Logic Operator</a>.</p>
 </div>
 <div class="paragraph">
 <p>Every time you need to change the workflow definition the system will (re)build a new immutable version of the workflow. If you&#8217;re still in development phase, please see the <a href="developing-workflows.html" class="xref page">Developing Workflows with the Operator</a> guide.</p>
@@ -644,7 +665,7 @@
 </td>
 <td class="content">
 <div class="paragraph">
-<p>The build system implemented by the Serverless Logic Operator is not suitable for complex production use cases. Consider using an external tool to build your application such as Tekton and ArgoCD. The resulting image can then be deployed with <code>SonataFlow</code> custom resource. See more at <a href="customize-podspec.html#custom-image-default-container" class="xref page">Setting a custom image in the default container</a> section in the <a href="customize-podspec.html#custom-image-default-container" class="xref page">cloud/operator/customize-podspec.adoc#custom-image-default-container</a> guide.</p>
+<p>The build system implemented by the Serverless Logic Operator is not suitable for complex production use cases. Consider using an external tool to build your application such as Tekton and ArgoCD. The resulting image can then be deployed with <code>SonataFlow</code> custom resource. More details available at <a href="customize-podspec.html#custom-image-default-container" class="xref page">Setting a custom image in the default container</a> section of the <a href="customize-podspec.html" class="xref page">Customize the PodSpec Definition</a> guide.</p>
 </div>
 </td>
 </tr>
@@ -660,7 +681,7 @@
 <p>A Workflow definition.</p>
 </li>
 <li>
-<p>The Serverless Logic Operator installed. See <a href="install-serverless-operator.html" class="xref page">Install the Serverless Logic Operator</a> guide</p>
+<p>The Serverless Logic Operator installed. See <a href="install-serverless-operator.html" class="xref page">Install the Serverless Logic Operator</a> guide.</p>
 </li>
 </ul>
 </div>
@@ -668,16 +689,16 @@
 <div id="toc" class="toc">
 <div id="toctitle"></div>
 <ul class="sectlevel1">
-<li><a href="#configure-build-system">Configuring the build system</a>
+<li><a href="#configure-workflow-build-system">Configuring the build system</a>
 <ul class="sectlevel2">
 <li><a href="#_using_another_workflow_base_builder_image">Using another Workflow base builder image</a></li>
-<li><a href="#_customize_the_base_build_dockerfile">Customize the base build Dockerfile</a></li>
-<li><a href="#_changing_resources_requirements">Changing resources requirements</a></li>
-<li><a href="#_passing_arguments_to_the_internal_builder">Passing arguments to the internal builder</a></li>
-<li><a href="#_setting_environment_variables_in_the_internal_builder">Setting environment variables in the internal builder</a></li>
+<li><a href="#customize-base-build">Customize the base build Dockerfile</a></li>
+<li><a href="#changing-sfplatform-resource-requirements">Changing resources requirements</a></li>
+<li><a href="#passing-build-arguments-to-internal-workflow-builder">Passing arguments to the internal builder</a></li>
+<li><a href="#setting-env-variables-for-internal-workflow-builder">Setting environment variables in the internal builder</a></li>
 </ul>
 </li>
-<li><a href="#building-kubernetes">Building on Kubernetes</a>
+<li><a href="#building-and-deploying-on-kubernetes">Building on Kubernetes</a>
 <ul class="sectlevel2">
 <li><a href="#_create_a_namespace_for_the_building_phase">Create a Namespace for the building phase</a></li>
 <li><a href="#_create_a_secret_for_the_container_registry_authentication">Create a Secret for the container registry authentication</a></li>
@@ -686,7 +707,7 @@
 </li>
 <li><a href="#building-openshift">Building on OpenShift</a>
 <ul class="sectlevel2">
-<li><a href="#_changing_the_base_builder_image">Changing the base builder image</a></li>
+<li><a href="#changing-base-builder">Changing the base builder image</a></li>
 </ul>
 </li>
 <li><a href="#build-deploy-workflow">Build and deploy your workflow</a></li>
@@ -698,10 +719,24 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="configure-build-system"><a class="anchor" href="#configure-build-system"></a>Configuring the build system</h2>
+<h2 id="configure-workflow-build-system"><a class="anchor" href="#configure-workflow-build-system"></a>Configuring the build system</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The operator can build workflows on Kubernetes or OpenShift. On Kubernetes, it uses <a href="https://github.com/GoogleContainerTools/kaniko">Kaniko</a> and on OpenShift a <a href="https://docs.openshift.com/container-platform/4.13/cicd/builds/understanding-image-builds.html">standard BuildConfig</a>. The operator build system is not tailored for advanced production use cases and you can do only a few customizations.</p>
+<p>The operator can build workflows on Kubernetes or OpenShift. On Kubernetes, it uses <a href="https://github.com/GoogleContainerTools/kaniko">Kaniko</a> and on OpenShift a <a href="https://docs.openshift.com/container-platform/4.13/cicd/builds/understanding-image-builds.html">standard BuildConfig</a>.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The operator build system is not tailored for advanced production use cases and you can do only a few customizations.</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 <div class="sect2">
 <h3 id="_using_another_workflow_base_builder_image"><a class="anchor" href="#_using_another_workflow_base_builder_image"></a>Using another Workflow base builder image</h3>
@@ -720,9 +755,9 @@ kubectl patch sonataflowplatform &lt;name&gt; --patch  'spec:\n    build:\n    c
 </div>
 </div>
 <div class="sect2">
-<h3 id="_customize_the_base_build_dockerfile"><a class="anchor" href="#_customize_the_base_build_dockerfile"></a>Customize the base build Dockerfile</h3>
+<h3 id="customize-base-build"><a class="anchor" href="#customize-base-build"></a>Customize the base build Dockerfile</h3>
 <div class="paragraph">
-<p>The operator uses the sonataflow-operator-builder-config <code>ConfigMap</code> in the operator&#8217;s installation namespace (sonataflow-operator-system) to configure and run the workflow build process.
+<p>The operator uses the <code>ConfigMap</code> named <code>logic-operator-builder-config</code> in the operator&#8217;s installation namespace (openshift-serverless-logic) to configure and run the workflow build process.
 You can change the <code>Dockerfile</code> entry in this <code>ConfigMap</code> to tailor the Dockerfile to your needs. Just be aware that this can break the build process.</p>
 </div>
 <div class="listingblock">
@@ -730,9 +765,8 @@ You can change the <code>Dockerfile</code> entry in this <code>ConfigMap</code> 
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: v1
 data:
-  DEFAULT_BUILDER_RESOURCE_NAME: Dockerfile
   DEFAULT_WORKFLOW_EXTENSION: .sw.json
-  Dockerfile: "FROM registry.redhat.io/openshift-serverless-1-tech-preview/logic-data-index-ephemeral-rhel8:latest AS builder\n\n#
+  Dockerfile: "FROM registry.redhat.io/openshift-serverless-1/logic-swf-builder-rhel8:1.33.0 AS builder\n\n#
     variables that can be overridden by the builder\n# To add a Quarkus extension
     to your application\nARG QUARKUS_EXTENSIONS\n# Args to pass to the Quarkus CLI
     add extension command\nARG QUARKUS_ADD_EXTENSION_ARGS\n# Additional java/mvn arguments
@@ -769,7 +803,7 @@ metadata:
 </div>
 </div>
 <div class="sect2">
-<h3 id="_changing_resources_requirements"><a class="anchor" href="#_changing_resources_requirements"></a>Changing resources requirements</h3>
+<h3 id="changing-sfplatform-resource-requirements"><a class="anchor" href="#changing-sfplatform-resource-requirements"></a>Changing resources requirements</h3>
 <div class="paragraph">
 <p>You can create or edit a <code>SonataFlowPlatform</code> in the workflow namespace specifying the <a href="https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/">resources requirements</a> for the internal builder pods:</p>
 </div>
@@ -834,7 +868,7 @@ spec:
 </div>
 </div>
 <div class="sect2">
-<h3 id="_passing_arguments_to_the_internal_builder"><a class="anchor" href="#_passing_arguments_to_the_internal_builder"></a>Passing arguments to the internal builder</h3>
+<h3 id="passing-build-arguments-to-internal-workflow-builder"><a class="anchor" href="#passing-build-arguments-to-internal-workflow-builder"></a>Passing arguments to the internal builder</h3>
 <div class="paragraph">
 <p>You can pass build arguments (see <a href="https://docs.docker.com/engine/reference/builder/#arg">Dockerfile ARG</a>) to the <code>SonataFlowBuild</code> instance.</p>
 </div>
@@ -932,7 +966,7 @@ spec:
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">QUARKUS_EXTENSIONS</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">List of <a href="https://quarkus.io/extensions/">Quarkus Extensions</a> separated by comma that the builder should add to the workflow.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">org.kie.kogito:kogito-addons-quarkus-persistence-jdbc:999-SNAPSHOT</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">org.kie:kie-addons-quarkus-persistence-jdbc:999-SNAPSHOT</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">QUARKUS_ADD_EXTENSION_ARGS</p></td>
@@ -948,9 +982,9 @@ spec:
 </table>
 </div>
 <div class="sect2">
-<h3 id="_setting_environment_variables_in_the_internal_builder"><a class="anchor" href="#_setting_environment_variables_in_the_internal_builder"></a>Setting environment variables in the internal builder</h3>
+<h3 id="setting-env-variables-for-internal-workflow-builder"><a class="anchor" href="#setting-env-variables-for-internal-workflow-builder"></a>Setting environment variables in the internal builder</h3>
 <div class="paragraph">
-<p>You can set environment variables to the <code>SonataFlowBuild</code> internal builder pod.</p>
+<p>You can set environment variables to the <code>SonataFlowBuild</code> internal builder pod. This is useful in cases where you would like to influence only the build of the workflow.</p>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -1043,7 +1077,7 @@ spec:
 </div>
 </div>
 <div class="sect1">
-<h2 id="building-kubernetes"><a class="anchor" href="#building-kubernetes"></a>Building on Kubernetes</h2>
+<h2 id="building-and-deploying-on-kubernetes"><a class="anchor" href="#building-and-deploying-on-kubernetes"></a>Building on Kubernetes</h2>
 <div class="sectionbody">
 <div class="admonitionblock tip">
 <table>
@@ -1150,7 +1184,7 @@ spec:
       strategyOptions:
         KanikoBuildCacheEnabled: "true"
       registry:
-        address: quay.io/kiegroup <i class="conum" data-value="1"></i><b>(1)</b>
+        address: registry.redhat.io/openshift-serverless-1 <i class="conum" data-value="1"></i><b>(1)</b>
         secret: regcred <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
 </div>
 </div>
@@ -1252,23 +1286,23 @@ spec:
 <h2 id="building-openshift"><a class="anchor" href="#building-openshift"></a>Building on OpenShift</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>You don&#8217;t need to do anything to build on OpenShift since the operator will configure everything for you. There are a few customizations you can do described in the <a href="#configure-build-system">Configuring the build system</a> section.</p>
+<p>You don&#8217;t need to do anything to build on OpenShift since the operator will configure everything for you. There are a few customizations you can do described in the <a href="#configure-build-system">[configure-build-system]</a> section.</p>
 </div>
 <div class="paragraph">
 <p>In general, the operator will create a <a href="https://docs.openshift.com/container-platform/4.13/cicd/builds/understanding-image-builds.html"><code>BuildConfig</code> to build</a> the workflow using the mapped <a href="referencing-resource-files.html" class="xref page">resource files</a> and your workflow definition. After the build is finished, the image will be pushed to the internal OpenShift registry backed by an <code>ImageStream</code> object.</p>
 </div>
 <div class="sect2">
-<h3 id="_changing_the_base_builder_image"><a class="anchor" href="#_changing_the_base_builder_image"></a>Changing the base builder image</h3>
+<h3 id="changing-base-builder"><a class="anchor" href="#changing-base-builder"></a>Changing the base builder image</h3>
 <div class="paragraph">
 <p>If you are running on OpenShift, you have access to the Red Hat&#8217;s supported registry. You can change the default builder image by editing the sonataflow-operator-builder-config <code>ConfigMap</code>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc edit cm/sonataflow-operator-builder-config -n sonataflow-operator-system</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl edit cm/sonataflow-operator-builder-config -n openshift-serverless-logic</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>In your editor, change the first line in the <code>Dockerfile</code> entry where it reads <code>FROM registry.redhat.io/openshift-serverless-1-tech-preview/logic-data-index-ephemeral-rhel8:1.32.0</code> to the desired image.</p>
+<p>In your editor, change the first line in the <code>Dockerfile</code> entry where it reads <code>FROM registry.redhat.io/openshift-serverless-1/logic-swf-builder-rhel8:1.33.0</code> to the desired image.</p>
 </div>
 <div class="paragraph">
 <p>This image must be compatible with your operator&#8217;s installation.</p>
@@ -1333,7 +1367,7 @@ spec:
 </div>
 </div>
 <div class="paragraph">
-<p>Save a file in your local file system with this contents named <code>greetings-workflow.yaml</code> then run:</p>
+<p>Save a file in your local file system with this content named <code>greetings-workflow.yaml</code> then run:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1433,7 +1467,7 @@ metadata:
 <p>After editing the resource, the operator will start a new build of the workflow. Once this is finished, the workflow will be notified and updated accordingly.</p>
 </div>
 <div class="paragraph">
-<p>If the build fails, but the workflow has a working deployment, the operator won&#8217;t rollout a new deployment.</p>
+<p>If the build fails, but the workflow has a working deployment, the operator won&#8217;t roll out a new deployment.</p>
 </div>
 <div class="paragraph">
 <p>Ideally you should use this feature if there&#8217;s a problem with your workflow or the initial build revision.</p>
@@ -1446,10 +1480,10 @@ metadata:
 <div class="ulist">
 <ul>
 <li>
-<p><a href="known-issues.html" class="xref page">Serverless Logic Operator Known Issues, Limitations and Roadmap</a></p>
+<p><a href="build-and-deploy-workflows.html" class="xref page">Building and Deploying Workflows with the Operator</a></p>
 </li>
 <li>
-<p><a href="developing-workflows.html" class="xref page">Developing Workflows with the Operator</a></p>
+<p><a href="building-custom-images.html" class="xref page">Building a Custom Development Image</a></p>
 </li>
 </ul>
 </div>
@@ -1459,7 +1493,7 @@ metadata:
 <h2 id="_found_an_issue"><a class="anchor" href="#_found_an_issue"></a><em><strong>Found an issue?</strong></em></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>If you find an issue or any misleading information, please feel free to report it <a href="https://github.com/apache/incubator-kie-kogito-docs/issues/new">here</a>.
+<p>If you find an issue or any misleading information, please feel free to report it <a href="https://github.com/kiegroup/kogito-docs/issues/new">here</a>.
 We really appreciate it!</p>
 </div>
 </div>

@@ -151,10 +151,10 @@
     <span class="nav-text">Getting Started</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../getting-started/create-your-first-workflow-service-with-kn-cli-and-vscode.html">Creating your first workflow service with KN CLI and VS Code</a>
+    <a class="nav-link" href="../../getting-started/create-your-first-workflow-service-with-kn-cli-and-vscode.html">Creating and running workflow projects using KN CLI and Visual Studio Code</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../getting-started/getting-familiar-with-our-tooling.html">Getting familiar with tooling</a>
+    <a class="nav-link" href="../../getting-started/getting-familiar-with-our-tooling.html">Getting familiar with OpenShift Serverless Logic tooling</a>
   </li>
 </ul>
   </li>
@@ -163,7 +163,7 @@
     <span class="nav-text">Core</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../core/cncf-serverless-workflow-specification-support.html">CNCF Serverless Workflow specification</a>
+    <a class="nav-link" href="../../core/cncf-serverless-workflow-specification-support.html">Serverless Workflow Specification</a>
   </li>
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="../../core/handling-events-on-workflows.html">Events</a>
@@ -172,19 +172,19 @@
     <a class="nav-link" href="../../core/working-with-callbacks.html">Callbacks</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../core/understanding-jq-expressions.html">jq expressions</a>
+    <a class="nav-link" href="../../core/understanding-jq-expressions.html">jq Expressions</a>
   </li>
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="../../core/understanding-workflow-error-handling.html">Error handling</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../core/configuration-properties.html">Configuration properties</a>
+    <a class="nav-link" href="../../core/configuration-properties.html">Configuration</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../core/defining-an-input-schema-for-workflows.html">Defining an input schema for your workflows</a>
+    <a class="nav-link" href="../../core/defining-an-input-schema-for-workflows.html">Input Schema</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../core/custom-functions-support.html">Custom functions for your service</a>
+    <a class="nav-link" href="../../core/custom-functions-support.html">Custom functions</a>
   </li>
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="../../core/timeouts-support.html">Timeouts</a>
@@ -215,16 +215,16 @@
     <a class="nav-link" href="../../tooling/serverless-logic-web-tools/serverless-logic-web-tools-overview.html">Serverless Logic Web Tools</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../../tooling/serverless-logic-web-tools/serverless-logic-web-tools-github-integration.html">GitHub integration</a>
+    <a class="nav-link" href="../../tooling/serverless-logic-web-tools/serverless-logic-web-tools-github-integration.html">Integration with GitHub</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../../tooling/serverless-logic-web-tools/serverless-logic-web-tools-openshift-integration.html">OpenShift integration</a>
+    <a class="nav-link" href="../../tooling/serverless-logic-web-tools/serverless-logic-web-tools-openshift-integration.html">Integration with OpenShift</a>
   </li>
   <li class="nav-item" data-depth="5">
     <a class="nav-link" href="../../tooling/serverless-logic-web-tools/serverless-logic-web-tools-redhat-application-services-integration.html">Red Hat OpenShift Application and Data Services integration</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../../tooling/serverless-logic-web-tools/serverless-logic-web-tools-deploy-projects.html">Deploying projects</a>
+    <a class="nav-link" href="../../tooling/serverless-logic-web-tools/serverless-logic-web-tools-deploy-projects.html">Deployment</a>
   </li>
 </ul>
   </li>
@@ -242,7 +242,7 @@
     <a class="nav-link" href="../../service-orchestration/configuring-openapi-services-endpoints.html">Configuring the OpenAPI services endpoints</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../../service-orchestration/working-with-openapi-callbacks.html">OpenAPI callback  in OpenShift Serverless Logic</a>
+    <a class="nav-link" href="../../service-orchestration/working-with-openapi-callbacks.html">OpenAPI callbacks in OpenShift Serverless Logic</a>
   </li>
 </ul>
   </li>
@@ -322,11 +322,17 @@
     <a class="nav-link" href="../../cloud/index.html">Cloud</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../cloud/custom-ingress-authz.html">Securing Workflows</a>
+  </li>
+  <li class="nav-item" data-depth="4">
     <button class="nav-toggle"></button>
     <span class="nav-text">Operator</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="5">
     <a class="nav-link" href="../../cloud/operator/install-serverless-operator.html">Installation</a>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../cloud/operator/global-configuration.html">Admin Configuration</a>
   </li>
   <li class="nav-item" data-depth="5">
     <a class="nav-link" href="../../cloud/operator/developing-workflows.html">Development Mode</a>
@@ -335,10 +341,10 @@
     <a class="nav-link" href="../../cloud/operator/referencing-resource-files.html">Referencing Workflow Resources</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../../cloud/operator/configuring-workflows.html">Configuration</a>
+    <a class="nav-link" href="../../cloud/operator/configuring-workflows.html">Workflow Configuration</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../../cloud/operator/build-and-deploy-workflows.html">Building and Deploying Workflows</a>
+    <a class="nav-link" href="../../cloud/operator/build-and-deploy-workflows.html">Building and Deploying Workflow Images</a>
   </li>
   <li class="nav-item" data-depth="5">
     <a class="nav-link" href="../../cloud/operator/supporting-services.html">Deploy Supporting Services</a>
@@ -362,6 +368,9 @@
     <a class="nav-link" href="../../cloud/operator/configuring-knative-eventing-resources.html">Knative Eventing</a>
   </li>
   <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="#cloud/operator/add-custom-ca-to-a-workflow-pod.adoc">Add Custom CA to Workflow Pod</a>
+  </li>
+  <li class="nav-item" data-depth="5">
     <a class="nav-link" href="../../cloud/operator/known-issues.html">Roadmap and Known Issues</a>
   </li>
 </ul>
@@ -381,6 +390,15 @@
     <button class="nav-toggle"></button>
     <span class="nav-text">Supporting Services</span>
 <ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Jobs Service</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../job-services/core-concepts.html">Core Concepts</a>
+  </li>
+</ul>
+  </li>
   <li class="nav-item" data-depth="4">
     <button class="nav-toggle"></button>
     <span class="nav-text">Data Index</span>
@@ -408,7 +426,10 @@
     <span class="nav-text">Getting Started</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="6">
-    <a class="nav-link" href="../../use-cases/advanced-developer-use-cases/getting-started/create-your-first-workflow-service.html">Creating your first workflow service</a>
+    <a class="nav-link" href="../../use-cases/advanced-developer-use-cases/getting-started/create-your-first-workflow-service.html">Creating a Quarkus Workflow service</a>
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../../use-cases/advanced-developer-use-cases/getting-started/create-your-first-workflow-project.html">Creating a Quarkus Workflow project</a>
   </li>
   <li class="nav-item" data-depth="6">
     <a class="nav-link" href="../../use-cases/advanced-developer-use-cases/getting-started/build-workflow-image-with-quarkus-cli.html">Building workflow images using Quarkus CLI</a>
@@ -722,7 +743,7 @@ The OpenShift Serverless Logic Dev UI extension allows you to use both mechanism
 <div class="paragraph">
 <p>If you want to start a new workflow instance using the workflow REST endpoint, just click on the <strong>Start new Workflow</strong>
 button of any of the workflow in the <strong>Workflow Definitions</strong> table, then you&#8217;ll be redirected to the <strong>Start New Workflow</strong>
-page where you could setup the data and Business Key that will be used to start the new workflow instance.</p>
+page where you could set up the data and Business Key that will be used to start the new workflow instance.</p>
 </div>
 </div>
 <div class="sect2">
@@ -755,7 +776,7 @@ a filling the data.</p>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>For more information about how to setup the Input Schema Definition on your OpenShift Serverless Logic, please take a look at the
+<p>For more information about how to set up the Input Schema Definition on your OpenShift Serverless Logic, please take a look at the
 <a href="../../core/defining-an-input-schema-for-workflows.html" class="xref page">Input Schema for OpenShift Serverless Logic</a> section.</p>
 </div>
 </td>
@@ -774,7 +795,7 @@ If the <strong>Business Key</strong> field is blank, then an auto-generated busi
 <h3 id="_starting_the_new_workflow_instance"><a class="anchor" href="#_starting_the_new_workflow_instance"></a>Starting the new Workflow instance</h3>
 <div class="paragraph">
 <p>By clicking on the <strong>Start</strong> button will POST the workflow data and the Business Key to the workflow REST endpoint. If the
-workflow instance starts successfully, a success alert appears on the top of the screen, which contains the
+workflow instance starts successfully, a success alert appears at the top of the screen, which contains the
 <strong>Go to workflow list</strong> link to navigate to the <a href="quarkus-dev-ui-workflow-instances-page.html" class="xref page">Workflow Instances page</a>.</p>
 </div>
 <div class="imageblock">
@@ -784,7 +805,7 @@ workflow instance starts successfully, a success alert appears on the top of the
 <div class="title">Figure 5. Example of workflow successful starting notification</div>
 </div>
 <div class="paragraph">
-<p>If there is an issue while starting a workflow, then a failure alert appears on the top of the screen, containing the*View Details* and <strong>Go to workflow list</strong> options. The <strong>View Details</strong> enables you to view the error message.</p>
+<p>If there is an issue while starting a workflow, then a failure alert appears at the top of the screen, containing the*View Details* and <strong>Go to workflow list</strong> options. The <strong>View Details</strong> enables you to view the error message.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -834,7 +855,7 @@ HTTP Cloud Events. This will lead you to the <strong>Trigger Cloud Event</strong
 <div class="title">Figure 7. Starting a workflow using a cloud event</div>
 </div>
 <div class="paragraph">
-<p>Click the <strong>Trigger</strong> button to trigger the cloud event. If the workflow instance starts successfully, a success alert appears on the top of the screen, which contains the
+<p>Click the <strong>Trigger</strong> button to trigger the cloud event. If the workflow instance starts successfully, a success alert appears at the top of the screen, which contains the
 <strong>Go to workflow list</strong> link to navigate to the <a href="quarkus-dev-ui-workflow-instances-page.html" class="xref page">Workflow Instances page</a>.</p>
 </div>
 <div class="imageblock">
@@ -844,7 +865,7 @@ HTTP Cloud Events. This will lead you to the <strong>Trigger Cloud Event</strong
 <div class="title">Figure 8. Example of workflow successful starting notification</div>
 </div>
 <div class="paragraph">
-<p>If there is an issue while starting a workflow, then a failure alert appears on the top of the screen, containing <strong>View Details</strong> and <strong>Go to workflow list</strong> options. The <strong>View Details</strong> enables you to view the error message.</p>
+<p>If there is an issue while starting a workflow, then a failure alert appears at the top of the screen, containing <strong>View Details</strong> and <strong>Go to workflow list</strong> options. The <strong>View Details</strong> enables you to view the error message.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -858,7 +879,7 @@ HTTP Cloud Events. This will lead you to the <strong>Trigger Cloud Event</strong
 <h2 id="_found_an_issue"><a class="anchor" href="#_found_an_issue"></a><em><strong>Found an issue?</strong></em></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>If you find an issue or any misleading information, please feel free to report it <a href="https://github.com/apache/incubator-kie-kogito-docs/issues/new">here</a>.
+<p>If you find an issue or any misleading information, please feel free to report it <a href="https://github.com/kiegroup/kogito-docs/issues/new">here</a>.
 We really appreciate it!</p>
 </div>
 </div>
