@@ -16,10 +16,8 @@ The following table serves as a quick reference for commonly used configuration 
 a|Defines the type of persistence database. The possible values of this property include:
 
 * `jdbc`
-* `mongodb`
 * `filesystem`
 * `kafka`
-* `infinispan`
 * `postgresql`
 |string
 |
@@ -138,7 +136,7 @@ a|Defines strategy to generate the configuration key of open API specifications.
 |`quarkus.kogito.devservices.image-name`
 |Defines the Data Index image to use.
 |string
-|`{kogito_devservices_imagename}:{page-component-version}`
+|`{sonataflow_dataindex_ephemeral_imagename}:{page-component-version}`
 |No
 
 |`quarkus.kogito.devservices.shared`

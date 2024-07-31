@@ -3,52 +3,69 @@
 This guide lists the different ways to set up your environment for {product_name} development. 
 If you are new, start with the minimal one.
 
+.Prerequisites
+* A machine with at least 8GB memory and a link:https://en.wikipedia.org/wiki/Multi-core_processor[CPU with 8 cores]
+
 [[proc-minimal-local-environment-setup]]
 == Minimal local environment setup
 
-Recommended steps to setup your local development environment. By completing these steps you are able to
+Recommended steps to set up your local development environment. By completing these steps you are able to
 start the development on your local machine using our guides.
 
 .Procedure
-. Install https://docs.docker.com/engine/install/[Docker] or https://podman.io/docs/installation[Podman].
-. Install https://minikube.sigs.k8s.io/docs/start/[minikube] or https://kind.sigs.k8s.io/docs/user/quick-start/#installation[kind].
-. Install https://kubernetes.io/docs/tasks/tools/[Kubernetes CLI].
-. Install https://knative.dev/docs/install/quickstart-install/[Knative using quickstart]. This will also setup Knative Serving and Eventing for you and the cluster should be running.
-. xref:cloud/operator/install-serverless-operator.adoc[]
+. Install link:{docker_install_url}[Docker] or link:{podman_install_url}[Podman].
+. Install link:{minikube_start_url}[minikube] or link:{kind_install_url}[kind].
+. Install link:{kubectl_install_url}[Kubernetes CLI].
+. Install link:{knative_quickstart_url}[Knative using quickstart]. This will also set up Knative Serving and Eventing for you and the cluster should be running.
+. Install the xref:cloud/operator/install-serverless-operator.adoc#_sonataflow_operator_manual_installation[{operator_name} manually].
 . Install xref:testing-and-troubleshooting/kn-plugin-workflow-overview.adoc[Knative Workflow CLI].
-. Install https://code.visualstudio.com/[Visual Studio Code] with https://marketplace.visualstudio.com/items?itemName=kie-group.swf-vscode-extension[our extension] that simplifies development of workflows by provifing visual aids and auto-complete features.
+. Install link:{visual_studio_code_url}[Visual Studio Code] with link:{visual_studio_code_swf_extension_url}[our extension] that simplifies development of workflows by providing visual aids and auto-complete features.
 
 [[proc-starting-cluster-fo-local-development]]
 == Starting the cluster for local development
 
-If you have used https://knative.dev/docs/install/quickstart-install/[Knative using quickstart] guide, your selected cluster should be running and properly configured to work with our guides.
+If you have used link:{knative_quickstart_url}[Knative using quickstart] guide, your selected cluster should be running and properly configured to work with our guides.
 
-Please note, that if the knative quickstart procedure is not used, you need to install Knative Serving and Eventing manually. See <<proc-additional-options-for-local-environment>>.
+Please note, that if the Knative quickstart procedure is not used, you need to install Knative Serving and Eventing manually. See <<proc-additional-options-for-local-environment>>.
 
 
-.To startup the selected cluster without quickstart, use the following command:
+.To start up the selected cluster without quickstart, use the following command:
 [tabs]
 ====
-Minikube::
+Minikube with Docker::
 +
 --
-.Configure and startup minikube
+.Configure and startup minikube with Docker
 [source,shell]
 ----
 # Set a driver and container runtime
-minikube config set driver docker/podman
-minikube config set container-runtime docker/podman
-
-# Set cpu and memory
-# 4096 is minimal baseline, increase to 6144 or 8192 if possible
-minikube config set cpus 4
-minikube config set memory 4096
+minikube config set driver docker
+minikube config set container-runtime docker
 
 # Start the cluster
+# Set the memory to at least 4096, increase to 6144 or 8192 if possible
 minikube start --cpus 4 --memory 4096 --addons registry --addons metrics-server --insecure-registry "10.0.0.0/24" --insecure-registry "localhost:5000"
 
 # Set the active profile
-minikube profile minikube
+minikube profile knative
+----
+--
+Minikube with Podman::
++
+--
+.Configure and startup minikube with Podman
+[source,shell]
+----
+# Set a driver and container runtime
+minikube config set driver podman
+minikube config set container-runtime podman
+
+# Start the cluster
+# Set the memory to at least 4096, increase to 6144 or 8192 if possible
+minikube start --cpus 4 --memory 4096 --addons registry --addons metrics-server --insecure-registry "10.0.0.0/24" --insecure-registry "localhost:5000"
+
+# Set the active profile
+minikube profile knative
 ----
 --
 Kind::
@@ -69,18 +86,18 @@ If you are interested in our Java and Quarkus development path, consider complet
 <<proc-minimal-local-environment-setup>>. By completing these steps you are able to start the development of applications on your local machine using our xref:use-cases/advanced-developer-use-cases/index.adoc[advanced developer guides].
 
 .Procedure
-. Install https://openjdk.org/[OpenJDK] {java_min_version} and cofigure `JAVA_HOME` appropriately by adding it to the `PATH`.
-. Install https://maven.apache.org/index.html[Apache Maven] {maven_min_version}.
-. Install https://quarkus.io/guides/cli-tooling[Quarkus CLI] corresponding to currently supported version by {product_name}. Currently it is {quarkus_version}.
+. Install link:{openjdk_install_url}[OpenJDK] {java_min_version} and configure `JAVA_HOME` appropriately by adding it to the `PATH`.
+. Install link:{maven_install_url}[Apache Maven] {maven_min_version}.
+. Install link:{quarkus_cli_url}[Quarkus CLI] corresponding to the currently supported version by {product_name}. Currently, it is {quarkus_version}.
 
 [[proc-additional-options-for-local-environment]]
-== Additional options for environment setup
+== Additional options for local environment setup
 
-Points listed in this section provide extra posibilties when working with our guides and are considered optional.
+Points listed in this section provide extra possibilities when working with our guides and are considered optional.
 
-* Install https://www.graalvm.org/[GraalVM] {graalvm_min_version}. This will allow you to create https://www.graalvm.org/22.0/reference-manual/native-image/[native image] of your {product_name} application.
-* Install https://docs.openshift.com/serverless/1.32/install/installing-knative-serving.html[Knative Serving] for advanced customizations or in cases where you are working with Openshift.
-* Install https://docs.openshift.com/serverless/1.32/install/installing-knative-eventing.html[Knative Eventing] for advanced customizations or in cases where you are working with Openshift.
+* Install link:{graalvm_url}[GraalVM] {graalvm_min_version}. This will allow you to create link:{graalvm_native_image_url}[native image] of your {product_name} application.
+* Install link:{knative_serving_install_yaml_url}[Knative Serving using YAML files] for advanced customizations or in cases where the quickstart procedure fails.
+* Install link:{knative_eventing_install_yaml_url}[Knative Eventing using YAML files] for advanced customizations or in cases where the quickstart procedure fails.
 
 == Additional resources
 

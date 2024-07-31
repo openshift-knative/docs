@@ -30,12 +30,12 @@ Here we have the Newsletter Subscription workflow:
 image::use-cases/newsletter-subscription/newsletter-subscription-flow.png[Workflow]
 
 .Newsletter subscription flow workflow definition
-[source,json]
+[source,json,subs="attributes+"]
 ----
 {
   "id": "subscription_flow",
   "dataInputSchema": "subscription-schema.json",
-  "specVersion": "0.8",
+  "specVersion": "{spec_version}",
   "version": "1.0",
   "start": "VerifyEmail",
   "events": [
@@ -216,13 +216,13 @@ image::use-cases/newsletter-subscription/newsletter-subscription-backend-ui.png[
 
 == Executing the workflows
 
-In a command terminal, clone the `kogito-examples` repository, navigate to the cloned directory, and follow link:{kogito_sw_examples_url}/serverless-workflow-newsletter-subscription/README.md#running-on-knative[these steps]:
+In a command terminal, clone the `{kie_kogito_examples_repo_name}` repository, navigate to the cloned directory, and follow link:{kogito_sw_examples_url}/serverless-workflow-newsletter-subscription/README.md#running-on-knative[these steps]:
 
-[source, bash]
+[source,bash,subs="attributes+"]
 ----
-git clone https://github.com/apache/incubator-kie-kogito-examples.git
+git clone {kogito_examples_url}
 
-cd kogito-examples/serverless-workflow-examples/serverless-workflow-newsletter-subscription
+cd {kie_kogito_examples_repo_name}/serverless-workflow-examples/serverless-workflow-newsletter-subscription
 ----
 
 === Architecture
@@ -252,7 +252,7 @@ For simplification purposes, a single database instance is used for both service
 ====
 
 
-For more information about knative eventing outgoing CloudEvents over HTTP, see xref:use-cases/advanced-developer-use-cases/event-orchestration/consume-produce-events-with-knative-eventing.adoc[].
+For more information about Knative eventing outgoing CloudEvents over HTTP, see xref:use-cases/advanced-developer-use-cases/event-orchestration/consume-produce-events-with-knative-eventing.adoc[].
 
 
 == Additional resources

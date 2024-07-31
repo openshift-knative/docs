@@ -19,14 +19,14 @@ To use the Red Hat Build of Quarkus (RHBQ) libraries, you need to configure your
 ----
 <!-- Configure the {product_name} Maven repository -->
 <profile>
-  <id>red-hat-earlyaccess-maven-repository</id>
+  <id>red-hat-ga-maven-repository</id>
   <activation>
     <activeByDefault>true</activeByDefault>
   </activation>
   <repositories>
     <repository>
-      <id>red-hat-earlyaccess-maven-repository</id>
-      <url>https://maven.repository.redhat.com/earlyaccess/all/</url>
+      <id>red-hat-ga-maven-repository</id>
+      <url>https://maven.repository.redhat.com/ga</url>
       <releases>
         <enabled>true</enabled>
       </releases>
@@ -37,8 +37,8 @@ To use the Red Hat Build of Quarkus (RHBQ) libraries, you need to configure your
   </repositories>
   <pluginRepositories>
     <pluginRepository>
-      <id>red-hat-earlyaccess-maven-repository</id>
-      <url>https://maven.repository.redhat.com/earlyaccess/all/</url>
+      <id>red-hat-ga-maven-repository</id>
+      <url>https://maven.repository.redhat.com/ga</url>
       <releases>
         <enabled>true</enabled>
       </releases>

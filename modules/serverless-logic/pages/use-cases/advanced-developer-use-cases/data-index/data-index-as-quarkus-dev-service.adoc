@@ -33,7 +33,7 @@ The Quarkus Dev Service also allows further configuration options including:
 
 * To disable {data_index_ref} Dev Service, use the `quarkus.kogito.devservices.enabled=false` property.
 * To change the port where the {data_index_ref} Dev Service runs, use the `quarkus.kogito.devservices.port=8180` property.
-* To adjust the provisioned image, use `quarkus.kogito.devservices.imageName={kogito_devservices_imagename}` property.
+* To adjust the provisioned image, use `quarkus.kogito.devservices.imageName={sonataflow_dataindex_ephemeral_imagename}` property.
 * To disable sharing the {data_index_ref} instance across multiple Quarkus applications, use `quarkus.kogito.devservices.shared=false` property.
 
 For more information about Quarkus Dev Services, see link:{dev_services_url}[Dev Services guide].
@@ -66,7 +66,7 @@ The following table serves as a quick reference for commonly {data_index_ref} co
 | Yes
 
 |`QUARKUS_DATASOURCE_DB_KIND`
-a|The kind of database to connect: `postgresql`,..
+a|The kind of database to connect: `postgresql`, ...
 |string
 |
 |Yes
@@ -110,8 +110,7 @@ Allows to change the event connection type. The possible values are:
 |`quarkus.kogito.devservices.image-name`
 |Defines the {data_index_ref} image to use in Dev Service.
 |string
-
-|`{kogito_devservices_imagename}:{page-component-version}`
+|`{sonataflow_dataindex_ephemeral_imagename}:{page-component-version}`
 |No
 
 |`quarkus.kogito.devservices.shared`

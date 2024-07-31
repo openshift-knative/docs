@@ -1,31 +1,29 @@
-= New features on {page-component-display-version}
+= New features on {operator_version}
 :compat-mode!:
 
 == Known issues
+* link:https://issues.redhat.com/browse/SRVLOGIC-333[SRVLOGIC-333] - Afer update of workflow a new build is not trigger when the previous failed
+* link:https://issues.redhat.com/browse/SRVLOGIC-324[SRVLOGIC-324] - Live reload does not work for KN CLI plugin
+* link:https://issues.redhat.com/browse/SRVLOGIC-327[SRVLOGIC-327] - Warnings in jobs service ephemeral pod logs
+* link:https://issues.redhat.com/browse/SRVLOGIC-326[SRVLOGIC-326] - Warnings in data index ephemeral pod logs
+* link:https://issues.redhat.com/browse/SRVLOGIC-320[SRVLOGIC-320] - Natively build examples are not able to respond to requests
+* link:https://issues.redhat.com/browse/SRVLOGIC-250[SRVLOGIC-250] - Different UI results in DevUI with dev and preview scenarios 
+* link:https://issues.redhat.com/browse/SRVLOGIC-220[SRVLOGIC-220] - Monitoring tab (workflow list):  Duration negative and timezone incorrect
+* link:https://issues.redhat.com/browse/SRVLOGIC-334[SRVLOGIC-334] - Missing serverless-workflow-examples-parent:pom when building productized example
 
-* link:https://issues.redhat.com/browse/SRVLOGIC-185[SRVLOGIC-185] - Serverless logic operator builder is not able to find builder config ConfigMap.
-** Workaround - In the operator's namespace create a copy of 'logic-operator-rhel8-builder-config' configMap with name 'sonataflow-operator-builder-config`.
-* link:https://issues.redhat.com/browse/SRVLOGIC-270[SRVLOGIC-270] - Servlerless Logic Operator is picking the wrong builder image
-** Workaround - Configure the builder to pick this image instead (which is really the latest):  `registry.redhat.io/openshift-serverless-1-tech-preview/logic-swf-builder-rhel8:1.32.0-5.`
-* link:https://issues.redhat.com/browse/SRVLOGIC-220[SRVLOGIC-220] - Monitoring tab or workflow list: Duration negative and timezone incorrect
-* link:https://issues.redhat.com/browse/SRVLOGIC-244[SRVLOGIC-244] - Example serverless-workflow-loanbroker-example service discovery misconfiguration
-* link:https://issues.redhat.com/browse/SRVLOGIC-250[SRVLOGIC-250] - DevUI Different UI results with dev and prod scenarios
 
 == Notable changes
 
-* link:https://issues.redhat.com/browse/SRVLOGIC-179[SRVLOGIC-179] - Provide the option to specify workflow properties at several levels
-* link:https://issues.redhat.com/browse/SRVLOGIC-196[SRVLOGIC-196] - Rollout operator's deployment when custom configuration changes
+* link:https://issues.redhat.com/browse/SRVLOGIC-246[SRVLOGIC-246] - Improvements on the Job Service start-up and periodic jobs loading procedure
+* link:https://issues.redhat.com/browse/SRVLOGIC-232[SRVLOGIC-232] - Productize Data Index PostgreSQL and Jobs Service images
+* link:https://issues.redhat.com/browse/SRVLOGIC-232[SRVLOGIC-249] - SonataFlow Operator: Knative Eventing Integration M1
+* link:https://issues.redhat.com/browse/SRVLOGIC-252[SRVLOGIC-252] - Security: Authentication and Authorization Support
+* link:https://issues.redhat.com/browse/SRVLOGIC-276[SRVLOGIC-276] - [operator] Make the workflow properties available when the associated image is generated
+* link:https://issues.redhat.com/browse/SRVLOGIC-278[SRVLOGIC-278] - Enhance Knative Serving Integration
 
 
 == Other changes and Bug fixes
 
-* link:https://issues.redhat.com/browse/SRVLOGIC-221[SRVLOGIC-221] - Pod instances keep spawning and terminating when deploying the workflow 
-* link:https://issues.redhat.com/browse/SRVLOGIC-223[SRVLOGIC-223] - Kn CLI: Build of the sample project fails with NoSuchFileException
-* link:https://issues.redhat.com/browse/SRVLOGIC-224[SRVLOGIC-224] - Multiple pods are started with a simple project
-* link:https://issues.redhat.com/browse/SRVLOGIC-225[SRVLOGIC-225] - Incosistent versions of Quarkus core and platform across deliverables
-* link:https://issues.redhat.com/browse/SRVLOGIC-230[SRVLOGIC-230] - SonataFlow Quarkus Dev UI is not loaded
-* link:https://issues.redhat.com/browse/SRVLOGIC-231[SRVLOGIC-231] - Disable question about collecting Quarkus analytics
-* link:https://issues.redhat.com/browse/SRVLOGIC-235[SRVLOGIC-235] - SonataFlow builder image is failing with java.lang.NoSuchMethodError
-* link:https://issues.redhat.com/browse/SRVLOGIC-238[SRVLOGIC-238] - SonataFlow examples are missing quarkus 3 upgrade
-* link:https://issues.redhat.com/browse/SRVLOGIC-239[SRVLOGIC-239] - SonataFlow examples are downloading logic-data-index-ephemeral-rhel8 with version 1.32
-* link:https://issues.redhat.com/browse/SRVLOGIC-251[SRVLOGIC-251] - Missing installation/prepare environment guide in documentation
+* link:https://issues.redhat.com/browse/SRVLOGIC-311[SRVLOGIC-311] - Add Red Hat Product repository as part of Swf-builder and Swf-devmode settings.xml
+* link:https://issues.redhat.com/browse/SRVLOGIC-311[SRVLOGIC-277] - Error in workflow not correctly propagated
+* link:https://issues.redhat.com/browse/SRVLOGIC-311[SRVLOGIC-185] - Serverless logic operator builder is not able to find builder config ConfigMap

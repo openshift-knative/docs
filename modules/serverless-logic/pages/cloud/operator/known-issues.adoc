@@ -4,37 +4,7 @@
 :description: Known issues, features, and limitations of the operator
 :keywords: kogito, sonataflow, workflow, serverless, operator, kubernetes, minikube, roadmap
 
-The link:{kogito_serverless_operator_url}[{operator_name}] is currently in Alpha version, is under active development.
 
-// == Known Bugs
 
-== Roadmap
 
-The following issues are currently being prioritized:
-
-=== CNCF Specification v0.8 Alignment
-
-- link:https://issues.redhat.com/browse/KOGITO-7840[Implement admission webhooks for workflow validation]
-
-// === Workflow Development Profile
-
-=== Workflow Productization Profile
-
-- link:https://issues.redhat.com/browse/KOGITO-8524[Enable toggle Workflow CR from devmode to production mode and vice-versa]
-- link:https://issues.redhat.com/browse/KOGITO-8792[Review build failures and signal the reasoning in the Events API]
-- link:https://issues.redhat.com/browse/KOGITO-8806[Evaluate internal registry integration on OpenShift, Kubernetes and Minikube]
-
-=== Knative Integration
-
-- link:https://issues.redhat.com/browse/KOGITO-9812[SonataFlow Operator integration with Knative Eventing]
-- link:https://issues.redhat.com/browse/KOGITO-8496[Knative Serving Extension for Serverless Workflow specification]
-
-=== GitOps
-
-- link:https://issues.redhat.com/browse/KOGITO-9527[Extend the SonataFlow Operator with Jib builder]
-- link:https://issues.redhat.com/browse/KOGITO-9833[Add external built image integrity validation]
-
-=== Operator SDK, OLM, OperatorHub
-
-- link:https://issues.redhat.com/browse/KOGITO-8182[Enable SonataFlow Operator for level 2 - Seamless Upgrades]
 
