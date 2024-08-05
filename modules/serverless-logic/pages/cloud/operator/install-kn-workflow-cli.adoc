@@ -8,11 +8,7 @@
 *Prerequisites*
 
 * You have first installed the link:{kn_cli_install_url}[Knative CLI].
-* link:{java_install_url}[Java] {java_min_version} is installed.
-* link:{maven_install_url}[Maven] {maven_min_version} or later is installed.
-* (Optional) link:{docker_install_url}[Docker] is installed.
-* (Optional) link:{podman_install_url}[Podman] is installed.
-* link:{kubectl_install_url}[Kubernetes CLI] is installed.
+* link:{docker_install_url}[Docker] or {podman_install_url}[Podman] is installed.
 
 [proc-install-sw-plugin-kn-cli]]
 == Installing the {product_name} plug-in for Knative CLI
