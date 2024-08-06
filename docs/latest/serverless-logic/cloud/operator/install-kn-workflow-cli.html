@@ -653,7 +653,10 @@
 <div class="ulist">
 <ul>
 <li>
-<p>You have first installed the  <a href="https://docs.openshift.com/serverless/1.33/install/installing-kn.html">Knative CLI</a>.</p>
+<p>You have first installed the <a href="https://docs.openshift.com/serverless/1.33/install/installing-kn.html">Knative CLI</a>.</p>
+</li>
+<li>
+<p><a href="https://docs.docker.com/engine/install/">Docker</a> or <a href="https://docs.podman.io/en/latest/">Podman</a> is installed.</p>
 </li>
 </ul>
 </div>
@@ -661,8 +664,71 @@
 <div id="toc" class="toc">
 <div id="toctitle"></div>
 <ul class="sectlevel1">
+<li><a href="#_installing_the_openshift_serverless_logic_plug_in_for_knative_cli">Installing the OpenShift Serverless Logic plug-in for Knative CLI</a></li>
 <li><a href="#_installing_the_knative_workflow_plugin_using_the_artifacts_image">Installing the Knative Workflow Plugin using the artifacts image</a></li>
 </ul>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_installing_the_openshift_serverless_logic_plug_in_for_knative_cli"><a class="anchor" href="#_installing_the_openshift_serverless_logic_plug_in_for_knative_cli"></a>Installing the OpenShift Serverless Logic plug-in for Knative CLI</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You can use the OpenShift Serverless Logic plug-in to set up your local workflow project quickly using Knative CLI.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Download the latest binary file, suitable for your environment, from the <a href="https://developers.redhat.com/content-gateway/rest/mirror/pub/cgw/serverless-logic/1.33.0/">download</a> page.</p>
+</li>
+<li>
+<p>Install the <code>kn workflow</code> command as a plug-in of the Knative CLI using the following steps:</p>
+<div class="openblock">
+<div class="content">
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Rename the downloaded binary as follows:</p>
+<div class="paragraph">
+<p><code>mv kn-workflow-linux-amd64 kn-workflow</code></p>
+</div>
+</li>
+<li>
+<p>Make the binary file executable as follows:</p>
+<div class="paragraph">
+<p><code>chmod +x kn-workflow</code></p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>On Mac, some systems might block the application to run due to Apple enforcing policies. To fix this problem, check the <strong>Security &amp; Privacy</strong> section in the <strong>System Preferences</strong> &#8594; <strong>General</strong> tab to approve the application to run. For more information, see <a href="{apple_support_url}">Apple support article: Open a Mac app from an unidentified developer</a>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Copy the <code>kn-workflow</code> binary file to <code>/usr/local/bin</code>.</p>
+</li>
+<li>
+<p>Run the following command to verify that <code>kn-workflow</code> plug-in is installed successfully:</p>
+<div class="paragraph">
+<p><code>kn plugin list</code></p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</li>
+</ol>
+</div>
 </div>
 </div>
 <div class="sect1">
