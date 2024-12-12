@@ -1,0 +1,186 @@
+= Setup Backstage for Eventing
+:compat-mode!:
+// Metadata:
+:description: Setup Backstage for Eventing in {serverlessproductname}
+
+This page describes how to set up Backstage for Eventing in {serverlessproductname}, which allows you to discover your Eventing resources in Backstage.
+
+[IMPORTANT]
+====
+{serverlessproductname} Backstage integration is a Developer Preview feature only.
+
+Developer Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete.
+Red Hat does not recommend using them in production.
+These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.
+
+For more information about the support scope of Red Hat Developer Preview features, see https://access.redhat.com/support/offerings/devpreview/.
+====
+
+== Prerequisites
+
+* You have access to an {product-title} account with cluster administrator access.
+
+* Install the OpenShift CLI (`oc`).
+
+* Install the {serverlessoperatorname}.
+
+* Install the https://developers.redhat.com/rhdh/overview[Red Hat Developer Hub Operator] and create a `Backstage` instance.
+
+== Enable Backstage backend for Eventing
+
+. Configure `KnativeEventing` to create the necessary backend resources for Backstage:
++
+[source,yaml]
+----
+apiVersion: operator.knative.dev/v1
+kind: KnativeEventing
+metadata:
+  name: knative-eventing
+  namespace: knative-eventing
+spec:
+
+  # Other spec fields omitted ...
+  # ...
+
+  config:
+    features:
+      backstage-backend: enabled <1>
+----
+<1> Enables Backstage backend deployment in Eventing namespace.
+
+. Apply the `KnativeEventing` resource:
++
+[source,terminal]
+----
+$ oc apply -f <filename>
+----
+
+== Create necessary tokens for Backstage backend and {serverlessproductname} communication
+
+Backstage backend will communicate with the {serverlessproductname} Backstage backend using a token. That token will be passed to the {serverlessproductname} backend and the it will use it to talk to the Kubernetes API server.
+
+. Create a `ServiceAccount`:
++
+[source,terminal]
+----
+$ oc -n knative-eventing create serviceaccount backstage-admin
+----
+
+. Create a `ClusterRole` that allows the `ServiceAccount` to list and get resources in the cluster:
++
+[source,terminal]
+----
+$ oc create clusterrole backstage-admin --verb=list,get --resource="*"
+----
+
+. Bind the `ServiceAccount` to the `ClusterRole`:
++
+[source,terminal]
+----
+$ oc create clusterrolebinding backstage-admin --clusterrole=backstage-admin --serviceaccount=knative-eventing:backstage-admin
+----
+
+. Create a secret:
++
+[source,yaml]
+----
+apiVersion: v1
+kind: Secret
+metadata:
+  name: backstage-admin
+  namespace: knative-eventing
+  annotations:
+    kubernetes.io/service-account.name: backstage-admin
+type: kubernetes.io/service-account-token
+----
+. Apply the `Secret` resource:
++
+[source,terminal]
+----
+$ oc apply -f <filename>
+----
+
+. Get the token from the secret:
++
+[source,terminal]
+----
+$ oc get secret backstage-admin -n knative-eventing -o jsonpath='{.data.token}' | base64 --decode
+----
+We are going to give this token to Red Hat Developer Hub.
+
+
+== Install the Backstage plugin on Red Hat Developer Hub
+
+. Add the `BACKSTAGE_KNATIVE_BACKEND_TOKEN` environment variable to the Red Hat Developer Hub deployment by modifying the Red Hat Developer Hub secret such as `secrets-rhdh`:
++
+[source,yaml]
+----
+kind: Secret
+apiVersion: v1
+metadata:
+  name: secrets-rhdh
+  namespace: rhdh-operator
+  # more metadata ...
+data:
+  BACKSTAGE_KNATIVE_BACKEND_TOKEN: SECRET-TOKEN <1>
+  # more data ...
+# more fields ...
+----
+<1> The token we got from the `backstage-admin` secret.
+
+. Modify the https://docs.redhat.com/en/documentation/red_hat_developer_hub/1.3/html-single/installing_and_viewing_dynamic_plugins/index[dynamic plugins configmap] such as `dynamic-plugins-rhdh` and add an entry for the Backstage plugin:
++
+[source,yaml]
+----
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: dynamic-plugins-rhdh
+  namespace: rhdh-operator
+  # more metadata ...
+data:
+  dynamic-plugins.yaml: |-
+    includes:
+      - dynamic-plugins.default.yaml
+    plugins:
+      # - Other plugins omitted
+      # - ...
+      - package: "@knative-extensions/plugin-knative-event-mesh-backend-dynamic@1.16.0" <1>
+        integrity: "sha512-Rnw7o2UyS8X7YklwhHYEtr/yHLnDHJizIACpKaDuqddW/2+WBWrdg8geAYGAeW8u/RnXwgpkcFW27DmoQ460gQ==" <2>
+        disabled: false
+        pluginConfig:
+          catalog:
+            providers:
+              knativeEventMesh:
+                dev:
+                  token: "${BACKSTAGE_KNATIVE_BACKEND_TOKEN}" <3>
+                  baseUrl: "http://eventmesh-backend.knative-eventing.svc.cluster.local:8080" <4>
+                  schedule:
+                    frequency: { minutes: 1 } <5>
+                    timeout: { minutes: 1 } <6>
+----
+<1> The full package name of the plugin. You can find the list of available versions in https://www.npmjs.com/package/@knative-extensions/plugin-knative-event-mesh-backend-dynamic?activeTab=versions[NPM].
+<2> The integrity of the plugin package. You can find the integrity of the package  by running `npm view @knative-extensions/plugin-knative-event-mesh-backend-dynamic@1.16.0 dist.integrity`.
+<3> This will be replaced by an environment variable we have created in the previous step.
+<4> This is the URL of the Backstage backend.
+<5> The frequency at which the plugin will poll the backend for new data.
+<6> The timeout for the polling.
+
+. Apply the `ConfigMap` resource:
++
+[source,terminal]
+----
+$ oc apply -f <filename>
+----
+
+
+[NOTE]
+====
+The changes will not be applied to the Red Hat Developer Hub deployment automatically.
+You need to restart the Red Hat Developer Hub deployment to apply the changes.
+====
+
+[NOTE]
+====
+The default installation of Red Hat Developer Hub might not have the https://docs.redhat.com/en/documentation/red_hat_developer_hub/1.3/html-single/installing_and_viewing_dynamic_plugins/index[dynamic plugins configmap] such as `dynamic-plugins-rhdh` and the https://docs.redhat.com/en/documentation/red_hat_developer_hub/1.3/html-single/administration_guide_for_red_hat_developer_hub/index#proc-add-custom-app-config-file-ocp-operator_admin-rhdh[secret such as `secrets-rhdh`] created. See the Red Hat Developer Hub documentation for more information on how to create these resources and to reference them in the Red Hat Developer Hub instance.
+====
