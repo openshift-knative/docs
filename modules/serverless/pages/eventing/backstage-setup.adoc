@@ -77,6 +77,12 @@ $ oc -n knative-eventing create serviceaccount backstage-admin
 $ oc create clusterrole backstage-admin --verb=list,get --resource="*"
 ----
 
++
+[IMPORTANT]
+====
+The `ClusterRole` should be scoped to only allow the necessary permissions. The above example is just for demonstration purposes.
+====
+
 . Bind the `ServiceAccount` to the `ClusterRole`:
 +
 [source,terminal]
