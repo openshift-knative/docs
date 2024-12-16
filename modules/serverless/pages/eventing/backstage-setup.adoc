@@ -5,6 +5,10 @@
 
 This page describes how to set up Backstage for Eventing in {serverlessproductname}, which allows you to discover your Eventing resources in Backstage.
 
+In an event driven architecture, events are the first-class citizens. They are the building blocks of your application. {serverlessproductname} provides a way to create, manage, and consume events in a cloud-native way. {serverlessproductname} Eventing is built on top of Knative Eventing, which is a Kubernetes-based eventing system that provides composable primitives to build event-driven systems.
+
+However, as the number of events and event sources grow, it becomes difficult to manage them. You need a way to discover and manage these resources. This is where Backstage comes in. Backstage is an open-source platform for building developer portals. It provides a way to discover, share, and collaborate on your services and APIs.
+
 [IMPORTANT]
 ====
 {serverlessproductname} Backstage integration is a Developer Preview feature only.
