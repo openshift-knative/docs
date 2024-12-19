@@ -167,7 +167,7 @@ Every jobs service deployment must be upgraded with the following procedure:
 *Post-operator upgrade steps:*
 
 [start=2]
-. When the OSL Operator 1.35.0 upgrade was executed, and the new OSL Operator Pod has started, every jobs service Deployment must be deleted.
+. When the OSL Operator 1.35.0 upgrade was executed, and the new OSL Operator Pod started, every job's service Deployment must be deleted.
 +
 This will cause the automatic clean-up of the OSL 1.34.0 jobs service Pod and ReplicaSets, and the generation of new ones in OSL 1.35.0
 
