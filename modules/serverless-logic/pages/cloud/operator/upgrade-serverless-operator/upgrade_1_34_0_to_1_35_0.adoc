@@ -61,7 +61,7 @@ Ensure that any k8s resource for that workflow, for example, the user-provided C
 
 [#workflows_preview_profile]
 ==== Workflows with the `preview` profile
-Every workflow with the `preview` profile must be deleted before applying the operator upgrade to OSL 1.35.0, and re-deployed after the upgrade is completed.
+Every workflow with the `preview` profile must be deleted before applying the operator upgrade to OSL 1.35.0 and re-deployed after the upgrade is completed.
 
 For every workflow `my-workflow` with the `preview` profile you must:
 
