@@ -42,7 +42,7 @@ Interested parties might automate the procedure according to their convenience o
 [#workflows_dev_profile]
 ==== Workflows with the `dev` profile
 
-Every workflow with the `dev` profile must be deleted before applying the operator upgrade to OSL 1.35.0, and re-deployed after the upgrade is completed.
+You must delete every workflow with the `dev` profile before applying the operator upgrade to OSL 1.35.0 and re-deployed after the upgrade is completed.
 
 For every workflow `my-workflow` with the `dev` profile you must:
 
