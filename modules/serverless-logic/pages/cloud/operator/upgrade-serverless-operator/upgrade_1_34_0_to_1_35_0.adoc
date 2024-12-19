@@ -50,7 +50,7 @@ For every workflow `my-workflow` with the `dev` profile you must:
 
 . oc delete -f <my-workflow.yaml>  -n  <target_namespace>
 +
-Be sure that you have a copy of the corresponding SonataFlow CRD, as well as any other k8s resource created for that workflow, for example, the user provided ConfigMap with the application.properties in cases you are using custom properties configurations, etc.
+Ensure that you have a copy of the corresponding SonataFlow CRD, as well as any other k8s resource created for that workflow, for example, the user provided ConfigMap with the application.properties in cases you are using custom properties configurations, etc.
 
 *Post-operator upgrade steps:*
 
