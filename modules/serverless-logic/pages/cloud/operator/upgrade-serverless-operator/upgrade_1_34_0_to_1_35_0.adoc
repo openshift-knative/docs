@@ -67,7 +67,7 @@ For every workflow `my-workflow` with the `preview` profile you must:
 
 *Pre-operator upgrade steps:*
 
-. If the workflow is configured to use persistence, you must backup the workflow database.
+. If the workflow is configured to use persistence, you must back up the workflow database.
 Be sure that your database backup includes the database objects, and not only the table's information.
 
 . oc delete <my-workflow.yaml> -n <target_namespace>
