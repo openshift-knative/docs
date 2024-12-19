@@ -24,7 +24,7 @@ To upgrade an OSL 1.34.0 installation to the OSL 1.35.0 version, you must execut
 
 === Overall upgrade procedure
 
-We recommend that you read all the steps and understand the procedure before executing.
+It is recommended to read and understand all the steps of the procedure before executing.
 Interested parties might automate the procedure according to their convenience or infrastructure, for example, a particular user might have all the SonataFlow CRDs in a github repository, which might help considerably to implement an automation, etc.
 
 . Execute the step `1` of the upgrade for every workflow with the <<workflows_dev_profile, dev profile>>.
