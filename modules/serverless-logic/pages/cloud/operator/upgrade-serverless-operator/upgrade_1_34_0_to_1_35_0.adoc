@@ -99,7 +99,7 @@ Be sure that any k8s resource for that workflow, for example, the user provided 
 [#workflows_gitops_profile]
 ==== Workflows with the `gitops` profile
 
-Every workflow with the `gitops` profile must be scaled to zero before applying the operator upgrade to OSL 1.35.0, and rescaled to 1 after the upgrade is completed.
+Every workflow with the `gitops` profile must be scaled to zero before applying the operator upgrade to OSL 1.35.0 and rescaled to 1 after the upgrade is completed.
 
 For every workflow `my-workflow` with the `gitops` profile you must:
 
