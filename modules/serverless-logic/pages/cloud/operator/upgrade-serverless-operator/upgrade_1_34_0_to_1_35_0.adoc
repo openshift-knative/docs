@@ -57,7 +57,7 @@ Ensure that you have a copy of the corresponding SonataFlow CRD, as well as any 
 [start=2]
 . Re-deploy the workflow.
 +
-Be sure that any k8s resource for that workflow, for example, the user provided ConfigMap with the application.properties, is created before you re-deploy the workflow.
+Ensure that any k8s resource for that workflow, for example, the user-provided ConfigMap with the `application.properties`, is created before you re-deploy the workflow.
 
 [#workflows_preview_profile]
 ==== Workflows with the `preview` profile
