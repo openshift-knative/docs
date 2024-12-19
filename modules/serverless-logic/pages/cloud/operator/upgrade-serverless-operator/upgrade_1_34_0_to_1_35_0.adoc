@@ -72,7 +72,7 @@ Ensure that your database backup includes the database objects, and not only the
 
 . oc delete <my-workflow.yaml> -n <target_namespace>
 +
-Be sure that you have a copy of the corresponding SonataFlow CRD, as well as any other k8s resource created for that workflow, for example, the user provided ConfigMap with the application.properties in cases you are using custom properties configurations.
+Ensure that you have a copy of the corresponding SonataFlow CRD, as well as any other k8s resource created for that workflow, for example, the user provided ConfigMap with the `application.properties` in case you are using custom properties configurations.
 
 . If the workflow is configured to use persistence, you must execute the xref:attachment$cloud/operator/upgrade-serverless-operator/migrate-workflow-db-from_1.34.0_to_1.35.0.sql[migrate-workflow-db-from_1.34.0_to_1.35.0.sql] script in the workflow database.
 
