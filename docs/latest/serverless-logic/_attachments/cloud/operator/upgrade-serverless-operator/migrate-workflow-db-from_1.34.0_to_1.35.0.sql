@@ -1,0 +1,7 @@
+ALTER TABLE flyway_schema_history
+    RENAME CONSTRAINT flyway_schema_history_pk TO kie_flyway_history_runtime_persistence_pk;
+
+ALTER INDEX flyway_schema_history_s_idx
+  RENAME TO kie_flyway_history_runtime_persistence_s_idx;
+
+ALTER TABLE flyway_schema_history RENAME TO kie_flyway_history_runtime_persistence;
