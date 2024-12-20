@@ -1,0 +1,214 @@
+= Upgrade {operator_name} from 1.34.0 to 1.35.0
+:compat-mode!:
+// Metadata:
+:description: Upgrade OSL Operator from 1.34.0 to 1.35.0
+:keywords: kogito, sonataflow, workflow, serverless, operator, kubernetes, minikube, openshift, containers
+// links
+
+:openshift_operator_install_url: https://docs.openshift.com/container-platform/4.13/operators/admin/olm-adding-operators-to-cluster.html
+:openshift_operator_uninstall_url: https://docs.openshift.com/container-platform/4.13/operators/admin/olm-deleting-operators-from-cluster.html
+:kubernetes_operator_install_url: https://operatorhub.io/how-to-install-an-operator
+:kubernetes_operator_uninstall_url: https://olm.operatorframework.io/docs/tasks/uninstall-operator/
+:operatorhub_url: https://operatorhub.io/
+
+This guide describes how to upgrade the {operator_name} 1.34.0 installed in an OpenShift cluster to the version 1.35.0.
+
+.Prerequisites
+* An OpenShift cluster with admin privileges and `oc` installed.
+
+
+
+== Procedure
+
+To upgrade an OSL 1.34.0 installation to the OSL 1.35.0 version, you must execute this procedure:
+
+=== Overall upgrade procedure
+
+It is recommended to read and understand all the steps of the procedure before executing.
+Interested parties might automate the procedure according to their convenience or infrastructure, for example, a particular user might have all the SonataFlow CRDs in a GitHub repository, which might help considerably to implement automation, etc.
+
+. Execute the step `1` of the upgrade for every workflow with the <<workflows_dev_profile, dev profile>>.
+. Execute the steps `1`, `2` and `3` of the upgrade for every workflow with the <<workflows_preview_profile, preview profile>>.
+. Execute the step `1` of the upgrade for every workflow with the <<workflows_gitops_profile, gitops profile>>.
+. Execute the step `1` of the <<data_index_upgrade, Data Index>> upgrade.
+. Execute the step `1` of the <<jobs_service_upgrade, Jobs Service>> upgrade.
+. Upgrade the OSL operator to the version 1.35.0 using the OpenShift management console, and wait until the new version is running, <<check_if_operator_is_updated, see>>.
+. Finalize the <<data_index_upgrade, Data Index>> upgrade by continuing from step `2`.
+. Finalize the <<jobs_service_upgrade, Jobs Service>> upgrade by continuing from step `2`.
+. Finalize the upgrade for the workflows with the <<workflows_gitops_profile, gitops profile>> by continuing from step `2`.
+. Finalize the upgrade for the workflows with the <<workflows_preview_profile, preview profile>> by continuing from step `4`.
+. Finalize the upgrade for the workflows with the <<workflows_dev_profile, dev profile>> by continuing from step `2`.
+
+[#workflows_dev_profile]
+==== Workflows with the `dev` profile
+
+You must delete every workflow with the `dev` profile before applying the operator upgrade to OSL 1.35.0 and re-deployed after the upgrade is completed.
+
+For every workflow `my-workflow` with the `dev` profile you must:
+
+*Pre-operator upgrade steps:*
+
+. Delete the workflow by using the following command:
++
+[source,terminal]
+----
+$ oc delete -f <my-workflow.yaml> -n <target_namespace>
+----
++
+Ensure that you have a copy of the corresponding SonataFlow CRD, as well as any other k8s resource created for that workflow, for example, the user provided ConfigMap with the application.properties in cases you are using custom properties configurations, etc.
+
+*Post-operator upgrade steps:*
+
+[start=2]
+. Re-deploy the workflow.
++
+Ensure that any k8s resource for that workflow, for example, the user-provided ConfigMap with the `application.properties`, is created before you re-deploy the workflow.
+
+[#workflows_preview_profile]
+==== Workflows with the `preview` profile
+Every workflow with the `preview` profile must be deleted before applying the operator upgrade to OSL 1.35.0 and re-deployed after the upgrade is completed.
+
+For every workflow `my-workflow` with the `preview` profile you must:
+
+*Pre-operator upgrade steps:*
+
+. If the workflow is configured to use persistence, you must back up the workflow database.
+Ensure that your database backup includes the database objects, and not only the table's information.
+
+. Delete the workflow by using the following command:
++
+[source,terminal]
+----
+$ oc delete -f <my-workflow.yaml> -n <target_namespace>
+----
++
+Ensure that you have a copy of the corresponding SonataFlow CRD, as well as any other k8s resource created for that workflow, for example, the user provided ConfigMap with the `application.properties` in case you are using custom properties configurations.
+
+. If the workflow is configured to use persistence, you must execute the xref:attachment$cloud/operator/upgrade-serverless-operator/migrate-workflow-db-from_1.34.0_to_1.35.0.sql[migrate-workflow-db-from_1.34.0_to_1.35.0.sql] script in the workflow database.
+
+*Post-operator upgrade steps:*
+
+[start=4]
+. If the workflow is configured to use persistence, you must add the following property in the workflow ConfigMap that contains the application.properties:
++
+[source,yaml]
+----
+apiVersion: v1
+kind: ConfigMap
+metadata:
+ labels:
+   app: my-workflow
+ name: my-workflow-props
+data:
+ application.properties: |
+   kie.flyway.enabled=true
+----
++
+Be sure that any k8s resource for that workflow, for example, the user provided ConfigMap with the application.properties, is created before you re-deploy the workflow.
+
+[#workflows_gitops_profile]
+==== Workflows with the `gitops` profile
+
+Every workflow with the `gitops` profile must be scaled to zero before applying the operator upgrade to OSL 1.35.0 and rescaled to 1 after the upgrade is completed.
+
+For every workflow `my-workflow` with the `gitops` profile you must:
+
+*Pre-operator upgrade steps:*
+
+. Scale the workflow to zero
++
+You can scale the workflow to zero by configuring the field `spec.podTemplate.replicas: 0`, in the corresponding `my-workflow.yaml` SonataFlow CRD, and executing:
++
+[source,terminal]
+----
+$ oc apply  -f <my-workflow.yaml>  -n  <target_namespace>
+----
+
+*Post-operator upgrade steps:*
+
+[start=2]
+. Rescale the workflow to 1:
++
+You can rescale the workflow to 1, by configuring the field `spec.podTemplate.replicas: 1`, in the corresponding `my-workflow.yaml` SonataFlow CRD, and executing:
++
+[source,terminal]
+----
+$ oc apply  -f <my-workflow.yaml>  -n  <target_namespace>
+----
+
+[#data_index_upgrade]
+==== Data Index upgrade
+
+Every data index deployment must be upgraded with the following procedure:
+
+*Pre-operator upgrade steps:*
+
+. Backup the data index database. (including the database objects, and not only the tables information)
+
+*Post-operator upgrade steps:*
+
+[start=2]
+. Some time after the OSL Operator 1.35.0 upgrade was executed, you’ll see that a new ReplicaSet for executing the data index 1.35.0 version was created.
++
+All the data index replicasets for the OSL 1.34.0 must be deleted.
++
+You can see all the replicasets by executing a query like this:
++
+[source,terminal]
+----
+$ oc get replicasets -o custom-columns=Name:metadata.name,Image:spec.template.spec.containers[*].image -n <target_namespace>
+----
++
+Example output:
++
+
+[source,terminal]
+----
+Name                                                Image
+sonataflow-platform-data-index-service-1111111111   registry.redhat.io/openshift-serverless-1/logic-data-index-postgresql-rhel8:1.34.0
+
+sonataflow-platform-data-index-service-222222222   registry.redhat.io/openshift-serverless-1/logic-data-index-postgresql-rhel8:1.35.0
+----
++
+Following the example above, the replicaset sonataflow-platform-data-index-service-1111111111 must be deleted with the following command:
++
+[source,terminal]
+----
+$ oc delete replicaset sonataflow-platform-data-index-service-1111111111 -n <target_namespace>
+----
+
+[#jobs_service_upgrade]
+==== Jobs Service upgrade
+
+Every jobs service deployment must be upgraded with the following procedure:
+
+*Pre-operator upgrade steps:*
+
+. Backup the jobs service database. (including the database objects, and not only the tables information)
+
+*Post-operator upgrade steps:*
+
+[start=2]
+. When the OSL Operator 1.35.0 upgrade was executed, and the new OSL Operator Pod started, every job's service Deployment must be deleted.
++
+This will cause the automatic clean-up of the OSL 1.34.0 jobs service Pod and ReplicaSets, and the generation of new ones in OSL 1.35.0
+
+[#check_if_operator_is_updated]
+==== Check if the new Operator version running
+
+After applying the upgrade, you can execute the following command to check if the operator is running properly:
+[source,terminal]
+----
+$ oc get clusterserviceversion logic-operator-rhel8.v1.35.0
+----
+
+You must get an output like this:
+
+[source,terminal]
+----
+NAME                           DISPLAY                               VERSION   REPLACES                       PHASE
+logic-operator-rhel8.v1.35.0   OpenShift Serverless Logic Operator   1.35.0    logic-operator-rhel8.v1.34.0   Succeeded
+----
+
+
+include::../../../../pages/_common-content/report-issue.adoc[]
