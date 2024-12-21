@@ -1,0 +1,74 @@
+= Knative Event Mesh Backstage Plugin
+:compat-mode!
+
+This page describes how to use the Knative Event Mesh Backstage plugin to manage and discover Knative Eventing resources in Backstage.
+
+The Knative Event Mesh plugin is a Backstage plugin that allows you to view and manage Knative Eventing resources. It communicates with a backend service that runs in the Kubernetes cluster and interacts with the Kubernetes API server.
+
+Backstage is an open-source platform for building developer portals. It provides a unified way to manage and visualize the different resources that developers use in their daily work. While Backstage is not intended to replace Kubernetes dashboards, it can partially manage Knative resources and provide insights relevant to developers.
+
+[IMPORTANT]
+====
+The Knative Event Mesh plugin is a Developer Preview feature.
+
+Developer Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete.
+Red Hat does not recommend using them in production.
+These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.
+
+For more information about the support scope of Red Hat Developer Preview features, see https://access.redhat.com/support/offerings/devpreview/.
+====
+
+== How it works
+
+The plugin is the frontend component of Backstage, responsible for rendering the UI and communicating with the backend. The backend service retrieves data from the Kubernetes API server and sends it to the frontend for display.
+
+This plugin leverages Backstage's link:https://backstage.io/docs/features/software-catalog/external-integrations/#custom-entity-providers[entity provider] and link:https://backstage.io/docs/features/software-catalog/external-integrations/#custom-processors[entity processor] concepts:
+
+* The entity provider fetches resources from the backend.
+* The entity processor processes these resources and makes them available to the Backstage frontend.
+
+Instead of directly showing raw Kubernetes resources, the plugin provides a more user-friendly representation of Knative Eventing resources. Certain fields are excluded, combined, or transformed for better usability.
+
+== Features
+
+The plugin shows the following Knative resources:
+
+* Brokers: Represented as Backstage link:https://backstage.io/docs/features/software-catalog/system-model#component[`Component`] entities.
+* EventTypes: Represented as Backstage link:https://backstage.io/docs/features/software-catalog/system-model#api[`API`] entities.
+* Trigger subscribers: Shown as Backstage `Component` entities if:
+** They are registered in Backstage.
+** They include the link:https://backstage.io/docs/features/kubernetes/configuration#surfacing-your-kubernetes-components-as-part-of-an-entity[`backstage.io/kubernetes-id`] annotation with the Kubernetes resource name.
+
+Triggers pointing to generic `Addressable` endpoints or URLs are not displayed unless explicitly registered in Backstage.
+
+Backstage's graph capabilities can visualize relationships between Brokers, EventTypes, and Triggers, making it easier to understand how resources are interconnected.
+
+== Security
+
+The plugin requires the administrator to configure the backend URL and a token to authenticate with the Kubernetes API server. Similar to the link:https://backstage.io/docs/features/kubernetes/configuration#configuring-kubernetes-clusters[Backstage Kubernetes plugin], the token is stored in Backstage's configuration and passed with each request to the backend.
+
+[source,yaml]
+----
+catalog:
+  providers:
+    knativeEventMesh:
+      dev:
+        token: '${KNATIVE_EVENT_MESH_TOKEN}'
+        baseUrl: "http://eventmesh-backend.knative-eventing.svc:8080"
+        schedule: # optional; same options as in TaskScheduleDefinition
+          frequency: { minutes: 1 }
+          timeout: { minutes: 1 }
+----
+
+The `token` is retrieved from the `KNATIVE_EVENT_MESH_TOKEN` environment variable. For information on creating a `ServiceAccount`, `ClusterRole`, `ClusterRoleBinding`, and the corresponding token, see the link:./backstage-setup.adoc[plugin installation documentation].
+
+== Usage
+
+The plugin displays all `Broker` and `EventType` resources in the cluster. The subscribers of `Trigger` resources are displayed if they meet the requirements specified above.
+
+* Brokers: Shown as Backstage `Component` entities.
+* EventTypes: Shown as Backstage `API` entities.
+* Trigger subscribers: Shown as `Component` entities if they are registered in Backstage and include the `backstage.io/kubernetes-id` annotation.
+
+For more information on how to install and configure this plugin, refer to the link:./backstage-setup.adoc[installation guide].
+
