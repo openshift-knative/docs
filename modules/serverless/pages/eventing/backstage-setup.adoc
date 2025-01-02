@@ -70,18 +70,38 @@ Backstage backend will communicate with the {serverlessproductname} Backstage ba
 $ oc -n knative-eventing create serviceaccount backstage-admin
 ----
 
-. Create a `ClusterRole` that allows the `ServiceAccount` to list and get resources in the cluster:
+. Create a `ClusterRole` that allows the `ServiceAccount` to list and get the necessary resources in the cluster:
 +
-[source,terminal]
+[source,yaml]
 ----
-$ oc create clusterrole backstage-admin --verb=list,get --resource="*"
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: backstage-admin
+rules:
+  - apiGroups:
+      - eventing.knative.dev
+    resources:
+      - brokers
+      - eventtypes
+      - triggers
+    verbs:
+      - get
+      - list
 ----
 
 +
 [IMPORTANT]
 ====
-The `ClusterRole` should be scoped to only allow the necessary permissions. The above example is just for demonstration purposes.
+The `ClusterRole` should be scoped to only allow the necessary permissions.
 ====
+
+. Apply the `ClusterRole` resource:
++
+[source,terminal]
+----
+$ oc apply -f <filename>
+----
 
 . Bind the `ServiceAccount` to the `ClusterRole`:
 +
