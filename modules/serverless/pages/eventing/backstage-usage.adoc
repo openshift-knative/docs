@@ -70,5 +70,5 @@ The plugin displays all `Broker` and `EventType` resources in the cluster. The s
 * EventTypes: Shown as Backstage `API` entities.
 * Trigger subscribers: Shown as `Component` entities if they are registered in Backstage and include the `backstage.io/kubernetes-id` annotation.
 
-For more information on how to install and configure this plugin, refer to the link:./backstage-setup.adoc[installation guide].
+For more information on how to install and configure this plugin, refer to the link:./backstage-setup[installation guide].
 
