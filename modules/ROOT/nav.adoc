@@ -8,6 +8,8 @@
 ** Eventing
 *** xref:serverless:eventing/transport-encryption-setup.adoc[Setup transport encryption in Eventing]
 *** xref:serverless:eventing/kafka-scaling-setup.adoc[Setup Autoscaling For Eventing Kafka Components]
+*** xref:serverless:eventing/backstage-setup.adoc[Setup Backstage for Eventing]
+*** xref:serverless:eventing/backstage-usage.adoc[Knative Event Mesh Backstage Plugin]
 ** Serving
 *** xref:serverless:serving/serving-with-ingress-sharding.adoc[Use Serving with OpenShift ingress sharding]
 *** xref:serverless:serving/scaleability-and-performance-of-serving.adoc[Scalability and performance of {serverlessproductname} Serving]
