@@ -3,9 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Use OpenShift Service Mesh to isolate network traffic with OpenShift Serverless :: Red Hat OpenShift Serverless previews</title>
-    <link rel="canonical" href="https://openshift-knative.github.io/docs/docs/latest/serverless/service-mesh/common-service-mesh-network-isolation.html">
-    <meta name="description" content="Use OpenShift Service Mesh to isolate network traffic with OpenShift Serverless">
+    <title>Setup Backstage for Eventing :: Red Hat OpenShift Serverless previews</title>
+    <link rel="canonical" href="https://openshift-knative.github.io/docs/docs/latest/serverless/eventing/backstage-setup.html">
+    <meta name="description" content="Setup Backstage for Eventing in OpenShift Serverless">
     <meta name="generator" content="Antora 3.0.3">
     <link rel="stylesheet" href="../../../../_/css/site.css">
 <link rel="stylesheet" href="../../../../_/css/extra.css">
@@ -74,16 +74,16 @@
     <span class="nav-text">Using OpenShift Serverless with OpenShift Service Mesh</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="common-service-mesh-setup.html">Setup Serverless with OpenShift Service Mesh</a>
-  </li>
-  <li class="nav-item is-current-page" data-depth="3">
-    <a class="nav-link" href="common-service-mesh-network-isolation.html">Use Service Mesh to isolate network-traffic</a>
+    <a class="nav-link" href="../service-mesh/common-service-mesh-setup.html">Setup Serverless with OpenShift Service Mesh</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="eventing-service-mesh-containersource.html">Eventing: Using ContainerSource with OpenShift Service Mesh</a>
+    <a class="nav-link" href="../service-mesh/common-service-mesh-network-isolation.html">Use Service Mesh to isolate network-traffic</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="eventing-service-mesh-sinkbinding.html">Eventing: Using SinkBinding with OpenShift Service Mesh</a>
+    <a class="nav-link" href="../service-mesh/eventing-service-mesh-containersource.html">Eventing: Using ContainerSource with OpenShift Service Mesh</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../service-mesh/eventing-service-mesh-sinkbinding.html">Eventing: Using SinkBinding with OpenShift Service Mesh</a>
   </li>
 </ul>
   </li>
@@ -92,16 +92,16 @@
     <span class="nav-text">Eventing</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../eventing/transport-encryption-setup.html">Setup transport encryption in Eventing</a>
+    <a class="nav-link" href="transport-encryption-setup.html">Setup transport encryption in Eventing</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../eventing/kafka-scaling-setup.html">Setup Autoscaling For Eventing Kafka Components</a>
+    <a class="nav-link" href="kafka-scaling-setup.html">Setup Autoscaling For Eventing Kafka Components</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="backstage-setup.html">Setup Backstage for Eventing</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../eventing/backstage-setup.html">Setup Backstage for Eventing</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../eventing/backstage-usage.html">Knative Event Mesh Backstage Plugin</a>
+    <a class="nav-link" href="backstage-usage.html">Knative Event Mesh Backstage Plugin</a>
   </li>
 </ul>
   </li>
@@ -652,363 +652,330 @@
   <ul>
     <li class="crumb"><a href="../../index.html">Documentation</a></li>
     <li class="crumb">Serverless</li>
-    <li class="crumb">Using OpenShift Serverless with OpenShift Service Mesh</li>
-    <li class="crumb"><a href="common-service-mesh-network-isolation.html">Use Service Mesh to isolate network-traffic</a></li>
+    <li class="crumb">Eventing</li>
+    <li class="crumb"><a href="backstage-setup.html">Setup Backstage for Eventing</a></li>
   </ul>
 </nav>
 </div>
     <div class="main-view-and-toc">
         <main class="main">
           <article class="doc">
-<h1>Use OpenShift Service Mesh to isolate network traffic with OpenShift Serverless</h1>
+<h1>Setup Backstage for Eventing</h1>
+<div id="preamble">
+<div class="sectionbody">
 <div class="paragraph">
-<p>Service Mesh can be used to isolate network-traffic between tenants on a shared OpenShift cluster using Service Mesh <code>AuthorizationPolicy</code> resources.
-OpenShift Serverless can also leverage this, using several Service Mesh resources.</p>
-</div>
-<div class="paragraph">
-<div class="title">Tenants</div>
-<p>A tenant is a group of one or multiple OpenShift projects that can access each other over the network on a shared OpenShift cluster.</p>
+<p>This page describes how to set up Backstage for Eventing in OpenShift Serverless, which allows you to discover your Eventing resources in Backstage.</p>
 </div>
 <div class="paragraph">
-<div class="title">High-level architecture</div>
-<p>The high-level architecture consists of <code>AuthorizationPolicies</code> in the <code>knative-serving</code>, <code>knative-eventing</code> and the tenants namespaces, while all components are part of the Service Mesh. The injected Service Mesh sidecars take care of enforcing those rules to isolate network traffic between tenants.</p>
+<p>In an event driven architecture, events are the first-class citizens. They are the building blocks of your application. OpenShift Serverless provides a way to create, manage, and consume events in a cloud-native way. OpenShift Serverless Eventing is built on top of Knative Eventing, which is a Kubernetes-based eventing system that provides composable primitives to build event-driven systems.</p>
 </div>
 <div class="paragraph">
-<p><strong>Knative Serving</strong></p>
+<p>However, as the number of events and event sources grow, it becomes difficult to manage them. You need a way to discover and manage these resources. This is where Backstage comes in. Backstage is an open-source platform for building developer portals. It provides a way to discover, share, and collaborate on your services and APIs.</p>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="../_images/service-mesh/multi-tenancy-service-mesh-Serving.drawio.svg" alt="multi tenancy service mesh Serving.drawio">
-</div>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Workloads in project tenant-2 can not call workloads in project tenant-1 directly. Requests are rejected in the Istio proxies of tenant-1 workloads.</p>
-</li>
-<li>
-<p>Workloads in project tenant-2 can not call workloads in project tenant-1 via ingress-gateway. Requests are rejected in the Istio proxies of tenant-1 workloads.</p>
-</li>
-<li>
-<p>Workloads in project tenant-2 can not call workloads in project tenant-1 via activator. Requests are rejected in the Istio proxy of the activator component. Note: as ingress-gateway is allowed to call activator, this includes requests from project tenant-2 via ingress-gateway to activator.</p>
-</li>
-<li>
-<p>🔒 <code>AuthorizationPolicies</code> are applied in this project</p>
-</li>
-</ol>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>OpenShift Serverless Backstage integration is a Developer Preview feature only.</p>
 </div>
 <div class="paragraph">
-<p><strong>Knative Eventing</strong></p>
+<p>Developer Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete.
+Red Hat does not recommend using them in production.
+These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.</p>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="../_images/service-mesh/multi-tenancy-service-mesh-Eventing.drawio.svg" alt="multi tenancy service mesh Eventing.drawio">
+<div class="paragraph">
+<p>For more information about the support scope of Red Hat Developer Preview features, see <a href="https://access.redhat.com/support/offerings/devpreview/" class="bare">access.redhat.com/support/offerings/devpreview/</a>.</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Workloads in tenant-1 project can send events to Eventing brokers, channels, and sinks endpoints in the tenant-1 project.</p>
-</li>
-<li>
-<p>Eventing sources, triggers and subscriptions in project tenant-1 can send events to workloads in project tenant-1.</p>
-</li>
-<li>
-<p>Workloads in tenant-1 project can <em>not</em> send events to Eventing brokers, channels, and sinks endpoints in the tenant-2 project.</p>
-</li>
-<li>
-<p>Eventing sources, triggers and subscriptions in project tenant-2 can <em>not</em> send events to workloads in project tenant-1.</p>
-</li>
-<li>
-<p>Workloads in project tenant-1 can not call workloads in project tenant-2 as well as workloads in project tenant-2 can not call workloads in project tenant-1.</p>
-</li>
-<li>
-<p>🔒 <code>AuthorizationPolicies</code> are applied in this project</p>
-</li>
-</ol>
+<div id="toc" class="toc">
+<div id="toctitle"></div>
+<ul class="sectlevel1">
+<li><a href="#_prerequisites">Prerequisites</a></li>
+<li><a href="#_enable_backstage_backend_for_eventing">Enable Backstage backend for Eventing</a></li>
+<li><a href="#_create_necessary_tokens_for_backstage_backend_and_openshift_serverless_communication">Create necessary tokens for Backstage backend and OpenShift Serverless communication</a></li>
+<li><a href="#_install_the_backstage_plugin_on_red_hat_developer_hub">Install the Backstage plugin on Red Hat Developer Hub</a></li>
+</ul>
 </div>
+</div>
+<div class="sect1">
+<h2 id="_prerequisites"><a class="anchor" href="#_prerequisites"></a>Prerequisites</h2>
+<div class="sectionbody">
 <div class="ulist">
-<div class="title">Prerequisites</div>
 <ul>
 <li>
 <p>You have access to an OpenShift account with cluster administrator access.</p>
 </li>
 <li>
-<p>You have set up OpenShift Serverless and OpenShift Service Mesh as documented in <a href="common-service-mesh-setup.html" class="xref page">Setup OpenShift Serverless with OpenShift Service Mesh</a>.</p>
+<p>Install the OpenShift CLI (<code>oc</code>).</p>
 </li>
 <li>
-<p>You have created one or multiple OpenShift projects for each tenant.</p>
+<p>Install the OpenShift Serverless Operator.</p>
+</li>
+<li>
+<p>Install the <a href="https://developers.redhat.com/rhdh/overview">Red Hat Developer Hub Operator</a> and create a <code>Backstage</code> instance.</p>
 </li>
 </ul>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_enable_backstage_backend_for_eventing"><a class="anchor" href="#_enable_backstage_backend_for_eventing"></a>Enable Backstage backend for Eventing</h2>
+<div class="sectionbody">
 <div class="olist arabic">
-<div class="title">Securing the Service Mesh</div>
 <ol class="arabic">
 <li>
-<p>As in the set-up documentation, make sure that all your tenants OpenShift projects are part of the same <code>ServiceMeshMemberRoll</code> object as members:</p>
+<p>Configure <code>KnativeEventing</code> to create the necessary backend resources for Backstage:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: maistra.io/v1
-kind: ServiceMeshMemberRoll
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: operator.knative.dev/v1
+kind: KnativeEventing
 metadata:
- name: default
- namespace: istio-system
+  name: knative-eventing
+  namespace: knative-eventing
 spec:
- members:
-   - knative-serving    # static value, needs to be here, see setup page
-   - knative-eventing   # static value, needs to be here, see setup page
-   - team-alpha-1       # example OpenShift project that belongs to the team-alpha tenant
-   - team-alpha-2       # example OpenShift project that belongs th the team-alpha tenant
-   - team-bravo-1       # example OpenShift project that belongs to the team-bravo tenant
-   - team-bravo-2       # example OpenShift project that belongs th the team-bravo tenant</code></pre>
+
+  # Other spec fields omitted ...
+  # ...
+
+  config:
+    features:
+      backstage-backend: enabled <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>All the OpenShift projects that are part of the mesh must enforce mTLS in strict mode. This forces Istio to only accept connections with a client-certificate present and allows the Service Mesh sidecar to validate the origin using <code>AuthorizationPolicy</code>.</p>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Enables Backstage backend deployment in Eventing namespace.</td>
+</tr>
+</table>
 </div>
 </li>
 <li>
-<p>For OpenShift Serverless internal components to work, the several <code>AuthorizationPolicies</code> are necessary in the <code>knative-serving</code> and the <code>knative-eventing</code> namespace:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: security.istio.io/v1beta1
-kind: AuthorizationPolicy
-metadata:
-  name: deny-all-by-default
-  namespace: knative-eventing
-spec: { }
----
-apiVersion: security.istio.io/v1beta1
-kind: AuthorizationPolicy
-metadata:
-  name: deny-all-by-default
-  namespace: knative-serving
-spec: { }
----
-apiVersion: security.istio.io/v1beta1
-kind: AuthorizationPolicy
-metadata:
-  name: allow-mt-channel-based-broker-ingress-to-imc-dispatcher
-  namespace: knative-eventing
-spec:
-  action: ALLOW
-  selector:
-    matchLabels:
-      app.kubernetes.io/component: "imc-dispatcher"
-  rules:
-    - from:
-        - source:
-            namespaces: [ "knative-eventing" ]
-            principals: [ "cluster.local/ns/knative-eventing/sa/mt-broker-ingress" ]
-      to:
-        - operation:
-            methods: [ "POST" ]
----
-apiVersion: security.istio.io/v1beta1
-kind: AuthorizationPolicy
-metadata:
-  name: allow-mt-channel-based-broker-ingress-to-kafka-channel
-  namespace: knative-eventing
-spec:
-  action: ALLOW
-  selector:
-    matchLabels:
-      app.kubernetes.io/component: "kafka-channel-receiver"
-  rules:
-    - from:
-        - source:
-            namespaces: [ "knative-eventing" ]
-            principals: [ "cluster.local/ns/knative-eventing/sa/mt-broker-ingress" ]
-      to:
-        - operation:
-            methods: [ "POST" ]
----
-apiVersion: security.istio.io/v1beta1
-kind: AuthorizationPolicy
-metadata:
-  name: allow-kafka-channel-to-mt-channel-based-broker-filter
-  namespace: knative-eventing
-spec:
-  action: ALLOW
-  selector:
-    matchLabels:
-      app.kubernetes.io/component: "broker-filter"
-  rules:
-    - from:
-        - source:
-            namespaces: [ "knative-eventing" ]
-            principals: [ "cluster.local/ns/knative-eventing/sa/knative-kafka-channel-data-plane" ]
-      to:
-        - operation:
-            methods: [ "POST" ]
----
-apiVersion: security.istio.io/v1beta1
-kind: AuthorizationPolicy
-metadata:
-  name: allow-imc-to-mt-channel-based-broker-filter
-  namespace: knative-eventing
-spec:
-  action: ALLOW
-  selector:
-    matchLabels:
-      app.kubernetes.io/component: "broker-filter"
-  rules:
-    - from:
-        - source:
-            namespaces: [ "knative-eventing" ]
-            principals: [ "cluster.local/ns/knative-eventing/sa/imc-dispatcher" ]
-      to:
-        - operation:
-            methods: [ "POST" ]
----
-apiVersion: security.istio.io/v1beta1
-kind: AuthorizationPolicy
-metadata:
-  name: allow-probe-kafka-broker-receiver
-  namespace: knative-eventing
-spec:
-  action: ALLOW
-  selector:
-    matchLabels:
-      app.kubernetes.io/component: "kafka-broker-receiver"
-  rules:
-    - from:
-        - source:
-            namespaces: [ "knative-eventing" ]
-            principals: [ "cluster.local/ns/knative-eventing/sa/kafka-controller" ]
-      to:
-        - operation:
-            methods: [ "GET" ]
----
-apiVersion: security.istio.io/v1beta1
-kind: AuthorizationPolicy
-metadata:
-  name: allow-probe-kafka-sink-receiver
-  namespace: knative-eventing
-spec:
-  action: ALLOW
-  selector:
-    matchLabels:
-      app.kubernetes.io/component: "kafka-sink-receiver"
-  rules:
-    - from:
-        - source:
-            namespaces: [ "knative-eventing" ]
-            principals: [ "cluster.local/ns/knative-eventing/sa/kafka-controller" ]
-      to:
-        - operation:
-            methods: [ "GET" ]
----
-apiVersion: security.istio.io/v1beta1
-kind: AuthorizationPolicy
-metadata:
-  name: allow-probe-kafka-channel-receiver
-  namespace: knative-eventing
-spec:
-  action: ALLOW
-  selector:
-    matchLabels:
-      app.kubernetes.io/component: "kafka-channel-receiver"
-  rules:
-    - from:
-        - source:
-            namespaces: [ "knative-eventing" ]
-            principals: [ "cluster.local/ns/knative-eventing/sa/kafka-controller" ]
-      to:
-        - operation:
-            methods: [ "GET" ]
----
-apiVersion: security.istio.io/v1beta1
-kind: AuthorizationPolicy
-metadata:
-  name: allow-traffic-to-activator
-  namespace: knative-serving
-spec:
-  selector:
-    matchLabels:
-      app: activator
-  action: ALLOW
-  rules:
-    - from:
-        - source:
-            namespaces: [ "knative-serving", "istio-system" ]
----
-apiVersion: security.istio.io/v1beta1
-kind: AuthorizationPolicy
-metadata:
-  name: allow-traffic-to-autoscaler
-  namespace: knative-serving
-spec:
-  selector:
-    matchLabels:
-      app: autoscaler
-  action: ALLOW
-  rules:
-    - from:
-        - source:
-            namespaces: [ "knative-serving" ]</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>These policies restrict the access rules for the network communication between OpenShift Serverless' system components. In detail, they enforce the following rules:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Deny all traffic that is not explicitly allowed in <code>knative-serving</code> and <code>knative-eventing</code></p>
-</li>
-<li>
-<p>Allow traffic from <code>istio-system</code> and <code>knative-serving</code> to activator</p>
-</li>
-<li>
-<p>Allow traffic from <code>knative-serving</code> to autoscaler</p>
-</li>
-<li>
-<p>Allow health probes for Apache Kafka components in <code>knative-eventing</code></p>
-</li>
-<li>
-<p>Allow internal traffic for channel based brokers in <code>knative-eventing</code></p>
-<div class="paragraph">
-<p>Make sure to apply all those rules to your cluster with:</p>
-</div>
+<p>Apply the <code>KnativeEventing</code> resource:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ oc apply -f &lt;filename&gt;</code></pre>
 </div>
 </div>
 </li>
-</ul>
+</ol>
 </div>
-</li>
-<li>
-<p>With this set up in place, cluster administrators can use their own <code>AuthorizationPolicies</code> to define which OpenShift projects can communicate with each other. Every OpenShift project of a tenant needs:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>One <code>AuthorizationPolicy</code> limiting directly incoming traffic to the tenants OpenShift project</p>
-</li>
-<li>
-<p>One <code>AuthorizationPolicy</code> limiting incoming traffic via the activator component of OpenShift Serverless that runs in the <code>knative-serving</code> OpenShift project</p>
-</li>
-<li>
-<p>One <code>AuthorizationPolicy</code> allowing Kubernetes to call <code>PreStopHooks</code> on Knative Services</p>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_create_necessary_tokens_for_backstage_backend_and_openshift_serverless_communication"><a class="anchor" href="#_create_necessary_tokens_for_backstage_backend_and_openshift_serverless_communication"></a>Create necessary tokens for Backstage backend and OpenShift Serverless communication</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>As it is a cumbersome task to create all those policies by hand, you can use our <a href="https://github.com/openshift-knative/knative-istio-authz-chart">helm based generator</a> to create the necessary resources for each tenant:</p>
+<p>Backstage backend will communicate with the OpenShift Serverless Backstage backend using a token. That token will be passed to the OpenShift Serverless backend and the it will use it to talk to the Kubernetes API server.</p>
 </div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create a <code>ServiceAccount</code>:</p>
 <div class="listingblock">
-<div class="title">Create resources per tenant with helm</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">helm template oci://quay.io/openshift-knative/knative-istio-authz-onboarding --version 1.31.0 --set "name=team-alpha" --set "namespaces={team-alpha-1,team-alpha-2}" &gt; team-alpha.yaml
-helm template oci://quay.io/openshift-knative/knative-istio-authz-onboarding --version 1.31.0 --set "name=team-bravo" --set "namespaces={team-bravo-1,team-bravo-2}" &gt; team-bravo.yaml</code></pre>
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ oc -n knative-eventing create serviceaccount backstage-admin</code></pre>
 </div>
 </div>
+</li>
+<li>
+<p>Create a <code>ClusterRole</code> that allows the <code>ServiceAccount</code> to list and get the necessary resources in the cluster:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: backstage-admin
+rules:
+  - apiGroups:
+      - eventing.knative.dev
+    resources:
+      - brokers
+      - eventtypes
+      - triggers
+    verbs:
+      - get
+      - list</code></pre>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
 <div class="paragraph">
-<p>And apply the generated resources to your cluster:</p>
+<p>The <code>ClusterRole</code> should be scoped to only allow the necessary permissions.</p>
 </div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Apply the <code>ClusterRole</code> resource:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ oc apply -f &lt;filename&gt;</code></pre>
 </div>
+</div>
+</li>
+<li>
+<p>Bind the <code>ServiceAccount</code> to the <code>ClusterRole</code>:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ oc create clusterrolebinding backstage-admin --clusterrole=backstage-admin --serviceaccount=knative-eventing:backstage-admin</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Create a secret:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: v1
+kind: Secret
+metadata:
+  name: backstage-admin
+  namespace: knative-eventing
+  annotations:
+    kubernetes.io/service-account.name: backstage-admin
+type: kubernetes.io/service-account-token</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Apply the <code>Secret</code> resource:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ oc apply -f &lt;filename&gt;</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Get the token from the secret:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ oc get secret backstage-admin -n knative-eventing -o jsonpath='{.data.token}' | base64 --decode</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We are going to give this token to Red Hat Developer Hub.</p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_install_the_backstage_plugin_on_red_hat_developer_hub"><a class="anchor" href="#_install_the_backstage_plugin_on_red_hat_developer_hub"></a>Install the Backstage plugin on Red Hat Developer Hub</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Add the <code>BACKSTAGE_KNATIVE_BACKEND_TOKEN</code> environment variable to the Red Hat Developer Hub deployment by modifying the Red Hat Developer Hub secret such as <code>secrets-rhdh</code>:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">kind: Secret
+apiVersion: v1
+metadata:
+  name: secrets-rhdh
+  namespace: rhdh-operator
+  # more metadata ...
+data:
+  BACKSTAGE_KNATIVE_BACKEND_TOKEN: SECRET-TOKEN <i class="conum" data-value="1"></i><b>(1)</b>
+  # more data ...
+# more fields ...</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The token we got from the <code>backstage-admin</code> secret.</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Modify the <a href="https://docs.redhat.com/en/documentation/red_hat_developer_hub/1.3/html-single/installing_and_viewing_dynamic_plugins/index">dynamic plugins configmap</a> such as <code>dynamic-plugins-rhdh</code> and add an entry for the Backstage plugin:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: dynamic-plugins-rhdh
+  namespace: rhdh-operator
+  # more metadata ...
+data:
+  dynamic-plugins.yaml: |-
+    includes:
+      - dynamic-plugins.default.yaml
+    plugins:
+      # - Other plugins omitted
+      # - ...
+      - package: "@knative-extensions/plugin-knative-event-mesh-backend-dynamic@1.16.0" <i class="conum" data-value="1"></i><b>(1)</b>
+        integrity: "sha512-Rnw7o2UyS8X7YklwhHYEtr/yHLnDHJizIACpKaDuqddW/2+WBWrdg8geAYGAeW8u/RnXwgpkcFW27DmoQ460gQ==" <i class="conum" data-value="2"></i><b>(2)</b>
+        disabled: false
+        pluginConfig:
+          catalog:
+            providers:
+              knativeEventMesh:
+                dev:
+                  token: "${BACKSTAGE_KNATIVE_BACKEND_TOKEN}" <i class="conum" data-value="3"></i><b>(3)</b>
+                  baseUrl: "http://eventmesh-backend.knative-eventing.svc.cluster.local:8080" <i class="conum" data-value="4"></i><b>(4)</b>
+                  schedule:
+                    frequency: { minutes: 1 } <i class="conum" data-value="5"></i><b>(5)</b>
+                    timeout: { minutes: 1 } <i class="conum" data-value="6"></i><b>(6)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The full package name of the plugin. You can find the list of available versions in <a href="https://www.npmjs.com/package/@knative-extensions/plugin-knative-event-mesh-backend-dynamic?activeTab=versions">NPM</a>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>The integrity of the plugin package. You can find the integrity of the package  by running <code>npm view @knative-extensions/plugin-knative-event-mesh-backend-dynamic@1.16.0 dist.integrity</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>This will be replaced by an environment variable we have created in the previous step.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>This is the URL of the Backstage backend.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>The frequency at which the plugin will poll the backend for new data.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td>The timeout for the polling.</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Apply the <code>ConfigMap</code> resource:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ oc apply -f &lt;filename&gt;</code></pre>
+</div>
+</div>
+</li>
+</ol>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1018,301 +985,28 @@ helm template oci://quay.io/openshift-knative/knative-istio-authz-onboarding --v
 </td>
 <td class="content">
 <div class="paragraph">
-<p>The helm chart has several options that can be passed to configure the generated resources. Please refer to the <a href="https://github.com/openshift-knative/knative-istio-authz-chart/blob/main/values.yaml">values.yaml</a> for a full reference.</p>
+<p>The changes will not be applied to the Red Hat Developer Hub deployment automatically.
+You need to restart the Red Hat Developer Hub deployment to apply the changes.</p>
 </div>
 </td>
 </tr>
 </table>
 </div>
-</li>
-</ul>
-</div>
-</li>
-</ol>
-</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
 <div class="paragraph">
-<div class="title">Verifying the configuration</div>
-<p>This verification is assuming that we have two tenants with one namespace each, all part of the <code>ServiceMeshMemberRoll</code>, configured with resources listed above.
-We can then use curl to verify the connectivity:</p>
+<p>The default installation of Red Hat Developer Hub might not have the <a href="https://docs.redhat.com/en/documentation/red_hat_developer_hub/1.3/html-single/installing_and_viewing_dynamic_plugins/index">dynamic plugins configmap</a> such as <code>dynamic-plugins-rhdh</code> and the <a href="https://docs.redhat.com/en/documentation/red_hat_developer_hub/1.3/html-single/administration_guide_for_red_hat_developer_hub/index#proc-add-custom-app-config-file-ocp-operator_admin-rhdh">secret such as <code>secrets-rhdh</code></a> created. See the Red Hat Developer Hub documentation for more information on how to create these resources and to reference them in the Red Hat Developer Hub instance.</p>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Deploy Knative Services in both tenants namespaces:</p>
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset1_using-the-knative-cli"></a>Using the Knative CLI</p>
-</li>
-<li>
-<p><a id="tabset1_using-yaml"></a>Using YAML</p>
-</li>
-</ul>
-</div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset1_using-the-knative-cli">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal"># Team Alpha
-kn service create test-webapp -n team-alpha-1 \
-    --annotation-service serving.knative.openshift.io/enablePassthrough=true \
-    --annotation-revision sidecar.istio.io/inject=true \
-    --env RESPONSE="Hello Serverless" \
-    --image docker.io/openshift/hello-openshift
-
-# Team Bravo
-kn service create test-webapp -n team-bravo-1 \
-    --annotation-service serving.knative.openshift.io/enablePassthrough=true \
-    --annotation-revision sidecar.istio.io/inject=true \
-    --env RESPONSE="Hello Serverless" \
-    --image docker.io/openshift/hello-openshift</code></pre>
+</td>
+</tr>
+</table>
 </div>
 </div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset1_using-yaml">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: serving.knative.dev/v1
-kind: Service
-metadata:
-  name: test-webapp
-  namespace: team-alpha-1
-  annotations:
-    serving.knative.openshift.io/enablePassthrough: "true"
-spec:
-  template:
-    metadata:
-      annotations:
-        sidecar.istio.io/inject: 'true'
-    spec:
-      containers:
-        - image: docker.io/openshift/hello-openshift
-          env:
-            - name: RESPONSE
-              value: "Hello Serverless!"
----
-apiVersion: serving.knative.dev/v1
-kind: Service
-metadata:
-  name: test-webapp
-  namespace: team-bravo-1
-  annotations:
-    serving.knative.openshift.io/enablePassthrough: "true"
-spec:
-  template:
-    metadata:
-      annotations:
-        sidecar.istio.io/inject: 'true'
-    spec:
-      containers:
-        - image: docker.io/openshift/hello-openshift
-          env:
-            - name: RESPONSE
-              value: "Hello Serverless!"</code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-</li>
-<li>
-<p>Deploy a <code>curl</code> pod to test the connections:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">cat &lt;&lt;EOF | oc apply -f -
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: curl
-  namespace: team-alpha-1
-  labels:
-    app: curl
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: curl
-  template:
-    metadata:
-      labels:
-        app: curl
-      annotations:
-        sidecar.istio.io/inject: 'true'
-    spec:
-      containers:
-      - name: curl
-        image: curlimages/curl
-        command:
-        - sleep
-        - "3600"
-EOF</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Verification</p>
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset2_using-the-knative-cli"></a>Using the Knative CLI</p>
-</li>
-<li>
-<p><a id="tabset2_using-oc-client"></a>Using OC client</p>
-</li>
-</ul>
-</div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset2_using-the-knative-cli">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal"># Test team-alpha-1 -&gt; team-alpha-1 via cluster local domain (allowed)
-oc exec deployment/curl -n team-alpha-1 -it -- curl -v http://test-webapp.team-alpha-1:80
-
-HTTP/1.1 200 OK
-content-length: 18
-content-type: text/plain; charset=utf-8
-date: Wed, 26 Jul 2023 12:49:59 GMT
-server: envoy
-x-envoy-upstream-service-time: 9
-
-Hello Serverless!
-
-
-# Test team-alpha-1 -&gt; team-alpha-1 via external domain (allowed)
-oc exec deployment/curl -n team-alpha-1 -it -- curl -ik $(kn service describe test-webapp -o url -n team-alpha-1)
-
-HTTP/2 200
-content-length: 18
-content-type: text/plain; charset=utf-8
-date: Wed, 26 Jul 2023 12:55:30 GMT
-server: istio-envoy
-x-envoy-upstream-service-time: 3629
-
-Hello Serverless!
-
-
-# Test team-alpha-1 -&gt; team-bravo-1 via cluster local domain (not allowed)
-oc exec deployment/curl -n team-alpha-1 -it -- curl -v http://test-webapp.team-bravo-1:80
-
-* processing: http://test-webapp.team-bravo-1:80
-*   Trying 172.30.73.216:80...
-* Connected to test-webapp.team-bravo-1 (172.30.73.216) port 80
-&gt; GET / HTTP/1.1
-&gt; Host: test-webapp.team-bravo-1
-&gt; User-Agent: curl/8.2.0
-&gt; Accept: */*
-&gt;
-&lt; HTTP/1.1 403 Forbidden
-&lt; content-length: 19
-&lt; content-type: text/plain
-&lt; date: Wed, 26 Jul 2023 12:55:49 GMT
-&lt; server: envoy
-&lt; x-envoy-upstream-service-time: 6
-&lt;
-* Connection #0 to host test-webapp.team-bravo-1 left intact
-RBAC: access denied
-
-
-# Test team-alpha-1 -&gt; team-bravo-1 via external domain (allowed)
-oc exec deployment/curl -n team-alpha-1 -it -- curl -ik $(kn service describe test-webapp -o url -n team-bravo-1)
-
-HTTP/2 200
-content-length: 18
-content-type: text/plain; charset=utf-8
-date: Wed, 26 Jul 2023 12:56:22 GMT
-server: istio-envoy
-x-envoy-upstream-service-time: 2856
-
-Hello Serverless!</code></pre>
-</div>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset2_using-oc-client">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal"># Test team-alpha-1 -&gt; team-alpha-1 via cluster local domain (allowed)
-oc exec deployment/curl -n team-alpha-1 -it -- curl -v http://test-webapp.team-alpha-1:80
-
-HTTP/1.1 200 OK
-content-length: 18
-content-type: text/plain; charset=utf-8
-date: Wed, 26 Jul 2023 12:49:59 GMT
-server: envoy
-x-envoy-upstream-service-time: 9
-
-Hello Serverless!
-
-
-# Test team-alpha-1 -&gt; team-alpha-1 via external domain (allowed)
-EXTERNAL_URL=$(oc get ksvc -n team-alpha-1 test-webapp -o custom-columns=:.status.url --no-headers)
-oc exec deployment/curl -n team-alpha-1 -it -- curl -ik $EXTERNAL_URL
-
-HTTP/2 200
-content-length: 18
-content-type: text/plain; charset=utf-8
-date: Wed, 26 Jul 2023 12:55:30 GMT
-server: istio-envoy
-x-envoy-upstream-service-time: 3629
-
-Hello Serverless!
-
-
-# Test team-alpha-1 -&gt; team-bravo-1 via cluster local domain (not allowed)
-oc exec deployment/curl -n team-alpha-1 -it -- curl -v http://test-webapp.team-bravo-1:80
-
-* processing: http://test-webapp.team-bravo-1:80
-*   Trying 172.30.73.216:80...
-* Connected to test-webapp.team-bravo-1 (172.30.73.216) port 80
-&gt; GET / HTTP/1.1
-&gt; Host: test-webapp.team-bravo-1
-&gt; User-Agent: curl/8.2.0
-&gt; Accept: */*
-&gt;
-&lt; HTTP/1.1 403 Forbidden
-&lt; content-length: 19
-&lt; content-type: text/plain
-&lt; date: Wed, 26 Jul 2023 12:55:49 GMT
-&lt; server: envoy
-&lt; x-envoy-upstream-service-time: 6
-&lt;
-* Connection #0 to host test-webapp.team-bravo-1 left intact
-RBAC: access denied
-
-
-# Test team-alpha-1 -&gt; team-bravo-1 via external domain (allowed)
-EXTERNAL_URL=$(oc get ksvc -n team-bravo-1 test-webapp -o custom-columns=:.status.url --no-headers)
-oc exec deployment/curl -n team-alpha-1 -it -- curl -ik $EXTERNAL_URL
-
-HTTP/2 200
-content-length: 18
-content-type: text/plain; charset=utf-8
-date: Wed, 26 Jul 2023 12:56:22 GMT
-server: istio-envoy
-x-envoy-upstream-service-time: 2856
-
-Hello Serverless!</code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-</li>
-<li>
-<p>Cleanup</p>
-<div class="paragraph">
-<p>Delete the resources that were created for verification:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">oc delete deployment/curl -n team-alpha-1
-oc delete ksvc/test-webapp -n team-alpha-1
-oc delete ksvc/test-webapp -n team-bravo-1</code></pre>
-</div>
-</div>
-</li>
-</ol>
 </div>
 </article>
         </main>
