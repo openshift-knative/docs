@@ -14,6 +14,8 @@
 *** xref:serverless:serving/serving-with-ingress-sharding.adoc[Use Serving with OpenShift ingress sharding]
 *** xref:serverless:serving/scaleability-and-performance-of-serving.adoc[Scalability and performance of {serverlessproductname} Serving]
 *** xref:serverless:serving/serving-transport-encryption.adoc[Serving Transport Encryption]
+** Functions
+*** xref:serverless:functions/backstage-templates.adoc[Backstage Templates for Knative Functions]
 * Serverless Logic
 ** xref:serverless-logic:about.adoc[About OpenShift Serverless Logic]
 ** xref:serverless-logic:release-notes.adoc[Release notes]

@@ -1,0 +1,144 @@
+= Setup Backstage Templates for Knative Functions
+:compat-mode!:
+// Metadata:
+:description: Setup Backstage Templates for Knative Functions in {serverlessproductname}
+
+This page describes how to set up Backstage Templates for Knative Functions in {serverlessproductname}, which allow you to create Knative Functions easily in Backstage.
+
+These function templates are provided as examples to help you get started with Knative Functions. You should customize these templates to suit your needs.
+
+== Anatomy of a Knative Function Template
+
+A Knative Function template is a YAML file that specifies the structure of a Backstage template. For more information about Backstage templates, see https://docs.redhat.com/en/documentation/red_hat_developer_hub/1.4/html/customizing/configuring-templates[Red Hat Developer Hub documentation].
+
+Knative community provides a https://github.com/knative-extensions/backstage-plugins/blob/main/backstage/templates/location.yaml[Backstage `Location`] where there are multiple templates available. You can use these templates to create Knative Functions in Backstage.
+
+An example of a Knative Function template is as follows, for a Go HTTP function:
+
+[source,yaml]
+----
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: knative-func-go-http <1>
+  title: Create a go http Knative Function application with a CI pipeline <2>
+  description: Create a go http Knative Function application with a CI pipeline
+  tags:
+    - go
+    - http
+    - knative
+    - func
+spec:
+  owner: knative-authors
+  system: knative
+  type: service
+
+  parameters: <3>
+    - title: Provide information about the new component
+      required:
+        - orgName
+        - repoName
+        - owner
+        - system
+      properties:
+        orgName:
+          title: Organization Name
+          type: string
+        repoName:
+          title: Repository Name
+          type: string
+        description:
+          title: Description
+          type: string
+          description: Help others understand what this component is for
+        owner:
+          title: Owner
+          type: string
+          ui:field: EntityPicker
+          ui:options:
+            catalogFilter:
+              kind:
+                - Group
+                - User
+        system:
+          title: System
+          type: string
+          ui:field: EntityPicker
+          ui:options:
+            catalogFilter:
+              kind:
+                - System
+  steps:
+    - id: sourceCodeTemplate <4>
+      name: Generating the Source Code Component
+      action: fetch:template
+      input:
+        url: ./skeletons/go-http/
+        values:
+          orgName: ${{ parameters.orgName }}
+          repoName: ${{ parameters.repoName }}
+          owner: ${{ parameters.owner }}
+          system: ${{ parameters.system }}
+
+    - id: catalogTemplate <5>
+      name: Generating the Catalog Info Component
+      action: fetch:template
+      input:
+        url: ./catalog-info/
+        values:
+          orgName: ${{ parameters.orgName }}
+          repoName: ${{ parameters.repoName }}
+          owner: ${{ parameters.owner }}
+          system: ${{ parameters.system }}
+
+    - id: publish <6>
+      name: Publishing to the Source Code Repository
+      action: publish:github
+      input:
+        allowedHosts: [ 'github.com' ]
+        description: ${{ parameters.description }}
+        repoUrl: github.com?owner=${{ parameters.orgName }}&repo=${{ parameters.repoName }}
+        defaultBranch: main
+
+    - id: register <7>
+      name: Registering the Catalog Info Component
+      action: catalog:register
+      input:
+        repoContentsUrl: ${{ steps.publish.output.repoContentsUrl }}
+        catalogInfoPath: /catalog-info.yaml
+
+  output: <8>
+    links:
+      - title: Open the Source Code Repository
+        url: ${{ steps.publish.output.remoteUrl }}
+      - title: Open the Catalog Info Component
+        icon: catalog
+        entityRef: ${{ steps.register.output.entityRef }}
+----
+<1> The unique name of the template.
+<2> The title of the template, which is shown to users.
+<3> The parameters that the user must provide when creating a new component from this template.
+<4> The first step in the template, which generates the source code for the function. It uses the source code in https://github.com/knative-extensions/backstage-plugins/tree/main/backstage/templates/skeletons/go-http[`./skeletons/go-http/` directory relative to the template location] as the code skeleton.
+<5> This step generates the catalog info for the function. This catalog info is used to register the function in the Backstage catalog.
+<6> This step publishes the source code to the source code repository. You must have the GitHub integration set up to use this step. See https://docs.redhat.com/documentation/en-us/red_hat_developer_hub/1.4/html-single/authentication/index#assembly-auth-provider-github[Red Hat Developer Hub documentation] for more information.
+<7> This step registers the function in the Backstage catalog.
+<8> The output of the template, which includes links to the source code repository and the catalog info component. This output is shown to the user after the template is executed.
+
+For more information about the structure of a Backstage template, see https://docs.redhat.com/en/documentation/red_hat_developer_hub/1.4/html/customizing/configuring-templates#proc-adding-templates_configuring-templates[Red Hat Developer Hub documentation].
+
+== Add Knative Function Templates to Backstage
+
+To add Knative Function templates to Backstage, you must follow the instructions in the https://docs.redhat.com/en/documentation/red_hat_developer_hub/1.4/html/customizing/configuring-templates#proc-adding-templates_configuring-templates[Red Hat Developer Hub documentation].
+
+The `Location` provided by Knative community is at https://github.com/knative-extensions/backstage-plugins/blob/main/backstage/templates/location.yaml. You can use this location to add Knative Function templates to Backstage.
+
+== Using the templates
+
+. Instantiate the template in Backstage.
+. Clone the repository.
++
+[source,bash]
+----
+$ git clone <repository-url>
+----
+. In the cloned repository, the `kn` command will be working with the function instance. To learn more about the `kn` command, see https://docs.openshift.com/serverless/1.34/cli_tools/functions_cli/kn-functions.html[{product-name} documentation].
