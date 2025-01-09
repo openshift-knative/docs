@@ -96,6 +96,7 @@ asciidoc:
     #
     # URLs 
     #
+    images_distributions_url: https://catalog.redhat.com/
     apple_support_url: https://support.apple.com/guide/mac-help/open-a-mac-app-from-an-unknown-developer-mh40616/mac
     kogito_examples_repository_url: https://github.com/kiegroup/kogito-examples/tree/{kogito_branch}
     kogito_operator_repository_rawcontent_url: https://raw.githubusercontent.com/kiegroup/kogito-serverless-operator/
