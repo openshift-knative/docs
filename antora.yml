@@ -37,7 +37,6 @@ asciidoc:
     container_image_registry_base: registry.redhat.io/openshift-serverless-1    
     sonataflow_operator_imagename: registry.redhat.io/openshift-serverless-1/logic-rhel8-operator
     osl_kn_cli_imagename: registry.redhat.io/openshift-serverless-1/kn-workflow-cli-artifacts-rhel8
-    kogito_devservices_imagename: registry.redhat.io/openshift-serverless-1/logic-data-index-ephemeral-rhel8
     sonataflow_devmode_imagename: registry.redhat.io/openshift-serverless-1/logic-swf-devmode-rhel8
     sonataflow_builder_imagename: registry.redhat.io/openshift-serverless-1/logic-swf-builder-rhel8
     sonataflow_builder_configmap_name: logic-operator-rhel8-builder-config
@@ -97,6 +96,7 @@ asciidoc:
     #
     # URLs 
     #
+    apple_support_url: https://support.apple.com/guide/mac-help/open-a-mac-app-from-an-unknown-developer-mh40616/mac
     kogito_examples_repository_url: https://github.com/kiegroup/kogito-examples/tree/{kogito_branch}
     kogito_operator_repository_rawcontent_url: https://raw.githubusercontent.com/kiegroup/kogito-serverless-operator/
     kogito_sw_examples_url: https://github.com/kiegroup/kogito-examples/tree/{kogito_branch}/serverless-workflow-examples
