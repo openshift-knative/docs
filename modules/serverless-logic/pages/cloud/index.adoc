@@ -133,7 +133,7 @@ Learn how to define the workflow `Persistence` field to allow the workflow to st
 [.card-title]
 xref:cloud/operator/enabling-jobs-service.adoc[]
 [.card-description]
-Learn how to enable the Jobs Service
+Learn how to enable the Jobs Service with Operator
 --
 
 [.card]
