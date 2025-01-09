@@ -110,7 +110,7 @@ To verify that the installation was successful, you can execute the following co
 kn workflow version
 ----
 output:
-[source,shell]
+[source,shell,subs="attributes+"]
 ----
-1.33.0
+{product_version_long}
 ----
