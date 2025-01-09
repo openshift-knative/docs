@@ -12,6 +12,11 @@ The VS Code extension for the Serverless Workflow editor enables you to view and
 
 This document describes how to install and use the VS Code extension for Serverless Workflow editor, along with how to load OpenAPI files using the extension.
 
+[IMPORTANT]
+====
+{sonataflow_vscode_extension_name} visual studio extension is Development Support Scope only. For more information about the support scope of Red Hat Development Support see https://access.redhat.com/solutions/7031210.
+====
+
 [[proc-install-vscode-extension-sw-editor]]
 == Installing the VS Code Extension for Serverless Workflow editor
 

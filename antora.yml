@@ -22,6 +22,7 @@ asciidoc:
     kogito_branch: 9.102.x-prod
     operator_name: Serverless Logic Operator
     operator_installation_namespace: openshift-serverless-logic
+    sonataflow_vscode_extension_name: KIE Serverless Workflow Editor
     operator_controller_config: sonataflow-operator-controllers-config
     operator_controller_manager_deployment_name: logic-operator-rhel8-controller-manager
     quarkus_platform: com.redhat.quarkus.platform
@@ -74,6 +75,7 @@ asciidoc:
     knative_version: 1.15
     knative_serving_version: 1.15
     knative_eventing_version: 1.15
+    apache_kie_latest_version: 10.0.0
     kogito_version: 9.102.0.redhat-00005
     kogito_version_redhat: 9.102.0.redhat-00005
     product_version_short: 1.35
