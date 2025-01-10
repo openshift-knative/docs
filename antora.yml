@@ -105,7 +105,7 @@ asciidoc:
     kogito_examples_url: https://github.com/kiegroup/kogito-examples.git
     kogito_apps_url: https://github.com/kiegroup/kogito-apps/tree/{kogito_branch}
     kogito_runtimes_url: https://github.com/kiegroup/kogito-runtimes/tree/{kogito_branch}
-    kogito_runtimes_swf_url: https://github.com/kiegroup/kogito-runtimes/tree/{kogito_branch}kogito-serverless-workflow/
+    kogito_runtimes_swf_url: https://github.com/kiegroup/kogito-runtimes/tree/{kogito_branch}/kogito-serverless-workflow/
     kogito_runtimes_swf_test_url: https://github.com/kiegroup/kogito-runtimes/tree/{kogito_branch}/kogito-serverless-workflow/kogito-serverless-workflow-executor-tests/src/test/java/org/kie/kogito/serverless/workflow/executor
     quarkus_cli_url: https://quarkus.io/guides/cli-tooling
     spec_website_url: https://serverlessworkflow.io/
