@@ -59,7 +59,7 @@ asciidoc:
     #  Versions 
     #
     quarkus_version: 3.8.6.redhat-00004
-    quarkus_platform_version: 3.8.4.redhat-00002
+    quarkus_platform_version: 3.8.6.SP2-redhat-00002
     java_min_version: 17+
     maven_min_version: 3.9.3
     graalvm_min_version: 22.3.0
