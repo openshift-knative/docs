@@ -193,7 +193,7 @@ kn workflow run --port 8081
 
 After creating your workflow project, you can use the `gen-manifest` command with `kn workflow` to generate operator manifest files for your workflow project in your current directory. 
 
-This will screate a new file in `./manifests` directory in your project.
+This will create a new file in `./manifests` directory in your project.
 
 .Prerequisites
 * {product_name} plug-in for Knative CLI is installed.
