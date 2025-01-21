@@ -10,6 +10,11 @@ The Google Chrome extension for the Serverless Workflow editor enables you to vi
 
 This document describes how to install and use the Chrome extension for Serverless Workflow editor on GitHub.
 
+[IMPORTANT]
+====
+The Chrome extension for Serverless Workflow editor on GitHub is Development Support Scope only. For more information about the support scope of Red Hat Development Support see https://access.redhat.com/solutions/7031210.
+====
+
 [[proc-install-chrome-extension-sw-editor]]
 == Installing the Chrome extension for Serverless Workflow editor on GitHub
 

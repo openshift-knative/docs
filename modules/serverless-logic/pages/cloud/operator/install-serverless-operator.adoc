@@ -11,7 +11,7 @@
 :kubernetes_operator_uninstall_url: https://olm.operatorframework.io/docs/tasks/uninstall-operator/
 :operatorhub_url: https://operatorhub.io/
 
-This guide describes how to install the {operator_name} in a Kubernetes or OpenShift cluster. The operator  has been tested on OpenShift {openshift_version_min}+ and link:{minikube_url}[Minikube].
+This guide describes how to install the {operator_name} in a Kubernetes or OpenShift cluster. The operator is in an xref:cloud/operator/known-issues.adoc[early development stage] (community only) and has been tested on OpenShift {openshift_version_min}+ , Kubernetes {kubernetes_version}+ , and link:{minikube_url}[Minikube].
 
 .Prerequisites
 * A Kubernetes or OpenShift cluster with admin privileges and `kubectl` installed. 
@@ -28,6 +28,20 @@ When searching for the operator in the *Filter by keyword* field, use the word `
 === Uninstall
 
 To remove the operator on OpenShift refer to the "link:{openshift_operator_uninstall_url}[Deleting Operators from a cluster]" from the OpenShift's documentation.
+
+== {product_name} Operator Kubernetes installation
+
+=== Install
+
+To install the operator on Kubernetes refer to the  "link:{kubernetes_operator_install_url}[How to install an Operator from OperatorHub.io]" from the OperatorHub's documentation.
+
+When link:{operatorhub_url}[searching for the operator in the *Search OperatorHub* field], use the word `{operator_k8s_keyword}`.
+
+=== Uninstall
+
+To remove the operator on Kubernetes follow the document "link:{kubernetes_operator_uninstall_url}[Uninstall your operator]" from the OLM's documentation.
+
+When searching for the subscription to remove, use the word `{operator_k8s_subscription}`.
 
 == {product_name} Operator Manual Installation
 
@@ -48,20 +62,20 @@ To install the {product_name} Operator, you can use the following command:
 .Install {product_name} Operator on Kubernetes
 [source,shell,subs="attributes+"]
 ----
-kubectl create -f {operator_community_prod_yaml}
+kubectl create -f {kogito_operator_repository_rawcontent_url}/{operator_version}/operator.yaml
 ----
-Replace with specific version if needed:
+Replace `<version>` with specific version if needed:
 ----
-kubectl create -f https://raw.githubusercontent.com/kiegroup/kogito-serverless-operator/<version>/operator.yaml
+kubectl create -f {kogito_operator_repository_rawcontent_url}/<version>/operator.yaml
 ----
-`<version>` could be `10.0.0` for instance.
+`<version>` could be `{product_version_long}` for instance.
 
 You can follow the deployment of the {product_name} Operator:
 
 .Watch the {product_name} Operator pod
 [source,shell,subs="attributes+"]
 ----
-kubectl get pod -n sonataflow-operator-system --watch
+kubectl get pod -n {operator_installation_namespace} --watch
 ----
 
 A successful installation should have an output like this:
@@ -70,9 +84,9 @@ A successful installation should have an output like this:
 [source]
 ----
 NAME                                                     READY   STATUS              RESTARTS   AGE
-sonataflow-operator-controller-manager-948547ffd-sr2j2   0/2     ContainerCreating   0          6s
-sonataflow-operator-controller-manager-948547ffd-sr2j2   1/2     Running             0          7s
-sonataflow-operator-controller-manager-948547ffd-sr2j2   2/2     Running             0          20s
+{operator_controller_manager_deployment_name}-948547ffd-sr2j2   0/2     ContainerCreating   0          6s
+{operator_controller_manager_deployment_name}-948547ffd-sr2j2   1/2     Running             0          7s
+{operator_controller_manager_deployment_name}-948547ffd-sr2j2   2/2     Running             0          20s
 ----
 
 You can also follow the operator’s log:
@@ -80,7 +94,7 @@ You can also follow the operator’s log:
 .Watch the {product_name} Operator pod logs
 [source,shell,subs="attributes+"]
 ----
-kubectl logs deployment/sonataflow-operator-controller-manager -n sonataflow-operator-system -f
+kubectl logs deployment/{operator_controller_manager_deployment_name} -n {operator_installation_namespace} -f
 ----
 
 Once the operator is running, it will watch for instances of the {product_name} Custom Resources (CR). Using CRs, you can configure your {product_name} environment and define Workflows and builds to be handled by the operator.
@@ -106,7 +120,7 @@ To uninstall the correct version of the operator, first you must get the current
 .Getting the operator version
 [source,shell,subs="attributes+"]
 ----
-kubectl get deployment sonataflow-operator-controller-manager -n sonataflow-operator-system -o jsonpath="{.spec.template.spec.containers[?(@.name=='manager')].image}"
+kubectl get deployment {operator_controller_manager_deployment_name} -n {operator_installation_namespace} -o jsonpath="{.spec.template.spec.containers[?(@.name=='manager')].image}"
 
 {sonataflow_operator_imagename}:{operator_version}
 ----
@@ -114,7 +128,7 @@ kubectl get deployment sonataflow-operator-controller-manager -n sonataflow-oper
 .Uninstalling the operator
 [source,shell,subs="attributes+"]
 ----
-kubectl delete -f {operator_community_prod_yaml}
+kubectl delete -f {kogito_operator_repository_rawcontent_url}/<version>/operator.yaml
 ----
 
 [TIP]
