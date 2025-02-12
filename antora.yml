@@ -19,11 +19,12 @@ asciidoc:
     # Serverless Logic - Names, labels and similar
     #
     product_name: OpenShift Serverless Logic
-    kogito_version_redhat: 9.100.0.redhat-00004
-    kogito_branch: 9.100.x-prod
+    kogito_branch: 9.102.x-prod
     operator_name: Serverless Logic Operator
     operator_installation_namespace: openshift-serverless-logic
+    sonataflow_vscode_extension_name: KIE Serverless Workflow Editor
     operator_controller_config: sonataflow-operator-controllers-config
+    operator_controller_manager_deployment_name: logic-operator-rhel8-controller-manager
     quarkus_platform: com.redhat.quarkus.platform
     kogito_sw_ga: org.apache.kie.sonataflow:sonataflow-quarkus 
     data_index_ref: Data Index
@@ -33,10 +34,12 @@ asciidoc:
     operator_openshift_catalog: logic-rhel8-operator
     operator_k8s_keyword: sonataflow
     operator_k8s_subscription: my-sonataflow-operator
+    container_image_registry_base: registry.redhat.io/openshift-serverless-1    
+    sonataflow_operator_imagename: registry.redhat.io/openshift-serverless-1/logic-rhel8-operator
     osl_kn_cli_imagename: registry.redhat.io/openshift-serverless-1/kn-workflow-cli-artifacts-rhel8
-    kogito_devservices_imagename: registry.redhat.io/openshift-serverless-1/logic-data-index-ephemeral-rhel8
     sonataflow_devmode_imagename: registry.redhat.io/openshift-serverless-1/logic-swf-devmode-rhel8
     sonataflow_builder_imagename: registry.redhat.io/openshift-serverless-1/logic-swf-builder-rhel8
+    sonataflow_builder_configmap_name: logic-operator-rhel8-builder-config
     sonataflow_dataindex_ephemeral_imagename: registry.redhat.io/openshift-serverless-1/logic-data-index-ephemeral-rhel8
     sonataflow_dataindex_postgresql_imagename: registry.redhat.io/openshift-serverless-1/logic-data-index-postgresql-rhel8
     sonataflow_devmode_devui_url: /q/dev-ui/org.apache.kie.sonataflow.sonataflow-quarkus-devui/
@@ -51,30 +54,34 @@ asciidoc:
     jobs_service_image_postgresql_name: logic-jobs-service-postgresql-rhel8
     jobs_service_image_postgresql: registry.redhat.io/openshift-serverless-1/logic-jobs-service-postgresql-rhel8
     jobs_service_image_postgresql_url: https://catalog.redhat.com/software/containers/openshift-serverless-1/logic-jobs-service-postgresql-rhel8/6614eddbaeb155f6aae45385
-    jobs_service_image_usage_url: https://github.com/kiegroup/kogito-images/tree/9.100.x-prod#jobs-services-all-in-one
 
     #
     #  Versions 
     #
-    quarkus_version: 3.8.4.redhat-00002
-    quarkus_platform_version: 3.8.4.redhat-00002
+    quarkus_version: 3.8.6.redhat-00004
+    quarkus_platform_version: 3.8.6.SP2-redhat-00002
     java_min_version: 17+
     maven_min_version: 3.9.3
     graalvm_min_version: 22.3.0
     spec_version: 0.8
     vscode_version: 1.84.0
-    kn_cli_version: 1.33.0
+    kn_cli_version: 1.35.0
     docker_min_version: 20.10.7
     docker_compose_min_version: 1.27.2
     kubernetes_version: 1.26
     openshift_version_min: 4.12
-    openshift_version_max: 4.15
-    knative_version: 1.13
-    knative_serving_version: 1.13
-    knative_eventing_version: 1.13
-    kogito_version: 9.100.0.redhat-00004
+    openshift_version_max: 4.17
+    knative_version: 1.15
+    knative_serving_version: 1.15
+    knative_eventing_version: 1.15
+    apache_kie_latest_version: 10.0.0
+    kogito_version: 9.102.0.redhat-00005
+    kogito_version_redhat: 9.102.0.redhat-00005
+    product_version_short: 1.35
+    product_version_long: 1.35.0
+    product_version_previous_long: 1.34.0
     # only used in downstream
-    operator_version: 1.33.0
+    operator_version: 1.35.0
 
     # Persistence extensions for the kogito-swf-builder
     groupId_quarkus-agroal: io.quarkus
@@ -89,14 +96,17 @@ asciidoc:
     #
     # URLs 
     #
-    kogito_examples_repository_url: https://github.com/kiegroup/kogito-examples/tree/9.100.x-prod
-    kogito_sw_examples_url: https://github.com/kiegroup/kogito-examples/tree/9.100.x-prod/serverless-workflow-examples
-    kogito_sw_operator_examples_url: https://github.com/kiegroup/kogito-examples/tree/9.100.x-prod/serverless-operator-examples
+    images_distributions_url: https://catalog.redhat.com/
+    apple_support_url: https://support.apple.com/guide/mac-help/open-a-mac-app-from-an-unknown-developer-mh40616/mac
+    kogito_examples_repository_url: https://github.com/kiegroup/kogito-examples/tree/{kogito_branch}
+    kogito_operator_repository_rawcontent_url: https://raw.githubusercontent.com/kiegroup/kogito-serverless-operator/
+    kogito_sw_examples_url: https://github.com/kiegroup/kogito-examples/tree/{kogito_branch}/serverless-workflow-examples
+    kogito_sw_operator_examples_url: https://github.com/kiegroup/kogito-examples/tree/{kogito_branch}/serverless-operator-examples
     kogito_examples_url: https://github.com/kiegroup/kogito-examples.git
-    kogito_apps_url: https://github.com/kiegroup/kogito-apps/tree/9.100.x-prod
-    kogito_runtimes_url: https://github.com/kiegroup/kogito-runtimes/tree/9.100.x-prod
-    kogito_runtimes_swf_url: https://github.com/kiegroup/kogito-runtimes/tree/9.100.x-prod/kogito-serverless-workflow/
-    kogito_runtimes_swf_test_url: https://github.com/kiegroup/kogito-runtimes/tree/9.100.x-prod/kogito-serverless-workflow/kogito-serverless-workflow-executor-tests/src/test/java/org/kie/kogito/serverless/workflow/executor
+    kogito_apps_url: https://github.com/kiegroup/kogito-apps/tree/{kogito_branch}
+    kogito_runtimes_url: https://github.com/kiegroup/kogito-runtimes/tree/{kogito_branch}
+    kogito_runtimes_swf_url: https://github.com/kiegroup/kogito-runtimes/tree/{kogito_branch}/kogito-serverless-workflow/
+    kogito_runtimes_swf_test_url: https://github.com/kiegroup/kogito-runtimes/tree/{kogito_branch}/kogito-serverless-workflow/kogito-serverless-workflow-executor-tests/src/test/java/org/kie/kogito/serverless/workflow/executor
     quarkus_cli_url: https://quarkus.io/guides/cli-tooling
     spec_website_url: https://serverlessworkflow.io/
     spec_doc_url: https://github.com/serverlessworkflow/specification/blob/0.8.x/specification.md
@@ -106,7 +116,7 @@ asciidoc:
     open_api_spec_url: https://spec.openapis.org/oas/v3.1.0.html
     open_api_swagger_spec_url: https://swagger.io/docs/specification
     quarkus_openapi_gen_url: https://github.com/quarkiverse/quarkus-openapi-generator
-    kn_workflow_plugin_releases_url: https://developers.redhat.com/content-gateway/rest/mirror/pub/cgw/serverless-logic/1.33.0/
+    kn_workflow_plugin_releases_url: https://developers.redhat.com/content-gateway/rest/mirror/pub/cgw/serverless-logic/{product_version_long}/
     quarkus_guides_base_url: https://quarkus.io/guides
     quarkus_guides_kafka_url: https://quarkus.io/guides/kafka
     quarkus_guides_building_native: https://quarkus.io/guides/building-native-image
@@ -130,15 +140,15 @@ asciidoc:
     podman_install_url: https://docs.podman.io/en/latest/
     kubectl_install_url: https://kubernetes.io/docs/tasks/tools/install-kubectl
     docker_compose_install_url: https://docs.docker.com/compose/install/
-    kn_cli_install_url: https://docs.openshift.com/serverless/1.33/install/installing-kn.html
-    knative_eventing_url: https://docs.openshift.com/serverless/1.33/eventing/knative-eventing.html
-    knative_eventing_broker_url: https://docs.openshift.com/serverless/1.33/eventing/brokers/serverless-brokers.html
-    knative_eventing_kafka_broker_url: https://docs.openshift.com/serverless/1.33/eventing/brokers/serverless-broker-types.html
-    knative_eventing_trigger_url: https://docs.openshift.com/serverless/1.33/eventing/triggers/serverless-triggers.html
-    knative_eventing_sink_binding_url: https://docs.openshift.com/serverless/1.33/eventing/event-sinks/serverless-event-sinks.html
-    knative_quickstart_url: https://docs.openshift.com/serverless/1.33/install/installing-kn.html
-    knative_serving_install_yaml_url: https://docs.openshift.com/serverless/1.33/install/installing-knative-serving.html
-    knative_eventing_install_yaml_url: https://docs.openshift.com/serverless/1.33/install/installing-knative-eventing.html
+    kn_cli_install_url: https://docs.openshift.com/serverless/{product_version_short}/install/installing-kn.html
+    knative_eventing_url: https://docs.openshift.com/serverless/{product_version_short}/eventing/knative-eventing.html
+    knative_eventing_broker_url: https://docs.openshift.com/serverless/{product_version_short}/eventing/brokers/serverless-brokers.html
+    knative_eventing_kafka_broker_url: https://docs.openshift.com/serverless/{product_version_short}/eventing/brokers/serverless-broker-types.html
+    knative_eventing_trigger_url: https://docs.openshift.com/serverless/{product_version_short}/eventing/triggers/serverless-triggers.html
+    knative_eventing_sink_binding_url: https://docs.openshift.com/serverless/{product_version_short}/eventing/event-sinks/serverless-event-sinks.html
+    knative_quickstart_url: https://docs.openshift.com/serverless/{product_version_short}/install/installing-kn.html
+    knative_serving_install_yaml_url: https://docs.openshift.com/serverless/{product_version_short}/install/installing-knative-serving.html
+    knative_eventing_install_yaml_url: https://docs.openshift.com/serverless/{product_version_short}/install/installing-knative-eventing.html
     kafka_doc_url: https://kafka.apache.org/documentation/
     node_install_url: https://nodejs.org/en/download/package-manager/
     pnpm_install_url: https://pnpm.io/installation
@@ -187,9 +197,8 @@ asciidoc:
     job_service_xref: xref:job-services/core-concepts.adoc
 
     # Tag to use with community-only images
-    operator_community_prod_yaml: https://raw.githubusercontent.com/kiegroup/kogito-serverless-operator/9.100.x-prod/operator.yaml
-    operator_community_prod_root: https://raw.githubusercontent.com/kiegroup/kogito-serverless-operator/9.100.x-prod
-    sonataflow_operator_imagename: registry.redhat.io/openshift-serverless-1/logic-rhel8-operator
+    operator_community_prod_yaml: https://raw.githubusercontent.com/kiegroup/kogito-serverless-operator/{kogito_branch}/operator.yaml
+    operator_community_prod_root: https://raw.githubusercontent.com/kiegroup/kogito-serverless-operator/{kogito_branch}
     java_install: 'https://www.java.com/en/download/help/download_options.html'
     maven_install: 'https://maven.apache.org/install.html'
     docker_install: 'https://docs.docker.com/engine/install/'

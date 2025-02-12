@@ -1,15 +1,26 @@
 = New features on {operator_version}
 :compat-mode!:
 
+== New features
+
+* link:https://issues.redhat.com/browse/SRVLOGIC-296[SRVLOGIC-296] - SonataFlow Operator: Knative Eventing Integration
+* link:https://issues.redhat.com/browse/SRVLOGIC-367[SRVLOGIC-367] - Add the possibility to integrate the Operator with Prometheus and Grafana
+* link:https://issues.redhat.com/browse/SRVLOGIC-411[SRVLOGIC-411] - Support postgresql 15
+* link:https://issues.redhat.com/browse/SRVLOGIC-414[SRVLOGIC-414] - List all validation errors
+* link:https://issues.redhat.com/browse/SRVLOGIC-461[SRVLOGIC-461] - Add the ability to scale the Jobs Service to 0
+* link:https://issues.redhat.com/browse/SRVLOGIC-500[SRVLOGIC-500] - Minify the openAPI spec files to trim operations only used by the workflows in the current project
+
 == Known issues
 * link:https://issues.redhat.com/browse/SRVLOGIC-333[SRVLOGIC-333] - Afer update of workflow a new build is not trigger when the previous failed
-* link:https://issues.redhat.com/browse/SRVLOGIC-324[SRVLOGIC-324] - Live reload does not work for KN CLI plugin
 * link:https://issues.redhat.com/browse/SRVLOGIC-327[SRVLOGIC-327] - Warnings in jobs service ephemeral pod logs
 * link:https://issues.redhat.com/browse/SRVLOGIC-326[SRVLOGIC-326] - Warnings in data index ephemeral pod logs
-* link:https://issues.redhat.com/browse/SRVLOGIC-320[SRVLOGIC-320] - Natively build examples are not able to respond to requests
-* link:https://issues.redhat.com/browse/SRVLOGIC-250[SRVLOGIC-250] - Different UI results in DevUI with dev and preview scenarios 
-* link:https://issues.redhat.com/browse/SRVLOGIC-220[SRVLOGIC-220] - Monitoring tab (workflow list):  Duration negative and timezone incorrect
 * link:https://issues.redhat.com/browse/SRVLOGIC-334[SRVLOGIC-334] - Missing serverless-workflow-examples-parent:pom when building productized example
+* link:https://issues.redhat.com/browse/SRVLOGIC-409[SRVLOGIC-409] - Unable to trigger workflows deployed on OCP throught management console
+* link:https://issues.redhat.com/browse/SRVLOGIC-465[SRVLOGIC-465] - Endpoint of workflow instance is incorrect during local dev scenarios and on OCP
+* link:https://issues.redhat.com/browse/SRVLOGIC-475[SRVLOGIC-475] - [CLI] Executing kn workflow run creates the container in the background
+* link:https://issues.redhat.com/browse/SRVLOGIC-491[SRVLOGIC-491] - Management console is unable to sort workflow instances by ID
+* link:https://issues.redhat.com/browse/SRVLOGIC-220[SRVLOGIC-220] - Monitoring tab (workflow list): Duration negative and timezone incorrect
+* link:https://issues.redhat.com/browse/SRVLOGIC-385[SRVLOGIC-385] - Dev-ui not painting data entering form for a workflow with dataInputSchema that contains enums
 
 
 == Notable changes

@@ -267,9 +267,9 @@ metadata:
   name: sonataflow-platform
 spec:
   properties:
-    flow:
-       - name: quarkus.flyway.migrate-at-start
-         value: true
+       flow:
+          - name: quarkus.flyway.migrate-at-start
+            value: true
 ----
 
 [NOTE]

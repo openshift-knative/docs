@@ -6,6 +6,11 @@
 
 The link:{serverless_logic_web_tools_url}[{serverless_logic_web_tools_name}] is a web application that enables you to create and synchronize your {product_name}, decision files, and Dashbuilder files in a single interface. Also, the {serverless_logic_web_tools_name} application provides the integrations that are needed to deploy and test the {product_name} models in development mode.
 
+[IMPORTANT]
+====
+ {serverless_logic_web_tools_name} is Development Support Scope only. For more information about the support scope of Red Hat Development Support see https://access.redhat.com/solutions/7031210.
+====
+
 .Home page of {serverless_logic_web_tools_name}
 image::tooling/serverless-logic-web-tools/serverless-logic-web-tools-overview.png[]
 
