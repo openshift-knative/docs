@@ -836,8 +836,22 @@ spec:
 <h3 id="_openshift_serverless_logic_example"><a class="anchor" href="#_openshift_serverless_logic_example"></a>OpenShift Serverless Logic Example</h3>
 <div class="paragraph">
 <p>Similar to a deployment spec, a serverless workflow has a spec.podTemplate, with minor differences, but the change is almost identical.
-In this case, we are mounting some ingress ca-bundle because we want our workflow to reach the <code>.apps.my-cluster-name.my-cluster-domain</code> SSL endpoint.
-Here is the relevant spec section of a workflow with the changes:</p>
+In this case, we are mounting some ingress ca-bundle because we want our workflow to reach the <code>.apps.my-cluster-name.my-cluster-domain</code> SSL endpoint.</p>
+</div>
+<div class="paragraph">
+<p>In this example, we pull the ingress CA of OpenShift&#8217;s ingress deployment because this is the CA that signs the target routes' certificates. It can be any CA that is signing the target service certificate.
+Here&#8217;s how to copy the ingress ca cert to the desired namespace:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">---
+kubectl config set-context --current --namespace=my-namespace
+kubectl get cm -n openshift-config-managed default-ingress-cert  -o yaml | awk '!/namespace:.*$/' | sed 's/default-ingress-cert/ingress-ca/'  | kubectl create -f -
+---</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Here is the relevant spec section of a workflow with the changes:</p>
 </div>
 <div class="listingblock">
 <div class="content">

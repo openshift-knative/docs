@@ -677,7 +677,7 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>This document describes how to call Knative services using OpenShift Serverless Logic custom functions. The procedure described in this document is based on the <a href="https://github.com/kiegroup/kogito-examples/tree/9.100.x-prod/serverless-workflow-examples/serverless-workflow-custom-function-knative"><code>serverless-workflow-custom-function-knative</code></a> example application.</p>
+<p>This document describes how to call Knative services using OpenShift Serverless Logic custom functions. The procedure described in this document is based on the <a href="https://github.com/kiegroup/kogito-examples/tree/{kogito_branch}/serverless-workflow-examples/serverless-workflow-custom-function-knative"><code>serverless-workflow-custom-function-knative</code></a> example application.</p>
 </div>
 <div class="paragraph">
 <p>For more details about the Knative custom function, see <a href="../../../core/custom-functions-support.html#con-func-knative" class="xref page">Custom functions for your OpenShift Serverless Logic service</a>.</p>
@@ -697,7 +697,7 @@ For more information about building the application container, see <a href="../g
 </li>
 <li>
 <p>Knative CLI is installed.<br>
-For more information, see <a href="https://docs.openshift.com/serverless/1.33/install/installing-kn.html">Install the Knative CLI</a>.</p>
+For more information, see <a href="https://docs.openshift.com/serverless/{product_version_short}/install/installing-kn.html">Install the Knative CLI</a>.</p>
 </li>
 <li>
 <p>Knative workflow CLI is installed.<br>
@@ -708,7 +708,7 @@ For more information see <a href="../../../testing-and-troubleshooting/kn-plugin
 For more information, see <a href="https://quarkus.io/guides/cli-tooling">Building Quarkus Apps with Quarkus command line interface (CLI)</a>.</p>
 </li>
 <li>
-<p>You have the <a href="https://github.com/kiegroup/kogito-examples/tree/9.100.x-prod/serverless-workflow-examples/serverless-workflow-custom-function-knative/custom-function-knative-service">custom-function-knative-service</a> project deployed on Knative. For more information on how to deploy a Quarkus project to Knative, see the <a href="https://quarkus.io/guides/deploying-to-kubernetes">Quarkus Kubernetes extension documentation</a>.</p>
+<p>You have the <a href="https://github.com/kiegroup/kogito-examples/tree/{kogito_branch}/serverless-workflow-examples/serverless-workflow-custom-function-knative/custom-function-knative-service">custom-function-knative-service</a> project deployed on Knative. For more information on how to deploy a Quarkus project to Knative, see the <a href="https://quarkus.io/guides/deploying-to-kubernetes">Quarkus Kubernetes extension documentation</a>.</p>
 </li>
 </ul>
 </div>
@@ -716,7 +716,7 @@ For more information, see <a href="https://quarkus.io/guides/cli-tooling">Buildi
 <div class="title">Procedure</div>
 <ol class="arabic">
 <li>
-<p>Add the <code>knative-serving</code> add-on dependency to your <a href="https://github.com/kiegroup/kogito-examples/tree/9.100.x-prod/serverless-workflow-examples/serverless-workflow-custom-function-knative/workflow">workflow</a> project.</p>
+<p>Add the <code>knative-serving</code> add-on dependency to your <a href="https://github.com/kiegroup/kogito-examples/tree/{kogito_branch}/serverless-workflow-examples/serverless-workflow-custom-function-knative/workflow">workflow</a> project.</p>
 <div class="openblock">
 <div class="content">
 <div class="listingblock">

@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Install the Serverless Logic Operator :: Red Hat OpenShift Serverless previews</title>
-    <link rel="canonical" href="https://openshift-knative.github.io/docs/docs/latest/serverless-logic/cloud/operator/install-serverless-operator.html">
-    <meta name="description" content="Install the operator on Kubernetes clusters">
-    <meta name="keywords" content="kogito, sonataflow, workflow, serverless, operator, kubernetes, minikube, openshift, containers">
+    <title>Configuring the Workflow Eventing system :: Red Hat OpenShift Serverless previews</title>
+    <link rel="canonical" href="https://openshift-knative.github.io/docs/docs/latest/serverless-logic/cloud/operator/configuring-workflow-eventing-system.html">
+    <meta name="description" content="Workflows eventing system configuration">
+    <meta name="keywords" content="kogito, sonataflow, workflow, serverless, operator, kubernetes, knative, knative-eventing, events">
     <meta name="generator" content="Antora 3.0.3">
     <link rel="stylesheet" href="../../../../../_/css/site.css">
 <link rel="stylesheet" href="../../../../../_/css/extra.css">
@@ -343,7 +343,7 @@
     <button class="nav-toggle"></button>
     <span class="nav-text">Operator</span>
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="5">
+  <li class="nav-item" data-depth="5">
     <a class="nav-link" href="install-serverless-operator.html">Installation</a>
   </li>
   <li class="nav-item" data-depth="5">
@@ -661,237 +661,543 @@
 <nav class="crumbs" aria-label="breadcrumbs">
   <ul>
     <li class="crumb"><a href="../../../index.html">Documentation</a></li>
-    <li class="crumb">Serverless Logic</li>
-    <li class="crumb">User Guides</li>
-    <li class="crumb"><a href="../index.html">Cloud</a></li>
-    <li class="crumb">Operator</li>
-    <li class="crumb"><a href="install-serverless-operator.html">Installation</a></li>
+    <li class="crumb"><a href="configuring-workflow-eventing-system.html">Configuring the Workflow Eventing system</a></li>
   </ul>
 </nav>
 </div>
     <div class="main-view-and-toc">
         <main class="main">
           <article class="doc">
-<h1>Install the Serverless Logic Operator</h1>
+<h1>Configuring the Workflow Eventing system</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>This guide describes how to install the Serverless Logic Operator in a Kubernetes or OpenShift cluster. The operator is in an <a href="known-issues.html" class="xref page">early development stage</a> (community only) and has been tested on OpenShift 4.12+ , Kubernetes 1.26+ , and <a href="https://minikube.sigs.k8s.io">Minikube</a>.</p>
+<p>This document describes how to configure the eventing system for a OpenShift Serverless Logic workflow.</p>
+</div>
+<div class="paragraph">
+<p>In general, the following events are produced in a OpenShift Serverless Logic installation:</p>
 </div>
 <div class="ulist">
-<div class="title">Prerequisites</div>
 <ul>
 <li>
-<p>A Kubernetes or OpenShift cluster with admin privileges and <code>kubectl</code> installed.</p>
+<p>Workflow outgoing and incoming business events.</p>
 </li>
 <li>
-<p>Alternatively, you can use Minikube or KIND in your local environment. See <a href="../../getting-started/preparing-environment.html#proc-minimal-local-environment-setup" class="xref page">minimal environment setup</a> and <a href="../../getting-started/preparing-environment.html#proc-starting-cluster-fo-local-development" class="xref page">starting the cluster for local development</a> guides.</p>
+<p>SonataFlow system events sent from the workflow to the Data Index and Job Service respectively.</p>
+</li>
+<li>
+<p>SonataFlow system events sent from the Jobs Service to the Data Index Service.</p>
 </li>
 </ul>
+</div>
+<div class="paragraph">
+<p>The Serverless Logic Operator is designed to use the <a href="https://docs.openshift.com/serverless/{product_version_short}/eventing/knative-eventing.html">Knative Eventing</a> system to resolve all the event communication between these services.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>In a regular SonataFlow installation, the preferred method is to use the <a href="#platform-scoped-eventing-system-configuration">Platform-scoped Eventing system configuration</a>, while the <a href="#workflow-scoped-eventing-system-configuration">Workflow-scoped Eventing system configuration</a> is reserved only for advanced use cases.</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 </div>
 <div id="toc" class="toc">
 <div id="toctitle"></div>
 <ul class="sectlevel1">
-<li><a href="#_openshift_serverless_logic_operator_openshift_installation">OpenShift Serverless Logic Operator OpenShift installation</a>
+<li><a href="#platform-scoped-eventing-system-configuration">Platform-scoped Eventing system configuration</a></li>
+<li><a href="#workflow-scoped-eventing-system-configuration">Workflow-scoped Eventing system configuration</a>
 <ul class="sectlevel2">
-<li><a href="#_install">Install</a></li>
-<li><a href="#_uninstall">Uninstall</a></li>
+<li><a href="#outgoing-eventing-system-configuration">Outgoing Eventing system configuration</a></li>
+<li><a href="#incoming-eventing-system-configuration">Incoming Eventing system configuration</a></li>
 </ul>
 </li>
-<li><a href="#_openshift_serverless_logic_operator_kubernetes_installation">OpenShift Serverless Logic Operator Kubernetes installation</a>
-<ul class="sectlevel2">
-<li><a href="#_install_2">Install</a></li>
-<li><a href="#_uninstall_2">Uninstall</a></li>
-</ul>
-</li>
-<li><a href="#_openshift_serverless_logic_operator_manual_installation">OpenShift Serverless Logic Operator Manual Installation</a>
-<ul class="sectlevel2">
-<li><a href="#proc-install-serverless-operator-snapshot">Install</a></li>
-<li><a href="#_uninstall_3">Uninstall</a></li>
-</ul>
-</li>
+<li><a href="#cluster-scoped-eventing-system-configuration">Cluster-scoped Eventing system configuration</a></li>
+<li><a href="#eventing-system-configuration-precedence-rules">Eventing system configuration precedence rules</a></li>
+<li><a href="#_eventing_system_linking_objects">Eventing System linking objects</a></li>
 <li><a href="#_additional_resources">Additional resources</a></li>
 <li><a href="#_found_an_issue"><em><strong>Found an issue?</strong></em></a></li>
 </ul>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_openshift_serverless_logic_operator_openshift_installation"><a class="anchor" href="#_openshift_serverless_logic_operator_openshift_installation"></a>OpenShift Serverless Logic Operator OpenShift installation</h2>
+<h2 id="platform-scoped-eventing-system-configuration"><a class="anchor" href="#platform-scoped-eventing-system-configuration"></a>Platform-scoped Eventing system configuration</h2>
 <div class="sectionbody">
-<div class="sect2">
-<h3 id="_install"><a class="anchor" href="#_install"></a>Install</h3>
 <div class="paragraph">
-<p>To install the operator on OpenShift refer to the "<a href="https://docs.openshift.com/container-platform/4.13/operators/admin/olm-adding-operators-to-cluster.html">Adding Operators to a cluster</a>" from the OpenShift&#8217;s documentation.</p>
+<p>To configure a platform-scoped eventing system, you must use the field <code>spec.eventing.broker.ref</code> in the <code>SonataFlowPlatform</code> CR to refer to a Knative Eventing broker.</p>
 </div>
 <div class="paragraph">
-<p>When searching for the operator in the <strong>Filter by keyword</strong> field, use the word <code>Serverless Logic</code>. If you&#8217;re installing from the CLI, the operator&#8217;s catalog name is <code>logic-rhel8-operator</code>.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_uninstall"><a class="anchor" href="#_uninstall"></a>Uninstall</h3>
-<div class="paragraph">
-<p>To remove the operator on OpenShift refer to the "<a href="https://docs.openshift.com/container-platform/4.13/operators/admin/olm-deleting-operators-from-cluster.html">Deleting Operators from a cluster</a>" from the OpenShift&#8217;s documentation.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_openshift_serverless_logic_operator_kubernetes_installation"><a class="anchor" href="#_openshift_serverless_logic_operator_kubernetes_installation"></a>OpenShift Serverless Logic Operator Kubernetes installation</h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="_install_2"><a class="anchor" href="#_install_2"></a>Install</h3>
-<div class="paragraph">
-<p>To install the operator on Kubernetes refer to the  "<a href="https://operatorhub.io/how-to-install-an-operator">How to install an Operator from OperatorHub.io</a>" from the OperatorHub&#8217;s documentation.</p>
+<p>This information signals the Serverless Logic Operator to automatically link every workflow deployed in that namespace, with the <code>preview</code> or <code>gitops</code> profile, to <code>produce</code> and <code>consume</code> the events by using that Broker.</p>
 </div>
 <div class="paragraph">
-<p>When <a href="https://operatorhub.io/">searching for the operator in the <strong>Search OperatorHub</strong> field</a>, use the word <code>sonataflow</code>.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_uninstall_2"><a class="anchor" href="#_uninstall_2"></a>Uninstall</h3>
-<div class="paragraph">
-<p>To remove the operator on Kubernetes follow the document "<a href="https://olm.operatorframework.io/docs/tasks/uninstall-operator/">Uninstall your operator</a>" from the OLM&#8217;s documentation.</p>
+<p>Additionally, the supporting services deployed in that namespace, that do not provide a custom eventing system configuration, will be linked to that broker.
+For more information about configuring the supporting services eventing system, <a href="supporting-services.html#configuring-supporting-services-eventing-system" class="xref page">see</a>.</p>
 </div>
 <div class="paragraph">
-<p>When searching for the subscription to remove, use the word <code>my-sonataflow-operator</code>.</p>
+<p>The following <code>SonataFlowPlatform</code> CR fragment shows an example of such configuration:</p>
+</div>
+<div class="listingblock">
+<div class="title">Platform scoped eventing system configuration example</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yam hljs" data-lang="yam">apiVersion: sonataflow.org/v1alpha08
+kind: SonataFlowPlatform
+metadata:
+  name: sonataflow-platform-example
+  namespace: example-namespace
+spec:
+  eventing:
+    broker:
+      ref:
+        name: example-broker <i class="conum" data-value="1"></i><b>(1)</b>
+        namespace: example-broker-namespace <i class="conum" data-value="2"></i><b>(2)</b>
+        apiVersion: eventing.knative.dev/v1
+        kind: Broker</code></pre>
 </div>
 </div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Name of the Knative Eventing Broker.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Optional: Defines the namespace of the Knative Eventing Broker. Defaults to the SonataFlowPlatform namespace. We recommend creating the Knative Eventing Broker in the same namespace as the SonataFlowPlatform.</td>
+</tr>
+</table>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_openshift_serverless_logic_operator_manual_installation"><a class="anchor" href="#_openshift_serverless_logic_operator_manual_installation"></a>OpenShift Serverless Logic Operator Manual Installation</h2>
-<div class="sectionbody">
-<div class="admonitionblock warning">
+<div class="admonitionblock note">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-warning" title="Warning"></i>
+<i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>If you&#8217;re running on Kubernetes or OpenShift, it is highly recommended to install the operator from the OperatorHub or OpenShift Console instead since the installation is managed by OLM. Use this method only if you need a snapshot version or you&#8217;re running locally on Minikube or KIND.</p>
+<p>In production environments, you must use a production-ready broker, like the <a href="https://docs.openshift.com/serverless/{product_version_short}/eventing/brokers/serverless-broker-types.html">Knative Kafka Broker</a>.</p>
 </div>
 </td>
 </tr>
 </table>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="workflow-scoped-eventing-system-configuration"><a class="anchor" href="#workflow-scoped-eventing-system-configuration"></a>Workflow-scoped Eventing system configuration</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A workflow-scoped eventing system configuration provides the ability to do a fine-grained configuration of the eventing system for the events <code>produced</code> and <code>consumed</code> by a workflow.</p>
+</div>
+<div class="paragraph">
+<p>To configure a workflow-scoped eventing system you must use the fields <code>spec.sink.ref</code> and <code>spec.sources[]</code> in the <code>SonataFlow</code> CR.</p>
+</div>
+<div class="sect2">
+<h3 id="outgoing-eventing-system-configuration"><a class="anchor" href="#outgoing-eventing-system-configuration"></a>Outgoing Eventing system configuration</h3>
+<div class="paragraph">
+<p>To configure a workflow-scoped eventing system for the workflow outgoing events, you must use the field <code>spec.sink.ref</code> in the <code>SonataFlow</code> CR.</p>
+</div>
+<div class="paragraph">
+<p>This information signals the Serverless Logic Operator to automatically link the current workflow, to produce the events by using that Broker.
+That includes, the OpenShift Serverless Logic system events, and the workflow business events.</p>
+</div>
+<div class="paragraph">
+<p>The following <code>SonataFlow</code> CR fragment shows an example of such configuration:</p>
+</div>
+<div class="listingblock">
+<div class="title">Workflow-scoped outgoing eventing system configuration example</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: sonataflow.org/v1alpha08
+kind: SonataFlow
+metadata:
+  name: example-workflow
+  namespace: example-workflow-namespace
+  annotations:
+    sonataflow.org/description: Example Workflow
+    sonataflow.org/version: 0.0.1
+    sonataflow.org/profile: preview
+spec:
+  sink:
+    ref:
+      name: outgoing-example-broker <i class="conum" data-value="1"></i><b>(1)</b>
+      namespace: outgoing-example-broker-namespace <i class="conum" data-value="2"></i><b>(2)</b>
+      apiVersion: eventing.knative.dev/v1
+      kind: Broker
+  flow: <i class="conum" data-value="3"></i><b>(3)</b>
+    start: ExampleStartState
+    events: <i class="conum" data-value="4"></i><b>(4)</b>
+      - name: outEvent1 <i class="conum" data-value="5"></i><b>(5)</b>
+        source: ''
+        kind: produced
+        type: out-event-type1 <i class="conum" data-value="6"></i><b>(6)</b>
+
+    ... <i class="conum" data-value="7"></i><b>(7)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Name of the Knative Eventing Broker to use for all the events produced by the workflow, including the OpenShift Serverless Logic system events.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Optional: Defines the namespace of the Knative Eventing Broker. Defaults to the SonataFlow namespace. We recommend creating the Knative Eventing Broker in the same namespace as the SonataFlow.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Flow definition field in the <code>SonataFlow</code> CR.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Events definition field in the <code>SonataFlow</code> CR.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>Example of an outgoing event <code>outEvent1</code> definition.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td>Event type for the outgoing event <code>outEvent1</code></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="7"></i><b>7</b></td>
+<td>Only a fragment of the workflow is shown for simplicity.</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="incoming-eventing-system-configuration"><a class="anchor" href="#incoming-eventing-system-configuration"></a>Incoming Eventing system configuration</h3>
+<div class="paragraph">
+<p>To configure a workflow-scoped eventing system for the workflow incoming events, you must use the field <code>spec.sources[]</code> in the <code>SonataFlow</code> CR.
+And, you must add an entry in the array, for every event type that requires an individual configuration.</p>
+</div>
+<div class="paragraph">
+<p>This information signals the SonataFlow Operator to automatically link the current workflow, to potentially <code>consume</code> the events from different Brokers, depending on the event type.</p>
+</div>
+<div class="paragraph">
+<p>Incoming event types not configured with a particular Broker, are consumed by applying <a href="#eventing-system-configuration-precedence-rules">Eventing system configuration precedence rules</a>.</p>
+</div>
+<div class="paragraph">
+<p>The following <code>SonataFlow</code> CR fragment shows an example of such configuration:</p>
+</div>
+<div class="listingblock">
+<div class="title">Workflow-scoped incoming eventing system configuration example</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: sonataflow.org/v1alpha08
+kind: SonataFlow
+metadata:
+  name: example-workflow
+  namespace: example-workflow-namespace
+  annotations:
+    sonataflow.org/description: Example Workflow
+    sonataflow.org/version: 0.0.1
+    sonataflow.org/profile: preview
+spec:
+  sources:
+    - eventType: in-event-type1 <i class="conum" data-value="1"></i><b>(1)</b>
+      ref:
+        name: incoming-example-broker1 <i class="conum" data-value="2"></i><b>(2)</b>
+        namespace: incoming-example-broker1-namespace <i class="conum" data-value="3"></i><b>(3)</b>
+        apiVersion: eventing.knative.dev/v1
+        kind: Broker
+    - eventType: in-event-type2 <i class="conum" data-value="4"></i><b>(4)</b>
+      ref:
+        name: incoming-example-broker2 <i class="conum" data-value="5"></i><b>(5)</b>
+        namespace: incoming-example-broker2-namespace <i class="conum" data-value="6"></i><b>(6)</b>
+        apiVersion: eventing.knative.dev/v1
+        kind: Broker
+  flow: <i class="conum" data-value="7"></i><b>(7)</b>
+    start: ExampleStartState
+    events: <i class="conum" data-value="8"></i><b>(8)</b>
+      - name: inEvent1 <i class="conum" data-value="9"></i><b>(9)</b>
+        source: ''
+        kind: consumed
+        type: in-event-type1 <i class="conum" data-value="10"></i><b>(10)</b>
+      - name: inEvent2 <i class="conum" data-value="11"></i><b>(11)</b>
+        source: ''
+        kind: consumed
+        type: in-event-type2 <i class="conum" data-value="12"></i><b>(12)</b>
+    ... <i class="conum" data-value="13"></i><b>(13)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Eventing system configuration entry for the workflow incoming events of type <code>in-event-type1</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Name of the Knative Eventing Broker to use for the consumption of the events of type <code>in-event-type1</code> sent to this workflow.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Optional: Defines the namespace of the Knative Eventing Broker. Defaults to the SonataFlow namespace. We recommend creating the Knative Eventing Broker in the same namespace as the SonataFlow.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Eventing system configuration entry for the workflow incoming events of type <code>in-event-type2</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>Name of the Knative Eventing Broker to use for the consumption of the events of type <code>in-event-type2</code> sent to this workflow.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td>Optional: Defines the namespace of the Knative Eventing Broker. Defaults to the SonataFlow namespace. We recommend creating the Knative Eventing Broker in the same namespace as the SonataFlow.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="7"></i><b>7</b></td>
+<td>Flow definition field in the <code>SonataFlow</code> CR.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="8"></i><b>8</b></td>
+<td>Events definition field in the <code>SonataFlow</code> CR.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="9"></i><b>9</b></td>
+<td>Example of an incoming event <code>inEvent1</code> definition.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="10"></i><b>10</b></td>
+<td>Event type for the incoming event <code>inEvent1</code>.
+The link of the workflow event, with the corresponding <code>spec.sources[]</code> entry, is by using the event type name <code>in-event-type1</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="11"></i><b>11</b></td>
+<td>Example of an incoming event <code>inEvent2</code> definition.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="12"></i><b>12</b></td>
+<td>Event type for the incoming event <code>inEvent2</code>.
+The link of the workflow event, with the corresponding <code>spec.sources[]</code> entry, is by using the event type name <code>in-event-type2</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="13"></i><b>13</b></td>
+<td>Only a fragment of the workflow is shown for simplicity.</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
 <div class="ulist">
-<div class="title">Prerequisites</div>
 <ul>
 <li>
-<p>You have set up your environment according to the <a href="../../getting-started/preparing-environment.html#proc-minimal-local-environment-setup" class="xref page">minimal environment setup</a> guide.</p>
+<p>Remember that the link between a <code>spec.sources[]</code> entry and the workflow event, is by using the event type.</p>
 </li>
 <li>
-<p>You have the cluster instance up and running. See <a href="../../getting-started/preparing-environment.html#proc-starting-cluster-fo-local-development" class="xref page">starting the cluster for local development</a> guide.</p>
+<p>Incoming events without a corresponding <code>spec.sources[]</code> entry are consumed by applying the <a href="#eventing-system-configuration-precedence-rules">Eventing system configuration precedence rules</a>.</p>
 </li>
 </ul>
 </div>
-<div class="sect2">
-<h3 id="proc-install-serverless-operator-snapshot"><a class="anchor" href="#proc-install-serverless-operator-snapshot"></a>Install</h3>
-<div class="paragraph">
-<p>To install the OpenShift Serverless Logic Operator, you can use the following command:</p>
-</div>
-<div class="listingblock">
-<div class="title">Install OpenShift Serverless Logic Operator on Kubernetes</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kubectl create -f https://raw.githubusercontent.com/kiegroup/kogito-serverless-operator//1.35.0/operator.yaml</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Replace <code>&lt;version&gt;</code> with specific version if needed:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>kubectl create -f {kogito_operator_repository_rawcontent_url}/&lt;version&gt;/operator.yaml</pre>
-</div>
-</div>
-<div class="paragraph">
-<p><code>&lt;version&gt;</code> could be <code>1.35.0</code> for instance.</p>
-</div>
-<div class="paragraph">
-<p>You can follow the deployment of the OpenShift Serverless Logic Operator:</p>
-</div>
-<div class="listingblock">
-<div class="title">Watch the OpenShift Serverless Logic Operator pod</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kubectl get pod -n openshift-serverless-logic --watch</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>A successful installation should have an output like this:</p>
-</div>
-<div class="listingblock">
-<div class="title">Successful Installation Output</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">NAME                                                     READY   STATUS              RESTARTS   AGE
-{operator_controller_manager_deployment_name}-948547ffd-sr2j2   0/2     ContainerCreating   0          6s
-{operator_controller_manager_deployment_name}-948547ffd-sr2j2   1/2     Running             0          7s
-{operator_controller_manager_deployment_name}-948547ffd-sr2j2   2/2     Running             0          20s</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>You can also follow the operator’s log:</p>
-</div>
-<div class="listingblock">
-<div class="title">Watch the OpenShift Serverless Logic Operator pod logs</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kubectl logs deployment/logic-operator-rhel8-controller-manager -n openshift-serverless-logic -f</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Once the operator is running, it will watch for instances of the OpenShift Serverless Logic Custom Resources (CR). Using CRs, you can configure your OpenShift Serverless Logic environment and define Workflows and builds to be handled by the operator.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_uninstall_3"><a class="anchor" href="#_uninstall_3"></a>Uninstall</h3>
-<div class="paragraph">
-<p>To uninstall the Serverless Logic Operator, first, you must delete all the OpenShift Serverless Logic Custom Resources (CR) instances managed by it. Once the CRs are deleted, you can then delete all resources created during the operator installation.</p>
-</div>
-<div class="paragraph">
-<p>To delete every CR managed by the operator in your cluster, you can run these series of commands:</p>
-</div>
-<div class="listingblock">
-<div class="title">Delete all OpenShift Serverless Logic CR instances</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kubectl delete --all workflow --all-namespaces
-kubectl delete --all sonataflowbuild --all-namespaces
-kubectl delete --all sonataflowplatform --all-namespaces</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Alternatively, if you created everything under the same Namespace, deleting the given namespace has the same outcome.</p>
-</div>
-<div class="paragraph">
-<p>To uninstall the correct version of the operator, first you must get the current version by running:</p>
-</div>
-<div class="listingblock">
-<div class="title">Getting the operator version</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kubectl get deployment logic-operator-rhel8-controller-manager -n openshift-serverless-logic -o jsonpath="{.spec.template.spec.containers[?(@.name=='manager')].image}"
-
-registry.redhat.io/openshift-serverless-1/logic-rhel8-operator:1.35.0</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Uninstalling the operator</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kubectl delete -f https://raw.githubusercontent.com/kiegroup/kogito-serverless-operator//&lt;version&gt;/operator.yaml</code></pre>
-</div>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>The URL should be the same as the one you used when installing the operator.</p>
-</div>
 </td>
 </tr>
 </table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="cluster-scoped-eventing-system-configuration"><a class="anchor" href="#cluster-scoped-eventing-system-configuration"></a>Cluster-scoped Eventing system configuration</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>When you use a SonataFlowClusterPlatform, the workflows are automatically linked to the <code>Broker</code> configured in the <code>SonataFlowPlatform</code> CR referred to by the given <code>SonataFlowClusterPlatform</code> CR, according to the <a href="#eventing-system-configuration-precedence-rules">Eventing system configuration precedence rules</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="eventing-system-configuration-precedence-rules"><a class="anchor" href="#eventing-system-configuration-precedence-rules"></a>Eventing system configuration precedence rules</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To configure the eventing system for a workflow, the Serverless Logic Operator use the following precedence rules:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>If the workflow has a configured eventing system, by using any of the <a href="#outgoing-eventing-system-configuration">workflow-scoped outgoing eventing system</a> or <a href="#incoming-eventing-system-configuration">workflow-scoped incoming eventing system</a> configurations, that configuration applies.</p>
+</li>
+<li>
+<p>If the <code>SonataFlowPlatform</code> CR enclosing the workflow, is configured with a <a href="#platform-scoped-eventing-system-configuration">platform-scoped eventing system</a>, that configuration applies.</p>
+</li>
+<li>
+<p>If the current cluster, is configured with a <a href="#cluster-scoped-eventing-system-configuration">cluster-scoped eventing system</a>, that configuration apply.</p>
+</li>
+<li>
+<p>If none of the previous configurations exists, the workflow is configured to:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Produce direct HTTP calls to deliver the OpenShift Serverless Logic system events to the supporting services.</p>
+</li>
+<li>
+<p>Consume the workflow incoming events in the workflow service root path <code>/</code> via HTTP POST calls.</p>
+</li>
+<li>
+<p>No eventing system is configured to produce the workflow business events, and thus, an attempt to produce such event will fail.</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_eventing_system_linking_objects"><a class="anchor" href="#_eventing_system_linking_objects"></a>Eventing System linking objects</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The linking of the workflow with the eventing system is produced by using Knative Eventing SinkBindings and Triggers.
+These objects are automatically created by the Serverless Logic Operator, and facilitate workflow events production and consumption.</p>
+</div>
+<div class="paragraph">
+<p>The following example shows the Knative Eventing objects created for an <code>example-workflow</code> configured with a platform-scoped eventing system.</p>
+</div>
+<div class="listingblock">
+<div class="title">Platform-scoped eventing system configuration example</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: sonataflow.org/v1alpha08
+kind: SonataFlowPlatform
+metadata:
+  name: sonataflow-platform-example
+  namespace: example-namespace
+spec:
+  eventing:
+    broker:
+      ref:
+        name: example-broker <i class="conum" data-value="1"></i><b>(1)</b>
+        apiVersion: eventing.knative.dev/v1
+        kind: Broker
+  services:
+    dataIndex: <i class="conum" data-value="2"></i><b>(2)</b>
+      enabled: true
+    jobService: <i class="conum" data-value="3"></i><b>(3)</b>
+      enabled: true</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Platform Broker configuration used by the Data Index, Jobs Service, and the <code>example-workflow</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Data Index ephemeral deployment.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Jobs Service ephemeral deployment.</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">Knative Kafka Broker example used by the SonataFlowPlatform</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: eventing.knative.dev/v1
+kind: Broker
+metadata:
+  annotations:
+    eventing.knative.dev/broker.class: Kafka <i class="conum" data-value="1"></i><b>(1)</b>
+  name: example-broker
+  namespace: example-namespace
+spec:
+  config:
+    apiVersion: v1
+    kind: ConfigMap
+    name: kafka-broker-config
+    namespace: knative-eventing</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Use the Kafka class to create a Kafka Knative Broker</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">The <code>example-workflow</code> is automatically linked to the <code>example-broker</code> in the <code>example-namespace</code></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: sonataflow.org/v1alpha08
+kind: SonataFlow
+metadata:
+  name: example-workflow
+  namespace: example-namespace
+  annotations:
+    sonataflow.org/description: Example Workflow
+    sonataflow.org/version: 0.0.1
+    sonataflow.org/profile: preview
+spec:
+  flow:
+    start: ExampleStartState
+    events:
+      - name: outEvent1
+        source: ''
+        kind: produced
+        type: out-event-type1 <i class="conum" data-value="1"></i><b>(1)</b>
+      - name: inEvent1
+        source: ''
+        kind: consumed
+        type: in-event-type1 <i class="conum" data-value="2"></i><b>(2)</b>
+      - name: inEvent2
+        source: ''
+        kind: consumed
+        type: in-event-type2 <i class="conum" data-value="3"></i><b>(3)</b>
+    states:
+      - name: ExampleStartState
+    ... <i class="conum" data-value="4"></i><b>(4)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The <code>example-workflow</code> outgoing events are produced by using the SinkBinding <code>example-workflow-sb</code>, <a href="#workflow-knative-eventing-sinkbindings">see</a>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>The <code>example-workflow</code> events of type <code>in-event-type1</code> are consumed by using the Trigger <code>example-workflow-inevent1-b40c067c-595b-4913-81a4-c8efa980bc11</code>, <a href="#workflow-knative-eventing-triggers">see</a>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>The <code>example-workflow</code> events of type <code>in-event-type2</code> are consumed by using the Trigger <code>example-workflow-inevent2-b40c067c-595b-4913-81a4-c8efa980bc11</code>, <a href="#workflow-knative-eventing-triggers">see</a>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Only a fragment of the workflow is shown for simplicity.</td>
+</tr>
+</table>
+</div>
+<div id="workflow-knative-eventing-sinkbindings" class="listingblock">
+<div class="title">Knative Eventing SinkBinding created for the <code>example-workflow</code> events production</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kn source list -n example-namespace
+
+NAME                                          TYPE          RESOURCE                           SINK                    READY
+example-workflow-sb                           SinkBinding   sinkbindings.sources.knative.dev   broker:example-broker   True</code></pre>
+</div>
+</div>
+<div id="workflow-knative-eventing-triggers" class="listingblock">
+<div class="title">Knative Eventing Triggers created for the <code>example-workflow</code> events consumption</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kn trigger list -n example-namespace
+
+NAME                                                              BROKER           SINK                                                     AGE   CONDITIONS   READY   REASON
+example-workflow-inevent1-b40c067c-595b-4913-81a4-c8efa980bc11    example-broker   service:example-workflow                                 16m   7 OK / 7     True
+example-workflow-inevent2-b40c067c-595b-4913-81a4-c8efa980bc11    example-broker   service:example-workflow                                 16m   7 OK / 7     True</code></pre>
 </div>
 </div>
 </div>
@@ -902,13 +1208,10 @@ registry.redhat.io/openshift-serverless-1/logic-rhel8-operator:1.35.0</code></pr
 <div class="ulist">
 <ul>
 <li>
-<p><a href="known-issues.html" class="xref page">Serverless Logic Operator Known Issues, Limitations and Roadmap</a></p>
+<p><a href="using-persistence.html" class="xref page">Workflow Persistence</a></p>
 </li>
 <li>
-<p><a href="developing-workflows.html" class="xref page">Developing Workflows with the Operator</a></p>
-</li>
-<li>
-<p><a href="supporting-services.html" class="xref page">Deploying Supporting Services with the Operator</a></p>
+<p><a href="supporting-services.html" class="xref page">Deploying Supporting Services</a></p>
 </li>
 </ul>
 </div>

@@ -674,10 +674,39 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>OpenShift Serverless Logic provides a plug-in named <code>kn-plugin-workflow</code> for Knative CLI, which enables you to set up a local workflow project quickly using the command line.</p>
+<p>OpenShift Serverless Logic provides a plug-in named <code>kn-workflow</code> for Knative CLI, which provides command line features that help you develop a local workflow project quickly.</p>
 </div>
 <div class="paragraph">
-<p>This document describes fatures of the workflow plugin for KN CLI. See <a href="../cloud/operator/install-kn-workflow-cli.html" class="xref page">Installing the Knative Workflow Plugin</a> for currently supported installation procedure.</p>
+<p>This document describes how you can install and use the <code>kn-workflow</code> plug-in in OpenShift Serverless Logic.</p>
+</div>
+<div class="paragraph">
+<p>You can also find brief introduction for some of the commands that the plugin provides.</p>
+</div>
+</div>
+<div id="toc" class="toc">
+<div id="toctitle"></div>
+<ul class="sectlevel1">
+<li><a href="#proc-install-sw-plugin-kn-cli">Installing the OpenShift Serverless Logic plug-in for Knative CLI</a></li>
+<li><a href="#proc-create-sw-project-kn-cli">Creating a workflow project using Knative CLI</a></li>
+<li><a href="#proc-gen-manifests-sw-project-kn-cli">Generating a list of Operator manifests using Knative CLI</a></li>
+<li><a href="#proc-deploy-sw-project-kn-cli">Deploying a workflow project using Knative CLI</a></li>
+<li><a href="#proc-create-quarkus-sw-project-kn-cli">Creating a Quarkus Workflow project using Knative CLI</a></li>
+<li><a href="#proc-build-quarkus-sw-project-kn-cli">Building a Quarkus workflow project using Knative CLI</a>
+<ul class="sectlevel2">
+<li><a href="#con-build-strategy-kn-cli">Strategy for building a Quarkus workflow project</a></li>
+</ul>
+</li>
+<li><a href="#proc-deploy-quarkus-sw-project-kn-cli">Deploying a Quarkus workflow project using Knative CLI</a></li>
+<li><a href="#_additional_resources">Additional resources</a></li>
+<li><a href="#_found_an_issue"><em><strong>Found an issue?</strong></em></a></li>
+</ul>
+</div>
+</div>
+<div class="sect1">
+<h2 id="proc-install-sw-plugin-kn-cli"><a class="anchor" href="#proc-install-sw-plugin-kn-cli"></a>Installing the OpenShift Serverless Logic plug-in for Knative CLI</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You can use the OpenShift Serverless Logic plug-in to set up your local workflow project quickly using Knative CLI.</p>
 </div>
 <div class="ulist">
 <div class="title">Prerequisites</div>
@@ -697,17 +726,33 @@
 <li>
 <p><a href="https://kubernetes.io/docs/tasks/tools/install-kubectl">Kubernetes CLI</a> is installed.</p>
 </li>
+<li>
+<p><a href="https://docs.openshift.com/serverless/{product_version_short}/install/installing-kn.html">Knative CLI</a> is installed.</p>
+</li>
 </ul>
 </div>
-<div class="paragraph">
-<p>After installing the plug-in, you can use <code>kn workflow</code> to run the related subcommands as follows:</p>
-</div>
-<div class="listingblock">
-<div class="title">Aliases to use workflow subcommand</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Download the latest binary file, suitable for your environment, from the <a href="{kie_tools_releases_page_url}">KIE Tooling Releases</a> page.</p>
+</li>
+<li>
+<p>Install the <code>kn workflow</code> command as a plug-in of the Knative CLI using the following steps:</p>
+<div class="openblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kn workflow
-kn-workflow</code></pre>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Rename the downloaded binary as follows:</p>
+<div class="paragraph">
+<p>mv kn-workflow-linux-amd64 kn-workflow</p>
 </div>
+</li>
+<li>
+<p>Make the binary file executable as follows:</p>
+<div class="paragraph">
+<p><code>chmod +x kn-workflow</code></p>
 </div>
 <div class="admonitionblock warning">
 <table>
@@ -717,39 +762,69 @@ kn-workflow</code></pre>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>On Mac, some systems might block the application to run due to Apple enforcing policies. To fix this problem, check the <strong>Security &amp; Privacy</strong> section in the <strong>System Preferences</strong> &#8594; <strong>General</strong> tab to approve the application to run. For more information, see <a href="https://support.apple.com/guide/mac-help/mh40616/mac">Apple support article: Open a Mac app from an unidentified developer</a>.</p>
+<p>On Mac, some systems might block the application to run due to Apple enforcing policies. To fix this problem, check the <strong>Security &amp; Privacy</strong> section in the <strong>System Preferences</strong> &#8594; <strong>General</strong> tab to approve the application to run. For more information, see <a href="https://support.apple.com/guide/mac-help/open-a-mac-app-from-an-unknown-developer-mh40616/mac">Apple support article: Open a Mac app from an unidentified developer</a>.</p>
 </div>
 </td>
 </tr>
 </table>
 </div>
+</li>
+<li>
+<p>Copy the <code>kn-workflow</code> binary file to <code>/usr/local/bin</code>.</p>
+</li>
+<li>
+<p>Run the following command to verify that <code>kn-workflow</code> plug-in is installed successfully:</p>
+<div class="paragraph">
+<p><code>kn plugin list</code></p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>After installing the plug-in, you can use <code>kn workflow</code> to run the related subcommands.</p>
+</div>
+</div>
+</div>
+</li>
+<li>
+<p>Use the <code>workflow</code> subcommand in Knative CLI as follows:</p>
+<div class="openblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Aliases to use workflow subcommand</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kn workflow
+kn-workflow</code></pre>
+</div>
+</div>
 <div class="listingblock">
 <div class="title">Example output</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">Manage SonataFlow projects
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">  Manage SonataFlow projects
 
-Currently, SonataFlow targets use cases with a single Serverless Workflow main
-file definition (i.e. workflow.sw.{json|yaml|yml}).
+	Currently, SonataFlow targets use cases with a single Serverless Workflow main
+	file definition (i.e. workflow.sw.{json|yaml|yml}).
 
-Additionally, you can define the configurable parameters of your application in the
-"application.properties" file (inside the root project directory).
-You can also store your spec files (i.e., Open API files) inside the "specs" folder,
-  schemas file inside "schemas" folder and also subflows inside "subflows" folder.
+	Additionally, you can define the configurable parameters of your application in the
+	"application.properties" file (inside the root project directory).
+	You can also store your spec files (i.e., OpenAPI files) inside the "specs" folder,
+    schemas file inside "schemas" folder and also subflows inside "subflows" folder.
 
-A SonataFlow project, as the following structure by default:
+	A SonataFlow project, as the following structure by default:
 
-Workflow project root
-  /specs (optional)
-  /schemas (optional)
-  /subflows (optional)
-  workflow.sw.{json|yaml|yml} (mandatory)
+	Workflow project root
+		/specs (optional)
+		/schemas (optional)
+		/subflows (optional)
+		workflow.sw.{json|yaml|yml} (mandatory)
+
 
 
 Usage:
-  kn workflow [command]
+  kn workflow [command]
 
 Aliases:
-  kn workflow, kn-workflow
+  kn workflow, kn-workflow
 
 Available Commands:
   completion   Generate the autocompletion script for the specified shell
@@ -763,30 +838,17 @@ Available Commands:
   version      Show the version
 
 Flags:
-  -h, --help      help for kn workflow
-  -v, --version   version for kn workflow
+  -h, --help      help for kn workflow
+  -v, --version   version for kn workflow
 
-Use "kn [command] --help" for more information about a command.</code></pre>
+Use "kn workflow [command] --help" for more information about a command.</code></pre>
 </div>
 </div>
 </div>
-<div id="toc" class="toc">
-<div id="toctitle"></div>
-<ul class="sectlevel1">
-<li><a href="#proc-create-sw-project-kn-cli">Creating a workflow project using Knative CLI</a></li>
-<li><a href="#proc-build-sw-project-kn-cli">Running a workflow project using Knative CLI</a></li>
-<li><a href="#proc-gen-manifests-sw-project-kn-cli">Generating a list of Operator manifests using Knative CLI</a></li>
-<li><a href="#proc-deploy-sw-project-kn-cli">Deploying a workflow project using Knative CLI</a></li>
-<li><a href="#proc-create-quarkus-sw-project-kn-cli">Creating a Quarkus Workflow project using Knative CLI</a></li>
-<li><a href="#proc-build-quarkus-sw-project-kn-cli">Building a Quarkus workflow project using Knative CLI</a>
-<ul class="sectlevel2">
-<li><a href="#con-build-strategy-kn-cli">Strategy for building a Quarkus workflow project</a></li>
-</ul>
+</div>
 </li>
-<li><a href="#proc-deploy-quarkus-sw-project-kn-cli">Deploying a Quarkus workflow project using Knative CLI</a></li>
-<li><a href="#_additional_resources">Additional resources</a></li>
-<li><a href="#_found_an_issue"><em><strong>Found an issue?</strong></em></a></li>
-</ul>
+</ol>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -807,16 +869,13 @@ Use "kn [command] --help" for more information about a command.</code></pre>
 <p>For more information about installing the plug-in, see <a href="#proc-install-sw-plugin-kn-cli">Installing the OpenShift Serverless Logic plug-in for Knative CLI</a>.</p>
 </div>
 </li>
-<li>
-<p>You followed the steps in <a href="../use-cases/advanced-developer-use-cases/getting-started/create-your-first-workflow-service.html#proc-configuring-maven-rhbq" class="xref page">Configuring your Maven project to Red Hat build of Quarkus and OpenShift Serverless Logic</a></p>
-</li>
 </ul>
 </div>
 <div class="olist arabic">
 <div class="title">Procedure</div>
 <ol class="arabic">
 <li>
-<p>In Knative CLI, enter the following command to create a new project:</p>
+<p>You can use the following command to create a new project:</p>
 <div class="openblock">
 <div class="content">
 <div class="listingblock">
@@ -839,16 +898,25 @@ Use "kn [command] --help" for more information about a command.</code></pre>
 </li>
 </ol>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="proc-build-sw-project-kn-cli"><a class="anchor" href="#proc-build-sw-project-kn-cli"></a>Running a workflow project using Knative CLI</h2>
-<div class="sectionbody">
 <div class="paragraph">
-<p>After creating your workflow project, you can use the <code>run</code> command with <code>kn workflow</code> to build &amp; run your workflow project in your current directory.</p>
+<p>This will scaffold a directory named <code>my-project</code> with a simple workflow in JSON format. You can overwrite the format of the workflow to YAML by using the <code>[--yaml-workflow]</code> flag as follows:</p>
+</div>
+<div class="listingblock">
+<div class="title">Create a project named <code>my-project</code> with default workflow in YAML format</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kn workflow create --name my-project --yaml-workflow</code></pre>
+</div>
+</div>
+<div class="openblock">
+<div class="content">
+<div id="proc-build-sw-project-kn-cli" class="paragraph">
+<p>== Running a workflow project using Knative CLI</p>
 </div>
 <div class="paragraph">
-<p>This will start a OpenShift Serverless Logic docker image and map your local folder to this image.</p>
+<p>After creating your workflow project, you can use the <code>run</code> command with <code>kn workflow</code> to build &amp; run your workflow project. You must be in the root folder of your workflow project.</p>
+</div>
+<div class="paragraph">
+<p>This plugin will build your project and start a OpenShift Serverless Logic container image that will be mapped to your local folder.</p>
 </div>
 <div class="ulist">
 <div class="title">Prerequisites</div>
@@ -865,31 +933,46 @@ Use "kn [command] --help" for more information about a command.</code></pre>
 <p>For more information about creating a workflow project, see <a href="#proc-create-sw-project-kn-cli">Creating workflow project using Knative CLI</a>.</p>
 </div>
 </li>
-<li>
-<p>Minikube cluster is running locally.</p>
-</li>
 </ul>
 </div>
 <div class="olist arabic">
 <div class="title">Procedure</div>
 <ol class="arabic">
 <li>
-<p>In Knative CLI, enter the following command to build and run your workflow project:</p>
-<div class="openblock">
-<div class="content">
+<p>Enter the following command to build and run your workflow project:</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
 <div class="listingblock">
 <div class="title">Run the project and start a local development image.</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kn workflow run</code></pre>
 </div>
 </div>
-</div>
-</div>
+<div class="openblock">
+<div class="content">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Once the project is ready, the Development UI will be opened up in a browser automatically (on <code>localhost:8080/q/dev</code>). You can disable this behavior by using the <code>[--open-dev-ui=false] flag</code></p>
 </li>
 <li>
-<p>Once the project is ready, the Development UI will be opened up in a browser automatically (on <code>localhost:8080/q/dev</code>).</p>
+<p>While running, any changes to your workflow project are detected and the image is rebuilt, allowing you so quickly develop the project.</p>
 </li>
 </ol>
+</div>
+<div class="paragraph">
+<p>By default, the development image is using port <code>8080</code>. You can map it to a different port using the <code>[--port &lt;string&gt;]</code> flag as follows:</p>
+</div>
+<div class="listingblock">
+<div class="title">Run a project and start a local development image using different port</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kn workflow run --port 8081</code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -918,7 +1001,7 @@ Use "kn [command] --help" for more information about a command.</code></pre>
 </div>
 </li>
 <li>
-<p>Minikube cluster is running locally.</p>
+<p>You have set up your environment according to the <a href="../getting-started/preparing-environment.html#proc-minimal-local-environment-setup" class="xref page">minimal environment setup</a> guide.</p>
 </li>
 </ul>
 </div>
@@ -926,7 +1009,7 @@ Use "kn [command] --help" for more information about a command.</code></pre>
 <div class="title">Procedure</div>
 <ol class="arabic">
 <li>
-<p>In Knative CLI, enter the following command to generate operator manifests for your workflow project:</p>
+<p>Enter the following command to generate operator manifests for your workflow project:</p>
 <div class="openblock">
 <div class="content">
 <div class="listingblock">
@@ -953,13 +1036,16 @@ Use "kn [command] --help" for more information about a command.</code></pre>
 </li>
 </ol>
 </div>
+<div class="paragraph">
+<p>For more options with <code>gen-manifest</code> command use <code>[-h|--help]</code>.</p>
+</div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="proc-deploy-sw-project-kn-cli"><a class="anchor" href="#proc-deploy-sw-project-kn-cli"></a>Deploying a workflow project using Knative CLI</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>You can use the <code>deploy</code> command combined with <code>kn workflow</code> to deploy your workflow project in your current directory.</p>
+<p>You can use the <code>deploy</code> command combined with <code>kn workflow</code> to deploy your workflow project. You must be in the root folder of your workflow project.</p>
 </div>
 <div class="ulist">
 <div class="title">Prerequisites</div>
@@ -977,7 +1063,10 @@ Use "kn [command] --help" for more information about a command.</code></pre>
 </div>
 </li>
 <li>
-<p>A minikube cluster is running locally.</p>
+<p>You have set up your environment according to the <a href="../getting-started/preparing-environment.html#proc-minimal-local-environment-setup" class="xref page">minimal environment setup</a> guide.</p>
+</li>
+<li>
+<p>You have installed Serverless Logic Operator in your kubernetes cluster according to <a href="../cloud/operator/install-serverless-operator.html" class="xref page">operator installation</a> guide.</p>
 </li>
 </ul>
 </div>
@@ -985,13 +1074,13 @@ Use "kn [command] --help" for more information about a command.</code></pre>
 <div class="title">Procedure</div>
 <ol class="arabic">
 <li>
-<p>In Knative CLI, enter the following command to deploy your workflow project:</p>
+<p>Enter the following command to deploy your workflow project:</p>
 <div class="openblock">
 <div class="content">
 <div class="listingblock">
-<div class="title">Deploy a workflow project</div>
+<div class="title">Deploy a workflow project, you must specify a namespace</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kn workflow deploy</code></pre>
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kn workflow deploy --namespace &lt;your_namespace&gt;</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1044,7 +1133,7 @@ For more information about installing the plug-in, see <a href="#proc-install-sw
 <div class="title">Procedure</div>
 <ol class="arabic">
 <li>
-<p>In Knative CLI, enter the following command to create a new project:</p>
+<p>Enter the following command to create a new project:</p>
 <div class="openblock">
 <div class="content">
 <div class="listingblock">
@@ -1097,6 +1186,9 @@ For more information about installing the plug-in, see <a href="#proc-install-sw
 </li>
 </ol>
 </div>
+<div class="paragraph">
+<p>For more options with <code>quarkus create</code> command use <code>[-h|--help]</code>.</p>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -1129,7 +1221,7 @@ For more information about installing the plug-in, see <a href="#proc-install-sw
 <div class="title">Procedure</div>
 <ol class="arabic">
 <li>
-<p>In Knative CLI, enter the following command to build your workflow project:</p>
+<p>Enter the following command to build your workflow project:</p>
 <div class="openblock">
 <div class="content">
 <div class="listingblock">
@@ -1306,6 +1398,9 @@ For more information about installing the plug-in, see <a href="#proc-install-sw
 </dd>
 </dl>
 </div>
+<div class="paragraph">
+<p>For more options with <code>quarkus build</code> command use <code>[-h|--help]</code>.</p>
+</div>
 </div>
 </div>
 </div>
@@ -1336,13 +1431,16 @@ For more information about installing the plug-in, see <a href="#proc-install-sw
 <p>For more information about building your workflow project, see <a href="#proc-build-sw-project-kn-cli">Building workflow project using Knative CLI</a>.</p>
 </div>
 </li>
+<li>
+<p>You have set up your environment according to the <a href="../getting-started/preparing-environment.html#proc-minimal-local-environment-setup" class="xref page">minimal environment setup</a> guide.</p>
+</li>
 </ul>
 </div>
 <div class="olist arabic">
 <div class="title">Procedure</div>
 <ol class="arabic">
 <li>
-<p>In Knative CLI, enter the following command to deploy your workflow project:</p>
+<p>Enter the following command to deploy your workflow project:</p>
 <div class="openblock">
 <div class="content">
 <div class="listingblock">
@@ -1355,9 +1453,9 @@ For more information about installing the plug-in, see <a href="#proc-install-sw
 <p>If the deployment files (<code>knative.yml</code> and <code>kogito.yml</code>) are saved in any other folder instead of <code>./target/kubernetes</code>, then you can override the path using the <code>--path</code> flag with deployment command as follows:</p>
 </div>
 <div class="listingblock">
-<div class="title">Deploy a workflow project using <code>--path</code></div>
+<div class="title">Deploy a workflow project using <code>--path</code> with <code>knative.yml</code></div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kn workflow quarkus deploy --path other-path</code></pre>
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kn workflow quarkus deploy --path &lt;other_path&gt;</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1393,7 +1491,7 @@ For more information about installing the plug-in, see <a href="#proc-install-sw
 <p><a href="../getting-started/create-your-first-workflow-service-with-kn-cli-and-vscode.html" class="xref page">Creating your first SonataFlow project</a></p>
 </li>
 <li>
-<p><a href="../use-cases/advanced-developer-use-cases/getting-started/create-your-first-workflow-service.html" class="xref page">Creating your first Quarkus Workflow project</a></p>
+<p><a href="../use-cases/advanced-developer-use-cases/getting-started/create-your-first-workflow-service.html" class="xref page">Creating your first SonataFlow project with Quarkus</a></p>
 </li>
 </ul>
 </div>

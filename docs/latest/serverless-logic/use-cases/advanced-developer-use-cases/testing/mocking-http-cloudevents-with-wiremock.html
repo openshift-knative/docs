@@ -680,7 +680,7 @@
 <p>This document describes how you can test your workflow application that uses HTTP <a href="https://cloudevents.io/">CloudEvents</a> and <a href="https://knative.dev/docs/eventing/custom-event-source/sinkbinding/">Knative SinkBinding</a>.</p>
 </div>
 <div class="paragraph">
-<p>The example described in this document is based on the <a href="https://github.com/kiegroup/kogito-examples/tree/9.100.x-prod/serverless-workflow-examples/serverless-workflow-order-processing"><code>serverless-workflow-order-processing</code></a> example application.</p>
+<p>The example described in this document is based on the <a href="https://github.com/kiegroup/kogito-examples/tree/{kogito_branch}/serverless-workflow-examples/serverless-workflow-order-processing"><code>serverless-workflow-order-processing</code></a> example application.</p>
 </div>
 </div>
 <div id="toc" class="toc">
@@ -701,7 +701,7 @@
 <h2 id="con-sinkbinding-test-overview"><a class="anchor" href="#con-sinkbinding-test-overview"></a>Overview</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The workflow application that you want to test must be configured to use <a href="https://docs.openshift.com/serverless/1.33/eventing/knative-eventing.html">Knative Eventing</a>. You must configure Knative Eventing using standard HTTP POST requests to send and receive events between event producers and <a href="https://knative.dev/docs/eventing/sinks/">sinks</a>. The events between the event producers and sinks follow the <a href="https://cloudevents.io/">CloudEvents</a> specification, which enables creating, parsing, sending, and receiving events in any programming language.</p>
+<p>The workflow application that you want to test must be configured to use <a href="https://docs.openshift.com/serverless/{product_version_short}/eventing/knative-eventing.html">Knative Eventing</a>. You must configure Knative Eventing using standard HTTP POST requests to send and receive events between event producers and <a href="https://knative.dev/docs/eventing/sinks/">sinks</a>. The events between the event producers and sinks follow the <a href="https://cloudevents.io/">CloudEvents</a> specification, which enables creating, parsing, sending, and receiving events in any programming language.</p>
 </div>
 <div class="paragraph">
 <p>When you create an event source, you can specify a sink where events are sent to, from the source. A sink is a transferable or a callable resource that can receive incoming events from other resources. The examples of sink include Kubernetes deployments, Knative services, channels, and brokers.</p>
@@ -783,7 +783,7 @@
 </table>
 </div>
 <div class="paragraph">
-<p>You can also see the dependencies added in <code>pom.xml</code> file of <a href="https://github.com/kiegroup/kogito-examples/tree/9.100.x-prod/serverless-workflow-examples/serverless-workflow-order-processing"><code>serverless-workflow-order-processing</code></a> example application.</p>
+<p>You can also see the dependencies added in <code>pom.xml</code> file of <a href="https://github.com/kiegroup/kogito-examples/tree/{kogito_branch}/serverless-workflow-examples/serverless-workflow-order-processing"><code>serverless-workflow-order-processing</code></a> example application.</p>
 </div>
 </div>
 </div>
@@ -939,7 +939,7 @@ public class VerifyWorkflowExecutionIT { <i class="conum" data-value="2"></i><b>
 </table>
 </div>
 <div class="paragraph">
-<p>You can check the <code>VerifyWorkflowExecutionIT</code> class of <a href="https://github.com/kiegroup/kogito-examples/tree/9.100.x-prod/serverless-workflow-examples/serverless-workflow-order-processing/src/test/java/org/kie/kogito/examples/sw/orders/processing/VerifyWorkflowExecutionIT.java"><code>serverless-workflow-order-processing</code></a> example application.</p>
+<p>You can check the <code>VerifyWorkflowExecutionIT</code> class of <a href="https://github.com/kiegroup/kogito-examples/tree/{kogito_branch}/serverless-workflow-examples/serverless-workflow-order-processing/src/test/java/org/kie/kogito/examples/sw/orders/processing/VerifyWorkflowExecutionIT.java"><code>serverless-workflow-order-processing</code></a> example application.</p>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -980,7 +980,7 @@ public class VerifyWorkflowExecutionIT { <i class="conum" data-value="2"></i><b>
 </table>
 </div>
 <div class="paragraph">
-<p>For more information, see <code>application.properties</code> file of <a href="https://github.com/kiegroup/kogito-examples/tree/9.100.x-prod/serverless-workflow-examples/serverless-workflow-order-processing/src/test/resources/application.properties"><code>serverless-workflow-order-processing</code></a> example application.</p>
+<p>For more information, see <code>application.properties</code> file of <a href="https://github.com/kiegroup/kogito-examples/tree/{kogito_branch}/serverless-workflow-examples/serverless-workflow-order-processing/src/test/resources/application.properties"><code>serverless-workflow-order-processing</code></a> example application.</p>
 </div>
 </div>
 </div>
@@ -1003,7 +1003,7 @@ public class VerifyWorkflowExecutionIT { <i class="conum" data-value="2"></i><b>
 <div class="sect2">
 <h3 id="ref-example-test-execution-cycle"><a class="anchor" href="#ref-example-test-execution-cycle"></a>Example of test execution cycle</h3>
 <div class="paragraph">
-<p>The testing example in this document is based on the <a href="https://github.com/kiegroup/kogito-examples/tree/9.100.x-prod/serverless-workflow-examples/serverless-workflow-order-processing"><code>serverless-workflow-order-processing</code></a> example application. The <code>serverless-workflow-order-processing</code> example application contains three workflows as shown in the following figure:</p>
+<p>The testing example in this document is based on the <a href="https://github.com/kiegroup/kogito-examples/tree/{kogito_branch}/serverless-workflow-examples/serverless-workflow-order-processing"><code>serverless-workflow-order-processing</code></a> example application. The <code>serverless-workflow-order-processing</code> example application contains three workflows as shown in the following figure:</p>
 </div>
 <div class="imageblock">
 <div class="content">

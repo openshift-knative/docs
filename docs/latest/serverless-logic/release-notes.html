@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>New features on 1.33.0 :: Red Hat OpenShift Serverless previews</title>
+    <title>New features on 1.35.0 :: Red Hat OpenShift Serverless previews</title>
     <link rel="canonical" href="https://openshift-knative.github.io/docs/docs/latest/serverless-logic/release-notes.html">
     <meta name="generator" content="Antora 3.0.3">
     <link rel="stylesheet" href="../../../_/css/site.css">
@@ -667,7 +667,34 @@
     <div class="main-view-and-toc">
         <main class="main">
           <article class="doc">
-<h1>New features on 1.33.0</h1>
+<h1>New features on 1.35.0</h1>
+<div class="sect1">
+<h2 id="_new_features"><a class="anchor" href="#_new_features"></a>New features</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://issues.redhat.com/browse/SRVLOGIC-296">SRVLOGIC-296</a> - SonataFlow Operator: Knative Eventing Integration</p>
+</li>
+<li>
+<p><a href="https://issues.redhat.com/browse/SRVLOGIC-367">SRVLOGIC-367</a> - Add the possibility to integrate the Operator with Prometheus and Grafana</p>
+</li>
+<li>
+<p><a href="https://issues.redhat.com/browse/SRVLOGIC-411">SRVLOGIC-411</a> - Support postgresql 15</p>
+</li>
+<li>
+<p><a href="https://issues.redhat.com/browse/SRVLOGIC-414">SRVLOGIC-414</a> - List all validation errors</p>
+</li>
+<li>
+<p><a href="https://issues.redhat.com/browse/SRVLOGIC-461">SRVLOGIC-461</a> - Add the ability to scale the Jobs Service to 0</p>
+</li>
+<li>
+<p><a href="https://issues.redhat.com/browse/SRVLOGIC-500">SRVLOGIC-500</a> - Minify the openAPI spec files to trim operations only used by the workflows in the current project</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
 <div class="sect1">
 <h2 id="_known_issues"><a class="anchor" href="#_known_issues"></a>Known issues</h2>
 <div class="sectionbody">
@@ -677,25 +704,31 @@
 <p><a href="https://issues.redhat.com/browse/SRVLOGIC-333">SRVLOGIC-333</a> - Afer update of workflow a new build is not trigger when the previous failed</p>
 </li>
 <li>
-<p><a href="https://issues.redhat.com/browse/SRVLOGIC-324">SRVLOGIC-324</a> - Live reload does not work for KN CLI plugin</p>
-</li>
-<li>
 <p><a href="https://issues.redhat.com/browse/SRVLOGIC-327">SRVLOGIC-327</a> - Warnings in jobs service ephemeral pod logs</p>
 </li>
 <li>
 <p><a href="https://issues.redhat.com/browse/SRVLOGIC-326">SRVLOGIC-326</a> - Warnings in data index ephemeral pod logs</p>
 </li>
 <li>
-<p><a href="https://issues.redhat.com/browse/SRVLOGIC-320">SRVLOGIC-320</a> - Natively build examples are not able to respond to requests</p>
-</li>
-<li>
-<p><a href="https://issues.redhat.com/browse/SRVLOGIC-250">SRVLOGIC-250</a> - Different UI results in DevUI with dev and preview scenarios</p>
-</li>
-<li>
-<p><a href="https://issues.redhat.com/browse/SRVLOGIC-220">SRVLOGIC-220</a> - Monitoring tab (workflow list):  Duration negative and timezone incorrect</p>
-</li>
-<li>
 <p><a href="https://issues.redhat.com/browse/SRVLOGIC-334">SRVLOGIC-334</a> - Missing serverless-workflow-examples-parent:pom when building productized example</p>
+</li>
+<li>
+<p><a href="https://issues.redhat.com/browse/SRVLOGIC-409">SRVLOGIC-409</a> - Unable to trigger workflows deployed on OCP throught management console</p>
+</li>
+<li>
+<p><a href="https://issues.redhat.com/browse/SRVLOGIC-465">SRVLOGIC-465</a> - Endpoint of workflow instance is incorrect during local dev scenarios and on OCP</p>
+</li>
+<li>
+<p><a href="https://issues.redhat.com/browse/SRVLOGIC-475">SRVLOGIC-475</a> - [CLI] Executing kn workflow run creates the container in the background</p>
+</li>
+<li>
+<p><a href="https://issues.redhat.com/browse/SRVLOGIC-491">SRVLOGIC-491</a> - Management console is unable to sort workflow instances by ID</p>
+</li>
+<li>
+<p><a href="https://issues.redhat.com/browse/SRVLOGIC-220">SRVLOGIC-220</a> - Monitoring tab (workflow list): Duration negative and timezone incorrect</p>
+</li>
+<li>
+<p><a href="https://issues.redhat.com/browse/SRVLOGIC-385">SRVLOGIC-385</a> - Dev-ui not painting data entering form for a workflow with dataInputSchema that contains enums</p>
 </li>
 </ul>
 </div>

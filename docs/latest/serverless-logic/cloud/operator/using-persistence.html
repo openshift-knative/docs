@@ -1007,17 +1007,17 @@ However, you must not use them in the <code>dev</code> profile, since this profi
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">io.quarkus</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">quarkus-agroal</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">3.8.4.redhat-00002</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3.8.6.redhat-00004</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">io.quarkus</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">quarkus-jdbc-postgresql</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">3.8.4.redhat-00002</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3.8.6.redhat-00004</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">org.kie</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">kie-addons-quarkus-persistence-jdbc</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">9.100.0.redhat-00004</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">9.102.0.redhat-00005</p></td>
 </tr>
 </tbody>
 </table>
@@ -1026,7 +1026,7 @@ However, you must not use them in the <code>dev</code> profile, since this profi
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">QUARKUS_EXTENSIONS=io.quarkus:quarkus-agroal:3.8.4.redhat-00002,io.quarkus:quarkus-jdbc-postgresql:3.8.4.redhat-00002,org.kie:kie-addons-quarkus-persistence-jdbc:9.100.0.redhat-00004</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">QUARKUS_EXTENSIONS=io.quarkus:quarkus-agroal:3.8.6.redhat-00004,io.quarkus:quarkus-jdbc-postgresql:3.8.6.redhat-00004,org.kie:kie-addons-quarkus-persistence-jdbc:9.102.0.redhat-00005</code></pre>
 </div>
 </div>
 </div>
@@ -1116,9 +1116,9 @@ metadata:
   name: sonataflow-platform
 spec:
   properties:
-    flow:
-       - name: quarkus.flyway.migrate-at-start
-         value: true</code></pre>
+       flow:
+          - name: quarkus.flyway.migrate-at-start
+            value: true</code></pre>
 </div>
 </div>
 <div class="admonitionblock note">

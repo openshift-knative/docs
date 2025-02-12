@@ -694,7 +694,7 @@
 </ul>
 </div>
 <div class="paragraph">
-<p>Also, you can directly access an example application by cloning <code>serverless-workflow-examples/serverless-workflow-hello-world</code> from the <a href="https://github.com/kiegroup/kogito-examples/tree/9.100.x-prod/serverless-workflow-examples/serverless-workflow-hello-world">GitHub repository</a>.</p>
+<p>Also, you can directly access an example application by cloning <code>serverless-workflow-examples/serverless-workflow-hello-world</code> from the <a href="https://github.com/kiegroup/kogito-examples/tree/{kogito_branch}/serverless-workflow-examples/serverless-workflow-hello-world">GitHub repository</a>.</p>
 </div>
 <div class="paragraph">
 <p>This document describes how to create a workflow application that serves a <code>hello_world</code> endpoint. The workflow contains the following two states:</p>
@@ -861,7 +861,7 @@
 <div class="listingblock">
 <div class="title">Create a project using Apache Maven</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">mvn com.redhat.quarkus.platform:quarkus-maven-plugin:3.8.4.redhat-00002:create \
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">mvn com.redhat.quarkus.platform:quarkus-maven-plugin:3.8.6.SP2-redhat-00002:create \
     -DprojectGroupId=org.acme \
     -DprojectArtifactId=serverless-workflow-hello-world \
     -Dextensions="org.apache.kie.sonataflow:sonataflow-quarkus,quarkus-resteasy-jackson,quarkus-smallrye-openapi" \
@@ -880,7 +880,7 @@
   --name serverless-workflow-hello-world \
   --extension quarkus-jsonp,quarkus-smallrye-openapi \
   --quarkus-platform-group-id=com.redhat.quarkus.platform \
-  --quarkus-version=3.8.4.redhat-00002</code></pre>
+  --quarkus-version=3.8.6.SP2-redhat-00002</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1034,7 +1034,7 @@
             &lt;dependency&gt;
                 &lt;groupId&gt;org.kie.kogito&lt;/groupId&gt;
                 &lt;artifactId&gt;kogito-bom&lt;/artifactId&gt;
-                &lt;version&gt;9.100.0.redhat-00004&lt;/version&gt;
+                &lt;version&gt;9.102.0.redhat-00005&lt;/version&gt;
                 &lt;type&gt;pom&lt;/type&gt;
                 &lt;scope&gt;import&lt;/scope&gt;
             &lt;/dependency&gt;
@@ -1058,7 +1058,7 @@
             &lt;dependency&gt;
                 &lt;groupId&gt;io.quarkus.platform&lt;/groupId&gt;
                 &lt;artifactId&gt;quarkus-kogito-bom&lt;/artifactId&gt;
-                &lt;version&gt;3.8.4.redhat-00002&lt;/version&gt;
+                &lt;version&gt;3.8.6.SP2-redhat-00002&lt;/version&gt;
                 &lt;type&gt;pom&lt;/type&gt;
                 &lt;scope&gt;import&lt;/scope&gt;
             &lt;/dependency&gt;
@@ -1191,7 +1191,7 @@
 [INFO] Building serverless-workflow-hello-world 1.0.0-SNAPSHOT
 [INFO] --------------------------------[ jar ]---------------------------------
 [INFO]
-[INFO] --- quarkus-maven-plugin:3.8.4.redhat-00002:dev (default-cli) @ serverless-workflow-hello-world ---
+[INFO] --- quarkus-maven-plugin:3.8.6.SP2-redhat-00002:dev (default-cli) @ serverless-workflow-hello-world ---
 [INFO] Invoking org.apache.maven.plugins:maven-resources-plugin:2.6:resources) @ serverless-workflow-hello-world
 [INFO] Using 'UTF-8' encoding to copy filtered resources.
 [INFO] Copying 3 resources
@@ -1201,7 +1201,7 @@ __  ____  __  _____   ___  __ ____  ______
  -/ /_/ / /_/ / __ |/ , _/ ,< / /_/ /\ \
 --\___\_\____/_/ |_/_/|_/_/|_|\____/___/
 2022-05-25 14:38:09,741 INFO  [org.kie.kog.add.qua.mes.com.QuarkusKogitoExtensionInitializer] (Quarkus Main Thread) Registered Kogito CloudEvent extension
-2022-05-25 14:38:09,840 INFO  [io.quarkus] (Quarkus Main Thread) serverless-workflow-hello-world 1.0.0-SNAPSHOT on JVM (powered by Quarkus 3.8.4.redhat-00002) started in 6.470s. Listening on: http://localhost:8080
+2022-05-25 14:38:09,840 INFO  [io.quarkus] (Quarkus Main Thread) serverless-workflow-hello-world 1.0.0-SNAPSHOT on JVM (powered by Quarkus 3.8.6.redhat-00004) started in 6.470s. Listening on: http://localhost:8080
 2022-05-25 14:38:09,843 INFO  [io.quarkus] (Quarkus Main Thread) Profile dev activated. Live Coding activated.
 2022-05-25 14:38:09,843 INFO  [io.quarkus] (Quarkus Main Thread) Installed features: [cache, cdi, jackson-jq, kogito-addon-messaging-extension, kogito-processes, kogito-serverless-workflow, reactive-routes, rest-client, rest-client-jackson, resteasy, resteasy-jackson, smallrye-context-propagation, smallrye-openapi, smallrye-reactive-messaging, smallrye-reactive-messaging-http, swagger-ui, vertx]
 2022-05-25 14:38:12,877 INFO  [org.kie.kog.qua.pro.dev.DataIndexInMemoryContainer] (docker-java-stream--938264210) STDOUT: __  ____  __  _____   ___  __ ____  ______

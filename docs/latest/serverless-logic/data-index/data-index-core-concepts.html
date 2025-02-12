@@ -1103,13 +1103,7 @@ For more information about GraphQL see <a href="https://graphql.org">GraphQL doc
 <p><code>lessThanEqual</code>: Integer</p>
 </li>
 <li>
-<p><code>between</code>: Numeric range</p>
-</li>
-<li>
-<p><code>from</code>: Integer</p>
-</li>
-<li>
-<p><code>to</code>: Integer</p>
+<p><code>between</code>: Numeric range (with <code>from</code> and <code>to</code> Integer values required)</p>
 </li>
 </ul>
 </div>
@@ -1137,13 +1131,20 @@ For more information about GraphQL see <a href="https://graphql.org">GraphQL doc
 <p><code>lessThanEqual</code>: Date time</p>
 </li>
 <li>
-<p><code>between</code>: Date range</p>
+<p><code>between</code>: Date range (with <code>from</code> and <code>to</code> Date time values required)</p>
+</li>
+</ul>
+</div>
 </li>
 <li>
-<p><code>from</code>: Date time</p>
+<p>Enum argument:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>equal</code>: Enum value</p>
 </li>
 <li>
-<p><code>to</code>: Date time</p>
+<p><code>in</code>: Array of enum values</p>
 </li>
 </ul>
 </div>

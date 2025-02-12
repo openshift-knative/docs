@@ -693,7 +693,7 @@
 <li><a href="#proc-consume-metrics-prometheus">Consuming metrics from Prometheus</a></li>
 </ul>
 </li>
-<li><a href="#ref-sw-example-metrics">Example metrics in OpenShift Serverless Logic</a></li>
+<li><a href="#ref-sw-example-metrics">Metrics in OpenShift Serverless Logic</a></li>
 <li><a href="#_found_an_issue"><em><strong>Found an issue?</strong></em></a></li>
 </ul>
 </div>
@@ -900,26 +900,46 @@ spec:
 </div>
 </div>
 <div class="sect1">
-<h2 id="ref-sw-example-metrics"><a class="anchor" href="#ref-sw-example-metrics"></a>Example metrics in OpenShift Serverless Logic</h2>
+<h2 id="ref-sw-example-metrics"><a class="anchor" href="#ref-sw-example-metrics"></a>Metrics in OpenShift Serverless Logic</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>In OpenShift Serverless Logic, you can check the following example metrics:</p>
+<p>In OpenShift Serverless Logic, you can check the following  metrics:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>kogito_process_instance_completed_total</code>: Completed workflows</p>
+<p><code>kogito_process_instance_started_total</code>: Number of started workflows (a workflow that has started might be running or completed)</p>
 </li>
 <li>
-<p><code>kogito_process_instance_started_total</code>: Started workflows</p>
+<p><code>kogito_process_instance_running_total</code>: Number of running workflows</p>
 </li>
 <li>
-<p><code>kogito_process_instance_running_total</code>: Running workflows</p>
+<p><code>kogito_process_instance_completed_total</code>: Number of completed workflows</p>
 </li>
 <li>
-<p><code>kogito_process_instance_duration_seconds_sum</code>: Workflows total duration</p>
+<p><code>kogito_process_instance_error</code>: Number of workflows that report an error ( a workflow with an error might be still running or have been completed)</p>
+</li>
+<li>
+<p><code>kogito_process_instance_duration_seconds</code>: Duration of a process instance in seconds</p>
+</li>
+<li>
+<p><code>kogito_node_instance_duration_milliseconds</code>: Duration of relevant nodes in milliseconds (a workflow is composed by nodes, user might be interested on the time consumed by an specific node type)</p>
 </li>
 </ul>
+</div>
+<div class="paragraph">
+<p>Optionally, if you include dependency</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;dependency&gt;
+    &lt;groupId&gt;org.kie&lt;/groupId&gt;
+    &lt;artifactId&gt;kie-addons-quarkus-monitoring-sonataflow&lt;/artifactId&gt;
+&lt;/dependency&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>metric <code>sonataflow_input_parameters_counter</code>, which tracks input parameter, will be available. This metric is optional because it counts every workflow input parameter key value combination, which might be space consuming.</p>
 </div>
 <div class="admonitionblock note">
 <table>

@@ -706,6 +706,17 @@
 <li><a href="#common-persistence-configuration">Common PostgreSQL persistence configuration</a></li>
 </ul>
 </li>
+<li><a href="#configuring-supporting-services-eventing-system">Configuring the supporting services Eventing system</a>
+<ul class="sectlevel2">
+<li><a href="#platform-scoped-eventing-system-configuration">Platform-scoped Eventing system configuration</a></li>
+<li><a href="#service-scoped-eventing-system-configuration">Service-scoped Eventing system configuration</a></li>
+<li><a href="#data-index-eventing-system-configuration">Data Index Eventing system configuration</a></li>
+<li><a href="#jos-service-eventing-system-configuration">Jobs Service Eventing system configuration</a></li>
+<li><a href="#cluster-scoped-eventing-system-configuration">Cluster-scoped Eventing system configuration</a></li>
+<li><a href="#_eventing_system_configuration_precedence_rules">Eventing system configuration precedence rules</a></li>
+<li><a href="#_eventing_system_linking_objects">Eventing System linking objects</a></li>
+</ul>
+</li>
 <li><a href="#_advanced_supporting_services_configurations">Advanced Supporting Services Configurations</a></li>
 <li><a href="#cluster-scoped-deployment">Cluster Scoped Supporting Services</a></li>
 <li><a href="#_conclusions">Conclusions</a></li>
@@ -997,6 +1008,374 @@ For example, <code>sonataflow-platform-example-data-index-service</code>.</p>
 </div>
 </div>
 <div class="sect1">
+<h2 id="configuring-supporting-services-eventing-system"><a class="anchor" href="#configuring-supporting-services-eventing-system"></a>Configuring the supporting services Eventing system</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In general, the following events are produced in a OpenShift Serverless Logic installation:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Workflow outgoing and incoming business events.</p>
+</li>
+<li>
+<p>OpenShift Serverless Logic system events sent from the workflow to the Data Index and Job Service respectively.</p>
+</li>
+<li>
+<p>OpenShift Serverless Logic system events sent from the Jobs Service to the Data Index Service.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The Serverless Logic Operator is designed to use the <a href="https://docs.openshift.com/serverless/{product_version_short}/eventing/knative-eventing.html">Knative Eventing</a> system to resolve all the event communication between these services.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>In a regular OpenShift Serverless Logic installation, the preferred method is to use the <a href="#platform-scoped-eventing-system-configuration">Platform scoped Eventing System Configuration</a>, while the <a href="#service-scoped-eventing-system-configuration">Service scoped Eventing System configuration</a> is reserved only for advanced use cases.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="platform-scoped-eventing-system-configuration"><a class="anchor" href="#platform-scoped-eventing-system-configuration"></a>Platform-scoped Eventing system configuration</h3>
+<div class="paragraph">
+<p>To configure a platform-scoped eventing system, you must use the field <code>spec.eventing.broker.ref</code> in the <code>SonataFlowPlatform</code> CR to refer to a Knative Eventing Broker.</p>
+</div>
+<div class="paragraph">
+<p>This information signals the Serverless Logic Operator to automatically link the supporting services to <code>produce</code> and <code>consume</code> the events by using that Broker.</p>
+</div>
+<div class="paragraph">
+<p>Additionally, workflows deployed in that namespace, with the <code>preview</code> or <code>gitops</code> profile, that don&#8217;t provide a custom eventing system configuration, will be linked to that Broker.
+For more information about configuring the workflow eventing system, <a href="configuring-workflow-eventing-system.html" class="xref page">see</a>.</p>
+</div>
+<div class="paragraph">
+<p>The following <code>SonataFlowPlatform</code> CR fragment shows an example of such configuration:</p>
+</div>
+<div class="listingblock">
+<div class="title">Platform scoped eventing system configuration example</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yam hljs" data-lang="yam">apiVersion: sonataflow.org/v1alpha08
+kind: SonataFlowPlatform
+metadata:
+  name: sonataflow-platform-example
+  namespace: example-namespace
+spec:
+  eventing:
+    broker:
+      ref:
+        name: example-broker <i class="conum" data-value="1"></i><b>(1)</b>
+        namespace: example-broker-namespace <i class="conum" data-value="2"></i><b>(2)</b>
+        apiVersion: eventing.knative.dev/v1
+        kind: Broker</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Name of the Knative Eventing Broker.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Optional: Defines the namespace of the Knative Eventing Broker. Defaults to the SonataFlowPlatform namespace. We recommend creating the Knative Eventing Broker in the same namespace as the SonataFlowPlatform.</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>In production environments, you must use a production-ready broker, like the <a href="https://docs.openshift.com/serverless/{product_version_short}/eventing/brokers/serverless-broker-types.html">Knative Kafka Broker</a>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="service-scoped-eventing-system-configuration"><a class="anchor" href="#service-scoped-eventing-system-configuration"></a>Service-scoped Eventing system configuration</h3>
+<div class="paragraph">
+<p>A service scoped eventing system configuration provides the ability to do a fine-grained configuration of the Eventing system for the <a href="#data-index-eventing-system-configuration">Data Index</a> or the <a href="#jos-service-eventing-system-configuration">Jobs Service</a>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>In a regular OpenShift Serverless Logic installation, the preferred method is to use a <a href="#platform-scoped-eventing-system-configuration">Platform-scoped Eventing System Configuration</a>, while the service-scoped configuration is reserved only for advanced use cases.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="data-index-eventing-system-configuration"><a class="anchor" href="#data-index-eventing-system-configuration"></a>Data Index Eventing system configuration</h3>
+<div class="paragraph">
+<p>To configure a service-scoped eventing system for the Data Index, you must use the field <code>spec.services.dataIndex.source.ref</code> in the <code>SonataFlowPlatform</code> CR to refer to a specific Knative Eventing Broker.</p>
+</div>
+<div class="paragraph">
+<p>This information signals the Serverless Logic Operator to automatically link the Data Index to <code>consume</code> the OpenShift Serverless Logic system events from that Broker.</p>
+</div>
+<div class="listingblock">
+<div class="title">Data Index service scoped eventing system configuration example</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yam hljs" data-lang="yam">apiVersion: sonataflow.org/v1alpha08
+kind: SonataFlowPlatform
+metadata:
+  name: sonataflow-platform-example
+spec:
+  services:
+    dataIndex:
+      source:
+        ref:
+          name: data-index-source-example-broker <i class="conum" data-value="1"></i><b>(1)</b>
+          namespace: data-index-source-example-broker-namespace <i class="conum" data-value="2"></i><b>(2)</b>
+          apiVersion: eventing.knative.dev/v1
+          kind: Broker</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Name of the Knative Eventing Broker to <code>consume</code> events from.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Optional: Defines the namespace of the Knative Eventing Broker. Defaults to the SonataFlowPlatform namespace. In general, we recommend creating the Knative Eventing Broker in the same namespace as the SonataFlowPlatform.</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>In production environments, you must use a production-ready broker, like the <a href="https://docs.openshift.com/serverless/{product_version_short}/eventing/brokers/serverless-broker-types.html">Knative Kafka Broker</a>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="jos-service-eventing-system-configuration"><a class="anchor" href="#jos-service-eventing-system-configuration"></a>Jobs Service Eventing system configuration</h3>
+<div class="paragraph">
+<p>To configure a service-scoped eventing system for the Jobs Service, you must use the fields <code>spec.services.jobService.source.ref</code> and <code>spec.services.jobService.sink.ref</code> in the <code>SonataFlowPlatform</code> CR.</p>
+</div>
+<div class="paragraph">
+<p>This information signals the Serverless Logic Operator to automatically link the Jobs Service to <code>consume</code> and <code>produce</code> the OpenShift Serverless Logic system events from that configuration respectively.</p>
+</div>
+<div class="listingblock">
+<div class="title">Jobs Service scoped eventing system configuration example</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yam hljs" data-lang="yam">apiVersion: sonataflow.org/v1alpha08
+kind: SonataFlowPlatform
+metadata:
+  name: sonataflow-platform-example
+spec:
+  services:
+    jobService:
+      source:
+        ref:
+          name: jobs-service-source-example-broker <i class="conum" data-value="1"></i><b>(1)</b>
+          namespace: jobs-service-source-example-broker-namespace <i class="conum" data-value="2"></i><b>(2)</b>
+          apiVersion: eventing.knative.dev/v1
+          kind: Broker
+      sink:
+        ref:
+          name: jobs-service-sink-example-broker <i class="conum" data-value="3"></i><b>(3)</b>
+          namespace: jobs-service-sink-example-broker-namespace <i class="conum" data-value="4"></i><b>(4)</b>
+          apiVersion: eventing.knative.dev/v1
+          kind: Broker</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Name of the Knative Eventing Broker to <code>consume</code> events from.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Optional: Defines the namespace of the Knative Eventing Broker. Defaults to the SonataFlowPlatform namespace. In general, we recommend creating the Knative Eventing Broker in the same namespace as the SonataFlowPlatform.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Name of the Knative Eventing Broker to <code>produce</code> events on.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Optional: Defines the namespace of the Knative Eventing Broker. Defaults to the SonataFlowPlatform namespace. In general, we recommend creating the Knative Eventing Broker in the same namespace as the SonataFlowPlatform.</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>In production environments, you must use production-ready brokers, like the <a href="https://docs.openshift.com/serverless/{product_version_short}/eventing/brokers/serverless-broker-types.html">Knative Kafka Broker</a>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="cluster-scoped-eventing-system-configuration"><a class="anchor" href="#cluster-scoped-eventing-system-configuration"></a>Cluster-scoped Eventing system configuration</h3>
+<div class="paragraph">
+<p>When you use a <a href="#cluster-scoped-deployment">Cluster Scoped Supporting Services</a> deployment, the supporting services are automatically linked to the <code>Broker</code> configured in the <code>SonataFlowPlatform</code> CR referred to by the <code>SonataFlowClusterPlatform</code> CR.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_eventing_system_configuration_precedence_rules"><a class="anchor" href="#_eventing_system_configuration_precedence_rules"></a>Eventing system configuration precedence rules</h3>
+<div class="paragraph">
+<p>To configure the eventing system for a supporting service, the Serverless Logic Operator use the following precedence rules:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>If the supporting service has a configured eventing system, by using any of the <a href="#data-index-eventing-system-configuration">Data Index Eventing system configuration</a> or <a href="#jos-service-eventing-system-configuration">Jobs Service Eventing system configuration</a> respectively, that configuration applies.</p>
+</li>
+<li>
+<p>If the <code>SonataFlowPlatform</code> CR enclosing the supporting service, is configured with a <a href="#platform-scoped-eventing-system-configuration">Platform-scoped Eventing system configuration</a>, that configuration applies.</p>
+</li>
+<li>
+<p>If the current cluster, is configured with a <a href="#cluster-scoped-eventing-system-configuration">Cluster-scoped Eventing system configuration</a>, that configuration apply.</p>
+</li>
+<li>
+<p>If none of the previous configurations exists, the supporting service is configured to produce direct HTTP calls to deliver events.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_eventing_system_linking_objects"><a class="anchor" href="#_eventing_system_linking_objects"></a>Eventing System linking objects</h3>
+<div class="paragraph">
+<p>The linking of the supporting services with the Eventing System is produced by using Knative Eventing SinkBindings and Triggers.
+These objects are automatically created by the Serverless Logic Operator, and facilitate the events production and consumption from the supporting services.</p>
+</div>
+<div class="paragraph">
+<p>The following example shows the Knative Native eventing objects created for the <code>SonataFlowPlatform</code> CR:</p>
+</div>
+<div class="listingblock">
+<div class="title">SonataFlowPlatform eventing system configuration example</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: sonataflow.org/v1alpha08
+kind: SonataFlowPlatform
+metadata:
+  name: sonataflow-platform-example
+  namespace: example-namespace
+spec:
+  eventing:
+    broker:
+      ref:
+        name: example-broker <i class="conum" data-value="1"></i><b>(1)</b>
+        apiVersion: eventing.knative.dev/v1
+        kind: Broker
+  services:
+    dataIndex: <i class="conum" data-value="2"></i><b>(2)</b>
+      enabled: true
+    jobService: <i class="conum" data-value="3"></i><b>(3)</b>
+      enabled: true</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Platform Broker configuration used by the Data Index, Jobs Service, and the workflows if not overridden.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Data Index ephemeral deployment.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Jobs Service ephemeral deployment.</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">Knative Kafka Broker example used by the SonataFlowPlatform</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: eventing.knative.dev/v1
+kind: Broker
+metadata:
+  annotations:
+    eventing.knative.dev/broker.class: Kafka <i class="conum" data-value="1"></i><b>(1)</b>
+  name: example-broker
+  namespace: example-namespace
+spec:
+  config:
+    apiVersion: v1
+    kind: ConfigMap
+    name: kafka-broker-config
+    namespace: knative-eventing</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Use the Kafka class to create a Kafka Knative Broker</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">Knative Eventing Triggers created for the Data Index and Jobs Service events consumption</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kn trigger list -n example-namespace
+
+NAME                                                              BROKER           SINK                                                     AGE    CONDITIONS   READY   REASON
+data-index-jobs-fbf285df-c0a4-4545-b77a-c232ec2890e2              example-broker   service:sonataflow-platform-example-data-index-service   106s   7 OK / 7     True
+data-index-process-definition-e48b4e4bf73e22b90ecf7e093ff6b1eaf   example-broker   service:sonataflow-platform-example-data-index-service   106s   7 OK / 7     True
+data-index-process-error-fbf285df-c0a4-4545-b77a-c232ec2890e2     example-broker   service:sonataflow-platform-example-data-index-service   106s   7 OK / 7     True
+data-index-process-instance-mul35f055c67a626f51bb8d2752606a6b54   example-broker   service:sonataflow-platform-example-data-index-service   106s   7 OK / 7     True
+data-index-process-node-fbf285df-c0a4-4545-b77a-c232ec2890e2      example-broker   service:sonataflow-platform-example-data-index-service   106s   7 OK / 7     True
+data-index-process-sla-fbf285df-c0a4-4545-b77a-c232ec2890e2       example-broker   service:sonataflow-platform-example-data-index-service   106s   7 OK / 7     True
+data-index-process-state-fbf285df-c0a4-4545-b77a-c232ec2890e2     example-broker   service:sonataflow-platform-example-data-index-service   106s   7 OK / 7     True
+data-index-process-variable-ac727d6051750888dedb72f697737c0dfbf   example-broker   service:sonataflow-platform-example-data-index-service   106s   7 OK / 7     True
+
+jobs-service-create-job-fbf285df-c0a4-4545-b77a-c232ec2890e2      example-broker   service:sonataflow-platform-example-jobs-service         106s   7 OK / 7     True
+jobs-service-delete-job-fbf285df-c0a4-4545-b77a-c232ec2890e2      example-broker   service:sonataflow-platform-example-jobs-service         106s   7 OK / 7     True</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Knative Eventing SinkBinding created for the Jobs Service events production</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kn source list -n example-namespace
+
+NAME                                          TYPE          RESOURCE                           SINK                    READY
+sonataflow-platform-example-jobs-service-sb   SinkBinding   sinkbindings.sources.knative.dev   broker:example-broker   True</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="_advanced_supporting_services_configurations"><a class="anchor" href="#_advanced_supporting_services_configurations"></a>Advanced Supporting Services Configurations</h2>
 <div class="sectionbody">
 <div class="paragraph">
@@ -1138,7 +1517,10 @@ Additionally, it can manage different persistence options for each service, and 
 <p><a href="../../job-services/core-concepts.html" class="xref page">Job Service Core Concepts</a></p>
 </li>
 <li>
-<p><a href="using-persistence.html" class="xref page">Using persistence in OpenShift Serverless Logic workflows</a></p>
+<p><a href="using-persistence.html" class="xref page">Workflow Persistence</a></p>
+</li>
+<li>
+<p><a href="configuring-workflow-eventing-system.html" class="xref page">Workflow Eventing System</a></p>
 </li>
 <li>
 <p><a href="known-issues.html" class="xref page">Serverless Logic Operator Known Issues, Limitations and Roadmap</a></p>
