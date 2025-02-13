@@ -27,7 +27,7 @@ You can use the {product_name} plug-in to set up your local workflow project qui
 * link:{kn_cli_install_url}[Knative CLI] is installed.
 
 .Procedure
-. Download the latest binary file, suitable for your environment, from the link:{kie_tools_releases_page_url}[KIE Tooling Releases] page.
+. Download the latest binary file, suitable for your environment, from the link:{kn_workflow_plugin_releases_url}[release] page.
 . Install the `kn workflow` command as a plug-in of the Knative CLI using the following steps:
 +
 --
