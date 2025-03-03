@@ -86,7 +86,7 @@
 ***** xref:serverless-logic:cloud/operator/service-discovery.adoc[Service Discovery]
 ***** xref:serverless-logic:cloud/operator/using-persistence.adoc[Using persistence]
 ***** xref:serverless-logic:cloud/operator/configuring-knative-eventing-resources.adoc[Knative Eventing]
-***** xref:cloud/operator/add-custom-ca-to-a-workflow-pod.adoc[Add Custom CA to Workflow Pod]
+***** xref:serverless-logic:cloud/operator/add-custom-ca-to-a-workflow-pod.adoc[Add Custom CA to Workflow Pod]
 ***** xref:serverless-logic:cloud/operator/known-issues.adoc[Roadmap and Known Issues]
 *** Integrations
 **** xref:serverless-logic:integrations/core-concepts.adoc[]

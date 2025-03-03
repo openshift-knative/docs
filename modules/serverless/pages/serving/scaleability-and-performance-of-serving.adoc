@@ -151,7 +151,7 @@ The following memory consumptions have been measured for the components in the `
 | 504Mi
 
 |===
-<1> Note: either `3scale-kourier-gateway` + `net-kourier-controller` or `istio-ingressgateway` + `net-istio-controller` are installed
+(1) Note: either `3scale-kourier-gateway` + `net-kourier-controller` or `istio-ingressgateway` + `net-istio-controller` are installed
 
 
 ==== Configuring {serverlessproductname} Serving for minimal workloads

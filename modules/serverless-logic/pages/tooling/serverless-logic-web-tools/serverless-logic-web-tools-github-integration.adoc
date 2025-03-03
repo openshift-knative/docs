@@ -57,7 +57,7 @@ image::tooling/serverless-logic-web-tools/serverless-logic-web-tools-github-repo
 +
 [NOTE]
 ====
-Currently, {serverless_logic_web_tools_name} cannot resolve the merge conflicts. Therefore, ensure that you always pull changes before working on your files.
+Currently, this component cannot resolve the merge conflicts. Therefore, ensure that you always pull changes before working on your files.
 ====
 
 [[proc-import-workspace-github-serverless-logic-web-tools]]
