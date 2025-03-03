@@ -36,7 +36,7 @@ image::tooling/serverless-workflow-editor/swf-editor-chrome-extension-page.png[]
 * *Download the ZIP file*:
 +
 --
-.. Download and extract the `chrome_extension_serverless_workflow_editor_VERSION.zip` file from the link:{kie_tools_releases_page_url}[kie-tools] releases page in GitHub.
+.. Download and extract the `chrome_extension_serverless_workflow_editor_VERSION.zip` file from the link:{kn_workflow_plugin_releases_url}[kie-tools] releases page in GitHub.
 .. Go to *Customize and control* → *Settings* → *Extensions* → *Load unpacked* in the upper-right corner in Chrome.
 .. Open the extracted `dist` folder.
 
