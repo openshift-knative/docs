@@ -390,7 +390,7 @@
     <a class="nav-link" href="../../../cloud/operator/configuring-knative-eventing-resources.html">Knative Eventing</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="#cloud/operator/add-custom-ca-to-a-workflow-pod.adoc">Add Custom CA to Workflow Pod</a>
+    <a class="nav-link" href="../../../cloud/operator/add-custom-ca-to-a-workflow-pod.html">Add Custom CA to Workflow Pod</a>
   </li>
   <li class="nav-item" data-depth="5">
     <a class="nav-link" href="../../../cloud/operator/known-issues.html">Roadmap and Known Issues</a>
@@ -736,13 +736,11 @@
 <div class="paragraph">
 <p>For more information about the tooling and the required dependencies, see <a href="../../../getting-started/getting-familiar-with-our-tooling.html" class="xref page">Getting familiar with OpenShift Serverless Logic tooling</a>.</p>
 </div>
-<div class="paragraph">
-<p>Unresolved include directive in modules/serverless-logic/pages/use-cases/advanced-developer-use-cases/getting-started/create-your-first-workflow-project.adoc - include::../../pages/_common-content/downstream-project-setup-instructions.adoc[]</p>
-</div>
 </div>
 <div id="toc" class="toc">
 <div id="toctitle"></div>
 <ul class="sectlevel1">
+<li><a href="#proc-configuring-maven-rhbq">Configuring your Maven project to Red Hat build of Quarkus and OpenShift Serverless Logic</a></li>
 <li><a href="#proc-analysis-phase">Analysis phase</a>
 <ul class="sectlevel2">
 <li><a href="#proc-adding-persistence">Adding persistence</a></li>
@@ -762,6 +760,64 @@
 <li><a href="#_additional_resources">Additional resources</a></li>
 <li><a href="#_found_an_issue"><em><strong>Found an issue?</strong></em></a></li>
 </ul>
+</div>
+</div>
+<div class="sect1">
+<h2 id="proc-configuring-maven-rhbq"><a class="anchor" href="#proc-configuring-maven-rhbq"></a>Configuring your Maven project to Red Hat build of Quarkus and OpenShift Serverless Logic</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To use the Red Hat Build of Quarkus (RHBQ) libraries, you need to configure your local Maven installation.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>To configure the Apache Maven <code>settings.xml</code> file and Quarkus extension registry client, follow the instructions in the <a href="https://access.redhat.com/documentation/en-us/red_hat_build_of_quarkus/quarkus-2-7/guide/f93c45bd-4feb-4f74-a70a-022e9fb41957#proc_online-maven_quarkus-getting-started">Configuring the Maven settings.xml file for the online repository</a> and <a href="https://access.redhat.com/documentation/en-us/red_hat_build_of_quarkus/quarkus-2-7/guide/f93c45bd-4feb-4f74-a70a-022e9fb41957#_9064727c-4b8a-4068-a9ba-8de6b258a14a">Configuring Quarkus extension registry client</a>.</p>
+</li>
+<li>
+<p>Complement the configured Apache Maven <code>settings.xml</code> file with the following profile to have access to the OpenShift Serverless Logic repository:</p>
+<div class="listingblock">
+<div class="title">Profile to access the OpenShift Serverless Logic repository</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;!-- Configure the OpenShift Serverless Logic Maven repository --&gt;
+&lt;profile&gt;
+  &lt;id&gt;red-hat-ga-maven-repository&lt;/id&gt;
+  &lt;activation&gt;
+    &lt;activeByDefault&gt;true&lt;/activeByDefault&gt;
+  &lt;/activation&gt;
+  &lt;repositories&gt;
+    &lt;repository&gt;
+      &lt;id&gt;red-hat-ga-maven-repository&lt;/id&gt;
+      &lt;url&gt;https://maven.repository.redhat.com/ga&lt;/url&gt;
+      &lt;releases&gt;
+        &lt;enabled&gt;true&lt;/enabled&gt;
+      &lt;/releases&gt;
+      &lt;snapshots&gt;
+        &lt;enabled&gt;false&lt;/enabled&gt;
+      &lt;/snapshots&gt;
+    &lt;/repository&gt;
+  &lt;/repositories&gt;
+  &lt;pluginRepositories&gt;
+    &lt;pluginRepository&gt;
+      &lt;id&gt;red-hat-ga-maven-repository&lt;/id&gt;
+      &lt;url&gt;https://maven.repository.redhat.com/ga&lt;/url&gt;
+      &lt;releases&gt;
+        &lt;enabled&gt;true&lt;/enabled&gt;
+      &lt;/releases&gt;
+      &lt;snapshots&gt;
+        &lt;enabled&gt;false&lt;/enabled&gt;
+      &lt;/snapshots&gt;
+    &lt;/pluginRepository&gt;
+  &lt;/pluginRepositories&gt;
+&lt;/profile&gt;</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Follow the instructions in the <a href="https://access.redhat.com/RegistryAuthentication">Red Hat Container Registry Authentication</a> article to log in to the registry and use the OpenShift Serverless Logic images locally.</p>
+</li>
+</ol>
+</div>
 </div>
 </div>
 <div class="sect1">

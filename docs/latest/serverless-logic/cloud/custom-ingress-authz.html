@@ -392,7 +392,7 @@
     <a class="nav-link" href="operator/configuring-knative-eventing-resources.html">Knative Eventing</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="#cloud/operator/add-custom-ca-to-a-workflow-pod.adoc">Add Custom CA to Workflow Pod</a>
+    <a class="nav-link" href="operator/add-custom-ca-to-a-workflow-pod.html">Add Custom CA to Workflow Pod</a>
   </li>
   <li class="nav-item" data-depth="5">
     <a class="nav-link" href="operator/known-issues.html">Roadmap and Known Issues</a>
@@ -712,9 +712,9 @@
 <div class="paragraph">
 <p>The following image illustrates a simplified architecture view of the recommended approach for protecting OpenShift Serverless Logic workflow endpoints.</p>
 </div>
-<div class="imageblock unresolved">
+<div class="imageblock">
 <div class="content">
-<img src="cloud/apisix-keycloak/ingress-apisix-keycloak.png" alt="ingress apisix keycloak">
+<img src="../_images/cloud/apisix-keycloak/ingress-apisix-keycloak.png" alt="ingress apisix keycloak">
 </div>
 </div>
 <div class="olist arabic">
@@ -858,9 +858,9 @@ kubectl kustomize manifests/bases | kubectl apply -f - -n keycloak</code></pre>
 <div class="paragraph">
 <p>Once you are logged into the console, click <strong>Create realm</strong> in the top left menu. In this screen, create a new realm named <code>sonataflow</code>. See the image below for more details:</p>
 </div>
-<div class="imageblock unresolved">
+<div class="imageblock">
 <div class="content">
-<img src="cloud/apisix-keycloak/01-create-realm.png" alt="01 create realm">
+<img src="../_images/cloud/apisix-keycloak/01-create-realm.png" alt="01 create realm">
 </div>
 <div class="title">Figure 1. Creation of the new sonataflow realm</div>
 </div>
@@ -870,9 +870,9 @@ kubectl kustomize manifests/bases | kubectl apply -f - -n keycloak</code></pre>
 <div class="paragraph">
 <p>In the left menu, make sure that you are in the <code>sonataflow</code> realm and click on <strong>Clients</strong>, then <strong>Create client</strong>. Give the name <code>apisix-ingress</code> and then click on <strong>Next</strong>.</p>
 </div>
-<div class="imageblock unresolved">
+<div class="imageblock">
 <div class="content">
-<img src="cloud/apisix-keycloak/02-create-client.png" alt="02 create client">
+<img src="../_images/cloud/apisix-keycloak/02-create-client.png" alt="02 create client">
 </div>
 <div class="title">Figure 2. Creation of the APISIX Ingress client</div>
 </div>
@@ -892,9 +892,9 @@ kubectl kustomize manifests/bases | kubectl apply -f - -n keycloak</code></pre>
 </li>
 </ol>
 </div>
-<div class="imageblock unresolved">
+<div class="imageblock">
 <div class="content">
-<img src="cloud/apisix-keycloak/03-create-client.png" alt="03 create client">
+<img src="../_images/cloud/apisix-keycloak/03-create-client.png" alt="03 create client">
 </div>
 <div class="title">Figure 3. APISIX Ingress client details</div>
 </div>
@@ -943,9 +943,9 @@ kubectl kustomize manifests/bases | kubectl apply -f - -n keycloak</code></pre>
 </li>
 </ol>
 </div>
-<div class="imageblock unresolved">
+<div class="imageblock">
 <div class="content">
-<img src="cloud/apisix-keycloak/05-create-user.png" alt="05 create user">
+<img src="../_images/cloud/apisix-keycloak/05-create-user.png" alt="05 create user">
 </div>
 <div class="title">Figure 4. Creating a workflow user</div>
 </div>
@@ -958,9 +958,9 @@ kubectl kustomize manifests/bases | kubectl apply -f - -n keycloak</code></pre>
 <div class="paragraph">
 <p>In this screen, click on the tab <strong>Credentials</strong>, and then on <strong>Set password</strong>.</p>
 </div>
-<div class="imageblock unresolved">
+<div class="imageblock">
 <div class="content">
-<img src="cloud/apisix-keycloak/06-user-set-password.png" alt="06 user set password">
+<img src="../_images/cloud/apisix-keycloak/06-user-set-password.png" alt="06 user set password">
 </div>
 <div class="title">Figure 5. Setting user&#8217;s password</div>
 </div>
@@ -1114,9 +1114,9 @@ spec:
 <div class="paragraph">
 <p>Click on the tab <strong>Credentials</strong> and copy the <strong>Client Secret</strong>:</p>
 </div>
-<div class="imageblock unresolved">
+<div class="imageblock">
 <div class="content">
-<img src="cloud/apisix-keycloak/04-client-credentials.png" alt="04 client credentials">
+<img src="../_images/cloud/apisix-keycloak/04-client-credentials.png" alt="04 client credentials">
 </div>
 <div class="title">Figure 6. Creating the workflow user</div>
 </div>
