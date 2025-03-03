@@ -8,7 +8,7 @@ The link:{serverless_logic_web_tools_url}[{serverless_logic_web_tools_name}] is 
 
 [IMPORTANT]
 ====
- {serverless_logic_web_tools_name} is Development Support Scope only. For more information about the support scope of Red Hat Development Support see https://access.redhat.com/solutions/7031210.
+ This component is development Support Scope only. For more information about the support scope of Red Hat Development Support see https://access.redhat.com/solutions/7031210.
 ====
 
 .Home page of {serverless_logic_web_tools_name}
