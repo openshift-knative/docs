@@ -47,7 +47,7 @@ For every workflow `my-workflow` with the `dev` profile you must:
 
 *Pre-operator upgrade steps:*
 
-. Ensure that you have a copy of the corresponding `SonataFlow` CRD, as well as any other k8s resource created for that workflow, for example, the user provided `ConfigMap` with the `application.properties` in cases you are using custom properties configurations, etc.
+. Ensure that you have a copy of the corresponding `SonataFlow` CR, as well as any other Kubernetes resources created for that workflow. For example, this includes the user-provided `ConfigMap` with `application.properties` if you are using custom property configurations.
 
 . Delete the workflow by using the following command:
 +
