@@ -59,9 +59,9 @@ $ oc delete -f <my-workflow.yaml> -n <target_namespace>
 *Post-operator upgrade steps:*
 
 [start=3]
-. Ensure that any k8s resource for that workflow, for example, the user-provided `ConfigMap` with the `application.properties`, is created before you re-deploy the workflow.
+. Ensure that any Kubernetes resource for that workflow, such as the user-provided `ConfigMap` with `application.properties`, is created before you redeploy the workflow.
 
-. Re-deploy the workflow by using the following command.
+. Re-deploy the workflow by using the following command:
 +
 [source,terminal]
 ----
@@ -71,16 +71,16 @@ $ oc apply -f <my-workflow.yaml> -n <target_namespace>
 
 [#workflows_preview_profile]
 ==== Workflows with the `preview` profile
-Every workflow with the `preview` profile must be deleted before applying the operator upgrade to OSL 1.36.0, and re-deployed after the upgrade is completed.
+Every workflow with the `preview` profile must be deleted before applying the operator upgrade to OSL 1.36.0 and then redeployed after the upgrade is complete.
 
 For every workflow `my-workflow` with the `preview` profile you must:
 
 *Pre-operator upgrade steps:*
 
 . If the workflow is configured to use persistence, you must back up the workflow database.
-Ensure that your database backup includes the database objects, and not only the table's information.
+Ensure that your database backup includes all database objects, not just the table's information.
 
-. Ensure that you have a copy of the corresponding `SonataFlow` CRD, as well as any other k8s resource created for that workflow, for example, the user provided `ConfigMap` with the `application.properties` in case you are using custom properties configurations.
+. Ensure that you have a copy of the corresponding `SonataFlow` CR, as well as any other Kubernetes resources created for that workflow. For example, if you are using custom property configurations, you will need a copy of the user-provided `ConfigMap` with the `application.properties` file.
 
 . Delete the workflow by using the following command:
 +
@@ -92,7 +92,7 @@ $ oc delete -f <my-workflow.yaml> -n <target_namespace>
 *Post-operator upgrade steps:*
 
 [start=4]
-. Ensure that any k8s resource for that workflow, for example, the user-provided `ConfigMap` with the `application.properties`, is created before you re-deploy the workflow.
+. Ensure that any Kubernetes resource for that workflow, such as the user-provided `ConfigMap` with `application.properties`, is created before you redeploy the workflow.
 
 +
 . Re-deploy the workflow by using the following command.
@@ -105,7 +105,7 @@ $ oc apply -f <my-workflow.yaml> -n <target_namespace>
 [#workflows_gitops_profile]
 ==== Workflows with the `gitops` profile
 
-Every workflow with the `gitops` profile must be scaled to zero before applying the operator upgrade to OSL 1.36.0, and rescaled to 1 after the upgrade is completed.
+Every workflow with the `gitops` profile must be scaled to zero before applying the operator upgrade to OSL 1.36.0 and then rescaled to 1 after the upgrade is complete.
 
 For every workflow `my-workflow` with the `gitops` profile you must:
 
@@ -113,7 +113,7 @@ For every workflow `my-workflow` with the `gitops` profile you must:
 
 . Scale the workflow to zero
 +
-You can scale the workflow to zero by configuring the field `spec.podTemplate.replicas: 0`, in the corresponding `my-workflow.yaml` `SonataFlow` CRD, and executing:
+You can scale the workflow to zero by configuring the field `spec.podTemplate.replicas: 0`, in the corresponding `my-workflow.yaml` `SonataFlow` CR, and executing:
 +
 [source,terminal]
 ----
@@ -125,7 +125,7 @@ $ oc apply  -f <my-workflow.yaml>  -n  <target_namespace>
 [start=2]
 . Rescale the workflow to 1:
 +
-You can rescale the workflow to 1, by configuring the field `spec.podTemplate.replicas: 1`, in the corresponding `my-workflow.yaml` `SonataFlow` CRD, and executing:
+You can rescale the workflow to 1 by configuring the field `spec.podTemplate.replicas: 1` in the corresponding `my-workflow.yaml` `SonataFlow` CR and executing:
 +
 [source,terminal]
 ----
@@ -139,7 +139,7 @@ Every Data Index deployment must be upgraded with the following procedure:
 
 *Pre-operator upgrade steps:*
 
-. Backup the Data Index database. (including the database objects, and not only the tables information)
+. Back up the Data Index database, including all database objects, not just the table information.
 
 *Post-operator upgrade steps:*
 
@@ -175,7 +175,7 @@ $ oc delete replicaset sonataflow-platform-data-index-service-1111111111 -n <tar
 
 . `data-index-process-definition` `Trigger` upgrade
 +
-If your Data Index installation is configured to use a Knative Eventing Kafka Broker, to receive the workflow status change, and definition events, you must delete the `data-index-process-definition` `Trigger` created by the OSL 1.35.0 version.
+Suppose your Data Index installation is configured to use a Knative Eventing Kafka Broker to receive the workflow status change and definition events. In that case, you must delete the `data-index-process-definition` `Trigger` created by the OSL 1.35.0 version.
 
 +
 You can see all the `Triggers` by executing the following command:
@@ -214,7 +214,7 @@ Following the example above, the `Trigger` `data-index-process-definition-473e1d
 $ oc delete trigger data-index-process-definition-473e1ddbb3ca1d62768187eb80de99bca -n <target_namespace>
 ----
 +
-After the command execution, the old `Trigger` will be deleted, and a new `Trigger` compatible with the OSL 1.36.0 version will be automatically created.
+After the command is executed, the old `Trigger` will be deleted, and a new `Trigger` compatible with OSL 1.36.0 will be automatically created.
 
 [#jobs_service_upgrade]
 ==== Job Service upgrade
@@ -223,7 +223,7 @@ Every Job Service deployment must be upgraded with the following procedure:
 
 *Pre-operator upgrade steps:*
 
-. Backup the Job Service database. (including the database objects, and not only the tables information)
+. Back up the Job Service database, including all database objects, not just the table information.
 
 *Post-operator upgrade steps:*
 
