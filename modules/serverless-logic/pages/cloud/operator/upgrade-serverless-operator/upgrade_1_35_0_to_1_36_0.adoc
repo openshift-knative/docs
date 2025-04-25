@@ -146,9 +146,9 @@ Every Data Index deployment must be upgraded with the following procedure:
 [start=2]
 . Some time after the OSL Operator 1.36.0 upgrade is completed, you’ll see that a new `ReplicaSet` for executing the Data Index 1.36.0 version is created.
 +
-All the Data Index replicasets belonging the OSL 1.35.0 must be deleted.
+All the Data Index ReplicaSets belonging to the OSL 1.35.0 must be deleted.
 +
-You can see all the replicasets by executing a query like this:
+You can see all the ReplicaSets by executing a query like this:
 +
 [source,terminal]
 ----
@@ -166,7 +166,7 @@ Name                                                Image
 sonataflow-platform-data-index-service-2222222222   registry.redhat.io/openshift-serverless-1/logic-data-index-postgresql-rhel8:1.36.0
 ----
 +
-Following the example above, the old replicaset `sonataflow-platform-data-index-service-1111111111` must be deleted with the following command:
+Following the example above, the old ReplicaSet `sonataflow-platform-data-index-service-1111111111` must be deleted with the following command:
 +
 [source,terminal]
 ----
@@ -230,9 +230,9 @@ Every Job Service deployment must be upgraded with the following procedure:
 [start=2]
 . Some time after the OSL Operator 1.36.0 upgrade is completed, you’ll see that a new `ReplicaSet` for executing the Job Service 1.36.0 version is created.
 +
-All the Job Service replicasets belonging the OSL 1.35.0 must be deleted.
+All the Job Service ReplicaSets belonging to the OSL 1.35.0 must be deleted.
 +
-You can see all the replicasets by executing a query like this:
+You can see all the ReplicaSets by executing a query like this:
 +
 [source,terminal]
 ----
@@ -250,7 +250,7 @@ Name                                                Image
 sonataflow-platform-jobs-service-2222222222     registry.redhat.io/openshift-serverless-1/logic-jobs-service-postgresql-rhel8:1.36.0
 ----
 +
-Following the example above, the old replicaset `sonataflow-platform-jobs-service-1111111111` must be deleted with the following command:
+Following the example above, the old ReplicaSet `sonataflow-platform-jobs-service-1111111111` must be deleted with the following command:
 +
 [source,terminal]
 ----
