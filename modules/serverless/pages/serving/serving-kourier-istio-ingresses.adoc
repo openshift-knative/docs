@@ -1,0 +1,60 @@
+= Kourier and Istio ingresses
+:compat-mode!:
+// Metadata:
+:description: Kourier and Istio ingresses
+
+{serverlessproductname} supports the following two ingress solutions:
+
+* Kourier
+* Istio using {smproductname}
+
+The default is Kourier.
+
+[[serverless-ingresses-kourier-overview]]
+== Kourier
+
+Kourier is the default ingress solution for {serverlessproductname}. It has the following properties:
+
+* It is based on envoy proxy.
+* It is simple and lightweight.
+* It provides the basic routing functionality that {serverlessproductname} needs to provide its set of features.
+* It supports basic observability and metrics.
+* It supports basic TLS termination of Knative Service routing.
+
+[[serverless-ingresses-istio-overview]]
+== Istio using OpenShift Service Mesh
+
+Using Istio as the ingress solution for {serverlessproductname} enables an additional feature set that is based on what {smproductname} offers:
+
+* Native mTLS between all connections
+* {serverlessproductname} components are part of a service mesh
+* Additional observability and metrics
+* Authorization and authentication support
+* Custom rules and configuration, as supported by {smproductname}
+
+However, the additional features come with a higher overhead and resource consumption. For details, see the {smproductname} documentation.
+
+See the "Integrating Service Mesh with OpenShift Serverless" section of {serverlessproductname} documentation for Istio requirements and installation instructions.
+
+[[serverless-ingresses-traffic-configuration-and-routing]]
+== Traffic configuration and routing
+
+.An architecture diagram of the Kourier ingress solution
+image::serving-kourier-istio/kourier-architecture.png[]
+
+.An architecture diagram of the Istio ingress solution
+image::serving-kourier-istio/istio-architecture.png[]
+
+Regardless of whether you use Kourier or Istio, the traffic for a Knative Service is configured in the `knative-serving` namespace by the `net-kourier-controller` or the `net-istio-controller` respectively.
+
+The controller reads the `KnativeService` and its child custom resources to configure the ingress solution. Both ingress solutions provide an ingress gateway pod that becomes part of the traffic path. Both ingress solutions are based on Envoy. By default, {serverlessproductname} has two routes for each `KnativeService` object:
+
+* A *cluster-external route* that is forwarded by the OpenShift router, for example `myapp-namespace.example.com`.
+* A *cluster-local route* containing the cluster domain, for example `myapp.namespace.svc.cluster.local`. This domain can and should be used to call Knative services from Knative or other user workloads.
+
+The ingress gateway can forward requests either in the serve mode or the proxy mode:
+
+* In the serve mode, requests go directly to the Queue-Proxy sidecar container of the Knative service.
+* In the proxy mode, requests first go through the Activator component in the `knative-serving` namespace.
+
+The choice of mode depends on the configuration of Knative, the Knative service, and the current traffic. For example, if a Knative Service is scaled to zero, requests are sent to the Activator component, which acts as a buffer until a new Knative service pod is started.
