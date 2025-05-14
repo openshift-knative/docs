@@ -1,0 +1,52 @@
+= AWS Simple Notification Service Sink
+:compat-mode!:
+// Metadata:
+:description: AWS Simple Notification Service Sink in {serverlessproductname}
+
+This page describes how to use the Amazon Web Services (AWS) Simple Notification Service (SNS) with the `IntegrationSink` API for Eventing in {serverlessproductname}.
+
+[IMPORTANT]
+====
+{serverlessproductname} `IntegrationSink` is a Developer Preview feature only.
+
+Developer Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete.
+Red Hat does not recommend using them in production.
+These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.
+
+For more information about the support scope of Red Hat Developer Preview features, see https://access.redhat.com/support/offerings/devpreview/.
+====
+
+== Amazon credentials
+
+For connecting to AWS the `IntegrationSink` uses Kubernetes `Secret`, present in the namespace of the resource. The `Secret` can be created like:
+
+[source,terminal]
+----
+$ oc -n <namespace> create secret generic my-secret --from-literal=aws.accessKey=<accessKey> --from-literal=aws.secretKey=<secretKey>
+----
+
+== AWS SNS Sink Example
+
+Below is an `IntegrationSink` to send data to AWS SNS:
+
+[source,yaml]
+----
+apiVersion: sinks.knative.dev/v1alpha1
+kind: IntegrationSink
+metadata:
+  name: integration-sink-aws-sns
+  namespace: knative-samples
+spec:
+  aws:
+    sns:
+      arn: "my-topic"
+      region: "eu-north-1"
+    auth:
+      secret:
+        ref:
+        name: "my-secret"
+----
+
+Inside of the `aws.sns` object we define the name of the topic (or _arn_) and its region. The credentials for the AWS service are referenced from the `my-secret` Kubernetes `Secret`
+
+More details about the Apache Camel Kamelet https://camel.apache.org/camel-kamelets/latest/aws-sns-sink.html[aws-sns-sink].
