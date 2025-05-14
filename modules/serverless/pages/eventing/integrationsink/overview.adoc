@@ -1,0 +1,24 @@
+= Knative Integration Sink
+:compat-mode!:
+// Metadata:
+:description: Knative Integration Source in {serverlessproductname}
+
+This page describes how to use the new `IntegrationSink` API for Eventing in {serverlessproductname}. The `IntegrationSink` is a Knative Eventing custom resource supporting selected https://camel.apache.org/camel-k/latest/kamelets/kamelets.html[Kamelets] from the https://camel.apache.org/[Apache Camel] project. Kamelets allow users to connect to 3rd party system for improved connectivity, they can act as "sources" or as "sinks". Therefore the `IntegrationSink` allows sending data to external systems out of Knative Eventing in the format of CloudEvents.
+
+[IMPORTANT]
+====
+{serverlessproductname} `IntegrationSink` is a Developer Preview feature only.
+
+Developer Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete.
+Red Hat does not recommend using them in production.
+These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.
+
+For more information about the support scope of Red Hat Developer Preview features, see https://access.redhat.com/support/offerings/devpreview/.
+====
+
+== Supported Kamelet sinks
+
+* xref:./aws_s3.adoc[AWS S3]
+* xref:./aws_sns.adoc[AWS SNS]
+* xref:./aws_sqs.adoc[AWS SQS]
+* xref:./logger.adoc[Generic logger]

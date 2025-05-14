@@ -1,0 +1,43 @@
+= Timer Source
+:compat-mode!:
+// Metadata:
+:description: Timer Source in {serverlessproductname}
+
+This page describes how to use the _Timer Kamelet_ with the `IntegrationSource` API for Eventing in {serverlessproductname}.
+
+[IMPORTANT]
+====
+{serverlessproductname} `IntegrationSource` is a Developer Preview feature only.
+
+Developer Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete.
+Red Hat does not recommend using them in production.
+These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.
+
+For more information about the support scope of Red Hat Developer Preview features, see https://access.redhat.com/support/offerings/devpreview/.
+====
+
+== Timer Source Example
+
+Produces periodic messages with a custom payload.
+
+[source,yaml]
+----
+apiVersion: sources.knative.dev/v1alpha1
+kind: IntegrationSource
+metadata:
+  name: integration-source-timer
+  namespace: knative-samples
+spec:
+  timer:
+    period: 2000
+    message: "Hello, Eventing Core"
+  sink:
+    ref:
+      apiVersion: eventing.knative.dev/v1
+      kind: Broker
+      name: default
+----
+
+Inside of the `timer` object we define the `period` and the message that is send to the referenced `sink`.
+
+More details about the Apache Camel Kamelet https://camel.apache.org/camel-kamelets/latest/timer-source.html[timer-source].
