@@ -3,8 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About buildpacks for OpenShift Serverless Functions :: Red Hat OpenShift Serverless previews</title>
-    <link rel="canonical" href="https://openshift-knative.github.io/docs/docs/latest/functions/serverless-functions-about.html">
+    <title>OpenShift Serverless architecture diagram :: Red Hat OpenShift Serverless previews</title>
+    <link rel="canonical" href="https://openshift-knative.github.io/docs/docs/latest/serverless/serverless-architecture-diagram.html">
+    <meta name="description" content="An architecture diagram of OpenShift Serverless">
     <meta name="generator" content="Antora 3.0.3">
     <link rel="stylesheet" href="../../../_/css/site.css">
 <link rel="stylesheet" href="../../../_/css/extra.css">
@@ -68,24 +69,24 @@
     <button class="nav-toggle"></button>
     <span class="nav-text">Serverless</span>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../serverless/serverless-architecture-diagram.html">OpenShift Serverless architecture diagram</a>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="serverless-architecture-diagram.html">OpenShift Serverless architecture diagram</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-toggle"></button>
     <span class="nav-text">Using OpenShift Serverless with OpenShift Service Mesh</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../serverless/service-mesh/common-service-mesh-setup.html">Setup Serverless with OpenShift Service Mesh</a>
+    <a class="nav-link" href="service-mesh/common-service-mesh-setup.html">Setup Serverless with OpenShift Service Mesh</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../serverless/service-mesh/common-service-mesh-network-isolation.html">Use Service Mesh to isolate network-traffic</a>
+    <a class="nav-link" href="service-mesh/common-service-mesh-network-isolation.html">Use Service Mesh to isolate network-traffic</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../serverless/service-mesh/eventing-service-mesh-containersource.html">Eventing: Using ContainerSource with OpenShift Service Mesh</a>
+    <a class="nav-link" href="service-mesh/eventing-service-mesh-containersource.html">Eventing: Using ContainerSource with OpenShift Service Mesh</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../serverless/service-mesh/eventing-service-mesh-sinkbinding.html">Eventing: Using SinkBinding with OpenShift Service Mesh</a>
+    <a class="nav-link" href="service-mesh/eventing-service-mesh-sinkbinding.html">Eventing: Using SinkBinding with OpenShift Service Mesh</a>
   </li>
 </ul>
   </li>
@@ -94,16 +95,16 @@
     <span class="nav-text">Eventing</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../serverless/eventing/transport-encryption-setup.html">Setup transport encryption in Eventing</a>
+    <a class="nav-link" href="eventing/transport-encryption-setup.html">Setup transport encryption in Eventing</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../serverless/eventing/kafka-scaling-setup.html">Setup Autoscaling For Eventing Kafka Components</a>
+    <a class="nav-link" href="eventing/kafka-scaling-setup.html">Setup Autoscaling For Eventing Kafka Components</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../serverless/eventing/backstage-setup.html">Setup Backstage for Eventing</a>
+    <a class="nav-link" href="eventing/backstage-setup.html">Setup Backstage for Eventing</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../serverless/eventing/backstage-usage.html">Knative Event Mesh Backstage Plugin</a>
+    <a class="nav-link" href="eventing/backstage-usage.html">Knative Event Mesh Backstage Plugin</a>
   </li>
 </ul>
   </li>
@@ -112,13 +113,13 @@
     <span class="nav-text">Serving</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../serverless/serving/serving-with-ingress-sharding.html">Use Serving with OpenShift ingress sharding</a>
+    <a class="nav-link" href="serving/serving-with-ingress-sharding.html">Use Serving with OpenShift ingress sharding</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../serverless/serving/scaleability-and-performance-of-serving.html">Scalability and performance of OpenShift Serverless Serving</a>
+    <a class="nav-link" href="serving/scaleability-and-performance-of-serving.html">Scalability and performance of OpenShift Serverless Serving</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../serverless/serving/serving-transport-encryption.html">Serving Transport Encryption</a>
+    <a class="nav-link" href="serving/serving-transport-encryption.html">Serving Transport Encryption</a>
   </li>
 </ul>
   </li>
@@ -127,7 +128,7 @@
     <span class="nav-text">Functions</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../serverless/functions/backstage-templates.html">Backstage Templates for Knative Functions</a>
+    <a class="nav-link" href="functions/backstage-templates.html">Backstage Templates for Knative Functions</a>
   </li>
 </ul>
   </li>
@@ -623,11 +624,11 @@
     <button class="nav-toggle"></button>
     <span class="nav-text">Buildpacks for Serverless Functions</span>
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="serverless-functions-about.html">About buildpacks for OpenShift Serverless Functions</a>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../functions/serverless-functions-about.html">About buildpacks for OpenShift Serverless Functions</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="serverless-functions-buildpacks.html">Building and deploying functions on the cluster</a>
+    <a class="nav-link" href="../functions/serverless-functions-buildpacks.html">Building and deploying functions on the cluster</a>
   </li>
 </ul>
   </li>
@@ -662,50 +663,19 @@
 <nav class="crumbs" aria-label="breadcrumbs">
   <ul>
     <li class="crumb"><a href="../index.html">Documentation</a></li>
-    <li class="crumb">Buildpacks for Serverless Functions</li>
-    <li class="crumb"><a href="serverless-functions-about.html">About buildpacks for OpenShift Serverless Functions</a></li>
+    <li class="crumb">Serverless</li>
+    <li class="crumb"><a href="serverless-architecture-diagram.html">OpenShift Serverless architecture diagram</a></li>
   </ul>
 </nav>
 </div>
     <div class="main-view-and-toc">
         <main class="main">
           <article class="doc">
-<h1>About buildpacks for OpenShift Serverless Functions</h1>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>Buildpacks for OpenShift Serverless Functions is a Developer Preview feature only. OpenShift Serverless - Developer Preview releases contain features and functionalities that might not be fully tested. Customers are encouraged to provide feedback on Developer Preview releases. Developer Preview releases are not production-ready, and customers are recommended to avoid using the project for production or business-critical workloads.</p>
+<h1>OpenShift Serverless architecture diagram</h1>
+<div class="imageblock">
+<div class="content">
+<img src="_images/serverless-architecture/serverless-architecture-diagram.png" alt="serverless architecture diagram">
 </div>
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>To improve the process of deployment of your application code, you can use OpenShift Serverless to deploy stateless, event-driven functions as a Knative service on OpenShift Container Platform. If you want to develop functions, you must complete the set up steps.</p>
-</div>
-<div class="paragraph">
-<p>Function lifecycle management includes creating, building, and deploying a function. Optionally, you can also test a deployed function by invoking it. You can do all of these operations on OpenShift Serverless using the kn func tool.</p>
-</div>
-<div class="paragraph">
-<p>See <a href="https://docs.openshift.com/container-platform/4.11/serverless/functions/serverless-functions-getting-started.html#serverless-functions-getting-started">Getting started with OpenShift Serverless Functions</a>.</p>
-</div>
-<div class="paragraph">
-<p>Some parts of OpenShift Serverless Functions are in Developer Preview and are documented in the following pages:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="serverless-functions-buildpacks.html" class="xref page">Building and deploying functions on the cluster</a></p>
-</li>
-<li>
-<p><a href="serverless-developing-go-functions.html" class="xref page">Developing Go functions</a></p>
-</li>
-</ul>
 </div>
 </article>
         </main>
