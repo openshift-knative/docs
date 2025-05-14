@@ -1,0 +1,6 @@
+= {serverlessproductname} architecture diagram
+:compat-mode!:
+// Metadata:
+:description: An architecture diagram of {serverlessproductname}
+
+image::serverless-architecture/serverless-architecture-diagram.png[]
