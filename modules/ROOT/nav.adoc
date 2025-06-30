@@ -11,6 +11,9 @@
 *** xref:serverless:eventing/kafka-scaling-setup.adoc[Setup Autoscaling For Eventing Kafka Components]
 *** xref:serverless:eventing/backstage-setup.adoc[Setup Backstage for Eventing]
 *** xref:serverless:eventing/backstage-usage.adoc[Knative Event Mesh Backstage Plugin]
+*** Event Transformations
+**** xref:serverless:eventing/eventtransform/overview.adoc[Overview]
+**** xref:serverless:eventing/eventtransform/jsonata.adoc[Event Transformations for JSON with JSONata]
 *** IntegrationSource
 **** xref:serverless:eventing/integrationsource/overview.adoc[Overview]
 **** xref:serverless:eventing/integrationsource/aws_ddbstreams.adoc[AWS DynamoDB Streams]
