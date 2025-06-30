@@ -11,6 +11,18 @@
 *** xref:serverless:eventing/kafka-scaling-setup.adoc[Setup Autoscaling For Eventing Kafka Components]
 *** xref:serverless:eventing/backstage-setup.adoc[Setup Backstage for Eventing]
 *** xref:serverless:eventing/backstage-usage.adoc[Knative Event Mesh Backstage Plugin]
+*** IntegrationSource
+**** xref:serverless:eventing/integrationsource/overview.adoc[Overview]
+**** xref:serverless:eventing/integrationsource/aws_ddbstreams.adoc[AWS DynamoDB Streams]
+**** xref:serverless:eventing/integrationsource/aws_s3.adoc[AWS S3 Source]
+**** xref:serverless:eventing/integrationsource/aws_sqs.adoc[AWS SQS Source]
+**** xref:serverless:eventing/integrationsource/timer.adoc[Timer Source]
+*** IntegrationSink
+**** xref:serverless:eventing/integrationsink/overview.adoc[Overview]
+**** xref:serverless:eventing/integrationsink/aws_s3.adoc[AWS S3 Sink]
+**** xref:serverless:eventing/integrationsink/aws_sns.adoc[AWS SNS Sink]
+**** xref:serverless:eventing/integrationsink/aws_sqs.adoc[AWS SQS Sink]
+**** xref:serverless:eventing/integrationsink/logger.adoc[Logger Sink]
 ** Serving
 *** xref:serverless:serving/serving-with-ingress-sharding.adoc[Use Serving with OpenShift ingress sharding]
 *** xref:serverless:serving/scaleability-and-performance-of-serving.adoc[Scalability and performance of {serverlessproductname} Serving]
