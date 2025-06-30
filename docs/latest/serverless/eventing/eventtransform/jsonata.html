@@ -3,9 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Timer Source :: Red Hat OpenShift Serverless previews</title>
-    <link rel="canonical" href="https://openshift-knative.github.io/docs/docs/latest/serverless/eventing/integrationsource/timer.html">
-    <meta name="description" content="Timer Source in OpenShift Serverless">
+    <title>Event Transformations for JSON with JSONata :: Red Hat OpenShift Serverless previews</title>
+    <link rel="canonical" href="https://openshift-knative.github.io/docs/docs/latest/serverless/eventing/eventtransform/jsonata.html">
+    <meta name="description" content="Event Transformations for JSON with JSONata in OpenShift Serverless">
     <meta name="generator" content="Antora 3.0.3">
     <link rel="stylesheet" href="../../../../../_/css/site.css">
 <link rel="stylesheet" href="../../../../../_/css/extra.css">
@@ -111,10 +111,10 @@
     <span class="nav-text">Event Transformations</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../eventtransform/overview.html">Overview</a>
+    <a class="nav-link" href="overview.html">Overview</a>
   </li>
-  <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../eventtransform/jsonata.html">Event Transformations for JSON with JSONata</a>
+  <li class="nav-item is-current-page" data-depth="4">
+    <a class="nav-link" href="jsonata.html">Event Transformations for JSON with JSONata</a>
   </li>
 </ul>
   </li>
@@ -123,19 +123,19 @@
     <span class="nav-text">IntegrationSource</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="overview.html">Overview</a>
+    <a class="nav-link" href="../integrationsource/overview.html">Overview</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="aws_ddbstreams.html">AWS DynamoDB Streams</a>
+    <a class="nav-link" href="../integrationsource/aws_ddbstreams.html">AWS DynamoDB Streams</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="aws_s3.html">AWS S3 Source</a>
+    <a class="nav-link" href="../integrationsource/aws_s3.html">AWS S3 Source</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="aws_sqs.html">AWS SQS Source</a>
+    <a class="nav-link" href="../integrationsource/aws_sqs.html">AWS SQS Source</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="4">
-    <a class="nav-link" href="timer.html">Timer Source</a>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../integrationsource/timer.html">Timer Source</a>
   </li>
 </ul>
   </li>
@@ -722,20 +722,17 @@
     <li class="crumb"><a href="../../../index.html">Documentation</a></li>
     <li class="crumb">Serverless</li>
     <li class="crumb">Eventing</li>
-    <li class="crumb">IntegrationSource</li>
-    <li class="crumb"><a href="timer.html">Timer Source</a></li>
+    <li class="crumb">Event Transformations</li>
+    <li class="crumb"><a href="jsonata.html">Event Transformations for JSON with JSONata</a></li>
   </ul>
 </nav>
 </div>
     <div class="main-view-and-toc">
         <main class="main">
           <article class="doc">
-<h1>Timer Source</h1>
+<h1>Event Transformations for JSON with JSONata</h1>
 <div id="preamble">
 <div class="sectionbody">
-<div class="paragraph">
-<p>This page describes how to use the <em>Timer Kamelet</em> with the <code>IntegrationSource</code> API for Eventing in OpenShift Serverless.</p>
-</div>
 <div class="admonitionblock important">
 <table>
 <tr>
@@ -744,7 +741,7 @@
 </td>
 <td class="content">
 <div class="paragraph">
-<p>OpenShift Serverless <code>IntegrationSource</code> is a Developer Preview feature only.</p>
+<p>OpenShift Serverless Event Transformation is a Developer Preview feature only.</p>
 </div>
 <div class="paragraph">
 <p>Developer Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete.
@@ -762,39 +759,549 @@ These features provide early access to upcoming product features, enabling custo
 <div id="toc" class="toc">
 <div id="toctitle"></div>
 <ul class="sectlevel1">
-<li><a href="#_timer_source_example">Timer Source Example</a></li>
+<li><a href="#_introduction_to_jsonata">Introduction to JSONata</a></li>
+<li><a href="#_basic_usage">Basic Usage</a></li>
+<li><a href="#_cloudevent_structure">CloudEvent Structure</a></li>
+<li><a href="#_common_transformation_patterns">Common Transformation Patterns</a>
+<ul class="sectlevel2">
+<li><a href="#_preserving_original_event_structure">Preserving Original Event Structure</a></li>
+<li><a href="#_extracting_fields_as_attributes">Extracting Fields as Attributes</a></li>
+<li><a href="#_restructuring_event_data">Restructuring Event Data</a></li>
+<li><a href="#_conditional_transformations">Conditional Transformations</a></li>
+</ul>
+</li>
+<li><a href="#_advanced_jsonata_features">Advanced JSONata Features</a>
+<ul class="sectlevel2">
+<li><a href="#_array_processing">Array Processing</a></li>
+<li><a href="#_using_built_in_functions">Using Built-in Functions</a></li>
+</ul>
+</li>
+<li><a href="#_transforming_replies">Transforming Replies</a></li>
+<li><a href="#_best_practices">Best Practices</a></li>
+<li><a href="#_examples">Examples</a>
+<ul class="sectlevel2">
+<li><a href="#_user_registration_event_transformer">User Registration Event Transformer</a></li>
+<li><a href="#_order_processing_event_transformer">Order Processing Event Transformer</a></li>
+</ul>
+</li>
+<li><a href="#_further_resources">Further Resources</a></li>
 </ul>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_timer_source_example"><a class="anchor" href="#_timer_source_example"></a>Timer Source Example</h2>
+<h2 id="_introduction_to_jsonata"><a class="anchor" href="#_introduction_to_jsonata"></a>Introduction to JSONata</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Produces periodic messages with a custom payload.</p>
+<p><a href="https://jsonata.org/">JSONata</a> is a lightweight query and transformation language for JSON data. In Knative EventTransform, JSONata expressions allow you to:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Extract values from event data</p>
+</li>
+<li>
+<p>Promote data fields to CloudEvent attributes</p>
+</li>
+<li>
+<p>Restructure event payloads</p>
+</li>
+<li>
+<p>Add computed values</p>
+</li>
+<li>
+<p>Apply conditional logic</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_basic_usage"><a class="anchor" href="#_basic_usage"></a>Basic Usage</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To use JSONata in an EventTransform resource, specify the expression in the <code>spec.jsonata.expression</code> field:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: sources.knative.dev/v1alpha1
-kind: IntegrationSource
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: eventing.knative.dev/v1alpha1
+kind: EventTransform
 metadata:
-  name: integration-source-timer
-  namespace: knative-samples
+  name: simple-transform
 spec:
-  timer:
-    period: 2000
-    message: "Hello, Eventing Core"
+  jsonata:
+    expression: |
+      {
+        "specversion": "1.0",
+        "id": id,
+        "time": time,
+        "type": "transformed.type",
+        "source": "transform.simple",
+        "data": data
+      }</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_cloudevent_structure"><a class="anchor" href="#_cloudevent_structure"></a>CloudEvent Structure</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The input to the JSONata expression is the entire CloudEvent, including all its attributes and data. Your expression must produce a valid CloudEvent with at least these required fields:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>specversion</code>: Should be set to "1.0"</p>
+</li>
+<li>
+<p><code>id</code>: A unique identifier for the event</p>
+</li>
+<li>
+<p><code>type</code>: The event type</p>
+</li>
+<li>
+<p><code>source</code>: The event source</p>
+</li>
+<li>
+<p><code>data</code>: The event payload</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_common_transformation_patterns"><a class="anchor" href="#_common_transformation_patterns"></a>Common Transformation Patterns</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_preserving_original_event_structure"><a class="anchor" href="#_preserving_original_event_structure"></a>Preserving Original Event Structure</h3>
+<div class="paragraph">
+<p>To preserve the original event structure while adding or modifying attributes:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "specversion": "1.0",
+  "id": id,
+  "type": type,
+  "source": source,
+  "time": time,
+  "data": data,
+  "newattribute": "static value"
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_extracting_fields_as_attributes"><a class="anchor" href="#_extracting_fields_as_attributes"></a>Extracting Fields as Attributes</h3>
+<div class="paragraph">
+<p>To extract fields from the data and promote them to CloudEvent attributes:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "specversion": "1.0",
+  "id": id,
+  "type": "user.event",
+  "source": source,
+  "time": time,
+  "userid": data.user.id,
+  "region": data.region,
+  "data": $
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>$</code> symbol in JSONata represents the entire input object, so <code>data: $</code> preserves the entire original event data.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_restructuring_event_data"><a class="anchor" href="#_restructuring_event_data"></a>Restructuring Event Data</h3>
+<div class="paragraph">
+<p>To completely reshape the event data:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "specversion": "1.0",
+  "id": order.id,
+  "type": "order.transformed",
+  "source": "transform.order-processor",
+  "time": order.time,
+  "orderid": order.id,
+  "data": {
+    "customer": {
+      "id": order.user.id,
+      "name": order.user.name
+    },
+    "items": order.items.{ "sku": sku, "quantity": qty, "price": price },
+    "total": $sum(order.items.(price * qty))
+  }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Given the transformation above, and this JSON object as input:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "order": {
+    "time" : "2024-04-05T17:31:05Z",
+    "id": "8a76992e-cbe2-4dbe-96c0-7a951077089d",
+    "user": {
+      "id": "bd9779ef-cba5-4ad0-b89b-e23913f0a7a7",
+      "name": "John Doe"
+    },
+    "items": [
+      {"sku": "KNATIVE-1", "price": 99.99, "qty": 1},
+      {"sku": "KNATIVE-2", "price": 129.99, "qty": 2}
+    ]
+  }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It would produce:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "specversion": "1.0",
+  "id": "8a76992e-cbe2-4dbe-96c0-7a951077089d",
+  "type": "order.transformed",
+  "source": "transform.order-processor",
+  "time": "2024-04-05T17:31:05Z",
+  "orderid": "8a76992e-cbe2-4dbe-96c0-7a951077089d",
+  "data": {
+    "customer": {
+      "id": "bd9779ef-cba5-4ad0-b89b-e23913f0a7a7",
+      "name": "John Doe"
+    },
+    "items": [
+      {
+        "sku": "KNATIVE-1",
+        "quantity": 1,
+        "price": 99.99
+      },
+      {
+        "sku": "KNATIVE-2",
+        "quantity": 2,
+        "price": 129.99
+      }
+    ],
+    "total": 359.97
+  }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_conditional_transformations"><a class="anchor" href="#_conditional_transformations"></a>Conditional Transformations</h3>
+<div class="paragraph">
+<p>To apply different transformations based on conditions:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "specversion": "1.0",
+  "id": id,
+  "type": type = "order.created" ? "new.order" : "updated.order",
+  "source": source,
+  "time": time,
+  "priority": data.total &gt; 1000 ? "high" : "normal",
+  "data": $
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_advanced_jsonata_features"><a class="anchor" href="#_advanced_jsonata_features"></a>Advanced JSONata Features</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_array_processing"><a class="anchor" href="#_array_processing"></a>Array Processing</h3>
+<div class="paragraph">
+<p>JSONata makes it easy to process arrays in your event data:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "specversion": "1.0",
+  "id": id,
+  "type": "order.processed",
+  "source": source,
+  "time": $now(),
+  "itemcount": $count(order.items),
+  "multiorder": $count(order.items) &gt; 1,
+  "data": {
+    "order": order.id,
+    "items": order.items[quantity &gt; 1].{
+      "product": name,
+      "quantity": quantity,
+      "lineTotal": price * quantity
+    },
+    "totalvalue": $sum(order.items.(price * quantity))
+  }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Given the transformation above, and this JSON object as input:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "id": "12345",
+  "source": "https://example.com/orders",
+  "order": {
+    "id": "order-67890",
+    "items": [
+      {
+        "name": "Laptop",
+        "price": 1000,
+        "quantity": 1
+      },
+      {
+        "name": "Mouse",
+        "price": 50,
+        "quantity": 2
+      },
+      {
+        "name": "Keyboard",
+        "price": 80,
+        "quantity": 3
+      }
+    ]
+  }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It would produce:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "specversion": "1.0",
+  "id": "12345",
+  "type": "order.processed",
+  "source": "https://example.com/orders",
+  "time": "2025-03-03T09:13:23.753Z",
+  "itemcount": 3,
+  "multiorder": true,
+  "data": {
+    "order": "order-67890",
+    "items": [
+      {
+        "product": "Mouse",
+        "quantity": 2,
+        "lineTotal": 100
+      },
+      {
+        "product": "Keyboard",
+        "quantity": 3,
+        "lineTotal": 240
+      }
+    ],
+    "totalvalue": 1340
+  }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_using_built_in_functions"><a class="anchor" href="#_using_built_in_functions"></a>Using Built-in Functions</h3>
+<div class="paragraph">
+<p>JSONata provides many useful functions:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "specversion": "1.0",
+  "id": id,
+  "type": "user.event",
+  "source": source,
+  "time": time,
+  "timestamp": $now(),
+  "username": $lowercase(data.user.name),
+  "initials": $join($map($split(data.user.name, " "), function($v) { $substring($v, 0, 1) }), ""),
+  "data": $
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_transforming_replies"><a class="anchor" href="#_transforming_replies"></a>Transforming Replies</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>When using the EventTransform with a sink, you can also transform the responses:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: eventing.knative.dev/v1alpha1
+kind: EventTransform
+metadata:
+  name: request-reply-transform
+spec:
+  sink:
+    ref:
+      apiVersion: serving.knative.dev/v1
+      kind: Service
+      name: processor-service
+  jsonata:
+    expression: |
+      # Request transformation
+      {
+        "specversion": "1.0",
+        "id": id,
+        "type": "request.transformed",
+        "source": source,
+        "time": time,
+        "data": data
+      }
+  reply:
+    jsonata:
+      expression: |
+        # Reply transformation
+        {
+          "specversion": "1.0",
+          "id": id,
+          "type": "reply.transformed",
+          "source": "transform.reply-processor",
+          "time": time,
+          "data": data
+        }</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_best_practices"><a class="anchor" href="#_best_practices"></a>Best Practices</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Always produce valid CloudEvents</strong>: Ensure your expressions include all required CloudEvent fields.</p>
+</li>
+<li>
+<p><strong>Test expressions thoroughly</strong>: Use the <a href="https://try.jsonata.org/">JSONata Exerciser</a> to validate complex expressions.</p>
+</li>
+<li>
+<p><strong>Keep expressions readable</strong>: Use line breaks and indentation in your YAML to make expressions easier to read and maintain.</p>
+</li>
+<li>
+<p><strong>Handle missing data</strong>: Use the <code>?</code> operator to provide default values for potentially missing fields.</p>
+</li>
+<li>
+<p><strong>Avoid infinite loops</strong>: When using the reply feature with a Broker, make sure to change the event type or add filters to prevent infinite loops.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_examples"><a class="anchor" href="#_examples"></a>Examples</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_user_registration_event_transformer"><a class="anchor" href="#_user_registration_event_transformer"></a>User Registration Event Transformer</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: eventing.knative.dev/v1alpha1
+kind: EventTransform
+metadata:
+  name: user-registration-transformer
+spec:
   sink:
     ref:
       apiVersion: eventing.knative.dev/v1
       kind: Broker
-      name: default</code></pre>
+      name: default
+  jsonata:
+    expression: |
+      {
+        "specversion": "1.0",
+        "id": id,
+        "type": "user.registered.processed",
+        "source": "transform.user-processor",
+        "time": time,
+        "userid": data.user.id,
+        "region": data.region ? data.region : "unknown",
+        "tier": data.subscription.tier ? data.subscription.tier : "free",
+        "data": {
+          "userId": data.user.id,
+          "email": $lowercase(data.user.email),
+          "displayName": data.user.name ? data.user.name : $substring(data.user.email, 0, $indexOf(data.user.email, "@")),
+          "registrationDate": $now(),
+          "subscription": data.subscription ? data.subscription : { "tier": "free" }
+        }
+      }</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>Inside of the <code>timer</code> object we define the <code>period</code> and the message that is send to the referenced <code>sink</code>.</p>
 </div>
-<div class="paragraph">
-<p>More details about the Apache Camel Kamelet <a href="https://camel.apache.org/camel-kamelets/latest/timer-source.html">timer-source</a>.</p>
+<div class="sect2">
+<h3 id="_order_processing_event_transformer"><a class="anchor" href="#_order_processing_event_transformer"></a>Order Processing Event Transformer</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: eventing.knative.dev/v1alpha1
+kind: EventTransform
+metadata:
+  name: order-processor
+spec:
+  jsonata:
+    expression: |
+      {
+        "specversion": "1.0",
+        "id": id,
+        "type": "order.processed",
+        "source": "transform.order-processor",
+        "time": time,
+        "orderid": data.id,
+        "customerid": data.customer.id,
+        "region": data.region,
+        "priority": $sum(data.items.(price * quantity)) &gt; 1000 ? "high" : "standard",
+        "data": {
+          "orderId": data.id,
+          "customer": data.customer,
+          "items": data.items.{
+            "productId": productId,
+            "name": name,
+            "quantity": quantity,
+            "unitPrice": price,
+            "totalPrice": price * quantity
+          },
+          "total": $sum(data.items.(price * quantity)),
+          "tax": $sum(data.items.(price * quantity)) * 0.1,
+          "grandTotal": $sum(data.items.(price * quantity)) * 1.1,
+          "created": data.created,
+          "processed": $now()
+        }
+      }</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_further_resources"><a class="anchor" href="#_further_resources"></a>Further Resources</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><a href="overview.html" class="xref page">EventTransform Overview and deployment patterns</a></p>
+</li>
+<li>
+<p><a href="https://jsonata.org/documentation.html">JSONata Documentation</a></p>
+</li>
+<li>
+<p><a href="https://try.jsonata.org/">JSONata Exerciser</a></p>
+</li>
+<li>
+<p><a href="https://github.com/cloudevents/spec">CloudEvents Specification</a></p>
+</li>
+</ul>
 </div>
 </div>
 </div>

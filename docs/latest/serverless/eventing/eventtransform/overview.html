@@ -3,9 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Timer Source :: Red Hat OpenShift Serverless previews</title>
-    <link rel="canonical" href="https://openshift-knative.github.io/docs/docs/latest/serverless/eventing/integrationsource/timer.html">
-    <meta name="description" content="Timer Source in OpenShift Serverless">
+    <title>Event Transformation :: Red Hat OpenShift Serverless previews</title>
+    <link rel="canonical" href="https://openshift-knative.github.io/docs/docs/latest/serverless/eventing/eventtransform/overview.html">
+    <meta name="description" content="Event Transformation in OpenShift Serverless">
     <meta name="generator" content="Antora 3.0.3">
     <link rel="stylesheet" href="../../../../../_/css/site.css">
 <link rel="stylesheet" href="../../../../../_/css/extra.css">
@@ -110,11 +110,11 @@
     <button class="nav-toggle"></button>
     <span class="nav-text">Event Transformations</span>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../eventtransform/overview.html">Overview</a>
+  <li class="nav-item is-current-page" data-depth="4">
+    <a class="nav-link" href="overview.html">Overview</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../eventtransform/jsonata.html">Event Transformations for JSON with JSONata</a>
+    <a class="nav-link" href="jsonata.html">Event Transformations for JSON with JSONata</a>
   </li>
 </ul>
   </li>
@@ -123,19 +123,19 @@
     <span class="nav-text">IntegrationSource</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="overview.html">Overview</a>
+    <a class="nav-link" href="../integrationsource/overview.html">Overview</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="aws_ddbstreams.html">AWS DynamoDB Streams</a>
+    <a class="nav-link" href="../integrationsource/aws_ddbstreams.html">AWS DynamoDB Streams</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="aws_s3.html">AWS S3 Source</a>
+    <a class="nav-link" href="../integrationsource/aws_s3.html">AWS S3 Source</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="aws_sqs.html">AWS SQS Source</a>
+    <a class="nav-link" href="../integrationsource/aws_sqs.html">AWS SQS Source</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="4">
-    <a class="nav-link" href="timer.html">Timer Source</a>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../integrationsource/timer.html">Timer Source</a>
   </li>
 </ul>
   </li>
@@ -722,20 +722,17 @@
     <li class="crumb"><a href="../../../index.html">Documentation</a></li>
     <li class="crumb">Serverless</li>
     <li class="crumb">Eventing</li>
-    <li class="crumb">IntegrationSource</li>
-    <li class="crumb"><a href="timer.html">Timer Source</a></li>
+    <li class="crumb">Event Transformations</li>
+    <li class="crumb"><a href="overview.html">Overview</a></li>
   </ul>
 </nav>
 </div>
     <div class="main-view-and-toc">
         <main class="main">
           <article class="doc">
-<h1>Timer Source</h1>
+<h1>Event Transformation</h1>
 <div id="preamble">
 <div class="sectionbody">
-<div class="paragraph">
-<p>This page describes how to use the <em>Timer Kamelet</em> with the <code>IntegrationSource</code> API for Eventing in OpenShift Serverless.</p>
-</div>
 <div class="admonitionblock important">
 <table>
 <tr>
@@ -744,7 +741,7 @@
 </td>
 <td class="content">
 <div class="paragraph">
-<p>OpenShift Serverless <code>IntegrationSource</code> is a Developer Preview feature only.</p>
+<p>OpenShift Serverless Event Transformation is a Developer Preview feature only.</p>
 </div>
 <div class="paragraph">
 <p>Developer Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete.
@@ -762,39 +759,369 @@ These features provide early access to upcoming product features, enabling custo
 <div id="toc" class="toc">
 <div id="toctitle"></div>
 <ul class="sectlevel1">
-<li><a href="#_timer_source_example">Timer Source Example</a></li>
+<li><a href="#_overview">Overview</a></li>
+<li><a href="#_key_features">Key Features</a></li>
+<li><a href="#_common_use_cases">Common Use Cases</a>
+<ul class="sectlevel2">
+<li><a href="#_field_extraction">Field Extraction</a></li>
+<li><a href="#_event_format_conversion">Event Format Conversion</a></li>
+<li><a href="#_event_enrichment">Event Enrichment</a></li>
+<li><a href="#_event_response_reply_transformation">Event Response Reply Transformation</a></li>
+</ul>
+</li>
+<li><a href="#_deployment_patterns">Deployment Patterns</a>
+<ul class="sectlevel2">
+<li><a href="#_source_eventtransform_broker">Source → EventTransform → Broker</a></li>
+<li><a href="#_broker_trigger_eventtransform_service_or_sink">Broker → Trigger → EventTransform → Service or Sink</a></li>
+<li><a href="#_using_broker_reply_feature">Using Broker Reply Feature</a></li>
+</ul>
+</li>
+<li><a href="#_next_steps">Next Steps</a></li>
 </ul>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_timer_source_example"><a class="anchor" href="#_timer_source_example"></a>Timer Source Example</h2>
+<h2 id="_overview"><a class="anchor" href="#_overview"></a>Overview</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Produces periodic messages with a custom payload.</p>
+<p><code>EventTransform</code> is a Knative API resource that enables declarative transformations of HTTP requests and responses
+without requiring custom code. It allows you to modify event attributes, extract data from event payloads, and reshape
+events to fit different systems' requirements.</p>
+</div>
+<div class="paragraph">
+<p>EventTransform is designed to be a flexible component in your event-driven architecture that can be placed at various
+points in your event flow to facilitate seamless integration between diverse systems.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_key_features"><a class="anchor" href="#_key_features"></a>Key Features</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Declarative transformations</strong> using standard Kubernetes resources</p>
+</li>
+<li>
+<p><strong>JSONata expressions</strong> for powerful data extraction and transformation</p>
+</li>
+<li>
+<p><strong>Addressable resource</strong> that can be referenced from any Knative source, trigger, or subscription</p>
+</li>
+<li>
+<p><strong>Flexible deployment options</strong> within your event flow</p>
+</li>
+<li>
+<p><strong>Sink configuration</strong> to direct transformed events to specific destinations</p>
+</li>
+<li>
+<p><strong>Reply support</strong> to leverage Broker&#8217;s built-in reply feature</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_common_use_cases"><a class="anchor" href="#_common_use_cases"></a>Common Use Cases</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_field_extraction"><a class="anchor" href="#_field_extraction"></a>Field Extraction</h3>
+<div class="paragraph">
+<p>Extract specific fields from event payloads and promote them as CloudEvent attributes for filtering:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: sources.knative.dev/v1alpha1
-kind: IntegrationSource
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: eventing.knative.dev/v1alpha1
+kind: EventTransform
 metadata:
-  name: integration-source-timer
-  namespace: knative-samples
+  name: extract-user-id
 spec:
-  timer:
-    period: 2000
-    message: "Hello, Eventing Core"
+  jsonata:
+    expression: |
+      {
+        "specversion": "1.0",
+        "id": id,
+        "type": "user.extracted",
+        "source": "transform.user-extractor",
+        "time": time,
+        "userid": data.user.id,
+        "data": $
+      }</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_event_format_conversion"><a class="anchor" href="#_event_format_conversion"></a>Event Format Conversion</h3>
+<div class="paragraph">
+<p>Transform events from one format to another to ensure compatibility between systems:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: eventing.knative.dev/v1alpha1
+kind: EventTransform
+metadata:
+  name: format-converter
+spec:
+  sink:
+    ref:
+      apiVersion: serving.knative.dev/v1
+      kind: Service
+      name: destination-service
+  jsonata:
+    expression: |
+      {
+        "specversion": "1.0",
+        "id": id,
+        "type": "order.converted",
+        "source": "transform.format-converter",
+        "time": time,
+        "data": {
+          "orderId": data.id,
+          "customer": {
+            "name": data.user.fullName,
+            "email": data.user.email
+          },
+          "items": data.items
+        }
+      }</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_event_enrichment"><a class="anchor" href="#_event_enrichment"></a>Event Enrichment</h3>
+<div class="paragraph">
+<p>Add additional context or metadata to events:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: eventing.knative.dev/v1alpha1
+kind: EventTransform
+metadata:
+  name: event-enricher
+spec:
+  jsonata:
+    expression: |
+      {
+        "specversion": "1.0",
+        "id": id,                     /* Add the "id", "type", "source", and "time" attributes based on the input JSON object fields */
+        "type": type,
+        "source": source,
+        "time": time,
+        "environment": "production",  /* Add fixed environment and region attributes to the event metadata */
+        "region": "us-west-1",
+        "data": $                     /* Add the event transform input JSON body as CloudEvent "data" field */
+      }</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_event_response_reply_transformation"><a class="anchor" href="#_event_response_reply_transformation"></a>Event Response Reply Transformation</h3>
+<div class="paragraph">
+<p>When using the EventTransform with a sink, you can also transform the responses from the sink:</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The same type of transformation must be used for Sink and Reply transformations.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: eventing.knative.dev/v1alpha1
+kind: EventTransform
+metadata:
+  name: request-reply-transform
+spec:
+  sink:
+    ref:
+      apiVersion: serving.knative.dev/v1
+      kind: Service
+      name: processor-service
+  jsonata:
+    expression: |
+      # Request transformation
+      {
+        "specversion": "1.0",
+        "id": id,
+        "type": "request.transformed",
+        "source": source,
+        "time": time,
+        "data": data
+      }
+  reply:
+    jsonata:
+      expression: |
+        # Reply transformation
+        {
+          "specversion": "1.0",
+          "id": id,
+          "type": "reply.transformed",
+          "source": "transform.reply-processor",
+          "time": time,
+          "data": data
+        }</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_deployment_patterns"><a class="anchor" href="#_deployment_patterns"></a>Deployment Patterns</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>EventTransform can be used in different positions within your event flow:</p>
+</div>
+<div class="sect2">
+<h3 id="_source_eventtransform_broker"><a class="anchor" href="#_source_eventtransform_broker"></a>Source → EventTransform → Broker</h3>
+<div class="paragraph">
+<p>Transform events before they reach the Broker:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: sources.knative.dev/v1
+kind: ApiServerSource
+metadata:
+  name: k8s-events
+spec:
+  serviceAccountName: event-watcher
+  resources:
+    - apiVersion: v1
+      kind: Event
+  sink:
+    ref:
+      apiVersion: eventing.knative.dev/v1alpha1
+      kind: EventTransform
+      name: event-transformer
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: EventTransform
+metadata:
+  name: event-transformer
+spec:
   sink:
     ref:
       apiVersion: eventing.knative.dev/v1
       kind: Broker
-      name: default</code></pre>
+      name: default
+  jsonata:
+    expression: |
+      # transformation expression</code></pre>
 </div>
 </div>
+</div>
+<div class="sect2">
+<h3 id="_broker_trigger_eventtransform_service_or_sink"><a class="anchor" href="#_broker_trigger_eventtransform_service_or_sink"></a>Broker → Trigger → EventTransform → Service or Sink</h3>
 <div class="paragraph">
-<p>Inside of the <code>timer</code> object we define the <code>period</code> and the message that is send to the referenced <code>sink</code>.</p>
+<p>Transform events after they&#8217;re filtered by a Trigger:</p>
 </div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: eventing.knative.dev/v1
+kind: Trigger
+metadata:
+  name: transform-trigger
+spec:
+  broker: default
+  filter:
+    attributes:
+      type: original.event.type
+  subscriber:
+    ref:
+      apiVersion: eventing.knative.dev/v1alpha1
+      kind: EventTransform
+      name: event-transformer
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: EventTransform
+metadata:
+  name: event-transformer
+spec:
+  sink:
+    ref:
+      apiVersion: serving.knative.dev/v1
+      kind: Service
+      name: destination-service
+  jsonata:
+    expression: |
+      # transformation expression</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_using_broker_reply_feature"><a class="anchor" href="#_using_broker_reply_feature"></a>Using Broker Reply Feature</h3>
 <div class="paragraph">
-<p>More details about the Apache Camel Kamelet <a href="https://camel.apache.org/camel-kamelets/latest/timer-source.html">timer-source</a>.</p>
+<p>Transform events and republish them back to the Broker:</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Preventing infinite event loops: When using the reply feature with a Broker, you must ensure that your transformed
+events don&#8217;t trigger the same Trigger that sent them to the EventTransform in the first place.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: eventing.knative.dev/v1
+kind: Trigger
+metadata:
+  name: transform-trigger
+spec:
+  broker: default
+  filter:
+    attributes:
+      type: original.event.type
+  subscriber:
+    ref:
+      apiVersion: eventing.knative.dev/v1alpha1
+      kind: EventTransform
+      name: event-transformer
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: EventTransform
+metadata:
+  name: event-transformer
+spec:
+  # No sink specified - will use reply feature
+  jsonata:
+    expression: |
+      {
+        "specversion": "1.0",
+        "id": id,
+        "time": time,
+        "type": "transformed.event.type",
+        "source": "transform.event-transformer",
+        "data": $
+      }</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_next_steps"><a class="anchor" href="#_next_steps"></a>Next Steps</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><a href="jsonata.html" class="xref page">JSONata Transformations</a> - Learn about using JSONata expressions for event transformations</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
