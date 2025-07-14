@@ -31,7 +31,7 @@ Interested parties might automate the procedure according to their convenience o
 . Execute the step `1` of the upgrade for every workflow with the <<workflows_gitops_profile, gitops profile>>.
 . Execute the step `1` of the <<data_index_upgrade, Data Index>> upgrade.
 . Execute the step `1` of the <<jobs_service_upgrade, Job Service>> upgrade.
-. Upgrade the OSL operator to the version 1.36.0 using the OpenShift management console, and wait until the new version is running, <<check_if_operator_is_updated, see>>.
+. Upgrade the OSL Operator to the version 1.36.0 <<operator_upgrade_procedure, following this procedure>>, and wait until the new version is running.
 . Finalize the <<data_index_upgrade, Data Index>> upgrade by continuing from step `2`.
 . Finalize the <<jobs_service_upgrade, Job Service>> upgrade by continuing from step `2`.
 . Finalize the upgrade for the workflows with the <<workflows_gitops_profile, gitops profile>> by continuing from step `2`.
@@ -258,18 +258,60 @@ Following the example above, the old OSL 1.35.0 ReplicaSet `sonataflow-platform-
 $ oc delete replicaset sonataflow-platform-jobs-service-1111111111 -n <target_namespace>
 ----
 
+[#operator_upgrade_procedure]
+==== Operator Upgrade Procedure
+To upgrade the OSL Operator from 1.35.0 to 1.36.0 you must execute these steps:
 
-==== Check if the new Operator version is running
-[#check_if_operator_is_updated]
-
-After applying the upgrade, you can execute the following command to check if the operator is running properly:
+. Patch the CVS 1.35.0 by executing this command:
++
+[source,terminal]
+----
+$ oc patch csv logic-operator-rhel8.v1.35.0 \
+  -n openshift-serverless-logic \
+  --type=json \
+  -p='[
+    {
+      "op": "replace",
+      "path": "/spec/install/spec/deployments/0/spec/selector/matchLabels",
+      "value": {
+        "app.kubernetes.io/name": "sonataflow-operator"
+      }
+    },
+    {
+      "op": "replace",
+      "path": "/spec/install/spec/deployments/0/label",
+      "value": {
+        "app.kubernetes.io/name": "sonataflow-operator"
+      }
+    },
+    {
+      "op": "replace",
+      "path": "/spec/install/spec/deployments/0/spec/template/metadata/labels",
+      "value": {
+        "app.kubernetes.io/name": "sonataflow-operator"
+      }
+    }
+  ]'
+----
++
+. Delete current operator deployment by executing this command:
++
+[source,terminal]
+----
+$ oc delete deployment logic-operator-rhel8-controller-manager -n openshift-serverless-logic
+----
+. Upgrade the Operator to OSL 1.36.0 using the OpenShift management console
++
+. After applying the upgrade, execute the following command to check if the operator is running properly.
+It might take some time to get the Succeeded status:
++
 [source,terminal]
 ----
 $ oc get clusterserviceversion logic-operator-rhel8.v1.36.0
 ----
-
++
 You must get an output like this:
-
++
 [source,terminal]
 ----
 NAME                           DISPLAY                               VERSION   REPLACES                       PHASE
