@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kubernetes service discovery in OpenShift Serverless Logic :: Red Hat OpenShift Serverless previews</title>
-    <link rel="canonical" href="https://openshift-knative.github.io/docs/docs/latest/serverless-logic/use-cases/advanced-developer-use-cases/service-discovery/kubernetes-service-discovery.html">
-    <meta name="description" content="Explain what is and how the service discovery works">
-    <meta name="keywords" content="kogito, workflow, quarkus, serverless, service-discovery, enhanced-service-discovery">
+    <title>Upgrade Serverless Logic Operator from 1.35.0 to 1.36.0 :: Red Hat OpenShift Serverless previews</title>
+    <link rel="canonical" href="https://openshift-knative.github.io/docs/docs/latest/serverless-logic/cloud/operator/upgrade-serverless-operator/upgrade_1_35_0_to_1_36_0.html">
+    <meta name="description" content="Upgrade OSL Operator from 1.35.0 to 1.36.0">
+    <meta name="keywords" content="kogito, sonataflow, workflow, serverless, operator, kubernetes, minikube, openshift, containers">
     <meta name="generator" content="Antora 3.0.3">
     <link rel="stylesheet" href="../../../../../../_/css/site.css">
 <link rel="stylesheet" href="../../../../../../_/css/extra.css">
@@ -394,71 +394,71 @@
   </li>
   <li class="nav-item" data-depth="3">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="../../../cloud/index.html">Cloud</a>
+    <a class="nav-link" href="../../index.html">Cloud</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../../cloud/custom-ingress-authz.html">Securing Workflows</a>
+    <a class="nav-link" href="../../custom-ingress-authz.html">Securing Workflows</a>
   </li>
   <li class="nav-item" data-depth="4">
     <button class="nav-toggle"></button>
     <span class="nav-text">Operator</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../../../cloud/operator/install-serverless-operator.html">Installation</a>
+    <a class="nav-link" href="../install-serverless-operator.html">Installation</a>
   </li>
   <li class="nav-item" data-depth="5">
     <button class="nav-toggle"></button>
     <span class="nav-text">Upgrade</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="6">
-    <a class="nav-link" href="../../../cloud/operator/upgrade-serverless-operator/upgrade_1_34_0_to_1_35_0.html">OSL 1.34.0 to 1.35.0</a>
+    <a class="nav-link" href="upgrade_1_34_0_to_1_35_0.html">OSL 1.34.0 to 1.35.0</a>
   </li>
-  <li class="nav-item" data-depth="6">
-    <a class="nav-link" href="../../../cloud/operator/upgrade-serverless-operator/upgrade_1_35_0_to_1_36_0.html">OSL 1.35.0 to 1.36.0</a>
+  <li class="nav-item is-current-page" data-depth="6">
+    <a class="nav-link" href="upgrade_1_35_0_to_1_36_0.html">OSL 1.35.0 to 1.36.0</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../../../cloud/operator/global-configuration.html">Admin Configuration</a>
+    <a class="nav-link" href="../global-configuration.html">Admin Configuration</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../../../cloud/operator/developing-workflows.html">Development Mode</a>
+    <a class="nav-link" href="../developing-workflows.html">Development Mode</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../../../cloud/operator/referencing-resource-files.html">Referencing Workflow Resources</a>
+    <a class="nav-link" href="../referencing-resource-files.html">Referencing Workflow Resources</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../../../cloud/operator/configuring-workflows.html">Workflow Configuration</a>
+    <a class="nav-link" href="../configuring-workflows.html">Workflow Configuration</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../../../cloud/operator/build-and-deploy-workflows.html">Building and Deploying Workflow Images</a>
+    <a class="nav-link" href="../build-and-deploy-workflows.html">Building and Deploying Workflow Images</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../../../cloud/operator/supporting-services.html">Deploy Supporting Services</a>
+    <a class="nav-link" href="../supporting-services.html">Deploy Supporting Services</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../../../cloud/operator/workflow-status-conditions.html">Custom Resource Status</a>
+    <a class="nav-link" href="../workflow-status-conditions.html">Custom Resource Status</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../../../cloud/operator/building-custom-images.html">Building Custom Images</a>
+    <a class="nav-link" href="../building-custom-images.html">Building Custom Images</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../../../cloud/operator/customize-podspec.html">Custom Workflow PodSpec</a>
+    <a class="nav-link" href="../customize-podspec.html">Custom Workflow PodSpec</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../../../cloud/operator/service-discovery.html">Service Discovery</a>
+    <a class="nav-link" href="../service-discovery.html">Service Discovery</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../../../cloud/operator/using-persistence.html">Using persistence</a>
+    <a class="nav-link" href="../using-persistence.html">Using persistence</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../../../cloud/operator/configuring-knative-eventing-resources.html">Knative Eventing</a>
+    <a class="nav-link" href="../configuring-knative-eventing-resources.html">Knative Eventing</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../../../cloud/operator/add-custom-ca-to-a-workflow-pod.html">Add Custom CA to Workflow Pod</a>
+    <a class="nav-link" href="../add-custom-ca-to-a-workflow-pod.html">Add Custom CA to Workflow Pod</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../../../cloud/operator/known-issues.html">Roadmap and Known Issues</a>
+    <a class="nav-link" href="../known-issues.html">Roadmap and Known Issues</a>
   </li>
 </ul>
   </li>
@@ -506,26 +506,26 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="../index.html">Development of OpenShift Serverless Logic applications using Quarkus and Java</a>
+    <a class="nav-link" href="../../../use-cases/advanced-developer-use-cases/index.html">Development of OpenShift Serverless Logic applications using Quarkus and Java</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="5">
     <button class="nav-toggle"></button>
     <span class="nav-text">Getting Started</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="6">
-    <a class="nav-link" href="../getting-started/create-your-first-workflow-service.html">Creating a Quarkus Workflow service</a>
+    <a class="nav-link" href="../../../use-cases/advanced-developer-use-cases/getting-started/create-your-first-workflow-service.html">Creating a Quarkus Workflow service</a>
   </li>
   <li class="nav-item" data-depth="6">
-    <a class="nav-link" href="../getting-started/create-your-first-workflow-project.html">Creating a Quarkus Workflow project</a>
+    <a class="nav-link" href="../../../use-cases/advanced-developer-use-cases/getting-started/create-your-first-workflow-project.html">Creating a Quarkus Workflow project</a>
   </li>
   <li class="nav-item" data-depth="6">
-    <a class="nav-link" href="../getting-started/build-workflow-image-with-quarkus-cli.html">Building workflow images using Quarkus CLI</a>
+    <a class="nav-link" href="../../../use-cases/advanced-developer-use-cases/getting-started/build-workflow-image-with-quarkus-cli.html">Building workflow images using Quarkus CLI</a>
   </li>
   <li class="nav-item" data-depth="6">
-    <a class="nav-link" href="../getting-started/working-with-serverless-workflow-quarkus-examples.html">Working with OpenShift Serverless Logic example applications</a>
+    <a class="nav-link" href="../../../use-cases/advanced-developer-use-cases/getting-started/working-with-serverless-workflow-quarkus-examples.html">Working with OpenShift Serverless Logic example applications</a>
   </li>
   <li class="nav-item" data-depth="6">
-    <a class="nav-link" href="../getting-started/test-serverless-workflow-quarkus-examples.html">Testing images of OpenShift Serverless Logic example applications using Quarkus CLI</a>
+    <a class="nav-link" href="../../../use-cases/advanced-developer-use-cases/getting-started/test-serverless-workflow-quarkus-examples.html">Testing images of OpenShift Serverless Logic example applications using Quarkus CLI</a>
   </li>
 </ul>
   </li>
@@ -534,13 +534,13 @@
     <span class="nav-text">Deployment</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="6">
-    <a class="nav-link" href="../deployments/deploying-on-minikube.html">Deploying on Minikube</a>
+    <a class="nav-link" href="../../../use-cases/advanced-developer-use-cases/deployments/deploying-on-minikube.html">Deploying on Minikube</a>
   </li>
   <li class="nav-item" data-depth="6">
-    <a class="nav-link" href="../deployments/deploying-on-kubernetes.html">Deploying on Kubernetes</a>
+    <a class="nav-link" href="../../../use-cases/advanced-developer-use-cases/deployments/deploying-on-kubernetes.html">Deploying on Kubernetes</a>
   </li>
   <li class="nav-item" data-depth="6">
-    <a class="nav-link" href="../deployments/deploying-on-openshift.html">Deploying on OpenShift</a>
+    <a class="nav-link" href="../../../use-cases/advanced-developer-use-cases/deployments/deploying-on-openshift.html">Deploying on OpenShift</a>
   </li>
 </ul>
   </li>
@@ -549,19 +549,19 @@
     <span class="nav-text">Persistence</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="6">
-    <a class="nav-link" href="../persistence/persistence-core-concepts.html">Core Concepts</a>
+    <a class="nav-link" href="../../../use-cases/advanced-developer-use-cases/persistence/persistence-core-concepts.html">Core Concepts</a>
   </li>
   <li class="nav-item" data-depth="6">
-    <a class="nav-link" href="../persistence/persistence-with-postgresql.html">Running a Quarkus Workflow Application using PostgreSQL</a>
+    <a class="nav-link" href="../../../use-cases/advanced-developer-use-cases/persistence/persistence-with-postgresql.html">Running a Quarkus Workflow Application using PostgreSQL</a>
   </li>
   <li class="nav-item" data-depth="6">
-    <a class="nav-link" href="../persistence/postgresql-advanced-concepts.html">Postgresql Advanced Concepts</a>
+    <a class="nav-link" href="../../../use-cases/advanced-developer-use-cases/persistence/postgresql-advanced-concepts.html">Postgresql Advanced Concepts</a>
   </li>
   <li class="nav-item" data-depth="6">
-    <a class="nav-link" href="../persistence/postgresql-flyway-migration.html">PostgreSQL Database Migration</a>
+    <a class="nav-link" href="../../../use-cases/advanced-developer-use-cases/persistence/postgresql-flyway-migration.html">PostgreSQL Database Migration</a>
   </li>
   <li class="nav-item" data-depth="6">
-    <a class="nav-link" href="../persistence/integration-tests-with-postgresql.html">OpenShift Serverless Logic integration test using PostgreSQL</a>
+    <a class="nav-link" href="../../../use-cases/advanced-developer-use-cases/persistence/integration-tests-with-postgresql.html">OpenShift Serverless Logic integration test using PostgreSQL</a>
   </li>
 </ul>
   </li>
@@ -570,16 +570,16 @@
     <span class="nav-text">Data Index</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="6">
-    <a class="nav-link" href="../data-index/data-index-as-quarkus-dev-service.html">Data Index as a Quarkus Development service</a>
+    <a class="nav-link" href="../../../use-cases/advanced-developer-use-cases/data-index/data-index-as-quarkus-dev-service.html">Data Index as a Quarkus Development service</a>
   </li>
   <li class="nav-item" data-depth="6">
-    <a class="nav-link" href="../data-index/data-index-usecase-singleton.html">Deploying Data Index and OpenShift Serverless Logic application on Minikube</a>
+    <a class="nav-link" href="../../../use-cases/advanced-developer-use-cases/data-index/data-index-usecase-singleton.html">Deploying Data Index and OpenShift Serverless Logic application on Minikube</a>
   </li>
   <li class="nav-item" data-depth="6">
-    <a class="nav-link" href="../data-index/data-index-usecase-multi.html">Deploying Data Index and multiple OpenShift Serverless Logic applications on Minikube</a>
+    <a class="nav-link" href="../../../use-cases/advanced-developer-use-cases/data-index/data-index-usecase-multi.html">Deploying Data Index and multiple OpenShift Serverless Logic applications on Minikube</a>
   </li>
   <li class="nav-item" data-depth="6">
-    <a class="nav-link" href="../data-index/data-index-quarkus-extension.html">Data Index Quarkus extensions</a>
+    <a class="nav-link" href="../../../use-cases/advanced-developer-use-cases/data-index/data-index-quarkus-extension.html">Data Index Quarkus extensions</a>
   </li>
 </ul>
   </li>
@@ -588,10 +588,10 @@
     <span class="nav-text">Service Orchestration</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="6">
-    <a class="nav-link" href="../service-orchestration/configuring-openapi-services-endpoints-with-quarkus.html">Configuring the OpenAPI services endpoints in different environments</a>
+    <a class="nav-link" href="../../../use-cases/advanced-developer-use-cases/service-orchestration/configuring-openapi-services-endpoints-with-quarkus.html">Configuring the OpenAPI services endpoints in different environments</a>
   </li>
   <li class="nav-item" data-depth="6">
-    <a class="nav-link" href="../service-orchestration/orchestration-of-grpc-services.html">Orchestrating gRPC based Services</a>
+    <a class="nav-link" href="../../../use-cases/advanced-developer-use-cases/service-orchestration/orchestration-of-grpc-services.html">Orchestrating gRPC based Services</a>
   </li>
 </ul>
   </li>
@@ -599,8 +599,8 @@
     <button class="nav-toggle"></button>
     <span class="nav-text">Service Discovery</span>
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="6">
-    <a class="nav-link" href="kubernetes-service-discovery.html">Kubernetes service discovery in OpenShift Serverless Logic</a>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../../../use-cases/advanced-developer-use-cases/service-discovery/kubernetes-service-discovery.html">Kubernetes service discovery in OpenShift Serverless Logic</a>
   </li>
 </ul>
   </li>
@@ -609,16 +609,16 @@
     <span class="nav-text">Event Orchestration</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="6">
-    <a class="nav-link" href="../event-orchestration/consume-produce-events-with-knative-eventing.html">Consuming and producing events on Knative Eventing in Quarkus</a>
+    <a class="nav-link" href="../../../use-cases/advanced-developer-use-cases/event-orchestration/consume-produce-events-with-knative-eventing.html">Consuming and producing events on Knative Eventing in Quarkus</a>
   </li>
   <li class="nav-item" data-depth="6">
-    <a class="nav-link" href="../event-orchestration/consume-producing-events-with-kafka.html">Consuming and producing events using Apache Kafka in Quarkus</a>
+    <a class="nav-link" href="../../../use-cases/advanced-developer-use-cases/event-orchestration/consume-producing-events-with-kafka.html">Consuming and producing events using Apache Kafka in Quarkus</a>
   </li>
   <li class="nav-item" data-depth="6">
-    <a class="nav-link" href="../event-orchestration/orchestration-based-saga-pattern.html">Saga orchestration example in OpenShift Serverless Logic</a>
+    <a class="nav-link" href="../../../use-cases/advanced-developer-use-cases/event-orchestration/orchestration-based-saga-pattern.html">Saga orchestration example in OpenShift Serverless Logic</a>
   </li>
   <li class="nav-item" data-depth="6">
-    <a class="nav-link" href="../event-orchestration/newsletter-subscription-example.html">Newsletter subscription example in OpenShift Serverless Logic</a>
+    <a class="nav-link" href="../../../use-cases/advanced-developer-use-cases/event-orchestration/newsletter-subscription-example.html">Newsletter subscription example in OpenShift Serverless Logic</a>
   </li>
 </ul>
   </li>
@@ -627,7 +627,7 @@
     <span class="nav-text">Timeouts</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="6">
-    <a class="nav-link" href="../timeouts/timeout-showcase-example.html">Timeouts Showcase in OpenShift Serverless Logic</a>
+    <a class="nav-link" href="../../../use-cases/advanced-developer-use-cases/timeouts/timeout-showcase-example.html">Timeouts Showcase in OpenShift Serverless Logic</a>
   </li>
 </ul>
   </li>
@@ -636,7 +636,7 @@
     <span class="nav-text">Callbacks</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="6">
-    <a class="nav-link" href="../callbacks/callback-state-example.html">Example of OpenShift Serverless Logic application using callback state with Quarkus</a>
+    <a class="nav-link" href="../../../use-cases/advanced-developer-use-cases/callbacks/callback-state-example.html">Example of OpenShift Serverless Logic application using callback state with Quarkus</a>
   </li>
 </ul>
   </li>
@@ -645,16 +645,16 @@
     <span class="nav-text">Integrations of external services</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="6">
-    <a class="nav-link" href="../integrations/camel-routes-integration.html">Integrating with Camel routes</a>
+    <a class="nav-link" href="../../../use-cases/advanced-developer-use-cases/integrations/camel-routes-integration.html">Integrating with Camel routes</a>
   </li>
   <li class="nav-item" data-depth="6">
-    <a class="nav-link" href="../integrations/custom-functions-knative.html">Invoking Knative services from OpenShift Serverless Logic</a>
+    <a class="nav-link" href="../../../use-cases/advanced-developer-use-cases/integrations/custom-functions-knative.html">Invoking Knative services from OpenShift Serverless Logic</a>
   </li>
   <li class="nav-item" data-depth="6">
-    <a class="nav-link" href="../integrations/expose-metrics-to-prometheus.html">Exposing Workflow base metrics to Prometheus</a>
+    <a class="nav-link" href="../../../use-cases/advanced-developer-use-cases/integrations/expose-metrics-to-prometheus.html">Exposing Workflow base metrics to Prometheus</a>
   </li>
   <li class="nav-item" data-depth="6">
-    <a class="nav-link" href="../integrations/serverless-dashboard-with-runtime-data.html">Displaying Workflow Data in Dashboards</a>
+    <a class="nav-link" href="../../../use-cases/advanced-developer-use-cases/integrations/serverless-dashboard-with-runtime-data.html">Displaying Workflow Data in Dashboards</a>
   </li>
 </ul>
   </li>
@@ -663,13 +663,13 @@
     <span class="nav-text">Testing</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="6">
-    <a class="nav-link" href="../testing/basic-integration-tests-with-restassured.html">Testing your Quarkus Workflow Application using REST Assured</a>
+    <a class="nav-link" href="../../../use-cases/advanced-developer-use-cases/testing/basic-integration-tests-with-restassured.html">Testing your Quarkus Workflow Application using REST Assured</a>
   </li>
   <li class="nav-item" data-depth="6">
-    <a class="nav-link" href="../testing/mocking-http-cloudevents-with-wiremock.html">Mocking HTTP CloudEvents sink using WireMock</a>
+    <a class="nav-link" href="../../../use-cases/advanced-developer-use-cases/testing/mocking-http-cloudevents-with-wiremock.html">Mocking HTTP CloudEvents sink using WireMock</a>
   </li>
   <li class="nav-item" data-depth="6">
-    <a class="nav-link" href="../testing/mocking-openapi-services-with-wiremock.html">Mocking OpenAPI services using WireMock</a>
+    <a class="nav-link" href="../../../use-cases/advanced-developer-use-cases/testing/mocking-openapi-services-with-wiremock.html">Mocking OpenAPI services using WireMock</a>
   </li>
 </ul>
   </li>
@@ -726,506 +726,459 @@
     <li class="crumb"><a href="../../../../index.html">Documentation</a></li>
     <li class="crumb">Serverless Logic</li>
     <li class="crumb">User Guides</li>
-    <li class="crumb">Use Cases</li>
-    <li class="crumb"><a href="../index.html">Development of OpenShift Serverless Logic applications using Quarkus and Java</a></li>
-    <li class="crumb">Service Discovery</li>
-    <li class="crumb"><a href="kubernetes-service-discovery.html">Kubernetes service discovery in OpenShift Serverless Logic</a></li>
+    <li class="crumb"><a href="../../index.html">Cloud</a></li>
+    <li class="crumb">Operator</li>
+    <li class="crumb">Upgrade</li>
+    <li class="crumb"><a href="upgrade_1_35_0_to_1_36_0.html">OSL 1.35.0 to 1.36.0</a></li>
   </ul>
 </nav>
 </div>
     <div class="main-view-and-toc">
         <main class="main">
           <article class="doc">
-<h1>Kubernetes service discovery in OpenShift Serverless Logic</h1>
+<h1>Upgrade Serverless Logic Operator from 1.35.0 to 1.36.0</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>The Kubernetes service discovery allows you to describe the Kubernetes resource you want to perform HTTP requests on using a custom URI. Under the hood, it will discover the network endpoint (URL) to where to make the request.</p>
-</div>
-<div class="paragraph">
-<p>The Kubernetes service discovery feature works during the workflow application startup, in which this feature scans all the Quarkus configurations in search of the URI pattern. Therefore, you must remember that if the application startup time matters, consider using a known static URL instead.</p>
-</div>
-<div class="paragraph">
-<p>Following is the custom URI pattern in Kubernetes service discovery:</p>
-</div>
-<div class="listingblock">
-<div class="title">URI pattern in Kubernetes service discovery</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kubernetes:&lt;kind&gt;.&lt;version&gt;.&lt;group&gt;/&lt;namespace&gt;/&lt;resourceName&gt;?&lt;attributeName&gt;=&lt;attributeValue&gt;
-\________/ \____/ \_______/ \_____/ \_________/ \____________/ \______________________________/
-  scheme    kind   version   group   namespace   resourceName   additional resource attributes
-            \____________________/                               \__________________________/
-                     GVK                                           Supported values:
-                                                                   - port-name={PORT_NAME}
-                                                                   - labels=label-name=label-value;other-label=other-value</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The following scheme values are supported in the URI pattern:</p>
+<p>This guide describes how to upgrade the Serverless Logic Operator 1.35.0 installed in an OpenShift cluster to the version 1.36.0.</p>
 </div>
 <div class="ulist">
+<div class="title">Prerequisites</div>
 <ul>
 <li>
-<p><code>kubernetes</code></p>
-</li>
-<li>
-<p><code>openshift</code></p>
-</li>
-<li>
-<p><code>knative</code></p>
+<p>An OpenShift cluster with admin privileges and <code>oc</code> installed.</p>
 </li>
 </ul>
-</div>
-<div class="paragraph">
-<p>The following resources are supported for the Kubernetes GVK (Group, Version, and Kind):</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>services.v1</code></p>
-</li>
-<li>
-<p><code>services.v1.serving.knative.dev</code></p>
-</li>
-<li>
-<p><code>pods.v1</code></p>
-</li>
-<li>
-<p><code>deployments.v1.apps</code></p>
-</li>
-<li>
-<p><code>deploymentconfigs.v1.apps.openshift.io</code></p>
-</li>
-<li>
-<p><code>statefulsets.v1.apps</code></p>
-</li>
-<li>
-<p><code>routes.v1.route.openshift.io</code></p>
-</li>
-<li>
-<p><code>ingresses.v1.networking.k8s.io</code></p>
-</li>
-</ul>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>When using <code>knative</code>, you can also use a simplified URI like:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">knative:&lt;namespace&gt;/&lt;serviceName&gt;</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The above URI looks directly for services.v1.serving.knative.dev resource.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>The <code>namespace</code> in the URI is optional, however, if <code>namespace</code> contains an empty value, the current namespace or context is used.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="dlist">
-<dl>
-<dt class="hdlist1">Query parameters in URI</dt>
-<dd>
-<div class="openblock">
-<div class="content">
-<div class="paragraph">
-<p>Also known as query string. The query parameters are defined the similar way with URLs to assign value to specific attributes.</p>
-</div>
-<div class="paragraph">
-<p>The following query parameters help the engine to be more precise when querying for a given Kubernetes resource:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Custom labels</strong>: The custom labels are used to filter services in case there are more than one service with the same label selector but exposing different ports. In this case, you can instruct the engine that if more than one service is found, then the engine must use the service containing the provided label.</p>
-<div class="paragraph">
-<p>The label is defined with the following expression and in case of multiple labels, you can use semicolon (;):</p>
-</div>
-<div class="paragraph">
-<p><code>labels=label-name=namevalue;another-label=another-value</code></p>
-</div>
-<div class="listingblock">
-<div class="title">Example label definition in URI</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kubernetes:pods.v1/&lt;namespace&gt;/&lt;pod-name&gt;?labels=label-name=test-label</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Using the previous URI example, if there are more than one service exposing the given pod, the <code>label-name=test-label</code> label is used to filter the service. If the label does not exist, the first found service is used.</p>
-</div>
-</li>
-<li>
-<p><strong>Custom port name</strong>: The custom port name is used to determine which port to use when multiple ports are configured in the target service or container. You can configure the port name to be queried using the following pattern:</p>
-<div class="paragraph">
-<p><code>port-name=&lt;PORT_NAME&gt;</code></p>
-</div>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</dd>
-</dl>
 </div>
 </div>
 <div id="toc" class="toc">
 <div id="toctitle"></div>
 <ul class="sectlevel1">
-<li><a href="#required-kubernetes-roles">Required Kubernetes roles</a></li>
-<li><a href="#con-kubernetes-service-doscovery-configuration">Configuration in Kubernetes service discovery</a></li>
-<li><a href="#con-precedence-kubernetes-service-discovery">Precedence in Kubernetes service discovery</a></li>
-<li><a href="#ref-example-kubernetes-service-discovery">Example of Kubernetes service discovery in OpenShift Serverless Logic</a></li>
-<li><a href="#ref-enabling-kubernetes-service-discovery">Enabling Kubernetes service discovery</a>
+<li><a href="#_procedure">Procedure</a>
 <ul class="sectlevel2">
-<li><a href="#_available_service_discovery_implementations">Available service discovery implementations</a></li>
+<li><a href="#_overall_upgrade_procedure">Overall upgrade procedure</a></li>
 </ul>
 </li>
-<li><a href="#_additional_resources">Additional resources</a></li>
 <li><a href="#_found_an_issue"><em><strong>Found an issue?</strong></em></a></li>
 </ul>
 </div>
 </div>
 <div class="sect1">
-<h2 id="required-kubernetes-roles"><a class="anchor" href="#required-kubernetes-roles"></a>Required Kubernetes roles</h2>
+<h2 id="_procedure"><a class="anchor" href="#_procedure"></a>Procedure</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The service discovery engine requires that the <a href="https://kubernetes.io/docs/concepts/security/service-accounts/">Kubernetes Service Account</a> running the application has read permissions for the discovered objects.</p>
-</div>
-<div class="paragraph">
-<p>The following Kubernetes Role resource has all the required permissions for the service discovery to work:</p>
-</div>
-<div class="listingblock">
-<div class="title">Required permissions for the Service Discovery on Kubernetes</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: rbac.authorization.k8s.io/v1
-kind: Role
-metadata:
-  name: service-discovery-role
-rules:
-  - apiGroups:
-      - ""
-    resources:
-      - pods
-      - services
-    verbs:
-      - get
-      - list
-  - apiGroups:
-      - apps
-    resources:
-      - deployments
-      - statefulsets
-    verbs:
-      - get
-      - list
-  - apiGroups:
-      - networking.k8s.io
-    resources:
-      - ingresses
-    verbs:
-      - get
-      - list
-  # Knative
-  - apiGroups:
-      - serving.knative.dev
-    resources:
-      - services
-    verbs:
-      - get
-      - list</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>If running on OpenShift, you must also add the following rules:</p>
-</div>
-<div class="listingblock">
-<div class="title">Additional rules to run on OpenShift</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">rules:
-  - apiGroups:
-      - route.openshift.io
-    resources:
-      - routes
-    verbs:
-      - get
-      - list
-  - apiGroups:
-      - apps.openshift.io
-    resources:
-      - deploymentconfigs
-    verbs:
-      - get
-      - list</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>You must then bind the Service Account with the <code>Role</code> via a <code>RoleBinding</code>:</p>
-</div>
-<div class="listingblock">
-<div class="title">RoleBinding for the required service discovery role</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: rbac.authorization.k8s.io/v1
-kind: RoleBinding
-metadata:
-  name: service-discovery-rolebinding
-roleRef:
-  apiGroup: rbac.authorization.k8s.io
-  kind: Role
-  name: service-discovery-role
-subjects:
-  - kind: ServiceAccount
-    name: default</code></pre>
-</div>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>Usually, pods run using the <code>default</code> Service Account. If your cluster has a different configuration, you should adapt this <code>RoleBinding</code> to your requirements.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>You must create these two objects in every namespace that you wish to deploy Quarkus Workflow applications with Service Discovery enabled.</p>
-</div>
-<div class="paragraph">
-<p>As an alternative, you can create a <code>ClusterRole</code> instead of a <code>Role</code> in every namespace. In this case, the role will reflect globally in your cluster. For security reasons, you should avoid this approach.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="con-kubernetes-service-doscovery-configuration"><a class="anchor" href="#con-kubernetes-service-doscovery-configuration"></a>Configuration in Kubernetes service discovery</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>There is no specific configuration required for the Kubernetes service discovery except by using the expected URI pattern. However, the <code>okhttp</code> communication interceptor, which logs the communication between the application and the Kubernetes API is disabled by default.</p>
-</div>
-<div class="paragraph">
-<p>You can enable the <code>okhttp</code> communication interceptor if there is a need to debug the communication between the client and the Kubernetes API by setting the following application property:</p>
-</div>
-<div class="listingblock">
-<div class="title">Application property to enable <code>okhttp</code> communication interceptor</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">quarkus.log.category."okhttp3.OkHttpClient".level=INFO</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="con-precedence-kubernetes-service-discovery"><a class="anchor" href="#con-precedence-kubernetes-service-discovery"></a>Precedence in Kubernetes service discovery</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Based on the resource to be discovered, the Kubernetes service discovery follows specific paths as shown in the following figure:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../../../_images/cloud/sw-discovery-flow.jpg" alt="sw discovery flow">
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="ref-example-kubernetes-service-discovery"><a class="anchor" href="#ref-example-kubernetes-service-discovery"></a>Example of Kubernetes service discovery in OpenShift Serverless Logic</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>The Kubernetes service discovery is performed at the <em>STATIC_INIT</em> time of Quarkus during the workflow application startup. First, the service discovery scans the Quarkus configuration values and searches for the Kubernetes URI pattern. If the URI pattern is found, the engine parses the URI, queries the Kubernetes API searching for the given resource, and overrides the given application property.</p>
-</div>
-<div class="paragraph">
-<p>For example, consider an application that consumes a resource running on Kubernetes. This resource is a Knative service that exposes a function, which can be discovered using the following URI:</p>
-</div>
-<div class="listingblock">
-<div class="title">Example URI</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">org.kie.kogito.sw.knative.service=${knative:services.v1/serverless-workflow-greeting-quarkus/greeting-quarkus-cli}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Or you can reference a specific endpoint of the Knative service using the following URI:</p>
-</div>
-<div class="listingblock">
-<div class="title">Example endpoint URI</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">org.kie.kogito.sw.knative.service=${knative:services.v1/serverless-workflow-greeting-quarkus/greeting-quarkus-cli}/endpoint</code></pre>
-</div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>The service discovery engine does not read the application property <code>name</code>, but only <code>value</code>.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Once the workflow application is started, you can see the Kubernetes service discovery into action in the logs:</p>
-</div>
-<div class="listingblock">
-<div class="title">Example logs</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ java -jar target/quarkus-app/quarkus-run.jar
-__  ____  __  _____   ___  __ ____  ______
- --/ __ \/ / / / _ | / _ \/ //_/ / / / __/
- -/ /_/ / /_/ / __ |/ , _/ ,&lt; / /_/ /\ \
---\___\_\____/_/ |_/_/|_/_/|_|\____/___/
-2022-08-23 12:21:04,360 DEBUG [org.kie.kog.add.qua.k8s.SWDiscoveryConfigSourceInterceptor] (main) Configuring k8s client...
-2022-08-23 12:21:05,245 INFO  [io.qua.sma.ope.run.OpenApiRecorder] (main) Default CORS properties will be used, please use 'quarkus.http.cors' properties instead
-2022-08-23 12:21:05,420 DEBUG [org.kie.kog.add.qua.k8s.par.KubeURI] (main)  KubeURI successfully parsed: KubeURI{protocol='knative', gvk=GVK{group='', version='v1', kind='service'}, namespace='serverless-workflow-greeting-quarkus', resourceName='greeting-quarkus-cli'}
-2022-08-23 12:21:06,043 INFO  [org.kie.kog.add.qua.k8s.KubeResourceDiscovery] (main) Connected to kubernetes cluster  v1.23.4, current namespace is serverless-workflow-greeting-quarkus. Resource name for discovery is greeting-quarkus-cli
-2022-08-23 12:21:06,045 DEBUG [org.kie.kog.add.qua.k8s.KnativeResourceDiscovery] (main) Trying to adapt kubernetes client to knative
-2022-08-23 12:21:06,316 DEBUG [org.kie.kog.add.qua.k8s.KnativeResourceDiscovery] (main) Found Knative endpoint at http://greeting-quarkus-cli.serverless-workflow-greeting-quarkus.10.99.154.147.sslip.io
-2022-08-23 12:21:06,375 INFO  [org.kie.kog.sw.AppLifecycle] (main) The application is starting
-2022-08-23 12:21:06,382 INFO  [org.kie.kog.add.qua.mes.com.QuarkusKogitoExtensionInitializer] (main) Registered Kogito CloudEvent extension
-2022-08-23 12:21:06,460 INFO  [io.quarkus] (main) sw-service-discovery 1.0.0-SNAPSHOT on JVM (powered by Quarkus 999-SNAPSHOT) started in 2.360s. Listening on: http://0.0.0.0:8080
-2022-08-23 12:21:06,462 INFO  [io.quarkus] (main) Profile prod activated.
-2022-08-23 12:21:06,462 INFO  [io.quarkus] (main) Installed features: [cache, cdi, jackson-jq, kogito-addon-kubernetes-extension, kogito-addon-messaging-extension, kogito-processes, kogito-serverless-workflow, kubernetes, kubernetes-client, openshift-client, qute, reactive-routes, rest-client, rest-client-jackson, resteasy, resteasy-jackson, smallrye-context-propagation, smallrye-openapi, smallrye-reactive-messaging, smallrye-reactive-messaging-http, vertx]</code></pre>
-</div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>In the previous example, the URI is translated to <code><a href="http://greeting-quarkus-cli.serverless-workflow-greeting-quarkus.10.99.154.147.sslip.io" class="bare">greeting-quarkus-cli.serverless-workflow-greeting-quarkus.10.99.154.147.sslip.io</a></code> when the application started. The translated URL is used at runtime when needed.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>The Kubernetes service discovery scans the Quarkus configuration during the startup, which can also cause small delay as follows:</p>
-</div>
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset1_kubernetes-service-discovery-is-enabled"></a>Kubernetes service discovery is enabled</p>
-</li>
-<li>
-<p><a id="tabset1_kubernetes-service-discovery-is-disabled"></a>Kubernetes service discovery is disabled</p>
-</li>
-</ul>
-</div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset1_kubernetes-service-discovery-is-enabled">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">(main) sw-service-discovery 1.0.0-SNAPSHOT on JVM (powered by Quarkus 999-SNAPSHOT) started in 2.360s. Listening on: http://0.0.0.0:8080</code></pre>
-</div>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset1_kubernetes-service-discovery-is-disabled">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">(main) sw-service-discovery 1.0.0-SNAPSHOT on JVM (powered by Quarkus 999-SNAPSHOT) started in 1.507s. Listening on: http://0.0.0.0:8080</code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="ref-enabling-kubernetes-service-discovery"><a class="anchor" href="#ref-enabling-kubernetes-service-discovery"></a>Enabling Kubernetes service discovery</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>When using the Kubernetes service discovery feature, you need to balance if your application can afford the delayed startup time.</p>
-</div>
-<div class="paragraph">
-<p>If the URI pattern is not found in the application properties, then discovery is not triggered. However, the scanning is performed anyway. Therefore, a short time is required to go through the startup scan.</p>
+<p>To upgrade an OSL 1.35.0 installation to the OSL 1.36.0 version, you must execute this procedure:</p>
 </div>
 <div class="sect2">
-<h3 id="_available_service_discovery_implementations"><a class="anchor" href="#_available_service_discovery_implementations"></a>Available service discovery implementations</h3>
+<h3 id="_overall_upgrade_procedure"><a class="anchor" href="#_overall_upgrade_procedure"></a>Overall upgrade procedure</h3>
 <div class="paragraph">
-<p>Currently, there are two implementations available.</p>
+<p>It is recommended to read and understand all the steps of the procedure before executing.
+Interested parties might automate the procedure according to their convenience or infrastructure, for example, keeping all the <code>SonataFlow</code> CRDs in a GitHub repository, might help considerably to implement automation, etc.</p>
 </div>
-<div class="paragraph">
-<p>You can enable the Kubernetes service discovery by adding a service discovery implementation to the application&#8217;s dependencies as shown in the following Maven dependencies:</p>
-</div>
-<div class="sect3">
-<h4 id="_fabric8_kubernetes_service_catalog"><a class="anchor" href="#_fabric8_kubernetes_service_catalog"></a>Fabric8 Kubernetes Service Catalog</h4>
-<div class="paragraph">
-<p>When activated, it leverages the Kubernetes Java API for service discovery, making it ideally suited for self-managed scenarios where users independently construct and deploy workflows.</p>
-</div>
-<div class="listingblock">
-<div class="title">Example Maven dependencies</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;dependency&gt;
-    &lt;groupId&gt;org.kie&lt;/groupId&gt;
-    &lt;artifactId&gt;kie-addons-quarkus-kubernetes&lt;/artifactId&gt;
-&lt;/dependency&gt;
-&lt;dependency&gt;
-    &lt;groupId&gt;org.kie&lt;/groupId&gt;
-    &lt;artifactId&gt;kogito-addons-quarkus-fabric8-kubernetes-service-catalog&lt;/artifactId&gt;
-&lt;/dependency&gt;</code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_microprofile_config_kubernetes_service_catalog"><a class="anchor" href="#_microprofile_config_kubernetes_service_catalog"></a>MicroProfile Config Kubernetes Service Catalog</h4>
-<div class="paragraph">
-<p>This implementation retrieves information from the application&#8217;s configuration, making it valuable in scenarios where users rely on the operator to provide the necessary information from the hosting platform.</p>
-</div>
-<div class="listingblock">
-<div class="title">Example Maven dependencies</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;dependency&gt;
-    &lt;groupId&gt;org.kie&lt;/groupId&gt;
-    &lt;artifactId&gt;kie-addons-quarkus-kubernetes&lt;/artifactId&gt;
-&lt;/dependency&gt;
-&lt;dependency&gt;
-    &lt;groupId&gt;org.kie&lt;/groupId&gt;
-    &lt;artifactId&gt;kogito-addons-quarkus-microprofile-config-service-catalog&lt;/artifactId&gt;
-&lt;/dependency&gt;</code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_additional_resources"><a class="anchor" href="#_additional_resources"></a>Additional resources</h2>
-<div class="sectionbody">
-<div class="ulist">
-<ul>
+<div class="olist arabic">
+<ol class="arabic">
 <li>
-<p><a href="../service-orchestration/configuring-openapi-services-endpoints-with-quarkus.html" class="xref page">Configuring the OpenAPI services endpoints with Quarkus</a></p>
+<p>Execute the steps <code>1</code> and <code>2</code> of the upgrade for every workflow with the <a href="#workflows_dev_profile">dev profile</a>.</p>
 </li>
-</ul>
+<li>
+<p>Execute the steps <code>1</code>, <code>2</code> and <code>3</code> of the upgrade for every workflow with the <a href="#workflows_preview_profile">preview profile</a>.</p>
+</li>
+<li>
+<p>Execute the step <code>1</code> of the upgrade for every workflow with the <a href="#workflows_gitops_profile">gitops profile</a>.</p>
+</li>
+<li>
+<p>Execute the step <code>1</code> of the <a href="#data_index_upgrade">Data Index</a> upgrade.</p>
+</li>
+<li>
+<p>Execute the step <code>1</code> of the <a href="#jobs_service_upgrade">Job Service</a> upgrade.</p>
+</li>
+<li>
+<p>Upgrade the OSL Operator to the version 1.36.0 <a href="#operator_upgrade_procedure">following this procedure</a>, and wait until the new version is running.</p>
+</li>
+<li>
+<p>Finalize the <a href="#data_index_upgrade">Data Index</a> upgrade by continuing from step <code>2</code>.</p>
+</li>
+<li>
+<p>Finalize the <a href="#jobs_service_upgrade">Job Service</a> upgrade by continuing from step <code>2</code>.</p>
+</li>
+<li>
+<p>Finalize the upgrade for the workflows with the <a href="#workflows_gitops_profile">gitops profile</a> by continuing from step <code>2</code>.</p>
+</li>
+<li>
+<p>Finalize the upgrade for the workflows with the <a href="#workflows_preview_profile">preview profile</a> by continuing from step <code>4</code>.</p>
+</li>
+<li>
+<p>Finalize the upgrade for the workflows with the <a href="#workflows_dev_profile">dev profile</a> by continuing from step <code>3</code>.</p>
+</li>
+</ol>
+</div>
+<div class="sect3">
+<h4 id="workflows_dev_profile"><a class="anchor" href="#workflows_dev_profile"></a>Workflows with the <code>dev</code> profile</h4>
+<div class="paragraph">
+<p>Every workflow with the <code>dev</code> profile must be deleted before applying the operator upgrade to OSL 1.36.0, and re-deployed after the upgrade is completed.</p>
+</div>
+<div class="paragraph">
+<p>For every workflow <code>my-workflow</code> with the <code>dev</code> profile you must:</p>
+</div>
+<div class="paragraph">
+<p><strong>Pre-operator upgrade steps:</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Ensure that you have a copy of the corresponding <code>SonataFlow</code> CR, as well as any other Kubernetes resources created for that workflow. For example, this includes the user-provided <code>ConfigMap</code> with <code>application.properties</code> if you are using custom property configurations.</p>
+</li>
+<li>
+<p>Delete the workflow by using the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ oc delete -f &lt;my-workflow.yaml&gt; -n &lt;target_namespace&gt;</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Post-operator upgrade steps:</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="3">
+<li>
+<p>Ensure that any Kubernetes resource for that workflow, such as the user-provided <code>ConfigMap</code> with <code>application.properties</code>, is created before you redeploy the workflow.</p>
+</li>
+<li>
+<p>Re-deploy the workflow by using the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ oc apply -f &lt;my-workflow.yaml&gt; -n &lt;target_namespace&gt;</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="workflows_preview_profile"><a class="anchor" href="#workflows_preview_profile"></a>Workflows with the <code>preview</code> profile</h4>
+<div class="paragraph">
+<p>Every workflow with the <code>preview</code> profile must be deleted before applying the operator upgrade to OSL 1.36.0 and then redeployed after the upgrade is complete.</p>
+</div>
+<div class="paragraph">
+<p>For every workflow <code>my-workflow</code> with the <code>preview</code> profile you must:</p>
+</div>
+<div class="paragraph">
+<p><strong>Pre-operator upgrade steps:</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>If the workflow is configured to use persistence, you must back up the workflow database.
+Ensure that your database backup includes all database objects, not just the table&#8217;s information.</p>
+</li>
+<li>
+<p>Ensure that you have a copy of the corresponding <code>SonataFlow</code> CR, as well as any other Kubernetes resources created for that workflow. For example, if you are using custom property configurations, you will need a copy of the user-provided <code>ConfigMap</code> with the <code>application.properties</code> file.</p>
+</li>
+<li>
+<p>Delete the workflow by using the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ oc delete -f &lt;my-workflow.yaml&gt; -n &lt;target_namespace&gt;</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Post-operator upgrade steps:</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="4">
+<li>
+<p>Ensure that any Kubernetes resource for that workflow, such as the user-provided <code>ConfigMap</code> with <code>application.properties</code>, is created before you redeploy the workflow.</p>
+</li>
+<li>
+<p>Re-deploy the workflow by using the following command.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ oc apply -f &lt;my-workflow.yaml&gt; -n &lt;target_namespace&gt;</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="workflows_gitops_profile"><a class="anchor" href="#workflows_gitops_profile"></a>Workflows with the <code>gitops</code> profile</h4>
+<div class="paragraph">
+<p>Every workflow with the <code>gitops</code> profile must be scaled to zero before applying the operator upgrade to OSL 1.36.0 and then rescaled to 1 after the upgrade is complete.</p>
+</div>
+<div class="paragraph">
+<p>For every workflow <code>my-workflow</code> with the <code>gitops</code> profile you must:</p>
+</div>
+<div class="paragraph">
+<p><strong>Pre-operator upgrade steps:</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Scale the workflow to zero</p>
+<div class="paragraph">
+<p>You can scale the workflow to zero by configuring the field <code>spec.podTemplate.replicas: 0</code>, in the corresponding <code>my-workflow.yaml</code> <code>SonataFlow</code> CR, and executing:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ oc apply  -f &lt;my-workflow.yaml&gt;  -n  &lt;target_namespace&gt;</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Post-operator upgrade steps:</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="2">
+<li>
+<p>Rescale the workflow to 1:</p>
+<div class="paragraph">
+<p>You can rescale the workflow to 1 by configuring the field <code>spec.podTemplate.replicas: 1</code> in the corresponding <code>my-workflow.yaml</code> <code>SonataFlow</code> CR and executing:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ oc apply  -f &lt;my-workflow.yaml&gt;  -n  &lt;target_namespace&gt;</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="data_index_upgrade"><a class="anchor" href="#data_index_upgrade"></a>Data Index upgrade</h4>
+<div class="paragraph">
+<p>Every Data Index deployment must be upgraded with the following procedure:</p>
+</div>
+<div class="paragraph">
+<p><strong>Pre-operator upgrade steps:</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Back up the Data Index database, including all database objects, not just the table information.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Post-operator upgrade steps:</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="2">
+<li>
+<p><code>data-index-process-definition</code> <code>Trigger</code> upgrade</p>
+<div class="paragraph">
+<p>If your Data Index installation is configured to use a Knative Eventing Kafka Broker to receive the workflow status change and definition events. In that case, you must delete the <code>data-index-process-definition</code> <code>Trigger</code> created by the OSL 1.35.0 version.</p>
+</div>
+<div class="paragraph">
+<p>You can see all the <code>Triggers</code> by executing the following command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ oc get triggers -n &lt;target_namespace&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Example output:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">Name                                                Image
+NAME                                                              BROKER              SUBSCRIBER_URI                                                                                        AGE    READY   REASON
+data-index-jobs-a25c8405-f740-47d2-a9a5-f80ccaec2955              example-broker    http://sonataflow-platform-data-index-service.&lt;target_namespace&gt;.svc.cluster.local/jobs                 119m   True
+<strong>data-index-process-definition-473e1ddbb3ca1d62768187eb80de99bca   example-broker    http://sonataflow-platform-data-index-service.&lt;target_namespace&gt;.svc.cluster.local/definitions          119m   True</strong>
+data-index-process-error-a25c8405-f740-47d2-a9a5-f80ccaec2955     example-broker    http://sonataflow-platform-data-index-service.&lt;target_namespace&gt;.svc.cluster.local/processes            119m   True
+data-index-process-instance-mul07f593476e8c14353a337590e0bfd5ae   example-broker    http://sonataflow-platform-data-index-service.&lt;target_namespace&gt;.svc.cluster.local/processes            119m   True
+data-index-process-node-a25c8405-f740-47d2-a9a5-f80ccaec2955      example-broker    http://sonataflow-platform-data-index-service.&lt;target_namespace&gt;.svc.cluster.local/processes            119m   True
+data-index-process-state-a25c8405-f740-47d2-a9a5-f80ccaec2955     example-broker    http://sonataflow-platform-data-index-service.&lt;target_namespace&gt;.svc.cluster.local/processes            119m   True
+data-index-process-variable-487e9a6777fff650e60097c9e17111aea25   example-broker    http://sonataflow-platform-data-index-service.&lt;target_namespace&gt;.svc.cluster.local/processes            119m   True
+
+jobs-service-create-job-a25c8405-f740-47d2-a9a5-f80ccaec2955      example-broker    http://sonataflow-platform-jobs-service.&lt;target_namespace&gt;.svc.cluster.local/v2/jobs/events             119m   True
+jobs-service-delete-job-a25c8405-f740-47d2-a9a5-f80ccaec2955      example-broker    http://sonataflow-platform-jobs-service.&lt;target_namespace&gt;.svc.cluster.local/v2/jobs/events             119m   True</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Following the example above, the <code>Trigger</code> <code>data-index-process-definition-473e1ddbb3ca1d62768187eb80de99bca</code> must be deleted with the following command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ oc delete trigger data-index-process-definition-473e1ddbb3ca1d62768187eb80de99bca -n &lt;target_namespace&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>After the command is executed, the old <code>Trigger</code> will be deleted, and a new <code>Trigger</code> compatible with OSL 1.36.0 will be automatically created.</p>
+</div>
+</li>
+<li>
+<p><strong>(Optional)</strong> Some time after the OSL Operator 1.36.0 upgrade is completed, you’ll see that a new <code>ReplicaSet</code> for executing the Data Index 1.36.0 version is created.</p>
+<div class="paragraph">
+<p>You can optionally delete all the Data Index old ReplicaSets belonging to the OSL 1.35.0 using these commands.</p>
+</div>
+<div class="paragraph">
+<p>You can see all the ReplicaSets by executing a query like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ oc get replicasets -o custom-columns=Name:metadata.name,Image:spec.template.spec.containers[*].image -n &lt;target_namespace&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Example output:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">Name                                                Image
+<strong>sonataflow-platform-data-index-service-1111111111   registry.redhat.io/openshift-serverless-1/logic-data-index-postgresql-rhel8:1.35.0</strong>
+
+sonataflow-platform-data-index-service-2222222222   registry.redhat.io/openshift-serverless-1/logic-data-index-postgresql-rhel8:1.36.0</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Following the example above, the old OSL 1.35.0 ReplicaSet <code>sonataflow-platform-data-index-service-1111111111</code> must be deleted with the following command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ oc delete replicaset sonataflow-platform-data-index-service-1111111111 -n &lt;target_namespace&gt;</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="jobs_service_upgrade"><a class="anchor" href="#jobs_service_upgrade"></a>Job Service upgrade</h4>
+<div class="paragraph">
+<p>Every Job Service deployment must be upgraded with the following procedure:</p>
+</div>
+<div class="paragraph">
+<p><strong>Pre-operator upgrade steps:</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Back up the Job Service database, including all database objects, not just the table information.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Post-operator upgrade steps:</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="2">
+<li>
+<p><strong>(Optional)</strong> Some time after the OSL Operator 1.36.0 upgrade is completed, you’ll see that a new <code>ReplicaSet</code> for executing the Job Service 1.36.0 version is created.</p>
+<div class="paragraph">
+<p>You can optionally delete all the Job Service old ReplicaSets belonging to the OSL 1.35.0 using these commands.</p>
+</div>
+<div class="paragraph">
+<p>You can see all the ReplicaSets by executing a query like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ oc get replicasets -o custom-columns=Name:metadata.name,Image:spec.template.spec.containers[*].image -n &lt;target_namespace&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Example output:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">Name                                                Image
+<strong>sonataflow-platform-jobs-service-1111111111    registry.redhat.io/openshift-serverless-1/logic-jobs-service-postgresql-rhel8:1.35.0</strong>
+
+sonataflow-platform-jobs-service-2222222222     registry.redhat.io/openshift-serverless-1/logic-jobs-service-postgresql-rhel8:1.36.0</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Following the example above, the old OSL 1.35.0 ReplicaSet <code>sonataflow-platform-jobs-service-1111111111</code> must be deleted with the following command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ oc delete replicaset sonataflow-platform-jobs-service-1111111111 -n &lt;target_namespace&gt;</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="operator_upgrade_procedure"><a class="anchor" href="#operator_upgrade_procedure"></a>Operator Upgrade Procedure</h4>
+<div class="paragraph">
+<p>To upgrade the OSL Operator from 1.35.0 to 1.36.0 you must execute these steps:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Patch the CVS 1.35.0 by executing this command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ oc patch csv logic-operator-rhel8.v1.35.0 \
+  -n openshift-serverless-logic \
+  --type=json \
+  -p='[
+    {
+      "op": "replace",
+      "path": "/spec/install/spec/deployments/0/spec/selector/matchLabels",
+      "value": {
+        "app.kubernetes.io/name": "sonataflow-operator"
+      }
+    },
+    {
+      "op": "replace",
+      "path": "/spec/install/spec/deployments/0/label",
+      "value": {
+        "app.kubernetes.io/name": "sonataflow-operator"
+      }
+    },
+    {
+      "op": "replace",
+      "path": "/spec/install/spec/deployments/0/spec/template/metadata/labels",
+      "value": {
+        "app.kubernetes.io/name": "sonataflow-operator"
+      }
+    }
+  ]'</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Delete current operator deployment by executing this command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ oc delete deployment logic-operator-rhel8-controller-manager -n openshift-serverless-logic</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Upgrade the Operator to OSL 1.36.0 using the OpenShift management console</p>
+</li>
+<li>
+<p>After applying the upgrade, execute the following command to check if the operator is running properly.
+It might take some time to get the Succeeded status:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ oc get clusterserviceversion logic-operator-rhel8.v1.36.0</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You must get an output like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">NAME                           DISPLAY                               VERSION   REPLACES                       PHASE
+logic-operator-rhel8.v1.36.0   OpenShift Serverless Logic Operator   1.36.0    logic-operator-rhel8.v1.35.0   Succeeded</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
 </div>
 </div>
 </div>
