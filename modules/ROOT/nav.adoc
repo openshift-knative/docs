@@ -92,6 +92,7 @@
 ***** Upgrade
 ****** xref:serverless-logic:cloud/operator/upgrade-serverless-operator/upgrade_1_34_0_to_1_35_0.adoc[OSL 1.34.0 to 1.35.0]
 ****** xref:serverless-logic:cloud/operator/upgrade-serverless-operator/upgrade_1_35_0_to_1_36_0.adoc[OSL 1.35.0 to 1.36.0]
+****** xref:serverless-logic:cloud/operator/upgrade-serverless-operator/upgrade_1_36_0_to_1_37_0.adoc[OSL 1.36.0 to 1.37.0]
 ***** xref:serverless-logic:cloud/operator/global-configuration.adoc[Admin Configuration]
 ***** xref:serverless-logic:cloud/operator/developing-workflows.adoc[Development Mode]
 ***** xref:serverless-logic:cloud/operator/referencing-resource-files.adoc[Referencing Workflow Resources]
