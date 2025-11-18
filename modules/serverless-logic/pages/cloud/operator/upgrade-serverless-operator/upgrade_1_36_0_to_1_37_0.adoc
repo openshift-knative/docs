@@ -1,0 +1,385 @@
+= Upgrade {operator_name} from 1.36.0 to 1.37.0
+:compat-mode!:
+// Metadata:
+:description: Upgrade OSL Operator from 1.36.0 to 1.37.0
+:keywords: kogito, sonataflow, workflow, serverless, operator, kubernetes, minikube, openshift, containers
+// links
+
+:openshift_operator_install_url: https://docs.openshift.com/container-platform/4.13/operators/admin/olm-adding-operators-to-cluster.html
+:openshift_operator_uninstall_url: https://docs.openshift.com/container-platform/4.13/operators/admin/olm-deleting-operators-from-cluster.html
+:kubernetes_operator_install_url: https://operatorhub.io/how-to-install-an-operator
+:kubernetes_operator_uninstall_url: https://olm.operatorframework.io/docs/tasks/uninstall-operator/
+:operatorhub_url: https://operatorhub.io/
+
+// NOTE: Do not parametrize this guide, this is version specific migration guide, hence the versions are hardcoded.
+This guide describes how to upgrade the {operator_name} 1.36.0 installed in an OpenShift cluster to the version 1.37.0.
+
+.Prerequisites
+* An OpenShift cluster with admin privileges and `oc` installed.
+
+== Procedure
+
+To upgrade an {operator_name} 1.36.0 installation to the version 1.37.0, you must execute this procedure:
+
+=== Overall upgrade procedure
+
+It is recommended to read and understand all the steps of the procedure before executing.
+Interested parties might automate the procedure according to their convenience or infrastructure, for example, keeping all the `SonataFlow` CRDs in a GitHub repository, might help considerably to implement automation, etc.
+
+. Execute the steps `1` and `2` of the upgrade for every workflow with the <<workflows_dev_profile, dev profile>>.
+. Execute the steps `1`, `2` and `3` of the upgrade for every workflow with the <<workflows_preview_profile, preview profile>>.
+. Execute the step `1`, `2` and `3` of the upgrade for every workflow with the <<workflows_gitops_profile, gitops profile>>.
+. Execute the step `1` of the <<data_index_upgrade, Data Index>> upgrade.
+. Execute the step `1` of the <<jobs_service_upgrade, Job Service>> upgrade.
+. Upgrade the {operator_name} to the version 1.37.0 <<operator_upgrade_procedure, following this procedure>>, and wait until the new version is running.
+. Finalize the <<data_index_upgrade, Data Index>> upgrade by continuing from step `2`.
+. Finalize the <<jobs_service_upgrade, Job Service>> upgrade by continuing from step `2`.
+. Finalize the upgrade for the workflows with the <<workflows_gitops_profile, gitops profile>> by continuing from step `4`.
+. Finalize the upgrade for the workflows with the <<workflows_preview_profile, preview profile>> by continuing from step `4`.
+. Finalize the upgrade for the workflows with the <<workflows_dev_profile, dev profile>> by continuing from step `3`.
+
+[#workflows_dev_profile]
+==== Workflows with the `dev` profile
+
+Every workflow with the `dev` profile must be deleted before applying the operator upgrade the version 1.37.0, and redeployed after the upgrade is completed.
+
+For every workflow `my-workflow` with the `dev` profile you must:
+
+*Pre-operator upgrade steps:*
+
+. Ensure that you have a copy of the corresponding `SonataFlow` CR, as well as any other Kubernetes resources created for that workflow. For example, if you are using custom property configurations, you will need a copy of the user-provided `ConfigMap` with the `application.properties` file.
+
+. Delete the workflow by using the following command:
++
+[source,terminal]
+----
+$ oc delete -f <my-workflow.yaml> -n <target_namespace>
+----
+
+*Post-operator upgrade steps:*
+
+[start=3]
+. Ensure that any Kubernetes resource for that workflow, such as the user-provided `ConfigMap` with `application.properties`, is created before you redeploy the workflow.
+
+. Redeploy the workflow by using the following command:
++
+[source,terminal]
+----
+$ oc apply -f <my-workflow.yaml> -n <target_namespace>
+----
+
+
+[#workflows_preview_profile]
+==== Workflows with the `preview` profile
+Every workflow with the `preview` profile must be deleted before applying the operator upgrade the version 1.37.0, and then, redeployed after the upgrade is complete.
+
+For every workflow `my-workflow` with the `preview` profile you must:
+
+*Pre-operator upgrade steps:*
+
+. If the workflow is configured to use persistence, you must back up the workflow database.
+Ensure that your database backup includes all database objects, not just the table's information.
+
+. Ensure that you have a copy of the corresponding `SonataFlow` CR, as well as any other Kubernetes resources created for that workflow. For example, if you are using custom property configurations, you will need a copy of the user-provided `ConfigMap` with the `application.properties` file.
+
+. Delete the workflow by using the following command:
++
+[source,terminal]
+----
+$ oc delete -f <my-workflow.yaml> -n <target_namespace>
+----
+
+*Post-operator upgrade steps:*
+
+[start=4]
+. Ensure that any Kubernetes resource for that workflow, such as the user-provided `ConfigMap` with `application.properties`, is created before you redeploy the workflow.
+
++
+. Redeploy the workflow by using the following command.
++
+[source,terminal]
+----
+$ oc apply -f <my-workflow.yaml> -n <target_namespace>
+----
+
+[#workflows_gitops_profile]
+==== Workflows with the `gitops` profile
+
+Every workflow with the `gitops` profile must be deleted before applying the operator upgrade to the version 1.37.0, and then, redeployed after the upgrade is complete.
+Prior to redeploy, you must rebuild the corresponding workflow image using the new {product_name} 1.37.0 serverless workflow builder image.
+
+For every workflow `my-workflow` with the `gitops` profile you must:
+
+*Pre-operator upgrade steps:*
+
+. If the workflow is configured to use persistence, you must back up the workflow database.
+Ensure that your database backup includes all database objects, not just the table's information.
+
+. Ensure that you have a copy of the corresponding `SonataFlow` CR, as well as any other Kubernetes resources created for that workflow. For example, if you are using custom property configurations, you will need a copy of the user-provided `ConfigMap` with the `application.properties` file.
+
+. Delete the workflow by using the following command:
++
+[source,terminal]
+----
+$ oc delete -f <my-workflow.yaml> -n <target_namespace>
+----
+
+*Post-operator upgrade steps:*
+
+[start=4]
+. Rebuild the workflow image using the new {product_name} 1.37.0 serverless workflow builder `registry.redhat.io/openshift-serverless-1/logic-swf-builder-rhel9:1.37.0`, and considering the following:
++
+By default, the {operator_name} generates a workflow `Deployment` with the `imagePullPolicy: IfNotPresent`.
+Meaning that, if an already deployed workflow `my-wofklow`, is redeployed with the same image name, even when that image was rebuild, the old already downloaded image will be picked-up.
++
+To ensure the new image is picked-up you can:
+
+* Use a new tag, and configure the workflow with it.
++
+[source,yaml]
+----
+current image: quay.io/my-images/my-workflow:1.0
+new image: quay.io/my-images/my-workflow:1.0-1
+----
++
+[source,yaml]
+----
+apiVersion: sonataflow.org/v1alpha08
+kind: SonataFlow
+metadata:
+  name: my-workflow
+  annotations:
+    sonataflow.org/description: My Workflow
+    sonataflow.org/version: '1.0'
+    sonataflow.org/profile: gitops
+spec:
+  podTemplate:
+    container:
+      # only change the image name/tag
+      image: quay.io/my-images/my-workflow:1.0-1
+  flow:
+    # the workflow definition (don't change)
+----
++
+* Preserve the image name, and configure the workflow with the `imagePullPolicy: Always`.
++
+[source,yaml]
+----
+apiVersion: sonataflow.org/v1alpha08
+kind: SonataFlow
+metadata:
+  name: my-workflow
+  annotations:
+    sonataflow.org/description: My Workflow
+    sonataflow.org/version: '1.0'
+    sonataflow.org/profile: gitops
+spec:
+  podTemplate:
+    container:
+      image: quay.io/my-images/my-workflow:1.0
+      # only change the imagePullStrategy
+      imagePullPolicy: Always
+  flow:
+    # the workflow definition (don't change).
+----
++
+[IMPORTANT]
+====
+In any of the alternatives, when you rebuild the image (in your local environment), and when you redeploy the workflow (using the `SonataFlow` CR), you must not change
+the workflow definition, nor any workflow related assets. This includes the name, version, and description.
+====
+
+. Ensure that any Kubernetes resource for that workflow, such as the user-provided `ConfigMap` with `application.properties`, is created before you redeploy the workflow.
+
++
+. Redeploy the workflow by using the following command.
++
+[source,terminal]
+----
+$ oc apply -f <my-workflow.yaml> -n <target_namespace>
+----
+
+[#data_index_upgrade]
+==== Data Index upgrade
+
+Every Data Index deployment must be upgraded with the following procedure:
+
+*Pre-operator upgrade steps:*
+
+. Back up the Data Index database, including all database objects, not just the table information.
+
+*Post-operator upgrade steps:*
+
+[start=2]
+
+
+. *(Optional)* Some time after the {operator_name} upgrade is completed, you’ll see that a new `ReplicaSet` for executing the Data Index 1.37.0 version is created.
++
+You can optionally delete all the Data Index old ReplicaSets belonging to the version 1.36.0 using these commands.
++
+You can see all the ReplicaSets by executing a query like this:
++
+[source,terminal]
+----
+$ oc get replicasets -o custom-columns=Name:metadata.name,Image:spec.template.spec.containers[*].image -n <target_namespace>
+----
++
+Example output:
++
+
+[source,terminal,subs="verbatim,quotes"]
+----
+Name                                                Image
+*sonataflow-platform-data-index-service-1111111111   registry.redhat.io/openshift-serverless-1/logic-data-index-postgresql-rhel8:1.36.0*
+
+sonataflow-platform-data-index-service-2222222222   registry.redhat.io/openshift-serverless-1/logic-data-index-postgresql-rhel9:1.37.0
+----
++
+Following the example above, the old 1.36.0 `ReplicaSet` `sonataflow-platform-data-index-service-1111111111` must be deleted with the following command:
++
+[source,terminal]
+----
+$ oc delete replicaset sonataflow-platform-data-index-service-1111111111 -n <target_namespace>
+----
+
+[#jobs_service_upgrade]
+==== Job Service upgrade
+
+Every Job Service deployment must be upgraded with the following procedure:
+
+*Pre-operator upgrade steps:*
+
+. Back up the Job Service database, including all database objects, not just the table information.
+
+*Post-operator upgrade steps:*
+
+[start=2]
+. *(Optional)* Some time after the {operator_name} upgrade is completed, you’ll see that a new `ReplicaSet` for executing the Job Service 1.37.0 version is created.
++
+You can optionally delete all the Job Service old ReplicaSets belonging to the version 1.36.0 using these commands.
++
+You can see all the ReplicaSets by executing a query like this:
++
+[source,terminal]
+----
+$ oc get replicasets -o custom-columns=Name:metadata.name,Image:spec.template.spec.containers[*].image -n <target_namespace>
+----
++
+Example output:
++
+
+[source,terminal,subs="verbatim,quotes"]
+----
+Name                                                Image
+*sonataflow-platform-jobs-service-1111111111    registry.redhat.io/openshift-serverless-1/logic-jobs-service-postgresql-rhel8:1.36.0*
+
+sonataflow-platform-jobs-service-2222222222     registry.redhat.io/openshift-serverless-1/logic-jobs-service-postgresql-rhel9:1.37.0
+----
++
+Following the example above, the old 1.36.0 `ReplicaSet` `sonataflow-platform-jobs-service-1111111111` must be deleted with the following command:
++
+[source,terminal]
+----
+$ oc delete replicaset sonataflow-platform-jobs-service-1111111111 -n <target_namespace>
+----
+
+[#operator_upgrade_procedure]
+==== Operator Upgrade Procedure
+To upgrade the {operator_name} from 1.36.0 to 1.37.0 you must execute these steps:
+
+. Uninstall current {operator_name} 1.36.0 by executing these commands:
++
+[source,terminal]
+----
+oc delete subscriptions.operators.coreos.com logic-operator-rhel8 -n openshift-serverless-logic
+----
++
+[NOTE]
+====
+Use must use the fully qualified resource name `subscriptions.operators.coreos.com` to avoid short naming collisions with Knative Eventing resources.
+====
+
++
+[source,terminal]
+----
+oc delete csv logic-operator-rhel8.v1.36.0 -n openshift-serverless-logic
+----
+
+. Remove Data Index and Jobs Service database initialization `Job`:
++
+In every namespace where you have installed a `SonataFlowPlatform`, that has configured the `dbMigrationStrategy: job`, for any of
+the Data Index or the Jobs Service, you must remove the associated `sonataflow-db-migrator-job` with the following command:
++
+[source,terminal]
+----
+ oc delete job sonataflow-db-migrator-job -n <target-namespace>
+----
+
+. Install the {operator_name} 1.37.0 by executing these commands:
++
+Create the following Subscription:
++
+[source,yaml]
+----
+apiVersion: operators.coreos.com/v1alpha1
+kind: Subscription
+metadata:
+  labels:
+    operators.coreos.com/logic-operator-rhel9.openshift-serverless-logic: ''
+  name: logic-operator-rhel9
+  namespace: openshift-serverless-logic
+spec:
+  channel: stable
+  installPlanApproval: Manual
+  name: logic-operator-rhel9
+  source: redhat-operators
+  sourceNamespace: openshift-marketplace
+  startingCSV: logic-operator-rhel9.v1.37.0
+----
++
+[NOTE]
+====
+Use must use the `Manual` install plan approval.
+====
+
++
+Execute the following command to query the corresponding install plan pending for approval:
++
+[source,terminal]
+----
+oc get installplan -n openshift-serverless-logic
+----
++
+You must get an output like this:
++
+[source,terminal]
+----
+NAME            CSV                            APPROVAL   APPROVED
+install-XXXX    logic-operator-rhel9.v1.37.0   Manual     false
+----
++
+Approve the install plan with a command like this:
++
+[source,terminal]
+----
+oc patch installplan install-XXXX -n openshift-serverless-logic --type merge -p '{"spec":{"approved":true}}'
+----
+. Verify that the {operator_name} 1.37.0 was installed correctly:
++
+When the install plan is executed, you can execute the following command to verify the installation was successful:
++
+[source,terminal]
+----
+oc get csv -n openshift-serverless-logic
+----
++
+You must get an output like this:
++
+[source,terminal]
+----
+NAME                           DISPLAY                               VERSION   REPLACES                       PHASE
+logic-operator-rhel9.v1.37.0   OpenShift Serverless Logic Operator   1.37.0    logic-operator-rhel8.v1.36.0   Succeeded
+----
+
+
+include::../../../../pages/_common-content/report-issue.adoc[]
