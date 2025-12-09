@@ -325,16 +325,16 @@ apiVersion: operators.coreos.com/v1alpha1
 kind: Subscription
 metadata:
   labels:
-    operators.coreos.com/logic-operator-rhel9.openshift-serverless-logic: ''
-  name: logic-operator-rhel9
+    operators.coreos.com/logic-operator.openshift-serverless-logic: ''
+  name: logic-operator
   namespace: openshift-serverless-logic
 spec:
   channel: stable
   installPlanApproval: Manual
-  name: logic-operator-rhel9
+  name: logic-operator
   source: redhat-operators
   sourceNamespace: openshift-marketplace
-  startingCSV: logic-operator-rhel9.v1.37.0
+  startingCSV: logic-operator.v1.37.0
 ----
 +
 [NOTE]
@@ -355,7 +355,7 @@ You must get an output like this:
 [source,terminal]
 ----
 NAME            CSV                            APPROVAL   APPROVED
-install-XXXX    logic-operator-rhel9.v1.37.0   Manual     false
+install-XXXX    logic-operator.v1.37.0         Manual     false
 ----
 +
 Approve the install plan with a command like this:
@@ -377,8 +377,8 @@ You must get an output like this:
 +
 [source,terminal]
 ----
-NAME                           DISPLAY                               VERSION   REPLACES                       PHASE
-logic-operator-rhel9.v1.37.0   OpenShift Serverless Logic Operator   1.37.0    logic-operator-rhel8.v1.36.0   Succeeded
+NAME                          DISPLAY                               VERSION   REPLACES                      PHASE
+logic-operator.v1.37.0        OpenShift Serverless Logic Operator   1.37.0                                  Succeeded
 ----
 
 
