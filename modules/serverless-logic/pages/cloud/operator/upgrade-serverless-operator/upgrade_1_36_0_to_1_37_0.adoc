@@ -24,7 +24,7 @@ To upgrade an {operator_name} 1.36.0 installation to the version 1.37.0, you mus
 === Overall upgrade procedure
 
 It is recommended to read and understand all the steps of the procedure before executing.
-Interested parties might automate the procedure according to their convenience or infrastructure, for example, keeping all the `SonataFlow` CRDs in a GitHub repository, might help considerably to implement automation, etc.
+Interested parties might automate the procedure according to their convenience or infrastructure, for example, keeping all the `SonataFlow` CRs in a GitHub repository, might help considerably to implement automation, etc.
 
 . Execute the steps `1` and `2` of the upgrade for every workflow with the <<workflows_dev_profile, dev profile>>.
 . Execute the steps `1`, `2` and `3` of the upgrade for every workflow with the <<workflows_preview_profile, preview profile>>.
