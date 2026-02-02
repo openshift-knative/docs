@@ -1,0 +1,143 @@
+// NOTE: Do not externally parametrize these versions, they are specific to this migration guide.
+:current_operator_version: 1.37.0
+:next_operator_version: 1.37.1
+:next_swf_builder_image: registry.redhat.io/openshift-serverless-1/logic-swf-builder-rhel9:1.37.1
+
+= Upgrade {operator_name} from {current_operator_version} to {next_operator_version}
+:compat-mode!:
+// Metadata:
+:description: Upgrade OSL Operator from 1.37.0 to 1.37.1
+:keywords: kogito, sonataflow, workflow, serverless, operator, kubernetes, minikube, openshift, containers
+// links
+:openshift_operator_install_url: https://docs.openshift.com/container-platform/4.13/operators/admin/olm-adding-operators-to-cluster.html
+:openshift_operator_uninstall_url: https://docs.openshift.com/container-platform/4.13/operators/admin/olm-deleting-operators-from-cluster.html
+:kubernetes_operator_install_url: https://operatorhub.io/how-to-install-an-operator
+:kubernetes_operator_uninstall_url: https://olm.operatorframework.io/docs/tasks/uninstall-operator/
+:operatorhub_url: https://operatorhub.io/
+
+This guide describes how to upgrade the {operator_name} `{current_operator_version}` installed in an OpenShift cluster to the version `{next_operator_version}`.
+
+.Prerequisites
+* An OpenShift cluster with admin privileges and `oc` installed.
+
+== Procedure
+
+To upgrade an {operator_name} `{current_operator_version}` installation to the version `{next_operator_version}`, you must execute this procedure:
+
+=== Overall upgrade procedure
+
+It is recommended to read and understand all the steps of the procedure before executing.
+Interested parties might automate the procedure according to their convenience or infrastructure, for example, keeping all the `SonataFlow` CRs in a GitHub repository, might help considerably to implement automation, etc.
+
+. Execute the steps `1` and `2` of the upgrade for every workflow with the <<workflows_dev_profile, dev profile>>.
+. Execute the steps `1`, `2` and `3` of the upgrade for every workflow with the <<workflows_preview_profile, preview profile>>.
+. Execute the steps `1`, `2`, `3` and `4` of the upgrade for every workflow with the <<workflows_gitops_profile_image_rebuild, gitops profile>>.
+. Execute the step `1` of the <<data_index_upgrade, Data Index>> upgrade.
+. Execute the step `1` of the <<jobs_service_upgrade, Job Service>> upgrade.
+. Upgrade the {operator_name} to the version `{next_operator_version}` <<operator_upgrade_procedure, following this procedure>>, and verify that the new version is running.
+. Finalize the <<data_index_upgrade, Data Index>> upgrade by continuing from step `2`.
+. Finalize the <<jobs_service_upgrade, Job Service>> upgrade by continuing from step `2`.
+. Finalize the upgrade for the workflows with the <<workflows_gitops_profile_image_rebuild, gitops profile>> by continuing from step `5`.
+. Finalize the upgrade for the workflows with the <<workflows_preview_profile, preview profile>> by continuing from step `4`.
+. Finalize the upgrade for the workflows with the <<workflows_dev_profile, dev profile>> by continuing from step `3`.
+
+[#workflows_dev_profile]
+==== Workflows with the `dev` profile
+
+include::../../../_common-content/cloud/operator/upgrade-serverless-operator/regular_dev_workflow_upgrade_procedure.adoc[]
+
+[#workflows_preview_profile]
+==== Workflows with the `preview` profile
+
+include::../../../_common-content/cloud/operator/upgrade-serverless-operator/regular_preview_workflow_upgrade_procedure.adoc[]
+
+[#workflows_gitops_profile_image_rebuild]
+==== Workflows with the `gitops` profile
+
+For every workflow with the `gitops` profile, it is strongly recommended to rebuild the workflow image generated for version `{current_operator_version}` before applying the upgrade, to ensure full compatibility with OpenShift Serverless Logic `{next_operator_version}`.
+
+For every workflow my-workflow with the `gitops` profile you must:
+
+include::../../../_common-content/cloud/operator/upgrade-serverless-operator/regular_gitops_worklow_upgrade_procedure_with_image_build.adoc[]
+
+[#data_index_upgrade]
+==== Data Index upgrade
+
+Every Data Index deployment must be upgraded with the following procedure:
+
+*Pre-operator upgrade steps:*
+
+. Back up the Data Index database, including all database objects, not just the table information.
+
+*Post-operator upgrade steps:*
+
+[start=2]
+. The Data Index service will be automatically restarted with the version {next_operator_version}.
+
+
+[#jobs_service_upgrade]
+==== Job Service upgrade
+
+*Pre-operator upgrade steps:*
+
+. Back up the Job Service database, including all database objects, not just the table information.
+
+*Post-operator upgrade steps:*
+
+[start=2]
+
+. The Job Service will be automatically restarted with the version {next_operator_version}.
+
+[#operator_upgrade_procedure]
+==== Operator Upgrade Procedure
+To upgrade the {operator_name} from `{current_operator_version}` to `{next_operator_version}` you must execute these steps:
+
+. Remove Data Index and Jobs Service database initialization `Job`:
++
+In every namespace where you have installed a `SonataFlowPlatform`, that has configured the `dbMigrationStrategy: job`, for any of
+the Data Index or the Jobs Service, you must remove the associated `sonataflow-db-migrator-job` with the following command:
++
+[source,bash]
+----
+ oc delete job sonataflow-db-migrator-job -n <target-namespace>
+----
+
++
+include::../../../_common-content/cloud/operator/upgrade-serverless-operator/regular_operator_upgrade_procedure.adoc[]
+
+. Verify the Data Index and Jobs Service database initialization `Job` was created:
+
++
+In every namespace where you have installed a `SonataFlowPlatform`, that has configured the `dbMigrationStrategy: job`, for any of
+the Data Index or the Jobs Service, you can verify that a the `sonataflow-db-migrator-job` was created with the following command:
+
++
+[source,bash]
+----
+ oc get job sonataflow-db-migrator-job -n <target-namespace>
+----
+
++
+Alternatively, you can verify the Data Index database was migrated correctly with the following command:
+
++
+[source,bash]
+----
+oc logs job/sonataflow-db-migrator-job -n <target-namespace>
+----
+
++
+You must get an output containing these lines:
++
+[source,terminal]
+----
+2026-02-02 11:45:09,606 INFO  [org.kie.kog.mig.pos.MigrationService] (main) Migrating data-index
+2026-02-02 11:45:09,778 INFO  [org.fly.cor.int.com.DbValidate] (main) Successfully validated 22 migrations (execution time 00:00.043s)
+2026-02-02 11:45:09,810 INFO  [org.fly.cor.int.com.DbMigrate] (main) Current version of schema "sonataflow-platform-data-index-service": 1.45.1.4
+2026-02-02 11:45:09,824 INFO  [org.fly.cor.int.com.DbMigrate] (main) Migrating schema "sonataflow-platform-data-index-service" to version "1.46.0 - add user task id column"
+2026-02-02 11:45:09,861 INFO  [org.fly.cor.int.com.DbMigrate] (main) Migrating schema "sonataflow-platform-data-index-service" to version "1.47.0 - adjust column sizes in tables updated by hibernate"
+2026-02-02 11:45:09,882 INFO  [org.fly.cor.int.com.DbMigrate] (main) Successfully applied 2 migrations to schema "sonataflow-platform-data-index-service", now at version v1.47.0 (execution time 00:00.010s)
+
+----
+
+include::../../../../pages/_common-content/report-issue.adoc[]

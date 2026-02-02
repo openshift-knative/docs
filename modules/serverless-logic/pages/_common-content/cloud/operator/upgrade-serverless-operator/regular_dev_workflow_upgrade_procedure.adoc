@@ -1,0 +1,31 @@
+// Regular procedure for dev profile workflows migration.
+// The caller document must set the following attributes: (see: upgrade_1_37_0_to_1_37_1.adoc as example)
+// current_operator_version, next_operator_version
+:page-partial:
+
+Every workflow with the `dev` profile must be deleted before applying the Operator upgrade to the version `{next_operator_version}`, and then, redeployed after the upgrade is completed.
+
+For every workflow `my-workflow` with the `dev` profile you must:
+
+*Pre-operator upgrade steps:*
+
+. Ensure that you have a copy of the corresponding `SonataFlow` CR, as well as any other Kubernetes resources created for that workflow. For example, if you are using custom property configurations, you will need a copy of the user-provided `ConfigMap` with the `application.properties` file.
+
+. Delete the workflow by using the following command:
++
+[source,terminal]
+----
+$ oc delete -f <my-workflow.yaml> -n <target_namespace>
+----
+
+*Post-operator upgrade steps:*
+
+[start=3]
+. Ensure that any Kubernetes resource for that workflow, such as the user-provided `ConfigMap` with `application.properties`, is created before you redeploy the workflow.
+
+. Redeploy the workflow by using the following command:
++
+[source,terminal]
+----
+$ oc apply -f <my-workflow.yaml> -n <target_namespace>
+----

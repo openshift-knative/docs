@@ -1,0 +1,36 @@
+// Regular Jobs service upgrade procedure.
+// The caller document must set the following attributes: (see: upgrade_1_37_0_to_1_37_1.adoc as example)
+// current_operator_version, next_operator_version
+:page-partial:
+
+Every Job Service deployment must be upgraded with the following procedure:
+
+*Pre-operator upgrade steps:*
+
+. Back up the Job Service database, including all database objects, not just the table information.
+
+. Scale the Job Service to zero
++
+You can scale the Job Service to zero with the following command:
+
++
+[source, bash]
+----
+oc patch sonataflowplatform <my-sonataflow-platform> -n <target_namespace> \
+  --type merge \
+  -p '{"spec":{"services":{"jobService":{"podTemplate":{"replicas":0}}}}}'
+----
+
+*Post-operator upgrade steps:*
+
+[start=3]
+. Rescale the Job Service
++
+After redeploying and rescaling all the workflows, you must rescale the Job Service to 1 with the following command:
++
+[source, bash]
+----
+oc patch sonataflowplatform <my-sonataflow-platform> -n <target_namespace> \
+  --type merge \
+  -p '{"spec":{"services":{"jobService":{"podTemplate":{"replicas":1}}}}}'
+----

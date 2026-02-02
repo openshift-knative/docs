@@ -1,0 +1,44 @@
+// Regular operator upgrade procedure by executing the available installing plan for the next version.
+// The caller document must set the following attributes: (see: upgrade_1_37_0_to_1_37_1.adoc as example)
+// current_operator_version, next_operator_version
+:page-partial:
+
++
+. Execute the following command to query the available installation plan for the Operator upgrade to `{next_operator_version}`:
++
+[source,bash]
+----
+oc get installplan -n openshift-serverless-logic
+----
++
+You must get an output like this:
++
+[source,terminal,subs="attributes"]
+----
+NAME            CSV                      APPROVAL   APPROVED
+install-YYYY    logic-operator.v{next_operator_version}   Manual     false
+install-XXXX    logic-operator.v{current_operator_version}   Manual     true
+----
++
+Approve the installation plan corresponding to `logic-operator.v{next_operator_version}` with a command like this:
++
+[source,bash,subs="attributes"]
+----
+oc patch installplan install-YYYY -n openshift-serverless-logic --type merge -p '{"spec":{"approved":true}}'
+----
+. Verify that the {operator_name} `{next_operator_version}` was updated correctly:
++
+When the installation plan is executed, you can execute the following command to verify the upgrade was successful:
++
+[source,bash]
+----
+oc get csv -n openshift-serverless-logic
+----
++
+You must get an output like this:
++
+[source,terminal,subs="attributes"]
+----
+NAME                     DISPLAY                               VERSION   REPLACES                 PHASE
+logic-operator.v{next_operator_version}   OpenShift Serverless Logic Operator   {next_operator_version}    logic-operator.v{current_operator_version}   Succeeded
+----
