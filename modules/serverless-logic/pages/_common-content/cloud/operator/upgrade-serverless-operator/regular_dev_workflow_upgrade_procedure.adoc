@@ -3,7 +3,7 @@
 // current_operator_version, next_operator_version
 :page-partial:
 
-Every workflow with the `dev` profile must be deleted before applying the Operator upgrade to the version `{next_operator_version}`, and then, redeployed after the upgrade is completed.
+Every workflow with the `dev` profile must be deleted before applying the Operator upgrade to the version `{next_operator_version}`, and then redeployed after the upgrade is completed.
 
 For every workflow `my-workflow` with the `dev` profile you must:
 
