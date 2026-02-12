@@ -3,8 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Configuring the OpenAPI services endpoints in different environments :: Red Hat OpenShift Serverless previews</title>
-    <link rel="canonical" href="https://openshift-knative.github.io/docs/docs/latest/serverless-logic/use-cases/advanced-developer-use-cases/service-orchestration/configuring-openapi-services-endpoints-with-quarkus.html">
+    <title>Upgrade Serverless Logic Operator from 1.37.0 to 1.37.1 :: Red Hat OpenShift Serverless previews</title>
+    <link rel="canonical" href="https://openshift-knative.github.io/docs/docs/latest/serverless-logic/cloud/operator/upgrade-serverless-operator/upgrade_1_37_0_to_1_37_1.html">
+    <meta name="description" content="Upgrade OSL Operator from 1.37.0 to 1.37.1">
+    <meta name="keywords" content="kogito, sonataflow, workflow, serverless, operator, kubernetes, minikube, openshift, containers">
     <meta name="generator" content="Antora 3.0.3">
     <link rel="stylesheet" href="../../../../../../_/css/site.css">
 <link rel="stylesheet" href="../../../../../../_/css/extra.css">
@@ -392,77 +394,77 @@
   </li>
   <li class="nav-item" data-depth="3">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="../../../cloud/index.html">Cloud</a>
+    <a class="nav-link" href="../../index.html">Cloud</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../../cloud/custom-ingress-authz.html">Securing Workflows</a>
+    <a class="nav-link" href="../../custom-ingress-authz.html">Securing Workflows</a>
   </li>
   <li class="nav-item" data-depth="4">
     <button class="nav-toggle"></button>
     <span class="nav-text">Operator</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../../../cloud/operator/install-serverless-operator.html">Installation</a>
+    <a class="nav-link" href="../install-serverless-operator.html">Installation</a>
   </li>
   <li class="nav-item" data-depth="5">
     <button class="nav-toggle"></button>
     <span class="nav-text">Upgrade</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="6">
-    <a class="nav-link" href="../../../cloud/operator/upgrade-serverless-operator/upgrade_1_34_0_to_1_35_0.html">OSL 1.34.0 to 1.35.0</a>
+    <a class="nav-link" href="upgrade_1_34_0_to_1_35_0.html">OSL 1.34.0 to 1.35.0</a>
   </li>
   <li class="nav-item" data-depth="6">
-    <a class="nav-link" href="../../../cloud/operator/upgrade-serverless-operator/upgrade_1_35_0_to_1_36_0.html">OSL 1.35.0 to 1.36.0</a>
+    <a class="nav-link" href="upgrade_1_35_0_to_1_36_0.html">OSL 1.35.0 to 1.36.0</a>
   </li>
   <li class="nav-item" data-depth="6">
-    <a class="nav-link" href="../../../cloud/operator/upgrade-serverless-operator/upgrade_1_36_0_to_1_37_0.html">OSL 1.36.0 to 1.37.0</a>
+    <a class="nav-link" href="upgrade_1_36_0_to_1_37_0.html">OSL 1.36.0 to 1.37.0</a>
   </li>
-  <li class="nav-item" data-depth="6">
-    <a class="nav-link" href="../../../cloud/operator/upgrade-serverless-operator/upgrade_1_37_0_to_1_37_1.html">OSL 1.37.0 to 1.37.1</a>
+  <li class="nav-item is-current-page" data-depth="6">
+    <a class="nav-link" href="upgrade_1_37_0_to_1_37_1.html">OSL 1.37.0 to 1.37.1</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../../../cloud/operator/global-configuration.html">Admin Configuration</a>
+    <a class="nav-link" href="../global-configuration.html">Admin Configuration</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../../../cloud/operator/developing-workflows.html">Development Mode</a>
+    <a class="nav-link" href="../developing-workflows.html">Development Mode</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../../../cloud/operator/referencing-resource-files.html">Referencing Workflow Resources</a>
+    <a class="nav-link" href="../referencing-resource-files.html">Referencing Workflow Resources</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../../../cloud/operator/configuring-workflows.html">Workflow Configuration</a>
+    <a class="nav-link" href="../configuring-workflows.html">Workflow Configuration</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../../../cloud/operator/build-and-deploy-workflows.html">Building and Deploying Workflow Images</a>
+    <a class="nav-link" href="../build-and-deploy-workflows.html">Building and Deploying Workflow Images</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../../../cloud/operator/supporting-services.html">Deploy Supporting Services</a>
+    <a class="nav-link" href="../supporting-services.html">Deploy Supporting Services</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../../../cloud/operator/workflow-status-conditions.html">Custom Resource Status</a>
+    <a class="nav-link" href="../workflow-status-conditions.html">Custom Resource Status</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../../../cloud/operator/building-custom-images.html">Building Custom Images</a>
+    <a class="nav-link" href="../building-custom-images.html">Building Custom Images</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../../../cloud/operator/customize-podspec.html">Custom Workflow PodSpec</a>
+    <a class="nav-link" href="../customize-podspec.html">Custom Workflow PodSpec</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../../../cloud/operator/service-discovery.html">Service Discovery</a>
+    <a class="nav-link" href="../service-discovery.html">Service Discovery</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../../../cloud/operator/using-persistence.html">Using persistence</a>
+    <a class="nav-link" href="../using-persistence.html">Using persistence</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../../../cloud/operator/configuring-knative-eventing-resources.html">Knative Eventing</a>
+    <a class="nav-link" href="../configuring-knative-eventing-resources.html">Knative Eventing</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../../../cloud/operator/add-custom-ca-to-a-workflow-pod.html">Add Custom CA to Workflow Pod</a>
+    <a class="nav-link" href="../add-custom-ca-to-a-workflow-pod.html">Add Custom CA to Workflow Pod</a>
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../../../cloud/operator/known-issues.html">Roadmap and Known Issues</a>
+    <a class="nav-link" href="../known-issues.html">Roadmap and Known Issues</a>
   </li>
 </ul>
   </li>
@@ -510,26 +512,26 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="../index.html">Development of OpenShift Serverless Logic applications using Quarkus and Java</a>
+    <a class="nav-link" href="../../../use-cases/advanced-developer-use-cases/index.html">Development of OpenShift Serverless Logic applications using Quarkus and Java</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="5">
     <button class="nav-toggle"></button>
     <span class="nav-text">Getting Started</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="6">
-    <a class="nav-link" href="../getting-started/create-your-first-workflow-service.html">Creating a Quarkus Workflow service</a>
+    <a class="nav-link" href="../../../use-cases/advanced-developer-use-cases/getting-started/create-your-first-workflow-service.html">Creating a Quarkus Workflow service</a>
   </li>
   <li class="nav-item" data-depth="6">
-    <a class="nav-link" href="../getting-started/create-your-first-workflow-project.html">Creating a Quarkus Workflow project</a>
+    <a class="nav-link" href="../../../use-cases/advanced-developer-use-cases/getting-started/create-your-first-workflow-project.html">Creating a Quarkus Workflow project</a>
   </li>
   <li class="nav-item" data-depth="6">
-    <a class="nav-link" href="../getting-started/build-workflow-image-with-quarkus-cli.html">Building workflow images using Quarkus CLI</a>
+    <a class="nav-link" href="../../../use-cases/advanced-developer-use-cases/getting-started/build-workflow-image-with-quarkus-cli.html">Building workflow images using Quarkus CLI</a>
   </li>
   <li class="nav-item" data-depth="6">
-    <a class="nav-link" href="../getting-started/working-with-serverless-workflow-quarkus-examples.html">Working with OpenShift Serverless Logic example applications</a>
+    <a class="nav-link" href="../../../use-cases/advanced-developer-use-cases/getting-started/working-with-serverless-workflow-quarkus-examples.html">Working with OpenShift Serverless Logic example applications</a>
   </li>
   <li class="nav-item" data-depth="6">
-    <a class="nav-link" href="../getting-started/test-serverless-workflow-quarkus-examples.html">Testing images of OpenShift Serverless Logic example applications using Quarkus CLI</a>
+    <a class="nav-link" href="../../../use-cases/advanced-developer-use-cases/getting-started/test-serverless-workflow-quarkus-examples.html">Testing images of OpenShift Serverless Logic example applications using Quarkus CLI</a>
   </li>
 </ul>
   </li>
@@ -538,13 +540,13 @@
     <span class="nav-text">Deployment</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="6">
-    <a class="nav-link" href="../deployments/deploying-on-minikube.html">Deploying on Minikube</a>
+    <a class="nav-link" href="../../../use-cases/advanced-developer-use-cases/deployments/deploying-on-minikube.html">Deploying on Minikube</a>
   </li>
   <li class="nav-item" data-depth="6">
-    <a class="nav-link" href="../deployments/deploying-on-kubernetes.html">Deploying on Kubernetes</a>
+    <a class="nav-link" href="../../../use-cases/advanced-developer-use-cases/deployments/deploying-on-kubernetes.html">Deploying on Kubernetes</a>
   </li>
   <li class="nav-item" data-depth="6">
-    <a class="nav-link" href="../deployments/deploying-on-openshift.html">Deploying on OpenShift</a>
+    <a class="nav-link" href="../../../use-cases/advanced-developer-use-cases/deployments/deploying-on-openshift.html">Deploying on OpenShift</a>
   </li>
 </ul>
   </li>
@@ -553,19 +555,19 @@
     <span class="nav-text">Persistence</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="6">
-    <a class="nav-link" href="../persistence/persistence-core-concepts.html">Core Concepts</a>
+    <a class="nav-link" href="../../../use-cases/advanced-developer-use-cases/persistence/persistence-core-concepts.html">Core Concepts</a>
   </li>
   <li class="nav-item" data-depth="6">
-    <a class="nav-link" href="../persistence/persistence-with-postgresql.html">Running a Quarkus Workflow Application using PostgreSQL</a>
+    <a class="nav-link" href="../../../use-cases/advanced-developer-use-cases/persistence/persistence-with-postgresql.html">Running a Quarkus Workflow Application using PostgreSQL</a>
   </li>
   <li class="nav-item" data-depth="6">
-    <a class="nav-link" href="../persistence/postgresql-advanced-concepts.html">Postgresql Advanced Concepts</a>
+    <a class="nav-link" href="../../../use-cases/advanced-developer-use-cases/persistence/postgresql-advanced-concepts.html">Postgresql Advanced Concepts</a>
   </li>
   <li class="nav-item" data-depth="6">
-    <a class="nav-link" href="../persistence/postgresql-flyway-migration.html">PostgreSQL Database Migration</a>
+    <a class="nav-link" href="../../../use-cases/advanced-developer-use-cases/persistence/postgresql-flyway-migration.html">PostgreSQL Database Migration</a>
   </li>
   <li class="nav-item" data-depth="6">
-    <a class="nav-link" href="../persistence/integration-tests-with-postgresql.html">OpenShift Serverless Logic integration test using PostgreSQL</a>
+    <a class="nav-link" href="../../../use-cases/advanced-developer-use-cases/persistence/integration-tests-with-postgresql.html">OpenShift Serverless Logic integration test using PostgreSQL</a>
   </li>
 </ul>
   </li>
@@ -574,16 +576,16 @@
     <span class="nav-text">Data Index</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="6">
-    <a class="nav-link" href="../data-index/data-index-as-quarkus-dev-service.html">Data Index as a Quarkus Development service</a>
+    <a class="nav-link" href="../../../use-cases/advanced-developer-use-cases/data-index/data-index-as-quarkus-dev-service.html">Data Index as a Quarkus Development service</a>
   </li>
   <li class="nav-item" data-depth="6">
-    <a class="nav-link" href="../data-index/data-index-usecase-singleton.html">Deploying Data Index and OpenShift Serverless Logic application on Minikube</a>
+    <a class="nav-link" href="../../../use-cases/advanced-developer-use-cases/data-index/data-index-usecase-singleton.html">Deploying Data Index and OpenShift Serverless Logic application on Minikube</a>
   </li>
   <li class="nav-item" data-depth="6">
-    <a class="nav-link" href="../data-index/data-index-usecase-multi.html">Deploying Data Index and multiple OpenShift Serverless Logic applications on Minikube</a>
+    <a class="nav-link" href="../../../use-cases/advanced-developer-use-cases/data-index/data-index-usecase-multi.html">Deploying Data Index and multiple OpenShift Serverless Logic applications on Minikube</a>
   </li>
   <li class="nav-item" data-depth="6">
-    <a class="nav-link" href="../data-index/data-index-quarkus-extension.html">Data Index Quarkus extensions</a>
+    <a class="nav-link" href="../../../use-cases/advanced-developer-use-cases/data-index/data-index-quarkus-extension.html">Data Index Quarkus extensions</a>
   </li>
 </ul>
   </li>
@@ -591,11 +593,11 @@
     <button class="nav-toggle"></button>
     <span class="nav-text">Service Orchestration</span>
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="6">
-    <a class="nav-link" href="configuring-openapi-services-endpoints-with-quarkus.html">Configuring the OpenAPI services endpoints in different environments</a>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../../../use-cases/advanced-developer-use-cases/service-orchestration/configuring-openapi-services-endpoints-with-quarkus.html">Configuring the OpenAPI services endpoints in different environments</a>
   </li>
   <li class="nav-item" data-depth="6">
-    <a class="nav-link" href="orchestration-of-grpc-services.html">Orchestrating gRPC based Services</a>
+    <a class="nav-link" href="../../../use-cases/advanced-developer-use-cases/service-orchestration/orchestration-of-grpc-services.html">Orchestrating gRPC based Services</a>
   </li>
 </ul>
   </li>
@@ -604,7 +606,7 @@
     <span class="nav-text">Service Discovery</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="6">
-    <a class="nav-link" href="../service-discovery/kubernetes-service-discovery.html">Kubernetes service discovery in OpenShift Serverless Logic</a>
+    <a class="nav-link" href="../../../use-cases/advanced-developer-use-cases/service-discovery/kubernetes-service-discovery.html">Kubernetes service discovery in OpenShift Serverless Logic</a>
   </li>
 </ul>
   </li>
@@ -613,16 +615,16 @@
     <span class="nav-text">Event Orchestration</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="6">
-    <a class="nav-link" href="../event-orchestration/consume-produce-events-with-knative-eventing.html">Consuming and producing events on Knative Eventing in Quarkus</a>
+    <a class="nav-link" href="../../../use-cases/advanced-developer-use-cases/event-orchestration/consume-produce-events-with-knative-eventing.html">Consuming and producing events on Knative Eventing in Quarkus</a>
   </li>
   <li class="nav-item" data-depth="6">
-    <a class="nav-link" href="../event-orchestration/consume-producing-events-with-kafka.html">Consuming and producing events using Apache Kafka in Quarkus</a>
+    <a class="nav-link" href="../../../use-cases/advanced-developer-use-cases/event-orchestration/consume-producing-events-with-kafka.html">Consuming and producing events using Apache Kafka in Quarkus</a>
   </li>
   <li class="nav-item" data-depth="6">
-    <a class="nav-link" href="../event-orchestration/orchestration-based-saga-pattern.html">Saga orchestration example in OpenShift Serverless Logic</a>
+    <a class="nav-link" href="../../../use-cases/advanced-developer-use-cases/event-orchestration/orchestration-based-saga-pattern.html">Saga orchestration example in OpenShift Serverless Logic</a>
   </li>
   <li class="nav-item" data-depth="6">
-    <a class="nav-link" href="../event-orchestration/newsletter-subscription-example.html">Newsletter subscription example in OpenShift Serverless Logic</a>
+    <a class="nav-link" href="../../../use-cases/advanced-developer-use-cases/event-orchestration/newsletter-subscription-example.html">Newsletter subscription example in OpenShift Serverless Logic</a>
   </li>
 </ul>
   </li>
@@ -631,7 +633,7 @@
     <span class="nav-text">Timeouts</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="6">
-    <a class="nav-link" href="../timeouts/timeout-showcase-example.html">Timeouts Showcase in OpenShift Serverless Logic</a>
+    <a class="nav-link" href="../../../use-cases/advanced-developer-use-cases/timeouts/timeout-showcase-example.html">Timeouts Showcase in OpenShift Serverless Logic</a>
   </li>
 </ul>
   </li>
@@ -640,7 +642,7 @@
     <span class="nav-text">Callbacks</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="6">
-    <a class="nav-link" href="../callbacks/callback-state-example.html">Example of OpenShift Serverless Logic application using callback state with Quarkus</a>
+    <a class="nav-link" href="../../../use-cases/advanced-developer-use-cases/callbacks/callback-state-example.html">Example of OpenShift Serverless Logic application using callback state with Quarkus</a>
   </li>
 </ul>
   </li>
@@ -649,16 +651,16 @@
     <span class="nav-text">Integrations of external services</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="6">
-    <a class="nav-link" href="../integrations/camel-routes-integration.html">Integrating with Camel routes</a>
+    <a class="nav-link" href="../../../use-cases/advanced-developer-use-cases/integrations/camel-routes-integration.html">Integrating with Camel routes</a>
   </li>
   <li class="nav-item" data-depth="6">
-    <a class="nav-link" href="../integrations/custom-functions-knative.html">Invoking Knative services from OpenShift Serverless Logic</a>
+    <a class="nav-link" href="../../../use-cases/advanced-developer-use-cases/integrations/custom-functions-knative.html">Invoking Knative services from OpenShift Serverless Logic</a>
   </li>
   <li class="nav-item" data-depth="6">
-    <a class="nav-link" href="../integrations/expose-metrics-to-prometheus.html">Exposing Workflow base metrics to Prometheus</a>
+    <a class="nav-link" href="../../../use-cases/advanced-developer-use-cases/integrations/expose-metrics-to-prometheus.html">Exposing Workflow base metrics to Prometheus</a>
   </li>
   <li class="nav-item" data-depth="6">
-    <a class="nav-link" href="../integrations/serverless-dashboard-with-runtime-data.html">Displaying Workflow Data in Dashboards</a>
+    <a class="nav-link" href="../../../use-cases/advanced-developer-use-cases/integrations/serverless-dashboard-with-runtime-data.html">Displaying Workflow Data in Dashboards</a>
   </li>
 </ul>
   </li>
@@ -667,13 +669,13 @@
     <span class="nav-text">Testing</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="6">
-    <a class="nav-link" href="../testing/basic-integration-tests-with-restassured.html">Testing your Quarkus Workflow Application using REST Assured</a>
+    <a class="nav-link" href="../../../use-cases/advanced-developer-use-cases/testing/basic-integration-tests-with-restassured.html">Testing your Quarkus Workflow Application using REST Assured</a>
   </li>
   <li class="nav-item" data-depth="6">
-    <a class="nav-link" href="../testing/mocking-http-cloudevents-with-wiremock.html">Mocking HTTP CloudEvents sink using WireMock</a>
+    <a class="nav-link" href="../../../use-cases/advanced-developer-use-cases/testing/mocking-http-cloudevents-with-wiremock.html">Mocking HTTP CloudEvents sink using WireMock</a>
   </li>
   <li class="nav-item" data-depth="6">
-    <a class="nav-link" href="../testing/mocking-openapi-services-with-wiremock.html">Mocking OpenAPI services using WireMock</a>
+    <a class="nav-link" href="../../../use-cases/advanced-developer-use-cases/testing/mocking-openapi-services-with-wiremock.html">Mocking OpenAPI services using WireMock</a>
   </li>
 </ul>
   </li>
@@ -730,21 +732,204 @@
     <li class="crumb"><a href="../../../../index.html">Documentation</a></li>
     <li class="crumb">Serverless Logic</li>
     <li class="crumb">User Guides</li>
-    <li class="crumb">Use Cases</li>
-    <li class="crumb"><a href="../index.html">Development of OpenShift Serverless Logic applications using Quarkus and Java</a></li>
-    <li class="crumb">Service Orchestration</li>
-    <li class="crumb"><a href="configuring-openapi-services-endpoints-with-quarkus.html">Configuring the OpenAPI services endpoints in different environments</a></li>
+    <li class="crumb"><a href="../../index.html">Cloud</a></li>
+    <li class="crumb">Operator</li>
+    <li class="crumb">Upgrade</li>
+    <li class="crumb"><a href="upgrade_1_37_0_to_1_37_1.html">OSL 1.37.0 to 1.37.1</a></li>
   </ul>
 </nav>
 </div>
     <div class="main-view-and-toc">
         <main class="main">
           <article class="doc">
-<h1>Configuring the OpenAPI services endpoints in different environments</h1>
+<h1>Upgrade Serverless Logic Operator from 1.37.0 to 1.37.1</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>You can use different MicroProfile ConfigSources, such as environment variables and Kubernetes ConfigMaps, and MicroProfile Config profiles to configure the OpenAPI services in different environments. For more information about MicoProfile ConfigSources, see <a href="https://download.eclipse.org/microprofile/microprofile-config-2.0/microprofile-config-spec-2.0.html#configsource">ConfigSources</a>.</p>
+<p>This guide describes how to upgrade the Serverless Logic Operator <code>1.37.0</code> installed in an OpenShift cluster to the version <code>1.37.1</code>.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>An OpenShift cluster with admin privileges and <code>oc</code> installed.</p>
+</li>
+</ul>
+</div>
+</div>
+<div id="toc" class="toc">
+<div id="toctitle"></div>
+<ul class="sectlevel1">
+<li><a href="#_procedure">Procedure</a>
+<ul class="sectlevel2">
+<li><a href="#_overall_upgrade_procedure">Overall upgrade procedure</a></li>
+</ul>
+</li>
+<li><a href="#_found_an_issue"><em><strong>Found an issue?</strong></em></a></li>
+</ul>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_procedure"><a class="anchor" href="#_procedure"></a>Procedure</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To upgrade an Serverless Logic Operator <code>1.37.0</code> installation to the version <code>1.37.1</code>, you must execute this procedure:</p>
+</div>
+<div class="sect2">
+<h3 id="_overall_upgrade_procedure"><a class="anchor" href="#_overall_upgrade_procedure"></a>Overall upgrade procedure</h3>
+<div class="paragraph">
+<p>It is recommended to read and understand all the steps of the procedure before executing.
+Interested parties might automate the procedure according to their convenience or infrastructure, for example, keeping all the <code>SonataFlow</code> CRs in a GitHub repository, might help considerably to implement automation, etc.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Execute the steps <code>1</code> and <code>2</code> of the upgrade for every workflow with the <a href="#workflows_dev_profile">dev profile</a>.</p>
+</li>
+<li>
+<p>Execute the steps <code>1</code>, <code>2</code> and <code>3</code> of the upgrade for every workflow with the <a href="#workflows_preview_profile">preview profile</a>.</p>
+</li>
+<li>
+<p>Execute the steps <code>1</code>, <code>2</code>, <code>3</code> and <code>4</code> of the upgrade for every workflow with the <a href="#workflows_gitops_profile_image_rebuild">gitops profile</a>.</p>
+</li>
+<li>
+<p>Execute the step <code>1</code> of the <a href="#data_index_upgrade">Data Index</a> upgrade.</p>
+</li>
+<li>
+<p>Execute the step <code>1</code> of the <a href="#jobs_service_upgrade">Job Service</a> upgrade.</p>
+</li>
+<li>
+<p>Upgrade the Serverless Logic Operator to the version <code>1.37.1</code> <a href="#operator_upgrade_procedure">following this procedure</a>, and verify that the new version is running.</p>
+</li>
+<li>
+<p>Finalize the <a href="#data_index_upgrade">Data Index</a> upgrade by continuing from step <code>2</code>.</p>
+</li>
+<li>
+<p>Finalize the <a href="#jobs_service_upgrade">Job Service</a> upgrade by continuing from step <code>2</code>.</p>
+</li>
+<li>
+<p>Finalize the upgrade for the workflows with the <a href="#workflows_gitops_profile_image_rebuild">gitops profile</a> by continuing from step <code>5</code>.</p>
+</li>
+<li>
+<p>Finalize the upgrade for the workflows with the <a href="#workflows_preview_profile">preview profile</a> by continuing from step <code>4</code>.</p>
+</li>
+<li>
+<p>Finalize the upgrade for the workflows with the <a href="#workflows_dev_profile">dev profile</a> by continuing from step <code>3</code>.</p>
+</li>
+</ol>
+</div>
+<div class="sect3">
+<h4 id="workflows_dev_profile"><a class="anchor" href="#workflows_dev_profile"></a>Workflows with the <code>dev</code> profile</h4>
+<div class="paragraph">
+<p>Every workflow with the <code>dev</code> profile must be deleted before applying the Operator upgrade to the version <code>1.37.1</code>, and then redeployed after the upgrade is completed.</p>
+</div>
+<div class="paragraph">
+<p>For every workflow <code>my-workflow</code> with the <code>dev</code> profile you must:</p>
+</div>
+<div class="paragraph">
+<p><strong>Pre-operator upgrade steps:</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Ensure that you have a copy of the corresponding <code>SonataFlow</code> CR, as well as any other Kubernetes resources created for that workflow. For example, if you are using custom property configurations, you will need a copy of the user-provided <code>ConfigMap</code> with the <code>application.properties</code> file.</p>
+</li>
+<li>
+<p>Delete the workflow by using the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ oc delete -f &lt;my-workflow.yaml&gt; -n &lt;target_namespace&gt;</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Post-operator upgrade steps:</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="3">
+<li>
+<p>Ensure that any Kubernetes resource for that workflow, such as the user-provided <code>ConfigMap</code> with <code>application.properties</code>, is created before you redeploy the workflow.</p>
+</li>
+<li>
+<p>Redeploy the workflow by using the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ oc apply -f &lt;my-workflow.yaml&gt; -n &lt;target_namespace&gt;</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="workflows_preview_profile"><a class="anchor" href="#workflows_preview_profile"></a>Workflows with the <code>preview</code> profile</h4>
+<div class="paragraph">
+<p>Every workflow with the <code>preview</code> profile must be deleted before applying the Operator upgrade to the version <code>1.37.1</code>, and then, redeployed after the upgrade is completed.</p>
+</div>
+<div class="paragraph">
+<p>For every workflow <code>my-workflow</code> with the <code>preview</code> profile you must:</p>
+</div>
+<div class="paragraph">
+<p><strong>Pre-operator upgrade steps:</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>If the workflow is configured to use persistence, you must back up the workflow database.
+Ensure that your database backup includes all database objects, not just the table&#8217;s information.</p>
+</li>
+<li>
+<p>Ensure that you have a copy of the corresponding <code>SonataFlow</code> CR, as well as any other Kubernetes resources created for that workflow. For example, if you are using custom property configurations, you will need a copy of the user-provided <code>ConfigMap</code> with the <code>application.properties</code> file.</p>
+</li>
+<li>
+<p>Delete the workflow by using the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ oc delete -f &lt;my-workflow.yaml&gt; -n &lt;target_namespace&gt;</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Post-operator upgrade steps:</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="4">
+<li>
+<p>Ensure that any Kubernetes resource for that workflow, such as the user-provided <code>ConfigMap</code> with <code>application.properties</code>, is created before you redeploy the workflow.</p>
+</li>
+<li>
+<p>Redeploy the workflow by using the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ oc apply -f &lt;my-workflow.yaml&gt; -n &lt;target_namespace&gt;</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="workflows_gitops_profile_image_rebuild"><a class="anchor" href="#workflows_gitops_profile_image_rebuild"></a>Workflows with the <code>gitops</code> profile</h4>
+<div class="paragraph">
+<p>For every workflow with the <code>gitops</code> profile, it is strongly recommended to rebuild the workflow image generated for version <code>1.37.0</code> before applying the upgrade, to ensure full compatibility with OpenShift Serverless Logic <code>1.37.1</code>.</p>
+</div>
+<div class="paragraph">
+<p>For every workflow my-workflow with the <code>gitops</code> profile you must:</p>
+</div>
+<div class="paragraph">
+<p><strong>Pre-operator upgrade steps:</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Rebuild the workflow image using the new OpenShift Serverless Logic <code>1.37.1</code> workflow builder <code>registry.redhat.io/openshift-serverless-1/logic-swf-builder-rhel9:1.37.1</code> and reconfigure your workflow, considering the following:</p>
+<div class="paragraph">
+<p>By default, the OpenShift Serverless Logic generates a workflow <code>Deployment</code> with <code>imagePullPolicy: IfNotPresent</code>.
+This means that if an already deployed workflow is redeployed using the same image name, the previously downloaded image will be reused, even if the image was rebuilt.</p>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -754,511 +939,267 @@
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Some operating systems allow only alphabetic characters or an underscore (_), in environment variables. Other characters such as <code>.</code> and <code>/</code> are not allowed. You must use the <a href="https://download.eclipse.org/microprofile/microprofile-config-2.0/microprofile-config-spec-2.0.html#default_configsources.env.mapping">Environment Variables Mapping Rules</a>, to set the value of a configuration property that contains a name with such characters.</p>
+<p>In all cases, you are not generating a new workflow version, but a new image build. Therefore, you must not change the workflow definition or any related assets, including the name, version, and description.</p>
 </div>
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>The testing procedure described in this document is based on the <code>serverless-workflow-stock-profit</code> example application in <a href="https://github.com/kiegroup/kogito-examples/tree/{kogito_branch}/serverless-workflow-examples/serverless-workflow-stock-profit">GitHub repository</a>. The <code>serverless-workflow-stock-profit</code> example application is a workflow that computes the profit for a given stock based on an existing stock portfolio.</p>
-</div>
-<div class="paragraph">
-<p>The <code>serverless-workflow-stock-profit</code> example application sends request to the following services:</p>
+<p>To ensure that the new image is pulled, you can:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>stock-portfolio-service</code>: Calculates the stock portfolio profit for a given stock based on the current stock price.</p>
-</li>
-<li>
-<p><code>stock-service</code>: Retrieves the current stock price.</p>
-</li>
-</ul>
+<p>Use a new image tag and configure the workflow to use it (recommended):</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">current image: quay.io/my-images/my-workflow:1.0
+new image: quay.io/my-images/my-workflow:1.0-1</code></pre>
 </div>
-<div class="paragraph">
-<p>Developing an application using a service that returns different results every time can be difficult, therefore the <code>stock-service</code> uses the following implementations depending on the environment.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>real-stock-service</code> (default implementation): Returns the real stock price. This service returns a random price every time to simulate a real stock service. This implementation is used in normal or production environment.</p>
-</li>
-<li>
-<p><code>fake-stock-service</code>: Returns the same price every time. This implementation is used in the development environment.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>The <code>stock-profit</code> service contains the following workflow definition:</p>
 </div>
 <div class="listingblock">
-<div class="title">Workflow definition in <code>stock-profit</code> service</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
-  "id": "stockprofit",
-  "specVersion": "0.8",
-  "version": "2.0.0-SNAPSHOT",
-  "name": "Stock profit Workflow",
-  "start": "GetStockPrice",
-  "functions": [
-    {
-      "name": "getStockPriceFunction",
-      "operation": "openapi/stock-svc.yaml#getStockPrice" <i class="conum" data-value="1"></i><b>(1)</b>
-    },
-    {
-      "name": "getProfitFunction",
-      "operation": "openapi/stock-portfolio-svc.yaml#getStockProfit" <i class="conum" data-value="2"></i><b>(2)</b>
-    }
-  ],
-  "states": [
-    {
-      "name": "GetStockPrice",
-      "type": "operation",
-      "actionMode": "sequential",
-      "actions": [
-        {
-          "name": "getStockPrice",
-          "functionRef": {
-            "refName": "getStockPriceFunction",
-            "arguments": {
-              "symbol": ".symbol"
-            }
-          }
-        }
-      ],
-      "transition": "ComputeProfit"
-    },
-    {
-      "name": "ComputeProfit",
-      "type": "operation",
-      "actionMode": "sequential",
-      "actions": [
-        {
-          "name": "getStockProfit",
-          "functionRef": {
-            "refName": "getProfitFunction",
-            "arguments": {
-              "symbol": ".symbol",
-              "currentPrice": ".currentPrice"
-            }
-          }
-        }
-      ],
-      "end": true
-    }
-  ]
-}</code></pre>
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: sonataflow.org/v1alpha08
+kind: SonataFlow
+metadata: # don't change
+  name: my-workflow
+  annotations:
+    sonataflow.org/description: My Workflow
+    sonataflow.org/version: '1.0'
+    sonataflow.org/profile: gitops
+spec:
+  podTemplate:
+    container:
+      # only change the image name/tag
+      image: quay.io/my-images/my-workflow:1.0-1
+  flow:
+    # the workflow definition (don't change)</code></pre>
 </div>
 </div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Defines the <code>stock-service</code> service operation</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Defines the <code>stock-portfolio-service</code> service operation</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>OpenShift Serverless Logic leverages Quarkus profiles to configure the workflow application depending on the target environment.</p>
-</div>
-<div class="paragraph">
-<p>To set properties for different profiles, each property needs to be prefixed with a percentage (%) followed by the profile name and a period (.) in the syntax as <code>%&lt;profile-name&gt;.config.name</code>. By default, Quarkus provides the following profiles that activate automatically in certain conditions:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>dev</code>: Activates in development mode, such as <code>quarkus:dev</code></p>
 </li>
 <li>
-<p><code>test</code>: Activates when tests are running</p>
-</li>
-<li>
-<p><code>preview</code> (default profile): Activates when not running in development or test mode</p>
+<p>Preserve the image name, and configure the workflow with the <code>imagePullPolicy: Always</code>.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: sonataflow.org/v1alpha08
+kind: SonataFlow
+metadata: # don't change
+  name: my-workflow
+  annotations:
+    sonataflow.org/description: My Workflow
+    sonataflow.org/version: '1.0'
+    sonataflow.org/profile: gitops
+spec:
+  podTemplate:
+    container:
+      image: quay.io/my-images/my-workflow:1.0
+      # only change the imagePullStrategy
+      imagePullPolicy: Always
+  flow:
+    # the workflow definition (don't change).</code></pre>
+</div>
+</div>
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>You can also create additional profiles and activate them using the <code>quarkus.profile</code> configuration property. For more information about Quarkus profiles, see <a href="https://quarkus.io/guides/config-reference#profiles">Profiles</a> in the Quarkus Configuration reference guide.</p>
-</div>
-</div>
-<div id="toc" class="toc">
-<div id="toctitle"></div>
-<ul class="sectlevel1">
-<li><a href="#proc-config-openapi-services-defining-urls">Defining URLs of the services in different environments</a></li>
-<li><a href="#proc-config-openapi-services-running-the-services">Running the services</a></li>
-<li><a href="#proc-config-openapi-services-running-sw-application-in-development-mode">Running workflow application in development mode</a>
-<ul class="sectlevel2">
-<li><a href="#proc-config-openapi-services-running-sw-application-in-production-mode">Running workflow application in production mode</a></li>
-<li><a href="#proc-define-urls-using-environment-variables">Defining URLs of services in different environments using environment variables</a></li>
-</ul>
 </li>
-</ul>
+<li>
+<p>If the workflow is configured to use persistence, you must back up the workflow database.
+Ensure that your database backup includes all database objects, not just the table&#8217;s information.</p>
+</li>
+<li>
+<p>Ensure that you have a copy of the corresponding <code>SonataFlow</code> CR, as well as any other Kubernetes resources created for that workflow.
+For example, if you are using custom property configurations, you will need a copy of the user-provided <code>ConfigMap</code> with the <code>application.properties</code> file.</p>
+</li>
+<li>
+<p>Delete the workflow by using the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ oc delete -f &lt;my-workflow.yaml&gt; -n &lt;target_namespace&gt;</code></pre>
 </div>
 </div>
-<div class="sect1">
-<h2 id="proc-config-openapi-services-defining-urls"><a class="anchor" href="#proc-config-openapi-services-defining-urls"></a>Defining URLs of the services in different environments</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>You can define the URLs of the services in different environments by using profiles.</p>
+</li>
+</ol>
+</div>
+<div id="workflows_gitops_profile_image_rebuild_post_upgrade" class="paragraph">
+<p><strong>Post-operator upgrade steps:</strong></p>
 </div>
 <div class="olist arabic">
-<div class="title">Procedure</div>
-<ol class="arabic">
+<ol class="arabic" start="5">
 <li>
-<p>Create a file named <code>application.properties</code> in the <code>src/main/resources</code> directory of the workflow project, if the file does not exist.</p>
+<p>Ensure that any Kubernetes resource for that workflow, such as the user-provided <code>ConfigMap</code> with <code>application.properties</code>, is created before you redeploy the workflow.</p>
 </li>
 <li>
-<p>In the <code>application.properties</code> file, add the OpenAPI configuration for the default environment:</p>
-<div class="openblock">
-<div class="content">
+<p>Redeploy the reconfigured workflow using the following command:</p>
 <div class="listingblock">
-<div class="title">Example properties in <code>application.properties</code> file</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">quarkus.rest-client.stock_svc_yaml.url=http://localhost:8383/ <i class="conum" data-value="1"></i><b>(1)</b>
-quarkus.rest-client.stock_portfolio_svc_yaml.url=http://localhost:8282/</code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>URL of the <code>real-stock-service</code> service</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-</li>
-<li>
-<p>In the <code>application.properties</code> file, add the OpenAPI configuration for the <code>dev</code> environment:</p>
-<div class="openblock">
-<div class="content">
-<div class="listingblock">
-<div class="title">Example properties for development environment</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">%dev.quarkus.rest-client.stock_svc_yaml.url=http://localhost:8181/ <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>URL of the <code>fake-stock-service</code> service</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>The <code>%dev.</code> prefix indicates the <code>dev</code> profile configuration, which is used when you run <code>mvn quarkus:dev</code> or <code>quarkus dev</code>.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ oc apply -f &lt;my-workflow.yaml&gt; -n &lt;target_namespace&gt;</code></pre>
 </div>
 </div>
 </li>
 </ol>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="proc-config-openapi-services-running-the-services"><a class="anchor" href="#proc-config-openapi-services-running-the-services"></a>Running the services</h2>
-<div class="sectionbody">
+<div class="sect3">
+<h4 id="data_index_upgrade"><a class="anchor" href="#data_index_upgrade"></a>Data Index upgrade</h4>
 <div class="paragraph">
-<p>After defining the URLs of the services, you can run the services that the workflow sends request to.</p>
+<p>Every Data Index deployment must be upgraded with the following procedure:</p>
 </div>
-<div class="ulist">
-<div class="title">Prerequisites</div>
-<ul>
-<li>
-<p>URLs of the services in the different environments are defined.</p>
 <div class="paragraph">
-<p>For more information, see <a href="#proc-config-openapi-services-defining-urls">Defining the URLs of the services in different environments</a>.</p>
-</div>
-</li>
-</ul>
+<p><strong>Pre-operator upgrade steps:</strong></p>
 </div>
 <div class="olist arabic">
-<div class="title">Procedure</div>
 <ol class="arabic">
 <li>
-<p>In a separate command terminal window, run the <code>stock-portfolio-service</code> service:</p>
-<div class="openblock">
-<div class="content">
+<p>Back up the Data Index database, including all database objects, not just the table information.</p>
+</li>
+</ol>
+</div>
 <div class="paragraph">
-<p>Run the <code>stock-portfolio-service</code> service</p>
+<p><strong>Post-operator upgrade steps:</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="2">
+<li>
+<p>The Data Index service will be automatically restarted with the version 1.37.1.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="jobs_service_upgrade"><a class="anchor" href="#jobs_service_upgrade"></a>Job Service upgrade</h4>
+<div class="paragraph">
+<p><strong>Pre-operator upgrade steps:</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Back up the Job Service database, including all database objects, not just the table information.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Post-operator upgrade steps:</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="2">
+<li>
+<p>The Job Service will be automatically restarted with the version 1.37.1.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="operator_upgrade_procedure"><a class="anchor" href="#operator_upgrade_procedure"></a>Operator Upgrade Procedure</h4>
+<div class="paragraph">
+<p>To upgrade the Serverless Logic Operator from <code>1.37.0</code> to <code>1.37.1</code> you must execute these steps:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Remove Data Index and Jobs Service database initialization <code>Job</code>:</p>
+<div class="paragraph">
+<p>In every namespace where you have installed a <code>SonataFlowPlatform</code>, that has configured the <code>dbMigrationStrategy: job</code>, for any of
+the Data Index or the Jobs Service, you must remove the associated <code>sonataflow-db-migrator-job</code> with the following command:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">cd stock-portfolio-service
-mvn quarkus:dev -Ddebug=false</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>You can access the <code>stock-portfolio-service</code> service at <code><a href="http://localhost:8282/" class="bare">localhost:8282/</a></code>.</p>
-</div>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"> oc delete job sonataflow-db-migrator-job -n &lt;target-namespace&gt;</code></pre>
 </div>
 </div>
 </li>
 <li>
-<p>In a separate command terminal window, run the <code>real-stock-service</code> service:</p>
-<div class="openblock">
+<p>Execute the following command to query the available installation plan for the Operator upgrade to <code>1.37.1</code>:</p>
+<div class="listingblock">
 <div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc get installplan -n openshift-serverless-logic</code></pre>
+</div>
+</div>
 <div class="paragraph">
-<p>Run <code>real-stock-service</code> service</p>
+<p>You must get an output like this:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">cd real-stock-service
-mvn quarkus:dev -Ddebug=false</code></pre>
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">NAME            CSV                      APPROVAL   APPROVED
+install-YYYY    logic-operator.v1.37.1   Manual     false
+install-XXXX    logic-operator.v1.37.0   Manual     true</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>You can access the <code>real-stock-service</code> service at <code><a href="http://localhost:8383/" class="bare">localhost:8383/</a></code>.</p>
+<p>Approve the installation plan corresponding to <code>logic-operator.v1.37.1</code> with a command like this:</p>
 </div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc patch installplan install-YYYY -n openshift-serverless-logic --type merge -p '{"spec":{"approved":true}}'</code></pre>
 </div>
 </div>
 </li>
 <li>
-<p>In a separate command terminal window, run the <code>fake-stock-service</code> service:</p>
-<div class="openblock">
-<div class="content">
+<p>Verify that the Serverless Logic Operator <code>1.37.1</code> was updated correctly:</p>
+<div class="paragraph">
+<p>When the installation plan is executed, you can execute the following command to verify the upgrade was successful:</p>
+</div>
 <div class="listingblock">
-<div class="title">Run <code>fake-stock-service</code> service</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">cd fake-stock-service
-mvn quarkus:dev -Ddebug=false</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc get csv -n openshift-serverless-logic</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>You can access the <code>fake-stock-service</code> service at <code><a href="http://localhost:8181/" class="bare">localhost:8181/</a></code>.</p>
+<p>You must get an output like this:</p>
 </div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">NAME                     DISPLAY                               VERSION   REPLACES                 PHASE
+logic-operator.v1.37.1   OpenShift Serverless Logic Operator   1.37.1    logic-operator.v1.37.0   Succeeded</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Verify the Data Index and Jobs Service database initialization <code>Job</code> was created:</p>
+<div class="paragraph">
+<p>In every namespace where you have installed a <code>SonataFlowPlatform</code>, that has configured the <code>dbMigrationStrategy: job</code>, for any of
+the Data Index or the Jobs Service, you can verify that a the <code>sonataflow-db-migrator-job</code> was created with the following command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"> oc get job sonataflow-db-migrator-job -n &lt;target-namespace&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Alternatively, you can verify the Data Index database was migrated correctly with the following command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc logs job/sonataflow-db-migrator-job -n &lt;target-namespace&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You must get an output containing these lines:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">2026-02-02 11:45:09,606 INFO  [org.kie.kog.mig.pos.MigrationService] (main) Migrating data-index
+2026-02-02 11:45:09,778 INFO  [org.fly.cor.int.com.DbValidate] (main) Successfully validated 22 migrations (execution time 00:00.043s)
+2026-02-02 11:45:09,810 INFO  [org.fly.cor.int.com.DbMigrate] (main) Current version of schema "sonataflow-platform-data-index-service": 1.45.1.4
+2026-02-02 11:45:09,824 INFO  [org.fly.cor.int.com.DbMigrate] (main) Migrating schema "sonataflow-platform-data-index-service" to version "1.46.0 - add user task id column"
+2026-02-02 11:45:09,861 INFO  [org.fly.cor.int.com.DbMigrate] (main) Migrating schema "sonataflow-platform-data-index-service" to version "1.47.0 - adjust column sizes in tables updated by hibernate"
+2026-02-02 11:45:09,882 INFO  [org.fly.cor.int.com.DbMigrate] (main) Successfully applied 2 migrations to schema "sonataflow-platform-data-index-service", now at version v1.47.0 (execution time 00:00.010s)</code></pre>
 </div>
 </div>
 </li>
 </ol>
+</div>
+</div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="proc-config-openapi-services-running-sw-application-in-development-mode"><a class="anchor" href="#proc-config-openapi-services-running-sw-application-in-development-mode"></a>Running workflow application in development mode</h2>
+<h2 id="_found_an_issue"><a class="anchor" href="#_found_an_issue"></a><em><strong>Found an issue?</strong></em></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>When you define <code>%dev.quarkus.rest-client.stock_svc_yaml.url=http://localhost:8181/</code>, the <code>fake-stock-service</code> service is used in the development mode and you get the same result every time you run the workflow. Using this example, you can run the workflow application in development mode.</p>
-</div>
-<div class="ulist">
-<div class="title">Prerequisites</div>
-<ul>
-<li>
-<p>Services that the workflow application sends requests to are started.</p>
-<div class="paragraph">
-<p>For more information, see <a href="#proc-config-openapi-services-running-the-services">Running the services</a>.</p>
-</div>
-</li>
-</ul>
-</div>
-<div class="olist arabic">
-<div class="title">Procedure</div>
-<ol class="arabic">
-<li>
-<p>In a separate command terminal window, run the workflow application in development mode:</p>
-<div class="openblock">
-<div class="content">
-<div class="listingblock">
-<div class="title">Run workflow application in development mode</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">cd stock-profit
-mvn quarkus:dev -Ddebug=false</code></pre>
-</div>
-</div>
-</div>
-</div>
-</li>
-<li>
-<p>In a separate command terminal window, send a request to the workflow application:</p>
-<div class="openblock">
-<div class="content">
-<div class="listingblock">
-<div class="title">Example request</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">curl -X 'POST' \
-  'http://localhost:8080/stockprofit' \
-  -H 'accept: */*' \
-  -H 'Content-Type: application/json' \
-  -d '{ "symbol": "KGTO" }'</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Example response</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{"id":"5ab5dcb8-5952-4730-b526-cace363774bb","workflowdata":{"symbol":"KGTO","currentPrice":75,"profit":"50%"}}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Note that, in the previous example <code>fake-stock-service</code> is used, therefore, the computed <code>profit</code> property is same no matter how many times you run the workflow.</p>
-</div>
-</div>
-</div>
-</li>
-</ol>
-</div>
-<div class="sect2">
-<h3 id="proc-config-openapi-services-running-sw-application-in-production-mode"><a class="anchor" href="#proc-config-openapi-services-running-sw-application-in-production-mode"></a>Running workflow application in production mode</h3>
-<div class="paragraph">
-<p>When you define <code>quarkus.rest-client.stock_svc_yaml.url=http://localhost:8383/</code>, the <code>real-stock-service</code> service is used in the normal or production mode and you get different results every time you run the workflow. Using this example, you can run the workflow application in normal or production mode.</p>
-</div>
-<div class="ulist">
-<div class="title">Prerequisites</div>
-<ul>
-<li>
-<p>Services that the workflow application sends requests to are started.</p>
-<div class="paragraph">
-<p>For more information, see <a href="#proc-config-openapi-services-running-the-services">Running the services</a>.</p>
-</div>
-</li>
-</ul>
-</div>
-<div class="olist arabic">
-<div class="title">Procedure</div>
-<ol class="arabic">
-<li>
-<p>In a separate command terminal window, package the workflow application to be run as fat JAR:</p>
-<div class="openblock">
-<div class="content">
-<div class="listingblock">
-<div class="title">Package workflow application</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">cd stock-profit
-mvn package</code></pre>
-</div>
-</div>
-</div>
-</div>
-</li>
-<li>
-<p>In a separate command terminal window, run the workflow application in normal or production mode:</p>
-<div class="openblock">
-<div class="content">
-<div class="listingblock">
-<div class="title">Run workflow application in normal or production mode</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">java -jar target/quarkus-app/quarkus-run.jar</code></pre>
-</div>
-</div>
-</div>
-</div>
-</li>
-<li>
-<p>In a separate command terminal window, send a request to the workflow application:</p>
-<div class="openblock">
-<div class="content">
-<div class="listingblock">
-<div class="title">Example request</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">curl -X 'POST' \
-  'http://localhost:8080/stockprofit' \
-  -H 'accept: */*' \
-  -H 'Content-Type: application/json' \
-  -d '{ "symbol": "KGTO" }'</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Example response</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{"id":"a80c95d6-51fd-4ca9-b689-f779929c9937","workflowdata":{"symbol":"KGTO","currentPrice":59.36,"profit":"19%"}}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Note that, in the previous example, the <code>real-stock-service</code> is used, therefore, the computed <code>profit</code> property is different every time you run the workflow.</p>
-</div>
-</div>
-</div>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect2">
-<h3 id="proc-define-urls-using-environment-variables"><a class="anchor" href="#proc-define-urls-using-environment-variables"></a>Defining URLs of services in different environments using environment variables</h3>
-<div class="paragraph">
-<p>You can define the URLs of the services in different environments using profiles and environment variables.</p>
-</div>
-<div class="ulist">
-<div class="title">Prerequisites</div>
-<ul>
-<li>
-<p>Services that the workflow application sends requests to are started.</p>
-<div class="paragraph">
-<p>For more information, see <a href="#proc-config-openapi-services-running-the-services">Running the services</a>.</p>
-</div>
-</li>
-</ul>
-</div>
-<div class="olist arabic">
-<div class="title">Procedure</div>
-<ol class="arabic">
-<li>
-<p>In a separate command terminal window, run the workflow application in development mode, overwriting the property defined in the <code>application.properties</code> file using an environment variable:</p>
-<div class="openblock">
-<div class="content">
-<div class="listingblock">
-<div class="title">Run the workflow application in development mode</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">cd stock-profit
-export _DEV_QUARKUS_REST_CLIENT_STOCK_SVC_YAML_URL=http://localhost:8383/ <i class="conum" data-value="1"></i><b>(1)</b>
-mvn quarkus:dev -Ddebug=false</code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Overwrite the <code>%dev.quarkus.rest-client.stock_svc_yaml.url=http://localhost:8181/</code> defined in the <code>application.properties</code> file using an environment variable, which is pointing to <code>real-stock-service</code>.</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-</li>
-<li>
-<p>In a separate command terminal window, send a request to the workflow application:</p>
-<div class="openblock">
-<div class="content">
-<div class="listingblock">
-<div class="title">Example request</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">curl -X 'POST' \
-  'http://localhost:8080/stockprofit' \
-  -H 'accept: */*' \
-  -H 'Content-Type: application/json' \
-  -d '{ "symbol": "KGTO" }'</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Example response</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{"id":"5ab5dcb8-5952-4730-b526-cace363774bb","workflowdata":{"symbol":"KGTO","currentPrice":56.35,"profit":"13%"}}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Note that, in the previous example, you overwrote the property defined in the <code>application.properties</code> file to point to <code>real-stock-service</code>, therefore, the computed <code>profit</code> property is different every time you run the workflow.</p>
-</div>
-</div>
-</div>
-</li>
-</ol>
-</div>
+<p>If you find an issue or any misleading information, please feel free to report it <a href="https://github.com/kiegroup/kogito-docs/issues/new">here</a>.
+We really appreciate it!</p>
 </div>
 </div>
 </div>
