@@ -1,0 +1,103 @@
+// Regular procedure for gitops workflows migration that requires (or the user optionally wants) a rebuild of the workflow image.
+// The caller document must set the following attributes: (see: upgrade_1_37_0_to_1_37_1.adoc as example)
+// current_operator_version, next_operator_version and next_swf_builder_image.
+:page-partial:
+
+*Pre-operator upgrade steps:*
+
+. Rebuild the workflow image using the new {product_name} `{next_operator_version}` workflow builder `{next_swf_builder_image}` and reconfigure your workflow, considering the following:
+
++
+By default, the {product_name} generates a workflow `Deployment` with `imagePullPolicy: IfNotPresent`.
+This means that if an already deployed workflow is redeployed using the same image name, the previously downloaded image will be reused, even if the image was rebuilt.
+
++
+[IMPORTANT]
+====
+In all cases, you are not generating a new workflow version, but a new image build. Therefore, you must not change the workflow definition or any related assets, including the name, version, and description.
+====
+
++
+To ensure that the new image is pulled, you can:
++
+
+
+* Use a new image tag and configure the workflow to use it (recommended):
++
+[source,yaml]
+----
+current image: quay.io/my-images/my-workflow:1.0
+new image: quay.io/my-images/my-workflow:1.0-1
+----
++
+[source,yaml]
+----
+apiVersion: sonataflow.org/v1alpha08
+kind: SonataFlow
+metadata: # don't change
+  name: my-workflow
+  annotations:
+    sonataflow.org/description: My Workflow
+    sonataflow.org/version: '1.0'
+    sonataflow.org/profile: gitops
+spec:
+  podTemplate:
+    container:
+      # only change the image name/tag
+      image: quay.io/my-images/my-workflow:1.0-1
+  flow:
+    # the workflow definition (don't change)
+----
++
+* Preserve the image name, and configure the workflow with the `imagePullPolicy: Always`.
++
+[source,yaml]
+----
+apiVersion: sonataflow.org/v1alpha08
+kind: SonataFlow
+metadata: # don't change
+  name: my-workflow
+  annotations:
+    sonataflow.org/description: My Workflow
+    sonataflow.org/version: '1.0'
+    sonataflow.org/profile: gitops
+spec:
+  podTemplate:
+    container:
+      image: quay.io/my-images/my-workflow:1.0
+      # only change the imagePullStrategy
+      imagePullPolicy: Always
+  flow:
+    # the workflow definition (don't change).
+----
++
+
+. If the workflow is configured to use persistence, you must back up the workflow database.
+Ensure that your database backup includes all database objects, not just the table's information.
+
++
+. Ensure that you have a copy of the corresponding `SonataFlow` CR, as well as any other Kubernetes resources created for that workflow.
+For example, if you are using custom property configurations, you will need a copy of the user-provided `ConfigMap` with the `application.properties` file.
+
++
+. Delete the workflow by using the following command:
+
++
+[source,terminal]
+----
+$ oc delete -f <my-workflow.yaml> -n <target_namespace>
+----
+
+[#workflows_gitops_profile_image_rebuild_post_upgrade]
+*Post-operator upgrade steps:*
+
+[start=5]
+. Ensure that any Kubernetes resource for that workflow, such as the user-provided `ConfigMap` with `application.properties`, is created before you redeploy the workflow.
+
++
+. Redeploy the reconfigured workflow using the following command:
++
+[source,terminal]
+----
+$ oc apply -f <my-workflow.yaml> -n <target_namespace>
+----
