@@ -3,7 +3,6 @@
 // current_operator_version, next_operator_version
 :page-partial:
 
-+
 . Execute the following command to query the available installation plan for the Operator upgrade to `{next_operator_version}`:
 +
 [source,bash]
