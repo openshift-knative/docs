@@ -46,34 +46,7 @@ Interested parties might automate the procedure according to their convenience o
 [#config_jobs_service_retry_interval]
 ==== Increase the Jobs Service retry interval
 
-During system upgrades or migrations, job executions may temporarily fail due to transitional states (e.g., partial availability of workflows being migrated).
-To prevent jobs from being prematurely discarded during this process, you must increase the retry interval before starting the upgrade.
-This ensures that potential failing jobs are retained in the system while the upgrade is in progress, and have sufficient time to be retried successfully once the system stabilizes.
-
-To increase the retry interval you must:
-
-. Add the environment variable `KOGITO_JOBS_SERVICE_MAXINTERVALLIMITTORETRYMILLIS` with a relaxed configuration to the `jobService.podTemplate.container` in your `SonataFlowPlatform` (CR).
-. Make sure to keep all existing fields in your `SonataFlowPlatform` (CR) unchanged.
-. Reapply the `SonataFlowPlatform` (CR). When reapplied, the Jobs Service deployment will be updated and rolled out.
-
-[source,yaml]
-----
-apiVersion: sonataflow.org/v1alpha08
-kind: SonataFlowPlatform
-metadata:
-  name: sonataflow-platform-example
-  namespace: example-namespace
-spec:
-# all the fields in your SonataFlowPlatform must be preserved.
-  services
-    jobService:
-      container:
-        env:
-          - name: KOGITO_JOBS_SERVICE_MAXINTERVALLIMITTORETRYMILLIS
-            # e.g. retry period of 4 hs.
-            value: 14400000
-----
-
+include::../../../_common-content/cloud/operator/upgrade-serverless-operator/regular_jobs_service_increase_retry_interval_procedure.adoc[]
 
 [#workflows_dev_profile]
 ==== Workflows with the `dev` profile
@@ -154,10 +127,6 @@ the Data Index or the Jobs Service, you can verify that a the `sonataflow-db-mig
 [#restore_jobs_service_retry_interval]
 ==== Restore the Jobs Service retry interval
 
-After redeploying all workflows you must restore the Job Service retry interval by following these steps:
-
-. Remove the environment variable `KOGITO_JOBS_SERVICE_MAXINTERVALLIMITTORETRYMILLIS` added in <<config_jobs_service_retry_interval, step 1>>, or restore it to the previously configured value in cases where you have override the default value.
-. Make sure to keep all existing fields in your `SonataFlowPlatform` (CR) unchanged.
-. Reapply the `SonataFlowPlatform` (CR). When reapplied, the Jobs Service deployment will be updated and rolled out.
+include::../../../_common-content/cloud/operator/upgrade-serverless-operator/regular_jobs_service_restore_retry_interval_procedure.adoc[]
 
 include::../../../../pages/_common-content/report-issue.adoc[]

@@ -1,0 +1,10 @@
+// Regular Jobs service procedure for restoring the jobs retry interval.
+// The caller document must set the following attributes: (see: upgrade_1_37_0_to_1_37_1.adoc as example)
+// current_operator_version, next_operator_version
+:page-partial:
+
+After redeploying all workflows you must restore the Job Service retry interval by following these steps:
+
+. Remove the environment variable `KOGITO_JOBS_SERVICE_MAXINTERVALLIMITTORETRYMILLIS` added in <<config_jobs_service_retry_interval, step 1>>, or restore it to the previously configured value in cases where you have override the default value.
+. Make sure to keep all existing fields in your `SonataFlowPlatform` (CR) unchanged.
+. Reapply the `SonataFlowPlatform` (CR). When reapplied, the Jobs Service deployment will be updated and rolled out.
