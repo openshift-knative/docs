@@ -1,0 +1,32 @@
+// Regular Jobs service procedure for increasing the jobs retry interval.
+// The caller document must set the following attributes: (see: upgrade_1_37_0_to_1_37_1.adoc as example)
+// current_operator_version, next_operator_version
+:page-partial:
+
+During system upgrades or migrations, job executions may temporarily fail due to transitional states (e.g., partial availability of workflows being migrated).
+To prevent jobs from being prematurely discarded during this process, you must increase the retry interval before starting the upgrade.
+This ensures that potential failing jobs are retained in the system while the upgrade is in progress, and have sufficient time to be retried successfully once the system stabilizes.
+
+To increase the retry interval you must:
+
+. Add the environment variable `KOGITO_JOBS_SERVICE_MAXINTERVALLIMITTORETRYMILLIS` with a relaxed configuration to the `jobService.podTemplate.container` in your `SonataFlowPlatform` (CR).
+. Make sure to keep all existing fields in your `SonataFlowPlatform` (CR) unchanged.
+. Reapply the `SonataFlowPlatform` (CR). When reapplied, the Jobs Service deployment will be updated and rolled out.
+
+[source,yaml]
+----
+apiVersion: sonataflow.org/v1alpha08
+kind: SonataFlowPlatform
+metadata:
+  name: sonataflow-platform-example
+  namespace: example-namespace
+spec:
+# all the fields in your SonataFlowPlatform must be preserved.
+  services
+    jobService:
+      container:
+        env:
+          - name: KOGITO_JOBS_SERVICE_MAXINTERVALLIMITTORETRYMILLIS
+            # e.g. retry period of 4 hs.
+            value: 14400000
+----
