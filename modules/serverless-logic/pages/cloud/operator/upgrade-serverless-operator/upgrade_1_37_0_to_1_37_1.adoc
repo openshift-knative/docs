@@ -29,6 +29,7 @@ To upgrade an {operator_name} `{current_operator_version}` installation to the v
 It is recommended to read and understand all the steps of the procedure before executing.
 Interested parties might automate the procedure according to their convenience or infrastructure, for example, keeping all the `SonataFlow` CRs in a GitHub repository, might help considerably to implement automation, etc.
 
+. Increase the Job Service retry interval before starting the upgrade by following these <<config_jobs_service_retry_interval, steps>>.
 . Execute the steps `1` and `2` of the upgrade for every workflow with the <<workflows_dev_profile, dev profile>>.
 . Execute the steps `1`, `2` and `3` of the upgrade for every workflow with the <<workflows_preview_profile, preview profile>>.
 . Execute the steps `1`, `2`, `3` and `4` of the upgrade for every workflow with the <<workflows_gitops_profile_image_rebuild, gitops profile>>.
@@ -40,6 +41,12 @@ Interested parties might automate the procedure according to their convenience o
 . Finalize the upgrade for the workflows with the <<workflows_gitops_profile_image_rebuild, gitops profile>> by continuing from step `5`.
 . Finalize the upgrade for the workflows with the <<workflows_preview_profile, preview profile>> by continuing from step `4`.
 . Finalize the upgrade for the workflows with the <<workflows_dev_profile, dev profile>> by continuing from step `3`.
+. Restore the Job Service retry interval by following these <<restore_jobs_service_retry_interval, steps>>.
+
+[#config_jobs_service_retry_interval]
+==== Increase the Jobs Service retry interval
+
+include::../../../_common-content/cloud/operator/upgrade-serverless-operator/regular_jobs_service_increase_retry_interval_procedure.adoc[]
 
 [#workflows_dev_profile]
 ==== Workflows with the `dev` profile
@@ -137,7 +144,11 @@ You must get an output containing these lines:
 2026-02-02 11:45:09,824 INFO  [org.fly.cor.int.com.DbMigrate] (main) Migrating schema "sonataflow-platform-data-index-service" to version "1.46.0 - add user task id column"
 2026-02-02 11:45:09,861 INFO  [org.fly.cor.int.com.DbMigrate] (main) Migrating schema "sonataflow-platform-data-index-service" to version "1.47.0 - adjust column sizes in tables updated by hibernate"
 2026-02-02 11:45:09,882 INFO  [org.fly.cor.int.com.DbMigrate] (main) Successfully applied 2 migrations to schema "sonataflow-platform-data-index-service", now at version v1.47.0 (execution time 00:00.010s)
-
 ----
+
+[#restore_jobs_service_retry_interval]
+==== Restore the Jobs Service retry interval
+
+include::../../../_common-content/cloud/operator/upgrade-serverless-operator/regular_jobs_service_restore_retry_interval_procedure.adoc[]
 
 include::../../../../pages/_common-content/report-issue.adoc[]
