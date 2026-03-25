@@ -787,6 +787,9 @@ Interested parties might automate the procedure according to their convenience o
 <div class="olist arabic">
 <ol class="arabic">
 <li>
+<p>Increase the Job Service retry interval before starting the upgrade by following these <a href="#config_jobs_service_retry_interval">steps</a>.</p>
+</li>
+<li>
 <p>Execute the steps <code>1</code> and <code>2</code> of the upgrade for every workflow with the <a href="#workflows_dev_profile">dev profile</a>.</p>
 </li>
 <li>
@@ -819,7 +822,52 @@ Interested parties might automate the procedure according to their convenience o
 <li>
 <p>Finalize the upgrade for the workflows with the <a href="#workflows_dev_profile">dev profile</a> by continuing from step <code>3</code>.</p>
 </li>
+<li>
+<p>Restore the Job Service retry interval by following these <a href="#restore_jobs_service_retry_interval">steps</a>.</p>
+</li>
 </ol>
+</div>
+<div class="sect3">
+<h4 id="config_jobs_service_retry_interval"><a class="anchor" href="#config_jobs_service_retry_interval"></a>Increase the Jobs Service retry interval</h4>
+<div class="paragraph">
+<p>During system upgrades or migrations, job executions may temporarily fail due to transitional states (e.g., partial availability of workflows being migrated).
+To prevent jobs from being prematurely discarded during this process, you must increase the retry interval before starting the upgrade.
+This ensures that potential failing jobs are retained in the system while the upgrade is in progress, and have sufficient time to be retried successfully once the system stabilizes.</p>
+</div>
+<div class="paragraph">
+<p>To increase the retry interval you must:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Add the environment variable <code>KOGITO_JOBS_SERVICE_MAXINTERVALLIMITTORETRYMILLIS</code> with a relaxed configuration to the <code>jobService.podTemplate.container</code> in your <code>SonataFlowPlatform</code> (CR).</p>
+</li>
+<li>
+<p>Make sure to keep all existing fields in your <code>SonataFlowPlatform</code> (CR) unchanged.</p>
+</li>
+<li>
+<p>Reapply the <code>SonataFlowPlatform</code> (CR). When reapplied, the Jobs Service deployment will be updated and rolled out.</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: sonataflow.org/v1alpha08
+kind: SonataFlowPlatform
+metadata:
+  name: sonataflow-platform-example
+  namespace: example-namespace
+spec:
+# all the fields in your SonataFlowPlatform must be preserved.
+  services
+    jobService:
+      container:
+        env:
+          - name: KOGITO_JOBS_SERVICE_MAXINTERVALLIMITTORETRYMILLIS
+            # e.g. retry period of 4 hs.
+            value: "14400000"</code></pre>
+</div>
+</div>
 </div>
 <div class="sect3">
 <h4 id="workflows_dev_profile"><a class="anchor" href="#workflows_dev_profile"></a>Workflows with the <code>dev</code> profile</h4>
@@ -1190,6 +1238,25 @@ the Data Index or the Jobs Service, you can verify that a the <code>sonataflow-d
 2026-02-02 11:45:09,882 INFO  [org.fly.cor.int.com.DbMigrate] (main) Successfully applied 2 migrations to schema "sonataflow-platform-data-index-service", now at version v1.47.0 (execution time 00:00.010s)</code></pre>
 </div>
 </div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="restore_jobs_service_retry_interval"><a class="anchor" href="#restore_jobs_service_retry_interval"></a>Restore the Jobs Service retry interval</h4>
+<div class="paragraph">
+<p>After redeploying all workflows you must restore the Job Service retry interval by following these steps:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Remove the environment variable <code>KOGITO_JOBS_SERVICE_MAXINTERVALLIMITTORETRYMILLIS</code> added in <a href="#config_jobs_service_retry_interval">step 1</a>, or restore it to the previously configured value in cases where you have override the default value.</p>
+</li>
+<li>
+<p>Make sure to keep all existing fields in your <code>SonataFlowPlatform</code> (CR) unchanged.</p>
+</li>
+<li>
+<p>Reapply the <code>SonataFlowPlatform</code> (CR). When reapplied, the Jobs Service deployment will be updated and rolled out.</p>
 </li>
 </ol>
 </div>
